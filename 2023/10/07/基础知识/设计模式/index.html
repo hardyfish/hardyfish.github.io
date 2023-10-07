@@ -379,7 +379,8 @@
 
 <div id="container" class = "content999">
 	<div id="article-content">
-		<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><strong>封装</strong></p>
+		<h1>基本概念</h1>
+<p><strong>封装</strong></p>
 <p>通过对类的封装，仅仅暴露少许必要的方法给调用方使用，调用方不需要了解太多背后的业务细节，大大降低了用错的概率，提高了代码的易用性。</p>
 <p><strong>抽象</strong></p>
 <p>通过抽象化只暴露出方法定义，而隐藏方法的具体实现，让调用者只需要关心方法提供了哪些功能，并不需要知道这些功能是如何实现的。</p>
@@ -399,7 +400,8 @@
 <p><strong>面向对象和面向过程</strong></p>
 <p>面向对象编程：以类为组织代码的基本单元，面向过程编程：以过程（或方法）作为组织代码的基本单元。</p>
 <p>面向过程编程：数据和方法相分离。不支持丰富的面向对象编程特性，比如继承、多态、封装。</p>
-<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><p><strong>单一职责原则（Single Responsibility Principle）</strong></p>
+<h2 id="设计原则">设计原则</h2>
+<p><strong>单一职责原则（Single Responsibility Principle）</strong></p>
 <p>对类来说的，即一个类应该只负责一项职责。如类A负责两个不同职责:职责1，职责2。当职责1需求变更而改变A时，可能造成职责2执行错误，所以需要将类A的粒度分解为A1，A2。</p>
 <p><strong>接口隔离原则（Interface Segregation Principle）</strong></p>
 <p>客户端不应该依赖它不需要的接口，即一个类对另一个类的依赖应该建立在最小的接口上</p>
@@ -416,12 +418,15 @@
 <p><strong>迪米特法制（Demeter Principle）</strong></p>
 <p>一个对象应该对其他对象保持最少的了解。</p>
 <p><strong>合成复用原则（Composite Reuse principle）</strong></p>
-<p>尽量使用合成&#x2F;聚合的方式，而不是使用继承。</p>
-<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><p>简单工厂模式指由一个工厂对象决定创建哪一种产品类型的实例。</p>
+<p>尽量使用合成/聚合的方式，而不是使用继承。</p>
+<h1>工厂模式</h1>
+<h2 id="简单工厂模式">简单工厂模式</h2>
+<p>简单工厂模式指由一个工厂对象决定创建哪一种产品类型的实例。</p>
 <blockquote>
 <p>只适用于工厂类负责创建的对象较少的场景，且客户端只需要传入工厂类的参数，对于如何创建对象不需要关心。</p>
 </blockquote>
-<h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><p>工厂方法定义一个创建对象的接口，但让实现这个接口的类来决定实例化哪个类。工厂方法让类的实例化推迟到子类中进行。</p>
+<h2 id="工厂方法模式">工厂方法模式</h2>
+<p>工厂方法定义一个创建对象的接口，但让实现这个接口的类来决定实例化哪个类。工厂方法让类的实例化推迟到子类中进行。</p>
 <blockquote>
 <p>当创建对象需要大量重复的代码，客户端(应用层)不依赖与产品类型实例如何被创建，实现等细节时可以考虑工厂方法。</p>
 </blockquote>
@@ -432,41 +437,41 @@
 <p><strong>代码体现</strong></p>
 <p>某平台先拥有Java和Python学习视频，将来需要拓展业务开放FE(前端)视频学习。</p>
 <p><img src="/images/image-20231007150732447.png" alt="image-20231007150732447"></p>
-<pre><code class="java">public abstract class Video &#123;
+<pre><code class="language-java">public abstract class Video &#123;
     public abstract void produce();
 &#125;
 </code></pre>
-<pre><code class="java">public class JavaVideo extends Video &#123;
+<pre><code class="language-java">public class JavaVideo extends Video &#123;
     @Override
     public void produce() &#123;
         System.out.println(&quot;录制Java课程视频&quot;);
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class PythonVideo extends Video &#123;
+<pre><code class="language-java">public class PythonVideo extends Video &#123;
     @Override
     public void produce() &#123;
         System.out.println(&quot;录制Python课程视频&quot;);
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public abstract class VideoFactory &#123;
+<pre><code class="language-java">public abstract class VideoFactory &#123;
     public abstract Video getVideo();
 &#125;
 </code></pre>
-<pre><code class="java">public class JavaVideoFactory extends VideoFactory &#123;
+<pre><code class="language-java">public class JavaVideoFactory extends VideoFactory &#123;
     public Video getVideo() &#123;
         return new JavaVideo();
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class PythonVideoFactory extends VideoFactory &#123;
+<pre><code class="language-java">public class PythonVideoFactory extends VideoFactory &#123;
     public Video getVideo() &#123;
         return new PythonVideo();
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class Test &#123;
+<pre><code class="language-java">public class Test &#123;
     public static void main(String[] args) &#123;
         VideoFactory videoFactory = new JavaVideoFactory();
         Video video = videoFactory.getVideo();
@@ -478,10 +483,13 @@
 <blockquote>
 <p>当拓展业务时，可以仿照<code>Java</code>与<code>Python</code>。可以直接添加<code>FEVideo</code>与<code>FEVideoFactory</code>，可以体现出开放封闭原则。</p>
 </blockquote>
-<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><h1 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h1><p>建造者模式适用于创建对象需要很多步骤，但是步骤的顺序不一定固定。如果一个对象有非常复杂的内部结构（很多属性），可以将复杂对象的创建和使用进行分离。</p>
-<h1 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h1><p>桥接模式就是把抽象和实现分离出来，然后中间通过<strong>组合</strong>来搭建他们之间的桥梁。</p>
+<h2 id="抽象工厂模式">抽象工厂模式</h2>
+<h1>建造者模式</h1>
+<p>建造者模式适用于创建对象需要很多步骤，但是步骤的顺序不一定固定。如果一个对象有非常复杂的内部结构（很多属性），可以将复杂对象的创建和使用进行分离。</p>
+<h1>桥接模式</h1>
+<p>桥接模式就是把抽象和实现分离出来，然后中间通过<strong>组合</strong>来搭建他们之间的桥梁。</p>
 <p>业务场景：中国有很多银行，有中国农业银行和中国工商银行；关于我们的账号，有定期账号和活期账号，一个就是银行一个就是我们的账号。</p>
-<pre><code class="java">public interface Account &#123;
+<pre><code class="language-java">public interface Account &#123;
     /** 打开我们的账号，打开账号，就要返回账号 */
     Account openAccount();
     
@@ -490,7 +498,7 @@
 
 &#125;
 </code></pre>
-<pre><code class="java">/** 定期的账号 */
+<pre><code class="language-java">/** 定期的账号 */
 public class DepositAccount implements Account &#123;
     @Override
     public Account openAccount() &#123;
@@ -504,7 +512,7 @@ public class DepositAccount implements Account &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">/** 活期账号 */
+<pre><code class="language-java">/** 活期账号 */
 public class SavingAccount implements Account &#123;
     @Override
     public Account openAccount() &#123;
@@ -518,7 +526,7 @@ public class SavingAccount implements Account &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public abstract class Bank &#123;
+<pre><code class="language-java">public abstract class Bank &#123;
     /** 只有子类能拿到这个Account的这个接口 */
     protected Account account;
 
@@ -532,7 +540,7 @@ public class SavingAccount implements Account &#123;
 
 &#125;
 </code></pre>
-<pre><code class="java">public class ABCBank extends Bank &#123;
+<pre><code class="language-java">public class ABCBank extends Bank &#123;
     /**
      * 组合的时候，可以通过构造器的方式来进行注入也可以通过set方法的方式来进行注入
      *
@@ -549,7 +557,7 @@ public class SavingAccount implements Account &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class ICBCBank extends Bank &#123;
+<pre><code class="language-java">public class ICBCBank extends Bank &#123;
     /**
      * 组合的时候，可以通过构造器的方式来进行注入也可以通过set方法的方式来进行注入
      *
@@ -566,7 +574,7 @@ public class SavingAccount implements Account &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class Test &#123;
+<pre><code class="language-java">public class Test &#123;
     public static void main(String[]args)&#123;
         Bank icbcBank = new ICBCBank(new DepositAccount());
         Account icbcAccount = icbcBank.openAccount();
