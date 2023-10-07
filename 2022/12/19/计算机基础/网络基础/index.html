@@ -297,15 +297,15 @@
 	        id: 'container',
 	        blogId: '22377-1657723090751-870',
 	        name: '月伴飞鱼',
-	        qrcode: 'https://img-blog.csdnimg.cn/20210613214230408.jpeg',
+	        qrcode: '/个人公众号.jpg',
 	        keyword: '验证码',
 	    });
 
 	    var contents = document.getElementsByClassName("content999");
 	    //监听文章内容的copy事件
-	    //contents[0].addEventListener('copy',function(e){
-	    //    setClipboardText(e);
-	    //});
+	    contents[0].addEventListener('copy',function(e){
+	        setClipboardText(e);
+	    });
 
 	    function setClipboardText(event){
 	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
@@ -347,7 +347,7 @@
         id: 'container',
         blogId: '22377-1657723090751-870',
         name: '月伴飞鱼',
-        qrcode: 'https://img-blog.csdnimg.cn/20210613214230408.jpeg',
+        qrcode: '/个人公众号.jpg',
         keyword: '验证码',
     });
 </script>
