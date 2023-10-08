@@ -128,6 +128,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										中间件
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E4%B8%AD%E9%97%B4%E4%BB%B6/MyBatis/">
+										MyBatis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										前端相关
 									</a>
 									
@@ -388,8 +408,7 @@
 
 <div id="container" class = "content999">
 	<div id="article-content">
-		<h1>基本概念</h1>
-<p><strong>封装</strong></p>
+		<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><strong>封装</strong></p>
 <p>通过对类的封装，仅仅暴露少许必要的方法给调用方使用，调用方不需要了解太多背后的业务细节，大大降低了用错的概率，提高了代码的易用性。</p>
 <p><strong>抽象</strong></p>
 <p>通过抽象化只暴露出方法定义，而隐藏方法的具体实现，让调用者只需要关心方法提供了哪些功能，并不需要知道这些功能是如何实现的。</p>
@@ -409,8 +428,7 @@
 <p><strong>面向对象和面向过程</strong></p>
 <p>面向对象编程：以类为组织代码的基本单元，面向过程编程：以过程（或方法）作为组织代码的基本单元。</p>
 <p>面向过程编程：数据和方法相分离。不支持丰富的面向对象编程特性，比如继承、多态、封装。</p>
-<h2 id="设计原则">设计原则</h2>
-<p><strong>单一职责原则（Single Responsibility Principle）</strong></p>
+<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><p><strong>单一职责原则（Single Responsibility Principle）</strong></p>
 <p>对类来说的，即一个类应该只负责一项职责。如类A负责两个不同职责:职责1，职责2。当职责1需求变更而改变A时，可能造成职责2执行错误，所以需要将类A的粒度分解为A1，A2。</p>
 <p><strong>接口隔离原则（Interface Segregation Principle）</strong></p>
 <p>客户端不应该依赖它不需要的接口，即一个类对另一个类的依赖应该建立在最小的接口上</p>
@@ -427,15 +445,12 @@
 <p><strong>迪米特法制（Demeter Principle）</strong></p>
 <p>一个对象应该对其他对象保持最少的了解。</p>
 <p><strong>合成复用原则（Composite Reuse principle）</strong></p>
-<p>尽量使用合成/聚合的方式，而不是使用继承。</p>
-<h1>工厂模式</h1>
-<h2 id="简单工厂模式">简单工厂模式</h2>
-<p>简单工厂模式指由一个工厂对象决定创建哪一种产品类型的实例。</p>
+<p>尽量使用合成&#x2F;聚合的方式，而不是使用继承。</p>
+<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><p>简单工厂模式指由一个工厂对象决定创建哪一种产品类型的实例。</p>
 <blockquote>
 <p>只适用于工厂类负责创建的对象较少的场景，且客户端只需要传入工厂类的参数，对于如何创建对象不需要关心。</p>
 </blockquote>
-<h2 id="工厂方法模式">工厂方法模式</h2>
-<p>工厂方法定义一个创建对象的接口，但让实现这个接口的类来决定实例化哪个类。工厂方法让类的实例化推迟到子类中进行。</p>
+<h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><p>工厂方法定义一个创建对象的接口，但让实现这个接口的类来决定实例化哪个类。工厂方法让类的实例化推迟到子类中进行。</p>
 <blockquote>
 <p>当创建对象需要大量重复的代码，客户端(应用层)不依赖与产品类型实例如何被创建，实现等细节时可以考虑工厂方法。</p>
 </blockquote>
@@ -446,41 +461,41 @@
 <p><strong>代码体现</strong></p>
 <p>某平台先拥有Java和Python学习视频，将来需要拓展业务开放FE(前端)视频学习。</p>
 <p><img src="/images/image-20231007150732447.png" alt="image-20231007150732447"></p>
-<pre><code class="language-java">public abstract class Video &#123;
+<pre><code class="java">public abstract class Video &#123;
     public abstract void produce();
 &#125;
 </code></pre>
-<pre><code class="language-java">public class JavaVideo extends Video &#123;
+<pre><code class="java">public class JavaVideo extends Video &#123;
     @Override
     public void produce() &#123;
         System.out.println(&quot;录制Java课程视频&quot;);
     &#125;
 &#125;
 </code></pre>
-<pre><code class="language-java">public class PythonVideo extends Video &#123;
+<pre><code class="java">public class PythonVideo extends Video &#123;
     @Override
     public void produce() &#123;
         System.out.println(&quot;录制Python课程视频&quot;);
     &#125;
 &#125;
 </code></pre>
-<pre><code class="language-java">public abstract class VideoFactory &#123;
+<pre><code class="java">public abstract class VideoFactory &#123;
     public abstract Video getVideo();
 &#125;
 </code></pre>
-<pre><code class="language-java">public class JavaVideoFactory extends VideoFactory &#123;
+<pre><code class="java">public class JavaVideoFactory extends VideoFactory &#123;
     public Video getVideo() &#123;
         return new JavaVideo();
     &#125;
 &#125;
 </code></pre>
-<pre><code class="language-java">public class PythonVideoFactory extends VideoFactory &#123;
+<pre><code class="java">public class PythonVideoFactory extends VideoFactory &#123;
     public Video getVideo() &#123;
         return new PythonVideo();
     &#125;
 &#125;
 </code></pre>
-<pre><code class="language-java">public class Test &#123;
+<pre><code class="java">public class Test &#123;
     public static void main(String[] args) &#123;
         VideoFactory videoFactory = new JavaVideoFactory();
         Video video = videoFactory.getVideo();
@@ -492,13 +507,10 @@
 <blockquote>
 <p>当拓展业务时，可以仿照<code>Java</code>与<code>Python</code>。可以直接添加<code>FEVideo</code>与<code>FEVideoFactory</code>，可以体现出开放封闭原则。</p>
 </blockquote>
-<h2 id="抽象工厂模式">抽象工厂模式</h2>
-<h1>建造者模式</h1>
-<p>建造者模式适用于创建对象需要很多步骤，但是步骤的顺序不一定固定。如果一个对象有非常复杂的内部结构（很多属性），可以将复杂对象的创建和使用进行分离。</p>
-<h1>桥接模式</h1>
-<p>桥接模式就是把抽象和实现分离出来，然后中间通过<strong>组合</strong>来搭建他们之间的桥梁。</p>
+<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><h1 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h1><p>建造者模式适用于创建对象需要很多步骤，但是步骤的顺序不一定固定。如果一个对象有非常复杂的内部结构（很多属性），可以将复杂对象的创建和使用进行分离。</p>
+<h1 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h1><p>桥接模式就是把抽象和实现分离出来，然后中间通过<strong>组合</strong>来搭建他们之间的桥梁。</p>
 <p>业务场景：中国有很多银行，有中国农业银行和中国工商银行；关于我们的账号，有定期账号和活期账号，一个就是银行一个就是我们的账号。</p>
-<pre><code class="language-java">public interface Account &#123;
+<pre><code class="java">public interface Account &#123;
     /** 打开我们的账号，打开账号，就要返回账号 */
     Account openAccount();
     
@@ -507,7 +519,7 @@
 
 &#125;
 </code></pre>
-<pre><code class="language-java">/** 定期的账号 */
+<pre><code class="java">/** 定期的账号 */
 public class DepositAccount implements Account &#123;
     @Override
     public Account openAccount() &#123;
@@ -521,7 +533,7 @@ public class DepositAccount implements Account &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="language-java">/** 活期账号 */
+<pre><code class="java">/** 活期账号 */
 public class SavingAccount implements Account &#123;
     @Override
     public Account openAccount() &#123;
@@ -535,7 +547,7 @@ public class SavingAccount implements Account &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="language-java">public abstract class Bank &#123;
+<pre><code class="java">public abstract class Bank &#123;
     /** 只有子类能拿到这个Account的这个接口 */
     protected Account account;
 
@@ -549,7 +561,7 @@ public class SavingAccount implements Account &#123;
 
 &#125;
 </code></pre>
-<pre><code class="language-java">public class ABCBank extends Bank &#123;
+<pre><code class="java">public class ABCBank extends Bank &#123;
     /**
      * 组合的时候，可以通过构造器的方式来进行注入也可以通过set方法的方式来进行注入
      *
@@ -566,7 +578,7 @@ public class SavingAccount implements Account &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="language-java">public class ICBCBank extends Bank &#123;
+<pre><code class="java">public class ICBCBank extends Bank &#123;
     /**
      * 组合的时候，可以通过构造器的方式来进行注入也可以通过set方法的方式来进行注入
      *
@@ -583,7 +595,7 @@ public class SavingAccount implements Account &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="language-java">public class Test &#123;
+<pre><code class="java">public class Test &#123;
     public static void main(String[]args)&#123;
         Bank icbcBank = new ICBCBank(new DepositAccount());
         Account icbcAccount = icbcBank.openAccount();
@@ -598,6 +610,205 @@ public class SavingAccount implements Account &#123;
         abcAccount.showAccountType();
     &#125;
 &#125;
+</code></pre>
+<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><p>单例模式就是在程序运行中只实例化一次，创建一个全局唯一对象。</p>
+<p><strong>饿汉模式</strong></p>
+<pre><code class="java">//在类加载时就完成了初始化，所以类加载较慢，但获取对象的速度快
+public class SingletonObject &#123;
+    // 利用静态变量来存储唯一实例
+    private static final SingletonObject instance = new SingletonObject();
+ 
+    // 私有化构造函数
+    private SingletonObject()&#123;
+        // 里面可能有很多操作
+    &#125;
+ 
+    // 提供公开获取实例接口
+    public static SingletonObject getInstance()&#123;
+        return instance;
+    &#125;
+&#125;
+</code></pre>
+<p>饿汉模式优缺点:</p>
+<blockquote>
+<p>缺点：</p>
+<ul>
+<li>不能实现懒加载，造成空间浪费，如果一个类比较大，我们在初始化的时就加载了这个类，但是我们长时间没有使用这个类，这就导致了内存空间的浪费。</li>
+</ul>
+</blockquote>
+<p><strong>懒汉模式</strong></p>
+<p>在程序初始化时不会创建实例，只有在使用实例的时候才会创建实例，所以懒汉模式解决了饿汉模式带来的空间浪费问题。</p>
+<pre><code class="java">public class SingletonObject &#123;
+    // 定义静态变量时，未初始化实例
+    private static SingletonObject instance;
+ 
+    // 私有化构造函数
+    private SingletonObject()&#123;
+ 
+    &#125;
+ 
+    public static SingletonObject getInstance()&#123;
+        // 使用时，先判断实例是否为空，如果实例为空，则实例化对象
+        // 这段代码在多线程的情况下是不安全的
+        if (instance == null)
+            instance = new SingletonObject();
+        return instance;
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">public class SingletonObject &#123;
+    private static SingletonObject instance;
+ 
+    private SingletonObject()&#123;
+ 
+    &#125;
+ 
+    public synchronized static SingletonObject getInstance()&#123;
+        /**
+         * 添加class类锁，影响了性能，加锁之后将代码进行了串行化
+         * 我们的代码块绝大部分是读操作，在读操作的情况下，代码线程是安全的
+         */
+        if (instance == null)
+            instance = new SingletonObject();
+        return instance;
+    &#125;
+&#125;
+</code></pre>
+<p>懒汉模式的优缺点:</p>
+<blockquote>
+<p>优点:</p>
+<ul>
+<li>实现了懒加载，节约了内存空间</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li>在不加锁的情况下，线程不安全，可能出现多份实例</li>
+<li>在加锁的情况下，会是程序串行化，使系统有严重的性能问题</li>
+</ul>
+</blockquote>
+<p><strong>双重检查锁模式</strong></p>
+<pre><code class="java">public class SingletonObject &#123;
+    private static SingletonObject instance;
+ 
+    private SingletonObject()&#123;
+ 
+    &#125;
+ 
+    public static SingletonObject getInstance()&#123;
+ 
+        // 第一次判断，如果这里为空，不进入抢锁阶段，直接返回实例
+        if (instance == null)
+            synchronized (SingletonObject.class)&#123;
+                // 抢到锁之后再次判断是否为空
+                if (instance == null)&#123;
+                    instance = new SingletonObject();
+                &#125;
+            &#125;
+ 
+        return instance;
+    &#125;
+&#125;
+</code></pre>
+<p>在多线程的情况下，可能会出现<strong>空指针问题</strong>，出现问题的原因是JVM在实例化对象的时候会进行优化和指令重排序操作。</p>
+<pre><code class="java">    private SingletonObject()&#123;
+     1   int x = 10;
+     2   int y = 30;
+     3  Object o = new Object();
+                
+    &#125;
+</code></pre>
+<p>我们编写的顺序是1、2、3，JVM 会对它进行指令重排序，所以执行顺序可能是3、1、2，也可能是2、3、1，不管是那种执行顺序，JVM 最后都会保证所以实例都完成实例化。 </p>
+<blockquote>
+<p>如果构造函数中操作比较多时，为了提升效率，JVM 会在构造函数里面的属性未全部完成实例化时，就返回对象。</p>
+<p>双重检测锁出现空指针问题的原因就是出现在这里，当某个线程获取锁进行实例化时，其他线程就直接获取实例使用，由于JVM指令重排序的原因，其他线程获取的对象也许不是一个完整的对象，所以在使用实例的时候就会出现空指针异常问题。</p>
+</blockquote>
+<p>要解决双重检查锁模式带来空指针异常的问题，只需要使用<code>volatile</code>关键字。</p>
+<pre><code class="java">    // 添加volatile关键字
+    private static volatile SingletonObject instance;
+ 
+    private SingletonObject()&#123;
+ 
+    &#125;
+ 
+    public static SingletonObject getInstance()&#123;
+ 
+        if (instance == null)
+            synchronized (SingletonObject.class)&#123;
+                if (instance == null)&#123;
+                    instance = new SingletonObject();
+                &#125;
+            &#125;
+ 
+        return instance;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>静态内部类单例模式</strong></p>
+<p>静态内部类单例模式实例由内部类创建，由于 JVM 在加载外部类的过程中, 是不会加载静态内部类的, 只有内部类的属性&#x2F;方法被调用时才会被加载, 并初始化其静态属性。</p>
+<p>静态属性由<code>static</code>修饰，保证只被实例化一次，并且严格保证实例化顺序。</p>
+<pre><code class="java">public class SingletonObject &#123;
+ 
+ 
+    private SingletonObject()&#123;
+ 
+    &#125;
+    // 单例持有者
+    private static class InstanceHolder&#123;
+        private  final static SingletonObject instance = new SingletonObject();
+ 
+    &#125;
+    
+    // 
+    public static SingletonObject getInstance()&#123;
+        // 调用内部类属性
+        return InstanceHolder.instance;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>枚举类单例模式</strong></p>
+<p>枚举类型是线程安全的，并且只会装载一次，设计者充分的利用了枚举的这个特性来实现单例模式，枚举的写法非常简单，而且枚举类型是所用单例实现中唯一一种不会被破坏的单例实现模式。</p>
+<pre><code class="java">public class SingletonObject &#123;
+ 
+ 
+    private SingletonObject()&#123;
+ 
+    &#125;
+ 
+    /**
+     * 枚举类型是线程安全的，并且只会装载一次
+     */
+    private enum Singleton&#123;
+        INSTANCE;
+ 
+        private final SingletonObject instance;
+ 
+        Singleton()&#123;
+            instance = new SingletonObject();
+        &#125;
+ 
+        private SingletonObject getInstance()&#123;
+            return instance;
+        &#125;
+    &#125;
+ 
+    public static SingletonObject getInstance()&#123;
+ 
+        return Singleton.INSTANCE.getInstance();
+    &#125;
+&#125;
+</code></pre>
+<p><strong>破坏单例模式的方法及解决办法</strong></p>
+<p>除枚举方式外，其他方法都会通过反射的方式破坏单例，反射是通过调用构造方法生成新的对象，所以如果我们想要阻止单例破坏，可以在构造方法中进行判断，若已有实例, 则阻止生成新的实例。</p>
+<pre><code class="java">private SingletonObject()&#123;
+    if (instance !=null)&#123;
+        throw new RuntimeException(&quot;实例已经存在，请通过 getInstance()方法获取&quot;);
+    &#125;
+&#125;
+</code></pre>
+<p>如果单例类实现了序列化接口Serializable, 就可以通过反序列化破坏单例，所以我们可以不实现序列化接口，如果非得实现序列化接口，可以重写反序列化方法readResolve(), 反序列化时直接返回相关单例对象。</p>
+<pre><code class="java">  public Object readResolve() throws ObjectStreamException &#123;
+        return instance;
+    &#125;
 </code></pre>
 
 	</div>

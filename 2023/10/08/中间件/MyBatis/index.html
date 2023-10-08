@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		内推 | 
+		MyBatis | 
 	 
 	月伴飞鱼
 	</title>
@@ -132,7 +132,7 @@
 									</a>
 									
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2023/10/08/%E4%B8%AD%E9%97%B4%E4%BB%B6/MyBatis/">
 										MyBatis
 									</a>
@@ -386,29 +386,103 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	内推
+	MyBatis
 </h1>
 <div class="article-meta">
 	<span>月伴飞鱼</span>
-	<span>2020-12-03 11:29:32</span>
+	<span>2023-10-08 18:10:52</span>
+    
+		<div id="article-categories">
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/中间件/">中间件</a>
+						
+                    </span>
+                
+            
+		</div>
     
 </div>
 
 <div id="container" class = "content999">
 	<div id="article-content">
-		<h1 id="美团"><a href="#美团" class="headerlink" title="美团"></a>美团</h1><p>按照以下方式都可以进行美团的内推投递（投递后，有问题可以微信私聊我，确认是否内推成功）</p>
-<p><strong>PC端</strong></p>
-<p>进内推系统，登录美团招聘官网：<a target="_blank" rel="noopener" href="https://campus.meituan.com/">https://campus.meituan.com/</a> ，填入文字内推码，「XIQBmzq」 ，即可完成内推！</p>
-<p><strong>手机端</strong></p>
-<p>用手机点击此处链接，用手机浏览器进入内推系统：</p>
-<p><a target="_blank" rel="noopener" href="https://campus.meituan.com/bole/wechat?staffSsoId=5236707&amp;appKey=hiring-campus-portal%EF%BC%9B">https://campus.meituan.com/bole/wechat?staffSsoId=5236707&amp;appKey=hiring-campus-portal；</a></p>
+		<h1 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h1><p><strong>基本概念</strong></p>
 <blockquote>
-<p>进入美团的内推系统后，选择校招&#x2F;社招类型  &gt; 选择身份 &gt; 选择意向岗位 &gt; 点击立即申请 &gt; 填写投递信息 &gt; 点击确认申请 &gt; 完善简历；</p>
+<p>SqlSession：代表和数据库的一次会话，向用户提供了操作数据库的方法。</p>
+<p>MappedStatement：代表要发往数据库执行的指令，可以理解为是 SQL 的抽象表示。</p>
+<p>Executor： 代表用来和数据库交互的执行器，接受 MappedStatment 作为参数。</p>
+<p>namespace：每个 Mapper 文件只能配置一个 namespace，用来做 Mapper 文件级别的缓存共享。</p>
+</blockquote>
+<p><strong>一级缓存</strong></p>
+<p>在一次 SqlSession 中（数据库会话），程序执行多次查询，且查询条件完全相同，多次查询之间程序没有其他增删改操作，则第二次及后面的查询可以从缓存中获取数据，避免走数据库。</p>
+<blockquote>
+<p>每个SqlSession中持有了Executor，每个Executor中有一个LocalCache。</p>
+<p>当用户发起查询时，MyBatis根据当前执行的语句生成<code>MappedStatement</code>，在Local Cache进行查询，如果缓存命中的话，直接返回结果给用户，如果缓存没有命中的话，查询数据库，结果写入<code>Local Cache</code>，最后返回结果给用户。</p>
+</blockquote>
+<p>一级缓存配置:</p>
+<p>在 <code>mybatis-config.xml</code> 文件配置，<code>name=localCacheScope</code>，value有两种值：<code>SESSION</code> 和 <code>STATEMENT</code></p>
+<pre><code class="xml">&lt;configuration&gt;
+    &lt;settings&gt;
+        &lt;setting name=&quot;localCacheScope&quot; value=&quot;SESSION&quot;/&gt;
+    &lt;/settings&gt;
+&lt;configuration&gt;
+</code></pre>
+<p>SESSION：开启一级缓存功能</p>
+<p>STATEMENT：缓存只对当前执行的这一个 SQL 语句有效，也就是没有用到一级缓存功能。</p>
+<p>一级缓存失效的场景:</p>
+<blockquote>
+<ol>
+<li>不同的SqlSession对应不同的一级缓存</li>
+<li>同一个SqlSession但是查询条件不同</li>
+<li>同一个SqlSession两次查询期间执行了任何一次增删改操作</li>
+<li>同一个SqlSession两次查询期间手动清空了缓存</li>
+</ol>
+</blockquote>
+<p><strong>二级缓存</strong></p>
+<p>相对于一级缓存来说，实现了<code>SqlSession</code>之间缓存数据的共享，同时粒度更加的细，能够到<code>namespace</code>级别，通过Cache接口实现类不同的组合，对Cache的可控性也更强。</p>
+<p>一级缓存最大的共享范围就是一个 <code>SqlSession</code> 内部，如果多个 <code>SqlSession</code> 之间需要共享缓存，则需要使用到二级缓存。</p>
+<blockquote>
+<p>开启二级缓存后，会使用 <code>CachingExecutor</code> 装饰 <code>Executor</code>，进入一级缓存的查询流程前，先在CachingExecutor 进行二级缓存的查询。</p>
+<p>同一个 <code>namespace</code>下的所有操作语句，都影响着同一个Cache。</p>
+</blockquote>
+<p>每个 Mapper 文件只能配置一个 namespace，用来做 Mapper 文件级别的缓存共享。</p>
+<pre><code class="xml">&lt;mapper namespace=&quot;mapper.StudentMapper&quot;&gt;&lt;/mapper&gt;
+</code></pre>
+<p>二级缓存被同一个 <code>namespace</code> 下的多个 <code>SqlSession</code> 共享，是一个全局的变量。</p>
+<blockquote>
+<p>MyBatis 的二级缓存不适应用于映射文件中存在多表查询的情况。</p>
+<p>由于MyBatis的二级缓存是基于<code>namespace</code>的，多表查询语句所在的<code>namspace</code>无法感应到其他<code>namespace</code>中的语句对多表查询中涉及的表进行的修改，引发脏数据问题。</p>
+</blockquote>
+<p>开启二级缓存需要在 <code>mybatis-config.xml</code> 中配置：</p>
+<pre><code class="ini">&lt;settingname=&quot;cacheEnabled&quot;value=&quot;true&quot;/&gt;
+</code></pre>
+<p><strong>缓存查询的顺序</strong></p>
+<blockquote>
+<p>先查询二级缓存，因为二级缓存中可能会有其他程序已经查出来的数据，可以拿来直接使用</p>
+<p>如果二级缓存没有命中，再查询一级缓存</p>
+<p>如果一级缓存也没有命中，则查询数据库</p>
+<p>SqlSession关闭之后，一级缓存中的数据会写入二级缓存。</p>
 </blockquote>
 
 	</div>
 </div>
 
+
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%89%E5%AD%A3/">
+                老友记
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
 
 
 
@@ -459,7 +533,7 @@
 	            + '\n著作权归作者所有。'
 	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
 	            + '\n作者: 月伴飞鱼'
-	            + '\n原文地址: https://xiaoflyfish.cn/neitui/index.html'
+	            + '\n原文地址: https://xiaoflyfish.cn/2023/10/08/%E4%B8%AD%E9%97%B4%E4%BB%B6/MyBatis/'
 	    
 	            clipboardData.setData('text/plain', text + copyright);
 	    

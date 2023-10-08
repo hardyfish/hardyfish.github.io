@@ -126,6 +126,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										中间件
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E4%B8%AD%E9%97%B4%E4%BB%B6/MyBatis/">
+										MyBatis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										前端相关
 									</a>
 									
@@ -370,12 +390,11 @@
 					KAFKA
 				</h2>
 				<div class="index-brief">
-					消费者
-消费者策略
+					消费者消费者策略
 RangeAssignor：默认消费者策略。
 对一个消费者组来说，消费方式是以分区总数除以消费者总数来决定，如果不能整除，往往是从头开始将剩余的分区分配。
 
-RoundRobinAssignor：对于同一组消费者来说，使用轮训的方式来决定消费者消费的分区，既依次分配一个，直到分区
+RoundRobinAssignor：对于同一组消费者来说，使用轮训的方式来决定消费者消费的分区，既依次分配一个，直到分区被
 					...
 				</div>
 			</a>
@@ -401,14 +420,12 @@ RoundRobinAssignor：对于同一组消费者来说，使用轮训的方式来�
 					RocketMQ
 				</h2>
 				<div class="index-brief">
-					消息类型
-事务消息
-支持在分布式场景下保障消息生产和本地事务的最终一致性。
+					消息类型事务消息支持在分布式场景下保障消息生产和本地事务的最终一致性。
 
 
 1、生产者将消息发送至 Broker 。
-2、Broker 将消息持久化成功之后，向生产者返回 Ack 确认消息已经发送成功，此时消息被标记为&quot;暂不能投递&quot;，这种状态下的消息即为半事务消息。
-3、生产
+2、Broker 将消息持久化成功之后，向生产者返回 Ack 确认消息已经发送成功，此时消息被标记为”暂不能投递”，这种状态下的消息即为半事务消息。
+3、生产者开始执行本地事务逻辑。
 					...
 				</div>
 			</a>

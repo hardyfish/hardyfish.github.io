@@ -128,6 +128,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										中间件
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E4%B8%AD%E9%97%B4%E4%BB%B6/MyBatis/">
+										MyBatis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										前端相关
 									</a>
 									
@@ -388,8 +408,7 @@
 
 <div id="container" class = "content999">
 	<div id="article-content">
-		<h1>基本概念</h1>
-<p><strong>BASE理论</strong></p>
+		<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><strong>BASE理论</strong></p>
 <p>BASE 是 Basically Available（基本可用） 、Soft-state（软状态） 和 Eventually Consistent（最终一致性） 三个短语的缩写。</p>
 <p>BASE 理论是对 CAP 中一致性和可用性权衡的结果，其来源于对大规模互联网系统分布式实践的总结，是基于 CAP 定理逐步演化而来的，它大大降低了对系统的要求。</p>
 <blockquote>
@@ -401,11 +420,11 @@
 <p>比如： 响应时间上的损失：正常情况下，一个在线搜索引擎需要在0.5秒之内返回给用户相应的查询结果，但由于出现故障，查询结果的响应时间增加了1~2秒；</p>
 <p>系统功能上的损失：正常情况下，在一个电商网站上进行购物的时候，消费者几乎能够顺利完成每一笔订单，但是在一些节日大促购物高峰的时候，由于消费者的购物行为激增，为了保护购物系统的稳定性，部分消费者可能会被引导到一个降级页面；</p>
 </blockquote>
-<p>软状态：</p>
+<p>软状态： </p>
 <blockquote>
 <p>软状态是指允许系统中的数据存在中间状态，并认为该中间状态的存在不会影响系统的整体可用性，即允许系统在不同节点的数据副本之间进行数据同步的过程存在延时；</p>
 </blockquote>
-<p>最终一致性：</p>
+<p>最终一致性： </p>
 <blockquote>
 <p>最终一致性强调的是系统中所有的数据副本，在经过一段时间的同步后，最终能够达到一个一致的状态。</p>
 <p>因此，最终一致性的本质是需要系统保证最终数据能够达到一致，而不需要实时保证系统数据的强一致性。</p>

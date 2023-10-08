@@ -126,6 +126,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										中间件
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E4%B8%AD%E9%97%B4%E4%BB%B6/MyBatis/">
+										MyBatis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										前端相关
 									</a>
 									
@@ -365,15 +385,44 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RocketMQ/">
+				<h2 class="index-title">
+					RocketMQ
+				</h2>
+				<div class="index-brief">
+					消息类型事务消息支持在分布式场景下保障消息生产和本地事务的最终一致性。
+
+
+1、生产者将消息发送至 Broker 。
+2、Broker 将消息持久化成功之后，向生产者返回 Ack 确认消息已经发送成功，此时消息被标记为”暂不能投递”，这种状态下的消息即为半事务消息。
+3、生产者开始执行本地事务逻辑。
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-10-07</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/消息队列/">消息队列</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
 				<h2 class="index-title">
 					开发工具
 				</h2>
 				<div class="index-brief">
-					GitHub
-常见问题
-remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
-原先的密码凭证从2021年8月13日
+					GitHub常见问题remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+原先的密码凭证从2021年8月13日开始
 					...
 				</div>
 			</a>
@@ -425,12 +474,11 @@ remote: Support for password authentication was removed on August 13, 2021. Plea
 					剑指OFFER
 				</h2>
 				<div class="index-brief">
-					3数组中重复的数字
-class Solution &#123;
+					3数组中重复的数字class Solution &#123;
     public int findRepeatNumber(int[] nums) &#123;
         int i = 0;
         while(i &lt; nums.length) &#123;
-       
+        
 					...
 				</div>
 			</a>
@@ -456,10 +504,9 @@ class Solution &#123;
 					LeetCode
 				</h2>
 				<div class="index-brief">
-					1两数之和
-class Solution &#123;
+					1两数之和class Solution &#123;
     public int[] twoSum(int[] nums, int target) &#123;
-        Map&lt;Integer, Integer&gt; map = new HashMap&lt;Integer, I
+        Map&lt;Integer, Integer&gt; map = new HashMap&lt;Integer, In
 					...
 				</div>
 			</a>
