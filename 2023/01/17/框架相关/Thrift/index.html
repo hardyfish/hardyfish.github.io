@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	
+	<!-- title -->
+	
+	<title>
+	
+		Thrift | 
+	 
+	月伴飞鱼
+	</title>
+	
+	<!-- keywords,description -->
+	 
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/%E5%A4%B4%E5%83%8F.jpg">
+	
+  
+  	
+<link rel="stylesheet" href="/css/main.css">
+
+	
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="/lib/highlight/darcula.css">
+
+	
+<link rel="stylesheet" href="/css/clipboard-use.css">
+
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+	
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+
+	
+<script src="/lib/highlight/highlight.min.js"></script>
+
+	
+<script src="https://readmore.openwrite.cn/js/readmore.js"></script>
+
+	
+<script src="/lib/jquery-3.4.1.min.js"></script>
+
+	
+<script src="/lib/jquery.pjax.js"></script>
+
+
+	
+<script src="/js/main.js"></script>
+
+	
+<script src="/js/jquery.fancybox.min.js"></script>
+
+	
+		
+<script src="/lib/valine/av-3.0.4-min.js"></script>
+
+		
+<script src="/lib/valine/Valine-1.3.10-min.js"></script>
+
+	
+	
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+	<header id="header">
+    <a id="title" href="/" class="logo">公众号月伴飞鱼</a>
+
+	<ul id="menu">
+		<li class="menu-item">
+			<a href="/about" class="menu-item-link">关于我</a>
+		</li>
+
+		<li class="menu-item">
+			<a href="/个人公众号.jpg" class="menu-item-link" target="_blank">我的公众号</a>
+		</li>
+		
+		<li class="menu-item">
+			<a href="https://tech.meituan.com/" class="menu-item-link" target="_blank">
+				美团技术团队
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="https://tech.youzan.com/" class="menu-item-link" target="_blank">
+				有赞技术团队
+			</a>
+		</li>
+		<!--<li class="menu-item">
+			<select class="menu-item-link menu-item-select">
+				<option class="menu-item-link"  value="volvo">Volvo</option>
+				<option class="menu-item-link"  value="saab">Saab</option>
+				<option class="menu-item-link"  value="fiat">Fiat</option>
+				<option class="menu-item-link"  value="audi">Audi</option>
+			</select>
+		</li>-->
+	</ul>
+</header>
+
+	
+<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="text" placeholder="按目录搜索一下">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										中间件
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/">
+										Elasticsearch
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										前端相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/CSS/">
+										CSS
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/Vue/">
+										Vue
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										基础知识
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/11/27/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/JVM/">
+										JVM
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/21/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Java%E5%9F%BA%E7%A1%80/">
+										Java基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%88%86%E5%B8%83%E5%BC%8F/">
+										分布式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/10/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+										并发编程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+										设计模式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										工具相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">
+										实用工具
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/07/28/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/">
+										常用代码
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+										开发工具
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										数据库
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/12/02/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">
+										MySQL
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										服务器
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%9C%8D%E5%8A%A1%E5%99%A8/Docker/">
+										Docker
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										框架相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/MyBatis/">
+										MyBatis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file active">
+									<a href="/2023/01/17/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
+										Thrift
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										消息队列
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/KAFKA/">
+										KAFKA
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RocketMQ/">
+										RocketMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										算法相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/LeetCode/">
+										LeetCode
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E5%89%91%E6%8C%87OFFER/">
+										剑指OFFER
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
+										面试算法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										英语相关
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										老友记
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%80%E5%AD%A3/">
+										第一季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%89%E5%AD%A3/">
+										第三季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										计算机基础
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
+										网络基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content">
+		<h1 id="article-title">
+
+	Thrift
+</h1>
+<div class="article-meta">
+	<span>月伴飞鱼</span>
+	<span>2023-01-17 21:43:20</span>
+    
+		<div id="article-categories">
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/框架相关/">框架相关</a>
+						
+                    </span>
+                
+            
+		</div>
+    
+</div>
+
+<div id="container" class = "content999">
+	<div id="article-content">
+		<p><code>Thrift</code>是一个<strong>轻量级</strong>、<strong>跨语言</strong>的<strong>远程服务调用</strong>框架，最初由<code>Facebook</code>开发，后面进入<code>Apache</code>开源项目。它通过自身的<code>IDL</code><strong>中间语言</strong>, 并借助<strong>代码生成引擎</strong>生成各种主流语言的<code>RPC</code><strong>服务端</strong>/<strong>客户端</strong>模板代码。</p>
+<p><code>Thrift</code>支持多种不同的<strong>编程语言</strong>，包括<code>C++</code>、<code>Java</code>、<code>Python</code>、<code>PHP</code>、<code>Ruby</code>等，本系列主要讲述基于<code>Java</code>语言的<code>Thrift</code>的配置方式和具体使用。</p>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>Dubbo</strong></th>
+<th><strong>Thrift</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>语言</td>
+<td>Java</td>
+<td>跨语言</td>
+</tr>
+<tr>
+<td>分布式服务治理</td>
+<td>有</td>
+<td>无</td>
+</tr>
+<tr>
+<td>多序列化框架支持</td>
+<td>支持</td>
+<td>仅thrift格式</td>
+</tr>
+<tr>
+<td>多种注册中心</td>
+<td>有</td>
+<td>无</td>
+</tr>
+<tr>
+<td>管理中心</td>
+<td>有</td>
+<td>无</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>较Thrift弱</td>
+<td>较Dubbo强</td>
+</tr>
+</tbody>
+</table>
+<p>从上表可以看到，Dubbo作为RPC分布式服务治理框架，其功能更为全面，具备服务治理、服务管理等多种特性，而Thrift较为纯粹，其作为单纯的RPC通信框架，性能更为强劲，但如果要使用Thrift作为分布式RPC框架，还需要自行实现服务治理等其他功能。</p>
+<p>Thrift提供跨语言的服务框架，这种跨语言主要体现在它对多种语言的编译功能的支持，用户只需要使用IDL描述好接口函数，只需要一条简单的命令，Thrift提供跨语言的服务框架，这种跨语言主要体现在它对多种语言的编译功能的支持，用户只需要使用IDL描述好接口函数，只需要一条简单的命令，Thrift就能够把按照IDL格式描述的接口文件翻译成各种语言版本就能够把按照IDL格式描述的接口文件翻译成各种语言版本</p>
+<p><strong>Thrift的RPC调用过程</strong></p>
+<p>Thrift框架的远程过程调用的工作过程如下：</p>
+<ul>
+<li>
+<p>通过IDL定义一个接口的thrift文件，然后通过thrift的多语言编译功能，将接口定义的thrift文件翻译成对应的语言版本的接口文件；</p>
+</li>
+<li>
+<p>Thrift生成的特定语言的接口文件中包括客户端部分和服务器部分；</p>
+</li>
+<li>
+<p>客户端通过接口文件中的客户端部分生成一个Client对象，这个客户端对象中包含所有接口函数的存根实现，然后用户代码就可以通过这个Client对象来调用thrift文件中的那些接口函数了，但是，客户端调用接口函数时实际上调用的是接口函数的本地存根实现</p>
+</li>
+<li>
+<p>接口函数的存根实现将调用请求发送给thrift服务器端，然后thrift服务器根据调用的函数名和函数参数，调用实际的实现函数来完成具体的操作</p>
+</li>
+<li>
+<p>Thrift服务器在完成处理之后，将函数的返回值发送给调用的Client对象</p>
+</li>
+<li>
+<p>Thrift的Client对象将函数的返回值再交付给用户的调用函数</p>
+</li>
+</ul>
+
+	</div>
+</div>
+
+
+    <div class="post-guide">
+        <div class="item left">
+            
+              <a href="/2023/07/28/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  常用代码
+              </a>
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2022/12/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/">
+                Elasticsearch
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+
+<script>
+
+    //document.oncontextmenu=new Function("event.returnValue=false");
+	//document.onselectstart=new Function("event.returnValue=false");
+
+	
+
+	$(function () {
+		const btw = new BTWPlugin();
+	    btw.init({
+	        id: 'container',
+	        blogId: '22377-1657723090751-870',
+	        name: '月伴飞鱼',
+	        qrcode: '/个人公众号.jpg',
+	        keyword: '验证码',
+	    });
+
+	    var contents = document.getElementsByClassName("content999");
+	    //监听文章内容的copy事件
+	    contents[0].addEventListener('copy',function(e){
+	        setClipboardText(e);
+	    });
+
+	    function setClipboardText(event){
+	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+	        let clipboardData = event.clipboardData || window.clipboardData;
+
+	        // 如果未复制或者未剪切，则return出去
+	        if (!clipboardData) { return; }
+
+	        event.preventDefault();
+
+	        // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+	        // 声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+	        let text = window.getSelection().toString();
+	    
+	        if (text) {
+	            // 如果文本存在则先取消文本默认事件
+	            event.preventDefault();
+	            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+	            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+	            // data: 一个 DOMString表示要添加到 drag object的数据。
+	            var copyright = '\n\n'
+	            + '\n著作权归作者所有。'
+	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+	            + '\n作者: 月伴飞鱼'
+	            + '\n原文地址: https://xiaoflyfish.cn/2023/01/17/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/'
+	    
+	            clipboardData.setData('text/plain', text + copyright);
+	    
+	        }
+	    };
+	});
+
+	
+</script>
+
+<script>
+    const btw = new BTWPlugin();
+    btw.init({
+        id: 'container',
+        blogId: '22377-1657723090751-870',
+        name: '月伴飞鱼',
+        qrcode: '/个人公众号.jpg',
+        keyword: '验证码',
+    });
+</script>
+	</div>
+	<div id="footer">
+	<p>
+	©2019-<span id="footerYear"></span> 
+	<a href="/">月伴飞鱼</a> 
+	
+	
+		|
+		<span id="busuanzi_container_site_pv">
+			PV 180986
+		</span>
+		|
+		<span id="busuanzi_container_site_uv"> 
+			UV 10079
+		</span>
+	
+	<br>
+	微信搜索 <a href="https://xiaoflyfish.oss-cn-beijing.aliyuncs.com/image/个人公众号.jpg" target="_blank">月伴飞鱼</a> 关注我
+	</p>
+</div>
+<script type="text/javascript"> 
+	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+</script>
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>

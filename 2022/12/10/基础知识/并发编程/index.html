@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	
+	<!-- title -->
+	
+	<title>
+	
+		并发编程 | 
+	 
+	月伴飞鱼
+	</title>
+	
+	<!-- keywords,description -->
+	 
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/%E5%A4%B4%E5%83%8F.jpg">
+	
+  
+  	
+<link rel="stylesheet" href="/css/main.css">
+
+	
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="/lib/highlight/darcula.css">
+
+	
+<link rel="stylesheet" href="/css/clipboard-use.css">
+
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+	
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+
+	
+<script src="/lib/highlight/highlight.min.js"></script>
+
+	
+<script src="https://readmore.openwrite.cn/js/readmore.js"></script>
+
+	
+<script src="/lib/jquery-3.4.1.min.js"></script>
+
+	
+<script src="/lib/jquery.pjax.js"></script>
+
+
+	
+<script src="/js/main.js"></script>
+
+	
+<script src="/js/jquery.fancybox.min.js"></script>
+
+	
+		
+<script src="/lib/valine/av-3.0.4-min.js"></script>
+
+		
+<script src="/lib/valine/Valine-1.3.10-min.js"></script>
+
+	
+	
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+	<header id="header">
+    <a id="title" href="/" class="logo">公众号月伴飞鱼</a>
+
+	<ul id="menu">
+		<li class="menu-item">
+			<a href="/about" class="menu-item-link">关于我</a>
+		</li>
+
+		<li class="menu-item">
+			<a href="/个人公众号.jpg" class="menu-item-link" target="_blank">我的公众号</a>
+		</li>
+		
+		<li class="menu-item">
+			<a href="https://tech.meituan.com/" class="menu-item-link" target="_blank">
+				美团技术团队
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="https://tech.youzan.com/" class="menu-item-link" target="_blank">
+				有赞技术团队
+			</a>
+		</li>
+		<!--<li class="menu-item">
+			<select class="menu-item-link menu-item-select">
+				<option class="menu-item-link"  value="volvo">Volvo</option>
+				<option class="menu-item-link"  value="saab">Saab</option>
+				<option class="menu-item-link"  value="fiat">Fiat</option>
+				<option class="menu-item-link"  value="audi">Audi</option>
+			</select>
+		</li>-->
+	</ul>
+</header>
+
+	
+<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="text" placeholder="按目录搜索一下">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										中间件
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/">
+										Elasticsearch
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										前端相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/CSS/">
+										CSS
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/Vue/">
+										Vue
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										基础知识
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/11/27/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/JVM/">
+										JVM
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/21/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Java%E5%9F%BA%E7%A1%80/">
+										Java基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%88%86%E5%B8%83%E5%BC%8F/">
+										分布式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file active">
+									<a href="/2022/12/10/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+										并发编程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+										设计模式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										工具相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">
+										实用工具
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/07/28/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/">
+										常用代码
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+										开发工具
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										数据库
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/12/02/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">
+										MySQL
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										服务器
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%9C%8D%E5%8A%A1%E5%99%A8/Docker/">
+										Docker
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										框架相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/MyBatis/">
+										MyBatis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/01/17/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
+										Thrift
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										消息队列
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/KAFKA/">
+										KAFKA
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RocketMQ/">
+										RocketMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										算法相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/LeetCode/">
+										LeetCode
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E5%89%91%E6%8C%87OFFER/">
+										剑指OFFER
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
+										面试算法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										英语相关
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										老友记
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%80%E5%AD%A3/">
+										第一季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%89%E5%AD%A3/">
+										第三季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										计算机基础
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
+										网络基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content">
+		<h1 id="article-title">
+
+	并发编程
+</h1>
+<div class="article-meta">
+	<span>月伴飞鱼</span>
+	<span>2022-12-10 16:36:40</span>
+    
+		<div id="article-categories">
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/基础知识/">基础知识</a>
+						
+                    </span>
+                
+            
+		</div>
+    
+</div>
+
+<div id="container" class = "content999">
+	<div id="article-content">
+		<h1>阻塞队列</h1>
+<p><strong>ArrayBlockingQueue</strong></p>
+<p>ArrayBlockingQueue 是最典型的<strong>有界队列</strong>，其内部是用数组存储元素的，利用 ReentrantLock 实现线程安全。</p>
+<blockquote>
+<ol>
+<li>有界的阻塞数组，容量一旦创建，后续大小无法修改；</li>
+<li>元素是有顺序的，按照先入先出进行排序，从队尾插入数据数据，从队头拿数据；</li>
+<li>队列满时，往队列中 put 数据会被阻塞，队列空时，往队列中拿数据也会被阻塞。</li>
+</ol>
+</blockquote>
+<p>新增数据</p>
+<p>数据新增都会按照 putIndex 的位置进行新增</p>
+<pre><code class="language-java">// 新增，如果队列满，无限阻塞
+public void put(E e) throws InterruptedException &#123;
+    // 元素不能为空
+    checkNotNull(e);
+    final ReentrantLock lock = this.lock;
+    lock.lockInterruptibly();
+    try &#123;
+        // 队列如果是满的，就无限等待
+        // 一直等待队列中有数据被拿走时，自己被唤醒
+        while (count == items.length)
+            notFull.await();
+        enqueue(e);
+    &#125; finally &#123;
+        lock.unlock();
+    &#125;
+&#125;
+ 
+private void enqueue(E x) &#123;
+    // assert lock.getHoldCount() == 1; 同一时刻只能一个线程进行操作此方法
+    // assert items[putIndex] == null;
+    final Object[] items = this.items;
+    // putIndex 为本次插入的位置
+    items[putIndex] = x;
+    // ++ putIndex 计算下次插入的位置
+    // 如果下次插入的位置，正好等于队尾，下次插入就从 0 开始
+    if (++putIndex == items.length)
+        putIndex = 0;
+    count++;
+    // 唤醒因为队列空导致的等待线程
+    notEmpty.signal();
+&#125;
+</code></pre>
+<p>拿数据</p>
+<p>拿数据都是从队头开始拿数据</p>
+<pre><code class="language-java">public E take() throws InterruptedException &#123;
+    final ReentrantLock lock = this.lock;
+    lock.lockInterruptibly();
+    try &#123;
+        // 如果队列为空，无限等待
+        // 直到队列中有数据被 put 后，自己被唤醒
+        while (count == 0)
+            notEmpty.await();
+        // 从队列中拿数据
+        return dequeue();
+    &#125; finally &#123;
+        lock.unlock();
+    &#125;
+&#125;
+ 
+private E dequeue() &#123;
+    final Object[] items = this.items;
+    // takeIndex 代表本次拿数据的位置，是上一次拿数据时计算好的
+    E x = (E) items[takeIndex];
+    // 帮助 gc
+    items[takeIndex] = null;
+    // ++ takeIndex 计算下次拿数据的位置
+    // 如果正好等于队尾的话，下次就从 0 开始拿数据
+    if (++takeIndex == items.length)
+        takeIndex = 0;
+    // 队列实际大小减 1
+    count--;
+    if (itrs != null)
+        itrs.elementDequeued();
+    // 唤醒被队列满所阻塞的线程
+    notFull.signal();
+    return x;
+&#125;
+</code></pre>
+<p>从源码中可以看出，每次拿数据的位置就是 takeIndex 的位置，在找到本次该拿的数据之后，会把 takeIndex 加 1，计算下次拿数据时的索引位置，有个特殊情况是，如果本次拿数据的位置已经是队尾了，那么下次拿数据的位置就要从头开始，就是从 0 开始了。</p>
+<p><strong>LinkedBlockingQueue</strong></p>
+<p>这是一个内部用链表实现的 BlockingQueue。</p>
+<p>如果我们不指定它的初始容量，那么它容量默认就为整型的最大值 <code>Integer.MAX_VALUE</code>，由于这个数非常大，我们通常不可能放入这么多的数据，所以 LinkedBlockingQueue 也被称作无界队列，代表它几乎没有界限。</p>
+<blockquote>
+<ol>
+<li>基于链表的阻塞队列，其底层的数据结构是链表；</li>
+<li>链表维护先入先出队列，新元素被放在队尾，获取元素从队头部拿；</li>
+<li>链表大小在初始化的时候可以设置，默认是 Integer 的最大值；</li>
+<li>可以使用 Collection 和 Iterator 两个接口的所有操作，因为实现了两者的接口。</li>
+</ol>
+</blockquote>
+<p>LinkedBlockingQueue 内部构成简单来说，分成三个部分：链表存储 + 锁 + 迭代器，我们来看下源码。</p>
+<pre><code class="language-java">// 链表结构 begin
+//链表的元素
+static class Node&lt;E&gt; &#123;
+    E item;
+ 
+    //当前元素的下一个，为空表示当前节点是最后一个
+    Node&lt;E&gt; next;
+ 
+    Node(E x) &#123; item = x; &#125;
+&#125;
+ 
+//链表的容量，默认 Integer.MAX_VALUE
+private final int capacity;
+ 
+//链表已有元素大小，使用 AtomicInteger，所以是线程安全的
+private final AtomicInteger count = new AtomicInteger();
+ 
+//链表头
+transient Node&lt;E&gt; head;
+ 
+//链表尾
+private transient Node&lt;E&gt; last;
+// 链表结构 end
+ 
+// 锁 begin
+//take 时的锁
+private final ReentrantLock takeLock = new ReentrantLock();
+ 
+// take 的条件队列，condition 可以简单理解为基于 ASQ 同步机制建立的条件队列
+private final Condition notEmpty = takeLock.newCondition();
+ 
+// put 时的锁，设计两把锁的目的，主要为了 take 和 put 可以同时进行
+private final ReentrantLock putLock = new ReentrantLock();
+ 
+// put 的条件队列
+private final Condition notFull = putLock.newCondition();
+// 锁 end
+ 
+// 迭代器 
+// 实现了自己的迭代器
+private class Itr implements Iterator&lt;E&gt; &#123;
+………………
+&#125;
+</code></pre>
+<blockquote>
+<ol>
+<li>链表的作用是为了保存当前节点，节点中的数据可以是任意东西，是一个泛型，比如说队列被应用到线程池时，节点就是线程，比如队列被应用到消息队列中，节点就是消息，节点的含义主要看队列被使用的场景；</li>
+<li>锁有 take 锁和 put 锁，是为了保证队列操作时的线程安全，设计两种锁，是为了 take 和 put 两种操作可以同时进行，互不影响。</li>
+</ol>
+</blockquote>
+<p>阻塞新增</p>
+<pre><code class="language-java">// 把e新增到队列的尾部。
+// 如果有可以新增的空间的话，直接新增成功，否则当前线程陷入等待
+public void put(E e) throws InterruptedException &#123;
+    // e 为空，抛出异常
+    if (e == null) throw new NullPointerException();
+    // 预先设置 c 为 -1，约定负数为新增失败
+    int c = -1;
+    Node&lt;E&gt; node = new Node&lt;E&gt;(e);
+    final ReentrantLock putLock = this.putLock;
+    final AtomicInteger count = this.count;
+    // 设置可中断锁
+    putLock.lockInterruptibly();
+    try &#123;
+        // 队列满了
+        // 当前线程阻塞，等待其他线程的唤醒(其他线程 take 成功后就会唤醒此处被阻塞的线程)
+        while (count.get() == capacity) &#123;
+            // await 无限等待
+            notFull.await();
+        &#125;
+ 
+        // 队列没有满，直接新增到队列的尾部
+        enqueue(node);
+ 
+        // 新增计数赋值,注意这里 getAndIncrement 返回的是旧值
+        // 这里的 c 是比真实的 count 小 1 的
+        c = count.getAndIncrement();
+ 
+        // 如果链表现在的大小 小于链表的容量，说明队列未满
+        // 可以尝试唤醒一个 put 的等待线程
+        if (c + 1 &lt; capacity)
+            notFull.signal();
+ 
+    &#125; finally &#123;
+        // 释放锁
+        putLock.unlock();
+    &#125;
+    // c==0，代表队列里面有一个元素
+    // 会尝试唤醒一个take的等待线程
+    if (c == 0)
+        signalNotEmpty();
+&#125;
+// 入队，把新元素放到队尾
+private void enqueue(Node&lt;E&gt; node) &#123;
+    last = last.next = node;
+&#125;
+</code></pre>
+<p><strong>SynchronousQueue</strong></p>
+<p>SynchronousQueue 最大的不同之处在于，它的容量为 0，所以没有一个地方来暂存元素，导致每次取数据都要先阻塞，直到有数据被放入；同理，每次放数据的时候也会阻塞，直到有消费者来取。</p>
+<blockquote>
+<p>SynchronousQueue 的整体设计比较抽象，在内部抽象出了两种算法实现，一种是先入先出的队列，一种是后入先出的堆栈，两种算法被两个内部类实现</p>
+<ol>
+<li>队列不存储数据，所以没有大小，也无法迭代；</li>
+<li>插入操作的返回必须等待另一个线程完成对应数据的删除操作，反之亦然；</li>
+<li>队列由两种数据结构组成，分别是后入先出的堆栈和先入先出的队列，堆栈是非公平的，队列是公平的。</li>
+</ol>
+</blockquote>
+<p><strong>PriorityBlockingQueue</strong></p>
+<p>PriorityBlockingQueue 是一个支持优先级的无界阻塞队列，可以通过自定义类实现 compareTo() 方法来指定元素排序规则，或者初始化时通过构造器参数 Comparator 来指定排序规则。</p>
+<p><strong>DelayQueue</strong></p>
+<p>DelayQueue 是非常有意思的队列，底层使用了排序和超时阻塞实现了延迟队列，排序使用的是 PriorityQueue 排序能力，超时阻塞使用得是锁的等待能力，可以看出 DelayQueue 其实就是为了满足延迟执行的场景，在已有 API 的基础上进行了封装</p>
+<blockquote>
+<ol>
+<li>队列中元素将在过期时被执行，越靠近队头，越早过期；</li>
+<li>未过期的元素不能够被 take；</li>
+<li>不允许空元素。</li>
+</ol>
+</blockquote>
+<h1>内存模型</h1>
+<p><strong>为什么需要 JMM（Java Memory Model，Java 内存模型）</strong></p>
+<blockquote>
+<p>在更早期的语言中，其实是不存在内存模型的概念的。</p>
+<p>所以程序最终执行的效果会依赖于具体的处理器，而不同的处理器的规则又不一样，不同的处理器之间可能差异很大，因此同样的一段代码，可能在处理器 A 上运行正常，而在处理器 B 上运行的结果却不一致。</p>
+<p>同理，在没有 JMM 之前，不同的 JVM 的实现，也会带来不一样的“翻译”结果。</p>
+<p>所以 Java 非常需要一个标准，来让 Java 开发者、编译器工程师和 JVM 工程师能够达成一致。</p>
+<p>达成一致后，我们就可以很清楚的知道什么样的代码最终可以达到什么样的运行效果，让多线程运行结果可以预期</p>
+<p>这个标准就是 JMM，这就是需要 JMM 的原因。</p>
+</blockquote>
+<blockquote>
+<p>各种同步工具和关键字，包括 volatile、synchronized、Lock 等，其实它们的原理都涉及 JMM。</p>
+<p>正是 JMM 的参与和帮忙，才让各个同步工具和关键字能够发挥作用，帮我们开发出并发安全的程序。</p>
+<p>比如写了关键字 synchronized，JVM 就会在 JMM 的规则下，“翻译”出合适的指令，包括限制指令之间的顺序，以便在即使发生了重排序的情况下，也能保证必要的“可见性”</p>
+<p>这样一来，不同的 JVM 对于相同的代码的执行结果就变得可预期了</p>
+<p>Java 程序员就只需要用同步工具和关键字就可以开发出正确的并发程序了，这都要感谢 JMM。</p>
+</blockquote>
+<p><code>J M M</code>抽象结构划分为线程本地缓存与主存，每个线程均有自己的本地缓存，本地缓存是线程<strong>私有</strong>的，主存则是计算机内存，它是<strong>共享</strong>的。</p>
+<p><strong>主内存和工作内存的关系</strong></p>
+<p>JMM 有以下规定：</p>
+<blockquote>
+<p>所有的变量都存储在主内存中，同时每个线程拥有自己独立的工作内存，而工作内存中的变量的内容是主内存中该变量的拷贝；</p>
+<p>线程不能直接读 / 写主内存中的变量，但可以操作自己工作内存中的变量，然后再同步到主内存中，这样，其他线程就可以看到本次修改；</p>
+<p>主内存是由多个线程所共享的，但线程间不共享各自的工作内存，如果线程间需要通信，则必须借助主内存中转来完成。</p>
+</blockquote>
+<p><strong>可见性</strong></p>
+<p>当一个线程修改了共享变量的值，其他线程能够立即得知这个修改，这就是<strong>可见性</strong>，如果无法保证，就会出现<strong>缓存一致性的问题</strong>，<code>J M M</code>规定，所有的变量都放在主存中，当线程使用变量时，先从缓存中获取，缓存未命中，再从主存复制到缓存，最终导致线程操作的都是自己缓存中的变量。</p>
+<p>能够保证可见性的措施</p>
+<blockquote>
+<ul>
+<li>除了 volatile 关键字可以让变量保证可见性外</li>
+<li>synchronized、Lock、并发集合等一系列工具都可以在一定程度上保证可见性</li>
+</ul>
+</blockquote>
+<p><strong>原子性</strong></p>
+<p>原子性是指一个或者多个操作在<code>C P U</code>执行的过程中不被中断的特性，要么执行，要不执行，不能执行到一半。</p>
+<p>比如 i++ 这一行代码在 CPU 中执行时，可能会从一行代码变为以下的 3 个指令</p>
+<ul>
+<li>第一个步骤是读取；</li>
+<li>第二个步骤是增加；</li>
+<li>第三个步骤是保存。</li>
+</ul>
+<p>这就说明 i++ 是不具备原子性的，同时也证明了 i++ 不是线程安全的</p>
+<p>long 和 double 的原子性</p>
+<blockquote>
+<p>在目前各种平台下的主流虚拟机的实现中，几乎都会把 64 位数据的读写操作作为原子操作来对待，因此我们在编写代码时一般不需要为了避免读到“半个变量”而把 long 和 double 声明为 volatile 的。</p>
+</blockquote>
+<p><strong>有序性</strong></p>
+<p>重排遵循<code>as-if-serial</code>原则，编译器和处理器不会对<strong>存在数据依赖关系</strong>的操作做重排序，因为这种重排序会改变执行结果（即不管怎么重排序，单线程程序的执行结果不能被改变）</p>
+<pre><code class="language-java">int i = 10
+int j = 10
+//这就是数据依赖，int i 与 int j 不能排到 int c下面去
+int c = i + j
+</code></pre>
+<p><strong>重排序的好处：提高处理速度</strong></p>
+<p>重排序的 3 种情况:</p>
+<p>编译器优化</p>
+<blockquote>
+<p>编译器（包括 JVM、JIT 编译器等）出于优化的目的，例如当前有了数据 a，把对 a 的操作放到一起效率会更高，避免读取 b 后又返回来重新读取 a 的时间开销，此时在编译的过程中会进行一定程度的重排。不过重排序并不意味着可以任意排序，它需要需要保证重排序后，不改变单线程内的语义，否则如果能任意排序的话，程序早就逻辑混乱了。</p>
+</blockquote>
+<p>CPU 重排序</p>
+<blockquote>
+<p>CPU 同样会有优化行为，这里的优化和编译器优化类似，都是通过乱序执行的技术来提高整体的执行效率。</p>
+<p>所以即使之前编译器不发生重排，CPU 也可能进行重排，我们在开发中，一定要考虑到重排序带来的后果。</p>
+</blockquote>
+<p>内存的重排序</p>
+<blockquote>
+<p>内存系统内不存在真正的重排序，但是内存会带来看上去和重排序一样的效果，所以这里的“重排序”打了双引号。</p>
+<p>由于内存有缓存的存在，在 JMM 里表现为主存和本地内存，而主存和本地内存的内容可能不一致，所以这也会导致程序表现出乱序的行为。</p>
+<p>举个例子，线程 1 修改了 a 的值，但是修改后没有来得及把新结果写回主存或者线程 2 没来得及读到最新的值，所以线程 2 看不到刚才线程 1 对 a 的修改，此时线程 2 看到的 a 还是等于初始值。但是线程 2 却可能看到线程 1 修改 a 之后的代码执行效果，表面上看起来像是发生了重顺序。</p>
+</blockquote>
+<p><strong>happens-before 规则</strong></p>
+<p>Happens-before 关系是用来描述和可见性相关问题的：</p>
+<blockquote>
+<p>如果第一个操作 happens-before 第二个操作（也可以描述为，第一个操作和第二个操作之间满足 happens-before 关系），那么我们就说第一个操作对于第二个操作一定是可见的，也就是第二个操作在执行时就一定能保证看见第一个操作执行的结果。</p>
+</blockquote>
+<p>不具备 happens-before 关系的例子</p>
+<p>我们先来举一个不具备 happens-before 关系的例子，从宏观上进一步理解 happens-before 关系想要表达的内容。我们来看看下面的代码：</p>
+<pre><code class="language-java">public class Visibility &#123;
+    int x = 0;
+    public void write() &#123;
+        x = 1;
+    &#125;
+    public void read() &#123;
+        int y = x;
+    &#125;
+&#125;
+</code></pre>
+<p>如果有两个线程，分别执行 write 和 read 方法，那么由于这两个线程之间没有相互配合的机制，所以 write 和 read 方法内的代码不具备 happens-before 关系，其中的变量的可见性无法保证。</p>
+<blockquote>
+<p>单线程规则：<br>
+在一个单独的线程中，按照程序代码的顺序，先执行的操作 happen-before 后执行的操作。</p>
+<p>volatile 变量规则：</p>
+<p>对一个 volatile 变量的写操作 happen-before 后面对该变量的读操作。</p>
+<p>这就代表了如果变量被 volatile 修饰，那么每次修改之后，其他线程在读取这个变量的时候一定能读取到该变量最新的值。</p>
+<p>volatile 关键字，它能保证可见性，而这正是由本条规则所规定的。</p>
+<p><strong>线程启动规则：</strong></p>
+<p>Thread 对象的 start 方法 happen-before 此线程 run 方法中的每一个操作。</p>
+</blockquote>
+<h1>线程池</h1>
+<p><strong>错误使用</strong></p>
+<p>举例1:</p>
+<blockquote>
+<p>一次扣费行为属于父任务，同时它又包含了多次子任务：子任务用于并行执行反作弊策略，而父任务和子任务使用的是同一个业务线程池。</p>
+<p>当线程池中全部都是执行中的父任务时，并且所有父任务都存在子任务未执行完，这样就会发生死锁。</p>
+</blockquote>
+<p>假设核心线程数是2，目前正在执行扣费父任务1和2。另外，反作弊子任务1执行完了，反作弊子任务2和4都积压在任务队列中等待被调度。</p>
+<p>因为反作弊子任务2和4没执行完，所以扣费父任务1和2都不可能执行完成，这样就发生了死锁，核心线程永远不可能释放，从而造成任务队列不断增大，直到程序OOM crash。</p>
+<blockquote>
+<p>增加一个新的业务线程池，用来隔离父子任务，现有的线程池只用来处理扣费任务，新的线程池用来处理反作弊任务。这样就可以彻底避免死锁的情况了。</p>
+</blockquote>
+<p><strong>为什么要使用线程池</strong></p>
+<blockquote>
+<p>第一点，线程池可以解决线程生命周期的系统开销问题，同时还可以加快响应速度。因为线程池中的线程是可以复用的，我们只用少量的线程去执行大量的任务，这就大大减小了线程生命周期的开销。而且线程通常不是等接到任务后再临时创建，而是已经创建好时刻准备执行任务，这样就消除了线程创建所带来的延迟，提升了响应速度，增强了用户体验</p>
+<p>第二点，线程池可以统筹内存和 CPU 的使用，避免资源使用不当。线程池会根据配置和任务数量灵活地控制线程数量，不够的时候就创建，太多的时候就回收，避免线程过多导致内存溢出，或线程太少导致 CPU 资源浪费，达到了一个完美的平衡</p>
+<p>第三点，线程池可以统一管理资源。比如线程池可以统一管理任务队列和线程，可以统一开始或结束任务，比单个线程逐一处理任务要更方便、更易于管理，同时也有利于数据统计，比如我们可以很方便地统计出已经执行过的任务的数量</p>
+</blockquote>
+<p><strong>拒绝策略</strong></p>
+<p>线程池会在以下两种情况下会拒绝新提交的任务。</p>
+<blockquote>
+<p>第一种情况是当我们调用 shutdown 等方法关闭线程池后，即便此时可能线程池内部依然有没执行完的任务正在执行，但是由于线程池已经关闭，此时如果再向线程池内提交任务，就会遭到拒绝。</p>
+<p>第二种情况是线程池没有能力继续处理新提交的任务，也就是工作已经非常饱和的时候。</p>
+</blockquote>
+<p>Java 在 ThreadPoolExecutor 类中为我们提供了 4 种默认的拒绝策略来应对不同的场景，都实现了 RejectedExecutionHandler 接口</p>
+<blockquote>
+<ul>
+<li>第一种拒绝策略是 <strong>AbortPolicy</strong>，这种拒绝策略在拒绝任务时，会直接抛出一个类型为 RejectedExecutionException 的 RuntimeException，让你感知到任务被拒绝了，于是你便可以根据业务逻辑选择重试或者放弃提交等策略。</li>
+<li>第二种拒绝策略是 <strong>DiscardPolicy</strong>，这种拒绝策略正如它的名字所描述的一样，当新任务被提交后直接被丢弃掉，也不会给你任何的通知，相对而言存在一定的风险，因为我们提交的时候根本不知道这个任务会被丢弃，可能造成数据丢失。</li>
+<li>第三种拒绝策略是 <strong>DiscardOldestPolicy</strong>，如果线程池没被关闭且没有能力执行，则会丢弃任务队列中的头结点，通常是存活时间最长的任务，这种策略与第二种不同之处在于它丢弃的不是最新提交的，而是队列中存活时间最长的，这样就可以腾出空间给新提交的任务，但同理它也存在一定的数据丢失风险。</li>
+<li>第四种拒绝策略是 <strong>CallerRunsPolicy</strong>，相对而言它就比较完善了，当有新任务提交后，如果线程池没被关闭且没有能力执行，则把这个任务交于提交任务的线程执行，也就是谁提交任务，谁就负责执行任务。这样做主要有两点好处。
+<ul>
+<li>第一点新提交的任务不会被丢弃，这样也就不会造成业务损失。</li>
+<li>第二点好处是，由于谁提交任务谁就要负责执行任务，这样提交任务的线程就得负责执行任务，而执行任务又是比较耗时的，在这段期间，提交任务的线程被占用，也就不会再提交新的任务，减缓了任务提交的速度，相当于是一个负反馈。在此期间，线程池中的线程也可以充分利用这段时间来执行掉一部分任务，腾出一定的空间，相当于是给了线程池一定的缓冲期。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><strong>使用CallerRunsPolicy顺序问题：</strong></p>
+<blockquote>
+<p>当<strong>线程数</strong>线程池的<strong>最大线程数</strong>并且<strong>阻塞队列已满</strong>的情况下，后到的数据会执行拒绝策略，让调用线程（提交任务的线程）直接执行此任务，导致数据处理顺序不一致。</p>
+<p>当在多线程中数据处理时需要强关联数据时间顺序时，最好考虑一下其他的处理方式，避免踩坑。</p>
+</blockquote>
+<p><strong>异常处理</strong></p>
+<pre><code class="language-java">public class ThreadPoolException &#123;
+    public static void main(String[] args) &#123;
+
+        //创建一个线程池
+        ExecutorService executorService= Executors.newFixedThreadPool(1);
+
+        //当线程池抛出异常后 submit无提示，其他线程继续执行
+        executorService.submit(new task());
+
+        //当线程池抛出异常后 execute抛出异常，其他线程继续执行新任务
+        executorService.execute(new task());
+    &#125;
+&#125;
+
+//任务类
+class task implements  Runnable&#123;
+
+    @Override
+    public void run() &#123;
+        System.out.println(&quot;进入了task方法！！！&quot;);
+        int i=1/0;
+
+    &#125;
+&#125;
+</code></pre>
+<p>execute和submit最大的区别就是execute没有返回值，submit有返回值。submit返回的是一个future ，可以通过这个future取到线程执行的结果或者异常信息。</p>
+<p><code>submit()</code>想要获取异常信息就必须使用<code>get()</code>方法！！</p>
+<pre><code class="language-java">//当线程池抛出异常后 submit无提示，其他线程继续执行
+Future&lt;?&gt; submit = executorService.submit(new task());
+//打印异常结果
+System.out.println(submit.get()); 
+</code></pre>
+<blockquote>
+<p>在不需要返回结果的情况下，最好用execute ，这样就算没有写<code>try-catch</code>，疏漏了异常捕捉，也不至于丢掉异常信息。</p>
+</blockquote>
+<p>使用 <code>try -catch</code></p>
+<pre><code class="language-java">public class ThreadPoolException &#123;
+    public static void main(String[] args) &#123;
+        
+        //创建一个线程池
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
+
+        //当线程池抛出异常后 submit无提示，其他线程继续执行
+        executorService.submit(new task());
+
+        //当线程池抛出异常后 execute抛出异常，其他线程继续执行新任务
+        executorService.execute(new task());
+    &#125;
+&#125;
+// 任务类
+class task implements Runnable &#123;
+    @Override
+    public void run() &#123;
+        try &#123;
+            System.out.println(&quot;进入了task方法！！！&quot;);
+            int i = 1 / 0;
+        &#125; catch (Exception e) &#123;
+            System.out.println(&quot;使用了try -catch 捕获异常&quot; + e);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>使用<code>Thread.setDefaultUncaughtExceptionHandler</code>方法捕获异常</p>
+<p>每一个任务都要加一个<code>try-catch</code> 实在是太麻烦了，可以用<code>Thread.setDefaultUncaughtExceptionHandler</code>方法捕获异常</p>
+<pre><code class="language-java">public class ThreadPoolException &#123;
+    public static void main(String[] args) throws InterruptedException &#123;
+
+
+        //1.实现一个自己的线程池工厂
+        ThreadFactory factory = (Runnable r) -&gt; &#123;
+            //创建一个线程
+            Thread t = new Thread(r);
+            //给创建的线程设置UncaughtExceptionHandler对象 里面实现异常的默认逻辑
+            t.setDefaultUncaughtExceptionHandler((Thread thread1, Throwable e) -&gt; &#123;
+                System.out.println(&quot;线程工厂设置的exceptionHandler&quot; + e.getMessage());
+            &#125;);
+            return t;
+        &#125;;
+
+        //2.创建一个自己定义的线程池，使用自己定义的线程工厂
+        ExecutorService executorService = new ThreadPoolExecutor(
+                1,
+                1,
+                0,
+                TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue(10),
+                factory);
+
+        // submit无提示
+        executorService.submit(new task());
+
+        Thread.sleep(1000);
+        System.out.println(&quot;==================为检验打印结果，1秒后执行execute方法&quot;);
+
+        // execute 方法被线程工厂factory 的UncaughtExceptionHandler捕捉到异常
+        executorService.execute(new task());
+
+
+    &#125;
+
+
+&#125;
+
+class task implements Runnable &#123;
+    @Override
+    public void run() &#123;
+        System.out.println(&quot;进入了task方法！！！&quot;);
+        int i = 1 / 0;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>重写afterExecute进行异常处理</strong></p>
+<p>在excute的方法里面，可以通过重写<code>afterExecute</code>进行异常处理，但是注意！</p>
+<pre><code class="language-java">public class ThreadPoolException3 &#123;
+    public static void main(String[] args) throws InterruptedException, ExecutionException &#123;
+
+
+        //1.创建一个自己定义的线程池
+        ExecutorService executorService = new ThreadPoolExecutor(
+                2,
+                3,
+                0,
+                TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue(10)
+        ) &#123;
+            //重写afterExecute方法
+            @Override
+            protected void afterExecute(Runnable r, Throwable t) &#123;
+                System.out.println(&quot;afterExecute里面获取到异常信息，处理异常&quot; + t.getMessage());
+            &#125;
+        &#125;;
+        
+        //当线程池抛出异常后 execute
+        executorService.execute(new task());
+    &#125;
+&#125;
+
+class task3 implements Runnable &#123;
+    @Override
+    public void run() &#123;
+        System.out.println(&quot;进入了task方法！！！&quot;);
+        int i = 1 / 0;
+    &#125;
+&#125;
+</code></pre>
+<p>这个也只适用于excute提交，因为submit的<code>task.run</code>里面把异常吞了，根本不会跑出来异常，因此也不会有异常进入到<code>afterExecute</code>里面。</p>
+<p>在<code>runWorker</code>里面，调用<code>task.run</code>之后，会调用线程池的 <code>afterExecute(task, thrown)</code> 方法</p>
+<p>如果要用这个<code>afterExecute</code>处理submit提交的异常， 要额外处理。判断<code>Throwable</code>是否是<code>FutureTask</code>，如果是代表是submit提交的异常</p>
+<pre><code class="language-java">public class ThreadPoolException3 &#123;
+    public static void main(String[] args) throws InterruptedException, ExecutionException &#123;
+
+
+        //1.创建一个自己定义的线程池
+        ExecutorService executorService = new ThreadPoolExecutor(
+                2,
+                3,
+                0,
+                TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue(10)
+        ) &#123;
+            //重写afterExecute方法
+            @Override
+            protected void afterExecute(Runnable r, Throwable t) &#123;
+                //这个是excute提交的时候
+                if (t != null) &#123;
+                    System.out.println(&quot;afterExecute里面获取到excute提交的异常信息，处理异常&quot; + t.getMessage());
+                &#125;
+                //如果r的实际类型是FutureTask 那么是submit提交的，所以可以在里面get到异常
+                if (r instanceof FutureTask) &#123;
+                    try &#123;
+                        Future&lt;?&gt; future = (Future&lt;?&gt;) r;
+                        //get获取异常
+                        future.get();
+
+                    &#125; catch (Exception e) &#123;
+                        System.out.println(&quot;afterExecute里面获取到submit提交的异常信息，处理异常&quot; + e);
+                    &#125;
+                &#125;
+            &#125;
+        &#125;;
+        //当线程池抛出异常后 execute
+        executorService.execute(new task());
+        
+        //当线程池抛出异常后 submit
+        executorService.submit(new task());
+    &#125;
+&#125;
+
+class task3 implements Runnable &#123;
+    @Override
+    public void run() &#123;
+        System.out.println(&quot;进入了task方法！！！&quot;);
+        int i = 1 / 0;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>常见线程池</strong></p>
+<p>FixedThreadPool</p>
+<blockquote>
+<p>FixedThreadPool，它的核心线程数和最大线程数是一样的，所以可以把它看作是固定线程数的线程池，它的特点是线程池中的线程数除了初始阶段需要从 0 开始增加外，之后的线程数量就是固定的，就算任务数超过线程数，线程池也不会再创建更多的线程来处理任务，而是会把超出线程处理能力的任务放到任务队列中进行等待。而且就算任务队列满了，到了本该继续增加线程数的时候，由于它的最大线程数和核心线程数是一样的，所以也无法再增加新的线程了</p>
+</blockquote>
+<p>CachedThreadPool</p>
+<blockquote>
+<p>CachedThreadPool，可以称作可缓存线程池，它的特点在于线程数是几乎可以无限增加的（实际最大可以达到 Integer.MAX_VALUE，为 2^31-1，这个数非常大，所以基本不可能达到），而当线程闲置时还可以对线程进行回收。也就是说该线程池的线程数量不是固定不变的，当然它也有一个用于存储提交任务的队列，但这个队列是 SynchronousQueue，队列的容量为0，实际不存储任何任务，它只负责对任务进行中转和传递，所以效率比较高</p>
+</blockquote>
+<p>ScheduledThreadPool</p>
+<blockquote>
+<p>ScheduledThreadPool，它支持定时或周期性执行任务。</p>
+</blockquote>
+<p>SingleThreadExecutor</p>
+<blockquote>
+<p>SingleThreadExecutor，它会使用唯一的线程去执行任务，原理和 FixedThreadPool 是一样的，只不过这里线程只有一个，如果线程在执行任务的过程中发生异常，线程池也会重新创建一个线程来执行后续的任务。这种线程池由于只有一个线程，所以非常适合用于所有任务都需要按被提交的顺序依次执行的场景，而前几种线程池不一定能够保障任务的执行顺序等于被提交的顺序，因为它们是多线程并行执行的</p>
+</blockquote>
+<p><strong>ForkJoinPool</strong></p>
+<p>它非常适合执行可以产生子任务的任务</p>
+<p>第一步是拆分也就是 Fork，第二步是汇总也就是 Join</p>
+<p>ForkJoinPool 非常适合<strong>用于递归的场景，例如树的遍历、最优路径搜索等场景</strong></p>
+<p><strong>execute() VS submit()</strong></p>
+<blockquote>
+<p>execute() 和 submit() 都是用来<strong>执行线程池任务</strong>的，它们最主要的区别是，<strong>submit() 方法可以接收线程池执行的返回值，而 execute() 不能接收返回值</strong></p>
+</blockquote>
+<p><strong>ThreadPoolExecutor 扩展</strong></p>
+<blockquote>
+<p>ThreadPoolExecutor 的扩展主要是通过<strong>重写它的 beforeExecute() 和 afterExecute() 方法实现</strong>的，我们可以在扩展方法中添加日志或者实现数据统计，比如统计线程的执行时间</p>
+</blockquote>
+<p><strong>关闭线程池</strong></p>
+<p>shutdown()</p>
+<blockquote>
+<p>它可以安全地关闭一个线程池，调用 shutdown() 方法之后线程池并不是立刻就被关闭，因为这时线程池中可能还有很多任务正在被执行，或是任务队列中有大量正在等待被执行的任务，调用 shutdown() 方法后线程池会在执行完正在执行的任务和队列中等待的任务后才彻底关闭。</p>
+<p>但这并不代表 shutdown() 操作是没有任何效果的，调用 shutdown() 方法后如果还有新的任务被提交，线程池则会根据拒绝策略直接拒绝后续新提交的任务</p>
+</blockquote>
+<p>shutdownNow()</p>
+<blockquote>
+<p>在执行 shutdownNow 方法之后，首先会给所有线程池中的线程发送 interrupt 中断信号，尝试中断这些任务的执行，然后会将任务队列中正在等待的所有任务转移到一个 List 中并返回，我们可以根据返回的任务 List 来进行一些补救的操作，例如记录在案并在后期重试</p>
+</blockquote>
+<p><strong>线程复用原理</strong></p>
+<p>线程池可以把线程和任务进行解耦，线程归线程，任务归任务，摆脱了之前通过 Thread 创建线程时的一个线程必须对应一个任务的限制。</p>
+<blockquote>
+<p>在线程池中，同一个线程可以从 BlockingQueue 中不断提取新任务来执行，其核心原理在于线程池对 Thread 进行了封装，并不是每次执行任务都会调用 <code>Thread.start()</code> 来创建新线程，而是让每个线程去执行一个“循环任务”，在这个“循环任务”中，不停地检查是否还有任务等待被执行，如果有则直接去执行这个任务，也就是调用任务的 run 方法，把 run 方法当作和普通方法一样的地位去调用，相当于把每个任务的 run() 方法串联了起来，所以线程数量并不增加</p>
+</blockquote>
+<blockquote>
+<p><strong>实现线程复用的逻辑主要在一个不停循环的 while 循环体中</strong></p>
+<ol>
+<li>通过取 Worker 的 <strong>firstTask</strong> 或者通过 <strong>getTask</strong> 方法从 <strong>workQueue</strong> 中获取待执行的任务</li>
+<li>直接调用 task 的 run 方法来执行具体的任务（而不是新建线程）</li>
+</ol>
+</blockquote>
+<p><strong>ThreadPoolExecutor 重要属性</strong></p>
+<pre><code class="language-java">//ctl 线程池状态控制字段，由两部分组成：
+//1:workerCount  wc 工作线程数，我们限制 workerCount 最大到(2^29)-1，大概 5 亿个线程
+//2:runState rs 线程池的状态，提供了生命周期的控制，源码中有很多关于状态的校验，状态枚举如下：
+//RUNNING（-536870912）：接受新任务或者处理队列里的任务。
+//SHUTDOWN（0）：不接受新任务，但仍在处理已经在队列里面的任务。
+//STOP（-536870912）：不接受新任务，也不处理队列中的任务，对正在执行的任务进行中断。
+//TIDYING（1073741824）： 所以任务都被中断，workerCount 是 0，整理状态
+//TERMINATED（1610612736）： terminated() 已经完成的时候
+ 
+//runState 之间的转变过程：
+//RUNNING -&gt; SHUTDOWN：调用 shudown(),finalize()
+//(RUNNING or SHUTDOWN) -&gt; STOP：调用shutdownNow()
+//SHUTDOWN -&gt; TIDYING -&gt; workerCount ==0
+//STOP -&gt; TIDYING -&gt; workerCount ==0
+//TIDYING -&gt; TERMINATED -&gt; terminated() 执行完成之后
+private final AtomicInteger ctl = new AtomicInteger(ctlOf(RUNNING, 0));
+private static final int COUNT_BITS = Integer.SIZE - 3;// 29
+private static final int CAPACITY   = (1 &lt;&lt; COUNT_BITS) - 1;// =(2^29)-1=536870911
+ 
+// Packing and unpacking ctl
+private static int ctlOf(int rs, int wc) &#123; return rs | wc; &#125;
+private static int workerCountOf(int c)  &#123; return c &amp; CAPACITY; &#125;
+private static int runStateOf(int c)     &#123; return c &amp; ~CAPACITY; &#125;
+ 
+// runState is stored in the high-order bits
+private static final int RUNNING    = -1 &lt;&lt; COUNT_BITS;//-536870912
+private static final int SHUTDOWN   =  0 &lt;&lt; COUNT_BITS;//0
+private static final int STOP       =  1 &lt;&lt; COUNT_BITS;//-536870912
+private static final int TIDYING    =  2 &lt;&lt; COUNT_BITS;//1073741824
+private static final int TERMINATED =  3 &lt;&lt; COUNT_BITS;//1610612736
+ 
+// 已完成任务的计数
+volatile long completedTasks;
+// 线程池最大容量
+private int largestPoolSize;
+// 已经完成的任务数
+private long completedTaskCount;
+// 用户可控制的参数都是 volatile 修饰的
+// 可以使用 threadFactory 创建 thread
+// 创建失败一般不抛出异常，只有在 OutOfMemoryError 时候才会
+private volatile ThreadFactory threadFactory;
+// 饱和或者运行中拒绝任务的 handler 处理类
+private volatile RejectedExecutionHandler handler;
+// 线程存活时间设置
+private volatile long keepAliveTime;
+// 设置 true 的话，核心线程空闲 keepAliveTime 时间后，也会被回收
+private volatile boolean allowCoreThreadTimeOut;
+// coreSize
+private volatile int corePoolSize;
+// maxSize 最大限制 (2^29)-1
+private volatile int maximumPoolSize;
+// 默认的拒绝策略
+private static final RejectedExecutionHandler defaultHandler =
+    new AbortPolicy();
+ 
+// 队列会 hold 住任务，并且利用队列的阻塞的特性，来保持线程的存活周期
+private final BlockingQueue&lt;Runnable&gt; workQueue;
+ 
+// 大多数情况下是控制对 workers 的访问权限
+private final ReentrantLock mainLock = new ReentrantLock();
+private final Condition termination = mainLock.newCondition();
+ 
+// 包含线程池中所有的工作线程
+private final HashSet&lt;Worker&gt; workers = new HashSet&lt;Worker&gt;();
+</code></pre>
+<p>Worker 我们可以理解成线程池中任务运行的最小单元，Worker 的大致结构如下：</p>
+<pre><code class="language-java">// 线程池中任务执行的最小单元
+// Worker 继承 AQS，具有锁功能
+// Worker 实现 Runnable，本身是一个可执行的任务
+private final class Worker
+    extends AbstractQueuedSynchronizer
+    implements Runnable
+&#123;
+    // 任务运行的线程
+    final Thread thread;
+ 
+    // 需要执行的任务
+    Runnable firstTask;
+ 
+    // 非常巧妙的设计,Worker本身是个 Runnable,把自己作为任务传递给 thread
+    // 内部有个属性又设置了 Runnable
+    Worker(Runnable firstTask) &#123;
+        setState(-1); // inhibit interrupts until runWorker
+        this.firstTask = firstTask;
+        // 把 Worker 自己作为 thread 运行的任务
+        this.thread = getThreadFactory().newThread(this);
+    &#125;
+ 
+   /** Worker 本身是 Runnable，run 方法是 Worker 执行的入口， runWorker 是外部的方法 */
+    public void run() &#123;
+        runWorker(this);
+    &#125;
+ 
+    private static final long serialVersionUID = 6138294804551838833L;
+ 
+    // Lock methods
+    // 0 代表没有锁住，1 代表锁住
+    protected boolean isHeldExclusively() &#123;
+        return getState() != 0;
+    &#125;
+    // 尝试加锁，CAS 赋值为 1，表示锁住
+    protected boolean tryAcquire(int unused) &#123;
+        if (compareAndSetState(0, 1)) &#123;
+            setExclusiveOwnerThread(Thread.currentThread());
+            return true;
+        &#125;
+        return false;
+    &#125;
+    // 尝试释放锁，释放锁没有 CAS 校验，可以任意的释放锁
+    protected boolean tryRelease(int unused) &#123;
+        setExclusiveOwnerThread(null);
+        setState(0);
+        return true;
+    &#125;
+ 
+    public void lock()        &#123; acquire(1); &#125;
+    public boolean tryLock()  &#123; return tryAcquire(1); &#125;
+    public void unlock()      &#123; release(1); &#125;
+    public boolean isLocked() &#123; return isHeldExclusively(); &#125;
+ 
+    void interruptIfStarted() &#123;
+        Thread t;
+        if (getState() &gt;= 0 &amp;&amp; (t = thread) != null &amp;&amp; !t.isInterrupted()) &#123;
+            try &#123;
+                t.interrupt();
+            &#125; catch (SecurityException ignore) &#123;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<ol>
+<li>Worker 很像是任务的代理，在线程池中，最小的执行单位就是 Worker，所以 Worker 实现了 Runnable 接口，实现了 run 方法；</li>
+<li>在 Worker 初始化时 <code>this.thread = getThreadFactory ().newThread (this)</code> 这行代码比较关键，它把当前 Worker 作为线程的构造器入参，我们在后续的实现中会发现这样的代码：<code>Thread t = w.thread;t.start ()</code>，此时的 w 是 Worker 的引用申明，此处 t.start 实际上执行的就是 Worker 的 run 方法；</li>
+<li>Worker 本身也实现了 AQS，所以其本身也是一个锁，其在执行任务的时候，会锁住自己，任务执行完成之后，会释放自己。</li>
+</ol>
+</blockquote>
+<p><strong>线程池的任务提交</strong></p>
+<p>线程池的任务提交从 submit 方法说起，submit 方法是 AbstractExecutorService 抽象类定义的，主要做了两件事情：</p>
+<blockquote>
+<ol>
+<li>把 Runnable 和 Callable 都转化成 FutureTask；</li>
+<li>使用 execute 方法执行 FutureTask。</li>
+</ol>
+</blockquote>
+<p>execute 方法是 ThreadPoolExecutor 中的方法，源码如下：</p>
+<pre><code class="language-java">public void execute(Runnable command) &#123;
+    if (command == null)
+        throw new NullPointerException();
+    int c = ctl.get();
+    // 工作的线程小于核心线程数，创建新的线程，成功返回，失败不抛异常
+    if (workerCountOf(c) &lt; corePoolSize) &#123;
+        if (addWorker(command, true))
+            return;
+        // 线程池状态可能发生变化
+        c = ctl.get();
+    &#125;
+    // 工作的线程大于等于核心线程数，或者新建线程失败
+    // 线程池状态正常，并且可以入队的话，尝试入队列
+    if (isRunning(c) &amp;&amp; workQueue.offer(command)) &#123;
+        int recheck = ctl.get();
+        // 如果线程池状态异常 尝试从队列中移除任务，可以移除的话就拒绝掉任务
+        if (!isRunning(recheck) &amp;&amp; remove(command))
+            reject(command);
+        // 发现可运行的线程数是 0，就初始化一个线程，这里是个极限情况，入队的时候，突然发现
+        // 可用线程都被回收了
+        else if (workerCountOf(recheck) == 0)
+            // Runnable是空的，不会影响新增线程，但是线程在 start 的时候不会运行
+            // Thread.run() 里面有判断
+            addWorker(null, false);
+    &#125;
+    // 队列满了，开启线程到 maxSize，如果失败直接拒绝,
+    else if (!addWorker(command, false))
+        reject(command);
+&#125;
+</code></pre>
+<p>execute 方法执行的就是整体架构图的左半边的逻辑，其中多次调用 addWorker 方法，addWorker 方法的作用是新建一个 Worker，我们一起来看下源码：</p>
+<pre><code class="language-java">// 结合线程池的情况看是否可以添加新的 worker
+// firstTask 不为空可以直接执行，为空执行不了，Thread.run()方法有判断，Runnable为空不执行
+// core 为 true 表示线程最大新增个数是 coresize，false 表示最大新增个数是 maxsize
+// 返回 true 代表成功，false 失败
+// break retry 跳到retry处，且不再进入循环
+// continue retry 跳到retry处，且再次进入循环
+private boolean addWorker(Runnable firstTask, boolean core) &#123;
+    retry:
+    // 先是各种状态的校验
+    for (;;) &#123;
+        int c = ctl.get();
+        int rs = runStateOf(c);
+        // Check if queue empty only if necessary.
+        // rs &gt;= SHUTDOWN 说明线程池状态不正常
+        if (rs &gt;= SHUTDOWN &amp;&amp;
+            ! (rs == SHUTDOWN &amp;&amp;
+               firstTask == null &amp;&amp;
+               ! workQueue.isEmpty()))
+            return false;
+ 
+        for (;;) &#123;
+            int wc = workerCountOf(c);
+            // 工作中的线程数大于等于容量，或者大于等于 coreSize or maxSize
+            if (wc &gt;= CAPACITY ||
+                wc &gt;= (core ? corePoolSize : maximumPoolSize))
+                return false;
+            if (compareAndIncrementWorkerCount(c))
+                // break 结束 retry 的 for 循环
+                break retry;
+            c = ctl.get();  // Re-read ctl
+            // 线程池状态被更改
+            if (runStateOf(c) != rs)
+                // 跳转到retry位置
+                continue retry;
+            // else CAS failed due to workerCount change; retry inner loop
+        &#125;
+    &#125;
+ 
+    boolean workerStarted = false;
+    boolean workerAdded = false;
+    Worker w = null;
+    try &#123;
+        // 巧妙的设计，Worker 本身是个 Runnable.
+        // 在初始化的过程中，会把 worker 丢给 thread 去初始化
+        w = new Worker(firstTask);
+        final Thread t = w.thread;
+        if (t != null) &#123;
+            final ReentrantLock mainLock = this.mainLock;
+            mainLock.lock();
+            try &#123;
+                // Recheck while holding lock.
+                // Back out on ThreadFactory failure or if
+                // shut down before lock acquired.
+                int rs = runStateOf(ctl.get());
+                if (rs &lt; SHUTDOWN ||
+                    (rs == SHUTDOWN &amp;&amp; firstTask == null)) &#123;
+                    if (t.isAlive()) // precheck that t is startable
+                        throw new IllegalThreadStateException();
+                    workers.add(w);
+                    int s = workers.size();
+                    if (s &gt; largestPoolSize)
+                        largestPoolSize = s;
+                    workerAdded = true;
+                &#125;
+            &#125; finally &#123;
+                mainLock.unlock();
+            &#125;
+            if (workerAdded) &#123;
+                // 启动线程，实际上去执行 Worker.run 方法
+                t.start();
+                workerStarted = true;
+            &#125;
+        &#125;
+    &#125; finally &#123;
+        if (! workerStarted)
+            addWorkerFailed(w);
+    &#125;
+    return workerStarted;
+&#125;
+</code></pre>
+<p>addWorker 方法首先是执行了一堆校验，然后使用 new Worker (firstTask) 新建了 Worker，最后使用 <code>t.start ()</code> 执行 Worker，上文我们说了 Worker 在初始化时的关键代码：</p>
+<p><code>this.thread = getThreadFactory ().newThread (this)</code>，Worker（this） 是作为新建线程的构造器入参的，所以 <code>t.start ()</code> 会执行到 Worker 的 run 方法上，源码如下：</p>
+<pre><code class="language-java">public void run() &#123;
+    runWorker(this);
+&#125;
+</code></pre>
+<p>runWorker 方法是非常重要的方法，我们一起看下源码实现：</p>
+<pre><code class="language-java">final void runWorker(Worker w) &#123;
+    Thread wt = Thread.currentThread();
+    Runnable task = w.firstTask;
+    //帮助gc回收
+    w.firstTask = null;
+    w.unlock(); // allow interrupts
+    boolean completedAbruptly = true;
+    try &#123;
+        // task 为空的情况：
+        // 1：任务入队列了，极限情况下，发现没有运行的线程，于是新增一个线程；
+        // 2：线程执行完任务执行，再次回到 while 循环。
+        // 如果 task 为空，会使用 getTask 方法阻塞从队列中拿数据，如果拿不到数据，会阻塞住
+        while (task != null || (task = getTask()) != null) &#123;
+            //锁住 worker
+            w.lock();
+            // 线程池 stop 中,但是线程没有到达中断状态，帮助线程中断
+            if ((runStateAtLeast(ctl.get(), STOP) ||
+                 (Thread.interrupted() &amp;&amp;
+                  runStateAtLeast(ctl.get(), STOP))) &amp;&amp;
+                !wt.isInterrupted())
+                wt.interrupt();
+            try &#123;
+                //执行 before 钩子函数
+                beforeExecute(wt, task);
+                Throwable thrown = null;
+                try &#123;
+                    //同步执行任务
+                    task.run();
+                &#125; catch (RuntimeException x) &#123;
+                    thrown = x; throw x;
+                &#125; catch (Error x) &#123;
+                    thrown = x; throw x;
+                &#125; catch (Throwable x) &#123;
+                    thrown = x; throw new Error(x);
+                &#125; finally &#123;
+                    //执行 after 钩子函数,如果这里抛出异常，会覆盖 catch 的异常
+                    //所以这里异常最好不要抛出来
+                    afterExecute(task, thrown);
+                &#125;
+            &#125; finally &#123;
+                //任务执行完成，计算解锁
+                task = null;
+                w.completedTasks++;
+                w.unlock();
+            &#125;
+        &#125;
+        completedAbruptly = false;
+    &#125; finally &#123;
+        //做一些抛出异常的善后工作
+        processWorkerExit(w, completedAbruptly);
+    &#125;
+&#125;
+</code></pre>
+<p>这个方法执行的逻辑是架构图中的标红部分：</p>
+<p>我们聚焦一下这行代码：task.run () 此时的 task 是什么呢？此时的 task 是 FutureTask 类，所以我们继续追索到 FutureTask 类的 run 方法的源码，如下：</p>
+<pre><code class="language-java">/**
+ * run 方法可以直接被调用
+ * 也可以由线程池进行调用
+ */
+public void run() &#123;
+    // 状态不是任务创建，或者当前任务已经有线程在执行了
+    if (state != NEW ||
+        !UNSAFE.compareAndSwapObject(this, runnerOffset,
+                                     null, Thread.currentThread()))
+        return;
+    try &#123;
+        Callable&lt;V&gt; c = callable;
+        // Callable 不为空，并且已经初始化完成
+        if (c != null &amp;&amp; state == NEW) &#123;
+            V result;
+            boolean ran;
+            try &#123;
+                // 调用执行
+                result = c.call();
+                ran = true;
+            &#125; catch (Throwable ex) &#123;
+                result = null;
+                ran = false;
+                setException(ex);
+            &#125;
+            // 给 outcome 赋值
+            if (ran)
+                set(result);
+        &#125;
+    &#125; finally &#123;
+        // runner must be non-null until state is settled to
+        // prevent concurrent calls to run()
+        runner = null;
+        // state must be re-read after nulling runner to prevent
+        // leaked interrupts
+        int s = state;
+        if (s &gt;= INTERRUPTING)
+            handlePossibleCancellationInterrupt(s);
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<ol>
+<li>result = c.call () 这行代码是真正执行业务代码的地方；</li>
+<li>set (result) 这里是给 outCome 赋值，这样 Future.get 方法执行时，就可以从 outCome 中拿值。</li>
+</ol>
+</blockquote>
+<p><strong>线程执行完任务之后都在干啥</strong></p>
+<p>线程执行完任务之后，是消亡还是干什么呢？</p>
+<p>从 ThreadPoolExecutor 的 runWorker 方法中，不知道有没有同学注意到一个 while 循环</p>
+<p>这个 while 循环有个 getTask 方法，getTask 的主要作用是阻塞从队列中拿任务出来，如果队列中有任务，那么就可以拿出来执行，如果队列中没有任务，这个线程会一直阻塞到有任务为止（或者超时阻塞），下面我们一起来看下 getTask 方法，源码如下：</p>
+<pre><code class="language-java">// 从阻塞队列中拿任务
+private Runnable getTask() &#123;
+    boolean timedOut = false; // Did the last poll() time out?
+ 
+    for (;;) &#123;
+        int c = ctl.get();
+        int rs = runStateOf(c);
+ 
+        //线程池关闭 &amp;&amp; 队列为空，不需要在运行了，直接放回
+        if (rs &gt;= SHUTDOWN &amp;&amp; (rs &gt;= STOP || workQueue.isEmpty())) &#123;
+            decrementWorkerCount();
+            return null;
+        &#125;
+ 
+        int wc = workerCountOf(c);
+ 
+        // Are workers subject to culling?
+        // true  运行的线程数大于 coreSize || 核心线程也可以被灭亡
+        boolean timed = allowCoreThreadTimeOut || wc &gt; corePoolSize;
+ 
+        // 队列以 LinkedBlockingQueue 为例，timedOut 为 true 的话说明下面 poll 方法执行返回的是 null
+        // 说明在等待 keepAliveTime 时间后，队列中仍然没有数据
+        // 说明此线程已经空闲了 keepAliveTime 了
+        // 再加上 wc &gt; 1 || workQueue.isEmpty() 的判断
+        // 所以使用 compareAndDecrementWorkerCount 方法使线程池数量减少 1
+        // 并且直接 return，return 之后，此空闲的线程会自动被回收
+        if ((wc &gt; maximumPoolSize || (timed &amp;&amp; timedOut))
+            &amp;&amp; (wc &gt; 1 || workQueue.isEmpty())) &#123;
+            if (compareAndDecrementWorkerCount(c))
+                return null;
+            continue;
+        &#125;
+ 
+        try &#123;
+            // 从队列中阻塞拿 worker
+            Runnable r = timed ?
+                workQueue.poll(keepAliveTime, TimeUnit.NANOSECONDS) :
+                workQueue.take();
+            if (r != null)
+                return r;
+            // 设置已超时，说明此时队列没有数据
+            timedOut = true;
+        &#125; catch (InterruptedException retry) &#123;
+            timedOut = false;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<ol>
+<li>使用队列的 poll 或 take 方法从队列中拿数据，根据队列的特性，队列中有任务可以返回，队列中无任务会阻塞；</li>
+<li>方法中的第二个 if 判断，说的是在满足一定条件下（条件看注释），会减少空闲的线程，减少的手段是使可用线程数减一，并且直接 return，直接 return 后，该线程就执行结束了，JVM 会自动回收该线程。</li>
+</ol>
+</blockquote>
+<h1>线程</h1>
+<p><strong>创建多线程</strong></p>
+<blockquote>
+<p><strong>实现线程只有一种方式</strong></p>
+<p>事实上创建线程只有一种方式，就是构造一个 Thread 类，这是创建线程的唯一方式。</p>
+</blockquote>
+<blockquote>
+<p><strong>实现 Runnable 接口比继承 Thread 类实现线程要好:</strong></p>
+<p>首先，我们从代码的架构考虑，实际上，Runnable 里只有一个 run() 方法，它定义了需要执行的内容，在这种情况下，实现了 Runnable 与 Thread 类的解耦，Thread 类负责线程启动和属性设置等内容，权责分明。</p>
+<p>第二点就是在某些情况下可以提高性能，使用继承 Thread 类方式，每次执行一次任务，都需要新建一个独立的线程，执行完任务后线程走到生命周期的尽头被销毁，如果还想执行这个任务，就必须再新建一个继承了 Thread 类的类，如果此时执行的内容比较少，比如只是在 run() 方法里简单打印一行文字，那么它所带来的开销并不大，相比于整个线程从开始创建到执行完毕被销毁，这一系列的操作比 run() 方法打印文字本身带来的开销要大得多，相当于捡了芝麻丢了西瓜，得不偿失。如果我们使用实现 Runnable 接口的方式，就可以把任务直接传入线程池，使用一些固定的线程来完成任务，不需要每次新建销毁线程，大大降低了性能开销。</p>
+<p>第三点好处在于 Java 语言不支持双继承，如果我们的类一旦继承了 Thread 类，那么它后续就没有办法再继承其他的类，这样一来，如果未来这个类需要继承其他类实现一些功能上的拓展，它就没有办法做到了，相当于限制了代码未来的可拓展性。</p>
+<p>综上所述，我们应该优先选择通过实现 Runnable 接口的方式来创建线程。</p>
+</blockquote>
+<p><strong>Callable 和 Runnable 的不同之处</strong></p>
+<blockquote>
+<p>方法名，Callable 规定的执行方法是 call()，而 Runnable 规定的执行方法是 run()；</p>
+<p>返回值，Callable 的任务执行后有返回值，而 Runnable 的任务执行后是没有返回值的；</p>
+<p>抛出异常，call() 方法可抛出异常，而 run() 方法是不能抛出受检查异常的；</p>
+<p>和 Callable 配合的有一个 Future 类，通过 Future 可以了解任务执行情况，或者取消任务的执行，还可获取任务执行的结果，这些功能都是 Runnable 做不到的，Callable 的功能要比 Runnable 强大</p>
+</blockquote>
+<p><strong>Thread的start和run的区别</strong></p>
+<blockquote>
+<p>start方法中调用了<strong>本地方法start0，native即是本地方法</strong>（也是底层方法）。怎么看start0方法，可以去访问openjdk源码(访问比较慢)。</p>
+</blockquote>
+<p><strong>线程安全</strong></p>
+<p>多个线程访问一个对象时，如果不用考虑这些线程在运行时环境下的调度和交替执行问题，也不需要进行额外的同步，而调用这个对象的行为都可以获得正确的结果，那这个对象便是线程安全的</p>
+<p>Brian Goetz 想表达的意思是，如果某个对象是线程安全的，那么对于使用者而言，在使用时就不需要考虑方法间的协调问题，比如不需要考虑不能同时写入或读写不能并行的问题，也不需要考虑任何额外的同步问题，比如不需要额外自己加 synchronized 锁，那么它才是线程安全的，可以看出对线程安全的定义还是非常苛刻的。</p>
+<p><strong>互斥与同步的区别</strong></p>
+<ul>
+<li>互斥：某一资源同时只允许一个访问者对其进行访问，具有唯一性和排它性。但互斥无法限制访问者对资源的访问顺序，即访问是无序的（操作 A 和操作 B 不能在同一时刻执行）</li>
+<li>同步：互斥的基础上，通过其它机制实现访问者对资源的有序访问。在大多数情况下，同步已经实现了互斥（操作 A 应在操作 B 之前执行，操作 C 必须在操作 A 和操作 B 都完成之后才能执行）</li>
+</ul>
+<p><strong>活跃性问题</strong></p>
+<p>活跃性问题就是程序始终得不到运行的最终结果。</p>
+<p>最典型的有三种，分别为<strong>死锁、活锁和饥饿</strong></p>
+<blockquote>
+<p>活锁与死锁非常相似，也是程序一直等不到结果，但对比于死锁，活锁是活的，什么意思呢？因为正在运行的线程并没有阻塞，它始终在运行中，却一直得不到结果</p>
+<p>举一个例子，假设有一个消息队列，队列里放着各种各样需要被处理的消息，而某个消息由于自身被写错了导致不能被正确处理，执行时会报错，可是队列的重试机制会重新把它放在队列头进行优先重试处理，但这个消息本身无论被执行多少次，都无法被正确处理，每次报错后又会被放到队列头进行重试，周而复始，最终导致线程一直处于忙碌状态，但程序始终得不到结果，便发生了活锁问题</p>
+<p>饥饿是指线程需要某些资源时始终得不到，尤其是CPU 资源，就会导致线程一直不能运行而产生的问题</p>
+<p>在 Java 中有线程优先级的概念，Java 中优先级分为 1 到 10，1 最低，10 最高。如果我们把某个线程的优先级设置为 1，这是最低的优先级，在这种情况下，这个线程就有可能始终分配不到 CPU 资源，而导致长时间无法运行。或者是某个线程始终持有某个文件的锁，而其他线程想要修改文件就必须先获取锁，这样想要修改文件的线程就会陷入饥饿，长时间不能运行</p>
+</blockquote>
+<p><strong>什么场景需要额外注意线程安全问题？</strong></p>
+<p>访问共享变量或资源</p>
+<blockquote>
+<p>典型的场景有访问共享对象的属性，访问 static 静态变量，访问共享的缓存等等。因为这些信息不仅会被一个线程访问到，还有可能被多个线程同时访问，那么就有可能在并发读写的情况下发生线程安全问题</p>
+</blockquote>
+<p>依赖时序的操作</p>
+<blockquote>
+<p>如果我们操作的正确性是依赖时序的，而在多线程的情况下又不能保障执行的顺序和我们预想的一致，这个时候就会发生线程安全问题，如下面的代码所示</p>
+</blockquote>
+<pre><code class="language-java">if (map.containsKey(key)) &#123;
+    map.remove(obj)
+&#125;
+</code></pre>
+<p><strong>生产者消费者模式</strong></p>
+<p>使用 BlockingQueue 实现生产者消费者模式</p>
+<pre><code class="language-java">public static void main(String[] args) &#123;
+  // 长度为10的阻塞队列
+  BlockingQueue&lt;Object&gt; queue = new ArrayBlockingQueue&lt;&gt;(10);
+ 
+  Runnable producer = () -&gt; &#123;
+      while (true) &#123;
+          queue.put(new Object());
+      &#125;
+  &#125;;
+ 
+new Thread(producer).start();
+new Thread(producer).start();
+ 
+Runnable consumer = () -&gt; &#123;
+      while (true) &#123;
+           queue.take();
+&#125;
+   &#125;;
+new Thread(consumer).start();
+new Thread(consumer).start();
+&#125;
+</code></pre>
+<p>使用 Condition 实现生产者消费者模式</p>
+<pre><code class="language-java">public class MyBlockingQueueForCondition &#123;
+ 
+   private Queue queue;
+   private int max = 16;
+   private ReentrantLock lock = new ReentrantLock();
+   private Condition notEmpty = lock.newCondition();
+   private Condition notFull = lock.newCondition();
+ 
+ 
+   public MyBlockingQueueForCondition(int size) &#123;
+       this.max = size;
+       queue = new LinkedList();
+   &#125;
+ 
+   public void put(Object o) throws InterruptedException &#123;
+       lock.lock();
+       try &#123;
+           while (queue.size() == max) &#123;
+               notFull.await();
+           &#125;
+           queue.add(o);
+           notEmpty.signalAll();
+       &#125; finally &#123;
+           lock.unlock();
+       &#125;
+   &#125;
+ 
+   public Object take() throws InterruptedException &#123;
+       lock.lock();
+       try &#123;
+           while (queue.size() == 0) &#123;
+               notEmpty.await();
+           &#125;
+           Object item = queue.remove();
+           notFull.signalAll();
+           return item;
+       &#125; finally &#123;
+           lock.unlock();
+       &#125;
+   &#125;
+&#125;
+</code></pre>
+<p>使用 wait/notify 实现生产者消费者模式</p>
+<pre><code class="language-java">class MyBlockingQueue &#123;
+ 
+   private int maxSize;
+   private LinkedList&lt;Object&gt; storage;
+ 
+   public MyBlockingQueue(int size) &#123;
+       this.maxSize = size;
+       storage = new LinkedList&lt;&gt;();
+   &#125;
+ 
+   public synchronized void put() throws InterruptedException &#123;
+       while (storage.size() == maxSize) &#123;
+           wait();
+       &#125;
+       storage.add(new Object());
+       notifyAll();
+   &#125;
+ 
+   public synchronized void take() throws InterruptedException &#123;
+       while (storage.size() == 0) &#123;
+           wait();
+       &#125;
+       System.out.println(storage.remove());
+       notifyAll();
+   &#125;
+&#125;
+</code></pre>
+<pre><code class="language-java">/**
+* 描述：     wait形式实现生产者消费者模式
+*/
+public class WaitStyle &#123;
+ 
+   public static void main(String[] args) &#123;
+       MyBlockingQueue myBlockingQueue = new MyBlockingQueue(10);
+       Producer producer = new Producer(myBlockingQueue);
+       Consumer consumer = new Consumer(myBlockingQueue);
+       new Thread(producer).start();
+       new Thread(consumer).start();
+   &#125;
+&#125;
+ 
+class Producer implements Runnable &#123;
+ 
+   private MyBlockingQueue storage;
+ 
+   public Producer(MyBlockingQueue storage) &#123;
+       this.storage = storage;
+   &#125;
+ 
+   @Override
+   public void run() &#123;
+       for (int i = 0; i &lt; 100; i++) &#123;
+           try &#123;
+               storage.put();
+           &#125; catch (InterruptedException e) &#123;
+               e.printStackTrace();
+           &#125;
+       &#125;
+   &#125;
+&#125;
+ 
+class Consumer implements Runnable &#123;
+ 
+   private MyBlockingQueue storage;
+ 
+   public Consumer(MyBlockingQueue storage) &#123;
+       this.storage = storage;
+   &#125;
+ 
+   @Override
+   public void run() &#123;
+       for (int i = 0; i &lt; 100; i++) &#123;
+           try &#123;
+               storage.take();
+           &#125; catch (InterruptedException e) &#123;
+               e.printStackTrace();
+           &#125;
+       &#125;
+   &#125;
+&#125;
+</code></pre>
+<p><strong>停止线程</strong></p>
+<blockquote>
+<p>因为 stop() 会直接把线程停止，这样就没有给线程足够的时间来处理想要在停止前保存数据的逻辑，任务戛然而止，会导致出现数据完整性等问题</p>
+<p>而对于 suspend() 和 resume() 而言，它们的问题在于如果线程调用 suspend()，它并不会释放锁，就开始进入休眠，但此时有可能仍持有锁，这样就容易导致死锁问题，因为这把锁在线程被 resume() 之前，是不会被释放的</p>
+</blockquote>
+<pre><code class="language-java">while (!Thread.currentThread().islnterrupted() &amp;&amp; more work to do) &#123;
+    do more work
+&#125;
+</code></pre>
+<p>我们一旦调用某个线程的 <strong>interrupt()</strong> 之后，这个线程的<strong>中断标记位就会被设置成 true</strong>。</p>
+<p>每个线程都有这样的标记位，当线程执行时，应该定期检查这个标记位，如果标记位被设置成 true，就说明有程序想终止该线程</p>
+<blockquote>
+<p>如果 sleep、wait 等可以让线程进入阻塞的方法使线程休眠了，而处于休眠中的线程被中断，那么线程是可以感受到中断信号的，并且会抛出一个 InterruptedException 异常，同时清除中断信号，将中断标记位设置成 false。</p>
+<p>这样一来就不用担心长时间休眠中线程感受不到中断了，因为即便线程还在休眠，仍然能够响应中断通知，并抛出异常</p>
+</blockquote>
+<p>两种最佳处理方式</p>
+<pre><code class="language-java">void subTas() &#123;
+    try &#123;
+        Thread.sleep(1000);
+    &#125; catch (InterruptedException e) &#123;
+        // 在这里不处理该异常是非常不好的
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>可以在方法中使用 try/catch 或在方法签名中声明 throws  InterruptedException</p>
+</blockquote>
+<p>方法签名抛异常，run() 强制 try/catch</p>
+<pre><code class="language-java">void subTask2() throws InterruptedException &#123;
+    Thread.sleep(1000);
+&#125;
+</code></pre>
+<p>再次中断</p>
+<pre><code class="language-java">private void reInterrupt() &#123;
+    try &#123;
+        Thread.sleep(2000);
+    &#125; catch (InterruptedException e) &#123;
+        Thread.currentThread().interrupt();
+        e.printStackTrace();
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>因为如果线程在休眠期间被中断，那么会自动清除中断信号。</p>
+<p>如果这时手动添加中断信号，中断信号依然可以被捕捉到。这样后续执行的方法依然可以检测到这里发生过中断，可以做出相应的处理，整个线程可以正常退出。</p>
+<p>在实际开发中不能盲目吞掉中断，如果不在方法签名中声明，也不在 catch 语句块中再次恢复中断，而是在 catch 中不作处理，我们称这种行为是 屏蔽了中断请求。</p>
+<p>如果我们盲目地屏蔽了中断请求，会导致中断信号被完全忽略，最终导致线程无法正确停止</p>
+</blockquote>
+
+	</div>
+</div>
+
+
+    <div class="post-guide">
+        <div class="item left">
+            
+              <a href="/2022/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  网络基础
+              </a>
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2022/12/02/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">
+                MySQL
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+
+<script>
+
+    //document.oncontextmenu=new Function("event.returnValue=false");
+	//document.onselectstart=new Function("event.returnValue=false");
+
+	
+
+	$(function () {
+		const btw = new BTWPlugin();
+	    btw.init({
+	        id: 'container',
+	        blogId: '22377-1657723090751-870',
+	        name: '月伴飞鱼',
+	        qrcode: '/个人公众号.jpg',
+	        keyword: '验证码',
+	    });
+
+	    var contents = document.getElementsByClassName("content999");
+	    //监听文章内容的copy事件
+	    contents[0].addEventListener('copy',function(e){
+	        setClipboardText(e);
+	    });
+
+	    function setClipboardText(event){
+	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+	        let clipboardData = event.clipboardData || window.clipboardData;
+
+	        // 如果未复制或者未剪切，则return出去
+	        if (!clipboardData) { return; }
+
+	        event.preventDefault();
+
+	        // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+	        // 声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+	        let text = window.getSelection().toString();
+	    
+	        if (text) {
+	            // 如果文本存在则先取消文本默认事件
+	            event.preventDefault();
+	            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+	            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+	            // data: 一个 DOMString表示要添加到 drag object的数据。
+	            var copyright = '\n\n'
+	            + '\n著作权归作者所有。'
+	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+	            + '\n作者: 月伴飞鱼'
+	            + '\n原文地址: https://xiaoflyfish.cn/2022/12/10/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/'
+	    
+	            clipboardData.setData('text/plain', text + copyright);
+	    
+	        }
+	    };
+	});
+
+	
+</script>
+
+<script>
+    const btw = new BTWPlugin();
+    btw.init({
+        id: 'container',
+        blogId: '22377-1657723090751-870',
+        name: '月伴飞鱼',
+        qrcode: '/个人公众号.jpg',
+        keyword: '验证码',
+    });
+</script>
+	</div>
+	<div id="footer">
+	<p>
+	©2019-<span id="footerYear"></span> 
+	<a href="/">月伴飞鱼</a> 
+	
+	
+		|
+		<span id="busuanzi_container_site_pv">
+			PV 180986
+		</span>
+		|
+		<span id="busuanzi_container_site_uv"> 
+			UV 10079
+		</span>
+	
+	<br>
+	微信搜索 <a href="https://xiaoflyfish.oss-cn-beijing.aliyuncs.com/image/个人公众号.jpg" target="_blank">月伴飞鱼</a> 关注我
+	</p>
+</div>
+<script type="text/javascript"> 
+	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+</script>
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>

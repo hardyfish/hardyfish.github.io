@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	
+	<!-- title -->
+	
+	<title>
+	
+		MySQL | 
+	 
+	月伴飞鱼
+	</title>
+	
+	<!-- keywords,description -->
+	 
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/%E5%A4%B4%E5%83%8F.jpg">
+	
+  
+  	
+<link rel="stylesheet" href="/css/main.css">
+
+	
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="/lib/highlight/darcula.css">
+
+	
+<link rel="stylesheet" href="/css/clipboard-use.css">
+
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+	
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+
+	
+<script src="/lib/highlight/highlight.min.js"></script>
+
+	
+<script src="https://readmore.openwrite.cn/js/readmore.js"></script>
+
+	
+<script src="/lib/jquery-3.4.1.min.js"></script>
+
+	
+<script src="/lib/jquery.pjax.js"></script>
+
+
+	
+<script src="/js/main.js"></script>
+
+	
+<script src="/js/jquery.fancybox.min.js"></script>
+
+	
+		
+<script src="/lib/valine/av-3.0.4-min.js"></script>
+
+		
+<script src="/lib/valine/Valine-1.3.10-min.js"></script>
+
+	
+	
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+	<header id="header">
+    <a id="title" href="/" class="logo">公众号月伴飞鱼</a>
+
+	<ul id="menu">
+		<li class="menu-item">
+			<a href="/about" class="menu-item-link">关于我</a>
+		</li>
+
+		<li class="menu-item">
+			<a href="/个人公众号.jpg" class="menu-item-link" target="_blank">我的公众号</a>
+		</li>
+		
+		<li class="menu-item">
+			<a href="https://tech.meituan.com/" class="menu-item-link" target="_blank">
+				美团技术团队
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="https://tech.youzan.com/" class="menu-item-link" target="_blank">
+				有赞技术团队
+			</a>
+		</li>
+		<!--<li class="menu-item">
+			<select class="menu-item-link menu-item-select">
+				<option class="menu-item-link"  value="volvo">Volvo</option>
+				<option class="menu-item-link"  value="saab">Saab</option>
+				<option class="menu-item-link"  value="fiat">Fiat</option>
+				<option class="menu-item-link"  value="audi">Audi</option>
+			</select>
+		</li>-->
+	</ul>
+</header>
+
+	
+<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="text" placeholder="按目录搜索一下">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										中间件
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/">
+										Elasticsearch
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										前端相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/CSS/">
+										CSS
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/Vue/">
+										Vue
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										基础知识
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/11/27/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/JVM/">
+										JVM
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/21/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Java%E5%9F%BA%E7%A1%80/">
+										Java基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%88%86%E5%B8%83%E5%BC%8F/">
+										分布式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/10/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+										并发编程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+										设计模式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										工具相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">
+										实用工具
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/07/28/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/">
+										常用代码
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+										开发工具
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										数据库
+									</a>
+									
+							<ul>
+								<li class="file active">
+									<a href="/2022/12/02/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">
+										MySQL
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										服务器
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%9C%8D%E5%8A%A1%E5%99%A8/Docker/">
+										Docker
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										框架相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/MyBatis/">
+										MyBatis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/01/17/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
+										Thrift
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										消息队列
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/KAFKA/">
+										KAFKA
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RocketMQ/">
+										RocketMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										算法相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/LeetCode/">
+										LeetCode
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E5%89%91%E6%8C%87OFFER/">
+										剑指OFFER
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
+										面试算法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										英语相关
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										老友记
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%80%E5%AD%A3/">
+										第一季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%89%E5%AD%A3/">
+										第三季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										计算机基础
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
+										网络基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content">
+		<h1 id="article-title">
+
+	MySQL
+</h1>
+<div class="article-meta">
+	<span>月伴飞鱼</span>
+	<span>2022-12-02 22:50:23</span>
+    
+		<div id="article-categories">
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/数据库/">数据库</a>
+						
+                    </span>
+                
+            
+		</div>
+    
+</div>
+
+<div id="container" class = "content999">
+	<div id="article-content">
+		<h1>索引</h1>
+<h2 id="索引分类">索引分类</h2>
+<p><strong>聚簇索引和非聚簇索引</strong></p>
+<p>它们区别在于，聚簇索引的叶子节点存放的是实际数据，所有完整的用户数据都存放在聚簇索引的叶子节点，而二级索引的叶子节点存放的是主键值，而不是实际数据。</p>
+<p>如果将 name 字段设置为普通索引，那么这个二级索引长下图这样，叶子节点仅存放主键值。</p>
+<p>InnoDB 在创建聚簇索引时，会根据不同的场景选择不同的列作为索引：</p>
+<ul>
+<li>
+<p>如果有主键，默认会使用主键作为聚簇索引的索引键；</p>
+</li>
+<li>
+<p>如果没有主键，就选择第一个不包含 NULL 值的唯一列作为聚簇索引的索引键；</p>
+</li>
+<li>
+<p>在上面两个都没有的情况下，InnoDB 将自动生成一个隐式自增 id 列作为聚簇索引的索引键；</p>
+</li>
+</ul>
+<p><strong>主键索引和二级索引</strong></p>
+<p>主键索引，也就是聚簇索引，其它索引都属于二级索引。</p>
+<p>如果使用的是 MyISAM 存储引擎，B+ 树索引的叶子节点保存数据的物理地址，即用户数据的指针。</p>
+<p>如果使用的是 InnoDB 存储引擎， B+ 树索引的叶子节点保存数据本身，如下图所示：</p>
+<p>我们使用「二级索引」字段作为条件查询的时候，如果要查询的数据都在「聚簇索引」的叶子节点里，那么需要检索两颗B+树：</p>
+<ul>
+<li>先在「二级索引」的 B+ 树找到对应的叶子节点，获取主键值；</li>
+<li>然后用上一步获取的主键值，在「聚簇索引」中的 B+ 树检索到对应的叶子节点，然后获取要查询的数据。</li>
+</ul>
+<blockquote>
+<p>上面这个过程叫做<strong>回表</strong>。</p>
+</blockquote>
+<p><strong>联合索引</strong></p>
+<blockquote>
+<p>联合索引的最左匹配原则，在遇到范围查询（如 &gt;、&lt;）的时候，就会停止匹配，也就是范围查询的字段可以用到联合索引，但是在范围查询字段后面的字段无法用到联合索引。</p>
+<p>注意，对于 &gt;=、&lt;=、BETWEEN、like 前缀匹配的范围查询，并不会停止匹配。</p>
+</blockquote>
+<pre><code class="language-sql">Q1: select * from t_table where a &gt; 1 and b = 2，联合索引（a, b）哪一个字段用到了联合索引的 B+Tree？
+</code></pre>
+<p>a 字段使用了 &gt; 进行范围查询，联合索引的最左匹配原则在遇到 a 字段的范围查询（ &gt;）后就停止匹配了，因此 b 字段并没有使用到联合索引。</p>
+<pre><code class="language-sql">Q2: select * from t_table where a &gt;= 1 and b = 2，联合索引（a, b）哪一个字段用到了联合索引的 B+Tree？
+</code></pre>
+<p>从符合 a = 1 and b = 2 条件的第一条记录开始扫描，而不需要从第一个 a 字段值为 1 的记录开始扫描。</p>
+<p>所以，Q2 这条查询语句 a 和 b 字段都用到了联合索引进行索引查询。</p>
+<pre><code class="language-sql">Q3: SELECT * FROM t_table WHERE a BETWEEN 2 AND 8 AND b = 2，联合索引（a, b）哪一个字段用到了联合索引的 B+Tree？
+</code></pre>
+<p>Q3 这条查询语句 a 和 b 字段都用到了联合索引进行索引查询。</p>
+<pre><code class="language-sql">Q4: SELECT * FROM t_user WHERE name like 'j%' and age = 22，联合索引（name, age）哪一个字段用到了联合索引的 B+Tree？
+</code></pre>
+<p>Q4 这条查询语句 a 和 b 字段都用到了联合索引进行索引查询。</p>
+<p><strong>普通索引和唯一索引</strong></p>
+<p>假设，执行查询的语句是 <code>select id from T where k=5</code>。</p>
+<blockquote>
+<p>对于普通索引来说，查找到满足条件的第一个记录 (5,500) 后，需要查找下一个记录，直到碰到第一个不满足 k=5 条件的记录。</p>
+<p>对于唯一索引来说，由于索引定义了唯一性，查找到第一个满足条件的记录后，就会停止继续检索。</p>
+<p>这个不同带来的性能差距会有多少呢？答案是，微乎其微。</p>
+</blockquote>
+<blockquote>
+<p>这两类索引在查询能力上是没差别的，主要考虑的是对更新性能的影响。所以，我建议你尽量选择普通索引。</p>
+<p>如果所有的更新后面，都马上伴随着对这个记录的查询，那么你应该关闭 change buffer。而在其他情况下，change buffer 都能提升更新性能。</p>
+<p>在实际使用中，你会发现，普通索引和 change buffer 的配合使用，对于数据量大的表的更新优化还是很明显的。</p>
+<p>特别地，在使用机械硬盘时，change buffer 这个机制的收效是非常显著的。所以，当你有一个类似“历史数据”的库，并且出于成本考虑用的是机械硬盘时，那你应该特别关注这些表里的索引，尽量使用普通索引，然后把 change buffer 尽量开大，以确保这个“历史数据”表的数据写入速度。</p>
+</blockquote>
+<p><strong>change buffer</strong></p>
+<p>当需要更新一个数据页时，如果数据页在内存中就直接更新，而如果这个数据页还没有在内存中的话，在不影响数据一致性的前提下，InnoDB 会将这些更新操作缓存在 change buffer 中，这样就不需要从磁盘中读入这个数据页了。</p>
+<p>在下次查询需要访问这个数据页的时候，将数据页读入内存，然后执行 change buffer 中与这个页有关的操作。通过这种方式就能保证这个数据逻辑的正确性。</p>
+<blockquote>
+<p>需要说明的是，虽然名字叫作 change buffer，实际上它是可以持久化的数据。也就是说，change buffer 在内存中有拷贝，也会被写入到磁盘上。</p>
+<p>将 change buffer 中的操作应用到原数据页，得到最新结果的过程称为 merge。除了访问这个数据页会触发 merge 外，系统有后台线程会定期 merge。在数据库正常关闭（shutdown）的过程中，也会执行 merge 操作。</p>
+<p>显然，如果能够将更新操作先记录在 change buffer，减少读磁盘，语句的执行速度会得到明显的提升。而且，数据读入内存是需要占用 buffer pool 的，所以这种方式还能够避免占用内存，提高内存利用率。</p>
+</blockquote>
+<p>什么条件下可以使用 change buffer 呢？</p>
+<blockquote>
+<p>对于唯一索引来说，所有的更新操作都要先判断这个操作是否违反唯一性约束。</p>
+<p>比如，要插入 (4,400) 这个记录，就要先判断现在表中是否已经存在 k=4 的记录，而这必须要将数据页读入内存才能判断。</p>
+<p>如果都已经读入到内存了，那直接更新内存会更快，就没必要使用 change buffer 了。</p>
+<p>因此, 普通索引和唯一索引的查询性能几乎一样, 但是写性能是普通索引快, 因为可以用到change buffer, 唯一索引会导致内存命中率下降。</p>
+<p>change buffer 用的是 buffer pool 里的内存，因此不能无限增大。</p>
+<p>change buffer 的大小，可以通过参数 innodb_change_buffer_max_size 来动态设置。这个参数设置为 50 的时候，表示 change buffer 的大小最多只能占用 buffer pool 的 50%。</p>
+</blockquote>
+<blockquote>
+<p>对于写多读少的业务来说，页面在写完以后马上被访问到的概率比较小，此时 change buffer 的使用效果最好。这种业务模型常见的就是账单类、日志类的系统。</p>
+<p>反过来，假设一个业务的更新模式是写入之后马上会做查询，那么即使满足了条件，将更新先记录在 change buffer，但之后由于马上要访问这个数据页，会立即触发 merge 过程。</p>
+<p>这样随机访问 IO 的次数不会减少，反而增加了 change buffer 的维护代价。所以，对于这种业务模式来说，change buffer 反而起到了副作用。</p>
+</blockquote>
+<blockquote>
+<p><strong>redo log 主要节省的是随机写磁盘的 IO 消耗（转成顺序写），而 change buffer 主要节省的则是随机读磁盘的 IO 消耗。</strong></p>
+</blockquote>
+<h2 id="索引失效">索引失效</h2>
+<p><strong>查询中带有OR会导致索引失效。</strong></p>
+<p>id 是主键，age 是普通列。</p>
+<pre><code class="language-sql">select * from t_user where id = 1 or age = 18;
+</code></pre>
+<blockquote>
+<p>在 WHERE 子句中，如果在 OR 前的条件列是索引列，而在 OR 后的条件列不是索引列，那么索引会失效。</p>
+<p>要解决办法很简单，将 age 字段设置为索引即可。</p>
+<p>对 id 和 age 分别进行了扫描，然后将这两个结果集进行了合并，这样做的好处就是避免了全表扫描。</p>
+</blockquote>
+<p><strong>模糊查询中like以%开头导致索引失效</strong></p>
+<pre><code class="language-sql">EXPLAIN SELECT * FROM `zz_users` WHERE user_name LIKE &quot;%熊&quot;;
+</code></pre>
+<p>使用左模糊匹配（like %xx）并不一定会走全表扫描，关键还是看数据表中的字段。</p>
+<p>如果数据库表中的字段只有主键+二级索引，那么即使使用了左模糊匹配，也不会走全表扫描（type=all），而是走全扫描二级索引树(type=index)。</p>
+<p><strong>字符类型查询时不带引号导致索引失效</strong></p>
+<pre><code class="language-sql">-- 先插入一条user_name = 1111 的数据
+INSERT INTO `zz_users` VALUES(4,&quot;1111&quot;,&quot;男&quot;,&quot;4321&quot;,&quot;2022-09-17 23:48:29&quot;);
+
+EXPLAIN SELECT * FROM `zz_users` WHERE user_name = 111;
+</code></pre>
+<p><strong>索引字段参与计算导致索引失效</strong></p>
+<pre><code class="language-sql">EXPLAIN SELECT * FROM `zz_users` WHERE user_id - 1 = 1;
+</code></pre>
+<p>千万不要让索引字段在<code>SQL</code>中参与计算，也包括使用一些聚合函数时也会导致索引失效，其根本原因就在于索引字段参与了计算导致的。</p>
+<p><strong>字段被用于函数计算导致索引失效</strong></p>
+<pre><code class="language-sql">EXPLAIN SELECT * FROM `zz_users` WHERE SUBSTRING(user_name,0,1) = &quot;竹子&quot;;
+</code></pre>
+<p><strong>对索引隐式类型转换</strong></p>
+<p>如果索引字段是字符串类型，但是在条件查询中，输入的参数是整型的话，你会在执行计划的结果发现这条语句会走全表扫描。</p>
+<p><strong>违背最左前缀原则导致索引失效</strong></p>
+<pre><code class="language-sql">EXPLAIN SELECT * FROM `zz_users` WHERE `user_sex` = &quot;男&quot; AND `password` = &quot;1234&quot;;
+</code></pre>
+<p>没使用最左边的<code>user_name</code>字段，因此也导致索引失效，从而走了全表查询。</p>
+<p><strong>不同字段值对比导致索引失效</strong></p>
+<pre><code class="language-sql">EXPLAIN SELECT * FROM `zz_users` WHERE user_name = user_sex;
+</code></pre>
+<p>从一张表中查询出一些值，然后根据这些值去其他表中筛选数据。</p>
+<p><code>user_name</code>属于联合索引的第一个字段，这个场景也会导致索引无法使用，因此之后也要切记这点。</p>
+<p><strong>反向范围操作导致索引失效</strong></p>
+<p>一般来说，如果<code>SQL</code>属于正向范围查询，例如<code>&gt;、&lt;、between、like、in...</code>等操作时，索引是可以正常生效的，但如果<code>SQL</code>执行的是反向范围操作，例如<code>NOT IN、NOT LIKE、IS NOT NULL、!=、&lt;&gt;...</code>等操作时，就会出现问题。</p>
+<pre><code class="language-sql">EXPLAIN SELECT * FROM `zz_users` WHERE user_id NOT IN(1,2,3);
+</code></pre>
+<blockquote>
+<p>并非所有的正向范围操作都会走索引，例如<code>IS NULL</code>就不会走，它的反向操作：<code>IS NOT NULL</code>同样不会走。</p>
+</blockquote>
+<h2 id="字符串">字符串</h2>
+<p><strong>前缀索引</strong></p>
+<p>MySQL 是支持前缀索引的，也就是说，你可以定义字符串的一部分作为索引。默认地，如果你创建索引的语句不指定前缀长度，那么索引就会包含整个字符串。</p>
+<p>比如，这两个在 email 字段上创建索引的语句：</p>
+<blockquote>
+<p>mysql&gt; alter table SUser add index index1(email);</p>
+<p>mysql&gt; alter table SUser add index index2(email(6));</p>
+</blockquote>
+<p>第一个语句创建的 index1 索引里面，包含了每个记录的整个字符串；而第二个语句创建的 index2 索引里面，对于每个记录都是只取前 6 个字节。</p>
+<p><strong>使用倒序存储</strong></p>
+<p>如果你存储身份证号的时候把它倒过来存，每次查询的时候，可以这么写：</p>
+<blockquote>
+<p>mysql&gt; select field_list from t where id_card = reverse(‘input_id_card_string’);</p>
+</blockquote>
+<p>由于身份证号的最后 6 位没有地址码这样的重复逻辑，所以最后这 6 位很可能就提供了足够的区分度。</p>
+<p><strong>使用 hash 字段</strong></p>
+<p>可以在表上再创建一个整数字段，来保存身份证的校验码，同时在这个字段上创建索引。</p>
+<blockquote>
+<p>mysql&gt; alter table t add id_card_crc int unsigned, add index(id_card_crc);</p>
+</blockquote>
+<p>然后每次插入新记录的时候，都同时用 crc32() 这个函数得到校验码填到这个新字段。</p>
+<p><strong>字符串字段创建索引的场景可以使用的方式有：</strong></p>
+<blockquote>
+<p>直接创建完整索引，这样可能比较占用空间；</p>
+<p>创建前缀索引，节省空间，但会增加查询扫描次数，并且不能使用覆盖索引；</p>
+<p>倒序存储，再创建前缀索引，用于绕过字符串本身前缀的区分度不够的问题；</p>
+<p>创建 hash 字段索引，查询性能稳定，有额外的存储和计算消耗，跟第三种方式一样，都不支持范围扫描。</p>
+</blockquote>
+<h2 id="CBO">CBO</h2>
+<p>CBO（Cost-based Optimizer，基于成本的优化器）。</p>
+<blockquote>
+<p>优化器的选择是基于成本（cost），哪个索引的成本越低，优先使用哪个索引。</p>
+</blockquote>
+<p><strong>一条 SQL 的计算成本计算如下所示：</strong></p>
+<pre><code class="language-java">Cost  = Server Cost + Engine Cost
+
+      = CPU Cost + IO Cost
+</code></pre>
+<p>其中，CPU Cost 表示计算的开销，比如索引键值的比较、记录值的比较、结果集的排序……这些操作都在 Server 层完成；</p>
+<p>IO Cost 表示引擎层 IO 的开销，MySQL 8.0 可以通过区分一张表的数据是否在内存中，分别计算读取内存 IO 开销以及读取磁盘 IO 的开销。</p>
+<p>数据库 mysql 下的表 <code>server_cost、engine_cost</code> 则记录了对于各种成本的计算。</p>
+<p><strong>行溢出</strong></p>
+<p>数据页的默认大小是16kb，一行数据的大小可能超过了页的大小。</p>
+<blockquote>
+<p>一行数据在存储的时候，实际上 是在那一页里存储这行数据，然后在那个字段中，仅仅包含它一部分数据，同时包含一个20个字节长度的指针，指向了其他的一些数据页，那些数据页用链表串联起来，存放这个VARCHAR(65532)超大字段里的数据。</p>
+</blockquote>
+<p>以上说的这个过程，就叫做行溢出，意思就是一行数据存储的内容太多了，一个数据页都放不下了，此时只能溢出这个数据页，把数据溢出存放到其他的数据页里去，那些数据页就叫做溢出页。</p>
+<p>包括其他的一些字段类型都是一样的，比如TEXT、BLOB这种类型的字段，都有可能出现溢出，然后一行数据就会存储在多个数据页里。</p>
+<blockquote>
+<p>由于每一行数据都是放在数据页里的，如果一行数据太大了，就会产生行溢出的问题，导致这一行数据溢出到多个数据页里去，那么这行数据在Buffer Pool可能就是存在于多个缓存页里的，刷入磁盘的时候，也是用磁盘上的多个数据页来存放这行数据的。</p>
+<p>溢出页只存储行溢出的那部分，并不能存储其他行的数据。</p>
+</blockquote>
+<h1>集群</h1>
+<h2 id="MGR">MGR</h2>
+<p>数据库复制技术的瓶颈在于：只能在一个节点完成写入，然后再将日志同步各个节点，这样单点写入会导致数据库性能无法进行扩展。</p>
+<p>那么能不能有一种技术，能实现 MySQL 多个节点写入，并且保证数据同步的能力呢？</p>
+<p>MGR 是官方在 MySQL 5.7 版本推出的一种基于状态机的数据同步机制。与半同步插件类似，MGR 是通过插件的方式启用或禁用此功能。</p>
+<p><strong>InnoDB Cluster</strong></p>
+<p>MGR 是基于 Paxos 算法的数据同步机制，将数据库状态和日志通过 Paxos 算法同步到各个节点，但如果要实现一个完整的数据库高可用解决方案，就需要更高一层级的 InnoDB Cluster 完成。</p>
+<p>一个 InnoDB Cluster 由三个组件组成：MGR 集群、MySQL Shell、MySQL Router。</p>
+<p>其中，MySQL Shell 用来管理 MGR 集群的创建、变更等操作。</p>
+<p>MySQL Router 是一个轻量级的代理，用于业务访问 MGR 集群中的数据，当 MGR 发生切换时（这里指 Single Primary 模式），自动路由到新的 MGR 主节点，这样业务就不用感知下层MGR 数据的切换。</p>
+<p>为了减少引入 MySQL Router 带来的性能影响，官方建议 MySQL Router 与客户端程序部署在一起，以一种类似 sidecar 的方式进行物理部署。这样能减少额外一次额外的网络开销，基本消除引入 MySQL Router 带来的影响。</p>
+<p>所以，这里 MySQL Router 的定位是一种轻量级的路由转发，而不是一个数据库中间件，主要解决数据库切换后，做到对业务无感知。</p>
+<h2 id="分布式数据库">分布式数据库</h2>
+<p>业界比较知名的 MySQL 分布式数据库中间件产品有：ShardingShpere、DBLE、TDSQL 等。</p>
+<p>分布式数据库是一种把数据分散存储在不同物理位置的数据库。</p>
+<p>对比我们之前学习的数据库，数据都是存放在一个实例对应的物理存储上，而在分布式数据库中，数据将存放在不同的数据库实例上。</p>
+<p>对于分布式 MySQL 数据库架构，其整体架构如下图所示：</p>
+<blockquote>
+<p>这个分布式中间件的通信协议依然采用 MySQL 通信协议（因为原先客户端是如何访问的MySQL 的，现在就如何访问分布式中间件）。</p>
+<p>分布式中间件会根据元数据信息，自动将用户请求路由到下面的 MySQL 分片中，从而将存储存取到指定的节点。</p>
+</blockquote>
+<p>分布式 MySQL 数据库架构实现了计算层与存储层的分离，每一层都可以进行 Scale Out 平行扩展，每一层又通过高可用技术，保证了计算层与存储层的连续性。</p>
+<p><strong>选择业务直连分布式数据库？还是通过数据库中间件访问？</strong></p>
+<p>根据我的经验来说，对于较小业务（高峰期每秒事务不超过 1000 的业务），选择通过数据库中间件访问分布式数据库是比较优的方式。</p>
+<p>因为这样的业务通常处于爬升期，满足业务的各项功能或许是业务的主要目标。通过分布式中间件屏蔽下面的分片信息，可以让开发同学专注于业务的开发。</p>
+<p>另一方面，通过使用中间件提供的分布式事务就能满足简单的跨分片交易，解决分布式数据库中最难的问题。</p>
+<p>但如果你的业务是一个海量互联网业务，中间件的瓶颈就会显现，单个事务的耗时会上升，低并发下，性能会有一定下降。而且中间件提供的 2PC 分布式事务性能就更不能满足业务的需求了。</p>
+<p>所以类似支付宝、阿里这样的业务，并没有使用分布式数据库中间件的架构，而是采用了业务直连的模式。</p>
+<h1>SQL优化</h1>
+<p><strong>分页优化</strong></p>
+<pre><code class="language-sql">select * from table where type = 2 and level = 9 order by id asc limit 190289,10;
+</code></pre>
+<p>优化方案：</p>
+<blockquote>
+<p>延迟关联</p>
+<p>先通过where条件提取出主键，在将该表与原数据表关联，通过主键id提取数据行，而不是通过原来的二级索引提取数据行</p>
+</blockquote>
+<pre><code class="language-sql">select a.* from table a, (select id from table where type = 2 and level = 9 order by id asc limit 190289,10 ) b where a.id = b.id
+</code></pre>
+<blockquote>
+<p>书签方式</p>
+<p>书签记录指我们可以用一个临时变量来存储上一次取数记录的位置，然后在获取下一页的时候，可以根据这个值，来获取大于这个值的下一页记录(上一页类似)，直接从该值以后开始扫描。</p>
+<p>例如，假设我们上一次获取到了分页 limit 599990,10 的记录，最大的值的id为 <code>1690344</code>(这里的值作为了一个书签记录)，则我们获取 limit 600000,10 的记录可以这样写：</p>
+<p>书签方式说白了就是找到limit第一个参数对应的主键值，再根据这个主键值再去过滤并limit</p>
+<p>不过书签记录只适合只有前翻页，后翻页这种类型的分页交互，不能跳转到任意页码，延迟关联则可以支持，所以一般情况下，我们都可以使用延迟关联方式来替换原普通分页的方式。</p>
+</blockquote>
+<pre><code class="language-sql">select * from table where id &gt; (select * from table where type = 2 and level = 9 order by id) order by id limit 10;
+SELECT SQL_NO_CACHE  * FROM `page_test_t`  where id&gt;1690344 ORDER BY id  LIMIT 10 ;
+</code></pre>
+<h1>常用SQL</h1>
+<p>表中有一个字段名字叫做<code>owner_id</code>，这个字段里面存的值是用逗号隔开的多个人的工号，想随便拿一个工号，按照<code>owner_id</code>这个字段去进行查询，就可以使用以下sql语句：</p>
+<pre><code class="language-sql">select * from appinfo where concat (',',owner_id,',') regexp ',123123,'
+</code></pre>
+<p><code>t_feed_user_black_list</code>表中的user_id值批量存入<code>t_recommend_black</code>表中:</p>
+<pre><code class="language-sql">insert into stock_user.t_recommend_black(user_id) select user_id from stock_feed.t_feed_user_black_liston duplicate key update user_id =values(user_id);
+
+insert into stock_tweet.t_exposure_edition(exposure_id, edition) select exposure_id,'full' from stock_tweet.t_exposure;
+</code></pre>
+<p>关联删除：</p>
+<pre><code class="language-sql">delete a,b from stock_data.t_international_language as a inner join stock_data.t_international_language_key as b on a.id = b.language_id where b.business_type =7;
+</code></pre>
+<pre><code class="language-sql">desc operate_log;
+
+SELECT content, JSON_VALID(content) FROM operate_log where JSON_VALID(content) = 1;
+
+ALTER TABLE operate_log MODIFY content JSON COMMENT '历史版本配置以及内容';
+
+ALTER TABLE conan_growth_activity.qw_activity ADD status TINYINT(1) DEFAULT 0 COMMENT '活动状态:1(未开始),2(进行中),3(已结束)';
+
+delete from anniversary_activity_user;
+
+ALTER TABLE qw_activity DROP status;
+
+alter table anniversary_activity_user change user_id userId;
+
+alter table product_group auto_increment = 1;
+</code></pre>
+<h1>TiDB</h1>
+<p>TiDB 是一个分布式 NewSQL 数据库。</p>
+<p>它支持水平弹性扩展、ACID 事务、标准 SQL、MySQL 语法和 MySQL 协议，具有数据强一致的高可用特性，是一个不仅适合 OLTP 场景还适合 OLAP 场景的混合数据库。</p>
+<p>TiDB是 PingCAP公司自主设计、研发的开源分布式关系型数据库，是一款同时支持在线事务处理与在线分析处理。</p>
+<p>目标是为用户提供一站式 OLTP (Online Transactional Processing)、OLAP (Online Analytical Processing)、HTAP 解决方案。</p>
+<p>TiDB 适合高可用、强一致要求较高、数据规模较大等各种应用场景。</p>
+<p><strong>TIDB核心特性</strong></p>
+<p>水平弹性扩展</p>
+<blockquote>
+<p>通过简单地增加新节点即可实现 TiDB 的水平扩展，按需扩展吞吐或存储，轻松应对高并发、海量数据场景</p>
+</blockquote>
+<p>得益于 TiDB 存储计算分离的架构的设计，可按需对计算、存储分别进行在线扩容或者缩容，扩容或者缩容过程中对应用运维人员透明。</p>
+<p>分布式事务支持</p>
+<blockquote>
+<p>TiDB 100% 支持标准的 ACID 事务</p>
+</blockquote>
+<p>金融级高可用</p>
+<blockquote>
+<p>相比于传统主从 (M-S) 复制方案，基于 Raft 的多数派选举协议可以提供金融级的 100% 数据强一致性保证，且在不丢失大多数副本的前提下，可以实现故障的自动恢复 (auto-failover)，无需人工介入</p>
+</blockquote>
+<p>数据采用多副本存储，数据副本通过 Multi-Raft 协议同步事务日志，多数派写入成功事务才能提交，确保数据强一致性且少数副本发生故障时不影响数据的可用性。可按需配置副本地理位置、副本数量等策略满足不同容灾级别的要求。</p>
+<p>实时 HTAP</p>
+<blockquote>
+<p>TiDB 作为典型的 OLTP 行存数据库，同时兼具强大的 OLAP 性能，配合 TiSpark，可提供一站式 HTAP 解决方案，一份存储同时处理 OLTP &amp; OLAP 无需传统繁琐的 ETL 过程</p>
+</blockquote>
+<p>提供行存储引擎 TiKV、列存储引擎 TiFlash 两款存储引擎，TiFlash 通过 Multi-Raft Learner 协议实时从 TiKV 复制数据，确保行存储引擎 TiKV 和列存储引擎 TiFlash 之间的数据强一致。TiKV、TiFlash 可按需部署在不同的机器，解决 HTAP 资源隔离的问题。</p>
+<p>云原生的分布式数据库</p>
+<blockquote>
+<p>TiDB 是为云而设计的数据库，同 Kubernetes 深度耦合，支持公有云、私有云和混合云，使部署、配置和维护变得十分简单。TiDB 的设计目标是 100% 的 OLTP 场景和 80% 的 OLAP 场景，更复杂的 OLAP 分析可以通过 TiSpark 项目来完成。TiDB 对业务没有任何侵入性，能优雅的替换传统的数据库中间件、数据库分库分表等 Sharding 方案。同时它也让开发运维人员不用关注数据库 Scale 的细节问题，专注于业务开发，极大的提升研发的生产力</p>
+</blockquote>
+<p>高度兼容 MySQL</p>
+<blockquote>
+<p>兼容 MySQL 5.7 协议、MySQL 常用的功能、MySQL 生态，应用无需或者修改少量代码即可从 MySQL 迁移到 TiDB。</p>
+<p>提供丰富的数据迁移工具帮助应用便捷完成数据迁移，大多数情况下，无需修改代码即可从 MySQL 轻松迁移至 TiDB，分库分表后的 MySQL 集群亦可通过 TiDB 工具进行实时迁移。</p>
+</blockquote>
+
+	</div>
+</div>
+
+
+    <div class="post-guide">
+        <div class="item left">
+            
+              <a href="/2022/12/10/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  并发编程
+              </a>
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2022/11/27/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/JVM/">
+                JVM
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+
+<script>
+
+    //document.oncontextmenu=new Function("event.returnValue=false");
+	//document.onselectstart=new Function("event.returnValue=false");
+
+	
+
+	$(function () {
+		const btw = new BTWPlugin();
+	    btw.init({
+	        id: 'container',
+	        blogId: '22377-1657723090751-870',
+	        name: '月伴飞鱼',
+	        qrcode: '/个人公众号.jpg',
+	        keyword: '验证码',
+	    });
+
+	    var contents = document.getElementsByClassName("content999");
+	    //监听文章内容的copy事件
+	    contents[0].addEventListener('copy',function(e){
+	        setClipboardText(e);
+	    });
+
+	    function setClipboardText(event){
+	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+	        let clipboardData = event.clipboardData || window.clipboardData;
+
+	        // 如果未复制或者未剪切，则return出去
+	        if (!clipboardData) { return; }
+
+	        event.preventDefault();
+
+	        // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+	        // 声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+	        let text = window.getSelection().toString();
+	    
+	        if (text) {
+	            // 如果文本存在则先取消文本默认事件
+	            event.preventDefault();
+	            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+	            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+	            // data: 一个 DOMString表示要添加到 drag object的数据。
+	            var copyright = '\n\n'
+	            + '\n著作权归作者所有。'
+	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+	            + '\n作者: 月伴飞鱼'
+	            + '\n原文地址: https://xiaoflyfish.cn/2022/12/02/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/'
+	    
+	            clipboardData.setData('text/plain', text + copyright);
+	    
+	        }
+	    };
+	});
+
+	
+</script>
+
+<script>
+    const btw = new BTWPlugin();
+    btw.init({
+        id: 'container',
+        blogId: '22377-1657723090751-870',
+        name: '月伴飞鱼',
+        qrcode: '/个人公众号.jpg',
+        keyword: '验证码',
+    });
+</script>
+	</div>
+	<div id="footer">
+	<p>
+	©2019-<span id="footerYear"></span> 
+	<a href="/">月伴飞鱼</a> 
+	
+	
+		|
+		<span id="busuanzi_container_site_pv">
+			PV 180986
+		</span>
+		|
+		<span id="busuanzi_container_site_uv"> 
+			UV 10079
+		</span>
+	
+	<br>
+	微信搜索 <a href="https://xiaoflyfish.oss-cn-beijing.aliyuncs.com/image/个人公众号.jpg" target="_blank">月伴飞鱼</a> 关注我
+	</p>
+</div>
+<script type="text/javascript"> 
+	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+</script>
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>

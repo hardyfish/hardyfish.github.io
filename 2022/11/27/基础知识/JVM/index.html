@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	
+	<!-- title -->
+	
+	<title>
+	
+		JVM | 
+	 
+	月伴飞鱼
+	</title>
+	
+	<!-- keywords,description -->
+	 
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/%E5%A4%B4%E5%83%8F.jpg">
+	
+  
+  	
+<link rel="stylesheet" href="/css/main.css">
+
+	
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="/lib/highlight/darcula.css">
+
+	
+<link rel="stylesheet" href="/css/clipboard-use.css">
+
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+	
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+
+	
+<script src="/lib/highlight/highlight.min.js"></script>
+
+	
+<script src="https://readmore.openwrite.cn/js/readmore.js"></script>
+
+	
+<script src="/lib/jquery-3.4.1.min.js"></script>
+
+	
+<script src="/lib/jquery.pjax.js"></script>
+
+
+	
+<script src="/js/main.js"></script>
+
+	
+<script src="/js/jquery.fancybox.min.js"></script>
+
+	
+		
+<script src="/lib/valine/av-3.0.4-min.js"></script>
+
+		
+<script src="/lib/valine/Valine-1.3.10-min.js"></script>
+
+	
+	
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+	<header id="header">
+    <a id="title" href="/" class="logo">公众号月伴飞鱼</a>
+
+	<ul id="menu">
+		<li class="menu-item">
+			<a href="/about" class="menu-item-link">关于我</a>
+		</li>
+
+		<li class="menu-item">
+			<a href="/个人公众号.jpg" class="menu-item-link" target="_blank">我的公众号</a>
+		</li>
+		
+		<li class="menu-item">
+			<a href="https://tech.meituan.com/" class="menu-item-link" target="_blank">
+				美团技术团队
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="https://tech.youzan.com/" class="menu-item-link" target="_blank">
+				有赞技术团队
+			</a>
+		</li>
+		<!--<li class="menu-item">
+			<select class="menu-item-link menu-item-select">
+				<option class="menu-item-link"  value="volvo">Volvo</option>
+				<option class="menu-item-link"  value="saab">Saab</option>
+				<option class="menu-item-link"  value="fiat">Fiat</option>
+				<option class="menu-item-link"  value="audi">Audi</option>
+			</select>
+		</li>-->
+	</ul>
+</header>
+
+	
+<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="text" placeholder="按目录搜索一下">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										中间件
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/">
+										Elasticsearch
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										前端相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/CSS/">
+										CSS
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/Vue/">
+										Vue
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										基础知识
+									</a>
+									
+							<ul>
+								<li class="file active">
+									<a href="/2022/11/27/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/JVM/">
+										JVM
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/21/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Java%E5%9F%BA%E7%A1%80/">
+										Java基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%88%86%E5%B8%83%E5%BC%8F/">
+										分布式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/10/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+										并发编程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+										设计模式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										工具相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">
+										实用工具
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/07/28/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/">
+										常用代码
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+										开发工具
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										数据库
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/12/02/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">
+										MySQL
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										服务器
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%9C%8D%E5%8A%A1%E5%99%A8/Docker/">
+										Docker
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										框架相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/MyBatis/">
+										MyBatis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/01/17/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
+										Thrift
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										消息队列
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/KAFKA/">
+										KAFKA
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RocketMQ/">
+										RocketMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										算法相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/LeetCode/">
+										LeetCode
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E5%89%91%E6%8C%87OFFER/">
+										剑指OFFER
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
+										面试算法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										英语相关
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										老友记
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%80%E5%AD%A3/">
+										第一季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%89%E5%AD%A3/">
+										第三季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										计算机基础
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
+										网络基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content">
+		<h1 id="article-title">
+
+	JVM
+</h1>
+<div class="article-meta">
+	<span>月伴飞鱼</span>
+	<span>2022-11-27 22:44:24</span>
+    
+		<div id="article-categories">
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/基础知识/">基础知识</a>
+						
+                    </span>
+                
+            
+		</div>
+    
+</div>
+
+<div id="container" class = "content999">
+	<div id="article-content">
+		<h1>垃圾回收</h1>
+<p><strong>Minor GC(或Young GC)、Major GC、Full GC</strong></p>
+<p>我们需要尽量的避免垃圾回收，因为在垃圾回收的过程中，容易出现STW（Stop the World）的问题，而 Major GC 和 Full GC出现STW的时间，是Minor GC的10倍以上</p>
+<ul>
+<li>
+<p>新生代收集（ Minor GC/Young GC ）：只是新生代( Eden、S0/S1 )的垃圾收集</p>
+<ul>
+<li>当年轻代空间不足时，就会触发Minor GC，这里的年轻代满指的是Eden区满，Survivor区满不会触发GC。</li>
+</ul>
+</li>
+<li>
+<p>老年代收集（ Major GC/Old GC ）：只是老年代的垃圾收集。</p>
+<ul>
+<li><strong>出现了MajorGc，经常会伴随至少一次的Minor GC</strong>
+<ul>
+<li>非绝对的，在Parallel Scavenge收集器的收集策略里就有直接进行Major GC的策略选择过程</li>
+<li>在老年代空间不足时，会先尝试触发Minor GC，如果之后空间还不足，则触发Major GC</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>混合收集（Mixed GC）：收集整个新生代以及部分老年代的垃圾收集。目前，只有G1 GC会有这种行为。</p>
+</li>
+<li>
+<p>整堆收集（Full GC）：收集整个堆和方法区的垃圾收集。</p>
+</li>
+</ul>
+<p><strong>对象什么情况会进入老年代？</strong></p>
+<p>大对象：</p>
+<blockquote>
+<p>所谓的大对象是指需要大量连续内存空间的java对象,最典型的大对象就是那种很长的字符串以及数组。</p>
+</blockquote>
+<p>长期存活的对象：</p>
+<blockquote>
+<p>虚拟机给每个对象定义了一个对象年龄(Age)计数器,如果对象在Eden出生并经过第一次Minor GC后仍然存活,并且能被Survivor容纳的话,将被移动到Survivor空间中,并且对象年龄设为1,对象在Survivor区中每熬过一次Minor GC,年龄就增加1,当他的年龄增加到一定程度(默认是15岁), 就将会被晋升到老年代中。</p>
+<p>对象晋升到老年代的年龄阈值,可以通过参数-XX:MaxTenuringThreshold设置。</p>
+</blockquote>
+<p>动态对象年龄判定：</p>
+<blockquote>
+<p>如果在Survivor空间中相同年龄的所有对象大小的总和大于Survivor空间的一半,年龄大于或等于年龄的对象就可以直接进入老年代,无须等到MaxTenuringThreshold中要求的年龄。</p>
+</blockquote>
+<p>空间分配担保：</p>
+<blockquote>
+<p>在一次安全Minor GC 中，存活的对象不能在另一个Survivor 完全容纳，则会通过担保机制进入老年代。</p>
+</blockquote>
+<p><strong>GC分代年龄为什么最大为15？</strong></p>
+<blockquote>
+<p>因为Object Header采用4个bit位来保存年龄，4个bit位能表示的最大数就是15</p>
+</blockquote>
+<p><strong>触发Full GC执行的情况有哪些？</strong></p>
+<ul>
+<li>
+<p>调用<code>System.gc()</code>时，系统建议执行Full GC，但是不必然执行</p>
+</li>
+<li>
+<p>老年代空间不足</p>
+</li>
+<li>
+<p>方法区空间不足</p>
+</li>
+<li>
+<p>通过Minor GC后进入老年代的平均大小 大于 老年代的可用内存</p>
+</li>
+<li>
+<p>Eden区、survivor space0（From Space）区 向survivor space1（To Space）区复制时，对象大小大于To Space可用内存，则把该对象转存到老年代，且老年代的可用内存 小于 该对象大小。</p>
+</li>
+</ul>
+<p><strong>问题分析定位</strong></p>
+<p>检查代码是否调用了<code>System.gc()</code>。</p>
+<p>使用jinfo PID命令查看JVM的内存配置是否合理，使用jmap命令检查是否存在内存泄漏、大对象等。</p>
+<p>使用jstat命令查看GC回收情况和内存使用情况。</p>
+<p>动态开启GC日志打印<code>jinfo -flag +PrintGCDetails PID</code>，然后分析GC日志。</p>
+<p><strong>空间分配担保机制（Minor GC之前的操作）</strong></p>
+<blockquote>
+<p>在发生Minor GC之前，虚拟机会检查老年代最大可用的连续空间 是否大于 新生代所有对象的总空间。</p>
+<ul>
+<li>
+<p>如果大于，则此次Minor GC是安全的</p>
+</li>
+<li>
+<p>如果小于，则虚拟机会查看 -XX:HandlePromotionFailure 设置值是否允许担保失败。</p>
+</li>
+</ul>
+<p>如果HandlePromotionFailure=true，那么会继续 检查老年代最大可用连续空间是否大于历次晋升到老年代的对象的平均大小</p>
+<ul>
+<li>
+<p>如果大于，则尝试进行一次Minor GC，但这次Minor GC依然是有风险的，比如晋升对象大于平均值；</p>
+</li>
+<li>
+<p>如果小于，则进行一次Full GC。</p>
+</li>
+</ul>
+<p>如果HandlePromotionFailure=false，则进行一次Full GC。</p>
+</blockquote>
+<p><strong>为什么要进行空间担保？</strong></p>
+<p>是因为新生代采用复制收集算法，假如大量对象在Minor GC后仍然存活（最极端情况为内存回收后新生代中所有对象均存活），而Survivor空间是比较小的，这时就需要老年代进行分配担保，把Survivor无法容纳的对象放到老年代。</p>
+<p>老年代要进行空间分配担保，前提是老年代得有足够空间来容纳这些对象，但一共有多少对象在内存回收后存活下来是不可预知的，因此只好取之前每次垃圾回收后晋升到老年代的对象大小的平均值作为参考。使用这个平均值与老年代剩余空间进行比较，来决定是否进行Full GC来让老年代腾出更多空间。</p>
+<h2 id="安全点">安全点</h2>
+<p>当JVM触发GC时，首先会让所有的用户线程到达安全点SafePoint时阻塞，也就是STW，然后枚举根节点，即找到所有的GC Roots，然后就可以从这些GC Roots向下搜寻，可达的对象就保留，不可达的对象就回收。</p>
+<p><strong>什么是安全点？</strong></p>
+<ul>
+<li>程序执行时并非在所有地方都能停顿下来开始GC，只有在特定的位置才能停顿下来开始GC，这些位置称为安全点(Safepoint)。</li>
+<li>Safe Point的选择很重要，<code>如果太少可能导致GC等待的时间太长，如果太频繁可能导致运行时的性能问题</code>。</li>
+</ul>
+<p><strong>如何在GC发生时，检查所有线程都跑到最近的安全点停顿下来呢？</strong></p>
+<p>抢先式中断:(目前没有虚拟机采用)，首先中断所有线程。如果还有线程不在安全点，就恢复线程，让线程跑到安全点。</p>
+<p>主动式中断:设置一个中断标志，各个线程运行到Safe Point的时候主动轮询这个标志，如果中断标志为真，则将自己进行中断挂起。</p>
+<p><strong>安全区域</strong></p>
+<p>Safepoint机制保证了程序执行时，在不太长的时间内就会遇到可进入GC的Safepoint。</p>
+<p>但是，程序不执行的时候呢？</p>
+<p>例如线程处于Sleep 状态或Blocked状态，这时候线程无法响应JVM的中断请求，走到安全点去中断挂起，JVM也不太可能等待线程被唤醒。对于这种情况，就需要安全区域（Safe Region）来解决。</p>
+<p>安全区域是指在一段代码片段中，对象的引用关系不会发生变化，在这个区域中的任何位置开始GC都是安全的。 我们也可以把Safe Region 看做是被扩展了的Safepoint。</p>
+<p>执行流程:</p>
+<ul>
+<li>
+<p>当线程运行到Safe Region的代码时，首先标识已经进入了Safe Region，如果这段时间内发生GC，JVM会忽略标识为Safe Region状态的线程；</p>
+</li>
+<li>
+<p>当线程即将离开Safe Region时， 会检查JVM是否已经完成GC，如果完成了，则继续运行，否则线程必须等待直到收到可以安全离开SafeRegion的信号为止；</p>
+</li>
+</ul>
+<h2 id="三色标记算法">三色标记算法</h2>
+<p>GCRoot如果想查找到存活对象，会根据可达分析算法分析，遍历整个引用链，按照是否访问过该对象分成三种不同的颜色盒子（容器）：白色、灰色、黑色盒子。</p>
+<blockquote>
+<p>**白色：**本对象没有被访问过 （没有被GCRoot扫描过，有可能是为垃圾对象）</p>
+<p>**灰色：**本对象已经被访问过（被GCRoot扫描过），且本对象中的属性没有被GCRoot扫描，该对象就是为灰色对象；如果该对象的属性被扫描的情况下，从灰色变为黑色。</p>
+<p>**黑色：**本对象已经被访问过（被GCRoot扫描过），且本对象中的属性已经被GCRoot扫描过，该对象就是为黑色对象。</p>
+</blockquote>
+<p><strong>三色标记算法原理</strong></p>
+<p>a、在初始阶段的时候，所有的对象都是存放在白色容器中。</p>
+<p>b、初始标记阶段，GCRoot标记直接关联对象置为灰色。</p>
+<p>c、并发标记阶段，扫描整个引用链，有子节点的话，则当前节点变为黑色，子节点变为灰色。</p>
+<p>d、在白色盒子剩下的对象都是为没有被GCRoot关联的对象，可能会被垃圾回收机制清理。</p>
+<p>e、下次GCRoot起点从灰色节点开始计算。</p>
+<p><strong>三色标记算法缺陷：</strong></p>
+<blockquote>
+<p>在并发标记阶段的时候，因为用户线程与GC线程同时运行，有可能会产生多标或者漏标；</p>
+<p>多标–多标记（浮动垃圾）</p>
+<p>漏标–漏标记</p>
+</blockquote>
+<p><strong>浮动垃圾</strong></p>
+<blockquote>
+<p>1.并发标记：用户与GC线程同时运行，假设现在扫描到C对象，B对象变为黑色，用户线程执行C的属性E=null，GC线程扫描C对象引用链，认为E对象是为可达对象，但是C对象根本没有引入到E对象，E对象应该是为垃圾对象，这种问题，可以在重新标记阶段(修正)修复。</p>
+<p>2.并发清除阶段：用户与GC线程同时运行，会产生新的对象但是没有及时被GC清理。 只能在下一次GC清理垃圾的修复。</p>
+</blockquote>
+<p><strong>漏标问题</strong></p>
+<blockquote>
+<p>1.用户线程先执行C的E属性=null；GC线程的GcRoot就扫描不到E。GC就认为E对象就是为垃圾对象，不可达对象。</p>
+<p>2.用户线有执行B.E属性=E；E对象就是应该是为可达对象。</p>
+<p>3.因为GCRoot是从C开始，不会从黑色的B开始，就会导致漏标的情况发生。</p>
+</blockquote>
+<blockquote>
+<p><strong>漏标的问题满足两个条件：</strong></p>
+<p>1.至少有一个黑色对象指向了白色对象</p>
+<p>2.所有灰色对象扫描完整个链时，删除之前所有白色对象。</p>
+</blockquote>
+<p><strong>CMS如何解决漏标问题—写屏障+增量更新方式</strong></p>
+<blockquote>
+<p>满足一个条件（灰色对象与白色对象断开连接），在并发标记阶段当我们黑色对象（B）引用关联白色对象（E），记录下B黑色对象。</p>
+<p>在重新标记阶段（所有用户线程暂停），有将B对象变为灰色对象将整个引用链全部扫描。</p>
+<p>好处：避免浮动垃圾。</p>
+<p>缺点：遍历B整个链的效率非常低，有可能会导致用户线程等待的时间非常长。</p>
+</blockquote>
+<p><strong>G1如何解决漏标问题—原始快照STAB方式</strong></p>
+<blockquote>
+<p>在C断开E的时候，会记录原始快照，在重新标记阶段的时候以白色对象变为灰色为起始点扫描整个链，本次GC是不会被清理。</p>
+<p>**好处：**如果假设B（黑色对象）引入该白色对象的时候，无需做任何遍历效率是非常高。</p>
+<p>**缺点：**如果假设B（黑色对象） 没有引入该白色对象的时候，该白色对象在本次GC继续存活，只能放在下一次GC在做并发标记的时候清理。</p>
+<ul>
+<li>即可能会产生浮动垃圾。</li>
+</ul>
+<p><strong>以浮动垃圾（占内存空间）换让我们用户线程能够暂停的时间更加短。</strong></p>
+</blockquote>
+<h2 id="跨代引用">跨代引用</h2>
+<p>跨代引用是指年老代空间中的对象引用了新生代的对象，或者新生代中的对象引用了年老代中的对象。</p>
+<p>面对这种情况，在进行可达性分析扫描存活对象时，不可能从新生代一直扫描至年老代的，因为这样就会出现整堆扫描的情况，效率必然会很低。</p>
+<p>在HotSpot虚拟机中，为了解决跨代引用的问题，会专门在内存中开辟一块小空间用于维护这些特殊的引用，从而达到让GC不必扫描整个堆空间的目的。而开辟的这块小空间则被称为<strong>记忆集、卡表</strong>。</p>
+<p><strong>记忆集（Remember Set）</strong></p>
+<p>为了解决跨代引用的问题，在新生代引入了记录集的数据结构，记录从非收集区到收集区的引用指针集合，避免在通过根可达算法判断对象存活时把整个老年代加入扫描范围。</p>
+<blockquote>
+<p>GC时，GC收集器只需通过记忆集判断出某一块非收集区域是否存在指向收集区域的指针即可，无需进行详细的根搜索过程。</p>
+</blockquote>
+<p><strong>卡表（Card Table）</strong></p>
+<p>卡表是HotSpot虚拟机中记忆集的实现方式，卡表中记录中记忆集的记录精度、与堆内存区域的映射关系等。</p>
+<p>如果有年老代的对象引用了新生代的对象，那么该新生代对象所在区域对应的卡页元素设置为1，反之则为0。</p>
+<blockquote>
+<p>G1以后的GC收集器不分代，所以G1以后的记忆集不是通过数组实现的，而是通过哈希表结构实现。</p>
+<p>JVM对于卡页的维护也是通过写屏障的方式。</p>
+</blockquote>
+<p><strong>Remembered Set</strong></p>
+<p>G1中实现的一种新的数据结构：简称为<code>RSet</code>，在有些地方也被称为双向卡表。</p>
+<p>在每个<code>Region</code>区中都存在一个<code>RSet</code>，其中记录了其他<code>Region</code>中的对象引用当前<code>Region</code>中对象的关系，也就是记录着<strong>谁引用了我的对象</strong>，属于<code>points-into</code>结构。</p>
+<p>而之前的卡表则是属于<code>points-out</code>结构，记录着<strong>我引用了谁的对象</strong>，在卡表中存在多个卡页，每个卡页记录着一定范围（<code>512KB</code>）的堆。</p>
+<blockquote>
+<p><code>RSet</code>也好，<code>CardTable</code>也罢，其实都是记忆集的一种具体实现，你也可以将<code>RSet</code>理解成一种<code>CardTable</code>的进阶实现方式。</p>
+<p>G1中的<code>RSet</code>本质上就是一个哈希表结构（<code>HashTable</code>），<code>Key</code>为其他引用当前区内对象的<code>Region</code>起始地址，<code>Value</code>则是一个集合，里面的元素为其他<code>Region</code>中每个引用当前区内对象的地址。</p>
+</blockquote>
+<blockquote>
+<p>实际上G1中的<code>RSet</code>对内存的开销也并不小，当JVM中分区较多且运行时间较长的情况下，这块的内存开销可能会占用到<code>20%</code>以上。</p>
+</blockquote>
+<h1>垃圾收集器</h1>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/coderw/p/14281528.html">号称能将STW干掉1ms以内的Java垃圾收集器ZGC到底是个什么东西？</a></p>
+<p><strong>基本概念</strong></p>
+<ul>
+<li>串行<code>Serial</code>收集：所有用户线程停止，单条GC线程回收堆的情况被称为串行回收。</li>
+<li>并行<code>Parallel</code>收集：所有用户线程停止，多条GC线程回收堆的情况（需多核CPU支持）。</li>
+<li>独占<code>Monopoly</code>执行：这里是指GC工作时，GC线程会抢占所有资源执行，整个应用程序会被停止。</li>
+<li>并发<code>Concurrent</code>执行：这里的并发是指用户线程和GC线程同时（交替）执行的情况，不会停下某类线程。</li>
+</ul>
+<p><strong>吞吐量:</strong></p>
+<p>吞吐量它是指CPU用于执行用户代码的时间与CPU总耗时的比值，在Java中，吞吐量的计算公式为：</p>
+<blockquote>
+<p>吞吐量 = 用户代码执行总时长 /（用户代码执行总时长 + 垃圾回收总时长）。</p>
+</blockquote>
+<p>如JVM在线上执行了<code>100min</code>，其中执行用户代码花费了<code>99min</code>，垃圾回收总用时<code>1min</code>，那么吞吐量则为<code>99min/(99min+1min)=99%</code>。</p>
+<p><strong>写屏障</strong></p>
+<p>所谓的写屏障，则是指在赋值操作前后加入一些逻辑处理（类似于SpringAOP面向切面前后置处理的思想）。</p>
+<p><strong>GC组合方案</strong></p>
+<blockquote>
+<p>如果你的程序追求低延迟，用户交互度较为频繁，那你可以采用<code>ParNew + CMS</code>组合（这也是淘宝早期的选择，但后面采用了自研JVM）。</p>
+</blockquote>
+<blockquote>
+<p>如若你的程序追求高吞吐，后台计算工作较多，那么<code>Parallel Scavenge + Parallel Old</code>这组<code>PS+PO</code>的收集器会更适合你。</p>
+</blockquote>
+<p><strong>Serial收集器</strong></p>
+<p>它属于单线程的GC收集器，所以也被称为串行收集器。</p>
+<p>该收集器在发生GC时，会产生STW，也就是会停止所有用户线程。但正由于会停止其他用户线程，所以在执行GC时并不会出现线程间的切换。</p>
+<blockquote>
+<p>因此，在单颗<code>CPU</code>的机器上，它的清理效率非常高。一般来说，采用<code>Client</code>模式运行的JVM，选取该款收集器作为内嵌GC是个不错的选择。</p>
+</blockquote>
+<p><strong>ParNew收集器（多线程）</strong></p>
+<p>从严格意义上来看，它可以被称为<code>Serial</code>收集器的多线程版本，同样是作用于新生代区域的收集器。</p>
+<p>在整个实现上，除开GC收集阶段会使用多条线程回收外，其他实现几乎与<code>Serial</code>收集器大致相同。</p>
+<p>该款GC收集器因为采用了多线程，所以需要多核CPU的支持，该收集器会根据<strong>CPU</strong>核数，开启<strong>不同的GC线程数</strong>，从而达到<strong>最优</strong>的垃圾回收效果（也可以通过<code>-XX:ParallelGCThreads</code>参数指定）。</p>
+<blockquote>
+<p>但如若是单核的机器上运行时，其效率可能还不如<code>Serial</code>。</p>
+<p>一般如果你的程序是以<code>Server</code>模式运行的程序，而老年代又采用了<code>CMS</code>收集器，那么新生代搭配<code>ParNew</code>是个不错的选择。</p>
+</blockquote>
+<p><strong>Parallel Scavenge收集器（多线程）</strong></p>
+<p>一款作用于新生代的多线程GC收集器，但与<code>ParNew</code>收集器不同的是：</p>
+<p><code>ParNew</code>通过控制GC线程数量来缩短程序暂停时间，更关心程序的<strong>响应时间</strong>，而<code>Parallel Scavenge</code>更关心的是<strong>程序运行的吞吐量</strong>，也就是更注重一段时间内，用户代码执行时长与程序执行总时长的占比。</p>
+<p><code>PS</code>收集器可以通过<code>-XX:MaxGCPauseMillis</code>与<code>-XX:GCTimeRatio</code>参数精准控制GC发生时的时间以及吞吐量占比。</p>
+<p>同时与<code>ParNew</code>收集器最大的不同在于：<code>PS</code>收集器还可以通过开启<code>-XX:+UseAdaptiveSizePolicy</code>参数，让JVM启动自适应的GC调节策略，开启该参数后，JVM会根据当前系统的运行状态调整吞吐比与GC时间，从而确保能够提供最合适的停顿时间和吞吐量。</p>
+<p><strong>Serial Old（MSC）收集器（单线程）</strong></p>
+<p><code>Serial Old（MSC）</code>与<code>Serial</code>收集器相同，同样是一款单线程串行回收的收集器，但不同的是：<code>MSC</code>是一款作用于年老代空间的收集器，它采用标记-整理算法对年老代空间进行回收。</p>
+<blockquote>
+<p>同时，该款收集器也可作为<code>CMS</code>的备用收集器使用。</p>
+</blockquote>
+<p><strong>Parallel Old收集器（多线程）</strong></p>
+<p><code>Parallel Old</code>则是<code>Parallel Scavenge</code>收集器的年老代版本，同样采用多线程进行并行收集，其内部采用标记-整理算法。</p>
+<p>与新生代的<code>PS</code>收集器相同的是：<code>PO</code>同样追求的是<strong>吞吐量优先</strong>。</p>
+<p><strong>ShenandoahGC</strong></p>
+<p>在JDK11中推出ZGC后，JDK12马不停蹄的推出了<code>ShenandoahGC</code>收集器，它与<code>G1、ZGC</code>收集器一样，都是基于分区结构实现的一款收集器。</p>
+<p>和ZGC对比，相同的是：它们的停顿时间都不会受到堆空间大小的影响。</p>
+<p><code>ShenandoahGC</code>的内存布局与G1很相似，也会将堆内存划分为一个个 大小相同的<code>Region</code>区域，也同样有存放大对象的<code>Humongous</code>区，你可以把<code>ShenandoahGC</code>看做G1收集器的修改版，它比G1收集器实现上来说更为激进，一味追求极致低延迟。</p>
+<p>但<code>ShenandoahGC</code>和ZGC一样，也没有实现分代的架构，所以在触发GC时也不会有新生代、年老代之说，只会存在一种覆盖全局的GC类型。</p>
+<p><strong>G1、ZGC与ShenandoahGC区别</strong></p>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>G1</th>
+<th>ZGC</th>
+<th>ShenandoahGC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>是否支持并发回收</td>
+<td>不支持</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>最大堆空间大小</td>
+<td>达到上百GB停顿时间会很长</td>
+<td>16TB</td>
+<td>256TB</td>
+</tr>
+<tr>
+<td>平均停顿</td>
+<td>500ms以内</td>
+<td>10ms以内</td>
+<td>1~20ms左右</td>
+</tr>
+<tr>
+<td>是否支持指针压缩</td>
+<td>支持</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+</tbody>
+</table>
+<h2 id="G1收集器">G1收集器</h2>
+<p>G1将Java堆划分为多个大小相等的独立的<code>Region</code>区域，不过在<code>HotSpot</code>的源码<code>TARGET_REGION_NUMBER</code>定义了<code>Region</code>区的数量限制为<code>2048</code>个（实际上允许超过这个值，但是超过这个数量后，堆空间会变的难以管理）。</p>
+<p>一般<code>Region</code>区的大小等于堆空间的总大小除以2048，比如目前的堆空间总大小为8GB，就是<code>8192MB/2048=4MB</code>，那么最终每个<code>Region</code>区的大小为<code>4MB</code>，当然也可以用参数<code>-XX:G1HeapRegionSize</code>强制指定每个<code>Region</code>区的大小，但是不推荐，毕竟默认的计算方式计算出的大小是最适合管理堆空间的。</p>
+<blockquote>
+<p>默认新生代对堆内存的初始占比是5%，如果堆大小为8GB，那么年轻代占据<code>400MB</code>左右的内存，对应大概是100个<code>Region</code>区，可以通过<code>-XX:G1NewSizePercent</code>设置新生代初始占比。</p>
+</blockquote>
+<p>在Java程序运行中，JVM会不停的给新生代增加更多的<code>Region</code>区，但是最多新生代的占比不会超过堆空间总大小的60%，可以通过<code>-XX:G1MaxNewSizePercent</code>调整（也不推荐，如果超过这个比例，年老代的空间会变的很小，容易触发全局GC）。</p>
+<p><strong>新生代和老年代</strong></p>
+<p>新生代中的<code>Eden</code>区和<code>Survivor</code>区对应的<code>Region</code>区比例也跟之前一样，默认8:1:1，假设新生代现在有400个<code>Region</code>，那么整个新生代的占比则为<code>Eden=320,S0/From=40,S1/To=40</code>。</p>
+<p>G1中的年老代晋升条件和之前的无差，达到年龄阈值的对象会被转入年老代的<code>Region</code>区中，不同的是对于大对象的分配，在G1中不会让大对象进入年老代，在G1中由专门存放大对象的<code>Region</code>区叫做<code>Humongous</code>区，如果在分配对象时，判定出一个对象属于大对象，那么则会直接将其放入<code>Humongous</code>区存储。</p>
+<p><strong>在G1中，判定一个对象是否为大对象的方式为：</strong></p>
+<blockquote>
+<p>对象大小是否超过单个普通<code>Region</code>区的50%，如果超过则代表当前对象为大对象，那么该对象会被直接放入<code>Humongous</code>区。</p>
+<p>比如：目前是8GB的堆空间，每个<code>Region</code>区的大小为<code>4MB</code>，当一个对象大小超过<code>2MB</code>时则会被判定为属于大对象。</p>
+<p>如果程序运行过程中出现一个巨型对象，当一个<code>Humongous</code>区存不下时，可能会横跨多个<code>Region</code>区存储它。</p>
+</blockquote>
+<p><code>Humongous</code>区存在的意义：可以避免一些短命的巨型对象直接进入年老代，节约年老代的内存空间，可以有效避免年老代因空间不足时的GC开销。</p>
+<p>当堆空间发生全局GC(<code>FullGC</code>)时，除开回收新生代和年老代之外，也会对<code>Humongous</code>区进行回收。</p>
+<p><strong>什么场景下适合采用G1收集器的建议</strong></p>
+<ul>
+<li>堆空间内<code>50%</code>以上的内存会被存活占用的应用</li>
+<li>分配速度和晋升速度特别快的应用</li>
+<li>至少<code>8GB</code>以上堆内存的应用</li>
+<li>采用原本分代收集器GC时间会长达<code>1s+</code>的应用</li>
+<li>追求停顿时间在<code>500ms</code>以内的应用</li>
+</ul>
+<h3 id="GC类型">GC类型</h3>
+<p><strong>YoungGC</strong></p>
+<p><code>YoungGC</code>并非说<code>Eden</code>区放满了就会立马被触发，在G1中，当新生代区域被用完时，G1首先会大概计算一下回收当前的新生代空间需要花费多少时间，如果回收时间远远小于参数<code>-XX:MaxGCPauseMills</code>设定的值，那么不会触发<code>YoungGC</code>，而是会继续为新生代增加新的<code>Region</code>区用于存放新分配的对象实例。</p>
+<p>直至某次<code>Eden</code>区空间再次被放满并经过计算后，此次回收的耗时接近<code>-XX:MaxGCPauseMills</code>参数设定的值，那么才会触发<code>YoungGC</code>。</p>
+<p>G1收集器中的新生代收集，依旧保留了分代收集器的特性，当<code>YoungGC</code>被触发时，首先会将目标<code>Region</code>区中的存活对象移动至幸存区空间（被打着<code>Survivor-from</code>区标志的<code>Region</code>）。</p>
+<p>同时达到晋升年龄标准的对象也会被移入至年老代<code>Region</code>中存储。</p>
+<blockquote>
+<p>值得注意的是：G1收集器在发生<code>YoungGC</code>时，复制移动对象时是采用的多线程并行复制，以此来换取更优异的GC性能。</p>
+<p>用户如若未曾显式通过<code>-XX:MaxGCPauseMills</code>参数设定GC预期回收停顿时间值，那么G1默认为<code>200ms</code>。</p>
+</blockquote>
+<p><strong>MixedGC</strong></p>
+<p><code>MixedGC</code>翻译过来的意思为混合型GC，而并非是指<code>FullGC</code>。</p>
+<p>当整个堆中年老代的区域占有率达到参数<code>-XX:InitiatingHeapOccupancyPercent</code>设定的值后触发<code>MixedGC</code>，发生该类型GC后，会回收所有新生代<code>Region</code>区、部分年老代<code>Region</code>区（会根据期望的GC停顿时间选择合适的年老代<code>Region</code>区优先回收）以及大对象<code>Humongous</code>区。</p>
+<blockquote>
+<p>正常情况下，G1垃圾收集时会先发生<code>MixedGC</code>，主要采用复制算法，在GC时先将要回收的<code>Region</code>区中存活的对象拷贝至别的<code>Region</code>区内，拷贝过程中，如果发现没有足够多的空闲<code>Region</code>区承载拷贝对象，此时就会触发一次<code>Full GC</code>。</p>
+</blockquote>
+<p><strong>FullGC</strong></p>
+<p>当整个堆空间中的空闲<code>Region</code>不足以支撑拷贝对象或由于元数据空间满了等原因触发，在发生<code>FullGC</code>时，G1首先会停止系统所有用户线程，然后采用单线程进行标记、清理和压缩整理内存，以便于清理出足够多的空闲<code>Region</code>来供下一次<code>MixedGC</code>使用。</p>
+<blockquote>
+<p>但该过程是单线程串行收集的，因此这个过程非常耗时的(<code>ShenandoahGC</code>中采用了多线程并行收集)。</p>
+<p>其实G1收集器中并没有FullGC，，G1中的FullGC是采Sserial old FullGC。</p>
+<p>因为G1在设计时的初衷就是要避免发生FullGC，如果上述两种GC发生后还是无法使得程序恢复正常执行，最终就会触发SerialOld收集器的FullGC。</p>
+</blockquote>
+<h3 id="GC过程">GC过程</h3>
+<p>G1收集器一般在发生GC时执行过程大致会分为四个步骤（主要指<code>MixedGC</code>）：</p>
+<ul>
+<li>初始标记（<code>InitialMark</code>）：先触发<code>STW</code>，然后使用单条GC线程快速标记<code>GCRoots</code>直连的对象。</li>
+<li>并发标记（<code>ConcurrentMarking</code>）：与CMS的并发标记过程一致，采用多条GC线程与用户线程共同执行，根据<code>Root</code>根节点标记所有对象。</li>
+<li>最终标记（<code>Remark</code>）：同CMS的重新标记阶段，主要是为了纠正并发标记阶段因用户操作导致的错标、误标、漏标对象。</li>
+<li>筛选回收（<code>Cleanup</code>）：先对各个<code>Region</code>区的回收价值和成本进行排序，找出「回收价值最大」的<code>Region</code>优先回收。</li>
+</ul>
+<blockquote>
+<p>假设此时年老代空间共有<code>800</code>个<code>Region</code>区，并且都满了，所以此刻会触发GC。</p>
+<p>但根据GC的预期停顿时间值，本次GC只能允许停顿<code>200ms</code>，而G1经过前面的成本计算后，大致可推断出：本次GC回收<code>600</code>个<code>Region</code>区恰好停顿时间可控制在<code>200ms</code>左右，那么最终就会以「回收<code>600</code>个<code>Region</code>区」为基准触发GC，这样则能尽量确保GC导致的停顿时间可以被控制在我们指定的范围之内。</p>
+<p>G1会在后台维护着一个优先列表：<code>CollectionSet（CSet）</code>，它记录了GC要收集的<code>Region</code>集合，集合里的<code>Region</code>可以是任意年代的。</p>
+</blockquote>
+<p><strong>不过值得注意的是：筛选回收阶段在G1收集器中是会停止所有用户线程后，采用多线程并行回收的</strong></p>
+<p>但实际上这个过程中可以与用户线程一起执行做到并发收集的，但因为G1只回收一部分<code>Region</code>区，停顿时间是可控的，因此停止用户线程后回收效率会大幅度提高。</p>
+<blockquote>
+<p>同时，假设实现并发回收，则又需要考虑用户线程执行带来的一些问题，所以综合考虑，G1中回收阶段采用了发生<code>STW</code>方案完成（在后续的<code>ZGC、ShenandoahGC</code>收集器中实现了并发回收）。</p>
+</blockquote>
+<p>在G1中不管是新生代还是年老代，回收算法都是采用复制算法，在GC发生时都会将一个<code>Region</code>区中存活的对象复制到另外一个<code>Region</code>区内。</p>
+<p>同比之前的CMS收集器采用的标-清算法而言，这种方式不会造成内存碎片，因此也不需要花费额外的成本整理内存。</p>
+<blockquote>
+<p>在内存较小的堆空间情况下，CMS的表现会优于G1收集器，平衡点在<code>6~8GB</code>左右。</p>
+</blockquote>
+<p><strong>G1缺点：</strong></p>
+<p>G1需要记忆集 (具体来说是卡表)来记录新生代和老年代之间的引用关系，这种数据结构在 G1 中需要占用大量的内存，可能达到整个堆内存容量的 20% 甚至更多。</p>
+<p>而且 G1 中维护记忆集的成本较高，带来了更高的执行负载，影响效率。</p>
+<blockquote>
+<p>按照《深入理解Java虚拟机》作者的说法，CMS 在小内存应用上的表现要优于 G1，而大内存应用上 G1 更有优势，大小内存的界限是6GB到8GB。</p>
+</blockquote>
+<p><strong>G1收集器为什么适合大内存</strong></p>
+<blockquote>
+<p>G1收集器之所以适合大内存，是因为它采用了Partitioned Heap（分区式的堆）的设计方式。</p>
+<p>在这个设计中，将整个堆空间分成若干个大小相等的Region（区域），每个Region的大小通常为1MB或2MB。</p>
+<p>G1在进行垃圾回收时，只会对一部分Region进行回收，这些Region称为Collection Set。通过将内存分成多个小块来避免了全堆垃圾回收时的停顿时间过长的问题。</p>
+<p>此外，G1还有一个特殊的Region叫做Humongous Region，专门用于存放大对象，在G1的设计中考虑到了大对象对内存碎片化带来的影响。</p>
+<p>另外，G1收集器特别适合处理大量的短期对象和部分生存期较长的对象，因为它可以在Collection Set中优先回收这类对象，从而进一步减少垃圾回收的时间。</p>
+<p>总之，G1收集器的设计优势在于将内存分成小块，达到了更快，更可控的垃圾回收，因此非常适合大内存的应用场景。</p>
+</blockquote>
+<h2 id="ZGC收集器">ZGC收集器</h2>
+<p>在JDK11的时候，Java再次推出一款全新的垃圾回收器<code>ZGC</code>，它也是一款基于分区概念的内存布局GC器，这款GC器是真正意义上的不分代收集器，因为它无论是从逻辑上，还是物理上都不再保留分代的概念。</p>
+<p><code>ZGC</code>主打的是超低延迟与吞吐量，在实现时，<code>ZGC</code>也会在尽可能堆吞吐量影响不大的前提下，实现在任意堆内存大小下都可以把垃圾回收的停顿时间限制在<code>10ms</code>以内的低延迟。</p>
+<p>Java引入ZGC的目的主要有如下四点：</p>
+<ul>
+<li>奠定未来GC特性的基础。</li>
+<li>为了支持超大级别堆空间（<code>TB</code>级别），最高支持<code>16TB</code>。</li>
+<li>在最糟糕的情况下，对吞吐量的影响也不会降低超过15%。</li>
+<li>GC触发产生的停顿时间不会偏差<code>10ms</code>。</li>
+</ul>
+<blockquote>
+<p>同时ZGC也是一款不分代的收集器，也就代表着ZGC中只存在一种GC类型，同时也不需要记忆集这种概念存在，因为是单代的堆空间，所以每次回收都是扫描所有页面，不需要额外解决跨代引用问题。</p>
+</blockquote>
+<p><strong>ZGC堆空间内存划分</strong></p>
+<p>在ZGC中，也会把堆空间划分为一个个的<code>Region</code>区域，但ZGC中的<code>Region</code>区不存在分代的概念，它仅仅只是简单的将所有<code>Region</code>区分为了大、中、小三个等级，如下：</p>
+<p><strong>NUMA架构</strong></p>
+<p>ZGC的目的是为了能够驾驭TB级别的超大堆空间，通过<code>NUMA</code>架构实现。</p>
+<p><code>NUMA</code>架构：<code>NUMA</code>即<code>Non Uniform Memory Access Architecture</code>（非统一内存访问）。</p>
+<p><code>NUMA</code>架构下，每颗CPU都会对应有一块内存，具体内存取决于处理器的内存位置，一般与CPU对应的内存都是在主板上离该CPU最近的，CPU会优先访问这块内存，每颗CPU各自访问距离自己最近的内存，效率自然而然就提高了。</p>
+<blockquote>
+<p>ZGC是能自动感知NUMA架构并可以充分利用NUMA架构特性的一款垃圾收集器。</p>
+</blockquote>
+<p><strong>染色指针（colored pointers）技术</strong></p>
+<p>在此之前所有的GC信息保存在对象头中，但ZGC中的GC信息保存在指针内。</p>
+<p>同时，在ZGC中不存在指针压缩，因为ZGC中对于指针进行了改造，通过程序中的引用指针来实现了染色指针技术，由于染色指针对于指针的64个比特位全部都使用了，所以指针无法再进行压缩。</p>
+<p>染色指针带来的好处:</p>
+<ul>
+<li>一旦某个分区中的存活对象被移走，该分区就可以立即回收并重用，不必等到整个堆中所有指向该<code>Region</code>区的引用都被修正后才能清理。</li>
+<li>颜色指针可以大幅减少在GC过程中内存屏障的使用数量，ZGC只使用了读屏障。</li>
+<li>颜色指针具备强大的扩展性，它可以作为一种可扩展的存储结构用来记录更多与对象标记、重定位过程相关的数据，以便日后进一步提高性能。</li>
+</ul>
+<h1>类加载机制</h1>
+<p>当JVM需要用到某个类时，虚拟机会加载它的<code>.class</code>文件，加载了相关的字节码信息后，会为它创建对应的<code>Class</code>对象，而这个过程就被称为类加载。</p>
+<p>但需额外注意的是：</p>
+<blockquote>
+<p>类加载机制只负责<code>class</code>文件的加载，至于是否可以执行，则是由执行引擎决定。</p>
+</blockquote>
+<p>类加载过程被分为三个步骤，五个阶段，分别为加载、验证、准备、解析以及初始化。</p>
+<p>加载、验证、准备、初始化这四个阶段的顺序是确定的。</p>
+<blockquote>
+<p>但解析阶段不一定，为了支持Java语言的运行时绑定特性，在某些情况下可以在初始化阶段之后再开始（也称为动态绑定或晚期绑定）。</p>
+</blockquote>
+<p><strong>加载步骤</strong></p>
+<p>加载阶段是指通过完全限定名查找Class文件二进制数据并将其加载进内存的过程：</p>
+<ul>
+<li>通过完全限定名查找定位<code>.class</code>文件，并获取其二进制字节流数据</li>
+<li>把字节流所代表的静态存储结构转换为运行时数据结构</li>
+<li>在堆中间中为其创建一个<code>Class</code>对象，作为程序访问这些数据的入口</li>
+</ul>
+<p><strong>验证阶段</strong></p>
+<p>验证阶段主要用于确保被加载的<code>Class</code>正确性，检测<code>Class</code>字节流中的数据是否符合虚拟机的要求，确保不会危害虚拟机自身安全。</p>
+<p>验证阶段主要包括四种验证：文件格式验证、元数据验证、字节码验证以及符号引用验证。</p>
+<p><strong>准备阶段</strong></p>
+<p>准备阶段主要是为类中声明的静态变量分配内存空间，并将其初始化成默认值（零值）。</p>
+<blockquote>
+<p>不过值得注意的是：这个默认值并非指在Java代码中显式赋予的值，而是指数据类型的默认值。如<code>static int i = 5;</code>这里只会将<code>i</code>初始化为0。</p>
+</blockquote>
+<p>在这里进行的内存分配仅包括类成员(<code>static</code>成员)，而实例成员则会在创建具体的Java对象时被一起分配在堆空间中。</p>
+<p>同时也不包含使用<code>final</code>修饰的<code>static</code>成员，因为<code>final</code>在编译的时候就会分配了，准备阶段会显示初始化。</p>
+<p><strong>解析阶段</strong></p>
+<p>解析阶段主要是把类中对常量池内的符号引用转换为直接引用的过程。</p>
+<blockquote>
+<p>值得一提的是，解析操作往往会伴随着JVM在执行完初始化之后再执行。</p>
+</blockquote>
+<ul>
+<li>
+<p>符号引用：用一组符号来描述引用的目标，符号引用的字面量形式明确定义在《Java虚拟机规范》的Class文件格式中。</p>
+</li>
+<li>
+<p>直接引用：直接指向目标的指针、相对偏移量或一个间接定位到目标的句柄</p>
+</li>
+</ul>
+<blockquote>
+<p>符号引用转直接引用的过程，主要针对类或接口、字段、类方法、接口方法、方法类型、方法句柄和调用点限定符等7类符号引用进行（分别对应常量池中的<code>CONSTANT_Class_info、CONSTANT_Fieldref_info、CONSTANT_Methodref_info</code>等）。</p>
+</blockquote>
+<p><strong>初始化步骤</strong></p>
+<p>初始化步骤中，主要是对类的静态变量赋予正确的初始值，也就是在声明静态变量时指定的初始化值以及静态代码块中的赋值。</p>
+<p>本质上就是执行类构造器方法<code>&lt;clinit&gt;()</code>的过程。而触发初始化的情况分为六种：</p>
+<blockquote>
+<p>遇到new/getstatic/putstatic/invokestatic这四条字节码指令时触发</p>
+<ul>
+<li><code>new</code>：使用new关键字创建一个实例对象</li>
+<li><code>getstatic</code>：读取一个静态字段</li>
+<li><code>putstatic</code>：设置一个静态字段</li>
+<li><code>invokestatic</code>：调用一个静态方法</li>
+</ul>
+<p>对类型进行反射调用，如果类型没有经过初始化，则会触发初始化</p>
+<p>初始化一个类的时候，发现父类没有初始化，则先触发父类初始化</p>
+<p>虚拟机启动时，需指定一个要执行的主类（包含main方法的那个类），虚拟机会初始化这个主类（如SpringBoot的启动类）</p>
+<p>当使用JDK7中新加入的动态语言支持时，如果一个<code>java.lang.invoke.MethodHandler</code>实例最后的解析结果为<code>REF_getStatic,REF_putStatic,REF_invokeStatic，REF_newInvokeSpecial</code>四种类型的方法句柄，并且这个方法对应的类没有进行初始化，则先触发其初始化</p>
+<p>当一个接口中定了JDK8新加入的默认方法时，如果这个接口的实现类发生了初始化，要先将接口进行初始化</p>
+</blockquote>
+<p>在初始化阶段中，有且只有这六种情况会触发类的初始化，这些情况被称为主动引用。</p>
+<p>除了以上几种情况外，其他使用类的方式被看做是对类的被动引用，不会导致类的初始化。</p>
+<blockquote>
+<p>比如在子类中调用父类的静态字段、定义该类的数组方式引用、调用该类的常量等情况都不会触发类进行初始化。</p>
+</blockquote>
+<p>一个类被触发初始化时，在它进行初始化的时候，大体步骤如下：</p>
+<ul>
+<li>如果类还未被加载、连接则先进行加载、连接步骤</li>
+<li>如果当前类存在直接父类未被初始化，则先初始化直接父类</li>
+<li>构造器方法中指令按照语句在源文中出现的顺序执行</li>
+</ul>
+<p><strong><code>&lt;cinit&gt;</code>与<code>&lt;init&gt;</code></strong></p>
+<p>上面代码的 static 代码块只会执行一次，对象的构造方法执行两次。</p>
+<p><strong>使用、卸载</strong></p>
+<p>当一个类完整的经过了类加载过程之后，在内存中已经生成了Class对象，同时在Java程序中已经通过它开始创建实例对象使用时，该阶段被称为使用阶段。</p>
+<p>而当一个Class对象不再被任何一处位置引用，即不可触及时，Class就会结束生命周期，该类加载的数据也会被卸载。</p>
+<p>但是注意：</p>
+<blockquote>
+<p>Java虚拟机自带的类加载器加载的类，在虚拟机的生命周期中始终不会被卸载，因为JVM始终会保持与这些类加载器的引用，而这些类加载器也会始终保持着自己加载的Class对象的引用，所以对于虚拟机而言，这些Class对象始终是可以被触及的。</p>
+<p>不过由用户自定义的类加载器加载的类是可以被卸载的。</p>
+</blockquote>
+<h2 id="类加载器">类加载器</h2>
+<p><strong>Bootstrap引导类加载器</strong></p>
+<p>引导类加载器在有些地方也被称为启动类加载器或根类加载器，但其实都是一个意思，都是在指<code>BootstrapClassLoader</code>。</p>
+<p>引导类加载器是使用C++语言实现的，是JVM自身的一部分，主要负责将<code>&lt;JAVA_HOME&gt;\lib</code>路径下的核心类库或<code>-Xbootclasspath</code>参数指定的路径下的jar包加载到内存中。</p>
+<blockquote>
+<p>注意：因为JVM是通过全限定名加载类库的，所以，如果你的文件名不被虚拟机识别，就算你把jar包丢入到lib目录下，引导类加载器也并不会加载它。</p>
+<p>出于安全考虑，Bootstrap启动类加载器只加载包名为java、javax、sun等开头的类文件。</p>
+<p>引导类加载器只为JVM提供加载服务，开发者不能直接使用它来加载自己的类。</p>
+</blockquote>
+<p><strong>Extension拓展类加载器</strong></p>
+<p>这个类加载器是由sun公司实现的，位于<code>HotSpot</code>源码目录中的<code>sun.misc.Launcher$ExtClassLoader</code>位置。</p>
+<p>它主要负责加载<code>&lt;JAVA_HOME&gt;\lib\ext</code>目录下或者由系统变量<code>-Djava.ext.dir</code>指定位路径中的类库。</p>
+<blockquote>
+<p>它可以直接被开发者使用。</p>
+</blockquote>
+<p><strong>Application系统类加载器</strong></p>
+<p>应用程序类加载器，也是由sun公司实现的，位于<code>HotSpot</code>源码目录中的<code>sun.misc.Launcher$AppClassLoader</code>位置。</p>
+<p>它负责加载系统类路径<code>java -classpath</code>或<code>-D java.class.path</code>指定路径下的类库，也就是经常用到的<code>classpath</code>路径。</p>
+<blockquote>
+<p>应用程序类加载器也可以直接被开发者使用。</p>
+<p>一般情况下，该类加载器是程序的默认类加载器，我们可以通过ClassLoader.getSystemClassLoader()方法可以直接获取到它。</p>
+</blockquote>
+<h2 id="双亲委派机制">双亲委派机制</h2>
+<p><strong>双亲委派类加载过程</strong></p>
+<blockquote>
+<p>当<code>App</code>尝试加载一个类时，它不会直接尝试加载这个类，首先会在自己的命名空间中查询是否已经加载过这个类，如果没有会先将这个类加载请求委派给父类加载器<code>Ext</code>完成</p>
+<p>当<code>Ext</code>尝试加载一个类时，它也不会直接尝试加载这个类，也会在自己的命名空间中查询是否已经加载过这个类，没有的话也会先将这个类加载请求委派给父类加载器<code>Bootstrap</code>完成</p>
+<p>如果<code>Bootstrap</code>加载失败，也就是代表着：这个需要被加载的类不在<code>Bootstrap</code>的加载范围内，那么<code>Bootstrap</code>会重新将这个类加载请求交由子类加载器<code>Ext</code>完成</p>
+<p>如果<code>Ext</code>加载失败，代表着这个类也不在<code>Ext</code>的加载范围内，最后会重新将这个类加载请求交给子类加载器<code>App</code>完成</p>
+<p>如果<code>App</code>加载器也加载失败，就代表这个类根据全限定名无法查找到，则会抛出<code>ClassNotFoundException</code>异常</p>
+</blockquote>
+<blockquote>
+<p><strong>此处的父子关系并非通常所说的继承关系，而是采用组合关系来实现</strong></p>
+</blockquote>
+<p><strong>双亲委派机制的优势</strong></p>
+<p>Java类随着它的类加载器存在了一种优先级的层次关系，这样做的优势在于，可以避免一个类在不同层级的类加载器中重复加载，如果父类加载器已经加载过该类了，那么就不需要子类加载器再加载一次。</p>
+<p>沙箱安全机制:</p>
+<blockquote>
+<p>可以保障Java核心类的安全性问题，比如通过网络传输过来一个<code>java.lang.String</code>类，需要被加载时，通过这种双亲委派的方式，最终找到<code>Bootstrap</code>加载器后，发现该类已经被加载，从而就不会再加载传输过来的<code>java.lang.String</code>类，而是直接返回<code>Bootstrap</code>加载的<code>String.class</code>。</p>
+<p>这样可以有效防止Java的核心API类在运行时被篡改，从而保证所有子类共享同一基础类，减少性能开销和安全隐患问题。</p>
+</blockquote>
+<p><strong>双亲委派的实现原理</strong></p>
+<p>在Java中，所有的类加载器都间接的继承自<code>ClassLoader</code>类，包括<code>Ext、App</code>类加载器（<code>Bootstrap</code>除外，因为它是C++实现的），如下：</p>
+<pre><code class="language-java">// sun.misc.Launcher类
+public class Launcher &#123;
+    // sun.misc.Launcher类 → 构造器
+    public Launcher()&#123;
+        Launcher.ExtClassLoader var1;
+        try &#123;
+            // 会先初始化Ext类加载器并创建ExtClassLoader
+            var1 = Launcher.ExtClassLoader.getExtClassLoader();
+        &#125; catch (IOException var10) &#123;
+            throw new InternalError(
+                &quot;Could not create extension class loader&quot;, var10);
+        &#125;
+        try &#123;
+	        // 再创建AppClassLoader并把Ext作为父加载器传递给App
+            loader = AppClassLoader.getAppClassLoader(extcl);
+        &#125; catch (IOException e) &#123;
+            throw new InternalError(
+                &quot;Could not create application class loader&quot;);
+        &#125;
+        
+        // 将APP类加载器设置为线程上下文类加载器（稍后分析）
+        Thread.currentThread().setContextClassLoader(loader);
+        // 省略......
+    &#125;
+    
+    // sun.misc.Launcher类 → ExtClassLoader内部类
+    static class ExtClassLoader extends URLClassLoader &#123;
+        // ExtClassLoader内部类 → 构造器
+        public ExtClassLoader(File[] var1) throws IOException &#123;
+            // 在Ext初始化时，父类构造器会被设置为null
+            super(getExtURLs(var1), (ClassLoader)null, Launcher.factory);
+            SharedSecrets.getJavaNetAccess().getURLClassPath(this)
+                         .initLookupCache(this);
+        &#125;
+    &#125;
+    
+    // sun.misc.Launcher类 → AppClassLoader内部类
+    static class AppClassLoader extends URLClassLoader &#123;&#125;
+&#125;
+
+// java.net.URLClassLoader类
+public class URLClassLoader extends SecureClassLoader
+        implements Closeable &#123;&#125;
+
+// java.security.SecureClassLoader类
+public class SecureClassLoader extends ClassLoader &#123;&#125;
+</code></pre>
+<p>如上源码，<code>Ext、App</code>类加载器都是<code>sun.misc.Launcher</code>类的内部类，而<code>Launcher</code>在初始化时会首先创建<code>Ext</code>类加载器，而在初始化<code>Ext</code>时，它的构造器中会强行将其父类加载器设置为<code>null</code>。</p>
+<p>创建完成<code>Ext</code>类加载器之后，会紧接着再创建<code>App</code>类加载器，同时在创建<code>AppClassLoader</code>的时候会将<code>Ext</code>类加载器设置为<code>App</code>类加载器的父类加载器。</p>
+<blockquote>
+<p><code>Ext、App</code>类加载器都继承了<code>URLClassLoader</code>类，该类主要是用于读取各种<code>jar</code>包、本地<code>class</code>以及网络传递的<code>class</code>文件，通过找到它们的字节码，然后再将其读取成字节流，最后通过<code>defineClass()</code>方法创建类的Class对象。</p>
+<p>而<code>URLClassLoader</code>类继承了<code>SecureClassLoader</code>类，该类也作为了<code>ClassLoader</code>类的拓展类，新增了几个对代码源的位置及其证书的验证以及权限定义类验证(主要指对<code>class</code>源码的访问权限)的方法，一般我们不会直接跟这个类打交道，更多是与它的子类<code>URLClassLoader</code>有所关联。</p>
+</blockquote>
+<p>总而言之，<code>Ext、App</code>类加载器都间接的继承了<code>ClassLoader</code>类，<code>ClassLoader</code>类作为Java类加载机制的顶层设计类，它是一个抽象类，下面来简单的看看<code>ClassLoader</code>，如下</p>
+<pre><code class="language-java">// ClassLoader类 → loadClass()方法
+protected Class&lt;?&gt; loadClass(String name, boolean resolve)
+    throws ClassNotFoundException
+&#123;
+    // 加锁
+    synchronized (getClassLoadingLock(name)) &#123;
+        // 先尝试通过全限定名从自己的命名空间中查找该Class对象
+        Class&lt;?&gt; c = findLoadedClass(name);
+        // 如果找到了则不需要加载了，如果==null，开始类加载
+        if (c == null) &#123;
+            long t0 = System.nanoTime();
+            try &#123;
+                // 先将类加载任务委托自己的父类加载器完成
+                if (parent != null) &#123;
+                    c = parent.loadClass(name, false);
+                &#125; else &#123;
+                    // 如果父类加载器为null，代表当前已经是ext加载器了
+                    // 那么则将任务委托给Bootstrap加载器加载
+                    c = findBootstrapClassOrNull(name);
+                &#125;
+            &#125; catch (ClassNotFoundException e) &#123;
+                // 处理异常，抛出异常
+            &#125;
+
+            if (c == null) &#123;
+                // 如果都没有找到，则通过自定义实现的findClass
+                // 去查找并加载
+                long t1 = System.nanoTime();
+                c = findClass(name);
+
+                // 这是记录类加载相关数据的（比如耗时、类加载数量等）
+                sun.misc.PerfCounter.getParentDelegationTime().addTime(t1 - t0);
+                sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
+                sun.misc.PerfCounter.getFindClasses().increment();
+            &#125;
+        &#125;
+        // 是否需要在加载时进行解析，如果是则触发解析操作
+        if (resolve) &#123;
+            resolveClass(c);
+        &#125;
+        // 返回加载后生成的Class对象
+        return c;
+    &#125;
+&#125;
+
+// ClassLoader类 → findClass()方法
+protected Class&lt;?&gt; findClass(String name) 
+            throws ClassNotFoundException &#123;
+    // 直接抛出异常(这个方法是留给子类重写的)
+    throw new ClassNotFoundException(name);
+&#125;
+
+// ClassLoader类 → defineClass()方法
+protected final Class&lt;?&gt; defineClass(String name, byte[] b,
+        int off, int len) throws ClassFormatError
+&#123;
+    // 调用了defineClass方法，
+    // 将字节数组b的内容转换为一个Java类
+    return defineClass(name, b, off, len, null);
+&#125;
+
+// ClassLoader类 → resolveClass()方法
+protected final void resolveClass(Class&lt;?&gt; c) &#123;
+    // 调用本地(navite)方法，解析一个类
+    resolveClass0(c);
+&#125;
+
+// ClassLoader类 → getParent()方法
+@CallerSensitive
+public final ClassLoader getParent() &#123;
+    // 如果当前类加载器的父类加载器为空，则直接返回null
+    if (parent == null)
+        return null;
+    // 如果不为空则先获取安全管理器
+    SecurityManager sm = System.getSecurityManager();
+    if (sm != null) &#123;
+        // 然后检查权限后返回当前classLoader的父类加载器
+        checkClassLoaderPermission(parent,
+                Reflection.getCallerClass());
+    &#125;
+    return parent;
+&#125;
+</code></pre>
+<p><code>ClassLoader</code>类的关键方法，具体作用如下：</p>
+<ul>
+<li><code>loadClass(name,resolve)</code>：加载名称为<code>name</code>的类，加载后返回<code>Class</code>对象实例</li>
+<li><code>findClass(name)</code>：查找名称为<code>name</code>的类，返回是一个<code>Class</code>对象实例（该方法是留给子类重写覆盖的，在<code>loadClass</code>中，在父类加载器加载失败的情况下会调用该方法完成类加载，这样可以保证自定义的类加载器也符合双亲委托模式）</li>
+<li><code>defineClass(name,b,off,len)</code>：将字节流<code>b</code>转换为一个<code>Class</code>对象</li>
+<li><code>resolveClass(c)</code>：使用该方法可以对加载完生成的<code>Class</code>对象同时进行解析操作</li>
+<li><code>getParent()</code>：获取当前类加载器的父类加载器</li>
+</ul>
+<p>双亲委派模型的实现逻辑全在于<code>loadClass()</code>方法，而<code>ExtClassLoader</code>加载器是没有重写<code>loadClass()</code>方法，<code>AppClassLoader</code>加载器虽然重写了<code>loadClass()</code>方法，但其内部最终还是调用父类的<code>loadClass()</code>方法，如下：</p>
+<pre><code class="language-java">// sun.misc.Launcher类 → AppClassLoader内部类 → loadClass()方法
+ public Class loadClass(String name, boolean resolve)
+     throws ClassNotFoundException
+ &#123;
+     int i = name.lastIndexOf('.');
+     if (i != -1) &#123;
+         SecurityManager sm = System.getSecurityManager();
+         if (sm != null) &#123;
+             sm.checkPackageAccess(name.substring(0, i));
+         &#125;
+     &#125;
+     // 依旧调用的是父类loadClass()方法
+     return (super.loadClass(name, resolve));
+ &#125;
+</code></pre>
+<p>所以无论是<code>ExtClassLoader</code>还是<code>AppClassLoader</code>加载器，其本身都未打破<code>ClassLoader.loadClass()</code>方法中定义的双亲委派逻辑，<code>Bootstrap、Ext、App</code>这些JVM自带的类加载器都默认会遵守双亲委派模型。</p>
+<h2 id="自定义类加载器">自定义类加载器</h2>
+<p>如果需要自定义类加载器，那么只需要继承<code>ClassLoader</code>类即可，但继承<code>ClassLoader</code>需要自己重写<code>findClass()</code>方法并编写加载逻辑。</p>
+<p>所以如果一般没有太过复杂的需求，可以直接继承<code>URLClassLoader</code>类，可以省略自己编写<code>findClass</code>方法以及文件加载转换成字节码流的步骤，使自定义类加载器编写更加简洁。</p>
+<p><strong>什么情况下时，我们需要自定义类加载器呢？</strong></p>
+<ul>
+<li>当<code>class</code>文件不在<code>classpath</code>路径下时，需要自定义类加载器加载特定路径下的<code>class</code></li>
+<li>当一个class文件是通过网络传输过来的并经过了加密处理，需要首先对class文件做了对应的解密处理后再加载到内存中时，需要自定义类加载器</li>
+<li>线上环境不能停机时，要动态更改某块代码，这种情况下需要自定义类加载器
+<ul>
+<li>比如：当需要实现热部署功能时(一个class文件通过不同的类加载器产生不同class对象从而实现热部署功能)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>所谓的热部署机制的实现就是通过利用不同的类加载器，去加载更改后的<code>class</code>文件，从而在内存中创建出两个不同的<code>Class</code>对象。从而达到类文件更改后可以生效的目的。</p>
+</blockquote>
+<p><strong>Tomcat</strong></p>
+<p>Tomcat 通过 war 包进行应用的发布，它其实是违反了双亲委派机制原则的。</p>
+<p>对于一些需要加载的非基础类，会由一个叫作 WebAppClassLoader 的类加载器优先加载。等它加载不到的时候，再交给上层的 ClassLoader 进行加载。</p>
+<p>这个加载器用来隔绝不同应用的 <code>.class</code> 文件，比如你的两个应用，可能会依赖同一个第三方的不同版本，它们是相互没有影响的。</p>
+<blockquote>
+<p>但是你自己写一个 ArrayList，放在应用目录里，tomcat 依然不会加载。它只是自定义的加载器顺序不同，但对于顶层来说，还是一样的。</p>
+</blockquote>
+<h2 id="线程上下文类加载器">线程上下文类加载器</h2>
+<p>在Java中，官方为我们提供了很多SPI接口，例如JDBC、JBI、JNDI等。</p>
+<p>这类SPI接口，官方往往只会定义规范，具体的实现则是由第三方来完成的，比如JDBC，不同的数据库厂商都需自己根据JDBC接口的定义进行实现。</p>
+<p>而这些SPI接口直接由Java核心库来提供，一般位于<code>rt.jar</code>包中，而第三方实现的具体代码库则一般被放在<code>classpath</code>的路径下。</p>
+<p>此时问题来了：</p>
+<blockquote>
+<p>位于<code>rt.jar</code>包中的SPI接口，是由Bootstrap类加载器完成加载的，而<code>classpath</code>路径下的SPI实现类，则是<code>App</code>类加载器进行加载的。</p>
+<p>但往往在SPI接口中，会经常调用实现者的代码，所以一般会需要先去加载自己的实现类，但实现类并不在Bootstrap类加载器的加载范围内。</p>
+<p>我们知道：子类加载器可以将类加载请求委托给父类加载器进行加载，但这个过程是不可逆的。也就是父类加载器是不能将类加载请求委派给自己的子类加载器进行加载的，所以此时就出现了这个问题：如何加载SPI接口的实现类？</p>
+<ul>
+<li><strong>答案是打破双亲委派模型</strong>。</li>
+</ul>
+</blockquote>
+<p>SPI提供了一种动态的服务发现机制（约定），只要第三方在编写实现类时，在工程内新建一个<code>META-INF/services/</code>目录并在该目录下创建一个与服务接口名称同名的文件，那么在程序启动的时候，就会根据约定去找到所有符合规范的实现类，然后交给线程上下文类加载器进行加载处理。</p>
+<blockquote>
+<p>线程的上下文类加载器默认设置的就是系统类加载器（<code>System</code>）</p>
+</blockquote>
+<h1>常见问题</h1>
+<h2 id="内存溢出">内存溢出</h2>
+<p><strong>线上OOM问题排查思路：</strong></p>
+<ul>
+<li>首先获取<code>Dump</code>文件，最好是上线部署时配置了，这样可以保留第一现场，但如若未配置对应参数，可以调小堆空间，然后重启程序的时候重新配置参数，争取做到现场重现。</li>
+<li>如果无法通过配置参数获得程序OOM自然导出的<code>Dump</code>文件，那则可以等待程序在线上运行一段时间，并协调测试人员对各接口进行压测，而后主动式的通过<code>jmap</code>等工具导出堆的<code>Dump</code>文件（这种方式没有程序自动导出的<code>Dump</code>文件效果好）。</li>
+<li>将<code>Dump</code>文件传输到本地，然后通过相关的<code>Dump</code>分析工具分析，如JDK自带的<code>jvisualvm</code>，或第三方的<code>MAT</code>工具等。</li>
+<li>根据分析结果尝试定位问题，先定位问题发生的区域，如：确定是堆外内存还是堆内空间溢出，如果是堆内，是哪个数据区发生了溢出。确定了溢出的区域之后，再分析导致溢出的原因。</li>
+<li>根据定位到的区域以及原因，做出对应的解决措施，如：优化代码、优化SQL等。</li>
+</ul>
+<h2 id="死锁">死锁</h2>
+<p>死锁的本质，举个例子如果此时有一个线程 A ，按照先获持有锁 a 再获取锁 b的顺序获得锁，同时另外一个线程 B，按照先获取锁 b 再获取锁 a 的顺序获取锁。</p>
+<p><strong>通过jdk工具jps、jstack排查死锁问题</strong></p>
+<blockquote>
+<p>jps：jdk提供的一个工具，可以查看到正在运行的java进程。</p>
+<p>jstack：jdk提供的一个工具，可以查看java进程中线程堆栈信息。</p>
+</blockquote>
+<p><strong>通过jdk提供的工具jconsole排查死锁问题</strong></p>
+<p>jconsole：jdk提供的一个可视化的工具，方便排查程序的一些问题，如：程序内存溢出、死锁问题等等。</p>
+<p>jconsole位于jdk的bin目录中。</p>
+<p><strong>通过jdk提供的工具VisualVM排查死锁问题</strong></p>
+<blockquote>
+<p>VisualVM：jdk提供的一个非常强大的排查java程序问题的一个工具，可以监控程序的性能、查看jvm配置信息、堆快照、线程堆栈信息。</p>
+<p>工具位于jdk的bin目录中。</p>
+</blockquote>
+<p><strong>如何避免死锁？</strong></p>
+<blockquote>
+<p>1.正确的顺序获得锁：</p>
+</blockquote>
+<p>如果必须获取多个锁，我们就要考虑不同线程获取锁的顺序。</p>
+<p>上面的例子出现<strong>死锁的根本原因就是获取所的顺序是乱序</strong>的，超乎我们控制的。</p>
+<p>上面例子最理想的情况就是把业务逻辑抽离出来，<strong>把获取锁的代码放在一个公共的方法里面，让这两个线程获取锁都是从我的公共的方法里面获取。</strong></p>
+<blockquote>
+<p>当Thread1线程进入公共方法时，获取了A锁，另外Thread2又进来了，但是A锁已经被Thread1线程获取了，所以只能阻塞等待。</p>
+<p>Thread1接着又获取锁B，Thread2线程就不能再获取不到了锁A，更别说再去获取锁B了，这样就有一定的顺序了。只有当线程1释放了所有锁，线程B才能获取。</p>
+</blockquote>
+<blockquote>
+<p>2.超时放弃:</p>
+</blockquote>
+<p>当线程获取锁超时了则放弃，这样就避免了出现死锁获取的情况。</p>
+<p>当使用synchronized关键词提供的内置锁时，只要线程没有获得锁，那么就会永远等待下去，<strong>然而Lock接口提供了boolean tryLock(long time, TimeUnit unit) throws InterruptedException方法</strong>，该方法可以按照固定时长等待锁，<strong>因此线程可以在获取锁超时以后</strong>，主动释放之前已经获得的所有的锁。</p>
+<p>通过这种方式，也可以很有效地避免死锁。</p>
+<h1>字节码</h1>
+<p>可以用 <code>javap</code> 工具来获取 class 文件中的指令清单。 <code>javap</code> 是标准 JDK 内置的一款工具, 专门用于反编译 class 文件。</p>
+
+	</div>
+</div>
+
+
+    <div class="post-guide">
+        <div class="item left">
+            
+              <a href="/2022/12/02/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  MySQL
+              </a>
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E5%89%91%E6%8C%87OFFER/">
+                剑指OFFER
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+
+<script>
+
+    //document.oncontextmenu=new Function("event.returnValue=false");
+	//document.onselectstart=new Function("event.returnValue=false");
+
+	
+
+	$(function () {
+		const btw = new BTWPlugin();
+	    btw.init({
+	        id: 'container',
+	        blogId: '22377-1657723090751-870',
+	        name: '月伴飞鱼',
+	        qrcode: '/个人公众号.jpg',
+	        keyword: '验证码',
+	    });
+
+	    var contents = document.getElementsByClassName("content999");
+	    //监听文章内容的copy事件
+	    contents[0].addEventListener('copy',function(e){
+	        setClipboardText(e);
+	    });
+
+	    function setClipboardText(event){
+	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+	        let clipboardData = event.clipboardData || window.clipboardData;
+
+	        // 如果未复制或者未剪切，则return出去
+	        if (!clipboardData) { return; }
+
+	        event.preventDefault();
+
+	        // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+	        // 声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+	        let text = window.getSelection().toString();
+	    
+	        if (text) {
+	            // 如果文本存在则先取消文本默认事件
+	            event.preventDefault();
+	            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+	            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+	            // data: 一个 DOMString表示要添加到 drag object的数据。
+	            var copyright = '\n\n'
+	            + '\n著作权归作者所有。'
+	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+	            + '\n作者: 月伴飞鱼'
+	            + '\n原文地址: https://xiaoflyfish.cn/2022/11/27/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/JVM/'
+	    
+	            clipboardData.setData('text/plain', text + copyright);
+	    
+	        }
+	    };
+	});
+
+	
+</script>
+
+<script>
+    const btw = new BTWPlugin();
+    btw.init({
+        id: 'container',
+        blogId: '22377-1657723090751-870',
+        name: '月伴飞鱼',
+        qrcode: '/个人公众号.jpg',
+        keyword: '验证码',
+    });
+</script>
+	</div>
+	<div id="footer">
+	<p>
+	©2019-<span id="footerYear"></span> 
+	<a href="/">月伴飞鱼</a> 
+	
+	
+		|
+		<span id="busuanzi_container_site_pv">
+			PV 180986
+		</span>
+		|
+		<span id="busuanzi_container_site_uv"> 
+			UV 10079
+		</span>
+	
+	<br>
+	微信搜索 <a href="https://xiaoflyfish.oss-cn-beijing.aliyuncs.com/image/个人公众号.jpg" target="_blank">月伴飞鱼</a> 关注我
+	</p>
+</div>
+<script type="text/javascript"> 
+	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+</script>
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>
