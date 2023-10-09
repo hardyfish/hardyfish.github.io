@@ -303,6 +303,24 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/">
+										Nginx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/%E8%BF%90%E7%BB%B4%E7%9F%A5%E8%AF%86/">
+										运维知识
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -356,6 +374,26 @@
 								<li class="file">
 									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RocketMQ/">
 										RocketMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										生活相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E9%9F%B3%E4%B9%90/">
+										音乐
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -493,8 +531,7 @@
 
 <div id="container" class = "content999">
 	<div id="article-content">
-		<h1>网络模型</h1>
-<p><strong>OSI七层模型</strong></p>
+		<h1 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h1><p><strong>OSI七层模型</strong></p>
 <p>物理层：</p>
 <blockquote>
 <p>解决两个硬件之间怎么通信的问题，常见的物理媒介有光纤、电缆、中继器等。它主要定义物理设备标准，如网线的接口类型、光纤的接口类型、各种传输介质的传输速率等。</p>
@@ -504,9 +541,9 @@
 <p>我们当时去学校配电脑的地方买网线，卖网线的师傅都会问，你的网线是要电脑连电脑啊，还是电脑连网口啊？</p>
 <p>我们要的是电脑连电脑。这种方式就是一根网线，有两个头。一头插在一台电脑的网卡上，另一头插在另一台电脑的网卡上。但是在当时，普通的网线这样是通不了的，所以水晶头要做交叉线，用的就是所谓的<strong>1－3</strong>、<strong>2－6交叉接法</strong>。</p>
 <p>水晶头的第1、2和第3、6脚，它们分别起着收、发信号的作用。将一端的1号和3号线、2号和6号线互换一下位置，就能够在物理层实现一端发送的信号，另一端能收到。</p>
-<p>当然电脑连电脑，除了网线要交叉，还需要配置这两台电脑的IP地址、子网掩码和默认网关。要想两台电脑能够通信，这三项必须配置成为一个网络，可以一个是192.168.0.1/24，另一个是192.168.0.2/24，否则是不通的。</p>
+<p>当然电脑连电脑，除了网线要交叉，还需要配置这两台电脑的IP地址、子网掩码和默认网关。要想两台电脑能够通信，这三项必须配置成为一个网络，可以一个是192.168.0.1&#x2F;24，另一个是192.168.0.2&#x2F;24，否则是不通的。</p>
 <p>这里我想问你一个问题，两台电脑之间的网络包，包含MAC层吗？当然包含，要完整。IP层要封装了MAC层才能将包放入物理层。</p>
-<p>到此为止，两台电脑已经构成了一个最小的<strong>局域网</strong>，也即**LAN。**可以玩联机局域网游戏啦！</p>
+<p>到此为止，两台电脑已经构成了一个最小的<strong>局域网</strong>，也即<strong>LAN。</strong>可以玩联机局域网游戏啦！</p>
 <p>等到第三个哥们也买了一台电脑，怎么把三台电脑连在一起呢？</p>
 <p>先别说交换机，当时交换机也贵。有一个叫做<strong>Hub</strong>的东西，也就是<strong>集线器</strong>。这种设备有多个口，可以将宿舍里的多台电脑连接起来。但是，和交换机不同，集线器没有大脑，它完全在物理层工作。它会将自己收到的每一个字节，都复制到其他端口上去。这是第一层物理层联通的方案。</p>
 </blockquote>
@@ -538,39 +575,31 @@
 <blockquote>
 <p>应用层是计算机用户，以及各种应用程序和网络之间的接口，其功能是直接向用户提供服务，完成用户希望在网络上完成的各种工作。前端同学对应用层肯定是最熟悉的。</p>
 </blockquote>
-<h1>HTTP</h1>
-<p><strong>请求报文和响应报文组成</strong></p>
-<p>HTTP请求报文由3部分组成： <strong>请求行</strong> + <strong>请求头</strong> + <strong>请求体</strong></p>
+<h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><p><strong>请求报文和响应报文组成</strong></p>
+<p>HTTP请求报文由3部分组成： <strong>请求行</strong> + <strong>请求头</strong> + <strong>请求体</strong> </p>
 <p><strong>请求的报文结构</strong></p>
 <blockquote>
 <p><strong>请求行：</strong></p>
 <ul>
-<li>
-<p>请求方法，GET和POST是最常见的HTTP方法，除此以外还包括DELETE、HEAD、OPTIONS、PUT、TRACE。</p>
+<li><p>请求方法，GET和POST是最常见的HTTP方法，除此以外还包括DELETE、HEAD、OPTIONS、PUT、TRACE。</p>
 </li>
-<li>
-<p>请求对应的URL地址，它和报文头的Host属性组成完整的请求URL。</p>
+<li><p>请求对应的URL地址，它和报文头的Host属性组成完整的请求URL。</p>
 </li>
-<li>
-<p>协议名称及版本号。</p>
+<li><p>协议名称及版本号。</p>
 </li>
 </ul>
 <p><strong>请求头：</strong></p>
 <ul>
-<li>
-<p>是HTTP的报文头，报文头包含若干个属性，格式为 属性名:属性值，服务端据此获取客户端的信息。</p>
+<li><p>是HTTP的报文头，报文头包含若干个属性，格式为 属性名:属性值，服务端据此获取客户端的信息。</p>
 </li>
-<li>
-<p>与缓存相关的规则信息，均包含在header中</p>
+<li><p>与缓存相关的规则信息，均包含在header中</p>
 </li>
 </ul>
 <p><strong>请求体：</strong></p>
 <ul>
-<li>
-<p>是报文体，它将一个页面表单中的组件值通过param1=value1&amp;param2=value2的键值对形式编码成一个格式化串，它承载多个请求参数的数据。</p>
+<li><p>是报文体，它将一个页面表单中的组件值通过param1&#x3D;value1&amp;param2&#x3D;value2的键值对形式编码成一个格式化串，它承载多个请求参数的数据。</p>
 </li>
-<li>
-<p>不但报文体可以传递请求参数，请求URL也可以通过类似于“/chapter15/user.html? param1=value1&amp;param2=value2”的方式传递请求参数。</p>
+<li><p>不但报文体可以传递请求参数，请求URL也可以通过类似于“&#x2F;chapter15&#x2F;user.html? param1&#x3D;value1&amp;param2&#x3D;value2”的方式传递请求参数。</p>
 </li>
 </ul>
 </blockquote>
@@ -579,11 +608,11 @@
 <p><strong>状态码</strong></p>
 <p>状态码由三位数字组成，第一个数定义了响应的类别，有五种可能取值</p>
 <blockquote>
-<p>+1xx：指示信息----表示请求已接收，继续处理</p>
-<p>+2xx：成功----表示请求已被成功接收、理解</p>
-<p>+3xx：重定向----信息不够完整需要进一步补充</p>
-<p>+4xx：客户端错误----请求有语法错误或者请求无法实现</p>
-<p>+5xx：服务器端错误----服务器未能实现合法的请求</p>
+<p>+1xx：指示信息—-表示请求已接收，继续处理</p>
+<p>+2xx：成功—-表示请求已被成功接收、理解</p>
+<p>+3xx：重定向—-信息不够完整需要进一步补充</p>
+<p>+4xx：客户端错误—-请求有语法错误或者请求无法实现</p>
+<p>+5xx：服务器端错误—-服务器未能实现合法的请求</p>
 </blockquote>
 <blockquote>
 <p>301 永久重定向，在location响应首部的值为当前的url（隐式）</p>
@@ -604,12 +633,11 @@
 <p>对于GET请求，浏览器会把http header和data一起发送出去，服务器响应200，请求成功。</p>
 <p>对于POST请求，浏览器先发送header，服务器会响应100（已经收到请求的第一部分，正在等待其余部分），浏览器再次发送data，服务器返回200，请求成功。</p>
 </blockquote>
-<h2 id="HTTP1-1">HTTP1.1</h2>
-<blockquote>
+<h2 id="HTTP1-1"><a href="#HTTP1-1" class="headerlink" title="HTTP1.1"></a>HTTP1.1</h2><blockquote>
 <p>HTTP 1.1支持长连接（PersistentConnection）和请求的流水线（Pipelining）处理</p>
 <p>HTTP 1.0规定浏览器与服务器只保持短暂的连接，浏览器的每次请求都需要与服务器建立一个TCP连接，服务器完成请求处理后立即断开TCP连接，服务器不跟踪每个客户也不记录过去的请求。</p>
 <p>HTTP 1.1则支持持久连接Persistent Connection, 并且默认使用persistent connection. 在同一个tcp的连接中可以传送多个HTTP请求和响应. 多个请求和响应可以重叠，多个请求和响应可以同时进行. 更加多的请求头和响应头(比如HTTP1.0没有host的字段).</p>
-<p>HTTP 1.1的持续连接，也需要增加新的请求头来帮助实现，例如，Connection请求头的值为Keep-Alive时，客户端通知服务器返回本次请求结果后保持连接；Connection请求头的值为close时，客户端通知服务器返回本次请求结果后关闭连接。</p>
+<p> HTTP 1.1的持续连接，也需要增加新的请求头来帮助实现，例如，Connection请求头的值为Keep-Alive时，客户端通知服务器返回本次请求结果后保持连接；Connection请求头的值为close时，客户端通知服务器返回本次请求结果后关闭连接。</p>
 </blockquote>
 <p>HTTP 1.1还提供了与身份认证、状态管理和Cache缓存等机制相关的请求头和响应头。</p>
 <blockquote>
@@ -623,17 +651,16 @@
 </blockquote>
 <p><strong>100(Continue)Status</strong></p>
 <blockquote>
-<p>HTTP/1.1加入了一个新的状态码100（Continue）。客户端事先发送一个只带头域的请求，如果服务器因为权限拒绝了请求，就回送响应码401（Unauthorized）；如果服务器接收此请求就回送响应码100，客户端就可以继续发送带实体的完整请求了。</p>
+<p>HTTP&#x2F;1.1加入了一个新的状态码100（Continue）。客户端事先发送一个只带头域的请求，如果服务器因为权限拒绝了请求，就回送响应码401（Unauthorized）；如果服务器接收此请求就回送响应码100，客户端就可以继续发送带实体的完整请求了。</p>
 <p>100 (Continue) 状态代码的使用，允许客户端在发request消息body之前先用request header试探一下server，看server要不要接收request body，再决定要不要发request body。</p>
 </blockquote>
 <p><strong>Chunked</strong></p>
-<p>HTTP/1.1中引入了Chunked transfer-coding来解决上面这个问题，发送方将消息分割成若干个任意大小的数据块，每个数据块在发送时都会附上块的长度，最后用一个零长度的块作为消息结束的标志。</p>
+<p>HTTP&#x2F;1.1中引入了Chunked transfer-coding来解决上面这个问题，发送方将消息分割成若干个任意大小的数据块，每个数据块在发送时都会附上块的长度，最后用一个零长度的块作为消息结束的标志。</p>
 <p>这种方法允许发送方只缓冲消息的一个片段，避免缓冲整个消息带来的过载。</p>
 <blockquote>
-<p>HTTP/1.1在1.0的基础上加入了一些cache的新特性，当缓存对象的Age超过Expire时变为stale对象，cache不需要直接抛弃stale对象，而是与源服务器进行重新激活（revalidation）。</p>
+<p>HTTP&#x2F;1.1在1.0的基础上加入了一些cache的新特性，当缓存对象的Age超过Expire时变为stale对象，cache不需要直接抛弃stale对象，而是与源服务器进行重新激活（revalidation）。</p>
 </blockquote>
-<h2 id="HTTP2-0">HTTP2.0</h2>
-<p>HTTP2.0和HTTP1.X相比的新特性</p>
+<h2 id="HTTP2-0"><a href="#HTTP2-0" class="headerlink" title="HTTP2.0"></a>HTTP2.0</h2><p>HTTP2.0和HTTP1.X相比的新特性</p>
 <blockquote>
 <ol>
 <li><strong>新的二进制格式</strong>（Binary Format），HTTP1.x的解析是基于文本。基于文本协议的格式解析存在天然缺陷，文本的表现形式有多样性，要做到健壮性考虑的场景必然很多，二进制则不同，只认0和1的组合。基于这种考虑HTTP2.0的协议解析决定采用二进制格式，实现方便且健壮。</li>
@@ -645,21 +672,19 @@
 <p><strong>HTTP2.0的多路复用和HTTP1.X中的长连接复用有什么区别？</strong></p>
 <blockquote>
 <ul>
-<li>HTTP/1.* 一次请求-响应，建立一个连接，用完关闭；每一个请求都要建立一个连接；</li>
-<li>HTTP/1.1 Pipeling解决方式为，若干个请求排队串行化单线程处理，后面的请求等待前面请求的返回才能获得执行机会，一旦有某请求超时等，后续请求只能被阻塞，毫无办法，也就是人们常说的线头阻塞；</li>
-<li>HTTP/2多个请求可同时在一个连接上并行执行。某个请求任务耗时严重，不会影响到其它连接的正常执行；</li>
+<li>HTTP&#x2F;1.* 一次请求-响应，建立一个连接，用完关闭；每一个请求都要建立一个连接；</li>
+<li>HTTP&#x2F;1.1 Pipeling解决方式为，若干个请求排队串行化单线程处理，后面的请求等待前面请求的返回才能获得执行机会，一旦有某请求超时等，后续请求只能被阻塞，毫无办法，也就是人们常说的线头阻塞；</li>
+<li>HTTP&#x2F;2多个请求可同时在一个连接上并行执行。某个请求任务耗时严重，不会影响到其它连接的正常执行；</li>
 </ul>
 </blockquote>
-<h1>网络安全</h1>
-<h2 id="数字证书">数字证书</h2>
-<p>不对称加密也会有同样的问题，如何将不对称加密的公钥给对方呢？一种是放在一个公网的地址上，让对方下载；另一种就是在建立连接的时候，传给对方。</p>
+<h1 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h1><h2 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h2><p>不对称加密也会有同样的问题，如何将不对称加密的公钥给对方呢？一种是放在一个公网的地址上，让对方下载；另一种就是在建立连接的时候，传给对方。</p>
 <p>这两种方法有相同的问题，那就是，作为一个普通网民，你怎么鉴别别人给你的公钥是对的。</p>
 <p>会不会有人冒充外卖网站，发给你一个它的公钥。接下来，你和它所有的互通，看起来都是没有任何问题的。毕竟每个人都可以创建自己的公钥和私钥。</p>
 <p>证书里面有什么呢？当然应该有<strong>公钥</strong>，这是最重要的；还有证书的<strong>所有者</strong>，就像户口本上有你的姓名和身份证号，说明这个户口本是你的；</p>
 <p>另外还有证书的<strong>发布机构</strong>和证书的<strong>有效期</strong>，这个有点像身份证上的机构是哪个区公安局，有效期到多少年。</p>
 <p>这个证书是怎么生成的呢？会不会有人假冒权威机构颁发证书呢？</p>
 <p>证书请求可以通过这个命令生成。</p>
-<pre><code class="language-vbnet">openssl req -key cliu8siteprivate.key -new -out cliu8sitecertificate.req
+<pre><code class="vbnet">openssl req -key cliu8siteprivate.key -new -out cliu8sitecertificate.req
 </code></pre>
 <p>将这个请求发给权威机构，权威机构会给这个证书卡一个章，我们称为签名算法。</p>
 <p>就像有假身份证、假户口本一样。生成证书需要发起一个证书请求，然后将这个请求发给一个权威机构去认证，这个权威机构我们称为<strong>CA</strong>（ <strong>Certificate Authority</strong>）。</p>
@@ -668,24 +693,23 @@
 <p>一般是对信息做一个Hash计算，得到一个Hash值，这个过程是不可逆的，也就是说无法通过Hash值得出原来的信息内容。</p>
 <p>在把信息发送出去时，把这个Hash值加密后，作为一个签名和信息一起发出去。</p>
 </blockquote>
-<h2 id="SQL注入">SQL注入</h2>
-<p>SQL注入常见的Web安全问题之一，其形式主要是把SQL命令插入到Web表单提交或页面请求url的查询字符串，破坏原有SQL结构，最终达到欺骗服务器执行恶意的SQL命令。</p>
+<h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><p>SQL注入常见的Web安全问题之一，其形式主要是把SQL命令插入到Web表单提交或页面请求url的查询字符串，破坏原有SQL结构，最终达到欺骗服务器执行恶意的SQL命令。</p>
 <blockquote>
 <p>SQL注入的原理是将sql代码伪装到输入参数中，传递到服务器解析并执行的一种攻击手法。</p>
 <p>也就是说，在一些对server端发起的请求参数中植入一些sql代码，server端在执行sql操作时，会拼接对应参数，同时也将一些sql注入攻击的sql拼接起来，导致会执行一些预期之外的操作。</p>
 </blockquote>
 <p>日常使用的登录接口：在登录界面包括用户名和密码输入框，以及提交按钮，输入用户名和密码，提交。</p>
 <blockquote>
-<p>登录时调用接口/user/login/ 加上参数username、password，首先连接数据库，然后后台对请求参数中携带的用户名、密码进行参数校验，即sql的查询过程。</p>
+<p>登录时调用接口&#x2F;user&#x2F;login&#x2F; 加上参数username、password，首先连接数据库，然后后台对请求参数中携带的用户名、密码进行参数校验，即sql的查询过程。</p>
 <p>假设正确的用户名和密码为ls和123456，输入正确的用户名和密码、提交，相当于调用了以下的SQL语句。</p>
-<p>SELECT * FROM user WHERE username = ‘ls’ AND password = ‘123456’</p>
-<p>sql中会将#及–以后的字符串当做注释处理，如果我们使用“’ or 1=1 #&quot;作为用户名参数，那么服务端构建的sql语句就如下：</p>
-<p>select * from users where username=‘’ or 1=1#’ and password=‘123456’</p>
+<p>SELECT * FROM user WHERE username &#x3D; ‘ls’ AND password &#x3D; ‘123456’</p>
+<p>sql中会将#及–以后的字符串当做注释处理，如果我们使用“’ or 1&#x3D;1 #”作为用户名参数，那么服务端构建的sql语句就如下：</p>
+<p>select * from users where username&#x3D;’’ or 1&#x3D;1#’ and password&#x3D;’123456’</p>
 <p>而#会忽略后面的语句，因此上面的sql也等价于：</p>
-<p>select * from users where username=‘’ or 1=1</p>
-<p>而1=1属于常等型条件，因此这个sql便成为了如下，查询出所有的登陆用户。</p>
+<p>select * from users where username&#x3D;’’ or 1&#x3D;1</p>
+<p>而1&#x3D;1属于常等型条件，因此这个sql便成为了如下，查询出所有的登陆用户。</p>
 <p>select * from users</p>
-<p>其实上面的sql注入只是在参数层面做了些手脚，如果是引入了一些功能性的sql那就更危险了，比如上面的登陆接口，如果用户名使用这个&quot;’ or 1=1;delete * from users;#“，那么在”;&quot;之后相当于是另外一条新的sql，这个sql是删除全表，那后果可想而知</p>
+<p>其实上面的sql注入只是在参数层面做了些手脚，如果是引入了一些功能性的sql那就更危险了，比如上面的登陆接口，如果用户名使用这个”‘ or 1&#x3D;1;delete * from users;#”，那么在”;”之后相当于是另外一条新的sql，这个sql是删除全表，那后果可想而知</p>
 </blockquote>
 <p><strong>SQL注入的危害：</strong></p>
 <p>如果网站存在 SQL 注入漏洞，相当于将数据库直接暴露在攻击者面前。攻击者利用 SQL 注入漏洞能实现包括但不限于以下攻击：</p>
@@ -702,16 +726,14 @@
 <p>特殊字符：–、#、等等</p>
 <p>权限限制</p>
 <p>严格限制Web应用的数据库的操作权限，给此用户提供仅仅能够满足其工作的最低权限，从而最大限度的减少注入攻击对数据库的危害。</p>
-<p>日志处理：当数据库操作失败的时候，尽量不要将原始错误日志返回，比如类型错误、字段不匹配等，把代码里的 SQL 语句暴露出来，以防止攻击者利用这些错误信息进行 SQL 注入。<br>
-sql预编译(非ORM框架)</p>
+<p>日志处理：当数据库操作失败的时候，尽量不要将原始错误日志返回，比如类型错误、字段不匹配等，把代码里的 SQL 语句暴露出来，以防止攻击者利用这些错误信息进行 SQL 注入。<br>sql预编译(非ORM框架)</p>
 <p>通过prepareStatementsql进行预编译，将绑定的参数传到mysql服务器，mysql服务器对参数进行编译，即填充到相应的占位符的过程中，做了转义操作。 我们常用的jdbc就有预编译功能，不仅提升性能，而且防止sql注入。</p>
 <p>ORM框架处理 如myBatis</p>
 </blockquote>
 <p>MyBatis中并不是百分百的能防止SQL注入，比如#{xxx}这样格式的参数会直接参与SQL编译，从而不能避免注入攻击。但涉及到动态表名和列名时，只能使用${xxx}这样的参数格式。</p>
 <p>所以，这样的参数需要我们在代码中手工进行处理来防止注入。</p>
 <p>在编写MyBatis的映射语句时，尽量采用#{xxx}这样的格式。若不得不使用${xxx}这样的参数，要手工地做好过滤工作，来防止SQL注入攻击。</p>
-<h2 id="XSS">XSS</h2>
-<p>Cross-Site Scripting(跨站脚本攻击)，简称XSS，是一种代码注入攻击。</p>
+<h2 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h2><p>Cross-Site Scripting(跨站脚本攻击)，简称XSS，是一种代码注入攻击。</p>
 <p>攻击者通过在目标网站上注入恶意脚本，使之在用户的浏览器上运行。利用这些恶意脚本，攻击者可获取用户的敏感信息如Cookie、SessionID等，进而危害数据安全</p>
 <p><strong>XSS的注入方法</strong></p>
 <blockquote>
@@ -730,8 +752,7 @@ sql预编译(非ORM框架)</p>
 <p>输入过滤：一般是用于对于输入格式的检查，例如：邮箱，电话号码，用户名，密码……等，按照规定的格式输入。不仅仅是前端负责，后端也要做相同的过滤检查。因为攻击者完全可以绕过正常的输入流程，直接利用相关接口向服务器发送设置。</p>
 <p>转义HTML：如果拼接 HTML 是必要的，就需要对于引号，尖括号，斜杠进行转义,但这还不是很完善.想对 HTML 模板各处插入点进行充分的转义,就需要采用合适的转义库</p>
 </blockquote>
-<h2 id="CSRF">CSRF</h2>
-<p>Cross-site request forgery(跨站请求伪造)，是一种挟持用户在当前已登陆的Web应用程序上执行非本意的操作的攻击方法。</p>
+<h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><p>Cross-site request forgery(跨站请求伪造)，是一种挟持用户在当前已登陆的Web应用程序上执行非本意的操作的攻击方法。</p>
 <blockquote>
 <p>如:攻击者诱导受害者进入第三方网站，在第三方网站中，向被攻击网站发送跨站请求。利用受害者在被攻击网站已经获取的注册凭证，绕过后台的用户验证，达到冒充用户对被攻击的网站执行某项操作的目的。</p>
 </blockquote>
@@ -755,12 +776,11 @@ sql预编译(非ORM框架)</p>
 <p>本质上讲，XSS 是代码注入问题，CSRF 是 HTTP 问题。 XSS 是内容没有过滤导致浏览器将攻击者的输入当代码执行。</p>
 <p>CSRF 则是因为浏览器在发送 HTTP 请求时候自动带上 cookie，而一般网站的 session 都存在 cookie里面(Token验证可以避免)。</p>
 </blockquote>
-<h2 id="DOS">DOS</h2>
-<p>DOS：中文名称是拒绝服务，一切能引起DOS行为的攻击都被称为DOS攻击。该攻击的效果是使得计算机或网络无法提供正常的服务。常见的DOS攻击有针对计算机网络带宽和连通性的攻击。</p>
+<h2 id="DOS"><a href="#DOS" class="headerlink" title="DOS"></a>DOS</h2><p>DOS：中文名称是拒绝服务，一切能引起DOS行为的攻击都被称为DOS攻击。该攻击的效果是使得计算机或网络无法提供正常的服务。常见的DOS攻击有针对计算机网络带宽和连通性的攻击。 </p>
 <p>DOS是单机于单机之间的攻击。</p>
 <p><strong>DOS攻击的原理：</strong></p>
 <blockquote>
-<p>首先攻击者向被攻击的服务器发送大量的虚假IP请求，被攻击者在收到请求后返回确认信息，等待攻击者进行确认，（此处需要拥有HTTP协议工作方式和TCP三次握手的基本知识）该过程需要TCP的三次握手，由于攻击者发送的请求信息是虚假的，所以服务器接收不到返回的确认信息，在一段时间内服务器会处与等待状态，而分配给这次请求的资源却被有被释放。</p>
+<p> 首先攻击者向被攻击的服务器发送大量的虚假IP请求，被攻击者在收到请求后返回确认信息，等待攻击者进行确认，（此处需要拥有HTTP协议工作方式和TCP三次握手的基本知识）该过程需要TCP的三次握手，由于攻击者发送的请求信息是虚假的，所以服务器接收不到返回的确认信息，在一段时间内服务器会处与等待状态，而分配给这次请求的资源却被有被释放。</p>
 <p>当被攻击者等待一定的时间后，会因连接超时而断开，这时攻击者在次发送新的虚假信息请求，这样最终服务器资源被耗尽，直到瘫痪。</p>
 </blockquote>
 <p><strong>DDOS：</strong></p>
@@ -778,7 +798,7 @@ sql预编译(非ORM框架)</p>
 <p>这样这个服务器就无法工作了，这种攻击就叫做:SYN-Flood攻击。</p>
 </blockquote>
 <p>到目前为止，进行DDoS攻击的防御还是比较困难的。</p>
-<p>首先，这种攻击的特点是它利用了TCP/IP协议的漏洞，除非你不用TCP/IP，才有可能完全抵御住DDoS攻击。</p>
+<p>首先，这种攻击的特点是它利用了TCP&#x2F;IP协议的漏洞，除非你不用TCP&#x2F;IP，才有可能完全抵御住DDoS攻击。</p>
 <p>不过这不等于我们就没有办法阻挡DDoS攻击，我们可以尽力来减少DDoS的攻击。</p>
 <blockquote>
 <p>确保服务器的系统文件是最新的版本，并及时更新系统补丁。</p>
@@ -792,14 +812,12 @@ sql预编译(非ORM框架)</p>
 <p>严格限制对外开放的服务器的向外访问</p>
 <p>运行端口映射程序祸端口扫描程序，要认真检查特权端口和非特权端口。</p>
 </blockquote>
-<h1>加密算法</h1>
-<p><strong>对称加密和非对称加密</strong></p>
+<h1 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h1><p><strong>对称加密和非对称加密</strong></p>
 <p>加密算法分 <strong>对称加密</strong> 和 <strong>非对称加密</strong>，其中对称加密算法的加密与解密 <strong>密钥相同</strong>，非对称加密算法的加密密钥与解密 <strong>密钥不同</strong>，此外，还有一类 <strong>不需要密钥</strong> 的 <strong>散列算法</strong>。</p>
 <blockquote>
 <p>常见的 <strong>对称加密</strong> 算法主要有 <code>DES</code>、<code>3DES</code>、<code>AES</code> 等，常见的 <strong>非对称算法</strong> 主要有 <code>RSA</code>、<code>DSA</code> 等，<strong>散列算法</strong> 主要有 <code>SHA-1</code>、<code>MD5</code> 等。</p>
 </blockquote>
-<h2 id="对称加密">对称加密</h2>
-<p><strong>对称加密算法</strong> 是应用较早的加密算法，又称为 <strong>共享密钥加密算法</strong>。在 <strong>对称加密算法</strong> 中，使用的密钥只有一个，<strong>发送</strong> 和 <strong>接收</strong> 双方都使用这个密钥对数据进行 <strong>加密</strong> 和 <strong>解密</strong>。</p>
+<h2 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h2><p><strong>对称加密算法</strong> 是应用较早的加密算法，又称为 <strong>共享密钥加密算法</strong>。在 <strong>对称加密算法</strong> 中，使用的密钥只有一个，<strong>发送</strong> 和 <strong>接收</strong> 双方都使用这个密钥对数据进行 <strong>加密</strong> 和 <strong>解密</strong>。</p>
 <p>这就要求加密和解密方事先都必须知道加密的密钥。</p>
 <blockquote>
 <ol>
@@ -807,8 +825,7 @@ sql预编译(非ORM框架)</p>
 <li>数据解密过程：<strong>数据接收方</strong> 收到密文后，若想读取原数据，则需要使用 <strong>加密使用的密钥</strong> 及相同算法的 <strong>逆算法</strong> 对加密的密文进行解密，才能使其恢复成 <strong>可读明文</strong>。</li>
 </ol>
 </blockquote>
-<h2 id="非对称加密">非对称加密</h2>
-<p><strong>非对称加密算法</strong>，又称为 <strong>公开密钥加密算法</strong>。它需要两个密钥，一个称为 <strong>公开密钥</strong> (<code>public key</code>)，即 <strong>公钥</strong>，另一个称为 <strong>私有密钥</strong> (<code>private key</code>)，即 <strong>私钥</strong>。</p>
+<h2 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h2><p><strong>非对称加密算法</strong>，又称为 <strong>公开密钥加密算法</strong>。它需要两个密钥，一个称为 <strong>公开密钥</strong> (<code>public key</code>)，即 <strong>公钥</strong>，另一个称为 <strong>私有密钥</strong> (<code>private key</code>)，即 <strong>私钥</strong>。</p>
 <p>因为 <strong>加密</strong> 和 <strong>解密</strong> 使用的是两个不同的密钥，所以这种算法称为 <strong>非对称加密算法</strong>。</p>
 <ol>
 <li>如果使用 <strong>公钥</strong> 对数据 <strong>进行加密</strong>，只有用对应的 <strong>私钥</strong> 才能 <strong>进行解密</strong>。</li>
@@ -817,8 +834,7 @@ sql预编译(非ORM框架)</p>
 <blockquote>
 <p><strong>例子</strong>：甲方生成 <strong>一对密钥</strong> 并将其中的一把作为 <strong>公钥</strong> 向其它人公开，得到该公钥的 <strong>乙方</strong> 使用该密钥对机密信息 <strong>进行加密</strong> 后再发送给甲方，甲方再使用自己保存的另一把 <strong>专用密钥</strong> (<strong>私钥</strong>)，对 <strong>加密</strong> 后的信息 <strong>进行解密</strong>。</p>
 </blockquote>
-<h1>TCP和UDP</h1>
-<p><strong>TCP和UDP区别？</strong></p>
+<h1 id="TCP和UDP"><a href="#TCP和UDP" class="headerlink" title="TCP和UDP"></a>TCP和UDP</h1><p><strong>TCP和UDP区别？</strong></p>
 <blockquote>
 <p>UDP是无连接的传输层协议；</p>
 <p>UDP使用尽最大努力交付，不保证可靠交付；</p>
@@ -834,22 +850,18 @@ sql预编译(非ORM框架)</p>
 <blockquote>
 <p>TCP是面向连接的传输层协议。也就是说，在双方传输数据之前，必须先建立起连接，传输完数据后要结束连接；</p>
 <ul>
-<li>
-<p>如三次握手就是建立连接的过程，四次挥手就是结束连接；</p>
+<li><p>如三次握手就是建立连接的过程，四次挥手就是结束连接；</p>
 </li>
-<li>
-<p>比如两个人打电话，通话前需要拨号建立连接，通话结束后要挂机释放连接；</p>
+<li><p>比如两个人打电话，通话前需要拨号建立连接，通话结束后要挂机释放连接；</p>
 </li>
 </ul>
 <p>每一条TCP连接只能有两个端点，即点对点通信（一对一）；</p>
 <p>TCP提供可靠的传输服务；通过TCP连接传送的数据，无差错、不丢失、不重复、按序到达；</p>
 <p>TCP提供全双工的通信；</p>
 <ul>
-<li>
-<p>TCP允许通信双方的应用进程在任何时候都可以发送数据；因为TCP连接的两端都设有发送缓存和接收缓存，用来临时存放双方通信的数据；</p>
+<li><p>TCP允许通信双方的应用进程在任何时候都可以发送数据；因为TCP连接的两端都设有发送缓存和接收缓存，用来临时存放双方通信的数据；</p>
 </li>
-<li>
-<p>简单来说，两个计算机在连接的时候，都可以同时地通过连接发送数据或接收数据</p>
+<li><p>简单来说，两个计算机在连接的时候，都可以同时地通过连接发送数据或接收数据</p>
 </li>
 </ul>
 <p>TCP是面向字节流的协议；</p>
@@ -868,8 +880,7 @@ sql预编译(非ORM框架)</p>
 <li>适合多媒体信息分发的场景，如直播，视频，语音，实时信息（股票走势）等；</li>
 </ul>
 </blockquote>
-<h2 id="UDP">UDP</h2>
-<p><strong>如何保证UDP协议可靠？</strong></p>
+<h2 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h2><p><strong>如何保证UDP协议可靠？</strong></p>
 <p>基本的思想：模拟TPC的可靠机制来实现,保证四个无即可（无丢失、无失序、无错误、无重复）</p>
 <p>可以从以下几点着手：</p>
 <blockquote>
@@ -885,22 +896,19 @@ sql预编译(非ORM框架)</p>
 <p>每次接收方接收到数据，发出应答信号。同时发送方在规定的时间检测是否接收到应答，如果没有接收到应答，重发，三次后还未收到应答直接判断发送失败。</p>
 <p>发送数据时，发送方增加校验位。如果接收方校验出错，请求重发。</p>
 </blockquote>
-<h2 id="TCP">TCP</h2>
-<h3 id="流量控制">流量控制</h3>
-<p>TCP 利用滑动窗口实现流量控制。流量控制是为了控制发送方发送速率，保证接收方来得及接收数据。</p>
+<h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><h3 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h3><p>TCP 利用滑动窗口实现流量控制。流量控制是为了控制发送方发送速率，保证接收方来得及接收数据。</p>
 <p>接收方发送的确认报文中的窗口字段可以用来控制发送方窗口大小，从而影响发送方的发送速率。将窗口字段设置为 0，则发送方不能发送数据。</p>
 <p><strong>如下图中：</strong></p>
-<p>ack=201代表期待收到的下一个字节的序号，rwnd=300，代表当前的窗口为300，表示说接收方还可以接收300个字节的数据</p>
+<p>ack&#x3D;201代表期待收到的下一个字节的序号，rwnd&#x3D;300，代表当前的窗口为300，表示说接收方还可以接收300个字节的数据</p>
 <p><strong>现在考虑一种特殊的情况：</strong></p>
-<p>当接收方窗口大小为0时，发送方不能发送数据，在接收方把数据处理完之后，向接收方发送rwnd=1000，通知发送方我还可以接收1000个字节的数据，但是这个字段在传输时丢失了，接收方并没有接收到这个数据，默认接收方当前窗口为0。这种情况该如何处理呢？</p>
+<p>当接收方窗口大小为0时，发送方不能发送数据，在接收方把数据处理完之后，向接收方发送rwnd&#x3D;1000，通知发送方我还可以接收1000个字节的数据，但是这个字段在传输时丢失了，接收方并没有接收到这个数据，默认接收方当前窗口为0。这种情况该如何处理呢？</p>
 <p>可以通过坚持定时器来解决这个问题</p>
 <p><strong>坚持定时器</strong></p>
 <blockquote>
 <p>当接收到窗口为0的消息，则启动坚持定时器</p>
 <p>坚持定时器会每隔一段时间发送一个窗口探测报文，来询问接收方当前的窗口大小。</p>
 </blockquote>
-<h3 id="拥塞控制">拥塞控制</h3>
-<p>网络传输过程中，某段时间如果网络中某一资源的需求超过了该资源所能提供的可用部分，网络性能就会变坏，这种情况就叫做<strong>网络拥塞</strong></p>
+<h3 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h3><p>网络传输过程中，某段时间如果网络中某一资源的需求超过了该资源所能提供的可用部分，网络性能就会变坏，这种情况就叫做<strong>网络拥塞</strong></p>
 <p>为解决这个问题，TCP中使用了四种拥塞控制算法</p>
 <p><strong>慢开始</strong></p>
 <p>发送方会维持一个拥塞窗口cwnd的状态变量，拥塞窗口的大小取决于拥塞程度，并且会在收发包过程中动态的进行变化。发送方会让本端的发送窗口等于拥塞窗口。</p>
@@ -911,11 +919,11 @@ sql预编译(非ORM框架)</p>
 <ol>
 <li>当cwnd &lt; ssthresh 时，使用慢开始算法。</li>
 <li>当cwnd &gt; ssthresh 时，停止使用慢开始算法而改用拥塞避免算法。</li>
-<li>当cwnd = ssthresh 时，既可以使用慢开始算法，也可以使用拥塞避免算法。</li>
+<li>当cwnd &#x3D; ssthresh 时，既可以使用慢开始算法，也可以使用拥塞避免算法。</li>
 </ol>
 <p>假设发送方拥塞窗口cwnd的值为1，发送窗口swnd等于拥塞窗口cwnd，那么目前发送方只能发送一个报文段，cwnd为几就能发送几个报文段，接收方收到报文段后发送回复确认，发送方收到确认报文，会将拥塞窗口的值乘2，变为2。</p>
-<p>发送方此时一次就能发送两个报文段，接收方收到报文段后返回两次确认报文段，发送方收到之后拥塞窗口再乘2，cwnd=4。知道发送方发送16个报文段都按时收到确认报文，拥塞窗口变为32，但是这一次没有按时收到确认报文，即有报文需要重传，表示网络发生了拥塞，这时候设定ssthresh为当前窗口cwnd的一半，即ssthresh = cwnd/2 = 16。重新开始慢开始。</p>
-<p>再一次cwnd=16的时候，开启拥塞避免算法。</p>
+<p>发送方此时一次就能发送两个报文段，接收方收到报文段后返回两次确认报文段，发送方收到之后拥塞窗口再乘2，cwnd&#x3D;4。知道发送方发送16个报文段都按时收到确认报文，拥塞窗口变为32，但是这一次没有按时收到确认报文，即有报文需要重传，表示网络发生了拥塞，这时候设定ssthresh为当前窗口cwnd的一半，即ssthresh &#x3D; cwnd&#x2F;2 &#x3D; 16。重新开始慢开始。</p>
+<p>再一次cwnd&#x3D;16的时候，开启拥塞避免算法。</p>
 </blockquote>
 <p><strong>拥塞避免算法</strong></p>
 <p>拥塞避免算法是让拥塞窗口缓慢增长，每经过一个往返时间RTT就把发送方的拥塞窗口cwnd加1，而不是加倍，拥塞窗口按线性规律缓慢增长。</p>
@@ -933,24 +941,23 @@ sql预编译(非ORM框架)</p>
 <p>当发送方连续收到三个重复确认的时候，执行 乘法减小 算法，将ssthresh门限减半（为了预防网络发生拥塞），但是接下来不执行慢开始算法，因为如果网络发生拥塞的话就不会收到好几个重复的确认，所以发送方现在认为网络可能没有出现拥塞。</p>
 <p>此时不会执行慢开始算法，而是将拥塞窗口cwnd设置为ssthresh减半后的值，然后执行拥塞避免算法，让cwnd缓慢变大。</p>
 </blockquote>
-<h3 id="四次挥手">四次挥手</h3>
-<p><strong>四次挥手的过程如下：</strong></p>
+<h3 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h3><p><strong>四次挥手的过程如下：</strong></p>
 <p>第一次挥手：</p>
 <blockquote>
-<p>客户端向服务器发送一个 FIN 数据包（FIN = 1，seq = u）主动断开连接，报文中会指定一个序列号。</p>
+<p>客户端向服务器发送一个 FIN 数据包（FIN &#x3D; 1，seq &#x3D; u）主动断开连接，报文中会指定一个序列号。</p>
 <p>告诉服务器：我要跟你断开连接了，不会再给你发数据了；</p>
 <p>客户端此时还是可以接收数据的，如果一直没有收到被动连接方的确认包，则可以重新发送这个包。</p>
 <p>此时客户端处于 FIN_WAIT1 状态。</p>
 </blockquote>
 <p>第二次挥手：</p>
 <blockquote>
-<p>服务器收到 FIN 数据包之后，向客户端发送确认包（ACK = 1,ack = u + 1），把客户端的序列号值 + 1 作为 ACK 报文的序列号值，表明已经收到客户端的报文了</p>
+<p>服务器收到 FIN 数据包之后，向客户端发送确认包（ACK &#x3D; 1,ack &#x3D; u + 1），把客户端的序列号值 + 1 作为 ACK 报文的序列号值，表明已经收到客户端的报文了</p>
 <p>这是服务器在告诉客户端：我知道你要断开了，但是我还有数据没有发送完，等发送完了所有的数据就进行第三次挥手</p>
 <p>此时服务端处于 CLOSE_WAIT 状态，客户端处于 FIN_WAIT2 状态</p>
 </blockquote>
 <p>第三次挥手：</p>
 <blockquote>
-<p>服务器向客户端发送FIN 数据包（FIN=1，seq = w），且指定一个序列号，以及确认包（ACK = 1， ack = u + 1），用来停止向客户端发送数据</p>
+<p>服务器向客户端发送FIN 数据包（FIN&#x3D;1，seq &#x3D; w），且指定一个序列号，以及确认包（ACK &#x3D; 1， ack &#x3D; u + 1），用来停止向客户端发送数据</p>
 <p>这个动作是告诉客户端：我的数据也发送完了，不再给你发数据了</p>
 <p>此时服务端处于LAST_ACK状态，客户端处于TIME_WAIT状态</p>
 </blockquote>
@@ -958,7 +965,7 @@ sql预编译(非ORM框架)</p>
 <blockquote>
 <p>客户端收到 FIN数据包 之后，一样发送一个 ACK 报文作为应答，且把服务端的序列号值 + 1 作为自己 ACK 报文的序列号值</p>
 <p>此时客户端处于 TIME_WAIT 状态。</p>
-<p>需要过一了一定时间（2MSL）之后，客户端发送确认包（ACK = 1， ack = w + 1），此时客户端才会进入 CLOSED 状态，以确保发送方的ACK可以到达接收方，防止已失效连接请求报文段出现在此连接中。</p>
+<p>需要过一了一定时间（2MSL）之后，客户端发送确认包（ACK &#x3D; 1， ack &#x3D; w + 1），此时客户端才会进入 CLOSED 状态，以确保发送方的ACK可以到达接收方，防止已失效连接请求报文段出现在此连接中。</p>
 <p>至此，完成四次挥手。</p>
 </blockquote>
 <p><strong>等待计时器（TIME-WAIT）</strong></p>

@@ -303,6 +303,24 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/">
+										Nginx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/%E8%BF%90%E7%BB%B4%E7%9F%A5%E8%AF%86/">
+										运维知识
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -356,6 +374,26 @@
 								<li class="file">
 									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RocketMQ/">
 										RocketMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										生活相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E9%9F%B3%E4%B9%90/">
+										音乐
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -493,25 +531,38 @@
 
 <div id="container" class = "content999">
 	<div id="article-content">
-		<h1>MAC</h1>
+		<h1 id="网站"><a href="#网站" class="headerlink" title="网站"></a>网站</h1><p>固定尺寸图片生成工具：<a target="_blank" rel="noopener" href="https://dummyimage.com/">https://dummyimage.com/</a></p>
+<p>在线开发文档：<a target="_blank" rel="noopener" href="https://devdocs.io/">https://devdocs.io/</a></p>
+<p>网易有道词典：<a target="_blank" rel="noopener" href="https://www.youdao.com/">https://www.youdao.com/</a></p>
+<p>命名网站：<a target="_blank" rel="noopener" href="https://unbug.github.io/codelf/">https://unbug.github.io/codelf/</a></p>
+<p>JSON格式化网站：<a target="_blank" rel="noopener" href="https://www.json.cn/">https://www.json.cn/</a></p>
+<p>CRON表达式：<a target="_blank" rel="noopener" href="https://cron.qqe2.com/">https://cron.qqe2.com/</a></p>
+<p>时间戳工具：<a target="_blank" rel="noopener" href="https://tool.lu/timestamp/">https://tool.lu/timestamp/</a></p>
+<h1 id="MAC"><a href="#MAC" class="headerlink" title="MAC"></a>MAC</h1><p><strong>实用软件：</strong></p>
+<blockquote>
 <p>Dynamic Wallpaper：动态视频壁纸</p>
+<p>腾讯柠檬清理</p>
+<p>SwitchHosts</p>
+<p>数据库管理工具：<a target="_blank" rel="noopener" href="https://chat2db.ai/docs/guides/download">https://chat2db.ai/docs/guides/download</a></p>
+<p>ZooKeeper：WEB管理工具：<a target="_blank" rel="noopener" href="https://github.com/vran-dev/PrettyZoo">https://github.com/vran-dev/PrettyZoo</a></p>
+<p>Redis：Another Redis Desktop Manager</p>
+</blockquote>
 <p><strong>HomeBrew</strong></p>
-<p>国内安装可用：</p>
+<p>国内安装：</p>
 <pre><code>/bin/zsh -c &quot;$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)&quot;
 </code></pre>
-<p><strong>JDK安装</strong></p>
+<p><strong>JDK</strong></p>
 <blockquote>
-<p>1.到Oracle官网下载JDK1.8安装包：</p>
+<p>Oracle官网下载JDK1.8安装包：</p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/downloads/#java8">https://www.oracle.com/java/technologies/downloads/#java8</a></p>
 <blockquote>
-<p>2.配置系统的环境变量：</p>
+<p>配置系统的环境变量：</p>
 </blockquote>
-<p>JDK的真实主目录如下：</p>
+<p>JDK真实主目录如下：</p>
 <pre><code>/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home
 </code></pre>
-<p>打开<code>.bash_profile</code>并编辑：</p>
-<p>在文件的末尾加入这几行语句：</p>
+<p>打开<code>.bash_profile</code>，在文件的末尾加入这几行语句：</p>
 <pre><code>open ~/.bash_profile
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_281.jdk/Contents/Home
@@ -521,47 +572,19 @@ export CLASSPATH=$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar:.
 source ~/.bash_profile
 </code></pre>
 <blockquote>
-<p>3.验证JDK1.8是否安装成功</p>
+<p>验证JDK1.8是否安装成功</p>
 </blockquote>
 <pre><code># 确认配置生效
 java -version
 </code></pre>
-<p><strong>Maven安装</strong></p>
-<blockquote>
-<p>1.下载：</p>
-</blockquote>
-<p>下载地址：<a target="_blank" rel="noopener" href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a></p>
-<p>修改<code>settting.xml</code>文件，在mirrors标签下添加子节点。</p>
-<pre><code class="language-xml"> &lt;mirror&gt;
- 	&lt;id&gt;nexus-aliyun&lt;/id&gt;
- 	&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
- 	&lt;name&gt;Nexus aliyun&lt;/name&gt;
-	 &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
- &lt;/mirror&gt;
-</code></pre>
-<blockquote>
-<p>2.配置系统的环境变量：</p>
-</blockquote>
-<pre><code>open ~/.bash_profile
-
-export MAVEN_HOME=/Users/kun/Desktop/midongtools/apache-maven-3.5.0
-export PATH=$PATH:$MAVEN_HOME/bin
-
-source ~/.bash_profile
-</code></pre>
-<blockquote>
-<p>3.验证是否安装成功</p>
-</blockquote>
-<pre><code>mvn -v
-</code></pre>
-<p><strong>Iterm2</strong></p>
-<p>iTerm2下载地址：<a target="_blank" rel="noopener" href="https://iterm2.com/downloads.html">https://iterm2.com/downloads.html</a></p>
+<p><strong>ITerm2</strong></p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://iterm2.com/downloads.html">https://iterm2.com/downloads.html</a></p>
 <blockquote>
 <p>主题配置：</p>
 </blockquote>
-<p>iTerm2 最常用的主题是 Solarized Dark theme，下载地址：<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=http%3A%2F%2Fethanschoonover.com%2Fsolarized">http://ethanschoonover.com/solarized</a></p>
-<p>打开 Preferences 配置界面，然后<code>Profiles -&gt; Colors -&gt; Color Presets</code>，在下拉列表中选择 Import，选择刚才解压的<code>solarized-&gt;iterm2-colors-solarized-&gt;Solarized Dark.itermcolors</code>文件，导入成功后，在 Color Presets下选择 Solarized Dark 主题。</p>
-<p><strong>安装Zsh</strong></p>
+<p>主题：Solarized Dark theme，下载地址：<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=http://ethanschoonover.com/solarized">http://ethanschoonover.com/solarized</a></p>
+<p>配置：打开 Preferences ，<code>Profiles -&gt; Colors -&gt; Color Presets</code>，选择 Import，选择刚才解压的<code>solarized-&gt;iterm2-colors-solarized-&gt;Solarized Dark.itermcolors</code>文件，导入成功后，在 Color Presets下选择 Solarized Dark 主题。</p>
+<p><strong>ZSH</strong></p>
 <pre><code># 使用brew安装zsh
 brew install zsh 
 # 将zsh加入shells备选列表
@@ -569,7 +592,7 @@ echo /usr/local/bin/bash | sudo tee -a /etc/shells
 # 切换到zsh（之后需要重新打开命令窗口）
 chsh -s /usr/local/bin/zsh
 </code></pre>
-<p><strong>安装ohmyzsh</strong></p>
+<p><strong>OhMyzsh</strong></p>
 <pre><code>sh -c &quot;$(curl -fsSL https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh)&quot;
 </code></pre>
 <p>配置zsh</p>
@@ -584,28 +607,46 @@ ZSH_THEME=&quot;ys&quot;
 <p><strong>Python</strong></p>
 <pre><code>brew install python3
 </code></pre>
-<h1>MAT</h1>
-<p><strong>安装</strong></p>
-<p>1.安装地址：</p>
-<p><a target="_blank" rel="noopener" href="https://www.eclipse.org/mat/downloads.php">https://www.eclipse.org/mat/downloads.php</a></p>
-<p>下载太慢可以更改镜像地址</p>
+<h1 id="MAT"><a href="#MAT" class="headerlink" title="MAT"></a>MAT</h1><p>安装地址：<a target="_blank" rel="noopener" href="https://www.eclipse.org/mat/downloads.php">https://www.eclipse.org/mat/downloads.php</a></p>
+<p>下载太慢可以更改镜像地址。</p>
 <blockquote>
 <p>mat需要高版本java环境。</p>
 </blockquote>
-<p>2.一定要将app移入Applications后再打开，不然会报错</p>
-<p>3.加载大dump文件，报错java heap space</p>
+<p>一定要将app移入Applications后再打开，不然会报错。</p>
+<p>加载大dump文件，报错java heap space。</p>
+<blockquote>
 <p>编辑文件MemoryAnalyzer.ini</p>
+</blockquote>
 <pre><code>-Xmx2048m
 </code></pre>
-<p>9个G的dump，用了16384m。</p>
-<h1>Maven</h1>
-<p><strong>远程仓库的认证</strong></p>
-<p>一般情况下，远程仓库无需认证即可访问，但是有一些远程仓库出于安全等因素的考虑需要进行认证才可访问。</p>
+<p>9个G的dump，自己配置成16384m。</p>
+<h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><p>下载地址：<a target="_blank" rel="noopener" href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a></p>
+<p>阿里云镜像配置，修改<code>settting.xml</code>文件，在mirrors标签下添加子节点。</p>
+<pre><code class="xml"> &lt;mirror&gt;
+     &lt;id&gt;nexus-aliyun&lt;/id&gt;
+     &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+     &lt;name&gt;Nexus aliyun&lt;/name&gt;
+     &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+ &lt;/mirror&gt;
+</code></pre>
 <blockquote>
-<p>这个时候就需要配置该仓库的认证信息。因为POM文件作为项目文件是需要提交到仓库中的，而Maven的<code>setting.xml</code>文件是存放在本地中，所以在<code>setting.xml</code>中配置仓库的认证信息会更安全。</p>
+<p>配置系统的环境变量：</p>
 </blockquote>
-<p>在<code>setting.xml</code>文件下的servers元素的子元素server中添加相关远程仓库的认证信息即可，如下所示。其中id元素即为项目POM文件声明的远程仓库的ID</p>
-<pre><code class="language-xml">&lt;settings&gt;
+<pre><code>open ~/.bash_profile
+
+export MAVEN_HOME=/Users/kun/Desktop/midongtools/apache-maven-3.5.0
+export PATH=$PATH:$MAVEN_HOME/bin
+
+source ~/.bash_profile
+</code></pre>
+<blockquote>
+<p>验证是否安装成功</p>
+</blockquote>
+<pre><code>mvn -v
+</code></pre>
+<p><strong>远程仓库认证</strong></p>
+<p>在<code>setting.xml</code>文件下的servers元素的子元素server中添加相关远程仓库的认证信息即可，其中id元素即为项目POM文件声明的远程仓库的ID。</p>
+<pre><code class="xml">&lt;settings&gt;
     ...
     &lt;servers&gt;
     ...
@@ -619,40 +660,6 @@ ZSH_THEME=&quot;ys&quot;
     ...
 &lt;/settings&gt;
 </code></pre>
-<p><strong>镜像</strong></p>
-<blockquote>
-<p>如果仓库Y可以提供仓库X存储的所有内容，那么就称Y是仓库X的一个镜像。有时候远程仓库的地理位置离我们很远，这个时候，如果配置距离我们较近的镜像，通过镜像来访问可以大大提高访问速度。</p>
-</blockquote>
-<p>在<code>setting.xml</code>文件下的mirrors元素的子元素mirror中添加远程仓库的镜像即可</p>
-<p>下述代码是一个为中央仓库配置阿里镜像的实例。</p>
-<p>id元素表示镜像ID(如果该镜像需要认证信息，同样在<code>setting.xml</code>中配置一个该ID的server元素即可)，mirrorOf元素表示被镜像的仓库，name元素是为了方便人阅读说明，url元素为镜像仓库地址</p>
-<pre><code class="language-xml">&lt;settings&gt;
-    ...
-    &lt;mirrors&gt;
-    ...
-        &lt;mirror&gt;
-            &lt;id&gt;nexus-aliyun&lt;/id&gt;
-            &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
-            &lt;name&gt;Nexus aliyun&lt;/name&gt;
-            &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
-        &lt;/mirror&gt;
-    ...
-    &lt;/mirrors&gt;
-    ...
-&lt;/settings&gt;
-</code></pre>
-<p><strong>依赖范围</strong></p>
-<p>Maven通过三种不同的classpath实现在不同阶段引入所需的依赖：编译classpath、测试classpath、运行classpath</p>
-<blockquote>
-<ul>
-<li><strong>compile</strong> : 编译依赖范围，scope元素的缺省值。使用此依赖范围的Maven依赖，对于三种classpath均有效，即该Maven依赖在上述三种classpath均会被引入。例如，Spring框架的核心依赖在编译、测试、运行过程都是必须的</li>
-<li><strong>test</strong> : 测试依赖范围。使用此依赖范围的Maven依赖，只对测试classpath有效。例如，Junit依赖只有在测试阶段才需要</li>
-<li><strong>provided</strong> : 已提供依赖范围。使用此依赖范围的Maven依赖，只对编译classpath、测试classpath有效。例如，servlet-api依赖对于编译、测试阶段而言是需要的，但是运行阶段，由于外部容器已经提供，故不需要Maven重复引入该依赖</li>
-<li><strong>runtime</strong> : 运行时依赖范围。使用此依赖范围的Maven依赖，只对测试classpath、运行classpath有效。例如，JDBC驱动实现依赖，其在编译时只需JDK提供的JDBC接口即可，只有测试、运行阶段才需要实现了JDBC接口的驱动</li>
-<li><strong>system</strong> : 系统依赖范围，其效果与provided的依赖范围一致。其用于添加非Maven仓库的本地依赖，通过依赖元素dependency中的systemPath元素指定本地依赖的路径。鉴于使用其会导致项目的可移植性降低，一般不推荐使用</li>
-<li><strong>import</strong> ：导入依赖范围。其不会对上述三种classpath造成任何实际影响</li>
-</ul>
-</blockquote>
 <p><strong>依赖调解</strong></p>
 <p>当一个间接依赖存在多条引入路径时，为避免依赖重复Maven会通过<strong>依赖调解</strong>来确定该间接依赖的引入路径</p>
 <p>依赖调解遵循以下原则，优先使用第一原则，当第一原则无法解决时，则通过第二原则解决</p>
@@ -661,10 +668,10 @@ ZSH_THEME=&quot;ys&quot;
 <li>第二原则: 第一声明者优先</li>
 </ul>
 <p><strong>可选依赖</strong></p>
-<p>其意义在于，当某个间接依赖是可选依赖时，无论依赖范围是什么，其都不会因为传递性依赖机制而被引入</p>
+<p>当某个间接依赖是可选依赖时，无论依赖范围是什么，其都不会因为传递性依赖机制而被引入。</p>
 <p>只有显式地配置项目中某依赖的option元素为true时，该依赖才是可选依赖；</p>
 <p><strong>排除依赖</strong></p>
-<pre><code class="language-xml">&lt;dependency&gt;
+<pre><code class="xml">&lt;dependency&gt;
         &lt;groupId&gt;com.apple&lt;/groupId&gt;
         &lt;artifactId&gt;B&lt;/artifactId&gt;
         &lt;version&gt;2.3&lt;/version&gt;
@@ -690,14 +697,43 @@ ZSH_THEME=&quot;ys&quot;
 <p>最后提交</p>
 <pre><code> mvn versions:commit 
 </code></pre>
-<h1>GIT</h1>
-<p><strong>插件</strong></p>
+<h1 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h1><p>删除远程分支</p>
+<pre><code>git push origin --delete branch_name
+</code></pre>
+<p>删除本地分支</p>
+<pre><code>git branch -D branch_name
+</code></pre>
+<p><strong>参与开源</strong></p>
+<p>开源社区中常见的三个身份标签:</p>
+<blockquote>
+<p>contributor （贡献者）</p>
+<ul>
+<li>只要参与过一次贡献就算是贡献者。</li>
+</ul>
+<p>committer （提交者）</p>
+<ul>
+<li>成为 contributor 后， 如果你能保证持续贡献， 而且有扎实的技术功底， 经 PMC （管理委员会）投票或讨论决定后，可以决定让你成为一名 committer。</li>
+</ul>
+<p>committer 和 contributor 的 区别， commiter 对于项目的仓库是具有写的权限的。</p>
+<p>他可以审核并合并 contributor 的 代码。而且如果成为 commiter，你还会获得一个后缀为<code>@apache.org</code> 的邮箱。</p>
+<p>PMC （管理委员会）</p>
+<ul>
+<li>Committer 中表现优秀的话，是可以成为 PMC 的。 PMC 要负责整个项目的走向，做出一些重要的决策，要具备前瞻性的技术眼光。</li>
+</ul>
+</blockquote>
+<p><strong>如何fork别人的代码以及如何拉取最新的源项目代码</strong></p>
+<pre><code>git remote add upstream git@xxxxxxx.git
+</code></pre>
+<p><code>upstream</code>是你给你fork的源项目起的别名；最后这个就是源项目的git仓库地址。</p>
+<pre><code>git pull upstream dev
+</code></pre>
+<p><code>upstream</code>是上面你自己起的源项目别名，<code>dev</code>就是你要拉取的源项目分支。</p>
+<h1 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h1><p><strong>Chrome插件</strong></p>
 <blockquote>
 <p>源码查看</p>
 <ul>
-<li>下载地址：<a href="https://link.zhihu.com/?target=https%3A//github.com/buunguyen/octotree">https://github.com/buunguyen/octotree</a></li>
+<li><a href="https://link.zhihu.com/?target=https://github.com/buunguyen/octotree">https://github.com/buunguyen/octotree</a></li>
 </ul>
-<p>Refined GitHub</p>
 <p>Github1s</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/mosan/p/14468464.html">https://www.cnblogs.com/mosan/p/14468464.html</a></li>
@@ -711,59 +747,19 @@ ZSH_THEME=&quot;ys&quot;
 <ul>
 <li><a target="_blank" rel="noopener" href="https://greasyfork.org/zh-CN/scripts/412245-github-%E5%A2%9E%E5%BC%BA-%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD">https://greasyfork.org/zh-CN/scripts/412245-github-增强-高速下载</a></li>
 </ul>
-<p>GitHub File Icons，GitHub Hovercard，Enhanced GitHub</p>
 </blockquote>
 <p>GitHub Trend</p>
 <blockquote>
-<p>这个是GitHub的趋势榜，宣传语是看看GitHub今天最激动的是什么。</p>
-<p>在这里有多个查找项目的方式，可以选择编程语言，也可以选择月榜、周榜、日榜。还可以选择开发者，查看开发者的优质项目。</p>
-<p>地址：<a target="_blank" rel="noopener" href="https://github.com/trending">https://github.com/trending</a></p>
+<p>这个是GitHub的趋势榜，<a target="_blank" rel="noopener" href="https://github.com/trending">https://github.com/trending</a></p>
 </blockquote>
 <p>Github Topics</p>
 <blockquote>
-<p>Github Topics展示了最新、最热门的讨论主题，宣传语是浏览GitHub上的热门话题。</p>
-<p>在这里不仅可以看到开源项目，还可以看到一些非开发技术的讨论主题。</p>
-<p>地址：<a target="_blank" rel="noopener" href="https://github.com/topics">https://github.com/topics</a></p>
+<p>Github Topics展示了最新、最热门的讨论主题，<a target="_blank" rel="noopener" href="https://github.com/topics">https://github.com/topics</a></p>
 </blockquote>
 <p>Github Explore</p>
 <blockquote>
-<p>Github Explore这里是根据你平时的兴趣，推荐一些项目。</p>
-<p>地址：<a target="_blank" rel="noopener" href="https://github.com/explore">https://github.com/explore</a></p>
+<p>Github Explore这里是根据你平时的兴趣，推荐一些项目，<a target="_blank" rel="noopener" href="https://github.com/explore">https://github.com/explore</a></p>
 </blockquote>
-<p>删除远程分支</p>
-<pre><code>git push origin --delete branch_name
-</code></pre>
-<p>删除本地分支</p>
-<pre><code>git branch -D branch_name
-</code></pre>
-<p><strong>参与开源</strong></p>
-<p>如果你想参与开源项目，ShardingSphere 会是个不错的选择。</p>
-<p>添加 ShardingSphere 社区经理微信：<code>ss_assistant_1</code>，拉你进官方交流群，群里会不定期发布 Issue 任务列表，可以根据个人想法认领尝试。</p>
-<p>刚开始贡献 Apache 项目不一定是要贡献核心代码，可以从简单的测试用例或文档修复等任务做起；这样可以快速帮助你熟悉贡献流程，为后续的代码贡献做铺垫。</p>
-<p>开源社区中常见的三个身份标签:</p>
-<blockquote>
-<p>contributor （贡献者）</p>
-<p>只要参与过一次贡献就算是贡献者</p>
-<p>committer （提交者）</p>
-<p>成为 contributor 后， 如果你能保证持续贡献， 而且有扎实的技术功底， 经 PMC （管理 委员会）投票或讨论决定后，可以决定让你成为一名 committer 。</p>
-<p>Committer 和 contributor 的 区别在于， commiter 对于项目的仓库是具有写的权限的。</p>
-<p>他可以审核并合并 contributor 的 代码。而且如果成为 commiter，你还会获得一个后缀为@apache.org 的邮箱。</p>
-<p>PMC （管理委员会）</p>
-<p>Committer 中表现优秀的话，是可以成为 PMC 的。 PMC 要负责整个项目的走向，做出 一些重要的决策，要具备前瞻性的技术眼光。</p>
-</blockquote>
-<p><strong>git merge 和 git rebase区别</strong></p>
-<p>rebase 翻译为变基，他的作用和 merge 很相似，用于把一个分支的修改合并到当前分支上。</p>
-<p>不同于 <code>git rebase</code>的是，<code>git merge</code> 在不是 <code>fast-forward</code>（快速合并）的情况下，会产生一条额外的合并记录，类似**<code>Merge branch 'xxx' into 'xxx'</code>**的一条提交信息。</p>
-<p>另外，在解决冲突的时候，用 merge 只需要解决一次冲突即可，简单粗暴，而用 rebase 的时候 ，需要一次又一次的解决冲突。</p>
-<p><strong>git项目管理中如何fork别人的代码以及如何拉取最新的源项目代码</strong></p>
-<pre><code>git remote add upstream git@xxxxxxx.git
-</code></pre>
-<p>这里的<code>git remote add</code> 是固定的，<code>upstream</code>是你给你fork的源项目起的别名，取什么自己随意；最后面就是源项目的git仓库地址。</p>
-<pre><code>git pull upstream dev
-</code></pre>
-<p>这里<code>git pull</code>是固定的，<code>upstream</code>是上面你自己起的源项目别名，<code>dev</code>就是你要拉取的源项目分支。</p>
-<h1>GitHub</h1>
-<h2 id="常见问题">常见问题</h2>
 <p><strong>remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.</strong></p>
 <p>原先的密码凭证从2021年8月13日开始不能用了，必须使用个人访问令牌，就是把你的密码替换成Token！</p>
 <p><img src="/images/image-20231007113229793.png" alt="image-20231007113229793"></p>
@@ -771,9 +767,8 @@ ZSH_THEME=&quot;ys&quot;
 <p>也可以把Token直接添加远程仓库链接中，这样就可以避免同一个仓库每次提交代码都要输入Token了：</p>
 <pre><code>git remote set-url origin https://&lt;your_token&gt;@github.com/&lt;USERNAME&gt;/&lt;REPO&gt;.git
 </code></pre>
-<h1>Hexo</h1>
-<p><strong>NPM安装</strong></p>
-<p>npm安装太慢的话解决方法</p>
+<h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><p><strong>NPM安装</strong></p>
+<p>npm安装太慢的话，解决办法</p>
 <pre><code>npm config set registry http://registry.npm.taobao.org
 </code></pre>
 <pre><code>npm install -g hexo-cli
@@ -796,28 +791,35 @@ ssh-keygen -t rsa -C &quot;792321264@qq.com&quot;
 <p>将输出的内容复制到框中，点击确定保存。</p>
 <p>输入<code>ssh -T git@github.com</code>，出现你的用户名，那就成功了。</p>
 <p><strong>主页文章按更新时间排序</strong></p>
-<pre><code class="language-yaml">index_generator:
-  path: ''
+<pre><code class="yaml">index_generator:
+  path: &#39;&#39;
   per_page: 20
   order_by: -updated
 </code></pre>
+<blockquote>
+<p><code>per_page</code> 设置每页显示的文章数量。</p>
+<p><code>order_by</code> 指定文章的排序方式。</p>
+<ul>
+<li><code>-date</code>: 按照文章发布日期的倒序排序；</li>
+</ul>
+<ul>
+<li><code>-updated</code>: 按照文章更新时间的倒序排序；</li>
+<li><code>-title</code>: 按照文章标题的倒序排序；</li>
+</ul>
+</blockquote>
 <p><strong>域名绑定</strong></p>
 <p>cd 你的hexo本地目录， <code>cd source</code>，<code>touch CNAME</code>创建CNAME文件</p>
 <pre><code>xiaoflyfish.cn
 </code></pre>
 <p>给解析添加A类型：</p>
 <ul>
-<li>
-<p>185.199.108.153</p>
+<li><p>185.199.108.153</p>
 </li>
-<li>
-<p>185.199.109.153</p>
+<li><p>185.199.109.153</p>
 </li>
-<li>
-<p>185.199.110.153</p>
+<li><p>185.199.110.153</p>
 </li>
-<li>
-<p>185.199.111.153</p>
+<li><p>185.199.111.153</p>
 </li>
 </ul>
 <p><strong>备份</strong></p>
@@ -856,42 +858,40 @@ package.json         安装包的名称                       必须备份
 .ssh                 密钥文件                          必须备份
 </code></pre>
 <p>换电脑，同时要把<code>.git文件</code>夹复制过去，然后安装相关插件</p>
-<p><strong>插入视频</strong></p>
-<p><strong>默认1080p</strong></p>
-<p>在网址那加上<strong>high_quality=1</strong>参数，即<strong>1080p</strong>播放</p>
-<p><strong>去弹幕</strong></p>
-<p>同上，也是在网址那加上<strong>danmaku=0</strong>，即为关闭弹幕</p>
-<pre><code>&lt;iframe src=&quot;//player.bilibili.com/player.html?aid=285578289&amp;bvid=BV1Sf4y1m7Vs&amp;cid=187025127&amp;page=1&amp;high_quality=1&amp;danmaku=0&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt; &lt;/iframe&gt; 
-</code></pre>
-<p><strong>常用插件汇总</strong></p>
-<pre><code>npm install hexo-deployer-git --save
-</code></pre>
-<pre><code>deploy:
-  - type: git
-    repository: git@github.com:constown/constown.github.io.git
-    branch: master
-</code></pre>
 <p><strong>部署到GitHub</strong></p>
-<pre><code class="language-xml">deploy:
+<p>安装一个扩展<code>npm i hexo-deployer-git</code></p>
+<pre><code class="xml">deploy:
   type: git
   repository: https://github.com/xiaoflyfish/xiaoflyfish.github.io
   branch: master
 </code></pre>
-<p>安装一个扩展<code>npm i hexo-deployer-git</code></p>
 <p>最后输入<code>hexo d</code>上传到GitHub上</p>
 <p><strong>Typora图片配置</strong></p>
-<p>格式-&gt;图像-&gt;设置图片根目录</p>
+<p>偏好设置-&gt;图像-&gt;设置图片根目录</p>
 <pre><code>typora-root-url: ../../../themes/tree/source
 </code></pre>
-<p>偏好设置-&gt;图像</p>
 <p><strong>插入音乐</strong></p>
 <pre><code>npm install hexo-tag-aplayer --save
 </code></pre>
-<pre><code>&#123;% aplayer "Caffeine" "Jeff Williams" "http://7xq131.com1.z0.glb.clouddn.com/Preparation.mp3" "autoplay" %&#125;
+<pre><code>&#123;% aplayer "Caffeine" "Jeff Williams" "11.mp3" "autoplay" %&#125;
 </code></pre>
-<pre><code>	&lt;%- css('https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css') %&gt;
-	&lt;%- js('https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js') %&gt;
+<pre><code>    &lt;%- css(&#39;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css&#39;) %&gt;
+    &lt;%- js(&#39;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js&#39;) %&gt;
 </code></pre>
+<p><strong>置顶文章</strong></p>
+<pre><code> npm install hexo-generator-topindex --save
+</code></pre>
+<pre><code>---
+title: 每天一个linux命令
+date: 2017-01-23 11:41:48
+top: 1
+categories:
+- 运维
+tags:
+- linux命令
+---
+</code></pre>
+<p>如果存在多个置顶文章，top后的参数越大，越靠前。</p>
 
 	</div>
 </div>
