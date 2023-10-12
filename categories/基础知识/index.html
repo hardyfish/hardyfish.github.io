@@ -591,9 +591,17 @@
 				</h2>
 				<div class="index-brief">
 					基本概念
-BASE理论
-BASE 是 Basically Available（基本可用） 、Soft-state（软状态） 和 Eventually Consistent（最终一致性） 三个短语的缩写。
-BASE 理论是对 CAP 中一致性和可用性权衡的结果，其来源于对大规模互联网系统分布式实践的总
+背压
+
+背压思想，被请求方不会直接将请求端的流量直接丢掉，而是不断的反馈自己的处理能力。
+请求端根据这些反馈，实时的调整自己的发送频率，比如：TCP/IP中使用滑动窗口来进行流量控制。
+
+CAP原则
+Consistency（一致性）
+
+所有节点返回的数据是一致的。
+
+Availabilit
 					...
 				</div>
 			</a>

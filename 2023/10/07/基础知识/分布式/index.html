@@ -577,26 +577,796 @@
 <div id="container" class = "content999">
 	<div id="article-content">
 		<h1>基本概念</h1>
+<p><strong>背压</strong></p>
+<blockquote>
+<p>背压思想，被请求方不会直接将请求端的流量直接丢掉，而是不断的反馈自己的处理能力。</p>
+<p>请求端根据这些反馈，实时的调整自己的发送频率，比如：TCP/IP中使用滑动窗口来进行流量控制。</p>
+</blockquote>
+<p><strong>CAP原则</strong></p>
+<p>Consistency（一致性）</p>
+<blockquote>
+<p>所有节点返回的数据是一致的。</p>
+</blockquote>
+<p>Availability（可用性）</p>
+<blockquote>
+<p>就是<strong>某个节点坏了，不能影响其他的节点业务。</strong></p>
+<p>如主MySQL节点挂了，但从MySQL没有挂，从MySQL照样提供服务。</p>
+</blockquote>
+<p>Partition Tolerance（分区容错性）</p>
+<blockquote>
+<p>当系统中有节点因网络原因无法通信时，系统依然可以继续运行。</p>
+<p>如主MySQL和从MySQL之间没法通信时，系统可用。</p>
+</blockquote>
+<p><strong>分布式系统只能满足三种情况：CA、AP、CP</strong>。</p>
+<blockquote>
+<p><strong>分布式系统肯定要实现P</strong>，那CA是理论上面的，其实不存在。</p>
+<p>大型互联网公司，因为机器数量庞大，网络故障是常态，<strong>一般选择AP原则</strong>，<strong>牺牲掉数据一致性</strong>。</p>
+<ul>
+<li>一些金融产品对数据一致性要求很高的，就会选择CP。</li>
+</ul>
+<p>Redis：AP</p>
+<p>RocketMQ：AP</p>
+<p>2PC：CP</p>
+<p>Eureka：AP</p>
+</blockquote>
 <p><strong>BASE理论</strong></p>
-<p>BASE 是 Basically Available（基本可用） 、Soft-state（软状态） 和 Eventually Consistent（最终一致性） 三个短语的缩写。</p>
 <p>BASE 理论是对 CAP 中一致性和可用性权衡的结果，其来源于对大规模互联网系统分布式实践的总结，是基于 CAP 定理逐步演化而来的，它大大降低了对系统的要求。</p>
 <blockquote>
 <p>核心思想： 即使无法做到强一致性，但每个应用都可以根据自身业务特点，采用适当的方式来使系统达到最终一致性，也就是牺牲数据的一致性来满足系统的高可用性，系统中一部分数据的不可用或者不一致时，仍需要保持系统整体主要可用。</p>
 </blockquote>
-<p>基本可用：</p>
+<p>基本可用（Basically Available）：</p>
 <blockquote>
 <p>基本可用是指分布式系统在出现不可预知故障的时，允许损失部分可用性。</p>
-<p>比如： 响应时间上的损失：正常情况下，一个在线搜索引擎需要在0.5秒之内返回给用户相应的查询结果，但由于出现故障，查询结果的响应时间增加了1~2秒；</p>
-<p>系统功能上的损失：正常情况下，在一个电商网站上进行购物的时候，消费者几乎能够顺利完成每一笔订单，但是在一些节日大促购物高峰的时候，由于消费者的购物行为激增，为了保护购物系统的稳定性，部分消费者可能会被引导到一个降级页面；</p>
+<p>响应时间上的损失：</p>
+<ul>
+<li>正常情况下，一个在线搜索引擎需要在0.5秒之内返回给用户相应的查询结果，但由于出现故障，查询结果的响应时间增加了1~2秒；</li>
+</ul>
+<p>系统功能上的损失：</p>
+<ul>
+<li>正常情况下，在一个电商网站上进行购物的时候，消费者几乎能够顺利完成每一笔订单，但是在一些节日大促购物高峰的时候，由于消费者的购物行为激增，为了保护购物系统的稳定性，部分消费者可能会被引导到一个降级页面；</li>
+</ul>
 </blockquote>
-<p>软状态：</p>
+<p>软状态（Soft State）：</p>
 <blockquote>
 <p>软状态是指允许系统中的数据存在中间状态，并认为该中间状态的存在不会影响系统的整体可用性，即允许系统在不同节点的数据副本之间进行数据同步的过程存在延时；</p>
 </blockquote>
-<p>最终一致性：</p>
+<p>最终一致性（Eventually Consistent）：</p>
 <blockquote>
 <p>最终一致性强调的是系统中所有的数据副本，在经过一段时间的同步后，最终能够达到一个一致的状态。</p>
 <p>因此，最终一致性的本质是需要系统保证最终数据能够达到一致，而不需要实时保证系统数据的强一致性。</p>
+</blockquote>
+<p><strong>集群和分布式的区别</strong></p>
+<blockquote>
+<p>集群主要的使用场景是为了分担请求的压力，也就是在几个服务器上部署相同的应用程序，来分担客户端请求。</p>
+<p>将多台服务器集中在一起，每台服务器都实现相同的业务，做相同的事情。</p>
+</blockquote>
+<blockquote>
+<p>分布式是指将多台服务器集中在一起，每台服务器都实现总体中的不同业务，做不同的事情。</p>
+<ul>
+<li>将一套系统拆分成不同子系统部署在不同服务器上。</li>
+</ul>
+</blockquote>
+<p><strong>IaaS、PaaS和SaaS</strong></p>
+<blockquote>
+<p><strong>软件即服务（SaaS）</strong> ：这是一个完整的软件应用程序，具有用户界面。</p>
+<p><strong>平台即服务（PaaS）</strong> ：开发人员可以在其中部署自己的应用程序的平台。</p>
+<p><strong>基础设施即服务（IaaS）</strong> ：提供机器、存储和网络资源，开发人员可以通过安装自己的操作系统、应用程序和支持资源来管理。</p>
+</blockquote>
+<p>通俗易懂的解释：</p>
+<blockquote>
+<p><strong>SaaS</strong>：租的房子，只能住人和存放物品，不能修改房间的设施。</p>
+<p><strong>PaaS</strong>：买的精装修房，可以布置一些家电（如电视机、空调等等）、墙上挂一些装饰等等，俗称软装。</p>
+<p><strong>IaaS</strong>：买来的毛坯房，可以自己装修水电、安装柜子，家电等等，俗称硬装。</p>
+</blockquote>
+<p><strong>一致性Hash算法</strong></p>
+<p>假如有三台服务器编号<code>node0</code>、<code>node1</code>、<code>node2</code>，现在有3000万个<code>key</code>，希望可以将这些个key均匀的缓存到三台机器上？</p>
+<blockquote>
+<p>可以使用取模算法<code>hash（key）% N</code>，对key进行hash运算后取模，N是机器的数量。</p>
+<p>但服务器数量N发生变化后<code>hash（key）% N</code>计算的结果也会随之变化。</p>
+</blockquote>
+<p><img src="/images/image-20231012113713037.png" alt="image-20231012113713037"></p>
+<p>一致性hash算法本质上也是一种取模算法，不过不同于上边按服务器数量取模，一致性hash是对固定值<code>2^32</code>取模。</p>
+<blockquote>
+<p>IPv4的地址是4组8位2进制数组成，所以用<code>2^32</code>可以保证每个IP地址会有唯一的映射。</p>
+</blockquote>
+<p>将这<code>2^32</code>个值抽象成一个圆环，圆环的正上方的点代表0，顺时针排列，以此类推，1、2、3、4、5、6……直到<code>2^32-1</code>，而这个由2的32次方个点组成的圆环统称为<code>hash环</code>。</p>
+<img src="/images/4c29a6671b747f2af446021617898836.png" alt="img" style="zoom:60%;" />
+<p>服务器映射到hash环:</p>
+<blockquote>
+<p>使用服务器IP地址进行hash计算，用哈希后的结果对<code>2^32</code>取模，结果一定是一个0到<code>2^32-1</code>之间的整数，而这个整数映射在hash环上的位置代表了一个服务器，依次将<code>node0</code>、<code>node1</code>、<code>node2</code>三个缓存服务器映射到hash环上。</p>
+</blockquote>
+<p>一致性hash的优势：</p>
+<blockquote>
+<p>假如业务量激增，系统需要进行扩容增加一台服务器<code>node-4</code>，刚好<code>node-4</code>被映射到<code>node-1</code>和<code>node-2</code>之间，沿顺时针方向对象映射节点，发现原本缓存在<code>node-2</code>上的对象<code>key-4</code>、<code>key-5</code>被重新映射到了<code>node-4</code>上，而整个扩容过程中受影响的只有<code>node-4</code>和<code>node-1</code>节点之间的一小部分数据。</p>
+<p>假如<code>node-1</code>节点宕机，沿顺时针方向对象映射节点，缓存在<code>node-1</code>上的对象<code>key-1</code>被重新映射到了<code>node-4</code>上，此时受影响的数据只有<code>node-0</code>和<code>node-1</code>之间的一小部分数据。</p>
+</blockquote>
+<p>数据偏斜问题：</p>
+<blockquote>
+<p>在服务器节点数量太少的情况下，很容易因为节点分布不均匀而造成<strong>数据倾斜</strong>问题，被缓存的对象大部分缓存在<code>node-4</code>服务器上，导致其他节点资源浪费，系统压力大部分集中在<code>node-4</code>节点上，这样的集群是非常不健康的。</p>
+</blockquote>
+<p>一致性Hash算法引入了一个<strong>虚拟节点</strong>机制，即对每个服务器节点计算出多个hash值，它们都会映射到hash环上，映射到这些虚拟节点的对象key，最终会缓存在真实的节点上。</p>
+<p><img src="/images/9c6bd398acc6c231c99d566115e71430.png" alt="img"></p>
+<p>一致性hash的应用场景：</p>
+<blockquote>
+<p>一致性hash在分布式系统中应该是实现负载均衡的首选算法，比如日常使用较多的缓存中间件<code>memcached</code>和<code>redis</code>集群都有用到它。</p>
+</blockquote>
+<h1>限流算法</h1>
+<p><strong>固定窗口限流算法</strong></p>
+<blockquote>
+<p>原理是在<strong>固定时间窗口</strong>(<code>单位时间</code>)内限制请求的数量。</p>
+<ul>
+<li>该算法将时间分成固定的窗口，并在每个窗口内限制请求的数量。</li>
+</ul>
+<p>具体来说，算法将请求按照时间顺序放入时间窗口中，并计算该时间窗口内的请求数量，如果请求数量超出了限制，则拒绝该请求。</p>
+</blockquote>
+<p>假设单位时间(固定时间窗口)是<code>1</code>秒，限流阀值为<code>3</code>。</p>
+<p>在单位时间<code>1</code>秒内，每来一个请求，计数器就加<code>1</code>，如果计数器累加的次数超过限流阀值<code>3</code>，后续的请求全部拒绝。</p>
+<p>等到<code>1s</code>结束后，计数器清<code>0</code>，重新开始计数。</p>
+<img src="/images/image-20231012114901262.png" alt="image-20231012114901262" style="zoom:60%;" />
+<p>固定窗口算法的缺点:</p>
+<blockquote>
+<p>存在<strong>明显的临界问题</strong>，比如: 假设限流阀值为<code>5</code>个请求，单位时间窗口是<code>1s</code>，如果我们在单位时间内的<code>前0.8-1s</code>和<code>1-1.2s</code>，分别并发5个请求，虽然都没有超过阀值，但是如果算0.8-1.2s，则并发数高达10，<strong>已经超过单位时间1s不超过5阀值的定义</strong>了。</p>
+</blockquote>
+<p><strong>滑动窗口限流算法</strong></p>
+<blockquote>
+<p>它将单位时间周期分为<code>n</code>个小周期，分别记录每个小周期内接口的访问次数，并且根据时间滑动删除过期的小周期。</p>
+<p><strong>它可以解决固定窗口临界值的问题</strong>。</p>
+</blockquote>
+<blockquote>
+<p>假设单位时间还是<code>1</code>s，滑动窗口算法把它划分为<code>5</code>个小周期，也就是滑动窗口（<strong>单位时间</strong>）被划分为<code>5</code>个小格子。</p>
+<p>每格表示<code>0.2s</code>。每过<code>0.2s</code>，时间窗口就会往右滑动一格。</p>
+<p>然后每个小周期，都有自己独立的计数器，如果请求是<code>0.83s</code>到达的，<code>0.8~1.0s</code>对应的计数器就会加<code>1</code>。</p>
+</blockquote>
+<p>当滑动窗口的<strong>格子周期划分的越多，那么滑动窗口的滚动就越平滑，限流的统计就会越精确</strong>。</p>
+<p>伪代码实现：</p>
+<pre><code class="language-java"> /**
+     * 单位时间划分的小周期（单位时间是1分钟，10s一个小格子窗口，一共6个格子）
+     */
+    private int SUB_CYCLE = 10;
+
+    /**
+     * 每分钟限流请求数
+     */
+    private int thresholdPerMin = 100;
+
+    /**
+     * 计数器, k-为当前窗口的开始时间值秒，value为当前窗口的计数
+     */
+    private final TreeMap&lt;Long, Integer&gt; counters = new TreeMap&lt;&gt;();
+
+   /**
+     * 滑动窗口时间算法实现
+     */
+     public synchronized boolean slidingWindowsTryAcquire() &#123;
+        long currentWindowTime = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) / SUB_CYCLE * SUB_CYCLE; //获取当前时间在哪个小周期窗口
+        int currentWindowNum = countCurrentWindow(currentWindowTime); //当前窗口总请求数
+
+        //超过阀值限流
+        if (currentWindowNum &gt;= thresholdPerMin) &#123;
+            return false;
+        &#125;
+
+        //计数器+1
+        counters.get(currentWindowTime)++;
+        return true;
+    &#125;
+
+   /**
+    * 统计当前窗口的请求数
+    */
+    private synchronized int countCurrentWindow(long currentWindowTime) &#123;
+        //计算窗口开始位置
+        long startTime = currentWindowTime - SUB_CYCLE* (60s/SUB_CYCLE-1);
+        int count = 0;
+
+        //遍历存储的计数器
+        Iterator&lt;Map.Entry&lt;Long, Integer&gt;&gt; iterator = counters.entrySet().iterator();
+        while (iterator.hasNext()) &#123;
+            Map.Entry&lt;Long, Integer&gt; entry = iterator.next();
+            // 删除无效过期的子窗口计数器
+            if (entry.getKey() &lt; startTime) &#123;
+                iterator.remove();
+            &#125; else &#123;
+                //累加当前窗口的所有计数器之和
+                count =count + entry.getValue();
+            &#125;
+        &#125;
+        return count;
+    &#125;
+
+</code></pre>
+<p>滑动窗口限流算法的缺点:</p>
+<blockquote>
+<p>突发流量无法处理，<strong>无法应对短时间内的大量请求，但是一旦到达限流后，请求都会直接暴力被拒绝。</strong></p>
+<p>我们会损失一部分请求，对于产品来说，并不太友好，需要合理调整时间窗口大小。</p>
+<p>所以在实际应用中我们要的限流效果往往不希望一下子把流量掐断，而是让流量平滑地进入系统当中，这就需要对流速进行平滑控制。</p>
+</blockquote>
+<p><strong>漏桶限流算法</strong></p>
+<blockquote>
+<p>对于每个到来的数据包，都将其加入到漏桶中，并检查漏桶中当前的水量是否超过了漏桶的容量。</p>
+<p>如果超过了容量，就将多余的数据包丢弃。</p>
+<p>如果漏桶中还有水，就以一定的速率从桶底输出数据包，保证输出的速率不超过预设的速率，从而达到限流的目的。</p>
+</blockquote>
+<p>漏桶限流算法的缺点:</p>
+<blockquote>
+<p>对于流量波动比较大的场景，需要较为灵活的参数配置才能达到较好的效果。</p>
+<p>流量变突发时，漏桶算法还是循规蹈矩地处理请求，我们希望系统尽量快点处理请求，提升用户体验。</p>
+</blockquote>
+<p><strong>令牌桶算法</strong></p>
+<blockquote>
+<p>该算法维护一个固定容量的令牌桶，每秒钟会向令牌桶中放入一定数量的令牌。</p>
+<p>当有请求到来时，如果令牌桶中有足够的令牌，则请求被允许通过并从令牌桶中消耗一个令牌，否则请求被拒绝。</p>
+</blockquote>
+<p>令牌桶算法的缺点:</p>
+<blockquote>
+<p>实现复杂：</p>
+<ul>
+<li>相对于固定窗口算法等其他限流算法，令牌桶算法的实现较为复杂。</li>
+</ul>
+<p>对短时请求难以处理：</p>
+<ul>
+<li>在短时间内有大量请求到来时，可能会导致令牌桶中的令牌被快速消耗完，从而限流，这种情况下，可以考虑使用漏桶算法。</li>
+</ul>
+<p>时间精度要求高：</p>
+<ul>
+<li>令牌桶算法需要在固定的时间间隔内生成令牌，因此要求时间精度较高，如果系统时间不准确，可能会导致限流效果不理想。</li>
+</ul>
+</blockquote>
+<p><strong>限流组件</strong></p>
+<table>
+<thead>
+<tr>
+<th>限流组件</th>
+<th>简介</th>
+<th>限流实现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sentinel</td>
+<td>阿里巴巴开源服务稳定性保障组件</td>
+<td>令牌桶算法</td>
+</tr>
+<tr>
+<td>Resilience4j</td>
+<td>开源社区服务稳定性保障组件，被spring官方推荐</td>
+<td>令牌桶算法</td>
+</tr>
+<tr>
+<td>Guava RateLimiter</td>
+<td>google开源限流组件</td>
+<td>令牌桶算法</td>
+</tr>
+<tr>
+<td>Uber RateLimiter</td>
+<td>Uber开源go语言限流组件</td>
+<td>漏桶算法</td>
+</tr>
+</tbody>
+</table>
+<h1>异地多活</h1>
+<p><strong>同城灾备</strong></p>
+<blockquote>
+<p>在同一个城市 再搭建一个机房，原机房叫作 A 机房，新机房叫 B 机房，这两个机房的网络用一条 专线 连通。</p>
+<p>为了避免 A 机房故障导致数据丢失，所以我们需要把数据在 B 机房也存一份。</p>
+</blockquote>
+<img src="/images/a1eae275f0fb2efeb9b425cc795d01e2.jpeg" alt="img" style="zoom:50%;" />
+<p><strong>两地三中心</strong></p>
+<blockquote>
+<p>两地是指 2 个城市，三中心是指有 3 个机房。</p>
+<p>其中 2 个机房在同一个城市，并且同时提供服务，第 3 个机房部署在异地，只做数据灾备。</p>
+</blockquote>
+<p><strong>异地双活</strong></p>
+<blockquote>
+<p>两个机房同时提供服务，故障随时可切换，可用性高。</p>
+<p>同城双活比灾备的优势在于，两个机房都可以接入读写流量，提高可用性的同时，还提升了系统性能。</p>
+</blockquote>
+<p>在最上层把用户区分开，部分用户请求固定打到北京机房，其它用户请求固定打到上海 机房，进入某个机房的用户请求，之后的所有业务操作，都在这一个机房内完成，从根源上避免跨机房。</p>
+<blockquote>
+<p>需要在接入层之上，再部署一个路由层（通常部署在云服务器上），自己可以配置路由规则，把用户分流到不同的机房内。</p>
+<ul>
+<li>
+<p>按业务类型分片</p>
+</li>
+<li>
+<p>直接哈希分片</p>
+</li>
+<li>
+<p>按地理位置分片</p>
+</li>
+</ul>
+</blockquote>
+<img src="/images/fda1a0564cc8547a8b27580c7d9ee0a6.jpeg" alt="img" style="zoom:50%;" />
+<h1>基本架构</h1>
+<p><strong>面向服务架构(SOA)</strong></p>
+<blockquote>
+<p>基于分布式架构模式演变而来，俗称服务化，也就是面向接口开发(服务开发)，将共同存在的业务逻辑抽取成一个共同的服务，提供给其他的服务接口实现调用、服务与服务之间通讯采用RPC远程调用技术，可以解决代码冗余性问题。</p>
+<p>采用SOAP协议(http/https+XML)实现传输，在高并发情况下会存在大量的冗余性传输，非常占用带宽，所以微服务框架用json替代了xml。</p>
+<p>实现方案为WebService或者是ESB企业服务总线，底层通讯协议SOAP协议（Http+XML）实现传输。</p>
+<ul>
+<li>采用SOAP协议实现通讯，xml传输非常重，效率比较低，而且很占带宽。</li>
+</ul>
+</blockquote>
+<p><strong>微服务架构</strong></p>
+<blockquote>
+<p>微服务架构基于SOA架构演变过来的，比SOA架构模式对服务拆分粒度更加精细，采用前后端分离的架构模式，让专业的人去做专业的事，目的可以实现高效率的开发。</p>
+<ul>
+<li>微服务架构中，每个服务都是独立部署、独立运营，之间互不影响。</li>
+<li>服务与服务之间通讯的协议采用restful形式，数据交换格式采用http+json格式实现传输。</li>
+<li>整个传输过程中，采用二进制，可以实现跨语言。</li>
+</ul>
+<p>SOA架构中可能数据库存储会发生共享，微服务强调独每个服务都是单独数据库，保证每个服务于服务之间互不影响。</p>
+</blockquote>
+<p><strong>Serverless</strong></p>
+<blockquote>
+<p>基于 Serverless开发者就只需要关心业务逻辑的开发。</p>
+<p>进行应用部署时也不再需要关心服务器，不需要关心后续的运维，应用也天然具备了弹性伸缩的能力，并且实现了按需使用，按量付费，也更能进一步节省成本。</p>
+</blockquote>
+<p><strong>Sidecar设计模式</strong></p>
+<p>Sidecar，也就是边车模式，是一种分布式服务架构的设计模式。</p>
+<blockquote>
+<p>边车模式中的边车，实际上就是一个 Agent，微服务的通信可以通过 Agent 代理完成。</p>
+<p>在部署时，需要同时启动 Agent，Agent 会处理服务注册、服务发现、日志和服务监控等逻辑。</p>
+<ul>
+<li>这样在开发时，就可以忽略这些和对外业务逻辑本身没有关联的功能，实现更好的内聚和解耦。</li>
+</ul>
+</blockquote>
+<p><strong>ServiceMeh服务网格</strong></p>
+<p>Service Mesh 基于边车模式演进，通过在系统中添加边车代理，也就是 Sidecar Proxy 实现。</p>
+<blockquote>
+<p>Service Mesh 服务网格抽象出专门的一层，提供服务治理领域所需的服务注册发现、负载均衡、熔断降级、监控等功能。</p>
+<ul>
+<li>Service Mesh统一管理微服务与上层通信的部分，接管各种网络通信、访问控制等。</li>
+</ul>
+<p>我们的业务代码只需要关心业务逻辑就可以，简化开发工作。</p>
+</blockquote>
+<img src="/images/image-20231012132207344.png" alt="image-20231012132207344" style="zoom:80%;" />
+<p>Service Mesh 和 API 网关的区别：</p>
+<blockquote>
+<p>部署方式不同，在整体系统架构中的位置不一样。</p>
+<p>API 网关通常是独立部署，通过单独的系统提供服务，为了实现高可用，还会通过网关集群等来管理。</p>
+<p>而服务网格通常是集成在应用容器内的，服务网格离应用本身更近。</p>
+</blockquote>
+<p>Service Mesh 解决方案：</p>
+<blockquote>
+<p>目前两款流行的 Service Mesh 开源软件分别是 Istio 和 Linker。</p>
+</blockquote>
+<h1>应用场景</h1>
+<p><strong>TraceId</strong></p>
+<p>通过 TraceId 来将一个请求在各个服务器上的调用日志串联起来，TraceId 一般由接收请求经过的第一个服务器产生。</p>
+<p>SpanId 代表本次调用在整个调用链路树中的位置。</p>
+<blockquote>
+<p>假设一次分布式调用中产生的 TraceId 是 <code>0a1234</code>，SpanId 的产生过程：</p>
+<ul>
+<li>
+<p>系统 A 接收了一次用户请求，记录下的 SpanId 是 0，代表是整个调用的根节点。</p>
+</li>
+<li>
+<p>A 系统处理这次请求，依次调用 B、C、D 三个系统，SpanId 分别是 0.1，0.2 和 0.3。</p>
+</li>
+<li>
+<p>C 系统在处理请求的时候又调用了 E，F 两个系统，那么 E、F 两个系统是 0.2.1 和 0.2.2。</p>
+</li>
+</ul>
+</blockquote>
+<p><img src="/images/p225164.png" alt="SpanId 生成规则"></p>
+<p><strong>分布式Session</strong></p>
+<p>Session复制:</p>
+<blockquote>
+<p><strong>Session复制方案是一个服务器端的方案</strong>，对客户端是透明的，客户端不需要改变什么。</p>
+</blockquote>
+<img src="/images/image-20231012140331252.png" alt="image-20231012140331252" style="zoom:80%;" />
+<p>这个方案本质是利用了<strong>应用服务器自身的特性</strong>，如：Tomcat。</p>
+<p>修改一下Tomcat的配置文件，就是让<strong>应用服务器之间进行Session复制</strong>，这样就可以达到<strong>每个服务器都有一样的Session。</strong></p>
+<blockquote>
+<p>服务器一旦多起来，就会有问题:</p>
+<ul>
+<li>
+<p>Ssession之间的复制就会占用很大的网络带宽。</p>
+</li>
+<li>
+<p>Session复制是有时间延迟的。</p>
+</li>
+<li>
+<p>服务器的内存是有限的，代表着Session存放是有限的。</p>
+</li>
+</ul>
+</blockquote>
+<p>Session粘性:</p>
+<blockquote>
+<p>利用<strong>负载均衡器的特性</strong>，把同一个浏览器的同一个用户都定向发送到同一个服务器上。</p>
+<p>用户甲访问系统被负载均衡器<strong>一直分配到服务器A上</strong>，这样也就保证了用户一直在同一个服务器中进行查找Session，<strong>保证了用户Session一致性</strong>。</p>
+</blockquote>
+<p>外部存储:</p>
+<blockquote>
+<p>外部存储让Session的存储与应用服务器隔离出来。</p>
+<p>把Session的存储的地方改造到一个独立的媒介中，这样就不需要和应用服务器耦合了，客户端传入SessionId时，用户信息的映射关系直接到这个独立媒介中去查找。</p>
+<ul>
+<li>数据库存储</li>
+<li>Redis存储</li>
+</ul>
+</blockquote>
+<h2 id="分布式ID">分布式ID</h2>
+<p><strong>雪花Snowflake算法</strong></p>
+<p>雪花算法生成64位的二进制正整数，然后转换成10进制的数。</p>
+<p>64位二进制数由如下部分组成：</p>
+<p><img src="/images/image-20231012141356009.png" alt="image-20231012141356009"></p>
+<blockquote>
+<p>**1位标识符：**始终是0</p>
+<p><strong>41位时间戳：<strong>41位时间截不是存储当前时间的时间截，而是</strong>存储时间截的差值（当前时间截 - 开始时间截 )得到的值</strong>，这里的的开始时间截，一般是我们的id生成器开始使用的时间，由我们程序来指定的</p>
+<p><strong>10位机器标识码：<strong>可以</strong>部署在1024个节点</strong>，如果机器<strong>分机房（IDC）部署</strong>，这10位可以由 <strong>5位机房ID + 5位机器ID</strong> 组成</p>
+<p>**12位序列：**毫秒内的计数，12位的计数顺序号支持每个节点每毫秒(同一机器，同一时间截)产生4096个ID序号</p>
+</blockquote>
+<p>优点：</p>
+<blockquote>
+<p>此方案每秒能够产生409.6万个ID，性能快</p>
+<p>时间戳在高位，自增序列在低位，整个ID是趋势递增的，按照时间有序递增</p>
+<p>灵活度高，可以根据业务需求，调整bit位的划分，满足不同的需求</p>
+</blockquote>
+<p>缺点：</p>
+<blockquote>
+<p>依赖机器的时钟，如果服务器时钟回拨，会导致重复ID生成</p>
+</blockquote>
+<p>优化思路:</p>
+<blockquote>
+<p>思路就是我们在系统中<strong>监控每台时钟是否回拨</strong>？如果回拨了，我们作一下调整就行了。</p>
+<p><strong>持久化节点</strong>的作用：就是保存<strong>各个ID服务的节点信息，并保存时钟</strong>。</p>
+</blockquote>
+<p><img src="/images/image-20231012141726598.png" alt="image-20231012141726598"></p>
+<p>整体流程:</p>
+<blockquote>
+<p>1、ID服务启动，注册到Zookeeper。</p>
+<p>2、检查是否之前注册过，如果没有注册过，就把此服务注册到Zookeeper中。</p>
+<p>3、节点的信息利用顺序节点，保证唯一。</p>
+<ul>
+<li>ID服务再把此生成的顺序ID当作workID，保存到本地文件系统中，这样以后再次启动时，就拿着此workId到zk上面去查找，是否之前注册过。</li>
+</ul>
+<p>4、如果之前没有注册过，生成了ID服务的zk节点，并把本地的时钟保存到此zk节点中。</p>
+<ul>
+<li>ID服务会每隔3秒，把本地时钟上报到zk节点上面。</li>
+</ul>
+<p>5、如果在注册的时候，发现已经注册了，要去比较一下本地时钟 和 zk节点上面的时钟，如果本地时钟 大于 zk上的，表示正常，启动成功**；**否则表示本地的时钟发生了回拨，启动不成功，启动报警机制。</p>
+</blockquote>
+<h2 id="分布式锁">分布式锁</h2>
+<p>分布式锁是控制分布式系统不同进程共同访问共享资源的一种锁的实现。</p>
+<p>如果不同的系统或同一个系统的不同主机之间共享了某个临界资源，往往需要互斥来防止彼此干扰，以保证一致性。</p>
+<p>业界分布式锁的实现，一般有这3种方式：</p>
+<blockquote>
+<p>基于数据库实现的分布式锁</p>
+<p>基于Redis实现的分布式锁</p>
+<p>基于Zookeeper实现的分布式锁</p>
+<p>对比：</p>
+<ul>
+<li>
+<p>从性能角度（从高到低）Redis &gt; Zookeeper &gt;= 数据库；</p>
+</li>
+<li>
+<p>从实现的复杂性角度（从低到高）Zookeeper &gt; Redis &gt; 数据库。</p>
+</li>
+<li>
+<p>从可靠性角度（从高到低）Zookeeper &gt; Redis &gt; 数据库。</p>
+</li>
+</ul>
+</blockquote>
+<p><strong>基于数据库的分布式锁</strong></p>
+<p>数据库悲观锁实现的分布式锁：</p>
+<blockquote>
+<p>可以使用<code>select ... for update </code>来实现分布式锁。</p>
+</blockquote>
+<p>数据库乐观锁实现的分布式锁:</p>
+<blockquote>
+<p>加个version字段，每次更新修改，都会自增加一，然后去更新时，把查出来的那个版本号，带上条件去更新，如果是上次那个版本号，就更新，如果不是，就继续重试。</p>
+</blockquote>
+<h2 id="分库分表">分库分表</h2>
+<p>分库分表是在海量数据下，由于单库、表数据量过大，导致数据库性能持续下降的问题，演变出的技术方案。</p>
+<p><strong>为什么分库分表</strong></p>
+<blockquote>
+<p>单机数据库的存储能力、连接数是有限的，它自身就很容易会成为系统的瓶颈。</p>
+<p>当单表数据量千万以上时，数据库很多操作性能下降严重。</p>
+</blockquote>
+<p><strong>如何分库分表</strong></p>
+<p>垂直分库:</p>
+<blockquote>
+<p>垂直分库一般来说按照业务和功能的维度进行拆分，将不同业务数据分别放到不同的数据库中。</p>
+</blockquote>
+<p>垂直分表:</p>
+<blockquote>
+<p>垂直分表针对业务上字段比较多的大表进行的，一般是把业务宽表中比较独立的字段，或者不常用的字段拆分到单独的数据表中，是一种大表拆小表的模式。</p>
+</blockquote>
+<p>水平分库:</p>
+<blockquote>
+<p>水平分库是把同一个表按一定规则拆分到不同的数据库中，每个库可以位于不同的服务器上，以此实现水平扩展。</p>
+</blockquote>
+<p>水平分表：</p>
+<blockquote>
+<p>水平分表是在<strong>同一个数据库内</strong>，把一张大数据量的表按一定规则，切分成多个结构完全相同表，而每个表只存原表的一部分数据。</p>
+</blockquote>
+<p><strong>数据存在哪个库的表</strong></p>
+<p><strong>取模算法:</strong></p>
+<blockquote>
+<p>以<code>t_order</code>订单表为例，先给数据库从 0 到 N-1 进行编号，对 <code>t_order</code>订单表中<code>order_no</code>订单编号字段进行取模<code>hash(order_no) mod N</code>，得到余数<code>i</code>。</p>
+<p><code>i=0</code>存第一个库，<code>i=1</code>存第二个库，<code>i=2</code>存第三个库，以此类推。</p>
+</blockquote>
+<p>优点:</p>
+<blockquote>
+<p>实现简单，数据分布相对比较均匀，不易出现请求都打到一个库上的情况。</p>
+</blockquote>
+<p>缺点:</p>
+<blockquote>
+<p>对集群的伸缩支持不太友好，如果机器数减少，算法发生变化<code>hash(user_id) mod N-1</code>，同一用户数据落在了在不同数据库中，等这台机器恢复，用<code>user_id</code>作为条件查询用户数据就会少一部分。</p>
+</blockquote>
+<p><strong>范围限定算法：</strong></p>
+<blockquote>
+<p>用户表<code>t_user</code>被拆分成<code>t_user_1</code>、<code>t_user_2</code>、<code>t_user_3</code>三张表，后续将<code>user_id</code>范围为<code>1 ~ 1000w</code>的用户数据放入<code>t_user_1</code>，<code>1000~ 2000w</code>放入<code>t_user_2</code>，<code>2000~3000w</code>放入<code>t_user_3</code>，以此类推。</p>
+</blockquote>
+<p>优点:</p>
+<blockquote>
+<p>单表数据量是可控的</p>
+<p>水平扩展简单只需增加节点即可，无需对其他分片的数据进行迁移</p>
+</blockquote>
+<p>缺点:</p>
+<blockquote>
+<p>由于连续分片可能存在<code>数据热点</code>，比如按时间字段分片时，如果某一段时间（双11等大促）订单骤增，存11月数据的表可能会被频繁的读写，其他分片表存储的历史数据则很少被查询，导致数据倾斜，数据库压力分摊不均匀。</p>
+</blockquote>
+<p><strong>范围 + 取模算法</strong></p>
+<blockquote>
+<p>先通过范围算法定义每个库的用户表<code>t_user</code>只存1000w数据，第一个<code>db_order_1</code>库存放<code>userId</code>从<code>1 ~ 1000w</code>，第二个库<code>1000~2000w</code>，第三个库<code>2000~3000w</code>，以此类推。</p>
+<p>每个库里再把用户表<code>t_user</code>拆分成<code>t_user_1</code>、<code>t_user_2</code>、<code>t_user_3</code>等，对<code>userd</code>进行取模路由到对应的表中。</p>
+<p>有效的避免数据分布不均匀的问题，数据库水平扩展也简单，直接添加实例无需迁移历史数据。</p>
+</blockquote>
+<img src="/images/640.png" alt="图片" style="zoom:60%;" />
+<p><strong>分库分表出来的问题</strong></p>
+<blockquote>
+<p>分页、排序、跨节点联合查询</p>
+<p>事务一致性</p>
+<p>全局唯一的主键</p>
+</blockquote>
+<p><strong>分库分表架构模式</strong></p>
+<p>客户端模式:</p>
+<blockquote>
+<p>指分库分表的逻辑都在你的系统应用内部进行控制，应用会将拆分后的SQL直连多个数据库进行操作，然后本地进行数据的合并汇总等操作。</p>
+</blockquote>
+<p>代理模式：</p>
+<blockquote>
+<p>将应用程序与MySQL数据库隔离，业务方的应用不在需要直连数据库，而是连接proxy代理服务，代理服务实现了MySQL的协议，对业务方来说代理服务就是数据库，它会将SQL分发到具体的数据库进行执行，并返回结果。</p>
+</blockquote>
+<p><strong>如何部署上线</strong></p>
+<p>双写部署法:</p>
+<blockquote>
+<p>假设一张叫 <code>test_tb</code> 的表进行拆分，因为你要进行双写，系统里和 <code>test_tb</code>表有关的业务之前必定会加入一段双写代码，同时往老库和新库中写，然后进行部署。</p>
+<ul>
+<li>
+<p>历史数据:在部署前，数据库表 <code>test_tb</code> 的有关数据。</p>
+</li>
+<li>
+<p>增量数据:在部署后，数据库表 <code>test_tb</code> 的新产生的数据。</p>
+</li>
+</ul>
+</blockquote>
+<p>迁移流程:</p>
+<blockquote>
+<p>计算你要迁移的那张表的 max(主键) 。</p>
+<p>在迁移过程中，只迁移 db-old 中 <code>test_tb</code> 表里主键小等于该 max(主键) 的值：历史数据。</p>
+<p>与 <code>test_tb</code> 有关的业务，多加一条往消息队列中发消息的代码，将操作的写SQL发送到消息队列中：增量数据。</p>
+</blockquote>
+<img src="/images/image-20231012145132206.png" alt="image-20231012145132206" style="zoom:80%;" />
+<p><strong>用uid分库，uname上的查询怎么办？</strong></p>
+<p>业务场景：用户中心，数据量大，通过uid分库后，通过uname路由不到库。</p>
+<blockquote>
+<p>思路：uname基因融入uid：</p>
+<ul>
+<li>从uname抽取基因，融入uid中。</li>
+</ul>
+</blockquote>
+<p>假设分8库，采用<code>uid%8</code>路由，uid的最后3个bit决定这条数据落在哪个库上，这3个bit就是所谓的基因。</p>
+<blockquote>
+<p>在用户注册时，设计函数uname生成3bit基因，<code>uname_gene=f(uname)</code></p>
+<p>同时，生成61bit的全局唯一id，作为用户的标识</p>
+<p>接着把3bit的<code>uname_gene</code>也作为uid的一部分</p>
+<p>生成64bit的uid，由id和<code>uname_gene</code>拼装而成，并按照uid分库插入数据</p>
+<p>用uname来访问时，先通过函数由uname再次复原3bit基因，<code>uname_gene=f(uname)</code>，通过<code>uname_gene%8</code>直接定位到库</p>
+</blockquote>
+<h1>分布式算法</h1>
+<h2 id="Paxos算法">Paxos算法</h2>
+<p>在常见的 <strong>分布式系统</strong> 中，总会发生 <strong>节点宕机</strong> 或 <strong>网络异常</strong> (包括消息的 <strong>重复</strong>、<strong>丢失</strong>、<strong>延迟</strong>、<strong>乱序</strong>、<strong>网络分区</strong>) 等情况。</p>
+<blockquote>
+<p><code>Paxos</code> 算法主要就是解决如何在一个 <strong>发生如上故障</strong> 的分布式系统中，快速正确的在集群内 <strong>对某个值达成一致</strong>，并且保证 <strong>整个系统的一致性</strong>。</p>
+</blockquote>
+<p>角色:</p>
+<blockquote>
+<p><strong>Proposer</strong> : <code>Proposer</code> 可以 <strong>提出提案</strong> (<code>Proposal</code>)。</p>
+<p><strong>Accecptor</strong> : <code>Acceptor</code> 可以 <strong>接受提案</strong>，一旦接受提案，<strong>提案</strong> 里面的 <code>value</code> 值就被选定了。</p>
+<p><strong>Learner</strong> : <code>Acceptor</code> 告诉 <code>Learner</code> 哪个提案被选定了，那么 <code>Learner</code> 就学习这个被选择的 <code>value</code>。</p>
+</blockquote>
+<p>算法流程：</p>
+<blockquote>
+<p><strong>学习阶段：Prepare请求</strong></p>
+<p><code>Proposer</code> 选择一个新的提案 向 <code>Acceptor</code> 集合 （数目在<strong>半数以上</strong>）发送请求，要求 每一个 <code>Acceptor</code> 做出如下响应：</p>
+<ul>
+<li>
+<p>如果 <code>Acceptor</code> 没有接受过提案，则向 <code>Proposer</code> 保证 <strong>不再接受编号小于N的提案</strong>。</p>
+</li>
+<li>
+<p>如果 <code>Acceptor</code> 接受过请求，则向 <code>Proposer</code> 返回 <strong>已经接受过的编号小于N的编号最大的提案</strong>。</p>
+</li>
+</ul>
+<p><strong>接受阶段：Acceptor请求</strong></p>
+<p>如果 <code>Proposer</code> 收到 <strong>半数以上</strong> 的 <code>Acceptor</code> 响应，则 <strong>生成编号为</strong> <code>N</code>，<code>value</code> 为 <code>V</code> 的提案，<code>V</code> 为所有响应中 <strong>编号最大</strong> 的提案的 <code>value</code>。</p>
+<p>如果 <code>Proposer</code> 收到的响应中 <strong>没有提案</strong>，那么 <code>value</code> 由 <code>Proposer</code> <strong>自己生成</strong>，生成后将此提案发送，并期望 <code>Acceptor</code> 能接受此提案。</p>
+</blockquote>
+<h2 id="Raft算法">Raft算法</h2>
+<p>三类角色：</p>
+<blockquote>
+<p>Leader（领袖），Follower（群众），Candidate（候选人）</p>
+</blockquote>
+<p><strong>选举过程</strong></p>
+<p>一个最小的 <code>Raft</code> 民主集群需要 <strong>三个参与者</strong>（<code>A</code>、<code>B</code>、<code>C</code>），这样才可能投出多数票。</p>
+<blockquote>
+<p>初始状态 <code>ABC</code> 都是 <code>Follower</code>，然后发起选举这时有 <strong>三种</strong> 可能的情形发生。</p>
+<p>下图中前二种都能选出 <code>Leader</code>，第三种则表明 <strong>本轮投票无效</strong>（<code>Split Votes</code>）。</p>
+<p>对于第三种，每方都投给了自己，结果没有任何一方获得多数票。</p>
+<p>之后 <strong>每个参与方</strong> 随机休息一阵（<code>Election Timeout</code>）重新发起投票直到一方获得多数票。</p>
+<p>这里的关键就是随机 <code>timeout</code>，最先从 <code>timeout</code> 中恢复发起投票的一方，向还在 <code>timeout</code> 中的另外两方 <strong>请求投票</strong>，这时它就只能投给自己，导致很快达成一致。</p>
+<p>选出 <code>Leader</code> 后，<code>Leader</code> 通过 <strong>定期</strong> 向所有 <code>Follower</code> 发送 <strong>心跳信息</strong> 维持其统治。</p>
+<p>若 <code>Follower</code> 一段时间未收到 <code>Leader</code> 的 <strong>心跳</strong>，则认为 <code>Leader</code> 可能已经挂了，然后再次发起 <strong>选举</strong> 过程。</p>
+</blockquote>
+<img src="/images/image-20231012151732458.png" alt="image-20231012151732458" style="zoom:100%;" />
+<h1>分布式事务</h1>
+<p><strong>柔性事务</strong></p>
+<p>柔性事务主要分为补偿型和通知型。</p>
+<blockquote>
+<p>补偿型事务分：TCC、Saga。</p>
+<p>通知型事务分：MQ事务消息、最⼤努⼒通知型。</p>
+<p>补偿型事务都是同步的，通知型事务都是异步的。</p>
+</blockquote>
+<h2 id="二阶段提交">二阶段提交</h2>
+<p><strong>二阶段提交协议(2PC)</strong></p>
+<p>二阶段提交算法的成立基于以下假设：</p>
+<blockquote>
+<p>在该分布式系统中，存在一个节点作为协调者（Coordinator），其他节点作为参与者（Participants），且节点之间可以进行网络通信；</p>
+<p>所有节点都采用预写式日志，日志被写入后被保存在可靠的存储设备上，即使节点损坏也不会导致日志数据的丢失；</p>
+<p>所有节点不会永久性损坏，即使损坏后仍然可以恢复。</p>
+</blockquote>
+<p>两阶段提交中的两个阶段，指的是 Commit-Request 阶段和 Commit 阶段，两阶段提交的流程如下：</p>
+<p><img src="/images/image-20231012154935701.png" alt="image-20231012154935701"></p>
+<blockquote>
+<p><strong>提交请求阶段（Commit-Request）</strong></p>
+<p>在提交请求阶段，协调者将通知事务参与者准备提交事务，然后进入表决过程。</p>
+<p>在表决过程中，参与者将告知协调者自己的决策：</p>
+<ul>
+<li>同意（事务参与者本地事务执行成功）或取消（本地事务执行故障），在第一阶段，参与节点并没有进行Commit操作。</li>
+</ul>
+<p><strong>提交阶段（Commit）</strong></p>
+<p>在提交阶段，协调者将基于第一个阶段的投票结果进行决策：</p>
+<p>提交或取消这个事务，这个结果的处理和前面基于半数以上投票的一致性算法不同，必须当且仅当所有的参与者同意提交，协调者才会通知各个参与者提交事务，否则协调者将通知各个参与者取消事务。</p>
+<p>参与者在接收到协调者发来的消息后将执行对应的操作，也就是本地 Commit 或者 Rollback。</p>
+</blockquote>
+<p>两阶段提交存在的问题：</p>
+<blockquote>
+<p>资源被同步阻塞:</p>
+<ul>
+<li>在执行过程中，所有参与节点都是事务独占状态，当参与者占有公共资源时，那么第三方节点访问公共资源会被阻塞。</li>
+</ul>
+<p>协调者可能出现单点故障:</p>
+<ul>
+<li>一旦协调者发生故障，参与者会一直阻塞下去。</li>
+</ul>
+<p>在 Commit 阶段出现数据不一致:</p>
+<p>在第二阶段中，假设协调者发出了事务 Commit 的通知，但是由于网络问题该通知仅被一部分参与者所收到并执行 Commit，其余的参与者没有收到通知，一直处于阻塞状态，那么，这段时间就产生了数据的不一致性。</p>
+</blockquote>
+<h2 id="三阶段提交">三阶段提交</h2>
+<p><strong>三阶段提交协议(3PC)</strong></p>
+<p>为了解决二阶段协议中的同步阻塞等问题，三阶段提交协议在协调者和参与者中都引入了超时机制，并且把两阶段提交协议的第一个阶段拆分成了两步：询问，然后再锁资源，最后真正提交。</p>
+<p>三阶段中的 Three Phase 分别为 CanCommit、PreCommit、DoCommit 阶段。</p>
+<p><img src="/images/image-20231012155323587.png" alt="image-20231012155323587"></p>
+<p><strong>三阶段提交做了哪些改进:</strong></p>
+<p>引入超时机制:</p>
+<blockquote>
+<p>在 2PC 中，只有协调者拥有超时机制，如果在一定时间内没有收到参与者的消息则默认失败，3PC 同时在协调者和参与者中都引入超时机制。</p>
+</blockquote>
+<p>添加预提交阶段:</p>
+<blockquote>
+<p>在 2PC 的准备阶段和提交阶段之间，插入一个准备阶段，使 3PC 拥有 CanCommit、PreCommit、DoCommit 三个阶段，PreCommit 是一个缓冲，保证了在最后提交阶段之前各参与节点的状态是一致的。</p>
+</blockquote>
+<p><strong>三阶段提交协议存在的问题</strong></p>
+<blockquote>
+<p>在阶段三中，如果参与者接收到了 PreCommit 消息后，出现了不能与协调者正常通信的问题，在这种情况下，参与者依然会进行事务的提交，这就出现了数据的不一致性。</p>
+</blockquote>
+<h2 id="MQ消息事务">MQ消息事务</h2>
+<blockquote>
+<p>方案一：依靠MQ的事务消息机制来实现投递消息和参与者⾃身本地事务的⼀致性保障。</p>
+</blockquote>
+<blockquote>
+<p>方案二：并不是所有的MQ都支持事务消息。</p>
+<ul>
+<li>也就是消息一旦发送到消息队列中，消费者立马就可以消费到，此时可以使用独立消息服务、或者本地事务表。</li>
+</ul>
+</blockquote>
+<p><img src="/images/1517928501647001515.png" alt="ECEB0CD9-A61C-4ED9-98C1-CE02A9B658C3.png"></p>
+<h2 id="最大努力通知">最大努力通知</h2>
+<p>适用于一些最终一致性时间敏感度低的业务，且被动方处理结果 不影响主动方的处理结果。</p>
+<blockquote>
+<p>典型的使用场景：如银行通知、商户通知等。</p>
+</blockquote>
+<p>最大努力通知型的实现方案，一般符合以下特点：</p>
+<blockquote>
+<p>不可靠消息：</p>
+<ul>
+<li>业务活动主动方，在完成业务处理之后，向业务活动的被动方发送消息，直到通知N次后不再通知，允许消息丢失(不可靠消息)。</li>
+</ul>
+<p>定期校对：</p>
+<ul>
+<li>业务活动的被动方，根据定时策略，向业务活动主动方查询(主动方提供查询接口)，恢复丢失的业务消息。</li>
+</ul>
+</blockquote>
+<p>举例：一个短信发送平台，背景是公司内部有多个业务都有发送短信的需求，如果每个业务独立实现短信发送功能，存在功能实现上的重复。</p>
+<p>有一个短信平台项目，所有的业务方都接入这个短信平台，来实现发送短信的功能。</p>
+<img src="/images/1517793734283093270.png" alt="E14FE394-01AF-45BE-A371-8B46611884BD.png" style="zoom:50%;" />
+<blockquote>
+<p>1、业务方将短信发送请求提交给短信平台</p>
+<p>2、短信平台接收到要发送的短信，记录到数据库中，并标记其状态为已接收</p>
+<p>3、短信平台调用外部短信发送供应商的接口，发送短信</p>
+<p>4、更新短信发送状态为已发送</p>
+<p>5、短信发送供应商异步通知短信平台短信发送结果，而通知可能失败，因此最多只会通知N次</p>
+<p>6、短信平台接收到短信发送结果后，更新短信发送状态，可能是成功，也可能失败(如手机欠费)</p>
+<p>7、如果最多只通知N次，如果都失败了的话，那么短信平台将不知道短信到底有没有成功发送</p>
+<p>8、短信发送供应商需要提供一个查询接口，以方便短信平台驱动的去查询，进行定期校对</p>
+</blockquote>
+<h2 id="TCC事务">TCC事务</h2>
+<p>TCC将事务过程分为Try（尝试）、Confirm（确认）和Cancel（取消）三个阶段，每个阶段由业务代码控制，避免了长事务的问题，从而提高了性能。</p>
+<p><img src="/images/a2cc7cd98d1001e935946ae51df604e056e797b0.png" alt="img"></p>
+<blockquote>
+<p><strong>Try阶段</strong>：</p>
+<ul>
+<li>尝试执行业务并完成所有业务检查，预留业务资源。</li>
+</ul>
+<p><strong>Confirm和Cancel阶段</strong>：这两个操作是互斥的，只可以选择其中一个。</p>
+<ul>
+<li>Confirm操作是确认提交，执行业务操作，不进行其他业务检查，只使用Try阶段预留的业务资源。</li>
+<li>Cancel操作在业务执行错误需要回滚的情况下执行，释放预留的资源。</li>
+</ul>
+<p><strong>Try 阶段失败可以 Cancel，如果 Confirm 和 Cancel 阶段失败了呢？</strong></p>
+<p>TCC事务模型中会使用事务日志来记录Try、Confirm和Cancel阶段的操作。</p>
+<p>如果在Confirm或Cancel阶段发生错误，系统会进行重试操作。</p>
+<p>因此，这两个阶段需要支持幂等性，以确保多次执行的结果与一次执行的结果相同。</p>
+<p>如果重试操作失败，就需要人工介入来进行恢复和处理。</p>
+</blockquote>
+<p>TCC的缺点：</p>
+<blockquote>
+<p>TCC对微服务的侵入性较强，需要对业务系统进行改造，每个分支的业务逻辑都需要实现try、confirm和cancel操作，并且confirm和cancel操作必须保证幂等性。</p>
+<p>TCC的事务管理器需要记录事务日志，这也会带来一定的性能损耗。</p>
+</blockquote>
+<p>与2PC/XA两阶段提交的区别:</p>
+<blockquote>
+<p>2PC/XA关注数据库层面的强一致性，持有数据库锁。</p>
+<p>而TCC关注业务层面的最终一致性，不涉及加锁，并且将相关的处理从数据库转移到业务中，实现跨数据库的事务。</p>
+</blockquote>
+<p>空回滚问题:</p>
+<blockquote>
+<p>在 try 阶段服务 1 这个节点发生了故障，try 阶段在不考虑重试的情况下，全局事务必须要走向结束状态，这样就需要在服务上执行一次 cancel 操作，这样就空跑了一次回滚操作。</p>
+<p>解决办法：</p>
+<ul>
+<li>
+<p>第一阶段 Try 方法里会插入一条记录（事务记录表），表示一阶段执行了。</p>
+</li>
+<li>
+<p>Cancel 接口里读取该记录，如果该记录存在，则正常回滚；如果该记录不存在，则是空回滚。</p>
+</li>
+</ul>
+</blockquote>
+<p>防悬挂控制：</p>
+<blockquote>
+<p>在调用TCC服务的一阶段Try操作时，可能会出现因网络拥堵而导致的超时，此时触发二阶段回滚，调用TCC服务的Cancel操作；</p>
+<p>在此之后，拥堵在网络上的一阶段Try数据包被TCC服务收到，出现了二阶段Cancel请求比一阶段Try请求先执行的情况；</p>
+<p>解决思路：</p>
+<ul>
+<li>
+<p>如果二阶段执行完成，那一阶段就不能再继续执行。</p>
+</li>
+<li>
+<p>在执行一阶段事务时判断在该全局事务下，事务记录表中是否已经有二阶段事务记录，如果有则不执行Try。</p>
+</li>
+</ul>
 </blockquote>
 
 	</div>
