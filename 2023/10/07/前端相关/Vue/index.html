@@ -169,6 +169,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/12/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+										小程序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -343,6 +352,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
+										Spring
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2023/01/17/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
 										Thrift
 									</a>
@@ -495,6 +513,26 @@
 								
 							</ul>
 			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										雅思
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%98/">
+										剑桥雅思听力真题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -585,9 +623,17 @@
 </blockquote>
 <h1>事件处理</h1>
 <p>使用<code>v-on:xxx</code>或者<code>@xxx</code>绑定事件，其中xxx是事件名。通常使用<code>@xxx</code>，例如：<code>@click</code>；</p>
+<blockquote>
 <p>事件的回调需要配置在methods对象中，最终会在vm上；</p>
+<ul>
+<li>
 <p>methods中配置的函数，不要用箭头函数！否则this就不是vm实例化对象了；</p>
+</li>
+<li>
 <p>methods中配置的函数，都是被Vue所管理的函数，this的指向是vm或组件实例对象；</p>
+</li>
+</ul>
+</blockquote>
 <p><code>@click=&quot;demo&quot;</code> 和 <code>@click=&quot;demo($event)&quot;</code> 效果一致，但是后者可以传参数。</p>
 
 	</div>
