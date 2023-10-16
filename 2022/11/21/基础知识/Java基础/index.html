@@ -256,15 +256,6 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2023/07/28/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/">
-										常用代码
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
 									<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
 										开发工具
 									</a>
@@ -614,7 +605,14 @@
 
 <div id="container" class = "content999">
 	<div id="article-content">
-		<p><strong>接口和抽象的区别</strong></p>
+		<p><strong>编译期与运行期</strong></p>
+<blockquote>
+<p><strong>编译期</strong>是指把源码交给编译器编译成计算机可执行文件的过程，<strong>运行期</strong>是指把编译后的文件交给计算机执行，直到程序结束。</p>
+<p>在<code>Java</code>中就是把<code>.java</code>文件编译成<code>.class</code>文件，再把编译后的文件交给<code>JVM</code>加载执行。</p>
+</blockquote>
+<img src="/images/image-20231016000034082.png" alt="image-20231016000034082" style="zoom:40%;" />
+
+<p><strong>接口和抽象的区别</strong></p>
 <blockquote>
 <p>抽象类带来的很大的作用就是实现代码复用，比如当有多个子类有相同的属性或方法时，我们可以抽象出一个公共的类，然后子类继承这个抽象类，当然，这个公共类可以是普通父类，也可以是抽象类。</p>
 <ul>
@@ -733,6 +731,90 @@
 <p>2、用作 HashMap 的 key。</p>
 <p>3、缓存 HashCode。</p>
 <p>4、<strong>线程安全</strong>。</p>
+</blockquote>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>泛型就是在定义类、接口、方法的时候指定某一种特定类型，让类、接口、方法的使用者来决定具体用哪一种类型的参数。</p>
+<blockquote>
+<p>泛型是在<code>1.5</code>引入的，只在<strong>编译期</strong>做泛型检查，<strong>运行期</strong>泛型就会消失，称为 <strong>泛型擦除</strong>，最终类型都会变成<code>Object</code>。</p>
+<p>泛型的本质是参数化类型，而类型擦除使得类型参数只存在于编译期，在运行时，<code>JVM</code>是并不知道泛型的存在的。</p>
+</blockquote>
+<p><strong>泛型好处</strong></p>
+<blockquote>
+<p>在编译的时候能够检查类型安全，并且所有的强制转换都是自动和隐式的。</p>
+</blockquote>
+<p><strong>类型擦除</strong></p>
+<pre><code class="java">public static void main(String[] args) &#123;
+    List&lt;String&gt; list1=new ArrayList&lt;String&gt;();
+    List&lt;Integer&gt; list2=new ArrayList&lt;Integer&gt;();
+    System.out.println(list1.getClass()==list2.getClass());
+&#125;
+</code></pre>
+<blockquote>
+<p><code>ArrayList&lt;String&gt;</code>和<code>ArrayList&lt;Integer&gt;</code>在编译时是不同的类型，但是在编译完成后都被编译器简化成了<code>ArrayList</code>。</p>
+</blockquote>
+<p><strong>为什么要进行泛型的类型擦除？</strong></p>
+<blockquote>
+<p>主要目的是避免过多的创建类而造成的运行时的过度消耗。</p>
+</blockquote>
+<p><strong>泛型类</strong></p>
+<pre><code class="java">public class GenericClass&lt;T&gt;&#123;
+    //成员变量
+    private T t;
+    
+    public  void function(T t)&#123;
+
+    &#125;
+    
+    public T functionTwo(T t)&#123;
+        //注意，这个不是泛型方法！！！
+       return t;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>泛型接口</strong></p>
+<pre><code class="java">public interface GenericInterface&lt;T&gt; &#123;
+    
+    public T get();
+    
+    public void set(T t);
+
+    public T delete(T t);
+    
+    default T defaultFunction(T t)&#123;
+        return t;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>泛型函数</strong></p>
+<pre><code class="java">public class GenericFunction &#123;
+
+    public &lt;T&gt; void function(T t) &#123;
+    &#125;
+
+    public &lt;T&gt; T functionTwo(T t) &#123;
+        return t;
+    &#125;
+
+    public &lt;T&gt; String functionThree(T t) &#123;
+        return &quot;&quot;;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>通配符</strong></p>
+<p>通配符是为了让<code>Java</code>泛型支持范围限定。</p>
+<blockquote>
+<p><code>&lt;?&gt;</code>：无界通配符，即类型不确定，任意类型。</p>
+<p><code>&lt;? extends T&gt;</code>：上边界通配符，即<code>?</code>是继承自<code>T</code>的任意子类型，遵守只读不写。</p>
+<p><code>&lt;? super T&gt;</code>：下边界通配符，即<code>?</code>是<code>T</code>的任意父类型，遵守只写不读。</p>
+</blockquote>
+<blockquote>
+<p><code>&lt;? extends T&gt;</code>上边界通配符：</p>
+<ul>
+<li>不作为函数入参，只作为函数返回类型，比如<code>List&lt;? extends T&gt;</code>的使用<code>add</code>函数会编译不通过，<code>get</code>函数则没问题。</li>
+</ul>
+<p><code>&lt;? super T&gt;</code>下边界通配符：</p>
+<ul>
+<li>不作为函数返回类型，只作为函数入参，比如<code>List&lt;? super T&gt;</code>的<code>add</code>函数正常调用，<code>get</code>函数也没问题，但只会返回<code>Object</code>，所以意义不大。</li>
+</ul>
 </blockquote>
 <h1 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h1><p>ThreadLocal 提供了线程本地变量的实例，它与普通变量的区别在于，每个使用该变量的线程都会初始化一个完全独立的实例副本。</p>
 <p><strong>使用场景</strong></p>
@@ -972,7 +1054,291 @@ try &#123;
 </ul>
 <p>TransmittableThreadLocal通过将线程封装成TtlRunnable，然后通过快照还有hold一个总收集变量来解决。</p>
 </blockquote>
-<h1 id="集合类"><a href="#集合类" class="headerlink" title="集合类"></a>集合类</h1><h2 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h2><p>LinkedList 适用于要求有顺序、并且会按照顺序进行迭代的场景，底层数据结构是一个双向链表:</p>
+<h1 id="集合类"><a href="#集合类" class="headerlink" title="集合类"></a>集合类</h1><h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><p>HashMap 底层的数据结构主要是：数组 + 链表 + 红黑树。</p>
+<blockquote>
+<p>其中当链表的长度大于等于 8 时，链表会转化成红黑树，当红黑树的大小小于等于 6 时，红黑树会转化成链表。</p>
+</blockquote>
+<img src="/images/format,png.png" alt="图片描述" style="zoom:50%;" />
+
+<p><strong>常见属性</strong></p>
+<pre><code class="java"> //初始容量为 16
+ static final int DEFAULT_INITIAL_CAPACITY = 1 &lt;&lt; 4;
+ 
+ //最大容量
+ static final int MAXIMUM_CAPACITY = 1 &lt;&lt; 30;
+ 
+ //负载因子默认值
+ static final float DEFAULT_LOAD_FACTOR = 0.75f;
+ 
+ //桶上的链表长度大于等于8时，链表转化成红黑树
+ static final int TREEIFY_THRESHOLD = 8;
+ 
+ //桶上的红黑树大小小于等于6时，红黑树转化成链表
+ static final int UNTREEIFY_THRESHOLD = 6;
+ 
+ //当数组容量大于 64 时，链表才会转化成红黑树
+ static final int MIN_TREEIFY_CAPACITY = 64;
+ 
+ //记录迭代过程中 HashMap 结构是否发生变化，如果有变化，迭代时会 fail-fast
+ transient int modCount;
+ 
+ //HashMap 的实际大小，可能不准(因为当你拿到这个值的时候，可能又发生了变化)
+ transient int size;
+ 
+ //存放数据的数组
+ transient Node&lt;K,V&gt;[] table;
+ 
+ // 扩容的门槛，有两种情况
+ // 如果初始化时，给定数组大小的话，通过 tableSizeFor 方法计算，数组大小永远接近于 2 的幂次方，比如你给定初始化大小 19，实际上初始化大小为 32，为 2 的 5 次方。
+ // 如果是通过 resize 方法进行扩容，大小 = 数组容量 * 0.75
+ int threshold;
+ 
+ //链表的节点
+ static class Node&lt;K,V&gt; implements Map.Entry&lt;K,V&gt; &#123;
+ 
+ //红黑树的节点
+ static final class TreeNode&lt;K,V&gt; extends LinkedHashMap.Entry&lt;K,V&gt; &#123;
+</code></pre>
+<p><strong>新增</strong></p>
+<blockquote>
+<p>1、空数组有无初始化，没有的话初始化。</p>
+<p>2、如果通过 key 的 hash 能够直接找到值，跳转到 6，否则到 3。</p>
+<p>3、如果 hash 冲突，两种解决方案：链表 or 红黑树。</p>
+<p>4、如果是链表，递归循环，把新元素追加到队尾。</p>
+<p>5、如果是红黑树，调用红黑树新增的方法。</p>
+<p>6、通过 2、4、5 将新元素追加成功，再根据 onlyIfAbsent 判断是否需要覆盖。</p>
+<p>7、判断是否需要扩容，需要扩容进行扩容，结束。</p>
+</blockquote>
+<img src="/images/format,png-20231016190034410.png" alt="图片描述" style="zoom:50%;" />
+
+<pre><code class="java">// 入参 hash：通过 hash 算法计算出来的值。
+// 入参 onlyIfAbsent：false 表示即使 key 已经存在了，仍然会用新值覆盖原来的值，默认为 false
+final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
+               boolean evict) &#123;
+    // n 表示数组的长度，i 为数组索引下标，p 为 i 下标位置的 Node 值
+    Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; int n, i;
+    //如果数组为空，使用 resize 方法初始化
+    if ((tab = table) == null || (n = tab.length) == 0)
+        n = (tab = resize()).length;
+    // 如果当前索引位置是空的，直接生成新的节点在当前索引位置上
+    if ((p = tab[i = (n - 1) &amp; hash]) == null)
+        tab[i] = newNode(hash, key, value, null);
+    // 如果当前索引位置有值的处理方法，即我们常说的如何解决 hash 冲突
+    else &#123;
+        // e 当前节点的临时变量
+        Node&lt;K,V&gt; e; K k;
+        // 如果 key 的 hash 和值都相等，直接把当前下标位置的 Node 值赋值给临时变量
+        if (p.hash == hash &amp;&amp;
+            ((k = p.key) == key || (key != null &amp;&amp; key.equals(k))))
+            e = p;
+        // 如果是红黑树，使用红黑树的方式新增
+        else if (p instanceof TreeNode)
+            e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(this, tab, hash, key, value);
+        // 是个链表，把新节点放到链表的尾端
+        else &#123;
+            // 自旋
+            for (int binCount = 0; ; ++binCount) &#123;
+                // e = p.next 表示从头开始，遍历链表
+                // p.next == null 表明 p 是链表的尾节点
+                if ((e = p.next) == null) &#123;
+                    // 把新节点放到链表的尾部 
+                    p.next = newNode(hash, key, value, null);
+                    // 当链表的长度大于等于 8 时，链表转红黑树
+                    if (binCount &gt;= TREEIFY_THRESHOLD - 1)
+                        treeifyBin(tab, hash);
+                    break;
+                &#125;
+                // 链表遍历过程中，发现有元素和新增的元素相等，结束循环
+                if (e.hash == hash &amp;&amp;
+                    ((k = e.key) == key || (key != null &amp;&amp; key.equals(k))))
+                    break;
+                //更改循环的当前元素，使 p 在遍历过程中，一直往后移动。
+                p = e;
+            &#125;
+        &#125;
+        // 说明新节点的新增位置已经找到了
+        if (e != null) &#123;
+            V oldValue = e.value;
+            // 当 onlyIfAbsent 为 false 时，才会覆盖值 
+            if (!onlyIfAbsent || oldValue == null)
+                e.value = value;
+            afterNodeAccess(e);
+            // 返回老值
+            return oldValue;
+        &#125;
+    &#125;
+    // 记录 HashMap 的数据结构发生了变化
+    ++modCount;
+    //如果 HashMap 的实际大小大于扩容的门槛，开始扩容
+    if (++size &gt; threshold)
+        resize();
+    afterNodeInsertion(evict);
+    return null;
+&#125;
+</code></pre>
+<p><strong>链表的新增</strong></p>
+<blockquote>
+<p>当链表长度大于等于 8 时，此时的链表就会转化成红黑树，转化的方法是：treeifyBin，此方法有一个判断，当链表长度大于等于 8，并且整个数组大小大于 64 时，才会转成红黑树，当数组大小小于 64 时，只会触发扩容，不会转化成红黑树。</p>
+<p>JDK1.7中链表插入采用的是头插法，JDK1.8中插入使用的是尾插法。</p>
+<ul>
+<li>头插法：<strong>扩容</strong>时，扩容的逻辑会导致节点互相引用，导致<strong>死循环</strong>。</li>
+</ul>
+</blockquote>
+<p><strong>为什么是8？</strong></p>
+<blockquote>
+<p>链表查询的时间复杂度是 <code>O(n)</code>，红黑树的查询复杂度是 <code>O(log(n))</code>。</p>
+<p>在链表数据不多的时候，使用链表进行遍历也比较快，只有当链表数据比较多的时候，才会转化成红黑树，但红黑树需要的占用空间是链表的 2 倍，考虑到转化时间和空间损耗。</p>
+</blockquote>
+<p>在考虑设计 8 这个值的时候，参考了泊松分布概率函数，由泊松分布中得出结论，链表各个长度的命中概率为：</p>
+<pre><code>* 0:    0.60653066
+* 1:    0.30326533
+* 2:    0.07581633
+* 3:    0.01263606
+* 4:    0.00157952
+* 5:    0.00015795
+* 6:    0.00001316
+* 7:    0.00000094
+* 8:    0.00000006
+</code></pre>
+<blockquote>
+<p>当链表的长度是 8 的时候，出现的概率是 0.00000006，不到千万分之一，所以说正常情况下，链表的长度不可能到达 8 ，而一旦到达 8 时，肯定是 hash 算法出了问题，所以在这种情况下，为了让 HashMap 仍然有较高的查询性能，所以让链表转化成红黑树。</p>
+</blockquote>
+<p><strong>红黑树新增节点过程</strong></p>
+<blockquote>
+<p>1、首先判断新增的节点在红黑树上是不是已经存在：</p>
+<ul>
+<li><p>如果节点没有实现 Comparable 接口，使用 equals 进行判断。</p>
+</li>
+<li><p>如果节点自己实现了 Comparable 接口，使用 compareTo 进行判断。</p>
+</li>
+</ul>
+<p>2、新增的节点如果已经在红黑树上，直接返回；不在的话，判断新增节点是在当前节点的左边还是右边，左边值小，右边值大。</p>
+<p>3、自旋递归 1 和 2 步，直到当前节点的左边或者右边的节点为空时，停止自旋，当前节点即为我们新增节点的父节点。</p>
+<p>4、把新增节点放到当前节点的左边或右边为空的地方，并于当前节点建立父子节点关系。</p>
+<p>5、进行着色和旋转，结束。</p>
+</blockquote>
+<p><strong>扩容机制</strong></p>
+<p><strong>查找</strong></p>
+<blockquote>
+<p>根据 hash 算法定位数组的索引位置，equals 判断当前节点是否是我们需要寻找的 key，是的话直接返回，不是的话往下。</p>
+<p>判断当前节点有无 next 节点，有的话判断是链表类型，还是红黑树类型。</p>
+<p>分别走链表和红黑树不同类型的查找方法。</p>
+</blockquote>
+<pre><code class="java">// 采用自旋方式从链表中查找 key，e 初始为为链表的头节点
+do &#123;
+    // 如果当前节点 hash 等于 key 的 hash，并且 equals 相等，当前节点就是我们要找的节点
+    // 当 hash 冲突时，同一个 hash 值上是一个链表的时候，我们是通过 equals 方法来比较 key 是否相等的
+    if (e.hash == hash &amp;&amp;
+        ((k = e.key) == key || (key != null &amp;&amp; key.equals(k))))
+        return e;
+    // 否则，把当前节点的下一个节点拿出来继续寻找
+&#125; while ((e = e.next) != null);
+</code></pre>
+<p><strong>HashMap为什么是线程不安全的</strong></p>
+<blockquote>
+<p>同时 put 碰撞导致数据丢失。</p>
+<ul>
+<li>多个线程同时使用 put 来添加元素，而且两个 put 的 key 是一样的，它们发生了碰撞，这样最终就只会保留一个数据。</li>
+</ul>
+<p>可见性问题无法保证。</p>
+<ul>
+<li>如果线程 1 给某个 key 放入了一个新值，那么线程 2 在获取对应的 key 的值的时候，它的可见性是无法保证的。</li>
+</ul>
+<p>死循环造成 CPU 100%：</p>
+<ul>
+<li>扩容的时候，会反转散列桶中的节点顺序，当有多个线程同时进行扩容的时候，如果两个线程同时反转的话，便可能形成一个循环。</li>
+</ul>
+</blockquote>
+<h2 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h2><p>ArrayList整体架构是一个数组结构:</p>
+<p><img src="/images/image-20231016184326651.png" alt="image-20231016184326651"></p>
+<p>基本概念：</p>
+<blockquote>
+<p><code>DEFAULT_CAPACITY</code>：表示数组的初始大小，默认是 10。</p>
+<p>size：表示当前数组的大小，类型是 int，没有使用 volatile 修饰，非线程安全。</p>
+<p>modCount：统计当前数组被修改的版本次数，数组结构有变动，就会加 1。</p>
+</blockquote>
+<p><strong>初始化</strong></p>
+<blockquote>
+<p>ArrayList无参构造器初始化时，默认大小是空数组，并不是默认的<code>DEFAULT_CAPACITY</code> 10，10 是在第一次 add 时扩容的值。</p>
+</blockquote>
+<p><strong>新增</strong></p>
+<blockquote>
+<p>判断是否需要扩容，如果需要则执行扩容操作。</p>
+<p>赋值新元素。</p>
+</blockquote>
+<pre><code class="java">public boolean add(E e) &#123;
+    // 确保数组大小是否足够，不够则执行扩容，size 为当前数组的大小
+    ensureCapacityInternal(size + 1);  // Increments modCount!!
+    // 直接赋值
+    elementData[size++] = e;
+    return true;
+&#125;
+</code></pre>
+<pre><code class="java">private void ensureCapacityInternal(int minCapacity) &#123;
+    ensureExplicitCapacity(calculateCapacity(elementData, minCapacity));
+&#125;
+
+// 计算 capacity
+private static int calculateCapacity(Object[] elementData, int minCapacity) &#123;
+    // 如果数组为空，则返回默认容量(10) 和最小容量(比如初始化 List add 一个 element 时 minCapacity 为 1)之间的 max 值
+    if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) &#123;
+        return Math.max(DEFAULT_CAPACITY, minCapacity);
+    &#125;
+    return minCapacity;
+&#125;
+
+// 确保容量足够
+private void ensureExplicitCapacity(int minCapacity) &#123;
+    // 记录数组被修改 
+    modCount++;
+
+    // 如果我们期望的最小容量大于目前数组的长度，则执行扩容操作
+    // overflow-conscious code
+    if (minCapacity - elementData.length &gt; 0)
+        grow(minCapacity);
+&#125;
+
+// 扩容，并把现有数据拷贝到新的数组中去
+private void grow(int minCapacity) &#123;
+    // overflow-conscious code
+    int oldCapacity = elementData.length;
+    // 新的容量为旧的容量的 1.5 倍(capacity &gt;&gt; 1  ==&gt; capacity / 2)
+    int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1);
+    // 如果新的容量小于我们期望值 minCapacity，则将新的容量值赋值为期望值
+    if (newCapacity - minCapacity &lt; 0)
+        newCapacity = minCapacity;
+    // 如果新的容量大于 JVM 所能分配的数组的最大值，那么就用 Integer 的最大值
+    if (newCapacity - MAX_ARRAY_SIZE &gt; 0)
+        newCapacity = hugeCapacity(minCapacity);
+    // 通过复制进行扩容
+    // minCapacity is usually close to size, so this is a win:
+    elementData = Arrays.copyOf(elementData, newCapacity);
+&#125;
+</code></pre>
+<blockquote>
+<p>扩容的规则并不是翻倍，而是 原来容量大小 + 原来容量大小的一半（原来容量的 1.5 倍）。</p>
+<p>ArrayList 中数组的最大容量是 <code>Integer.MAX_VALUE</code>，超过这个值，JVM 就不会给数组分配内存空间了。</p>
+<p>新增时，并没有对值进行严格的校验，所以 ArrayList 是允许 null 值的。</p>
+</blockquote>
+<p><strong>扩容</strong></p>
+<blockquote>
+<p>扩容会先新建一个符合我们预期容量 <code>newCapacity</code> 的新数组，然后把旧数组的数据拷贝过去。</p>
+</blockquote>
+<pre><code class="java">public static int[] copyOf(int[] original, int newLength) &#123;
+    int[] copy = new int[newLength];
+    System.arraycopy(original, 0, copy, 0,
+                     Math.min(original.length, newLength));
+    return copy;
+&#125;
+
+public static native void arraycopy(Object src,  int  srcPos, Object dest, int destPos, int length);
+</code></pre>
+<p><strong>线程安全</strong></p>
+<blockquote>
+<p>只有当 <code>ArrayList</code> 作为共享变量时，才会有线程安全问题，当 <code>ArrayList</code> 是方法内部局部变量时，是没有线程安全问题的。</p>
+<p>本质是因为 ArrayList 自身的 elementData、size、modCount 在进行各种操作时，都没有加锁，而且这些变量的类型并非是可见的(volatile)的，所以如果多个线程对这些变量进行操作时，可能会有值被覆盖的情况。</p>
+</blockquote>
+<h2 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h2><p>LinkedList 适用于要求有顺序、并且会按照顺序进行迭代的场景，底层数据结构是一个双向链表:</p>
 <img src="/images/image-20231015001829797.png" alt="image-20231015001829797" style="zoom:30%;" />
 
 <blockquote>
