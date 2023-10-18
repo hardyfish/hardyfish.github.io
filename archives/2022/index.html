@@ -645,13 +645,16 @@ ES用 Java 编写的，它的内部使用 Lucene 做索引与搜索，但是它�
 					并发编程
 				</h2>
 				<div class="index-brief">
-					阻塞队列
-ArrayBlockingQueue
-ArrayBlockingQueue 是最典型的有界队列，其内部是用数组存储元素的，利用 ReentrantLock 实现线程安全。
+					线程
+线程优先级
 
+线程的优先级：线程抢占 CPU 时间片的概率，优先级越高的线程优先执行的概率就越大，但并不能保证优先级高的线程一定先执行。
 
-有界的阻塞数组，容量一旦创建，后续大小无法修改；
-元素是有顺序的，按照先入先出进行排序，从队尾插入数据数据，从队头
+// 线程可以拥有的最小优先级
+public final static int MIN_PRIORITY = 1;
+
+// 线程默认优先级
+public 
 					...
 				</div>
 			</a>
