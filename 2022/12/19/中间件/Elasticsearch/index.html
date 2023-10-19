@@ -606,192 +606,267 @@
 <div id="container" class = "content999">
 	<div id="article-content">
 		<p>Elasticsearch 是一个开源的搜索引擎，建立在全文搜索引擎库 Apache Lucene 基础之上。</p>
-<p>ES用 Java 编写的，它的内部使用 Lucene 做索引与搜索，但是它的目的是使全文检索变得简单， 通过隐藏 Lucene 的复杂性，取而代之的提供一套简单一致的 RESTful API。</p>
-<p><strong>ES学习资源</strong></p>
-<p>官网的文档是最好的学习资源，详细、全面，官网还提供有一些视频：</p>
-<p><a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html</a></p>
-<p>官网中还提供一个中文的权威指南，可以学习，（版本稍老了点）：</p>
-<p><a target="_blank" rel="noopener" href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html">https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html</a></p>
-<p><strong>term和match的区别</strong></p>
-<p>term是代表完全匹配，也就是精确查询，搜索前不会再对搜索词进行分词拆解。</p>
-<p>想用term匹配多个词怎么做？可以使用<code>terms</code>来</p>
-<p>match进行搜索的时候，会先进行分词拆分，拆完后，再来匹配。</p>
-<p><code>match_phrase</code> 称为短语搜索，要求所有的分词必须同时出现在文档中，同时位置必须紧邻一致。</p>
-<p><strong>常用问题</strong></p>
-<p>Elasticsearch的write线程在执行文档的索引操作时需要获取文档主键对应的锁，以防止不同线程同时修改同一篇文档，而出问题时，write线程大部分时间都是在等待这个锁，那就说明很可能是因为实时任务往Elasticsearch批量写入的文档里很多都是同一个主键的，导致write线程的锁争用情况非常严重，后来通过分析数据binlog验证了这个猜想。</p>
+<blockquote>
+<p>ES用 Java 编写，内部使用 Lucene 做索引与搜索：</p>
+<ul>
+<li>使全文检索变得简单，隐藏 Lucene 的复杂性，提供一套简单的 RESTful API。</li>
+</ul>
+</blockquote>
+<p><strong>学习资源</strong></p>
+<blockquote>
+<p>官网文档：<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html</a></p>
+<p>中文权威指南：<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html">https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html</a></p>
+</blockquote>
+<h1>基本概念</h1>
+<p><strong>正排索引</strong></p>
+<blockquote>
+<p>文档ID到文档内容、单词的关联关系。</p>
+</blockquote>
+<p><strong>倒排索引</strong></p>
+<blockquote>
+<p>单词到文档ID的关联关系。</p>
+<p>倒排索引主要包含两个部分：</p>
+<p>单词词典：</p>
+<ul>
+<li>
+<p>记录所有文档的单词。</p>
+</li>
+<li>
+<p>记录单词到倒排列表的关联信息。</p>
+</li>
+</ul>
+<p>倒排列表：记录了单词对应的文档集合，由倒排索引项组成。</p>
+<p>倒排索引项包含如下信息：</p>
+<ul>
+<li>文档ID，用于获取原始信息。</li>
+<li>单词频率，记录该单词在该文档中的出现次数，用于后续相关性算分。</li>
+<li>位置，记录单词在文档中的位置，用于做词语搜索。</li>
+<li>偏移，记录单词在文档的开始和结束位置，用于做高亮显示。</li>
+</ul>
+</blockquote>
+<p><strong>Term和Match的区别</strong></p>
+<blockquote>
+<p>Term：完全匹配，精确查询，搜索前不会再对搜索词进行分词拆解。</p>
+<p>Match：搜索的时会先进行分词拆分，拆完后，再来匹配。</p>
+</blockquote>
 <h1>分词</h1>
-<p>分词是指将文本转换成一系列单词（term or token）的过程，也可以叫做文本分析，在ES里面称为Analysis。</p>
-<p><strong>Elasticsearch的内置分词器</strong></p>
-<ul>
-<li>Standard Analyzer - 默认分词器，按词切分，小写处理；</li>
-</ul>
+<blockquote>
+<p>分词是指将文本转换成一系列单词的过程，也叫做文本分析。</p>
+</blockquote>
+<p><strong>内置分词器</strong></p>
+<blockquote>
+<p>Standard Analyzer：默认分词器，按词切分，小写处理。</p>
+</blockquote>
 <h1>集群</h1>
-<p><strong>节点</strong></p>
-<blockquote>
-<p>主节点master：可修改cluster state的节点。一个集群仅一个。</p>
-<ul>
-<li>cluster state存储于每个节点上，master维护最新版本并向其他从节点同步。</li>
-</ul>
-<p>选举节点master-eligible：可以参与选举master的节点。</p>
-<p>协调节点cordinating：处理请求的节点。是所有节点的默认角色，且不能取消。</p>
-<ul>
-<li>路由请求到正确的节点处理，如：创建索引的请求到master节点。</li>
-</ul>
-<p>从节点data：存储数据的节点，默认所有节点都是data类型。</p>
-</blockquote>
 <p><strong>分片</strong></p>
+<p>文档到分片的映射算法:</p>
 <blockquote>
-<p>分片存储部分数据，可以分布于任意节点；</p>
-<p>分片数在索引创建时指定，且后续不能更改，默认为5个；</p>
-<p>有主分片和副本分片之分，以实现数据的高可用；</p>
-<p>副本分片由主分片同步数据，可以有多个，从而提高数据吞吐量。</p>
+<p>Hash保证数据均匀分布在分片中，Routing作为关键参数，默认为文档ID，<code>number_of_primary_shards</code>为主分片数。</p>
+<ul>
+<li>主分片数一旦设定，不能更改，为了保证文档对应的分片不会发生改变。</li>
+</ul>
 </blockquote>
-<p><strong>文档到分片的映射算法</strong></p>
-<p>目的：是文档均匀分布到所有分片上，以充分利用资源。之所以不用随机和轮询round-robin算法的原因是：需要维护文档到分片的映射关系，那么在PB级别的数据量的时候，这是一个成本非常大的工程。</p>
-<p>所以：直接根据文档值实时计算对应的分片即可。分片的计算公式：</p>
 <pre><code>shard = hash(routing)%number_of_primary_shards
 </code></pre>
-<p>hash保证数据均匀分布在分片中，routing作为关键参数，默认为文档ID，<code>number_of_primary_shards</code>为主分片数。</p>
-<p>这也是为什么，主分片数一旦设定，不能更改的原因————为了保证文档对应的分片不会发生改变。</p>
 <p><strong>集群健康状态</strong></p>
 <blockquote>
 <p>ES的健康状态分为三种：</p>
-<p>Greed，绿色。表示所有主分片和副本分片都正常分配；</p>
-<p>Yellow，黄色。表示所有主分片都正常分配，但有副本分片未分配；</p>
-<p>Red，红色。表示有主分片未分配。</p>
-</blockquote>
-<p><strong>脑裂问题</strong></p>
-<p>脑裂问题其实就是同一个集群的不同节点对于整个集群的状态有不同的理解，导致操作错乱，类似于精神分裂</p>
-<p>怎么发现集群产生脑裂问题吧</p>
-<blockquote>
-<p>1.Elasticsearch出现查询非常缓慢的情况</p>
-<p>2.通过命令查看集群的状态</p>
-<p>3.curl -XGET <a target="_blank" rel="noopener" href="http://localhost:9200/_cluster/health">http://localhost:9200/_cluster/health</a></p>
-<p>4.发现集群状态为red，且集群数量明显错误，再向不同的节点查询集群状态的时候，总体状态都是red，但是返回的集群数量却不太一样</p>
-<p>5.正常情况下，访问每一个节点，对集群中的状态返回应该是一致的。不一致的信息表示集群中不同节点对master节点的选择出现了问题。导致集群不能正常工作</p>
-</blockquote>
-<p>产生脑裂问题的原因</p>
-<blockquote>
-<p>1.网络</p>
-<p>2.由于某些节点之间的网络通信出现问题，导致一些节点认为master节点已经挂了，所以有重新选举了新的master节点，从而导致集群信息混乱，可以检查Ganglia集群监控，来查看是否是网络原因</p>
-<p>3.节点负载过大：由于master节点与data节点都是混在一起的，有可能master节点的负载过大，导致对应的es实例停止响应，这时一部分节点会一位master节点已经挂掉从而重新选举，导致多master节点运行。同时由于data节点上ES进程占用的内存较大，较大规模的内存回收操作也能造成ES进程失去响应。所以，这个原因的可能性应该是最大的。</p>
-</blockquote>
-<p>如何解决脑裂问题</p>
-<blockquote>
-<p>对于网络问题，只能进行网络修复，在重启集群</p>
-<p>对于负载的问题</p>
-<p>一个直观的解决方案就是将master节点与data节点分离，准备几台机器加入集群中，这几台机器只能充当master节点，不可担任存储和搜索的角色</p>
-</blockquote>
-<p>配置信息</p>
-<pre><code>node.master: ``true``node.data: ``false``其他节点 只能充当data不能充当master``node.master: ``false``node.data: ``true
-</code></pre>
-<p>还有两个参数的修改可以减少脑裂问题的出现</p>
-<blockquote>
-<p>1.discovery.zen.ping_timeout（默认值是3秒）：默认情况下，一个节点会认为，如果master节点在3秒之内没有应答，那么这个节点就是死掉了，而增加这个值，会增加节点等待响应的时间，从一定程度上会减少误判。</p>
-<p>2.discovery.zen.minimum_master_nodes（默认是1）：这个参数控制的是，一个节点需要看到的具有master节点资格的最小数量，然后才能在集群中做操作。官方的推荐值是(N/2)+1，其中N是具有master资格的节点的数量</p>
 <ul>
 <li>
-<p>discovery.zen.minimum_master_nodes对集群的稳定性至关重要，防止脑裂的出现。</p>
+<p>Greed，绿色：表示所有主分片和副本分片都正常分配。</p>
 </li>
 <li>
-<p>discovery.zen.minimum_master_nodes的作用是只有足够的master候选节点时，才可以选举出一个master。该参数必须设置为集群中master候选节点的quorum数量。</p>
+<p>Yellow，黄色：表示所有主分片都正常分配，但有副本分片未分配。</p>
+</li>
+<li>
+<p>Red，红色：表示有主分片未分配。</p>
 </li>
 </ul>
-<p>quorum的算法=master候选节点数量/2+1</p>
-<p>举例：</p>
-<p>1、如果有10个节点，都是data node，也是master的候选节点。则quorum=10/2+1=6</p>
-<p>2、如果有3个master候选节点，100个数据节点。则quorum=3/2+1=2</p>
-<p>3、如果有2个节点，都是data node，也是master的候选节点。则quorum=2/2+1=2（有问题）</p>
-<p>如果其中一个节点挂了，那么master的候选节点只有一个，无法满足quorum数量。即无法选举出master。此时只能将quorum设置成1，但是设置为1有可能出现脑裂。</p>
-<p>总结：一般ES集群的节点至少要有3个，quorum设置为2</p>
 </blockquote>
-<p>如果脑裂问题已经发生该如何解决</p>
+<h1>ELK</h1>
+<p>ELK是一套完整的日志收集以及展示的解决方案，分别是ElasticSearch、Logstash 和 Kibana。</p>
 <blockquote>
-<p>1.当脑裂发生后，唯一的修复办法是解决这个问题并重启集群。</p>
-<p>当elasticsearch集群启动时，会选出一个主节点（一般是启动的第一个节点被选为主）。由于索引的两份拷贝已经不一样了，elasticsearch会认为选出来的主保留的分片是 主拷贝 并将这份拷贝推送给集群中的其他节点。这很严重。让我们设想下你是用的是node客户端并且一个节点保留了索引中的正确数据。但如果是另外的一个节点先启动并被选为主，它会将一份过期的索引数据推送给另一个节点，覆盖它，导致丢失了有效数据。</p>
-<p>2.所以怎么从脑裂中恢复？第一个建议是给所有数据重新索引。第二，如果脑裂发生了，要十分小心的重启你的集群。停掉所有节点并决定哪一个节点第一个启动。 如果需要，单独启动每个节点并分析它保存的数据。如果不是有效的，关掉它，并删除它数据目录的内容（删前先做个备份）。如果你找到了你想要保存数据的节点，启动它并且检查日志确保它被选为主节点。这之后你可以安全的启动你集群里的其他节点了。</p>
+<p>Logstash：一个具有实时传输能力的数据收集引擎，用来进行数据收集（如：读取文本文件）、解析，并将数据发送给ES。</p>
+<p>Kibana：提供了分析和可视化的 Web 平台，可以在 Elasticsearch 的索引中查找，交互数据，并生成各种维度表格、图形。</p>
 </blockquote>
+<p><strong>常见架构</strong></p>
+<blockquote>
+<p>这种架构对数据源服务器（即应用服务器）性能影响较大。</p>
+<p>因为Logsash是需要安装和运行在需要收集的数据源服务器（即应用服务器）中，然后将收集到的数据实时进行过滤，过滤环节很耗时间和资源，过滤完成后才传输到ES中。</p>
+</blockquote>
+<p><img src="/images/image-20231019173744407.png" alt="image-20231019173744407"></p>
+<p><strong>优化架构</strong></p>
+<blockquote>
+<p>FileBeat采集日志有效降低了收集日志对业务系统的系统资源的消耗。</p>
+<p>通过LogStash服务器可以过滤，转换日志，这样即满足了日志的过滤转换，也保障了业务系统的性能。</p>
+</blockquote>
+<p><img src="/images/image-20231019181152289.png" alt="image-20231019181152289"></p>
+<p>如果日志文件量特别大，以及收集的服务器日志比较多，需加入消息中间件做一下缓冲。</p>
+<p><img src="/images/image-20231019191726484.png" alt="image-20231019191726484"></p>
 <h1>性能优化</h1>
 <p><strong>数据预热</strong></p>
 <blockquote>
-<p>举个例子，拿微博来说，你可以把一些大V，平时看的人很多的数据，你自己提前后台搞个系统，每隔一会儿，自己的后台系统去搜索一下热数据，刷到 <code>filesystem cache</code> 里去，后面用户实际上来看这个热数据的时候，他们就是直接从内存里搜索了，很快。</p>
-<p>或者是电商，你可以将平时查看最多的一些商品，比如说 iphone 8，热数据提前后台搞个程序，每隔 1 分钟自己主动访问一次，刷到 <code>filesystem cache</code> 里去。</p>
-<p>对于那些你觉得比较热的，经常会有人访问的数据，最好<strong>做一个专门的缓存预热子系统</strong>，就是对热数据每隔一段时间，就提前访问一下，让数据进入 <code>filesystem cache</code> 里面去。这样下次别人访问的时候，一定性能会好一些。</p>
+<p>对于那些比较热的，经常会有人访问的数据，<strong>做一个专门的缓存预热子系统</strong>，对热数据每隔一段时间，就提前访问一下，让数据进入 ES内存 里面去，这样下次别人访问的时候，一定性能会好一些。</p>
 </blockquote>
 <p><strong>冷热分离</strong></p>
 <blockquote>
-<p>ES 可以做类似于 mysql 的水平拆分，就是说将大量的访问很少、频率很低的数据，单独写一个索引，然后将访问很频繁的热数据单独写一个索引。</p>
-<p>最好是将<strong>冷数据写入一个索引中，然后热数据写入另外一个索引中</strong>，这样可以确保热数据在被预热之后，尽量都让他们留在 <code>filesystem os cache</code> 里，<strong>别让冷数据给冲刷掉</strong>。</p>
-</blockquote>
-<p><strong>Document模型设计</strong></p>
-<blockquote>
-<p>对于 MySQL，我们经常有一些复杂的关联查询。在 es 里该怎么玩儿，es 里面的复杂的关联查询尽量别用，一旦用了性能一般都不太好。</p>
-<p>最好是先在 Java 系统里就完成关联，将关联好的数据直接写入 es 中。搜索的时候，就不需要利用 es 的搜索语法来完成 join 之类的关联搜索了。</p>
-<p>document 模型设计是非常重要的，很多操作，不要在搜索的时候才想去执行各种复杂的乱七八糟的操作。es 能支持的操作就是那么多，不要考虑用 es 做一些它不好操作的事情。</p>
-<p>如果真的有那种操作，尽量在 document 模型设计的时候，写入的时候就完成。另外对于一些太复杂的操作，比如 join/nested/parent-child 搜索都要尽量避免，性能都很差的。</p>
+<p>将冷数据写入一个索引中，然后热数据写入另外一个索引中。</p>
+<p>这样可以确保热数据在被预热之后，尽量都让他们留在 ES内存 里，别让冷数据给冲掉。</p>
 </blockquote>
 <h1>基本原理</h1>
-<p>一个 Elasticsearch Index 由一个或者多个 shard （分片） 组成。</p>
-<p>而 Lucene 中的 Lucene index 相当于 ES 的一个 shard。</p>
-<p><strong>写入过程</strong></p>
+<h1>应用场景</h1>
+<p><strong>深度分页</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">分页方式</th>
+<th style="text-align:left">性能</th>
+<th style="text-align:left">优点</th>
+<th style="text-align:left">缺点</th>
+<th style="text-align:left">场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">from + size</td>
+<td style="text-align:left">低</td>
+<td style="text-align:left">灵活性好，实现简单</td>
+<td style="text-align:left">深度分页问题</td>
+<td style="text-align:left">数据量比较小，能容忍深度分页问题</td>
+</tr>
+<tr>
+<td style="text-align:left">scroll</td>
+<td style="text-align:left">中</td>
+<td style="text-align:left">解决了深度分页问题</td>
+<td style="text-align:left">无法反应数据的实时性（快照版本）维护成本高，需要维护一个 <code>scroll_id</code></td>
+<td style="text-align:left">海量数据的导出需要查询海量结果集的数据</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>search_after</code></td>
+<td style="text-align:left">高</td>
+<td style="text-align:left">性能最好不存在深度分页问题能够反映数据的实时变更</td>
+<td style="text-align:left">实现复杂，需要有一个全局唯一的字段连续分页的实现会比较复杂，因为每一次查询都需要上次查询的结果，它不适用于大幅度跳页查询</td>
+<td style="text-align:left">海量数据的分页</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
-<p>不断将 Document 写入到 In-memory buffer （内存缓冲区）。</p>
-<p>当满足一定条件后内存缓冲区中的 Documents 刷新到 高速缓存（cache）。</p>
-<p>生成新的 segment ，这个 segment 还在 cache 中。</p>
-<p>这时候还没有 commit ，但是已经可以被读取了。</p>
+<p>如果数据量小（from+size在10000条内），或者只关注结果集的TopN数据，可以使用from/size 分页。</p>
+<p>数据量大，深度翻页，后台批处理任务（数据迁移）之类的任务，使用 scroll 方式。</p>
+<p>数据量大，深度翻页，用户实时、高并发查询需求，使用 search after 方式。</p>
 </blockquote>
-<p>数据从buffer到cache的过程是定期每秒刷新一次。所以新写入的document最慢1秒就可以在cache中被搜索到。</p>
-<p>而document从buffer到cache的过程叫做refresh，一般是1秒刷新一次，不需要进行额外修改。</p>
-<p><strong>Translog 事务日志</strong></p>
+<p>From/Size参数：</p>
 <blockquote>
-<p>此处可以联想 Mysql 的 binlog， ES 中也存在一个 translog 用来失败恢复。</p>
-<p>Document 不断写入到 In-memory buffer，此时也会追加 translog。</p>
-<p>当 buffer 中的数据每秒 refresh 到 cache 中时，translog 并没有进入到刷新到磁盘，是持续追加的。</p>
-<p>translog 每隔 5s 会 fsync 到磁盘。</p>
-<p>translog 会继续累加变得越来越大，当 translog 大到一定程度或者每隔一段时间，会执行 flush。</p>
+<p>在ES中，分页查询默认返回最顶端的10条匹配hits。</p>
+<p>如果需要分页，需要使用from和size参数。</p>
+<ul>
+<li>from参数：需要跳过的hits数，默认为0。</li>
+<li>size参数：需要返回的hits数目的最大值。</li>
+</ul>
+<p>这里表示从搜索结果中取第100条开始的10条数据。</p>
 </blockquote>
-<p>flush 操作会分为以下几步执行：</p>
+<pre><code class="language-json">POST /my_index/my_type/_search
+&#123;
+    &quot;query&quot;: &#123; &quot;match_all&quot;: &#123;&#125;&#125;,
+    &quot;from&quot;: 100,
+    &quot;size&quot;:  10
+&#125;
+</code></pre>
+<p>Scroll：</p>
 <blockquote>
-<ol>
-<li>buffer 被清空。</li>
-<li>记录 commit point。</li>
-<li>cache 内的 segment 被 fsync 刷新到磁盘。</li>
-<li>translog 被删除。</li>
-</ol>
-</blockquote>
-<p>值得注意的是：</p>
-<blockquote>
-<ol>
-<li>translog 每 5s 刷新一次磁盘，所以故障重启，可能会丢失 5s 的数据。</li>
-<li>translog 执行 flush 操作，默认 30 分钟一次，或者 translog 太大 也会执行。</li>
-</ol>
-</blockquote>
-<p><strong>删除和更新</strong></p>
-<blockquote>
-<p>segment 不可改变，所以 docment 并不能从之前的 segment 中移除或更新。</p>
-<p>所以每次 commit， 生成 commit point 时，会有一个 .del 文件，里面会列出被删除的 document（逻辑删除）。 而查询时，获取到的结果在返回前会经过 .del 过滤。</p>
-<p>更新时，也会标记旧的 docment 被删除，写入到 .del 文件，同时会写入一个新的文件。此时查询会查询到两个版本的数据，但在返回前会被移除掉一个。</p>
-</blockquote>
-<p><strong>Segment合并</strong></p>
-<blockquote>
-<p>每 1s 执行一次 refresh 都会将内存中的数据创建一个 segment。</p>
-<p>segment 数目太多会带来较大的麻烦。</p>
-<p>每一个 segment 都会消耗文件句柄、内存和cpu运行周期。更重要的是，每个搜索请求都必须轮流检查每个 segment ；所以 segment 越多，搜索也就越慢。</p>
-<p>在 ES 后台会有一个线程进行 segment 合并。</p>
-<p>refresh操作会创建新的 segment 并打开以供搜索使用。</p>
-<p>合并进程选择一小部分大小相似的 segment，并且在后台将它们合并到更大的 segment 中。这并不会中断索引和搜索。</p>
-<p>当合并结束，老的 segment 被删除 说明合并完成时的活动：</p>
+<p>可以把Scroll理解为关系型数据库里的Cursor，并不适合用来做实时搜索，而更适合用于后台批处理任务，比如群发。</p>
+<ul>
+<li>Scroll不是为了实时查询数据，而是为了一次性查询大量的数据（甚至是全部的数据）。</li>
+</ul>
+<p>Scroll相当于维护了一份当前索引段的快照信息，这个快照信息是你执行这个Scroll查询时的快照。</p>
+<ul>
+<li>在这个查询后的任何新索引进来的数据，都不会在这个快照中查询到。</li>
+</ul>
+<p>Scroll可以分为初始化和遍历两部分：</p>
 <ul>
 <li>
-<p>新的 segment 被刷新（flush）到了磁盘。 写入一个包含新 segment 且排除旧的和较小的 segment的新 commit point。</p>
+<p>初始化时：将所有符合搜索条件的搜索结果缓存起来（注意：这里只是缓存的<code>doc_id</code>，而并不是真的缓存了所有的文档数据，取数据是在fetch阶段完成的），可以想象成快照。</p>
 </li>
 <li>
-<p>新的 segment 被打开用来搜索。</p>
-</li>
-<li>
-<p>老的 segment 被删除。</p>
+<p>遍历时：从这个快照里取数据，也就是说，在初始化后，对索引插入、删除、更新数据都不会影响遍历结果。</p>
 </li>
 </ul>
+</blockquote>
+<pre><code class="language-json">POST /twitter/tweet/_search?scroll=1m
+&#123;
+    &quot;size&quot;: 100,
+    &quot;query&quot;: &#123;
+        &quot;match&quot; : &#123;
+            &quot;title&quot; : &quot;elasticsearch&quot;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>初始化指明 index 和 type，然后，加上参数 scroll，表示暂存搜索结果的时间。</p>
+<p>会返回一个<code>_scroll_id</code>，<code>_scroll_id</code>用来下次取数据用。</p>
+<p>缺点：</p>
+<ul>
+<li><code>scroll_id</code>会占用大量的资源（特别是排序的请求）。</li>
+<li>Scroll后接超时时间，频繁的发起Scroll请求，会出现一些列问题。</li>
+<li>生成的历史快照，对于数据的变更不会反映到快照上。</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>适用于非实时处理大量数据的情况，比如要进行数据迁移或者索引变更之类的。</li>
+</ul>
+</blockquote>
+<pre><code class="language-json">POST /_search?scroll=1m
+&#123;
+    &quot;scroll_id&quot;:&quot;XXXXXXXXXXXXXXXXXXXXXXX I am scroll id XXXXXXXXXXXXXXX&quot;
+&#125;
+</code></pre>
+<p>Scroll Scan:</p>
+<blockquote>
+<p>ES提供了Scroll Scan方式进一步提高遍历性能，但是Scroll Scan不支持排序，因此Scroll Scan适合不需要排序的场景。</p>
+<ul>
+<li><code>search_type</code>：赋值为scan，表示采用 Scroll Scan 的方式遍历，同时告诉 Elasticsearch 搜索结果不需要排序。</li>
+<li>scroll：传时间。</li>
+<li>size：表示的是每个 shard 返回的 size 数，最终结果最大为 <code>number_of_shards * size</code>。</li>
+</ul>
+<p>Scroll Scan与Scroll的区别：</p>
+<ul>
+<li>没有排序，按index顺序返回，没有排序，可以提高取数据性能。</li>
+<li>初始化时只返回 <code>_scroll_id</code>，没有具体的hits结果。</li>
+<li>size控制的是每个分片的返回的数据量，而不是整个请求返回的数据量。</li>
+</ul>
+</blockquote>
+<pre><code class="language-json">POST /my_index/my_type/_search?search_type=scan&amp;scroll=1m&amp;size=50
+&#123;
+ &quot;query&quot;: &#123; &quot;match_all&quot;: &#123;&#125;&#125;
+&#125;
+</code></pre>
+<p>Sliced Scroll：</p>
+<blockquote>
+<p>每个Scroll请求，可以分成多个Slice请求，可以理解为切片，各Slice独立并行，比用Scroll遍历要快很多倍。</p>
+</blockquote>
+<pre><code class="language-json">POST /index/type/_search?scroll=1m
+&#123;
+    &quot;query&quot;: &#123; &quot;match_all&quot;: &#123;&#125;&#125;,
+    &quot;slice&quot;: &#123;
+        &quot;id&quot;: 0,
+        &quot;max&quot;: 5
+    &#125;   
+&#125;
+ 
+POST ip:port/index/type/_search?scroll=1m
+&#123;
+    &quot;query&quot;: &#123; &quot;match_all&quot;: &#123;&#125;&#125;,
+    &quot;slice&quot;: &#123;
+        &quot;id&quot;: 1,
+        &quot;max&quot;: 5
+    &#125;   
+&#125;
+</code></pre>
+<p>Search After:</p>
+<blockquote>
+<p><code>Search_after</code>是 ES5 新引入的一种分页查询机制，其原理几乎就是和Scroll一样的。</p>
+<p><code>SEARCH_AFTER</code>不是自由跳转到任意页面的解决方案，而是并行滚动多个查询的解决方案。</p>
 </blockquote>
 
 	</div>

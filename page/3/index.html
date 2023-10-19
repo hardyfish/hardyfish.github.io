@@ -617,14 +617,14 @@
 					RocketMQ
 				</h2>
 				<div class="index-brief">
-					消息类型
-事务消息
-支持在分布式场景下保障消息生产和本地事务的最终一致性。
+					基本概念
+Topic：
 
+一类消息的集合，消息发送者将一类消息发送到一个主题中，例如订单模块将订单发送到 order_topic 中，而用户登录时，将登录事件发送到 user_login_topic 中。
 
-1、生产者将消息发送至 Broker 。
-2、Broker 将消息持久化成功之后，向生产者返回 Ack 确认消息已经发送成功，此时消息被标记为&quot;暂不能投递&quot;，这种状态下的消息即为半事务消息。
-3、生产
+ConsumeGroup：
+
+消息消费组，一个消费组拥有多个消费者，消费组首先在启动时需要订
 					...
 				</div>
 			</a>
@@ -708,7 +708,15 @@ Thrift支持多种不同的编程语言，包括C++、Java、Python、PHP、Ruby
 				</h2>
 				<div class="index-brief">
 					Elasticsearch 是一个开源的搜索引擎，建立在全文搜索引擎库 Apache Lucene 基础之上。
-ES用 Java 编写的，它的内部使用 Lucene 做索引与搜索，但是它的目的是使全文检索变得简单， 通过隐藏 Lucene 的复杂性，取而代之的提供一套简单一致的 RESTful AP
+
+ES用 Java 编写，内部使用 Lucene 做索引与搜索：
+
+使全文检索变得简单，隐藏 Lucene 的复杂性，提供一套简单的 RESTful API。
+
+
+学习资源
+
+官网文档：h
 					...
 				</div>
 			</a>
