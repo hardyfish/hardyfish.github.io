@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	
+	<!-- title -->
+	
+	<title>
+	
+		ZooKeeper | 
+	 
+	月伴飞鱼
+	</title>
+	
+	<!-- keywords,description -->
+	 
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/%E5%A4%B4%E5%83%8F.jpg">
+	
+  
+  	
+<link rel="stylesheet" href="/css/main.css">
+
+	
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="/lib/highlight/darcula.css">
+
+	
+<link rel="stylesheet" href="/css/clipboard-use.css">
+
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+	
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+
+	
+<script src="/lib/highlight/highlight.min.js"></script>
+
+	
+<script src="https://readmore.openwrite.cn/js/readmore.js"></script>
+
+	
+<script src="/lib/jquery-3.4.1.min.js"></script>
+
+	
+<script src="/lib/jquery.pjax.js"></script>
+
+
+	
+<script src="/js/main.js"></script>
+
+	
+<script src="/js/jquery.fancybox.min.js"></script>
+
+	
+		
+<script src="/lib/valine/av-3.0.4-min.js"></script>
+
+		
+<script src="/lib/valine/Valine-1.3.10-min.js"></script>
+
+	
+	
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+	<header id="header">
+    <a id="title" href="/" class="logo">公众号月伴飞鱼</a>
+
+	<ul id="menu">
+		<li class="menu-item">
+			<a href="/about" class="menu-item-link">关于我</a>
+		</li>
+
+		<li class="menu-item">
+			<a href="/个人公众号.jpg" class="menu-item-link" target="_blank">我的公众号</a>
+		</li>
+		
+		<li class="menu-item">
+			<a href="https://tech.meituan.com/" class="menu-item-link" target="_blank">
+				美团技术团队
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="https://tech.youzan.com/" class="menu-item-link" target="_blank">
+				有赞技术团队
+			</a>
+		</li>
+		<!--<li class="menu-item">
+			<select class="menu-item-link menu-item-select">
+				<option class="menu-item-link"  value="volvo">Volvo</option>
+				<option class="menu-item-link"  value="saab">Saab</option>
+				<option class="menu-item-link"  value="fiat">Fiat</option>
+				<option class="menu-item-link"  value="audi">Audi</option>
+			</select>
+		</li>-->
+	</ul>
+</header>
+
+	
+<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="text" placeholder="按目录搜索一下">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										中间件
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/">
+										Elasticsearch
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file active">
+									<a href="/2023/10/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/ZooKeeper/">
+										ZooKeeper
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										前端相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/CSS/">
+										CSS
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/Vue/">
+										Vue
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/12/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+										小程序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										基础知识
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/11/27/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/JVM/">
+										JVM
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/21/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Java%E5%9F%BA%E7%A1%80/">
+										Java基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%88%86%E5%B8%83%E5%BC%8F/">
+										分布式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/10/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+										并发编程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+										设计模式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										工具相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">
+										实用工具
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+										开发工具
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										数据库
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/12/02/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">
+										MySQL
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										服务器
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%9C%8D%E5%8A%A1%E5%99%A8/Docker/">
+										Docker
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/">
+										Nginx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/%E8%BF%90%E7%BB%B4%E7%9F%A5%E8%AF%86/">
+										运维知识
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										框架相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/MyBatis/">
+										MyBatis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
+										Spring
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/01/17/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
+										Thrift
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">
+										开源框架
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										消息队列
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/KAFKA/">
+										KAFKA
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RocketMQ/">
+										RocketMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										生活相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E7%94%B5%E5%BD%B1/">
+										电影
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E9%9F%B3%E4%B9%90/">
+										音乐
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										算法相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/LeetCode/">
+										LeetCode
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E5%89%91%E6%8C%87OFFER/">
+										剑指OFFER
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
+										面试算法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										英语相关
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										老友记
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%80%E5%AD%A3/">
+										第一季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%89%E5%AD%A3/">
+										第三季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										雅思
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%98/">
+										剑桥雅思听力真题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										计算机基础
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+										操作系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+										数据结构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/">
+										算法知识
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
+										网络基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content">
+		<h1 id="article-title">
+
+	ZooKeeper
+</h1>
+<div class="article-meta">
+	<span>月伴飞鱼</span>
+	<span>2023-10-19 23:46:30</span>
+    
+		<div id="article-categories">
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/中间件/">中间件</a>
+						
+                    </span>
+                
+            
+		</div>
+    
+</div>
+
+<div id="container" class = "content999">
+	<div id="article-content">
+		<h1>基本结构</h1>
+<p><strong>数据模型</strong></p>
+<blockquote>
+<p>ZooKeeper中的数据模型是一种树形结构。</p>
+<p>具有一个固定的根节点，我们可以在根节点下创建子节点，并在子节点下继续创建下一级节点。</p>
+<p>树中的每一层级用斜杠（/）分隔开，只能用绝对路径（如<code>get /work/task1</code>）的方式查询节点，不能使用相对路径。</p>
+</blockquote>
+<p>为什么 ZooKeeper不能采用相对路径查找节点？</p>
+<blockquote>
+<p>ZooKeeper 在底层实现的时候，使用了一个 hashtable，即 <code>hashtableConcurrentHashMap&lt;String, DataNode&gt; nodes</code>，用节点的完整路径来作为 key 存储节点数据。</p>
+</blockquote>
+<p><strong>节点类型</strong></p>
+<p>持久节点:</p>
+<blockquote>
+<p>该数据节点会一直存储在 ZooKeeper 服务器上，即使创建该节点的客户端与服务端的会话关闭了，该节点依然不会被删除。</p>
+<p>如果我们想删除持久节点，就要显式调用 <code>delete</code> 函数进行删除操作。</p>
+</blockquote>
+<p>临时节点:</p>
+<blockquote>
+<p>该节点数据不会一直存储在 ZooKeeper 服务器上。</p>
+<p>当创建该临时节点的客户端会话因超时或发生异常而关闭时，该节点也相应在 ZooKeeper 服务器上被删除。</p>
+</blockquote>
+<blockquote>
+<p>可以利用临时节点来做服务器集群内机器运行情况的统计，将集群设置为<code>/servers</code>节点，并为集群下的每台服务器创建一个临时节点<code>/servers/host</code>，当服务器下线时该节点自动被删除，最后统计临时节点个数就可以知道集群中的运行情况。</p>
+</blockquote>
+<p>有序节点:</p>
+<blockquote>
+<p>节点有序是说在我们创建有序节点的时候，ZooKeeper 服务器会自动使用一个单调递增的数字作为后缀，追加到我们创建节点的后边。</p>
+<p>例如一个客户端创建了一个路径为 <code>works/task-</code> 的有序节点，那么 ZooKeeper 将会生成一个序号并追加到该节点的路径后，最后该节点的路径为 <code>works/task-1</code>。</p>
+</blockquote>
+<p><strong>节点数据</strong></p>
+<blockquote>
+<p>一个二进制数组（<code>byte data[]</code>），用来存储节点的数据、ACL 访问控制信息、子节点数据（因为临时节点不允许有子节点，所以其子节点字段为 null），除此之外每个数据节点还有一个记录自身状态信息的字段 stat。</p>
+</blockquote>
+<p><strong>节点状态</strong></p>
+<blockquote>
+<p>每个节点都有属于自己的状态信息，执行 <code>stat /zk_test</code>，可以看到节点状态信息。</p>
+</blockquote>
+<p><strong>节点版本</strong></p>
+<blockquote>
+<p>每个数据节点有 3 种类型的版本信息，对数据节点的任何更新操作都会引起版本号的变化。</p>
+<ul>
+<li>ZooKeeper 的版本信息表示的是对节点数据内容、子节点信息或者是 ACL 信息的修改次数。</li>
+</ul>
+</blockquote>
+<h1>数据存储</h1>
+<p><strong>内存数据</strong></p>
+<blockquote>
+<p>ZooKeeper的数据模型是存储在内存中的。</p>
+<ul>
+<li>源码中，通过 DataTree 类来定义的。</li>
+</ul>
+</blockquote>
+<p><strong>数据日志</strong></p>
+<blockquote>
+<p>数据日志是用来记录 ZooKeeper 服务运行状态的数据文件。</p>
+<p>通过这个文件能统计 ZooKeeper 服务的运行情况，更可以在 ZooKeeper 服务发生异常的情况下，根据日志文件记录的内容来进行分析，定位问题产生的原因并找到解决异常错误的方法。</p>
+</blockquote>
+<p><strong>事务日志</strong></p>
+<blockquote>
+<p>在 ZooKeeper 服务运行过程中，会不断地接收和处理来自客户端的事务性会话请求，每次在处理事务性请求的时候，都要记录这些信息到事务日志中。</p>
+<p>同时集群中，Leader服务器会向 ZooKeeper 集群中的其他角色服务发送数据同步信息，在接收到数据同步信息后，ZooKeeper 集群中的 Follow 和 Observer 服务器就会进行数据同步。</p>
+<ul>
+<li>
+<p>这两种角色服务器所接收到的信息就是 Leader 服务器的事务日志。</p>
+</li>
+<li>
+<p>在接收到事务日志后，并在本地服务器上执行。</p>
+</li>
+</ul>
+</blockquote>
+<p><strong>快照文件</strong></p>
+<blockquote>
+<p>在 ZooKeeper 服务运行的过程中，数据快照每间隔一段时间，就会把 ZooKeeper 内存中的数据存储到磁盘中，快照文件是间隔一段时间后对内存数据的备份。</p>
+<ul>
+<li>与内存数据相比，快照文件的数据具有滞后性。</li>
+</ul>
+</blockquote>
+<h1>会话机制</h1>
+<p><strong>会话创建</strong></p>
+<blockquote>
+<p>在一个请求的发送过程中，首先，客户端要与服务端进行连接，而一个连接就是一个会话。</p>
+<p>一个会话可以看作是一个用于表示客户端与服务器端连接的数据结构 Session。</p>
+<p>这个数据结构由三个部分组成：</p>
+<ul>
+<li>会话 ID（sessionID）、会话超时时间（TimeOut）、会话关闭状态（isClosing）</li>
+</ul>
+<p>会话 ID：</p>
+<ul>
+<li>会话 ID 作为一个会话的标识符，当我们创建一次会话的时候，ZooKeeper 会自动为其分配一个唯一的 ID 编码。</li>
+</ul>
+<p>会话超时时间：</p>
+<ul>
+<li>一个会话的超时时间就是指一次会话从发起后到被服务器关闭的时长。</li>
+<li>设置会话超时时间后，服务器会参考设置的超时时间，最终计算一个服务端自己的超时时间。</li>
+<li>这个超时时间则是最终真正用于 ZooKeeper 中服务端用户会话管理的超时时间。</li>
+</ul>
+<p>会话关闭状态：</p>
+<ul>
+<li>会话关闭 isClosing 状态属性字段表示一个会话是否已经关闭。</li>
+<li>如果服务器检查到一个会话已经因为超时等原因失效时，ZooKeeper 会在该会话的 isClosing 属性值标记为关闭，再之后就不对该会话进行操作了。</li>
+</ul>
+</blockquote>
+<p>ZooKeeper实际起作用的超时时间是通过客户端和服务端协商决定的:</p>
+<blockquote>
+<p>客户端在和服务端建立连接的时候，会提交一个客户端设置的会话超时时间，而该超时时间会和服务端设置的最大超时时间和最小超时时间进行比对，如果正好在其允许的范围内，则采用客户端的超时时间管理会话。</p>
+<p>如果大于或者小于服务端设置的超时时间，则采用服务端设置的值管理会话。</p>
+</blockquote>
+<p><strong>会话状态</strong></p>
+<blockquote>
+<p>在 ZooKeeper 服务的运行过程中，会话会经历不同的状态变化。</p>
+<p>这些状态包括：正在连接（CONNECTING）、已经连接（CONNECTIED）、正在重新连接（RECONNECTING）、已经重新连接（RECONNECTED）、会话关闭（CLOSE）等。</p>
+</blockquote>
+<p><strong>分桶策略</strong></p>
+<p>在 ZooKeeper 的会话管理中，最主要的工作就是管理会话的过期时间。</p>
+<blockquote>
+<p>在 ZooKeeper 中，会话将按照不同的时间间隔进行划分，超时时间相近的会话将被放在同一个间隔区间中，这种方式避免了 ZooKeeper 对每一个会话进行检查，而是采用分批次的方式管理会话。</p>
+</blockquote>
+<h1>集群</h1>
+<p>在 ZooKeeper 集群中将服务器分成 Leader 、Follow 、Observer 三种角色服务器。</p>
+<blockquote>
+<p>Leader：服务器负责管理集群中其他的服务器，是集群中工作的分配和调度者。</p>
+<p>Follow：选举出 Leader 服务器，在发生 Leader 服务器选举的时候，系统会从 Follow 服务器之间根据多数投票原则，选举出一个 Follow 服务器作为新的 Leader 服务器。</p>
+<ul>
+<li>Follow 服务器主要负责处理来自客户端的非事务性请求。</li>
+</ul>
+<p>Observer：主要负责处理来自客户端的获取数据等请求，并不参与 Leader 服务器的选举操作，也不会作为候选者被选举为 Leader 服务器。</p>
+</blockquote>
+<p><strong>Observer</strong></p>
+<blockquote>
+<p>负责处理来自客户端的诸如查询数据节点等非事务性的会话请求操作。</p>
+<p>与 Follow 服务器不同的是，Observer 不参与 Leader 服务器的选举工作，也不会被选举为 Leader 服务器。</p>
+</blockquote>
+<p><strong>选举机制</strong></p>
+<p>Leader 服务器失效时，会在 Follow 集群服务器之间发起投票，最终选举出一个 Follow 服务器作为新的 Leader 服务器。</p>
+<p>Leader 服务器的选举操作主要发生在两种情况下：</p>
+<blockquote>
+<p>ZooKeeper 集群服务启动的时候，</p>
+<p>ZooKeeper 集群中旧的 Leader 服务器失效时，这时 ZooKeeper 集群需要选举出新的 Leader 服务器。</p>
+</blockquote>
+<p>Leader 选举主要可以分为三大步骤：发起投票、接收投票、统计投票。</p>
+<blockquote>
+<p>发起投票：</p>
+<ul>
+<li>
+<p>在 ZooKeeper 服务器集群初始化启动的时候，集群中的每一台服务器都会将自己作为 Leader 服务器进行投票。</p>
+</li>
+<li>
+<p>也就是每次投票时，发送的服务器的 myid（服务器标识符）和 ZXID (集群投票信息标识符)等选票信息字段都指向本机服务器。</p>
+</li>
+</ul>
+<p>一个投票信息就是通过这两个字段组成的。</p>
+<p>接收投票:</p>
+<ul>
+<li>
+<p>集群中各个服务器在发起投票的同时，也通过网络接收来自集群中其他服务器的投票信息。</p>
+</li>
+<li>
+<p>在接收到网络中的投票信息后，服务器内部首先会判断该条投票信息的有效性。</p>
+</li>
+<li>
+<p>检查该条投票信息的时效性，是否是本轮最新投票，并检查该条投票信息是否是处于LOOKING状态的服务器发的。</p>
+</li>
+</ul>
+<p>统计投票:</p>
+<ul>
+<li>
+<p>每条接收到的投票信息，集群中的每一台服务器都会将自己的投票信息与其接收到的 ZooKeeper 集群中的其他投票信息进行对比。</p>
+</li>
+<li>
+<p>对比的内容是 ZXID，ZXID 数值比较大的投票信息优先作为 Leader 服务器。</p>
+</li>
+<li>
+<p>如果每个投票信息中的 ZXID 相同，就会比对投票信息中的 myid 信息字段，选举出 myid 较大的服务器作为 Leader 服务器。</p>
+</li>
+</ul>
+<p>每轮投票过后，ZooKeeper 服务都会统计集群中服务器的投票结果，判断是否有过半数的机器投出一样的信息。</p>
+<p>如果存在过半数投票信息指向的服务器，那么该台服务器就被选举为 Leader 服务器。</p>
+<p>当 ZooKeeper 集群选举出 Leader 服务器后，ZooKeeper 集群中的服务器就开始更新自己的角色信息。</p>
+<p><strong>除被选举成 Leader 的服务器之外，其他集群中的服务器角色变更为 Following。</strong></p>
+</blockquote>
+<h1>基本原理</h1>
+<p><strong>序列化机制</strong></p>
+<blockquote>
+<p>ZooKeeper 采用了Jute 作为 ZooKeeper 的序列化方式。</p>
+<p>在 ZooKeeper 中默认的序列化实现方式是 Binary 二进制方式。</p>
+<ul>
+<li>二进制具有更好的性能，以及大多数平台对二进制的实现都不尽相同。</li>
+</ul>
+</blockquote>
+<p><strong>ZAB协议算法</strong></p>
+<blockquote>
+<p>ZooKeeper为了保证分布式系统的数据一致性。</p>
+<ul>
+<li>无论是处理来自客户端的会话请求时，还是集群 Leader 节点发生重新选举时，都会产生数据不一致的情况。</li>
+</ul>
+<p>为了解决这个问题，ZooKeeper 采用了 ZAB 协议算法。</p>
+</blockquote>
+<blockquote>
+<p>ZAB 协议算法（原子广播协议）是用来解决集群最终一致性问题的算法。</p>
+<ul>
+<li>包括崩溃恢复和原子广播协议。</li>
+</ul>
+</blockquote>
+<p>操作过程:</p>
+<blockquote>
+<p>当 ZooKeeper 集群接收到来自客户端的事务性的会话请求后，集群中的其他 Follow 角色服务器会将该请求转发给 Leader 角色服务器进行处理。</p>
+<p>当 Leader 节点服务器在处理完该条会话请求后，会将结果通过操作日志的方式同步给集群中的 Follow 角色服务器。</p>
+<p>然后 Follow 角色服务器根据接收到的操作日志，在本地执行相关的数据处理操作。</p>
+</blockquote>
+<p>崩溃恢复:</p>
+<blockquote>
+<p>触发 ZooKeeper 集群执行崩溃恢复的事件是集群中的 Leader 节点服务器发生了异常而无法工作，于是 Follow 服务器会通过投票来决定是否选出新的 Leader 节点服务器。</p>
+</blockquote>
+<p>投票过程如下:</p>
+<blockquote>
+<p>当崩溃恢复机制开始的时候，整个 ZooKeeper 集群的每台 Follow 服务器会发起投票，并同步给集群中的其他 Follow 服务器。</p>
+<p>在接收到来自集群中的其他 Follow 服务器的投票信息后，集群中的每个 Follow 服务器都会与自身的投票信息进行对比，如果判断新的投票信息更合适，则采用新的投票信息作为自己的投票信息。</p>
+<p>在集群中的投票信息还没有达到超过半数原则的情况下，再进行新一轮的投票，最终当整个 ZooKeeper 集群中的 Follow 服务器超过半数投出的结果相同的时候，就会产生新的 Leader 服务器。</p>
+</blockquote>
+<p>选票结构:</p>
+<blockquote>
+<p>logicClock：</p>
+<ul>
+<li>
+<p>用来记录服务器的投票轮次。</p>
+</li>
+<li>
+<p>logicClock 会从 1 开始计数，每当该台服务经过一轮投票后，logicClock 的数值就会加 1 。</p>
+</li>
+</ul>
+<p>state：</p>
+<ul>
+<li>用来标记当前服务器的状态。</li>
+<li>在 ZooKeeper 集群中一台服务器具有 LOOKING、FOLLOWING、LEADERING、OBSERVING 这四种状态。</li>
+</ul>
+<p>self_id：</p>
+<ul>
+<li>用来表示当前服务器的 ID 信息，该字段在 ZooKeeper 集群中主要用来作为服务器的身份标识符。</li>
+</ul>
+<p>self_zxid：</p>
+<ul>
+<li>当前服务器上所保存的数据的最大事务 ID ，从 0 开始计数。</li>
+</ul>
+<p>vote_id：</p>
+<ul>
+<li>投票要被推举的服务器的唯一 ID 。</li>
+</ul>
+<p>vote_zxid：</p>
+<ul>
+<li>被推举的服务器上所保存的数据的最大事务 ID，从 0 开始计数。</li>
+</ul>
+</blockquote>
+<p>选票筛选：</p>
+<blockquote>
+<p>Follow 服务器进行选票对比的过程：</p>
+<ul>
+<li>
+<p>首先，会对比 logicClock 服务器的投票轮次。</p>
+</li>
+<li>
+<p>当 logicClock 相同时，表明两张选票处于相同的投票阶段，并进入下一阶段，否则跳过。</p>
+</li>
+<li>
+<p>再对比 <code>vote_zxid</code> 被选举的服务器 ID 信息，若接收到的外部投票信息中的 <code>vote_zxid</code> 字段较大，则将自己的票中的 <code>vote_zxid</code> 与 <code>vote_myid</code> 更新为收到的票中的 <code>vote_zxid</code> 与 <code>vote_myid</code> ，并广播出去。</p>
+</li>
+<li>
+<p>对比的结果相同，则继续对比 <code>vote_myid</code> 被选举服务器上所保存的最大事务 ID ，若外部投票的 <code>vote_myid</code> 比较大，则将自己的票中的 <code>vote_myid</code> 更新为收到的票中的 <code>vote_myid</code> 。</p>
+</li>
+<li>
+<p>经过这些对比和替换后，最终该台 Follow 服务器会产生新的投票信息，并在下一轮的投票中发送到 ZooKeeper 集群中。</p>
+</li>
+</ul>
+</blockquote>
+<p>消息广播：</p>
+<blockquote>
+<p>在 Leader 节点服务器处理请求后，需要通知集群中的其他角色服务器进行数据同步。</p>
+<p>ZooKeeper 集群采用消息广播的方式发送通知。</p>
+<ul>
+<li>ZooKeeper集群使用原子广播协议进行消息发送。</li>
+</ul>
+</blockquote>
+<p><strong>Watch机制</strong></p>
+<p>通过 Watch 机制来订阅当服务器上某一节点的数据或状态发生变化时收到相应的通知。</p>
+<blockquote>
+<p>一个对象或者数据节点可能会被多个客户端监控，当对应事件被触发时，会通知这些对象或客户端。</p>
+<ul>
+<li>Watch 机制理解为是分布式环境下的观察者模式。</li>
+</ul>
+<p>Watch 事件的触发机制取决于会话的连接状态和客户端注册事件的类型。</p>
+<ul>
+<li>当客户端会话状态或数据节点发生改变时，都会触发对应的 Watch 事件。</li>
+</ul>
+<p><strong>Watch是一次性的，当我们获得服务器通知后要再次添加 Watch 事件。</strong></p>
+</blockquote>
+<p><strong>权限控制</strong></p>
+<p>一个 ACL 权限设置可以分为 3 部分，分别是：权限模式（Scheme）、授权对象（ID）、权限信息（Permission）。</p>
+<blockquote>
+<p>最终组成一条：例如<code>scheme:id:permission</code>格式的 ACL 请求信息。</p>
+<p><strong>每个节点都有维护自身的 ACL 权限数据，即使是该节点的子节点也是有自己的 ACL 权限而不是直接继承其父节点的权限</strong>。</p>
+</blockquote>
+<p>权限模式：Scheme：</p>
+<blockquote>
+<p>权限模式是用来设置 ZooKeeper 服务器进行权限验证的方式。</p>
+<p>ZooKeeper 的权限验证方式分为两种类型，一种是范围验证，另外一种是口令验证。</p>
+<ul>
+<li>
+<p>范围验证：ZooKeeper 可以针对一个 IP 或者一段 IP 地址授予某种权限。</p>
+</li>
+<li>
+<p>口令验证：可以理解为用户名密码的方式。</p>
+</li>
+<li>
+<p>World模式：设置了 World 权限模式系统中的所有用户操作都可以不进行权限验证。</p>
+</li>
+</ul>
+</blockquote>
+<p>授权对象（ID）：</p>
+<blockquote>
+<p>授权对象就是说我们要把权限赋予谁，如果我们选择采用 IP 方式，使用的授权对象可以是一个 IP 地址或 IP 地址段。</p>
+<p>如果使用 Digest 或 Super 方式，则对应于一个用户名。</p>
+<p>如果是 World 模式，是授权系统中所有的用户。</p>
+</blockquote>
+<p>权限信息（Permission）：</p>
+<blockquote>
+<p>数据节点（create）创建权限，可以在数据节点下创建子节点。</p>
+<p>数据节点（wirte）更新权限，可以更新该数据节点。</p>
+<p>数据节点（read）读取权限，可以读取该节点的内容以及子节点的信息。</p>
+<p>数据节点（delete）删除权限，可以删除该数据节点的子节点。</p>
+<p>数据节点（admin）管理者权限，可以对该数据节点体进行 ACL 权限设置。</p>
+</blockquote>
+<h1>应用场景</h1>
+<p><strong>悲观锁</strong></p>
+<blockquote>
+<p>通过进程创建 ZooKeeper 节点 <code>/locks</code> 的方式获取锁。</p>
+<p>线程 a 通过成功创建 ZooKeeper 节点<code>/locks</code>的方式获取锁后继续执行。</p>
+<p>这时进程 b 也要访问临界区资源，于是进程 b 也尝试创建<code>/locks</code>节点来获取锁，因为之前进程 a 已经创建该节点，所以进程 b 创建节点失败无法获得锁。</p>
+</blockquote>
+<p><strong>乐观锁</strong></p>
+<blockquote>
+<p>在 ZooKeeper 中的 version 属性可以用来实现乐观锁机制中的 校验。</p>
+<p>ZooKeeper 每个节点都有数据版本的概念，在调用更新操作的时候，假如有一个客户端试图进行更新操作，它会携带上次获取到的 version 值进行更新。</p>
+<p>如果在这段时间内，ZooKeeper 服务器上该节点的数值恰好已经被其他客户端更新了，那么其数据版本一定也会发生变化，因此肯定与客户端携带的 version 无法匹配，便无法成功更新。</p>
+</blockquote>
+<p><strong>分布式锁</strong></p>
+<p>方案一：</p>
+<blockquote>
+<p>ZK中节点中存放一个标识，线程获得锁时，先检查该标识是否是无锁标识，若是可修改为占用标识，使用完再恢复为无锁标识。</p>
+</blockquote>
+<p>方案二：</p>
+<blockquote>
+<p>使用子节点，每当有线程来请求锁的时候，便在锁的节点下创建一个子节点，子节点类型必须维护一个顺序，对子节点的自增序号进行排序，默认总是最小的子节点对应的线程获得锁，释放锁时删除对应子节点便可。</p>
+</blockquote>
+<p><img src="/images/image-20231020112215442.png" alt="image-20231020112215442"></p>
+<p>死锁风险:</p>
+<blockquote>
+<p>方案一：要是持有锁的线程发生了意外，释放锁的代码无法执行，锁就无法释放，其他线程就会一直等待锁，相关同步代码便无法执行。</p>
+<p>方案二：可以利用ZK的临时顺序节点来解决这个问题，只要线程发生了异常导致程序中断，就会丢失与ZK的连接，ZK检测到该链接断开，就会自动删除该链接创建的临时节点，这样就可以达到即使占用锁的线程程序发生意外，也能保证锁正常释放的目的。</p>
+</blockquote>
+<p>避免羊群效应：</p>
+<blockquote>
+<p>把锁请求者按照后缀数字进行排队，后缀数字小的锁请求者先获取锁。</p>
+<p>如果所有的锁请求者都 watch 锁持有者，当代表锁请求者的 znode 被删除以后，所有的锁请求者都会通知到，但是只有一个锁请求者能拿到锁，这就是羊群效应。</p>
+<p>为了避免羊群效应，每个锁请求者 watch 它前面的锁请求者。</p>
+<ul>
+<li>
+<p>每次锁被释放，只会有一个锁请求者 会被通知到。</p>
+</li>
+<li>
+<p>这样做还让锁的分配具有公平性，锁定的分配遵循先到先得的原则。</p>
+</li>
+</ul>
+</blockquote>
+<p><img src="/images/image-20231020112611783.png" alt="image-20231020112611783"></p>
+<p>用 ZooKeeper 实现分布式锁的算法流程，根节点为 <code>/lock</code>：</p>
+<blockquote>
+<p>客户端连接 ZooKeeper，并<code>在/lock</code>下创建临时有序子节点，第一个客户端对应的子节点为<code>/lock/lock01/00000001</code>，第二个为 <code>/lock/lock01/00000002</code>。</p>
+<p>其他客户端获取<code>/lock01</code>下的子节点列表，判断自己创建的子节点是否为当前列表中序号最小的子节点。</p>
+<p>如果是则认为获得锁，执行业务代码，否则通过 watch 事件监听<code>/lock01</code>的子节点变更消息，获得变更通知后重复此步骤直至获得锁。</p>
+<p>完成业务流程后，删除对应的子节点，释放分布式锁。</p>
+</blockquote>
+
+	</div>
+</div>
+
+
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
+                Spring
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+
+<script>
+
+    //document.oncontextmenu=new Function("event.returnValue=false");
+	//document.onselectstart=new Function("event.returnValue=false");
+
+	
+
+	$(function () {
+		const btw = new BTWPlugin();
+	    btw.init({
+	        id: 'container',
+	        blogId: '22377-1657723090751-870',
+	        name: '月伴飞鱼',
+	        qrcode: '/个人公众号.jpg',
+	        keyword: '验证码',
+	    });
+
+	    var contents = document.getElementsByClassName("content999");
+	    //监听文章内容的copy事件
+	    contents[0].addEventListener('copy',function(e){
+	        setClipboardText(e);
+	    });
+
+	    function setClipboardText(event){
+	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+	        let clipboardData = event.clipboardData || window.clipboardData;
+
+	        // 如果未复制或者未剪切，则return出去
+	        if (!clipboardData) { return; }
+
+	        event.preventDefault();
+
+	        // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+	        // 声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+	        let text = window.getSelection().toString();
+	    
+	        if (text) {
+	            // 如果文本存在则先取消文本默认事件
+	            event.preventDefault();
+	            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+	            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+	            // data: 一个 DOMString表示要添加到 drag object的数据。
+	            var copyright = '\n\n'
+	            + '\n著作权归作者所有。'
+	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+	            + '\n作者: 月伴飞鱼'
+	            + '\n原文地址: https://xiaoflyfish.cn/2023/10/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/ZooKeeper/'
+	    
+	            clipboardData.setData('text/plain', text + copyright);
+	    
+	        }
+	    };
+	});
+
+	
+</script>
+
+<script>
+    const btw = new BTWPlugin();
+    btw.init({
+        id: 'container',
+        blogId: '22377-1657723090751-870',
+        name: '月伴飞鱼',
+        qrcode: '/个人公众号.jpg',
+        keyword: '验证码',
+    });
+</script>
+	</div>
+	<div id="footer">
+	<p>
+	©2019-<span id="footerYear"></span> 
+	<a href="/">月伴飞鱼</a> 
+	
+	
+		|
+		<span id="busuanzi_container_site_pv">
+			PV 180986
+		</span>
+		|
+		<span id="busuanzi_container_site_uv"> 
+			UV 10079
+		</span>
+	
+	<br>
+	微信搜索 <a href="https://xiaoflyfish.oss-cn-beijing.aliyuncs.com/image/个人公众号.jpg" target="_blank">月伴飞鱼</a> 关注我
+	</p>
+</div>
+<script type="text/javascript"> 
+	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+</script>
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>
