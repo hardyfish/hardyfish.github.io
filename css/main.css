@@ -298,7 +298,7 @@ a {
 #article-content li {
 	margin: 5px 0;
 	font-size: 14px;
-	color: #e06c75;
+	color: #568f22;
 }
 
 #article-content h1 {
@@ -457,4 +457,51 @@ h1 {
 /*opacity 样式设置为 0，从而隐藏该文本内容（openwrite隐藏）*/
 #btw-footer {
 	opacity: 0;
+}
+
+#btw-modal > img {
+	display: none;
+}
+
+#btw-modal-input-code::before {
+  content: "";
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#btw-modal-input-code::after {
+  content: "为防止机器采集和刷接口，需要进行验证码验证";
+  display: block;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #2d2b9c;
+}
+
+#btw-modal-input-code::before {
+  content: "微信小程序搜索：HardyFish，获取验证码";
+  display: inline-block;
+  color: #f20622;
+  font-weight: bold;
+}
+
+#btw-modal-input-code::before strong {
+  font-weight: bold;
+  color: #ff5722;
+}
+
+#btw-submit-btn {
+	background: rgb(23, 29, 241) !important;
+}
+
+#btw-modal {
+	background: rgb(192, 209, 182) !important;
+}
+
+#btw-modal-input-code {
+	background: rgb(192, 209, 182) !important;
+}
+
+#btw-modal-header {
+	display: none;
 }

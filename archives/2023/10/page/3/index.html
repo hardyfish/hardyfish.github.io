@@ -78,7 +78,7 @@
 
 <meta name="generator" content="Hexo 6.3.0"></head>
 
-<body>
+<body oncontextmenu="return false;">
 	<header id="header">
     <a id="title" href="/" class="logo">公众号月伴飞鱼</a>
 
@@ -290,6 +290,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">
+										Redis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -336,6 +345,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										架构相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/DDD/">
+										DDD
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										框架相关
 									</a>
 									
@@ -352,15 +381,6 @@
 								<li class="file">
 									<a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
 										Spring
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2023/01/17/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
-										Thrift
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -588,7 +608,72 @@
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<div id="index">
+		<div id="index" oncontextmenu="return false;">
+	
+		<div class="index-li">
+			<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/CSS/">
+				<h2 class="index-title">
+					CSS
+				</h2>
+				<div class="index-brief">
+					设置元素的前缀和后缀内容
+
+使用了::after伪元素，将其作为元素的后缀，并通过content属性来设置替换文本的内容。
+
+.my-class::after &#123;
+  content: &quot;替换的文本&quot;;
+&#125;
+
+.my-class::before &#123;
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-10-07</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/前端相关/">前端相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/10/07/%E6%9C%8D%E5%8A%A1%E5%99%A8/Docker/">
+				<h2 class="index-title">
+					Docker
+				</h2>
+				<div class="index-brief">
+					基本概念虚拟化技术VM
+虚拟化技术通过 Hypervisor 实现虚拟机与底层硬件的解耦，虚拟机实现依赖 Hypervisor 层，Hypervisor 是整个虚拟机的核心所在。
+
+Hypervisor是一种运行在基础物理服务器和操作系统之间的中间软件层，可允许多个操作系统和应用共享硬件。
+Hype
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-10-07</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/服务器/">服务器</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%88%86%E5%B8%83%E5%BC%8F/">
@@ -596,18 +681,17 @@
 					分布式
 				</h2>
 				<div class="index-brief">
-					基本概念
-背压
+					基本概念背压
 
 背压思想，被请求方不会直接将请求端的流量直接丢掉，而是不断的反馈自己的处理能力。
-请求端根据这些反馈，实时的调整自己的发送频率，比如：TCP/IP中使用滑动窗口来进行流量控制。
+请求端根据这些反馈，实时的调整自己的发送频率，比如：TCP&#x2F;IP中使用滑动窗口来进行流量控制。
 
 CAP原则
 Consistency（一致性）
 
 所有节点返回的数据是一致的。
 
-Availabilit
+Availab
 					...
 				</div>
 			</a>
@@ -663,14 +747,13 @@ Availabilit
 					RocketMQ
 				</h2>
 				<div class="index-brief">
-					基本概念
-Topic：
+					基本概念Topic：
 
 一类消息的集合，消息发送者将一类消息发送到一个主题中，例如订单模块将订单发送到 order_topic 中，而用户登录时，将登录事件发送到 user_login_topic 中。
 
 ConsumeGroup：
 
-消息消费组，一个消费组拥有多个消费者，消费组首先在启动时需要订
+消息消费组，一个消费组拥有多个消费者，消费组首先在启动时需要订阅
 					...
 				</div>
 			</a>

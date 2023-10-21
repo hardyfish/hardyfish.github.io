@@ -80,7 +80,7 @@
 
 <meta name="generator" content="Hexo 6.3.0"></head>
 
-<body>
+<body oncontextmenu="return false;">
 	<header id="header">
     <a id="title" href="/" class="logo">公众号月伴飞鱼</a>
 
@@ -292,6 +292,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">
+										Redis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -338,6 +347,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										架构相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/DDD/">
+										DDD
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										框架相关
 									</a>
 									
@@ -354,15 +383,6 @@
 								<li class="file">
 									<a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
 										Spring
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2023/01/17/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
-										Thrift
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -612,7 +632,7 @@
     
 </div>
 
-<div id="container" class = "content999">
+<div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
 		<p>Elasticsearch 是一个开源的搜索引擎，建立在全文搜索引擎库 Apache Lucene 基础之上。</p>
 <blockquote>
@@ -626,8 +646,7 @@
 <p>官网文档：<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html</a></p>
 <p>中文权威指南：<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html">https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html</a></p>
 </blockquote>
-<h1>基本概念</h1>
-<p><strong>正排索引</strong></p>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><strong>正排索引</strong></p>
 <blockquote>
 <p>文档ID到文档内容、单词的关联关系。</p>
 </blockquote>
@@ -637,11 +656,9 @@
 <p>倒排索引主要包含两个部分：</p>
 <p>单词词典：</p>
 <ul>
-<li>
-<p>记录所有文档的单词。</p>
+<li><p>记录所有文档的单词。</p>
 </li>
-<li>
-<p>记录单词到倒排列表的关联信息。</p>
+<li><p>记录单词到倒排列表的关联信息。</p>
 </li>
 </ul>
 <p>倒排列表：记录了单词对应的文档集合，由倒排索引项组成。</p>
@@ -658,16 +675,14 @@
 <p>Term：完全匹配，精确查询，搜索前不会再对搜索词进行分词拆解。</p>
 <p>Match：搜索的时会先进行分词拆分，拆完后，再来匹配。</p>
 </blockquote>
-<h1>分词</h1>
-<blockquote>
+<h1 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h1><blockquote>
 <p>分词是指将文本转换成一系列单词的过程，也叫做文本分析。</p>
 </blockquote>
 <p><strong>内置分词器</strong></p>
 <blockquote>
 <p>Standard Analyzer：默认分词器，按词切分，小写处理。</p>
 </blockquote>
-<h1>集群</h1>
-<p><strong>分片</strong></p>
+<h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1><p><strong>分片</strong></p>
 <p>文档到分片的映射算法:</p>
 <blockquote>
 <p>Hash保证数据均匀分布在分片中，Routing作为关键参数，默认为文档ID，<code>number_of_primary_shards</code>为主分片数。</p>
@@ -681,19 +696,15 @@
 <blockquote>
 <p>ES的健康状态分为三种：</p>
 <ul>
-<li>
-<p>Greed，绿色：表示所有主分片和副本分片都正常分配。</p>
+<li><p>Greed，绿色：表示所有主分片和副本分片都正常分配。</p>
 </li>
-<li>
-<p>Yellow，黄色：表示所有主分片都正常分配，但有副本分片未分配。</p>
+<li><p>Yellow，黄色：表示所有主分片都正常分配，但有副本分片未分配。</p>
 </li>
-<li>
-<p>Red，红色：表示有主分片未分配。</p>
+<li><p>Red，红色：表示有主分片未分配。</p>
 </li>
 </ul>
 </blockquote>
-<h1>ELK</h1>
-<p>ELK是一套完整的日志收集以及展示的解决方案，分别是ElasticSearch、Logstash 和 Kibana。</p>
+<h1 id="ELK"><a href="#ELK" class="headerlink" title="ELK"></a>ELK</h1><p>ELK是一套完整的日志收集以及展示的解决方案，分别是ElasticSearch、Logstash 和 Kibana。</p>
 <blockquote>
 <p>Logstash：一个具有实时传输能力的数据收集引擎，用来进行数据收集（如：读取文本文件）、解析，并将数据发送给ES。</p>
 <p>Kibana：提供了分析和可视化的 Web 平台，可以在 Elasticsearch 的索引中查找，交互数据，并生成各种维度表格、图形。</p>
@@ -712,8 +723,7 @@
 <p><img src="/images/image-20231019181152289.png" alt="image-20231019181152289"></p>
 <p>如果日志文件量特别大，以及收集的服务器日志比较多，需加入消息中间件做一下缓冲。</p>
 <p><img src="/images/image-20231019191726484.png" alt="image-20231019191726484"></p>
-<h1>性能优化</h1>
-<p><strong>数据预热</strong></p>
+<h1 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h1><p><strong>数据预热</strong></p>
 <blockquote>
 <p>对于那些比较热的，经常会有人访问的数据，<strong>做一个专门的缓存预热子系统</strong>，对热数据每隔一段时间，就提前访问一下，让数据进入 ES内存 里面去，这样下次别人访问的时候，一定性能会好一些。</p>
 </blockquote>
@@ -722,49 +732,45 @@
 <p>将冷数据写入一个索引中，然后热数据写入另外一个索引中。</p>
 <p>这样可以确保热数据在被预热之后，尽量都让他们留在 ES内存 里，别让冷数据给冲掉。</p>
 </blockquote>
-<h1>基本原理</h1>
-<h1>应用场景</h1>
-<p><strong>深度分页</strong></p>
+<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p><strong>深度分页</strong></p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">分页方式</th>
-<th style="text-align:left">性能</th>
-<th style="text-align:left">优点</th>
-<th style="text-align:left">缺点</th>
-<th style="text-align:left">场景</th>
+<th align="left">分页方式</th>
+<th align="left">性能</th>
+<th align="left">优点</th>
+<th align="left">缺点</th>
+<th align="left">场景</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:left">from + size</td>
-<td style="text-align:left">低</td>
-<td style="text-align:left">灵活性好，实现简单</td>
-<td style="text-align:left">深度分页问题</td>
-<td style="text-align:left">数据量比较小，能容忍深度分页问题</td>
+<tbody><tr>
+<td align="left">from + size</td>
+<td align="left">低</td>
+<td align="left">灵活性好，实现简单</td>
+<td align="left">深度分页问题</td>
+<td align="left">数据量比较小，能容忍深度分页问题</td>
 </tr>
 <tr>
-<td style="text-align:left">scroll</td>
-<td style="text-align:left">中</td>
-<td style="text-align:left">解决了深度分页问题</td>
-<td style="text-align:left">无法反应数据的实时性（快照版本）维护成本高，需要维护一个 <code>scroll_id</code></td>
-<td style="text-align:left">海量数据的导出需要查询海量结果集的数据</td>
+<td align="left">scroll</td>
+<td align="left">中</td>
+<td align="left">解决了深度分页问题</td>
+<td align="left">无法反应数据的实时性（快照版本）维护成本高，需要维护一个 <code>scroll_id</code></td>
+<td align="left">海量数据的导出需要查询海量结果集的数据</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>search_after</code></td>
-<td style="text-align:left">高</td>
-<td style="text-align:left">性能最好不存在深度分页问题能够反映数据的实时变更</td>
-<td style="text-align:left">实现复杂，需要有一个全局唯一的字段连续分页的实现会比较复杂，因为每一次查询都需要上次查询的结果，它不适用于大幅度跳页查询</td>
-<td style="text-align:left">海量数据的分页</td>
+<td align="left"><code>search_after</code></td>
+<td align="left">高</td>
+<td align="left">性能最好不存在深度分页问题能够反映数据的实时变更</td>
+<td align="left">实现复杂，需要有一个全局唯一的字段连续分页的实现会比较复杂，因为每一次查询都需要上次查询的结果，它不适用于大幅度跳页查询</td>
+<td align="left">海量数据的分页</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <blockquote>
-<p>如果数据量小（from+size在10000条内），或者只关注结果集的TopN数据，可以使用from/size 分页。</p>
+<p>如果数据量小（from+size在10000条内），或者只关注结果集的TopN数据，可以使用from&#x2F;size 分页。</p>
 <p>数据量大，深度翻页，后台批处理任务（数据迁移）之类的任务，使用 scroll 方式。</p>
 <p>数据量大，深度翻页，用户实时、高并发查询需求，使用 search after 方式。</p>
 </blockquote>
-<p>From/Size参数：</p>
+<p>From&#x2F;Size参数：</p>
 <blockquote>
 <p>在ES中，分页查询默认返回最顶端的10条匹配hits。</p>
 <p>如果需要分页，需要使用from和size参数。</p>
@@ -774,7 +780,7 @@
 </ul>
 <p>这里表示从搜索结果中取第100条开始的10条数据。</p>
 </blockquote>
-<pre><code class="language-json">POST /my_index/my_type/_search
+<pre><code class="json">POST /my_index/my_type/_search
 &#123;
     &quot;query&quot;: &#123; &quot;match_all&quot;: &#123;&#125;&#125;,
     &quot;from&quot;: 100,
@@ -793,15 +799,13 @@
 </ul>
 <p>Scroll可以分为初始化和遍历两部分：</p>
 <ul>
-<li>
-<p>初始化时：将所有符合搜索条件的搜索结果缓存起来（注意：这里只是缓存的<code>doc_id</code>，而并不是真的缓存了所有的文档数据，取数据是在fetch阶段完成的），可以想象成快照。</p>
+<li><p>初始化时：将所有符合搜索条件的搜索结果缓存起来（注意：这里只是缓存的<code>doc_id</code>，而并不是真的缓存了所有的文档数据，取数据是在fetch阶段完成的），可以想象成快照。</p>
 </li>
-<li>
-<p>遍历时：从这个快照里取数据，也就是说，在初始化后，对索引插入、删除、更新数据都不会影响遍历结果。</p>
+<li><p>遍历时：从这个快照里取数据，也就是说，在初始化后，对索引插入、删除、更新数据都不会影响遍历结果。</p>
 </li>
 </ul>
 </blockquote>
-<pre><code class="language-json">POST /twitter/tweet/_search?scroll=1m
+<pre><code class="json">POST /twitter/tweet/_search?scroll=1m
 &#123;
     &quot;size&quot;: 100,
     &quot;query&quot;: &#123;
@@ -825,7 +829,7 @@
 <li>适用于非实时处理大量数据的情况，比如要进行数据迁移或者索引变更之类的。</li>
 </ul>
 </blockquote>
-<pre><code class="language-json">POST /_search?scroll=1m
+<pre><code class="json">POST /_search?scroll=1m
 &#123;
     &quot;scroll_id&quot;:&quot;XXXXXXXXXXXXXXXXXXXXXXX I am scroll id XXXXXXXXXXXXXXX&quot;
 &#125;
@@ -845,7 +849,7 @@
 <li>size控制的是每个分片的返回的数据量，而不是整个请求返回的数据量。</li>
 </ul>
 </blockquote>
-<pre><code class="language-json">POST /my_index/my_type/_search?search_type=scan&amp;scroll=1m&amp;size=50
+<pre><code class="json">POST /my_index/my_type/_search?search_type=scan&amp;scroll=1m&amp;size=50
 &#123;
  &quot;query&quot;: &#123; &quot;match_all&quot;: &#123;&#125;&#125;
 &#125;
@@ -854,7 +858,7 @@
 <blockquote>
 <p>每个Scroll请求，可以分成多个Slice请求，可以理解为切片，各Slice独立并行，比用Scroll遍历要快很多倍。</p>
 </blockquote>
-<pre><code class="language-json">POST /index/type/_search?scroll=1m
+<pre><code class="json">POST /index/type/_search?scroll=1m
 &#123;
     &quot;query&quot;: &#123; &quot;match_all&quot;: &#123;&#125;&#125;,
     &quot;slice&quot;: &#123;
@@ -885,9 +889,9 @@ POST ip:port/index/type/_search?scroll=1m
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2023/01/17/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
+              <a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  Thrift
+                  开发工具
               </a>
             
         </div>

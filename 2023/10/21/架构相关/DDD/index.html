@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		Thrift | 
+		DDD | 
 	 
 	月伴飞鱼
 	</title>
@@ -80,7 +80,7 @@
 
 <meta name="generator" content="Hexo 6.3.0"></head>
 
-<body>
+<body oncontextmenu="return false;">
 	<header id="header">
     <a id="title" href="/" class="logo">公众号月伴飞鱼</a>
 
@@ -292,6 +292,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">
+										Redis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -338,6 +347,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										架构相关
+									</a>
+									
+							<ul>
+								<li class="file active">
+									<a href="/2023/10/21/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/DDD/">
+										DDD
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										框架相关
 									</a>
 									
@@ -354,15 +383,6 @@
 								<li class="file">
 									<a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
 										Spring
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file active">
-									<a href="/2023/01/17/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
-										Thrift
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -592,18 +612,18 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	Thrift
+	DDD
 </h1>
 <div class="article-meta">
 	<span>月伴飞鱼</span>
-	<span>2023-01-17 21:43:20</span>
+	<span>2023-10-21 19:30:19</span>
     
 		<div id="article-categories">
             
                 
                     <span>
                         <i class="fa fa-folder" aria-hidden="true"></i>
-                        <a href="/categories/框架相关/">框架相关</a>
+                        <a href="/categories/架构相关/">架构相关</a>
 						
                     </span>
                 
@@ -612,76 +632,9 @@
     
 </div>
 
-<div id="container" class = "content999">
+<div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<p><code>Thrift</code>是一个<strong>轻量级</strong>、<strong>跨语言</strong>的<strong>远程服务调用</strong>框架，最初由<code>Facebook</code>开发，后面进入<code>Apache</code>开源项目。它通过自身的<code>IDL</code><strong>中间语言</strong>, 并借助<strong>代码生成引擎</strong>生成各种主流语言的<code>RPC</code><strong>服务端</strong>/<strong>客户端</strong>模板代码。</p>
-<p><code>Thrift</code>支持多种不同的<strong>编程语言</strong>，包括<code>C++</code>、<code>Java</code>、<code>Python</code>、<code>PHP</code>、<code>Ruby</code>等，本系列主要讲述基于<code>Java</code>语言的<code>Thrift</code>的配置方式和具体使用。</p>
-<table>
-<thead>
-<tr>
-<th><strong>特性</strong></th>
-<th><strong>Dubbo</strong></th>
-<th><strong>Thrift</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>语言</td>
-<td>Java</td>
-<td>跨语言</td>
-</tr>
-<tr>
-<td>分布式服务治理</td>
-<td>有</td>
-<td>无</td>
-</tr>
-<tr>
-<td>多序列化框架支持</td>
-<td>支持</td>
-<td>仅thrift格式</td>
-</tr>
-<tr>
-<td>多种注册中心</td>
-<td>有</td>
-<td>无</td>
-</tr>
-<tr>
-<td>管理中心</td>
-<td>有</td>
-<td>无</td>
-</tr>
-<tr>
-<td>性能</td>
-<td>较Thrift弱</td>
-<td>较Dubbo强</td>
-</tr>
-</tbody>
-</table>
-<p>从上表可以看到，Dubbo作为RPC分布式服务治理框架，其功能更为全面，具备服务治理、服务管理等多种特性，而Thrift较为纯粹，其作为单纯的RPC通信框架，性能更为强劲，但如果要使用Thrift作为分布式RPC框架，还需要自行实现服务治理等其他功能。</p>
-<p>Thrift提供跨语言的服务框架，这种跨语言主要体现在它对多种语言的编译功能的支持，用户只需要使用IDL描述好接口函数，只需要一条简单的命令，Thrift提供跨语言的服务框架，这种跨语言主要体现在它对多种语言的编译功能的支持，用户只需要使用IDL描述好接口函数，只需要一条简单的命令，Thrift就能够把按照IDL格式描述的接口文件翻译成各种语言版本就能够把按照IDL格式描述的接口文件翻译成各种语言版本</p>
-<p><strong>Thrift的RPC调用过程</strong></p>
-<p>Thrift框架的远程过程调用的工作过程如下：</p>
-<ul>
-<li>
-<p>通过IDL定义一个接口的thrift文件，然后通过thrift的多语言编译功能，将接口定义的thrift文件翻译成对应的语言版本的接口文件；</p>
-</li>
-<li>
-<p>Thrift生成的特定语言的接口文件中包括客户端部分和服务器部分；</p>
-</li>
-<li>
-<p>客户端通过接口文件中的客户端部分生成一个Client对象，这个客户端对象中包含所有接口函数的存根实现，然后用户代码就可以通过这个Client对象来调用thrift文件中的那些接口函数了，但是，客户端调用接口函数时实际上调用的是接口函数的本地存根实现</p>
-</li>
-<li>
-<p>接口函数的存根实现将调用请求发送给thrift服务器端，然后thrift服务器根据调用的函数名和函数参数，调用实际的实现函数来完成具体的操作</p>
-</li>
-<li>
-<p>Thrift服务器在完成处理之后，将函数的返回值发送给调用的Client对象</p>
-</li>
-<li>
-<p>Thrift的Client对象将函数的返回值再交付给用户的调用函数</p>
-</li>
-</ul>
-
+		
 	</div>
 </div>
 
@@ -689,16 +642,11 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  开发工具
-              </a>
-            
         </div>
         <div class="item right">
             
-              <a href="/2022/12/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/">
-                Elasticsearch
+              <a href="/2023/10/21/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">
+                Redis
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
@@ -754,7 +702,7 @@
 	            + '\n著作权归作者所有。'
 	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
 	            + '\n作者: 月伴飞鱼'
-	            + '\n原文地址: https://xiaoflyfish.cn/2023/01/17/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/'
+	            + '\n原文地址: https://xiaoflyfish.cn/2023/10/21/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/DDD/'
 	    
 	            clipboardData.setData('text/plain', text + copyright);
 	    

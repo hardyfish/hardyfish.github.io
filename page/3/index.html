@@ -78,7 +78,7 @@
 
 <meta name="generator" content="Hexo 6.3.0"></head>
 
-<body>
+<body oncontextmenu="return false;">
 	<header id="header">
     <a id="title" href="/" class="logo">公众号月伴飞鱼</a>
 
@@ -290,6 +290,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">
+										Redis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -336,6 +345,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										架构相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/DDD/">
+										DDD
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										框架相关
 									</a>
 									
@@ -352,15 +381,6 @@
 								<li class="file">
 									<a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
 										Spring
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2023/01/17/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
-										Thrift
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -588,7 +608,73 @@
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<div id="index">
+		<div id="index" oncontextmenu="return false;">
+	
+		<div class="index-li">
+			<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+				<h2 class="index-title">
+					设计模式
+				</h2>
+				<div class="index-brief">
+					基本概念封装
+通过对类的封装，仅仅暴露少许必要的方法给调用方使用，调用方不需要了解太多背后的业务细节，大大降低了用错的概率，提高了代码的易用性。
+抽象
+通过抽象化只暴露出方法定义，而隐藏方法的具体实现，让调用者只需要关心方法提供了哪些功能，并不需要知道这些功能是如何实现的。
+
+作用：通过抽象化手段，
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-10-07</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/基础知识/">基础知识</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/CSS/">
+				<h2 class="index-title">
+					CSS
+				</h2>
+				<div class="index-brief">
+					设置元素的前缀和后缀内容
+
+使用了::after伪元素，将其作为元素的后缀，并通过content属性来设置替换文本的内容。
+
+.my-class::after &#123;
+  content: &quot;替换的文本&quot;;
+&#125;
+
+.my-class::before &#123;
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-10-07</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/前端相关/">前端相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2023/10/07/%E6%9C%8D%E5%8A%A1%E5%99%A8/Docker/">
@@ -656,14 +742,13 @@ Hype
 					RocketMQ
 				</h2>
 				<div class="index-brief">
-					基本概念
-Topic：
+					基本概念Topic：
 
 一类消息的集合，消息发送者将一类消息发送到一个主题中，例如订单模块将订单发送到 order_topic 中，而用户登录时，将登录事件发送到 user_login_topic 中。
 
 ConsumeGroup：
 
-消息消费组，一个消费组拥有多个消费者，消费组首先在启动时需要订
+消息消费组，一个消费组拥有多个消费者，消费组首先在启动时需要订阅
 					...
 				</div>
 			</a>
@@ -705,33 +790,6 @@ JSON格式化网站：https://
                                     <span>
                                         <i class="fa fa-folder" aria-hidden="true"></i>
                                         <a href="/categories/工具相关/">工具相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/01/17/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
-				<h2 class="index-title">
-					Thrift
-				</h2>
-				<div class="index-brief">
-					Thrift是一个轻量级、跨语言的远程服务调用框架，最初由Facebook开发，后面进入Apache开源项目。它通过自身的IDL中间语言, 并借助代码生成引擎生成各种主流语言的RPC服务端/客户端模板代码。
-Thrift支持多种不同的编程语言，包括C++、Java、Python、PHP、Ruby等，
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-01-17</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/框架相关/">框架相关</a>
 										
                                     </span>
                                 
@@ -812,8 +870,7 @@ ES用 Java 编写，内部使用 Lucene 做索引与搜索：
 					并发编程
 				</h2>
 				<div class="index-brief">
-					线程
-线程优先级
+					线程线程优先级
 
 线程的优先级：线程抢占 CPU 时间片的概率，优先级越高的线程优先执行的概率就越大，但并不能保证优先级高的线程一定先执行。
 
@@ -821,7 +878,7 @@ ES用 Java 编写，内部使用 Lucene 做索引与搜索：
 public final static int MIN_PRIORITY = 1;
 
 // 线程默认优先级
-public 
+public f
 					...
 				</div>
 			</a>
@@ -847,12 +904,22 @@ public
 					MySQL
 				</h2>
 				<div class="index-brief">
-					索引
-索引分类
-聚簇索引和非聚簇索引
-它们区别在于，聚簇索引的叶子节点存放的是实际数据，所有完整的用户数据都存放在聚簇索引的叶子节点，而二级索引的叶子节点存放的是主键值，而不是实际数据。
-如果将 name 字段设置为普通索引，那么这个二级索引长下图这样，叶子节点仅存放主键值。
-InnoDB 在创建聚
+					三大范式
+第一范式：
+
+确保每列保持原子性：也就是列都是不可再分。
+如果每列都是不可再分的最小数据单元（也称为最小的原子单元），则满足第一范式（1NF）
+
+第二范式：
+
+首先满足第一范式，并且表中非主键列不存在对主键的部分依赖。
+
+第二范式要求每个表只描述一件事情。
+
+
+第三范式:
+
+确保每列都和主
 					...
 				</div>
 			</a>
@@ -864,37 +931,6 @@ InnoDB 在创建聚
                                     <span>
                                         <i class="fa fa-folder" aria-hidden="true"></i>
                                         <a href="/categories/数据库/">数据库</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2022/11/27/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/JVM/">
-				<h2 class="index-title">
-					JVM
-				</h2>
-				<div class="index-brief">
-					垃圾回收
-Minor GC(或Young GC)、Major GC、Full GC
-我们需要尽量的避免垃圾回收，因为在垃圾回收的过程中，容易出现STW（Stop the World）的问题，而 Major GC 和 Full GC出现STW的时间，是Minor GC的10倍以上
-
-
-新生代收集（ M
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2022-11-27</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/基础知识/">基础知识</a>
 										
                                     </span>
                                 

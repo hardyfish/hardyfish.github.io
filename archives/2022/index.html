@@ -78,7 +78,7 @@
 
 <meta name="generator" content="Hexo 6.3.0"></head>
 
-<body>
+<body oncontextmenu="return false;">
 	<header id="header">
     <a id="title" href="/" class="logo">公众号月伴飞鱼</a>
 
@@ -290,6 +290,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">
+										Redis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -336,6 +345,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										架构相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/DDD/">
+										DDD
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										框架相关
 									</a>
 									
@@ -352,15 +381,6 @@
 								<li class="file">
 									<a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
 										Spring
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2023/01/17/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
-										Thrift
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -588,7 +608,7 @@
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<div id="index">
+		<div id="index" oncontextmenu="return false;">
 	
 		<div class="index-li">
 			<a href="/2022/12/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/">
@@ -662,8 +682,7 @@ ES用 Java 编写，内部使用 Lucene 做索引与搜索：
 					并发编程
 				</h2>
 				<div class="index-brief">
-					线程
-线程优先级
+					线程线程优先级
 
 线程的优先级：线程抢占 CPU 时间片的概率，优先级越高的线程优先执行的概率就越大，但并不能保证优先级高的线程一定先执行。
 
@@ -671,7 +690,7 @@ ES用 Java 编写，内部使用 Lucene 做索引与搜索：
 public final static int MIN_PRIORITY = 1;
 
 // 线程默认优先级
-public 
+public f
 					...
 				</div>
 			</a>
@@ -697,12 +716,22 @@ public
 					MySQL
 				</h2>
 				<div class="index-brief">
-					索引
-索引分类
-聚簇索引和非聚簇索引
-它们区别在于，聚簇索引的叶子节点存放的是实际数据，所有完整的用户数据都存放在聚簇索引的叶子节点，而二级索引的叶子节点存放的是主键值，而不是实际数据。
-如果将 name 字段设置为普通索引，那么这个二级索引长下图这样，叶子节点仅存放主键值。
-InnoDB 在创建聚
+					三大范式
+第一范式：
+
+确保每列保持原子性：也就是列都是不可再分。
+如果每列都是不可再分的最小数据单元（也称为最小的原子单元），则满足第一范式（1NF）
+
+第二范式：
+
+首先满足第一范式，并且表中非主键列不存在对主键的部分依赖。
+
+第二范式要求每个表只描述一件事情。
+
+
+第三范式:
+
+确保每列都和主
 					...
 				</div>
 			</a>
@@ -728,12 +757,13 @@ InnoDB 在创建聚
 					JVM
 				</h2>
 				<div class="index-brief">
-					垃圾回收
-Minor GC(或Young GC)、Major GC、Full GC
-我们需要尽量的避免垃圾回收，因为在垃圾回收的过程中，容易出现STW（Stop the World）的问题，而 Major GC 和 Full GC出现STW的时间，是Minor GC的10倍以上
+					内存模型元空间
 
+在JDK1.7之前，HotSpot 虚拟机把方法区当成永久代（方法区的落地实现）来进行垃圾回收。
+JDK 1.8 开始，移除永久代，并把方法区移至元空间，它位于本地内存中，而不是虚拟机内存中。
+HotSpots取消了永久代，那么是不是也就没有方法区了呢？
 
-新生代收集（ M
+不是，方法区是一个规范，
 					...
 				</div>
 			</a>
@@ -759,12 +789,11 @@ Minor GC(或Young GC)、Major GC、Full GC
 					剑指OFFER
 				</h2>
 				<div class="index-brief">
-					3数组中重复的数字
-class Solution &#123;
+					3数组中重复的数字class Solution &#123;
     public int findRepeatNumber(int[] nums) &#123;
         int i = 0;
         while(i &lt; nums.length) &#123;
-       
+        
 					...
 				</div>
 			</a>
@@ -790,10 +819,9 @@ class Solution &#123;
 					LeetCode
 				</h2>
 				<div class="index-brief">
-					1两数之和
-class Solution &#123;
+					1两数之和class Solution &#123;
     public int[] twoSum(int[] nums, int target) &#123;
-        Map&lt;Integer, Integer&gt; map = new HashMap&lt;Integer, I
+        Map&lt;Integer, Integer&gt; map = new HashMap&lt;Integer, In
 					...
 				</div>
 			</a>

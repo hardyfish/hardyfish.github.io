@@ -78,7 +78,7 @@
 
 <meta name="generator" content="Hexo 6.3.0"></head>
 
-<body>
+<body oncontextmenu="return false;">
 	<header id="header">
     <a id="title" href="/" class="logo">公众号月伴飞鱼</a>
 
@@ -290,6 +290,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">
+										Redis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -336,6 +345,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										架构相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/DDD/">
+										DDD
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										框架相关
 									</a>
 									
@@ -352,15 +381,6 @@
 								<li class="file">
 									<a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
 										Spring
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2023/01/17/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
-										Thrift
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -588,7 +608,7 @@
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<div id="index">
+		<div id="index" oncontextmenu="return false;">
 	
 		<div class="index-li">
 			<a href="/2023/10/12/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
@@ -627,12 +647,11 @@
 					Vue
 				</h2>
 				<div class="index-brief">
-					数据绑定
-单项数据绑定（v-bind）：数据只能从data流向页面。
+					数据绑定单项数据绑定（v-bind）：数据只能从data流向页面。
 双向数据绑定（v-model）：数据不仅能从data流向页面，还可以从页面流向data。
 
 双向绑定一般都应用在表单类元素上（如：input、select等）
-v-mode:value可以简写为v-model，因为v-model默
+v-mode:value可以简写为v-model，因为v-model默认
 					...
 				</div>
 			</a>
@@ -658,13 +677,16 @@ v-mode:value可以简写为v-model，因为v-model默
 					CSS
 				</h2>
 				<div class="index-brief">
-					禁止选中文字
-* &#123;
-    /*	以下可以禁止选中文字 */
-    -webkit-user-select:none;    
-    -moz-user-select:none;    
-    -o-user-select:none;    
-    user-select:non
+					设置元素的前缀和后缀内容
+
+使用了::after伪元素，将其作为元素的后缀，并通过content属性来设置替换文本的内容。
+
+.my-class::after &#123;
+  content: &quot;替换的文本&quot;;
+&#125;
+
+.my-class::before &#123;
+
 					...
 				</div>
 			</a>
