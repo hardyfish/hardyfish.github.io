@@ -344,6 +344,7 @@ a {
 	font-size: 14px;
 	margin: 20px 0 15px;
 }
+
 #article-content blockquote{
 	padding: 0 1em;
 	color: #333;
@@ -351,6 +352,7 @@ a {
 	background-color: #e9f8f5;
 	font-size: 14px;
 }
+
 #article-content p {
 	line-height: 20px;
 	margin-bottom: 10px;
@@ -479,7 +481,7 @@ h1 {
 }
 
 #btw-modal-input-code::before {
-  content: "微信小程序搜索：HardyFish，获取验证码";
+  content: "微信搜索小程序：HardyFish，获取验证码";
   display: inline-block;
   color: #f20622;
   font-weight: bold;
@@ -504,4 +506,8 @@ h1 {
 
 #btw-modal-header {
 	display: none;
+}
+
+blockquote ul ul li {
+  color: #b44343 !important;
 }
