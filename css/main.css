@@ -511,3 +511,9 @@ h1 {
 blockquote ul ul li {
   color: #b44343 !important;
 }
+
+hr {
+  border: none;
+  border-top: 3px solid #b8389e;
+  margin: 10px 0;
+}
