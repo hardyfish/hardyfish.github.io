@@ -659,13 +659,51 @@
 <blockquote>
 <p>为了追求速度，不同数据类型使用不同的数据结构速度才得以提升。</p>
 </blockquote>
-<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p><strong>Redis数据结构</strong></p>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p>一个单机的 Redis 服务器默认情况下有 16 个数据库（0-15 号）。</p>
+<ul>
+<li>默认使用的是 0 号数据库，可以使用 <code>SELECT</code> 命令切换数据库。</li>
+</ul>
+<blockquote>
+<p>每个数据库都由一个 <code>redis.h/redisDb</code> 结构表示:</p>
+<ul>
+<li>它记录了单个 Redis 数据库的键空间、所有键的过期时间、处于阻塞状态和就绪状态的键、数据库编号等。</li>
+</ul>
+<p>dict:</p>
+<ul>
+<li>一个记录键值对数据的字典。</li>
+<li>键是一个字符串对象，值是字符串、列表、哈希表、集合和有序集合在内的任意一种 Redis 类型对象。</li>
+</ul>
+<p>expires:</p>
+<ul>
+<li>一个用于记录键的过期时间的字典。</li>
+<li>键为 dict 中的数据库键，值为这个数据库键的过期时间戳，这个值以 long long 类型表示。</li>
+</ul>
+</blockquote>
+<pre><code class="c">typedef struct redisDb &#123;
+    // 数据库键空间，保存着数据库中的所有键值对
+    dict *dict;
+    // 键的过期时间，字典的键为键，字典的值为过期事件 UNIX 时间戳
+    dict *expires;
+    // 正处于阻塞状态的键
+    dict *blocking_keys;
+    // 可以解除阻塞的键
+    dict *ready_keys;
+    // 正在被 WATCH 命令监视的键
+    dict *watched_keys;
+    struct evictionPoolEntry *eviction_pool;
+    // 数据库编号
+    int id;
+    // 数据库的键的平均 TTL，统计信息
+    long long avg_ttl;
+&#125; redisDb;
+</code></pre>
+<p><strong>数据类型</strong></p>
 <blockquote>
 <p><code>string</code>（<strong>字符串</strong>）、<code>hash</code>（<strong>哈希</strong>）、<code>list</code>（<strong>列表</strong>）、<code>set</code>（<strong>集合</strong>）、<code>zset</code>（<strong>有序集合</strong>）</p>
 </blockquote>
 <img src="/images/165f79470dff7693~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png" alt="img" style="zoom:50%;" />
 
-<p><strong>查询键的数据结构类型</strong></p>
+<p><strong>查询键的数据类型</strong></p>
 <blockquote>
 <p>type key:</p>
 <ul>
@@ -688,7 +726,7 @@ list
 </code></pre>
 <p><strong>内部编码</strong></p>
 <blockquote>
-<p>对于每种 <strong>数据结构</strong>，实际上都有自己底层的 <strong>内部编码</strong> 实现，而且是 <strong>多种实现</strong>。</p>
+<p>对于每种 <strong>数据类型</strong>，实际上都有自己底层的 <strong>内部编码</strong> 实现，而且是 <strong>多种实现</strong>。</p>
 <p>这样 <code>Redis</code> 会在合适的 <strong>场景</strong> 选择合适的 <strong>内部编码</strong>。</p>
 </blockquote>
 <img src="/images/165f79470e44f30b~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png" alt="img" style="zoom:50%;" />
@@ -699,6 +737,44 @@ list
 127.0.0.1:6379&gt; object encoding mylist
 &quot;quicklist&quot;
 </code></pre>
+<p><strong>哈希</strong></p>
+<blockquote>
+<p><strong>哈希类型</strong> 的 <strong>内部编码</strong> 有两种。</p>
+<p>ziplist（压缩列表）:</p>
+<ul>
+<li>当 <strong>哈希类型</strong> 元素个数 <strong>小于</strong> <code>hash-max-ziplist-entries</code> 配置，同时 <strong>所有值</strong> 都 <strong>小于</strong> <code>hash-max-ziplist-value</code> 配置时使用。</li>
+<li><code>ziplist</code> 使用更加 <strong>紧凑的结构</strong> 实现多个元素的 <strong>连续存储</strong>，在 <strong>节省内存</strong> 方面比 <code>hashtable</code> 更加优秀。</li>
+</ul>
+<p>hashtable（哈希表）：</p>
+<ul>
+<li>当 <strong>哈希类型</strong> 无法满足 <code>ziplist</code> 的条件时，<code>Redis</code> 会使用 <code>hashtable</code> 作为 <strong>哈希</strong> 的 <strong>内部实现</strong>。</li>
+<li>因为此时 <code>ziplist</code> 的 <strong>读写效率</strong> 会下降，而 <code>hashtable</code> 的读写 <strong>时间复杂度</strong> 为 <code>O（1）</code>。</li>
+</ul>
+</blockquote>
+<p><strong>列表</strong></p>
+<blockquote>
+<p>列表类型的 <strong>内部编码</strong> 有两种。</p>
+<p>ziplist（压缩列表）:</p>
+<ul>
+<li>当列表的元素个数 <strong>小于</strong> <code>list-max-ziplist-entries</code> 配置，同时列表中 <strong>每个元素</strong> 的值都 <strong>小于</strong>  <code>list-max-ziplist-value</code> 配置时使用。</li>
+</ul>
+<p>linkedlist（链表）：</p>
+<ul>
+<li>当 <strong>列表类型</strong> 无法满足 <code>ziplist</code> 的条件时， <code>Redis</code>会使用<code>linkedlist</code>作为 <strong>列表</strong> 的 <strong>内部实现</strong>。</li>
+</ul>
+</blockquote>
+<p><strong>集合</strong></p>
+<blockquote>
+<p><strong>集合类型</strong> 的 <strong>内部编码</strong> 有两种。</p>
+<p>intset（整数集合）：</p>
+<ul>
+<li>当集合中的元素都是 <strong>整数</strong> 且 <strong>元素个数</strong> 小于 <code>set-max-intset-entries</code> 配置时使用。</li>
+</ul>
+<p>hashtable（哈希表）：</p>
+<ul>
+<li>当集合类型 <strong>无法满足</strong> <code>intset</code> 的条件时，<code>Redis</code>会使用<code>hashtable</code>作为集合的 <strong>内部实现</strong>。</li>
+</ul>
+</blockquote>
 <p><strong>Pipeline</strong></p>
 <blockquote>
 <p>通过将一批命令进行打包，然后发送给服务器，服务器执行完按顺序打包返回，这样就减少了频繁交互往返的时间，提升了性能。</p>
@@ -806,6 +882,272 @@ list
 <p><strong>持久性</strong></p>
 <blockquote>
 <p>不管 Redis 采用什么持久化模式，<strong>事务的持久性属性是得不到保证的。</strong></p>
+</blockquote>
+<h1 id="哨兵模式"><a href="#哨兵模式" class="headerlink" title="哨兵模式"></a>哨兵模式</h1><blockquote>
+<p><code>Redis</code> 的 <strong>主从复制</strong> 模式下，一旦 <strong>主节点</strong> 由于故障不能提供服务，需要手动将 <strong>从节点</strong> 晋升为 <strong>主节点</strong>，同时还要通知 <strong>客户端</strong> 更新 <strong>主节点地址</strong>。</p>
+<ul>
+<li><code>Redis 2.8</code>以后提供了<code>Redis Sentinel</code><strong>哨兵机制</strong> 来解决这个问题。</li>
+</ul>
+</blockquote>
+<p><strong>Redis Sentinel的主要功能</strong></p>
+<blockquote>
+<p><code>Sentinel</code>是一个管理多个<code>Redis</code>实例的工具，它可以实现对<code>Redis</code>的 <strong>监控</strong>、<strong>通知</strong>、<strong>自动故障转移</strong>。</p>
+<p><strong>监控</strong></p>
+<ul>
+<li><code>Sentinel</code> 会不断的检查 <strong>主服务器</strong> 和 <strong>从服务器</strong> 是否正常运行。</li>
+</ul>
+<p><strong>通知</strong></p>
+<ul>
+<li>当被监控的某个 <code>Redis</code> 服务器出现问题，<code>Sentinel</code> 通过 <code>API</code> <strong>脚本</strong> 向 <strong>管理员</strong> 或者其他的 <strong>应用程序</strong> 发送通知。</li>
+</ul>
+<p><strong>自动故障转移</strong></p>
+<ul>
+<li>当 <strong>主节点</strong> 不能正常工作时，<code>Sentinel</code> 会开始一次 <strong>自动的</strong> 故障转移操作，它会将与 <strong>失效主节点</strong> 是 <strong>主从关系</strong> 的其中一个 <strong>从节点</strong> 升级为新的 <strong>主节点</strong>，并且将其他的 <strong>从节点</strong> 指向 <strong>新的主节点</strong>。</li>
+</ul>
+<p><strong>配置提供者</strong></p>
+<ul>
+<li>在 <code>Redis Sentinel</code> 模式下，<strong>客户端应用</strong> 在初始化时连接的是 <code>Sentinel</code> <strong>节点集合</strong>，从中获取 <strong>主节点</strong> 的信息。</li>
+</ul>
+</blockquote>
+<p><strong>主观下线和客观下线</strong></p>
+<blockquote>
+<p>默认情况下，<strong>每个</strong> <code>Sentinel</code> 节点会以 <strong>每秒一次</strong> 的频率对 <code>Redis</code> 节点和 <strong>其它</strong> 的 <code>Sentinel</code> 节点发送 <code>PING</code> 命令，并通过节点的 <strong>回复</strong> 来判断节点是否在线。</p>
+<p><strong>主观下线</strong></p>
+<ul>
+<li>适用于所有 <strong>主节点</strong> 和 <strong>从节点</strong>。</li>
+<li>如果在 <code>down-after-milliseconds</code> 毫秒内，<code>Sentinel</code> 没有收到 <strong>目标节点</strong> 的有效回复，则会判定 <strong>该节点</strong> 为 <strong>主观下线</strong>。</li>
+</ul>
+<p><strong>客观下线</strong></p>
+<ul>
+<li>只适用于 <strong>主节点</strong>。</li>
+<li>如果 <strong>主节点</strong> 出现故障，<code>Sentinel</code> 节点会通过 <code>sentinel is-master-down-by-addr</code> 命令，向其它 <code>Sentinel</code> 节点询问对该节点的 <strong>状态判断</strong>。</li>
+<li>如果超过 <code>&lt;quorum&gt;</code> 个数的节点判定 <strong>主节点</strong> 不可达，则该 <code>Sentinel</code> 节点会判断 <strong>主节点</strong> 为 <strong>客观下线</strong>。</li>
+</ul>
+</blockquote>
+<p><strong>工作原理</strong></p>
+<blockquote>
+<p>每个 <code>Sentinel</code> 以 <strong>每秒钟</strong> 一次的频率，向它所知的 <strong>主服务器</strong>、<strong>从服务器</strong> 以及其他 <code>Sentinel</code> <strong>实例</strong> 发送一个 <code>PING</code> 命令。</p>
+<p>如果一个 <strong>实例</strong>距离 <strong>最后一次</strong> 有效回复 <code>PING</code> 命令的时间超过 <code>down-after-milliseconds</code> 所指定的值，这个实例会被 <code>Sentinel</code> 标记为 <strong>主观下线</strong>。</p>
+<p>如果一个 <strong>主服务器</strong> 被标记为 <strong>主观下线</strong>，并且有 <strong>足够数量</strong> 的 <code>Sentinel</code>在指定的 <strong>时间范围</strong> 内同意这一判断，那么这个 <strong>主服务器</strong> 被标记为 <strong>客观下线</strong>。</p>
+<p><code>Sentinel</code> 和其他 <code>Sentinel</code> 协商 <strong>主节点</strong> 的状态，如果 <strong>主节点</strong> 处于 <code>SDOWN</code> 状态，则投票自动选出新的 <strong>主节点</strong>。</p>
+<p>将剩余的 <strong>从节点</strong> 指向 <strong>新的主节点</strong> 进行 <strong>数据复制</strong>。</p>
+</blockquote>
+<p><img src="/images/16560ce6759c1cb3~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png" alt="img"></p>
+<h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1><blockquote>
+<p><code>Redis 3.0</code>之前，使用 <strong>哨兵</strong>（<code>Sentinel</code>）机制来监控各个节点之间的状态。</p>
+<p>在<code>3.0</code>版本正式推出，解决了 <code>Redis</code>在 <strong>分布式</strong> 方面的需求。</p>
+</blockquote>
+<p><strong>数据分区</strong></p>
+<blockquote>
+<p><code>Redis Cluster</code>采用 <strong>虚拟槽分区</strong>，所有的 <strong>键</strong> 根据 <strong>哈希函数</strong> 映射到 <code>0~16383</code> 整数槽内。</p>
+<ul>
+<li>计算公式：<code>slot = CRC16（key）&amp; 16383</code>。</li>
+<li>每个节点负责维护一部分槽以及槽所映射的 <strong>键值数据</strong>。</li>
+</ul>
+</blockquote>
+<p><strong>集群的功能限制</strong></p>
+<blockquote>
+<p><code>key</code> <strong>批量操作</strong> 支持有限:</p>
+<ul>
+<li>类似 <code>mset</code>、<code>mget</code> 操作，目前只支持对具有相同 <code>slot</code> 值的 <code>key</code> 执行 <strong>批量操作</strong>。</li>
+<li>对于 <strong>映射为不同</strong> <code>slot</code> 值的 <code>key</code> 由于执行 <code>mget</code>、<code>mget</code> 等操作可能存在于多个节点上，因此不被支持。</li>
+</ul>
+<p><code>key</code> <strong>事务操作</strong> 支持有限:</p>
+<ul>
+<li>只支持 <strong>多</strong> <code>key</code> 在 <strong>同一节点上</strong> 的 <strong>事务操作</strong>，当多个<code>key</code>分布在 <strong>不同</strong> 的节点上时 <strong>无法</strong> 使用事务功能。</li>
+</ul>
+<p>不支持 <strong>多数据库空间</strong>:</p>
+<ul>
+<li><strong>单机</strong> 下的<code>Redis</code>可以支持<code>16</code>个数据库（<code>db0 ~ db15</code>），<strong>集群模式</strong> 下只能使用 <strong>一个</strong> 数据库空间，即<code>db0</code>。</li>
+</ul>
+</blockquote>
+<h1 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h1><p><strong>RDB持久化</strong></p>
+<blockquote>
+<p>将内存中的数据生成快照保存到磁盘里面，保存的文件后缀是 <code>.rdb</code>。</p>
+<p>rdb 文件是一个经过压缩的二进制文件，当 Redis 重新启动时，可以读取 rdb 快照文件恢复数据。</p>
+<ul>
+<li>包括：rdbSave 和 rdbLoad 两个函数。<ul>
+<li>rdbSave用于生成 RDB 文件并保存到磁盘，rdbLoad用于将 RDB 文件中的数据重新载入到内存中。</li>
+</ul>
+</li>
+</ul>
+<p>RDB 文件是一个单文件的全量数据，很适合数据的容灾备份与恢复。</p>
+<ul>
+<li>通过 RDB 文件恢复数据库耗时较短，通常 1G 的快照文件载入内存只需 20s 左右。</li>
+</ul>
+</blockquote>
+<p><strong>RDB文件的生成方式</strong></p>
+<p>手动触发保存:</p>
+<blockquote>
+<p>通过 SAVE 和 BGSAVE 命令手动触发快照生成。</p>
+<p>SAVE 是一个同步式的命令，它会阻塞 Redis 服务器进程，直到 RDB 文件创建完成为止。</p>
+<ul>
+<li>在服务器进程阻塞期间，服务器不能处理任何其他命令请求。</li>
+</ul>
+<p>BGSAVE 是一个异步式的命令：</p>
+<ul>
+<li>会派生出一个子进程，由子进程负责创建 RDB 文件，服务器进程（父进程）继续处理客户的命令。</li>
+</ul>
+<p>基本过程：</p>
+<ul>
+<li><p>客户端发起 BGSAVE 命令，Redis 主进程判断当前是否存在正在执行备份的子进程，如果存在则直接返回。</p>
+</li>
+<li><p>父进程 fork 一个子进程 （fork 的过程中会造成阻塞的情况）。</p>
+</li>
+<li><p>fork 创建的子进程开始根据父进程的内存数据生成临时的快照文件，然后替换原文件。</p>
+</li>
+<li><p>子进程备份完毕后向父进程发送完成信息。</p>
+</li>
+</ul>
+</blockquote>
+<p><img src="/images/image-20231023181622055.png" alt="image-20231023181622055"></p>
+<p>自动触发保存：</p>
+<blockquote>
+<p>通过 save 选项设置多个保存条件，只要其中任意一个条件被满足，服务器就会执行 BGSAVE 命令。 </p>
+<p>只要满足以下 3 个条件中的任意一个，BGSAVE 命令就会被自动执行：</p>
+<ul>
+<li>服务器在 900 秒之内，对数据库进行了至少 1 次修改。</li>
+<li>服务器在 300 秒之内，对数据库进行了至少 10 次修改。</li>
+<li>服务器在 60 秒之内，对数据库进行了至少 10000 次修改。</li>
+</ul>
+</blockquote>
+<p><strong>AOF持久化</strong></p>
+<blockquote>
+<p>AOF 会把 Redis 服务器每次执行的写命令记录到一个日志文件中，当服务器重启时再次执行 AOF 文件中的命令来恢复数据。</p>
+<p>如果 Redis 服务器开启了 AOF 持久化，会优先使用 AOF 文件来还原数据库状态。</p>
+<p>只有在 AOF 的持久化功能处于关闭状态时，服务器才会使用 RDB 文件还原数据库状态。</p>
+</blockquote>
+<p><strong>执行流程</strong></p>
+<blockquote>
+<p>AOF 不需要设置任何触发条件，对 Redis 服务器的所有写命令都会自动记录到 AOF 文件中。</p>
+<p>AOF 文件的写入流程可以分为 3 个步骤：</p>
+<ul>
+<li><p>命令追加（append）：将 Redis 执行的写命令追加到 AOF 的缓冲区 <code>aof_buf</code>。</p>
+</li>
+<li><p>文件写入（write）和文件同步（fsync）：AOF 根据对应的策略将 <code>aof_buf</code> 的数据同步到硬盘。</p>
+</li>
+<li><p>文件重写（rewrite）：定期对 AOF 进行重写，从而实现对写命令的压缩。</p>
+</li>
+</ul>
+</blockquote>
+<p><strong>AOF缓冲区的文件同步策略</strong></p>
+<blockquote>
+<p><strong>appendfsync always</strong>：每执行一次命令保存一次</p>
+<ul>
+<li>命令写入 <code>aof_buf</code> 缓冲区后立即调用系统 fsync 函数同步到 AOF 文件，fsync 操作完成后线程返回，整个过程是阻塞的。</li>
+</ul>
+<p><strong>appendfsync no</strong>：不保存</p>
+<ul>
+<li>命令写入 <code>aof_buf</code> 缓冲区后调用系统 write 操作，不对 AOF 文件做 fsync 同步。<ul>
+<li>同步由操作系统负责，通常同步周期为 30 秒。</li>
+</ul>
+</li>
+</ul>
+<p><strong>appendfsync everysec</strong>：每秒钟保存一次</p>
+<ul>
+<li>命令写入 <code>aof_buf</code> 缓冲区后调用系统 write 操作，write 完成后线程立刻返回，fsync 同步文件操作由单独的进程每秒调用一次。</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>文件同步策略</th>
+<th>write 阻塞</th>
+<th>fsync 阻塞</th>
+<th>宕机时的数据丢失量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>always</td>
+<td>阻塞</td>
+<td>阻塞</td>
+<td>最多只丢失一个命令的数据</td>
+</tr>
+<tr>
+<td>no</td>
+<td>阻塞</td>
+<td>不阻塞</td>
+<td>操作系统最后一次对 AOF 文件 fsync 后的数据</td>
+</tr>
+<tr>
+<td>everysec</td>
+<td>阻塞</td>
+<td>不阻塞</td>
+<td>一般不超过 1 秒钟的数据</td>
+</tr>
+</tbody></table>
+<p><strong>文件重写</strong></p>
+<blockquote>
+<p>把对 AOF 文件中的写命令进行合并，压缩文件体积，同步到新的 AOF 文件中，然后使用新的 AOF 文件覆盖旧的 AOF 文件。</p>
+</blockquote>
+<p>触发机制：</p>
+<blockquote>
+<p>手动触发：</p>
+<ul>
+<li>调用 bgrewriteaof 命令，执行与 bgsave 有些类似</li>
+</ul>
+<p>自动触发：</p>
+<ul>
+<li>根据 <code>auto-aof-rewrite-min-size</code> 和 <code>auto-aof-rewrite-percentage</code> 配置项，以及 <code>aof_current_size</code> 和 <code>aof_base_size</code> 的状态确定触发时机</li>
+</ul>
+<ul>
+<li>auto-aof-rewrite-min-size：执行 AOF 重写时，文件的最小体积，默认值为 64MB</li>
+<li>auto-aof-rewrite-percentage：<ul>
+<li>执行 AOF 重写时，当前 AOF 大小（<code>aof_current_size</code>）和上一次重写时 AOF 大小（<code>aof_base_size</code>）的比值</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>重写流程:</p>
+<blockquote>
+<p>客户端通过 <code>bgrewriteaof</code> 命令对 Redis 主进程发起 AOF 重写请求。</p>
+<p>主进程通过 fork 操作创建子进程，这个过程主进程是阻塞的。</p>
+<p>主进程的 fork 操作完成后，继续处理其他命令，把新的写命令同时追加到 <code>aof_buf</code> 和 <code>aof_rewrite_buf</code> 缓冲区中。</p>
+<ul>
+<li>在文件重写完成之前，主进程会继续把写命令追加到 <code>aof_buf</code> 缓冲区，这样可以避免 AOF 重写失败造成数据丢失，保证原有的 AOF 文件的正确性。</li>
+<li>由于 fork 操作运用写时复制技术，子进程只能共享 fork 操作时的内存数据，主进程会把新命令追加到一个 <code>aof_rewrite_buf</code> 缓冲区中，避免 AOF 重写时丢失这部分数据。</li>
+</ul>
+<p>子进程读取 Redis 进程中的数据快照，生成写入命令并按照命令合并规则批量写入到新的 AOF 文件。</p>
+<p>子进程写完新的 AOF 文件后，向主进程发信号。</p>
+<p>主进程接受到子进程的信号以后，将 <code>aof_rewrite_buf</code> 缓冲区中的写命令追加到新的 AOF 文件。</p>
+<p>主进程使用新的 AOF 文件替换旧的 AOF 文件，AOF 重写过程完成。</p>
+</blockquote>
+<img src="/images/image-20231023183436329.png" alt="image-20231023183436329" style="zoom:90%;" />
+
+<p><strong>RDB的优缺点：</strong></p>
+<blockquote>
+<p>优点:</p>
+<ul>
+<li>RDB 是一个压缩过的非常紧凑的文件，保存着某个时间点的数据集，适合做数据的备份、灾难恢复。</li>
+<li>与 AOF 持久化方式相比，恢复大数据集的时候会更快。</li>
+</ul>
+</blockquote>
+<p>缺点：</p>
+<blockquote>
+<p>数据安全性是不如 AOF，保存整个数据集是个重量级的过程，可能要几分钟才进行一次持久化，如果服务器宕机，就可能丢失几分钟的数据。</p>
+<p>Redis 数据集较大时，fork 的子进程要完成快照会比较耗费 CPU 和时间。</p>
+</blockquote>
+<p><strong>AOF的优缺点</strong></p>
+<blockquote>
+<p>优点:</p>
+<ul>
+<li>数据更完整，安全性更高，秒级数据丢失。</li>
+<li>AOF 文件是一个只进行追加的命令文件，且写入操作是以 Redis 协议的格式保存的，内容是可读的，适合误删紧急恢复。</li>
+</ul>
+</blockquote>
+<p>缺点：</p>
+<blockquote>
+<p>对于相同的数据集，AOF 文件的体积要远远大于 RDB 文件，数据恢复也会比较慢。</p>
+</blockquote>
+<p><strong>RDB-AOF混合持久化</strong></p>
+<blockquote>
+<p>Redis 4.0 版本提供了一套基于 AOF-RDB 的混合持久化机制，保留了两种持久化机制的优点。</p>
+<p>这样重写的 AOF 文件由两部份组成，一部分是 RDB 格式的头部数据，另一部分是 AOF 格式的尾部指令。</p>
+<p>在 Redis 服务器重启的时候：</p>
+<ul>
+<li>可以预先加载 AOF 文件头部全量的 RDB 数据。</li>
+<li>然后再重放 AOF 文件尾部增量的 AOF 命令，从而大大减少了重启过程中数据还原的时间。</li>
+</ul>
 </blockquote>
 <h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><p><strong>热Key</strong></p>
 <p>京东开源工具：<a target="_blank" rel="noopener" href="https://gitee.com/jd-platform-opensource/hotkey">https://gitee.com/jd-platform-opensource/hotkey</a></p>

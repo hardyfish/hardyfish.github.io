@@ -682,6 +682,24 @@
 </ul>
 <p>这个过程叫做<strong>回表</strong>。</p>
 </blockquote>
+<p><strong>索引结构</strong></p>
+<blockquote>
+<p><code>InnoDB</code>中使用了<strong>B+树</strong>来实现索引。</p>
+<p><code>InnoDB</code>的整数字段建立索引为例：</p>
+<ul>
+<li>一个页默认<code>16kb</code>，整数（<code>bigint</code>）字段的长度为<code>8B</code>，另外还跟着<code>6B</code>的指向其子树的指针，这意味着一个索引页可以存储接近<code>1200</code>条数据(<code>16kb/14B ≈ 1170</code>)。</li>
+<li>如果这颗<strong>B+树</strong>高度为<code>4</code>，就可以存<code>1200</code>的<code>3</code>次方的值，差不多<code>17</code>亿条数据。</li>
+</ul>
+<p>考虑到树根节点总是在内存中的，树的第二层很大概率也在内存中，所以一次搜索最多只需要访问<code>2</code>次磁盘<code>IO</code>。</p>
+<p>假设<code>1</code>亿数据量的表，根据主键<code>id</code>建立了<code>B+</code>树索引，搜索<code>id=2699</code>的数据，流程如下：</p>
+<ul>
+<li>内存中直接获取树根索引页，对树根索引页内的目录进行二分查找，定位到第二层的索引页。</li>
+<li>内存中直接获取第二层的索引页，对索引页内的目录进行二分查找，定位到第三层的索引页。</li>
+<li>从磁盘加载第三层的索引页到内存中，对索引页内的目录进行二分查找，定位到第四层数据页。</li>
+<li>从磁盘加载第四层的数据页到内存中，数据页变成缓存页，对缓存页中的目录进行二分查找，定位到具体的行数据。</li>
+</ul>
+</blockquote>
+<p><img src="/images/image-20231023192413070.png" alt="image-20231023192413070"></p>
 <p><strong>CBO</strong></p>
 <p>CBO（Cost-based Optimizer，基于成本的优化器）。</p>
 <blockquote>
