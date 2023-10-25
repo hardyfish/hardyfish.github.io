@@ -1645,6 +1645,8 @@ private void linkNodeLast(LinkedHashMap.Entry&lt;K,V&gt; p) &#123;
 <blockquote>
 <p>用户空间的应用程序执行一个系统调用，这会导致应用程序阻塞，直到数据准备好，并且将数据从内核复制到用户进程，最后进程再处理数据，在等待数据到处理数据的两个阶段，整个进程都被阻塞，不能处理别的网络IO。</p>
 </blockquote>
+<img src="/images/640-8212892.png" alt="图片" style="zoom:80%;" />
+
 <p><strong>同步非阻塞</strong></p>
 <p>非阻塞的系统调用调用之后，进程并没有被阻塞，内核马上返回给进程，如果数据还没准备好，此时会返回一个error。</p>
 <blockquote>
@@ -1653,20 +1655,26 @@ private void linkNodeLast(LinkedHashMap.Entry&lt;K,V&gt; p) &#123;
 <p>轮询检查内核数据，直到数据准备好，再拷贝数据到进程，进行数据处理。</p>
 <p>需要注意，拷贝数据整个过程，进程仍然是属于阻塞的状态。</p>
 </blockquote>
+<img src="/images/640-20231025134847570.png" alt="图片" style="zoom:80%;" />
+
 <p><strong>IO多路复用</strong></p>
 <blockquote>
 <p>IO多路复用，这是一种进程预先告知内核的能力，让内核发现进程指定的一个或多个IO条件就绪了，就通知进程。</p>
 <p>IO复用的实现方式目前主要有Select、Poll和Epoll。</p>
 </blockquote>
+<img src="/images/640-20231025134928516.png" alt="图片" style="zoom:80%;" />
+
 <p><strong>信号驱动</strong></p>
 <blockquote>
-<p>首先我们允许Socket进行信号驱动IO，并安装一个信号处理函数，进程继续运行并不阻塞。</p>
+<p>首先允许Socket进行信号驱动IO，并安装一个信号处理函数，进程继续运行并不阻塞。</p>
 <p>当数据准备好时，进程会收到一个SIGIO信号，可以在信号处理函数中调用I&#x2F;O操作函数处理数据。</p>
 <p>此种IO方式存在的一个很大的问题：</p>
 <ul>
 <li>Linux中信号队列是有限制的，如果超过这个数字问题就无法读取数据。</li>
 </ul>
 </blockquote>
+<img src="/images/640-20231025134954345.png" alt="图片" style="zoom:80%;" />
+
 <p><strong>异步非阻塞</strong></p>
 <blockquote>
 <p>当用户线程进行了系统调用，立刻就可以开始去做其它的事，用户线程不阻塞。</p>
@@ -1683,6 +1691,8 @@ private void linkNodeLast(LinkedHashMap.Entry&lt;K,V&gt; p) &#123;
 <li>而异步IO则由内核通知IO操作何时已经完成(数据已经在用户空间中)。</li>
 </ul>
 </blockquote>
+<img src="/images/640-20231025135037054.png" alt="图片" style="zoom:80%;" />
+
 <p><strong>BIO，NIO，AIO的区别：</strong></p>
 <blockquote>
 <p>BIO：</p>

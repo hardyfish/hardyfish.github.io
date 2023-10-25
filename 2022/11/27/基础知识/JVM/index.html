@@ -634,7 +634,73 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<h1 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h1><p><strong>元空间</strong></p>
+		<h1 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h1><p><strong>内存结构</strong></p>
+<blockquote>
+<p>堆：</p>
+<ul>
+<li>存放对象实例, 几乎所有的对象实例以及数组都在这里分配内存。</li>
+</ul>
+<p>虚拟机栈:</p>
+<ul>
+<li>栈帧:用于支持虚拟机进行方法执行的数据结构。<ul>
+<li>存储了方法的<code>局部变量表</code>， 操作数栈，动态连接和返回地址等地址。</li>
+<li>每个方法从调用到执行完成的过程，都对应着一个栈帧在虚拟机栈里从入栈到出栈的过程。</li>
+<li>栈内存为线程私有的空间, 每个线程都会创建私有的栈没存, 生命周期与线程相同。</li>
+<li>除了一些 Native方法调用是通过本地方法栈实现的, 其他所有Java方法调用都是栈来实现的。</li>
+</ul>
+</li>
+</ul>
+<p>本地方法栈：</p>
+<ul>
+<li><p>和虚拟机栈非常相似，区别如下:</p>
+<ul>
+<li><p>虚拟机栈执行 Java 方法服务。</p>
+</li>
+<li><p>本地方法栈使用到的 Native方法(例如 C++ 程序)服务。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>方法区:</p>
+<ul>
+<li>各个线程共享的内存区域。</li>
+<li>存储已经被虚拟机加载的类型信息，常量，静态变量，即时编译器编译后的代码缓存等数据。</li>
+<li>具体实现: 永久代，元空间。</li>
+</ul>
+<p>永久代和元空间的区别:</p>
+<ul>
+<li><p>JDK1.8之前是永久代。</p>
+</li>
+<li><p>JDK1.8之后是元空间。</p>
+</li>
+<li><p>存储位置：</p>
+<ul>
+<li>永久代使用的内存区域是 JVM进程所使用的区域，大小受 JVM的大小限制。</li>
+<li>元空间使用的是物理内存区域，元空间大小只受物理内存大小的限制。</li>
+</ul>
+</li>
+<li><p>存储内容不同：</p>
+<ul>
+<li>永久代主要存储方法区存储内容中的数据。</li>
+<li>元空间只存储类的元信息，而静态变量和运行时常量池都在堆中。</li>
+</ul>
+</li>
+</ul>
+<p>程序计数器：</p>
+<ul>
+<li>一块较小的内存空间，可以看做是当前线程所执行的字节码的行号指示器。</li>
+<li>每条线程都有一个独立的程序计数器，各线程之间的计数器互不影响，为线程私有。</li>
+</ul>
+<p>程序计数器的作用:</p>
+<ul>
+<li>多线程的情况下，用来记录当前执行的位置，当线程切换回来时能正确运行。</li>
+<li>字节码解释器通过改变程序计数器来以此读取指令，从而实现代码的流程控制: 如: 选择, 循环, 顺序执行, 异常处理等。</li>
+</ul>
+<p>程序计数器是唯一不会出现<code>OutOfMemoryError</code>异常的内存区域，其生命周期随着线程的创建而生，线程的销毁为亡。</p>
+</blockquote>
+<img src="/images/image-20231024202233389.png" alt="image-20231024202233389" style="zoom:30%;" />
+
+<p><strong>元空间</strong></p>
 <blockquote>
 <p>在JDK1.7之前，HotSpot 虚拟机把方法区当成永久代（方法区的落地实现）来进行垃圾回收。</p>
 <p>JDK 1.8 开始，移除永久代，并把方法区移至元空间，它位于本地内存中，而不是虚拟机内存中。</p>
@@ -1337,6 +1403,27 @@
 <p><a target="_blank" rel="noopener" href="https://fastthread.io/">https://fastthread.io/</a></p>
 <p><a target="_blank" rel="noopener" href="https://gceasy.io/">https://gceasy.io/</a></p>
 <p><a target="_blank" rel="noopener" href="https://heaphero.io/">https://heaphero.io/</a></p>
+<p><strong>内存泄漏</strong></p>
+<blockquote>
+<p>对象不会再被程序用到了，但是GC又不能回收他们的情况，叫内存泄漏。</p>
+</blockquote>
+<p>内存泄漏举例:</p>
+<blockquote>
+<p>单例模式：</p>
+<ul>
+<li>单例的生命周期和应用程序一样长，如果持有对外部对象的引用的话，那么这个外部对象是不能被回收的，则会导致内存泄漏。</li>
+</ul>
+<p>资源未关闭 ：</p>
+<ul>
+<li>如：数据库连接，网络连接和IO连接必须手动Close，否则是不能被回收的。</li>
+</ul>
+</blockquote>
+<p><strong>内存溢出</strong></p>
+<p><strong>栈溢出</strong></p>
+<blockquote>
+<p>线程请求的栈深度大于虚拟机允许的最大深度。</p>
+<p>虚拟机在扩展栈深度时，无法申请到足够的内存空间：OutOfMemoryError</p>
+</blockquote>
 
 	</div>
 </div>

@@ -1226,6 +1226,76 @@ if data == NULL &#123;
 <li>通过get不同的key或者使用mget批量获取。</li>
 </ul>
 </blockquote>
+<p><strong>缓存一致性</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">方案</th>
+<th align="left">问题</th>
+<th align="left">问题出现概率</th>
+<th align="left">推荐程度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">更新缓存 -&gt; 更新数据库</td>
+<td align="left">为了保证数据准确性，数据必须以数据库更新结果为准，所以该方案绝不可行</td>
+<td align="left">大</td>
+<td align="left">不推荐</td>
+</tr>
+<tr>
+<td align="left">更新数据库 -&gt; 更新缓存</td>
+<td align="left">并发更新数据库场景下，会将脏数据刷到缓存</td>
+<td align="left">并发写场景，概率一般</td>
+<td align="left">写请求较多时会出现不一致问题，不推荐使用。</td>
+</tr>
+<tr>
+<td align="left">删除缓存 -&gt; 更新数据库</td>
+<td align="left">更新数据库之前，若有查询请求，会将脏数据刷到缓存</td>
+<td align="left">并发读场景，概率较大</td>
+<td align="left">读请求较多时会出现不一致问题，不推荐使用</td>
+</tr>
+<tr>
+<td align="left">更新数据库 -&gt; 删除缓存</td>
+<td align="left">在更新数据库之前有查询请求，并且缓存失效了，会查询数据库，然后更新缓存。如果在查询数据库和更新缓存之间进行了数据库更新的操作，那么就会把脏数据刷到缓存</td>
+<td align="left">并发读场景&amp;读操作慢于写操作，概率最小</td>
+<td align="left"><strong>读操作比写操作更慢的情况较少，相比于其他方式出错的概率小一些。勉强推荐。</strong></td>
+</tr>
+</tbody></table>
+<p><strong>缓存击穿</strong></p>
+<img src="/images/640-20231025221358433.png" alt="图片" style="zoom:50%;" />
+
+<p>解决方案：</p>
+<blockquote>
+<p>使用互斥锁。</p>
+<p>提前使用互斥锁：</p>
+<ul>
+<li>即在value内部设置1个超时值(timeout1)，timeout1比实际的redis timeout(timeout2)小。</li>
+<li>当从cache读取到timeout1发现它已经过期时候，马上延长timeout1并重新设置到cache。</li>
+<li>然后再从数据库加载数据并设置到cache中。</li>
+</ul>
+<p>缓存永不过期。</p>
+</blockquote>
+<p><strong>缓存穿透</strong></p>
+<blockquote>
+<p>查询一个一定不存在的数据，如果从存储层查不到数据则不写入缓存，这将导致这个不存在的数据每次请求都要到存储层去查询。</p>
+<p>在流量大时，要是DB无法承受瞬间流量冲击，DB可能就挂了。</p>
+</blockquote>
+<img src="/images/640-20231025221735811.png" alt="图片" style="zoom:50%;" />
+
+<p>解决方案：</p>
+<blockquote>
+<p>缓存空数据。</p>
+<p>布隆过滤器。</p>
+</blockquote>
+<p><strong>缓存雪崩</strong></p>
+<blockquote>
+<p>缓存中有大量数据同时过期，导致大量请求无法得到处理。</p>
+</blockquote>
+<p>解决方案：</p>
+<blockquote>
+<p>设计不同的过期时间。</p>
+<p>对缓存增加多个副本。</p>
+</blockquote>
 <h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p><strong>分布式锁</strong></p>
 <blockquote>
 <p>使用分布式锁的目的，是保证同一时间只有一个客户端可以对共享资源进行操作。</p>

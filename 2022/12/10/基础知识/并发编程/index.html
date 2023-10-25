@@ -2360,7 +2360,7 @@ public boolean add(E e) &#123;
 <p><strong>Sync</strong></p>
 <p><code>Sync</code>继承了<code>AbstractQueuedSynchronizer</code>，是<code>ReentrantLock</code>的核心，<code>NonfairSync</code>与<code>FairSync</code>都是基于<code>Sync</code>扩展出来的子类。</p>
 <blockquote>
-<p><code>Sync</code>实现了<code>AQS</code>类的释放资源（**<code>tryRelease</code>**），然后抽象了一个获取锁的函数（lock）让子类自行实现。</p>
+<p><code>Sync</code>实现了<code>AQS</code>类的释放资源（<code>tryRelease</code>），然后抽象了一个获取锁的函数（lock）让子类自行实现。</p>
 </blockquote>
 <pre><code class="java">
 abstract static class Sync extends AbstractQueuedSynchronizer &#123;
