@@ -265,6 +265,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2023/10/26/%E5%A8%B1%E4%B9%90%E7%9B%B8%E5%85%B3/%E7%BD%91%E7%AB%99%E4%BB%8B%E7%BB%8D/">
+										网站介绍
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2023/10/09/%E5%A8%B1%E4%B9%90%E7%9B%B8%E5%85%B3/%E9%9F%B3%E4%B9%90/">
 										音乐
 									</a>
@@ -813,10 +822,25 @@ props.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, interceptors);
 <p>在 Kafka 中，选举这种副本的过程称为 Unclean 领导者选举。Broker 端参数 <code>unclean.leader.election.enable</code> 控制是否允许 Unclean 领导者选举。</p>
 </blockquote>
 <h1 id="选举机制"><a href="#选举机制" class="headerlink" title="选举机制"></a>选举机制</h1><p><strong>控制器（Broker）选举</strong></p>
-<p>所谓控制器就是一个Borker，在一个kafka集群中，有多个broker节点，但是它们之间需要选举出一个leader，其他的broker充当follower角色。</p>
 <blockquote>
-<p>集群中第一个启动的broker会通过在zookeeper中创建临时节点<code>/controller</code>来让自己成为控制器，其他broker启动时也会在zookeeper中创建临时节点，但是发现节点已经存在，所以它们会收到一个异常，意识到控制器已经存在，那么就会在zookeeper中创建watch对象，便于它们收到控制器变更的通知。</p>
+<p>控制器就是一个Borker。</p>
+<p>在Kafka集群中，有多个Broker节点，但是它们之间需要选举出一个Leader，其他的Broker充当Follower角色。</p>
+<p>集群中第一个启动的Broker会通过在Zookeeper中创建临时节点<code>/controller</code>来让自己成为控制器。</p>
+<p>其他Broker启动时也会在Zookeeper中创建临时节点，但是发现节点已经存在，所以它们会收到一个异常，意识到控制器已经存在，那么就会在Zookeeper中创建Watch对象，便于它们收到控制器变更的通知。</p>
 </blockquote>
+<p><strong>优先副本选举</strong></p>
+<blockquote>
+<p>如果一个分区的Leader副本不可用，就意味着整个分区不可用，此时需要从Follower副本中选举出新的Leader副本提供服务。</p>
+<p><strong>优先副本</strong></p>
+<p>指一个分区所在的AR集合的第一个副本。</p>
+<p>比如分区1，它的AR集合是<code>[2,0,1]</code>，表示分区1的优先副本就是在<code>Broker2</code>上。</p>
+<ul>
+<li>理想情况下，优先副本应该就是Leader副本。</li>
+</ul>
+<p>对分区Leader副本进行选举的时候，尽可能让优先副本成为Leader副本。</p>
+</blockquote>
+<img src="/images/image-20231026201049792.png" alt="image-20231026201049792" style="zoom:50%;" />
+
 <h1 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h1><p>控制器主要作用是在 ZooKeeper 的帮助下管理和协调整个 Kafka 集群。</p>
 <blockquote>
 <p>集群中任意一台 Broker 都能充当控制器的角色，但是在运行过程中只能有一个 Broker 成为控制器。</p>
