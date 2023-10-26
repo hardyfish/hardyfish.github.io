@@ -8,6 +8,8 @@
 	<!-- title -->
 	
 	<title>
+	
+		系统设计 | 
 	 
 	月伴飞鱼
 	</title>
@@ -416,7 +418,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2023/10/26/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
 										系统设计
 									</a>
@@ -646,102 +648,202 @@
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<div id="index" oncontextmenu="return false;">
-	
-		<div class="index-li">
-			<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%89%E5%AD%A3/">
-				<h2 class="index-title">
-					第三季
-				</h2>
-				<div class="index-brief">
-					第一集上半部分
+		<h1 id="article-title">
 
-        
+	系统设计
+</h1>
+<div class="article-meta">
+	<span>月伴飞鱼</span>
+	<span>2023-10-26 22:07:02</span>
+    
+		<div id="article-categories">
             
-        
-        
-          var ap = new APlayer({
-            element: document.getElementById("aplayer-acMnSZUa"),
-  
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-08</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/英语相关/">英语相关</a>
-										
-											>
-										
-                                    </span>
-                                
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/英语相关/老友记/">老友记</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%80%E5%AD%A3/">
-				<h2 class="index-title">
-					第一季
-				</h2>
-				<div class="index-brief">
-					第一集上半部分
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/架构相关/">架构相关</a>
+						
+                    </span>
+                
+            
+		</div>
+    
+</div>
 
-        
-            
-        
-        
-          var ap = new APlayer({
-            element: document.getElementById("aplayer-eeEISPrR"),
-  
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-08</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/英语相关/">英语相关</a>
-										
-											>
-										
-                                    </span>
-                                
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/英语相关/老友记/">老友记</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-	
-	<div id="index-paginator">
-		
+<div id="container" class = "content999" oncontextmenu="return false;">
+	<div id="article-content">
+		<p><strong>如何搭建一个新系统</strong></p>
+<blockquote>
+<p>架构设计按照实施过程可分为工程架构，业务架构，部署架构等多个维度。</p>
+<p>一个好的系统架构标准应该具备可扩展、可维护、可靠性、安全性和高性能等特点。</p>
+</blockquote>
+<p>价值为先：</p>
+<blockquote>
+<p>技术容易陷入的两个误区：</p>
+<ul>
+<li><p>来者不拒：产品经理提的需求，都是有道理的，全都负责完成。</p>
+</li>
+<li><p>技术驱动：这种技术实现特别巧妙，让产品特性适配于技术实现。</p>
+</li>
+</ul>
+<p>这两类误区，很容易让研发对产品价值的理解形成偏差，容易对后续的技术迭代产生颠覆性的影响。</p>
+<p>在方案出现歧义时，需要站在产品（商业）价值的视角审视方案并作出决策。</p>
+<p>站在产品（商业）价值维度：</p>
+<ul>
+<li>能够让协作各方站在平等的视角看问题，不仅能够容易达成共识，也能更好地为业务演进和技术迭代做好规划。</li>
+</ul>
+</blockquote>
+<p>架构设计:</p>
+<blockquote>
+<p>架构模式描述了软件系统中各个组件之间的关系、职责和交互方式，从而为软件设计提供了一种规范和约束，进而提高软件生产效率。</p>
+<p>主要体现在以下两个方面：</p>
+<ul>
+<li>帮助开发人员更好地组织和设计软件系统。</li>
+<li>促进团队之间的协作和沟通，使得团队成员更容易理解和分工。</li>
+</ul>
+</blockquote>
+<p>工程框架：</p>
+<blockquote>
+<p>新系统是从搭建项目的工程基础框架开始，包括目录结构、配置文件、代码模板等工程约束，主要用来规范项目结构、职责边界和代码风格，从而提高代码质量和可维护性。</p>
+<p>具体包括以下几个方面：</p>
+<ul>
+<li>约定了各个模块的依赖关系和交互方式。</li>
+<li>规范接口交互协议。</li>
+<li>统一异常编码、捕获和处理。</li>
+<li>规范日志打印格式。</li>
+<li>其它公共规范约束。</li>
+</ul>
+</blockquote>
+<p>技术选型：</p>
+<blockquote>
+<p>工程架构的搭建除了基础框架外，还有就是各类基础中间件的选择，也就是常说的技术选型。</p>
+<p>业务需求:</p>
+<ul>
+<li>了解业务需求，明确系统的功能、性能、安全以及未来的扩展需求。</li>
+</ul>
+<p>技术特性:</p>
+<ul>
+<li>评估不同技术的特性，包括可用性、性能、安全性、可扩展性、可维护性等方面。</li>
+</ul>
+<p>社区支持:</p>
+<ul>
+<li>考虑技术的社区支持程度，包括是否有活跃的社区、是否有大量的文档和教程、是否有成熟的第三方库等。</li>
+</ul>
+<p>团队技能:</p>
+<ul>
+<li>根据团队的技能水平选择合适的技术，避免使用过于复杂或陌生的技术。</li>
+<li>否则后期的维护成本和迭代效率将成为一个大的难题。</li>
+</ul>
+<p>成本效益:</p>
+<ul>
+<li>评估不同技术的成本效益，包括开发成本、运维成本、许可证费用等方面。<ul>
+<li>如果有成熟的开源插件可用，应该尽量使用它们，而不是重新发明轮子。</li>
+<li>对于其他团队已经完成的任务，需要考虑是否可以复用。</li>
+</ul>
+</li>
+</ul>
+<p>风险评估：</p>
+<ul>
+<li>评估不同技术的风险，包括技术成熟度、安全漏洞、依赖关系等方面。</li>
+</ul>
+</blockquote>
+<p>规范共识：</p>
+<blockquote>
+<p>确保团队成员之间的沟通和理解达成一致。</p>
+<p>通过制定规范和流程，可以减少重复工作和错误，避免冲突和误解，这有利于提高研发效率和质量。</p>
+<ul>
+<li>制定数据分层，异常管理，日志管理，监控管理的规范。</li>
+</ul>
+</blockquote>
+
 	</div>
 </div>
 
+
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2023/10/26/%E5%A8%B1%E4%B9%90%E7%9B%B8%E5%85%B3/%E7%BD%91%E7%AB%99%E4%BB%8B%E7%BB%8D/">
+                网站介绍
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+
+<script>
+
+    //document.oncontextmenu=new Function("event.returnValue=false");
+	//document.onselectstart=new Function("event.returnValue=false");
+
+	
+
+	$(function () {
+		const btw = new BTWPlugin();
+	    btw.init({
+	        id: 'container',
+	        blogId: '22377-1698128345767-254',
+	        name: '月伴飞鱼',
+	        qrcode: '/小程序码.jpg',
+	        keyword: '验证码',
+	    });
+
+	    var contents = document.getElementsByClassName("content999");
+	    //监听文章内容的copy事件
+	    contents[0].addEventListener('copy',function(e){
+	        setClipboardText(e);
+	    });
+
+	    function setClipboardText(event){
+	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+	        let clipboardData = event.clipboardData || window.clipboardData;
+
+	        // 如果未复制或者未剪切，则return出去
+	        if (!clipboardData) { return; }
+
+	        event.preventDefault();
+
+	        // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+	        // 声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+	        let text = window.getSelection().toString();
+	    
+	        if (text) {
+	            // 如果文本存在则先取消文本默认事件
+	            event.preventDefault();
+	            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+	            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+	            // data: 一个 DOMString表示要添加到 drag object的数据。
+	            var copyright = '\n\n'
+	            + '\n著作权归作者所有。'
+	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+	            + '\n作者: 月伴飞鱼'
+	            + '\n原文地址: https://xiaoflyfish.cn/2023/10/26/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/'
+	    
+	            clipboardData.setData('text/plain', text + copyright);
+	    
+	        }
+	    };
+	});
+
+	
+</script>
+
+<script>
+    const btw = new BTWPlugin();
+    btw.init({
+        id: 'container',
+        blogId: '22377-1698128345767-254',
+        name: '月伴飞鱼',
+        qrcode: '/小程序码.jpg',
+        keyword: '验证码',
+    });
+</script>
 	</div>
 	<div id="footer">
 	<p>
