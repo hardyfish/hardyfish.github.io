@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		网站介绍 | 
+		HBase | 
 	 
 	月伴飞鱼
 	</title>
@@ -87,6 +87,10 @@
 	<ul id="menu">
 		<li class="menu-item">
 			<a href="/about" class="menu-item-link">关于我</a>
+		</li>
+
+	    <li class="menu-item">
+			<a href="/site" class="menu-item-link">关于网站</a>
 		</li>
 
 		<li class="menu-item">
@@ -273,15 +277,6 @@
 							</ul>
 			
 							<ul>
-								<li class="file active">
-									<a href="/2023/10/26/%E5%A8%B1%E4%B9%90%E7%9B%B8%E5%85%B3/%E7%BD%91%E7%AB%99%E4%BB%8B%E7%BB%8D/">
-										网站介绍
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
 								<li class="file">
 									<a href="/2023/10/09/%E5%A8%B1%E4%B9%90%E7%9B%B8%E5%85%B3/%E9%9F%B3%E4%B9%90/">
 										音乐
@@ -350,6 +345,15 @@
 										数据库
 									</a>
 									
+							<ul>
+								<li class="file active">
+									<a href="/2023/10/27/%E6%95%B0%E6%8D%AE%E5%BA%93/HBase/">
+										HBase
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 							<ul>
 								<li class="file">
 									<a href="/2022/12/02/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">
@@ -668,18 +672,18 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	网站介绍
+	HBase
 </h1>
 <div class="article-meta">
 	<span>月伴飞鱼</span>
-	<span>2023-10-26 20:48:09</span>
+	<span>2023-10-27 18:57:54</span>
     
 		<div id="article-categories">
             
                 
                     <span>
                         <i class="fa fa-folder" aria-hidden="true"></i>
-                        <a href="/categories/基础知识/">基础知识</a>
+                        <a href="/categories/数据库/">数据库</a>
 						
                     </span>
                 
@@ -690,23 +694,31 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<p><strong>为什么查看网站内容需要验证码?</strong></p>
+		<p>官网：<a target="_blank" rel="noopener" href="https://hbase.apache.org/">https://hbase.apache.org/</a></p>
 <blockquote>
-<p>防止有人刷接口和采集数据，导致服务器崩溃。</p>
+<p>Apache HBase 是 Hadoop中一个支持分布式的、可扩展的大数据存储的数据库，</p>
+<p>当需要对大数据进行随机、实时读&#x2F;写访问时，可以用 Apache HBase。</p>
 </blockquote>
-<p><strong>为什么获取验证码需要看广告？</strong></p>
+<p><strong>HBase如何支持海量数据的随机存取</strong></p>
 <blockquote>
-<p>服务器成本太高，有广告收益才能持续运营下去。</p>
+<p>1、利用了HDFS的分布式存储和Hadoop的分布式计算能力：</p>
 <ul>
-<li>因为接入的腾讯广告，所以其实大部分广告收益都会分给腾讯。</li>
+<li>将数据存储在HDFS上，并利用Hadoop的MapReduce框架进行分布式计算，从而实现了高可扩展性和高并发性。</li>
+</ul>
+<p>2、将数据按照行和列族的方式存储在HDFS上：</p>
+<ul>
+<li>这种数据存储方式使得HBase能够实现高速的随机读写功能。</li>
+</ul>
+<p>3、利用了LSM（Log-Structured Merge-Tree）算法：</p>
+<ul>
+<li>该算法通过内存和顺序写磁盘的方式，使得随机写入成为可能，同时还能保证读取效率。</li>
+</ul>
+<p>4、支持数据的自动分片和负载均衡：</p>
+<ul>
+<li>可以支持PB级别的数据存储和处理，从而满足大规模数据的实时处理需求。</li>
 </ul>
 </blockquote>
-<p><strong>网站会一直运营下去么？</strong></p>
-<blockquote>
-<p>只要能收回服务器成本，就会一直运营。</p>
-</blockquote>
-<p><strong>问题反馈QQ群</strong></p>
-<img src="/images/image-20231027124436565.png" alt="image-20231027124436565" style="zoom:80%;" />
+
 	</div>
 </div>
 
@@ -714,16 +726,11 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2023/10/26/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  系统设计
-              </a>
-            
         </div>
         <div class="item right">
             
-              <a href="/2023/10/26/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E5%A4%A7%E5%8E%82%E6%99%8B%E5%8D%87%E6%8C%87%E5%8D%97/">
-                大厂晋升指南
+              <a href="/2023/10/27/%E5%A8%B1%E4%B9%90%E7%9B%B8%E5%85%B3/%E4%B9%A6%E7%B1%8D/">
+                书籍
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
@@ -779,7 +786,7 @@
 	            + '\n著作权归作者所有。'
 	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
 	            + '\n作者: 月伴飞鱼'
-	            + '\n原文地址: https://xiaoflyfish.cn/2023/10/26/%E5%A8%B1%E4%B9%90%E7%9B%B8%E5%85%B3/%E7%BD%91%E7%AB%99%E4%BB%8B%E7%BB%8D/'
+	            + '\n原文地址: https://xiaoflyfish.cn/2023/10/27/%E6%95%B0%E6%8D%AE%E5%BA%93/HBase/'
 	    
 	            clipboardData.setData('text/plain', text + copyright);
 	    
