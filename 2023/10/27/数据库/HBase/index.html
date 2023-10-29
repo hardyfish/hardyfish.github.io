@@ -696,7 +696,7 @@
 	<div id="article-content">
 		<p>官网：<a target="_blank" rel="noopener" href="https://hbase.apache.org/">https://hbase.apache.org/</a></p>
 <blockquote>
-<p>Apache HBase 是 Hadoop中一个支持分布式的、可扩展的大数据存储的数据库，</p>
+<p>Apache HBase 是 Hadoop中一个支持分布式的、可扩展的大数据存储的数据库。</p>
 <p>当需要对大数据进行随机、实时读&#x2F;写访问时，可以用 Apache HBase。</p>
 </blockquote>
 <p><strong>HBase如何支持海量数据的随机存取</strong></p>
@@ -717,6 +717,48 @@
 <ul>
 <li>可以支持PB级别的数据存储和处理，从而满足大规模数据的实时处理需求。</li>
 </ul>
+</blockquote>
+<p><strong>整体结构</strong></p>
+<blockquote>
+<p>HMaster:</p>
+<ul>
+<li>HBase集群的主节点，负责监控RegionServer，处理Region分配和负载均衡。</li>
+</ul>
+<p>HRegionServer:</p>
+<ul>
+<li>管理 Region，处理对所分配Region的IO请求，Region是表的分片,由多个Store组成。</li>
+</ul>
+<p>Zookeeper:</p>
+<ul>
+<li>维护HBase的运行状态信息，如Region分布信息等。</li>
+<li>HMaster和RegionServer都依赖Zookeeper。</li>
+</ul>
+<p>HRegion:</p>
+<ul>
+<li>HBase表的分片，由一个或者多个Store组成，存储实际的表数据。</li>
+</ul>
+<p>Store:</p>
+<ul>
+<li>Store以Column Family为单位存储数据，主要组成是MemStore和StoreFile(HFile)。</li>
+<li>1个Column Family的数据存放在一个Store中，一个Region包含多个Store。</li>
+</ul>
+<p>MemStore:</p>
+<ul>
+<li>内存存储，用于临时存放写数据，达到阈值后刷入StoreFile。</li>
+<li>通过内存，也加快了读写速度。</li>
+</ul>
+<p>StoreFile(HFile):</p>
+<ul>
+<li>磁盘上面真正存放数据的文件。</li>
+</ul>
+<p>HDFS: </p>
+<ul>
+<li>用来持久化存储HFiles。</li>
+</ul>
+</blockquote>
+<p><strong>逻辑架构</strong></p>
+<blockquote>
+<p>在HBase，列（<strong>Column</strong>）都归属于列族（<strong>Column Family</strong>）中。</p>
 </blockquote>
 
 	</div>
@@ -751,7 +793,7 @@
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1698456120282-862',
+	        blogId: '22377-1698542692602-147',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -801,7 +843,7 @@
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1698456120282-862',
+        blogId: '22377-1698542692602-147',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',
