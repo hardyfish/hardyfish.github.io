@@ -699,7 +699,36 @@
 <p>Apache HBase 是 Hadoop中一个支持分布式的、可扩展的大数据存储的数据库。</p>
 <p>当需要对大数据进行随机、实时读&#x2F;写访问时，可以用 Apache HBase。</p>
 </blockquote>
-<p><strong>HBase如何支持海量数据的随机存取</strong></p>
+<p><strong>数据模型</strong></p>
+<p><img src="/images/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Nob2NrYW5n,size_16,color_FFFFFF,t_70.png" alt="img"></p>
+<blockquote>
+<p>Rowkey（行键）:</p>
+<ul>
+<li>Table 的主键，Table 中的记录按照 Rowkey 的字典序进行排序。</li>
+</ul>
+<p>Column Family（列族）：</p>
+<ul>
+<li>表中的每个列，都归属与某个列族。</li>
+<li>列族是表的 Schema 的一部分，必须在使用表之前定义。</li>
+</ul>
+<p>Timestamp（时间戳）：</p>
+<ul>
+<li>每次数据操作对应的时间戳，可以看作是数据的 Version 版本号。</li>
+</ul>
+<p>Column（列）：</p>
+<ul>
+<li>列族下面的具体列。</li>
+<li>属于某一个 ColumnFamily，类似于 MySQL 当中创建的具体的列。</li>
+</ul>
+<p>Cell（单元格）：</p>
+<ul>
+<li><p>由<code>&#123;rowkey, column, version&#125;</code> 唯一确定的单元。</p>
+</li>
+<li><p>Cell 中的数据没有类型，全部是以字节数组进行存储。</p>
+</li>
+</ul>
+</blockquote>
+<p><strong>如何支持海量数据的随机存取</strong></p>
 <blockquote>
 <p>1、利用了HDFS的分布式存储和Hadoop的分布式计算能力：</p>
 <ul>
@@ -719,6 +748,7 @@
 </ul>
 </blockquote>
 <p><strong>整体结构</strong></p>
+<p><img src="/images/image-20231029233145729.png" alt="image-20231029233145729"></p>
 <blockquote>
 <p>HMaster:</p>
 <ul>
@@ -744,8 +774,13 @@
 </ul>
 <p>MemStore:</p>
 <ul>
-<li>内存存储，用于临时存放写数据，达到阈值后刷入StoreFile。</li>
-<li>通过内存，也加快了读写速度。</li>
+<li><p>内存存储，用于临时存放写数据，达到阈值后刷入StoreFile。</p>
+<ul>
+<li>数据会先写入到 MemStore 进行缓冲，然后再把数据刷到磁盘。</li>
+</ul>
+</li>
+<li><p>通过内存，也加快了读写速度。</p>
+</li>
 </ul>
 <p>StoreFile(HFile):</p>
 <ul>
@@ -756,9 +791,83 @@
 <li>用来持久化存储HFiles。</li>
 </ul>
 </blockquote>
-<p><strong>逻辑架构</strong></p>
+<hr>
 <blockquote>
-<p>在HBase，列（<strong>Column</strong>）都归属于列族（<strong>Column Family</strong>）中。</p>
+<p>一个列族就划分成一个 Store，如果一个表中只有 1 个列族，那么每一个 Region 中只有一个 Store。</p>
+<p>一个 Store 里面只有一个 MemStore。</p>
+<p>一个 Store 里面有很多个 StoreFile, 最后数据是以很多个 HFile 文件保存在 HDFS 上。</p>
+<ul>
+<li>StoreFile是HFile的抽象对象。</li>
+<li>每次 MemStore 刷写数据到磁盘，就生成对应的一个新的 HFile 文件出来。</li>
+</ul>
+</blockquote>
+<p><img src="/images/image-20231029233549412.png" alt="image-20231029233549412"></p>
+<p><img src="/images/image-20231029233748961.png" alt="image-20231029233748961"></p>
+<p><strong>热点问题</strong></p>
+<p>什么是热点？</p>
+<blockquote>
+<p>检索 HBase 的记录首先要通过Row Key来定位数据行。</p>
+<p>当大量的 Client 访问 HBase 集群的一个或少数几个节点，造成少数 Region Server 的读&#x2F;写请求过多、负载过大，而其他Region Server 负载却很小，就造成了 热点 现象。</p>
+</blockquote>
+<p>解决方案:</p>
+<blockquote>
+<p>预分区:</p>
+<ul>
+<li>目的让表的数据可以均衡的分散在集群中，而不是默认只有一个Region分布在集群的一个节点上。</li>
+</ul>
+<p>加盐:</p>
+<ul>
+<li>在Rowkey的前面增加随机数，具体就是给Rowkey分配一个随机前缀以使得它和之前的Rowkey的开头不同。</li>
+</ul>
+<p>哈希:</p>
+<ul>
+<li>哈希会使同一行永远用一个前缀加盐。<ul>
+<li>也可以使负载分散到整个集群，但是读是可以预测的。</li>
+</ul>
+</li>
+<li>使用确定的哈希可以让客户端重构完整的Rowkey，可以使用get操作准确获取某一个行数据。</li>
+</ul>
+<p>反转：</p>
+<ul>
+<li>反转固定长度或者数字格式的Rowkey。<ul>
+<li>这样可以使得Rowkey中经常改变的部分放在前面。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><strong>Flush机制</strong></p>
+<blockquote>
+<p>MemStore的大小超过某个值的时候，会Flush到磁盘，默认为128M。</p>
+<p>MemStore中的数据时间超过1小时，会Flush到磁盘。</p>
+<p>HRegionServer的全局MemStore的大小超过某大小会触发Flush到磁盘，默认是堆大小的40%。</p>
+</blockquote>
+<p><strong>Compact机制</strong></p>
+<blockquote>
+<p>HBase需要在必要的时候将小的Store File合并成相对较大的Store File，这个过程为Compaction。</p>
+<ul>
+<li>为了防止小文件过多，以保证查询效率。</li>
+</ul>
+<p>在HBase中主要存在两种类型的Compaction合并。</p>
+<p>Minor Compaction 小合并:</p>
+<ul>
+<li>在将Store中多个HFile合并为一个HFile。</li>
+<li>这个过程中，达到TTL（记录保留时间）会被移除，删除和更新的数据仅仅只是做了标记，并没有物理移除。<ul>
+<li>这种合并的触发频率很高。</li>
+</ul>
+</li>
+</ul>
+<p>Major Compaction 大合并：</p>
+<ul>
+<li><p>合并Store中所有的HFile为一个HFile。</p>
+</li>
+<li><p>这个过程有删除标记的数据会被真正移除，同时超过单元格maxVersion的版本记录也会被删除。</p>
+</li>
+<li><p>合并频率比较低，默认7天执行一次，并且性能消耗非常大，建议生产关闭(设置为0)，在应用空闲时间手动触发。</p>
+<ul>
+<li>一般可以是手动控制进行合并，防止出现在业务高峰期。</li>
+</ul>
+</li>
+</ul>
 </blockquote>
 
 	</div>
