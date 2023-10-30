@@ -869,6 +869,71 @@
 </li>
 </ul>
 </blockquote>
+<p><strong>Region拆分机制</strong></p>
+<blockquote>
+<p>Region 中存储的是大量的 Rowkey 数据，当 Region 中的数据条数过多的时候，直接影响查询效率。</p>
+<ul>
+<li>当 Region 过大的时候，HBase 会拆分 Region。</li>
+</ul>
+<p>HBase 的 Region Split 策略一共有以下几种。</p>
+</blockquote>
+<p>ConstantSizeRegionSplitPolicy：</p>
+<blockquote>
+<p>0.94版本前默认切分策略。</p>
+<p>当Region大小大于某个阈值之后就会触发切分，一个Region等分为2个Region。</p>
+<ul>
+<li>在生产线上这种切分策略有相当大的弊端：切分策略对于大表和小表没有明显的区分。</li>
+</ul>
+<p>阈值设置较大对大表比较友好，但是小表就有可能不会触发分裂，极端情况下可能就1个。</p>
+<p>如果设置较小则对小表友好，但一个大表就会在整个集群产生大量的Region，这对于集群的管理、资源使用、Failover不好。</p>
+</blockquote>
+<p>IncreasingToUpperBoundRegionSplitPolicy：</p>
+<blockquote>
+<p>0.94版本~2.0版本默认切分策略。</p>
+<p>总体看和ConstantSizeRegionSplitPolicy思路相同，一个Region大小大于设置阈值就会触发切分。</p>
+<ul>
+<li>但这个阈值并不是一个固定的值。</li>
+<li>而是会在一定条件下不断调整，调整规则和Region所属表在当前RegionServer上的Region个数有关系。</li>
+</ul>
+<p>Region Split的计算公式是：</p>
+<ul>
+<li><code>RegionCount^3 * 128M * 2</code>，当Region达到该size的时候进行split。</li>
+</ul>
+<p>例如：</p>
+<ul>
+<li><p>第一次split：<code>1^3 * 256 = 256MB</code></p>
+</li>
+<li><p>第二次split：<code>2^3 * 256 = 2048MB</code></p>
+</li>
+<li><p>第三次split：<code>3^3 * 256 = 6912MB</code> </p>
+</li>
+<li><p>第四次split：<code>4^3 * 256 = 16384MB &gt; 10GB</code>，取较小的值10GB</p>
+</li>
+</ul>
+<p>后面每次split的size都是10GB了。</p>
+</blockquote>
+<p>SteppingSplitPolicy：</p>
+<blockquote>
+<p>2.0版本默认切分策略。</p>
+<p>依然和待分裂Region所属表在当前RegionServer上的Region个数有关系。</p>
+<p>如果Region个数等于1，切分阈值为<code>flush size * 2</code>，否则为MaxRegionFileSize。</p>
+<p>这种切分策略对于大集群中的大表。</p>
+<p>小表会比 IncreasingToUpperBoundRegionSplitPolicy 更加友好，小表不会再产生大量的小Region，而是适可而止。</p>
+</blockquote>
+<p>KeyPrefixRegionSplitPolicy：</p>
+<blockquote>
+<p>根据RowKey的前缀对数据进行分组，这里是指定RowKey的前多少位作为前缀，比如RowKey都是16位的，指定前5位是前缀。</p>
+<p>那么前5位相同的RowKey在进行region split的时候会分到相同的Region中。</p>
+</blockquote>
+<p>DelimitedKeyPrefixRegionSplitPolicy：</p>
+<blockquote>
+<p>保证相同前缀的数据在同一个Region中，例如RowKey的格式为：<code>userid_eventtype_eventid</code>，指定的delimiter为_。</p>
+<p>则split的的时候会确保userid相同的数据在同一个Region中。</p>
+</blockquote>
+<p>DisabledRegionSplitPolicy:</p>
+<blockquote>
+<p>不启用自动拆分，需要指定手动拆分。</p>
+</blockquote>
 
 	</div>
 </div>
