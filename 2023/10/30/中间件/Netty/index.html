@@ -8,6 +8,8 @@
 	<!-- title -->
 	
 	<title>
+	
+		Netty | 
 	 
 	月伴飞鱼
 	</title>
@@ -143,7 +145,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/Netty/">
 										Netty
 									</a>
@@ -677,102 +679,228 @@
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<div id="index" oncontextmenu="return false;">
-	
-		<div class="index-li">
-			<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E5%89%91%E6%8C%87OFFER/">
-				<h2 class="index-title">
-					剑指OFFER
-				</h2>
-				<div class="index-brief">
-					3数组中重复的数字class Solution &#123;
-    public int findRepeatNumber(int[] nums) &#123;
-        int i = 0;
-        while(i &lt; nums.length) &#123;
-        
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2022-11-26</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/算法相关/">算法相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/LeetCode/">
-				<h2 class="index-title">
-					LeetCode
-				</h2>
-				<div class="index-brief">
-					1两数之和class Solution &#123;
-    public int[] twoSum(int[] nums, int target) &#123;
-        Map&lt;Integer, Integer&gt; map = new HashMap&lt;Integer, In
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2022-11-26</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/算法相关/">算法相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
-				<h2 class="index-title">
-					面试算法
-				</h2>
-				<div class="index-brief">
-					面试题17.01不用加号的加法
-class Solution &#123;
-    public int add(int a, int b) &#123;
-        int m = a ^ b; //不进位加法
-        int n = (a &amp; b) &lt;&lt; 1; /
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2022-11-25</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/算法相关/">算法相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-	
-	<div id="index-paginator">
-		
+		<h1 id="article-title">
+
+	Netty
+</h1>
+<div class="article-meta">
+	<span>月伴飞鱼</span>
+	<span>2023-10-30 16:18:37</span>
+    
+		<div id="article-categories">
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/中间件/">中间件</a>
+						
+                    </span>
+                
+            
+		</div>
+    
+</div>
+
+<div id="container" class = "content999" oncontextmenu="return false;">
+	<div id="article-content">
+		<p>官网：<a target="_blank" rel="noopener" href="https://netty.io/">https://netty.io/</a></p>
+<p><strong>解码器</strong></p>
+<p>固定长度解码器：FixedLengthFrameDecoder:</p>
+<blockquote>
+<p>直接通过构造函数设置固定长度的大小 frameLength，无论接收方一次获取多大的数据，都会严格按照 frameLength 进行解码。</p>
+<p>如果累积读取到长度大小为 frameLength 的消息，那么解码器认为已经获取到了一个完整的消息。</p>
+<p>如果消息长度小于 frameLength，FixedLengthFrameDecoder 解码器会一直等后续数据包的到达，直至获得完整的消息。</p>
+</blockquote>
+<p>特殊分隔符解码器：DelimiterBasedFrameDecoder。</p>
+<p>长度域解码器：LengthFieldBasedFrameDecoder。</p>
+<h1 id="基本架构"><a href="#基本架构" class="headerlink" title="基本架构"></a>基本架构</h1><p><strong>逻辑架构</strong></p>
+<blockquote>
+<p>Netty的逻辑处理架构共分为网络通信层、事件调度层、服务编排层，每一层各司其职。</p>
+</blockquote>
+<img src="/images/image-20231030162514048.png" alt="image-20231030162514048" style="zoom:80%;" />
+
+<p>网络通信层：</p>
+<blockquote>
+<p>网络通信层的职责是执行网络 I&#x2F;O 的操作。</p>
+<ul>
+<li>它支持多种网络协议和 I&#x2F;O 模型的连接操作。</li>
+</ul>
+<p>当网络数据读取到内核缓冲区后，会触发各种网络事件，这些网络事件会分发给事件调度层进行处理。</p>
+<p>网络通信层的包含<strong>BootStrap、ServerBootStrap、Channel</strong>三个组件。</p>
+<p><strong>BootStrap &amp; ServerBootStrap</strong></p>
+<ul>
+<li>Bootstrap:<ul>
+<li>主要负责整个 Netty 程序的启动、初始化、服务器连接等过程。</li>
+</ul>
+</li>
+</ul>
+<p>Netty中的引导器共分为两种类型：</p>
+<ul>
+<li>用于客户端引导的 Bootstrap。</li>
+<li>用于服务端引导的 ServerBootStrap，它们都继承自抽象类 AbstractBootstrap。</li>
+</ul>
+</blockquote>
+<p>事件调度层：</p>
+<blockquote>
+<p>通过 Reactor 线程模型对各类事件进行聚合处理，通过 Selector 主循环线程集成多种事件（ I&#x2F;O 事件、信号事件、定时事件等），实际的业务处理逻辑是交由服务编排层中相关的 Handler 完成。</p>
+<p>事件调度层的<strong>核心组件</strong>包括 <strong>EventLoopGroup、EventLoop</strong>。</p>
+<ul>
+<li><strong>EventLoopGroup &amp; EventLoop</strong></li>
+</ul>
+<p>EventLoopGroup 本质是一个线程池，主要负责接收 I&#x2F;O 请求，并分配线程执行处理请求。</p>
+<p>EventLoopGroup、EventLoop、Channel 的关系:</p>
+<ul>
+<li>一个 EventLoopGroup 往往包含一个或者多个 EventLoop。<ul>
+<li>EventLoop 用于处理 Channel 生命周期内的所有 I&#x2F;O 事件，如 accept、connect、read、write 等 I&#x2F;O 事件。</li>
+</ul>
+</li>
+<li>EventLoop 同一时间会与一个线程绑定，每个 EventLoop 负责处理多个 Channel。<ul>
+<li>每新建一个 Channel，EventLoopGroup 会选择一个 EventLoop 与其绑定。</li>
+<li>该 Channel 在生命周期内都可以对 EventLoop 进行多次绑定和解绑。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>EventLoopGroup 的实现类是 NioEventLoopGroup。</p>
+<p>可以把 NioEventLoopGroup 理解为一个线程池，每个线程负责处理多个 Channel，而同一个 Channel 只会对应一个线程。</p>
+<p>Netty 通过创建不同的 EventLoopGroup 参数配置，可以支持 Reactor 的三种线程模型：</p>
+<ul>
+<li><strong>单线程模型</strong>：<ul>
+<li>EventLoopGroup 只包含一个 EventLoop，Boss 和 Worker 使用同一个EventLoopGroup。</li>
+</ul>
+</li>
+<li><strong>多线程模型</strong>：<ul>
+<li>EventLoopGroup 包含多个 EventLoop，Boss 和 Worker 使用同一个EventLoopGroup。</li>
+</ul>
+</li>
+<li><strong>主从多线程模型</strong>：<ul>
+<li>EventLoopGroup 包含多个 EventLoop，Boss 是主 Reactor，Worker 是从 Reactor，它们分别使用不同的 EventLoopGroup，主 Reactor 负责新的网络连接 Channel 创建，然后把 Channel 注册到从 Reactor。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>服务编排层：</p>
+<blockquote>
+<p>服务编排层的职责是负责组装各类服务，它是 Netty 的核心处理链，用以实现网络事件的动态编排和有序传播。</p>
+<p>服务编排层的<strong>核心组件</strong>包括 <strong>ChannelPipeline</strong>、<strong>ChannelHandler、ChannelHandlerContext</strong>。</p>
+<p><strong>ChannelPipeline</strong></p>
+<ul>
+<li>负责组装各种 ChannelHandler，实际数据的编解码以及加工处理操作都是由 ChannelHandler 完成的。</li>
+<li>ChannelPipeline 可以理解为ChannelHandler 的实例列表：内部通过双向链表将不同的 ChannelHandler 链接在一起。</li>
+<li>当 I&#x2F;O 读写事件触发时，ChannelPipeline 会依次调用 ChannelHandler 列表对 Channel 的数据进行拦截和处理。</li>
+</ul>
+<p>ChannelPipeline 是线程安全的，因为每一个新的 Channel 都会对应绑定一个新的 ChannelPipeline。</p>
+<p>一个 ChannelPipeline 关联一个 EventLoop，一个 EventLoop 仅会绑定一个线程。</p>
+<p><strong>ChannelHandler &amp; ChannelHandlerContext</strong></p>
+<ul>
+<li>ChannelHandlerContext 用于保存 ChannelHandler 上下文。</li>
+</ul>
+</blockquote>
+<p><strong>组件关系</strong></p>
+<blockquote>
+<p>服务端启动初始化时有 Boss EventLoopGroup 和 Worker EventLoopGroup 两个组件，其中 Boss 负责监听网络连接事件。</p>
+<ul>
+<li>当有新的网络连接事件到达时，则将 Channel 注册到 Worker EventLoopGroup。</li>
+</ul>
+<p>Worker EventLoopGroup 会被分配一个 EventLoop 负责处理该 Channel 的读写事件。</p>
+<ul>
+<li>每个 EventLoop 都是单线程的，通过 Selector 进行事件循环。</li>
+</ul>
+<p>当客户端发起 I&#x2F;O 读写事件时，服务端 EventLoop 会进行数据的读取，然后通过 Pipeline 触发各种监听器进行数据的加工处理。</p>
+<p>客户端数据会被传递到 ChannelPipeline 的第一个 ChannelInboundHandler 中，数据处理完成后，将加工完成的数据传递给下一个 ChannelInboundHandler。</p>
+<p>当数据写回客户端时，会将处理结果在 ChannelPipeline 的 ChannelOutboundHandler 中传播，最后到达客户端。</p>
+</blockquote>
+
 	</div>
 </div>
 
+
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2023/10/27/%E6%95%B0%E6%8D%AE%E5%BA%93/HBase/">
+                HBase
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+
+<script>
+
+    //document.oncontextmenu=new Function("event.returnValue=false");
+	//document.onselectstart=new Function("event.returnValue=false");
+
+	
+
+	$(function () {
+		const btw = new BTWPlugin();
+	    btw.init({
+	        id: 'container',
+	        blogId: '22377-1698630354601-135',
+	        name: '月伴飞鱼',
+	        qrcode: '/小程序码.jpg',
+	        keyword: '验证码',
+	    });
+
+	    var contents = document.getElementsByClassName("content999");
+	    //监听文章内容的copy事件
+	    contents[0].addEventListener('copy',function(e){
+	        setClipboardText(e);
+	    });
+
+	    function setClipboardText(event){
+	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+	        let clipboardData = event.clipboardData || window.clipboardData;
+
+	        // 如果未复制或者未剪切，则return出去
+	        if (!clipboardData) { return; }
+
+	        event.preventDefault();
+
+	        // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+	        // 声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+	        let text = window.getSelection().toString();
+	    
+	        if (text) {
+	            // 如果文本存在则先取消文本默认事件
+	            event.preventDefault();
+	            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+	            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+	            // data: 一个 DOMString表示要添加到 drag object的数据。
+	            var copyright = '\n\n'
+	            + '\n著作权归作者所有。'
+	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+	            + '\n作者: 月伴飞鱼'
+	            + '\n原文地址: https://xiaoflyfish.cn/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/Netty/'
+	    
+	            clipboardData.setData('text/plain', text + copyright);
+	    
+	        }
+	    };
+	});
+
+	
+</script>
+
+<script>
+    const btw = new BTWPlugin();
+    btw.init({
+        id: 'container',
+        blogId: '22377-1698630354601-135',
+        name: '月伴飞鱼',
+        qrcode: '/小程序码.jpg',
+        keyword: '验证码',
+    });
+</script>
 	</div>
 	<div id="footer">
 	<p>
