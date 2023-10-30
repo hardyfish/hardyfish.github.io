@@ -699,6 +699,220 @@
 <p>Apache HBase 是 Hadoop中一个支持分布式的、可扩展的大数据存储的数据库。</p>
 <p>当需要对大数据进行随机、实时读&#x2F;写访问时，可以用 Apache HBase。</p>
 </blockquote>
+<p><strong>Shell操作</strong></p>
+<p>进入HBase客户端命令操作界面：</p>
+<pre><code>hbase shell
+</code></pre>
+<p>查看帮助命令:</p>
+<pre><code>hbase(main):001:0&gt; help
+</code></pre>
+<p>查看当前数据库中有哪些表:</p>
+<pre><code>hbase(main):006:0&gt; list
+</code></pre>
+<p>创建一张表:</p>
+<blockquote>
+<p>创建user表， 包含base_info、extra_info两个列族</p>
+</blockquote>
+<pre><code>hbase(main):007:0&gt; create &#39;user&#39;, &#39;base_info&#39;, &#39;extra_info&#39;
+</code></pre>
+<pre><code>create &#39;user&#39;, &#123;NAME =&gt; &#39;base_info&#39;, VERSIONS =&gt; &#39;3&#39;&#125;，&#123;NAME =&gt; &#39;extra_info&#39;&#125;
+</code></pre>
+<p>添加数据操作:</p>
+<blockquote>
+<p>向user表中插入信息，row key为 rk0001，列族base_info中添加name列标示符，值为zhangsan</p>
+</blockquote>
+<pre><code>hbase(main):008:0&gt; put &#39;user&#39;, &#39;rk0001&#39;, &#39;base_info:name&#39;, &#39;zhangsan&#39;
+</code></pre>
+<blockquote>
+<p>向user表中插入信息，row key为rk0001，列族base_info中添加age列标示符，值为20</p>
+</blockquote>
+<pre><code>hbase(main):010:0&gt;  put &#39;user&#39;, &#39;rk0001&#39;, &#39;base_info:age&#39;, 20
+</code></pre>
+<p>查询数据:</p>
+<blockquote>
+<p>通过rowkey进行查询:</p>
+<ul>
+<li>获取user表中row key为rk0001的所有信息</li>
+</ul>
+</blockquote>
+<pre><code>hbase(main):006:0&gt; get &#39;user&#39;, &#39;rk0001&#39;
+</code></pre>
+<blockquote>
+<p>查看rowkey下面的某个列族的信息:</p>
+<ul>
+<li>获取user表中row key为rk0001，base_info列族的所有信息</li>
+</ul>
+</blockquote>
+<pre><code>hbase(main):007:0&gt; get &#39;user&#39;, &#39;rk0001&#39;, &#39;base_info&#39;
+</code></pre>
+<blockquote>
+<p>查看rowkey指定列族指定字段的值：</p>
+<ul>
+<li>获取user表中row key为rk0001，base_info列族的name、age列标示符的信息</li>
+</ul>
+</blockquote>
+<pre><code>hbase(main):008:0&gt; get &#39;user&#39;, &#39;rk0001&#39;, &#39;base_info:name&#39;, &#39;base_info:age&#39;
+</code></pre>
+<blockquote>
+<p>查看rowkey指定多个列族的信息</p>
+<ul>
+<li>获取user表中row key为rk0001，base_info、extra_info列族的信息</li>
+</ul>
+</blockquote>
+<pre><code>hbase(main):010:0&gt; get &#39;user&#39;, &#39;rk0001&#39;, &#39;base_info&#39;, &#39;extra_info&#39;
+</code></pre>
+<pre><code>hbase(main):011:0&gt; get &#39;user&#39;, &#39;rk0001&#39;, &#123;COLUMN =&gt; [&#39;base_info&#39;, &#39;extra_info&#39;]&#125;
+</code></pre>
+<pre><code>hbase(main):012:0&gt; get &#39;user&#39;, &#39;rk0001&#39;, &#123;COLUMN =&gt; [&#39;base_info:name&#39;, &#39;extra_info:address&#39;]&#125;
+</code></pre>
+<blockquote>
+<p>指定rowkey与列值查询：</p>
+<ul>
+<li>获取user表中row key为rk0001，cell的值为zhangsan的信息</li>
+</ul>
+</blockquote>
+<pre><code>hbase(main):013:0&gt; get &#39;user&#39;, &#39;rk0001&#39;, &#123;FILTER =&gt; &quot;ValueFilter(=, &#39;binary:zhangsan&#39;)&quot;&#125;
+</code></pre>
+<blockquote>
+<p>指定rowkey与列值模糊查询:</p>
+<ul>
+<li>获取user表中row key为rk0001，列标示符中含有a的信息</li>
+</ul>
+</blockquote>
+<pre><code>hbase(main):015:0&gt; get &#39;user&#39;, &#39;rk0001&#39;, &#123;FILTER =&gt; &quot;(QualifierFilter(=,&#39;substring:a&#39;))&quot;&#125;
+</code></pre>
+<blockquote>
+<p>插入一批数据:</p>
+</blockquote>
+<pre><code>hbase(main):016:0&gt; put &#39;user&#39;, &#39;rk0002&#39;, &#39;base_info:name&#39;, &#39;fanbingbing&#39;
+
+hbase(main):017:0&gt; put &#39;user&#39;, &#39;rk0002&#39;, &#39;base_info:gender&#39;, &#39;female&#39;
+
+hbase(main):018:0&gt; put &#39;user&#39;, &#39;rk0002&#39;, &#39;base_info:birthday&#39;, &#39;2000-06-06&#39;
+
+hbase(main):019:0&gt; put &#39;user&#39;, &#39;rk0002&#39;, &#39;extra_info:address&#39;, &#39;Shanghai&#39;
+</code></pre>
+<blockquote>
+<p>查询所有数据:</p>
+<ul>
+<li>查询user表中的所有信息</li>
+</ul>
+</blockquote>
+<pre><code>hbase(main):020:0&gt; scan &#39;user&#39;
+</code></pre>
+<blockquote>
+<p>列族查询:</p>
+<ul>
+<li>查询user表中列族为 base_info 的信息</li>
+</ul>
+<p>Scan：</p>
+<ul>
+<li><p>设置是否开启Raw模式，开启Raw模式会返回包括已添加删除标记但是未实际删除的数据。</p>
+</li>
+<li><p>VERSIONS指定查询的最大版本数。</p>
+</li>
+</ul>
+</blockquote>
+<pre><code>hbase(main):021:0&gt; scan &#39;user&#39;, &#123;COLUMNS =&gt; &#39;base_info&#39;&#125;
+
+hbase(main):022:0&gt; scan &#39;user&#39;, &#123;COLUMNS =&gt; &#39;base_info&#39;, RAW =&gt; true, VERSIONS =&gt; 5&#125;
+</code></pre>
+<blockquote>
+<p>多列族查询：</p>
+<ul>
+<li>查询user表中列族为info和data的信息。</li>
+</ul>
+</blockquote>
+<pre><code>hbase(main):023:0&gt; scan &#39;user&#39;, &#123;COLUMNS =&gt; [&#39;base_info&#39;, &#39;extra_info&#39;]&#125;
+hbase(main):024:0&gt; scan &#39;user&#39;, &#123;COLUMNS =&gt; [&#39;base_info:name&#39;, &#39;extra_info:address&#39;]&#125;
+</code></pre>
+<blockquote>
+<p>指定列族与某个列名查询：</p>
+<ul>
+<li>查询user表中列族为base_info、列标示符为name的信息。</li>
+</ul>
+</blockquote>
+<pre><code>hbase(main):025:0&gt; scan &#39;user&#39;, &#123;COLUMNS =&gt; &#39;base_info:name&#39;&#125;
+</code></pre>
+<blockquote>
+<p>指定列族与列名以及限定版本查询:</p>
+<ul>
+<li>查询user表中列族为base_info、列标示符为name的信息，并且版本最新的5个</li>
+</ul>
+</blockquote>
+<pre><code>hbase(main):026:0&gt; scan &#39;user&#39;, &#123;COLUMNS =&gt; &#39;base_info:name&#39;, VERSIONS =&gt; 5&#125;
+</code></pre>
+<blockquote>
+<p>指定多个列族与按照数据值模糊查询：</p>
+<ul>
+<li>查询<strong>user</strong>表中列族为 <strong>base_info</strong> 和 <strong>extra_info</strong>且列标示符中含有a字符的信息</li>
+</ul>
+</blockquote>
+<pre><code>hbase(main):027:0&gt; scan &#39;user&#39;, &#123;COLUMNS =&gt; [&#39;base_info&#39;, &#39;extra_info&#39;], FILTER =&gt; &quot;(QualifierFilter(=,&#39;substring:a&#39;))&quot;&#125;
+</code></pre>
+<blockquote>
+<p>rowkey的范围值查询:</p>
+<ul>
+<li>查询user表中列族为info，rk范围是[rk0001, rk0003)的数据</li>
+</ul>
+</blockquote>
+<pre><code>hbase(main):028:0&gt; scan &#39;user&#39;, &#123;COLUMNS =&gt; &#39;base_info&#39;, STARTROW =&gt; &#39;rk0001&#39;, ENDROW =&gt; &#39;rk0003&#39;&#125;
+</code></pre>
+<blockquote>
+<p>指定rowkey模糊查询:</p>
+<ul>
+<li>查询user表中row key以rk字符开头的</li>
+</ul>
+</blockquote>
+<pre><code>hbase(main):029:0&gt; scan &#39;user&#39;,&#123;FILTER=&gt;&quot;PrefixFilter(&#39;rk&#39;)&quot;&#125;
+</code></pre>
+<blockquote>
+<p>更新数据值：</p>
+<ul>
+<li>把user表中rowkey为rk0001的base_info列族下的列name修改为zhangsansan</li>
+</ul>
+</blockquote>
+<pre><code>hbase(main):030:0&gt; put &#39;user&#39;, &#39;rk0001&#39;, &#39;base_info:name&#39;, &#39;zhangsansan&#39;
+</code></pre>
+<blockquote>
+<p>指定rowkey以及列名进行删除:</p>
+<ul>
+<li>删除user表row key为rk0001，列标示符为 base_info:name 的数据</li>
+</ul>
+</blockquote>
+<pre><code>hbase(main):032:0&gt;  delete &#39;user&#39;, &#39;rk0001&#39;, &#39;base_info:name&#39; 
+</code></pre>
+<blockquote>
+<p>指定rowkey，列名以及字段值进行删除：</p>
+<ul>
+<li>删除user表row key为rk0001，列标示符为base_info:name，timestamp为1392383705316的数据</li>
+</ul>
+</blockquote>
+<pre><code>hbase(main):033:0&gt; delete &#39;user&#39;, &#39;rk0001&#39;, &#39;base_info:age&#39;, 1564745324798
+</code></pre>
+<blockquote>
+<p>删除 base_info 列族</p>
+</blockquote>
+<pre><code class=":">hbase(main):034:0&gt; alter &#39;user&#39;, NAME =&gt; &#39;base_info&#39;, METHOD =&gt; &#39;delete&#39;
+</code></pre>
+<pre><code>hbase(main):035:0&gt; alter &#39;user&#39;, &#39;delete&#39; =&gt; &#39;base_info&#39;
+</code></pre>
+<blockquote>
+<p>删除user表数据：</p>
+</blockquote>
+<pre><code>hbase(main):036:0&gt; truncate &#39;user&#39;
+</code></pre>
+<blockquote>
+<p>删除user表：</p>
+</blockquote>
+<pre><code class="：">#先disable  再drop
+
+hbase(main):036:0&gt; disable &#39;user&#39;
+hbase(main):037:0&gt; drop &#39;user&#39;
+
+#如果不进行disable，直接drop会报错
+ERROR: Table user is enabled. Disable it first.
+</code></pre>
 <p><strong>数据模型</strong></p>
 <p><img src="/images/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Nob2NrYW5n,size_16,color_FFFFFF,t_70.png" alt="img"></p>
 <blockquote>
@@ -726,6 +940,34 @@
 </li>
 <li><p>Cell 中的数据没有类型，全部是以字节数组进行存储。</p>
 </li>
+</ul>
+</blockquote>
+<p><strong>负载均衡</strong></p>
+<blockquote>
+<p>HBase 官方目前支持两种负载均衡策略： </p>
+<ul>
+<li>SimpleLoadBalancer 策略和 StochasticLoadBalancer 策略。</li>
+</ul>
+</blockquote>
+<p>SimpleLoadBalancer 策略：</p>
+<blockquote>
+<p>这种策略能够保证每个 RegionServer 的 Region 个数基本相等。</p>
+<p>假设集群中一共有 n 个 RegionServer，m 个 Region ，那么集群的平均负载就是 average &#x3D; m&#x2F;n。</p>
+<ul>
+<li>这种策略能够保证所有 RegionServer 上的 Region 个数都在 <code>[floor(average)，ceil(average)]</code>之间。</li>
+</ul>
+<p>因此， SimpleLoadBalancer 策略中负载就是 Region 个数，集群负载迁移计划就是 Region 从个数较多的 RegionServer 上迁移到个数较少的 RegionServer 上。</p>
+<p>虽然集群中每个 RegionServer 的 Region 个数都基本相同，但如果某台 RegionServer 上的 Region 全部都是热点数据，导致 90 %的读写请求还是落在了这台 RegionServer 上，这样没有达到负载均衡的目的。</p>
+</blockquote>
+<p>StochasticLoadBalancer 策略：</p>
+<blockquote>
+<p>它对于负载的定义不再是 Region 个数这么简单，而是由多种独立负载加权计算的复合值，这些独立负载包括：</p>
+<ul>
+<li>Region 个数，Region 负载，读请求数，写请求数，Storefile 大小，MemStore 大小，数据本地率，移动代价。</li>
+</ul>
+<p>这些独立负载经过加权计算会得到一个代价值，系统使用这个代价值来评估当前 Region 分布是否均衡，越均衡代价值越低。</p>
+<ul>
+<li>HBase 通过不断随机挑选迭代来找到一组 Region 迁移计划，使得代价值最小。</li>
 </ul>
 </blockquote>
 <p><strong>如何支持海量数据的随机存取</strong></p>
@@ -933,6 +1175,108 @@
 <p>DisabledRegionSplitPolicy:</p>
 <blockquote>
 <p>不启用自动拆分，需要指定手动拆分。</p>
+</blockquote>
+<p><strong>预分区</strong></p>
+<blockquote>
+<p>当一个table刚被创建的时候，HBase默认的分配一个Region给table。</p>
+<ul>
+<li><p>这时所有的读写请求都会访问到同一个RegionServer的同一个Region中。</p>
+</li>
+<li><p>这个时候就达不到负载均衡的效果了，集群中的其他RegionServer就可能会处于比较空闲的状态。</p>
+</li>
+</ul>
+<p>解决办法：</p>
+<ul>
+<li>可以用预分区（<code>pre-splitting</code>），在创建table的时候就配置好，生成多个Region。</li>
+</ul>
+<p>如何预分区？</p>
+<ul>
+<li>每一个Region维护着startRow与endRowKey。</li>
+<li>如果加入的数据符合某个Region维护的RowKey范围，则该数据交给这个Region维护。</li>
+</ul>
+</blockquote>
+<p>手动指定预分区:</p>
+<pre><code class="sql">create &#39;person&#39;,&#39;info1&#39;,&#39;info2&#39;,SPLITS =&gt; [&#39;1000&#39;,&#39;2000&#39;,&#39;3000&#39;,&#39;4000&#39;]
+</code></pre>
+<p><strong>Region定位</strong></p>
+<blockquote>
+<p>HBase 支持 put ， get ， delete 和 scan 等基础操作，所有这些操作的基础是 region 定位。</p>
+</blockquote>
+<p>region 定位基本步骤:</p>
+<blockquote>
+<p>客户端与 ZooKeeper 交互，查找 <code>hbase:meta</code> 系统表所在的 Regionserver。</p>
+<p><code>hbase:meta</code> 表维护了每个用户表中 rowkey 区间与 Region 存放位置的映射关系，具体如下:</p>
+<ul>
+<li><p>rowkey : table name，start key，region id。</p>
+</li>
+<li><p>value : RegionServer 对象(保存了 RegionServer 位置信息等)。</p>
+</li>
+</ul>
+<p>客户端与 <code>hbase:meta</code> 系统表所在 RegionServer 交互，获取 rowkey 所在的 RegionServer。</p>
+<p>客户端与 rowkey 所在的 RegionServer 交互，执行该 rowkey 相关操作。</p>
+<p>需要注意:</p>
+<ul>
+<li><p>客户端首次执行读写操作时才需要定位 <code>hbase:meta</code> 表的位置。</p>
+</li>
+<li><p>之后会将其缓存到本地，除非因 region 移动导致缓存失效，客户端才会重新读取 <code>hbase:meta</code> 表位置，并更新缓存。</p>
+</li>
+</ul>
+</blockquote>
+<img src="/images/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Nob2NrYW5n,size_16,color_FFFFFF,t_70-20231030150042443.png" alt="在这里插入图片描述" style="zoom:50%;" />
+
+<p><strong>读写流程</strong></p>
+<p>读操作：</p>
+<blockquote>
+<p>首先从 ZooKeeper 找到 meta 表的 region 位置，然后读取<code>hbase:meta</code> 表中的数据，<code>hbase:meta</code> 表中存储了用户表的 region 信息。</p>
+<p>根据要查询的 namespace 、表名和 rowkey 信息，找到写入数据对应的 Region 信息。</p>
+<p>找到这个 Region 对应的 RegionServer ，然后发送请求。</p>
+<p>查找对应的 Region。</p>
+<p>先从 MemStore 查找数据，如果没有，再从 BlockCache 上读取。</p>
+<ul>
+<li>HBase 上 RegionServer 的内存分为两个部分：<ul>
+<li>一部分作为 MemStore，主要用来写。</li>
+<li>另外一部分作为 BlockCache，主要用于读数据。</li>
+</ul>
+</li>
+</ul>
+<p>如果 BlockCache 中也没有找到，再到 StoreFile(HFile) 上进行读取。</p>
+<ul>
+<li>从 StoreFile 中读取到数据之后，不是直接把结果数据返回给客户端，而是把数据先写入到 BlockCache 中，目的是为了加快后续的查询，然后在返回结果给客户端。</li>
+</ul>
+</blockquote>
+<img src="/images/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Nob2NrYW5n,size_16,color_FFFFFF,t_70-20231030150644210.png" alt="在这里插入图片描述" style="zoom:50%;" />
+
+<p>写操作：</p>
+<blockquote>
+<p>首先从 ZooKeeper 找到 <code>hbase:meta</code> 表的 Region 位置，然后读取 <code>hbase:meta</code>表中的数据，<code>hbase:meta</code> 表中存储了用户表的 Region 信息。</p>
+<p>根据 namespace 、表名和 rowkey 信息找到写入数据对应的 Region 信息。</p>
+<p>找到这个 Region 对应的 RegionServer ，然后发送请求。</p>
+<p>把数据分别写到 HLog (WriteAheadLog)和 MemStore 各一份。</p>
+<p>MemStore 达到阈值后把数据刷到磁盘，生成 StoreFile 文件。</p>
+<p>删除 HLog 中的历史数据。</p>
+</blockquote>
+<img src="/images/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Nob2NrYW5n,size_16,color_FFFFFF,t_70-20231030151356075.png" alt="在这里插入图片描述" style="zoom:50%;" />
+
+<p><strong>BulkLoad机制</strong></p>
+<blockquote>
+<p>用户数据位于 HDFS 中，业务需要定期将这部分海量数据导入 HBase 系统，以执行随机查询更新操作。</p>
+<p>这种场景如果调用写入 API 进行处理，极有可能会给 RegionServer 带来较大的写人压力。</p>
+<ul>
+<li><p>引起 RegionServer 频繁 flush，进而不断 compact、split，影响集群稳定性。</p>
+</li>
+<li><p>引起 RegionServer 频繁GC,影响集群稳定性。</p>
+</li>
+<li><p>消耗大量 CPU 资源、带宽资源、内存资源以及 IO 资源，与其他业务产生资源竞争。</p>
+</li>
+<li><p>在某些场景下，比如平均 KV 大小比较大的场景，会耗尽 RegionServer 的处理线程， 导致集群阻塞。</p>
+</li>
+</ul>
+<p>所以HBase提供了另一种将数据写入HBase集群的方法：BulkLoad。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>BulkLoad 首先使用 MapReduce 将待写入集群数据转换为 HFile 文件，再直接将这些 HFile 文件加载到在线集群中。</p>
+<p>BulkLoad 没有将写请求发送给 RegionServer 处理，可以有效避免上述一系列问题。</p>
 </blockquote>
 
 	</div>
