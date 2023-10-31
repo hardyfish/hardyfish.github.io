@@ -1617,6 +1617,35 @@ SELECT ... FOR SHARE; # (8.0新增语法)
 <p>Slave服务器的IO线程获取到Master服务器上IO线程发送的日志内容、日志文件及位置点后，会将binlog日志内容依次写到Slave端自身的Relay Log（即中继日志）。</p>
 <p>从库服务器的SQL线程会实时监测到本地Relay Log中新增了日志内容，然后把RelayLog中的日志翻译成SQL并且按照顺序执行SQL来更新从库的数据。</p>
 </blockquote>
+<p><strong>主从延时原因</strong></p>
+<blockquote>
+<p>主从延迟主要是出现在 relay log 回放 这一步。</p>
+<p>当主库的 TPS 并发较高，产生的 DDL 数量超过从库一个 SQL 线程所能承受的范围，那么延时就产生了。</p>
+<p>还有就是可能与从库的大型 query 语句产生了锁等待。</p>
+</blockquote>
+<p><strong>主从延时解决方案</strong></p>
+<blockquote>
+<p>缩短主从同步时间：</p>
+<ul>
+<li>提升从库机器配置，可以和主库一样，甚至更好。</li>
+<li>避免大事务。</li>
+<li>搞多个从库，即一主多从，分担从库查询压力。</li>
+<li>优化网络宽带。</li>
+<li>选择高版本 MySQL，支持主库 binlog 多线程复制。</li>
+</ul>
+<p>从业务场景考虑：</p>
+<ul>
+<li>使用缓存：<ul>
+<li>在同步写数据库的同时，也把数据写到缓存，查询数据时，会先查询缓存。</li>
+<li>这种情况会带来 MySQL 和 Redis 数据一致性问题。</li>
+</ul>
+</li>
+<li>查询主库：<ul>
+<li>直接查询主库，这种情况会给主库太大压力，核心场景可以使用，比如订单支付。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
 <h1 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h1><p><strong>查询：</strong></p>
 <blockquote>
 <p><code>owner_id</code>字段里面存的值是用逗号隔开的多个人的数据，想随便拿一个数据。</p>

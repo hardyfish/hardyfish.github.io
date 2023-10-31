@@ -736,6 +736,45 @@
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://github.com/feiniaojin/ddd-example-cms">https://github.com/feiniaojin/ddd-example-cms</a></p>
 </blockquote>
+<p><strong>为什么需要DDD</strong></p>
+<blockquote>
+<p>复杂系统设计：</p>
+<ul>
+<li>系统多，业务逻辑复杂，概念不清晰，需要合适的方法帮助我们理清楚边界，逻辑和概念。</li>
+</ul>
+<p>多团队协同：</p>
+<ul>
+<li>边界不清晰，系统依赖复杂，语言不统一导致沟通和理解困难。</li>
+<li>需要一种方式把业务和技术概念统一，大家用一种语言沟通。</li>
+</ul>
+<p>设计与实现一致性：</p>
+<ul>
+<li>PRD，详细设计和代码实现天差万别，需要一种方法可以把业务需求快速转换为设计，同时还要保持设计与代码的一致性。</li>
+</ul>
+<p>架构统一，可复用资产和扩展性：</p>
+<ul>
+<li>当前取决于开发的同学具备很好的抽象能力和高编程的技能，需要好的方法指导我们做抽象和实现。</li>
+</ul>
+</blockquote>
+<p><strong>DDD的价值</strong></p>
+<blockquote>
+<p>边界清晰的设计方法：</p>
+<ul>
+<li>通过领域划分，识别哪些需求应该在哪些领域，不断拉齐团队对需求的认知，分而治之，控制规模。</li>
+</ul>
+<p>统一语言：</p>
+<ul>
+<li>团队在有边界的上下文中有意识地形成对事物进行统一的描述，形成统一的概念(模型)。</li>
+</ul>
+<p>业务领域的知识沉淀：</p>
+<ul>
+<li>通过反复论证和提炼模型，使得模型必须与业务的真实世界保持一致，促使知识(模型)可以很好地传递和维护。</li>
+</ul>
+<p>面向业务建模：</p>
+<ul>
+<li>领域模型与数据模型分离，业务复杂度和技术复杂度分离。</li>
+</ul>
+</blockquote>
 <p><strong>为什么DDD适合微服务？</strong></p>
 <blockquote>
 <p><strong>微服务拆分困境产生的根本原因就是不知道业务或者微服务的边界到底在什么地方</strong></p>
@@ -1222,8 +1261,18 @@
 </ul>
 <p><strong>缺点是代码会重复，但解耦彻底。</strong></p>
 </blockquote>
-<img src="/images/0a0caf67ac0fe7e602d8c0098be8e88c.png" alt="img" style="zoom:80%;" />
-
+<p><img src="/images/0a0caf67ac0fe7e602d8c0098be8e88c.png" alt="img" style="zoom:80%;" />、</p>
+<p><strong>充血模型VS贫血模型：</strong></p>
+<blockquote>
+<p>充血模型：</p>
+<ul>
+<li>表达能力强，代码高内聚，领域内封闭，聚合根内部结构对外不可见，通过聚合根的方法访问，适合复杂企业业务逻辑。</li>
+</ul>
+<p>贫血模型：</p>
+<ul>
+<li>业务复杂之后，逻辑散落到大量方法中。</li>
+</ul>
+</blockquote>
 <h1 id="中台"><a href="#中台" class="headerlink" title="中台"></a>中台</h1><p>中台体现的是一种企业级的能力，它提供的是一套企业级的整体解决方案，解决小到企业、集团，大到生态圈的能力共享、联通和融合问题，支持业务和商业模式创新。</p>
 <blockquote>
 <p><strong>中台是企业级能力复用平台</strong></p>
