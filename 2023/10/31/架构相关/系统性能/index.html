@@ -8,6 +8,8 @@
 	<!-- title -->
 	
 	<title>
+	
+		系统性能 | 
 	 
 	月伴飞鱼
 	</title>
@@ -476,7 +478,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2023/10/31/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E6%80%A7%E8%83%BD/">
 										系统性能
 									</a>
@@ -715,174 +717,146 @@
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<div id="index" oncontextmenu="return false;">
-	
-		<div class="index-li">
-			<a href="/2022/11/27/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/JVM/">
-				<h2 class="index-title">
-					JVM
-				</h2>
-				<div class="index-brief">
-					内存模型内存结构
+		<h1 id="article-title">
 
-堆：
+	系统性能
+</h1>
+<div class="article-meta">
+	<span>月伴飞鱼</span>
+	<span>2023-10-31 10:41:30</span>
+    
+		<div id="article-categories">
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/架构相关/">架构相关</a>
+						
+                    </span>
+                
+            
+		</div>
+    
+</div>
 
-存放对象实例, 几乎所有的对象实例以及数组都在这里分配内存。
+<div id="container" class = "content999" oncontextmenu="return false;">
+	<div id="article-content">
+		<p><strong>如何提升系统写性能</strong></p>
+<p>写性能为什么难提升：</p>
+<blockquote>
+<p>1、丢 写 的代价往往比丢 读 大。</p>
+<p>2、写 必须和磁盘打交道，而 读 是可以使用缓存的。</p>
+<p>3、写 往往需要加锁，而 读 不需要。</p>
+<p>4、写 容易造成资损，而 读 一般不涉及资损。</p>
+</blockquote>
+<p>写性能提升整体策略：</p>
+<blockquote>
+<p>因为 写 行为主要是和DB打交道。</p>
+<ul>
+<li>所以：一方面是对DB的优化，一方面是对使用的优化。</li>
+</ul>
+<p>DB优化：</p>
+<ul>
+<li>数据分片。</li>
+<li>选择合适的数据库。</li>
+</ul>
+<p>使用优化：</p>
+<ul>
+<li>合理加锁。<ul>
+<li>尽量使用乐观锁，悲观锁场景控制锁粒度。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
 
-虚拟机栈:
-
-栈帧:用于支持虚拟机进行方法执行的数据结构。
-存储了方法的局部变量表， 操作数栈，动态连接和返回地址等地址。
-每个方法从调用到执行完成的过程，都对应着一个栈帧在虚拟机栈里从入栈到出栈的过程。
-栈
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2022-11-27</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/基础知识/">基础知识</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E5%89%91%E6%8C%87OFFER/">
-				<h2 class="index-title">
-					剑指OFFER
-				</h2>
-				<div class="index-brief">
-					3数组中重复的数字class Solution &#123;
-    public int findRepeatNumber(int[] nums) &#123;
-        int i = 0;
-        while(i &lt; nums.length) &#123;
-        
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2022-11-26</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/算法相关/">算法相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/LeetCode/">
-				<h2 class="index-title">
-					LeetCode
-				</h2>
-				<div class="index-brief">
-					1两数之和class Solution &#123;
-    public int[] twoSum(int[] nums, int target) &#123;
-        Map&lt;Integer, Integer&gt; map = new HashMap&lt;Integer, In
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2022-11-26</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/算法相关/">算法相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
-				<h2 class="index-title">
-					面试算法
-				</h2>
-				<div class="index-brief">
-					面试题17.01不用加号的加法
-class Solution &#123;
-    public int add(int a, int b) &#123;
-        int m = a ^ b; //不进位加法
-        int n = (a &amp; b) &lt;&lt; 1; /
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2022-11-25</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/算法相关/">算法相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2022/11/21/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Java%E5%9F%BA%E7%A1%80/">
-				<h2 class="index-title">
-					Java基础
-				</h2>
-				<div class="index-brief">
-					编译期与运行期
-
-编译期是指把源码交给编译器编译成计算机可执行文件的过程，运行期是指把编译后的文件交给计算机执行，直到程序结束。
-在Java中就是把.java文件编译成.class文件，再把编译后的文件交给JVM加载执行。
-
-
-
-接口和抽象的区别
-
-抽象类带来的很大的作用就是实现代码复用，比如当有多
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2022-11-21</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/基础知识/">基础知识</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-	
-	<div id="index-paginator">
-		
 	</div>
 </div>
 
+
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2023/10/31/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">
+                技术学习
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+
+<script>
+
+    //document.oncontextmenu=new Function("event.returnValue=false");
+	//document.onselectstart=new Function("event.returnValue=false");
+
+	
+
+	$(function () {
+		const btw = new BTWPlugin();
+	    btw.init({
+	        id: 'container',
+	        blogId: '22377-1698715230702-132',
+	        name: '月伴飞鱼',
+	        qrcode: '/小程序码.jpg',
+	        keyword: '验证码',
+	    });
+
+	    var contents = document.getElementsByClassName("content999");
+	    //监听文章内容的copy事件
+	    contents[0].addEventListener('copy',function(e){
+	        setClipboardText(e);
+	    });
+
+	    function setClipboardText(event){
+	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+	        let clipboardData = event.clipboardData || window.clipboardData;
+
+	        // 如果未复制或者未剪切，则return出去
+	        if (!clipboardData) { return; }
+
+	        event.preventDefault();
+
+	        // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+	        // 声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+	        let text = window.getSelection().toString();
+	    
+	        if (text) {
+	            // 如果文本存在则先取消文本默认事件
+	            event.preventDefault();
+	            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+	            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+	            // data: 一个 DOMString表示要添加到 drag object的数据。
+	            var copyright = '\n\n'
+	            + '\n著作权归作者所有。'
+	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+	            + '\n作者: 月伴飞鱼'
+	            + '\n原文地址: https://xiaoflyfish.cn/2023/10/31/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E6%80%A7%E8%83%BD/'
+	    
+	            clipboardData.setData('text/plain', text + copyright);
+	    
+	        }
+	    };
+	});
+
+	
+</script>
+
+<script>
+    const btw = new BTWPlugin();
+    btw.init({
+        id: 'container',
+        blogId: '22377-1698715230702-132',
+        name: '月伴飞鱼',
+        qrcode: '/小程序码.jpg',
+        keyword: '验证码',
+    });
+</script>
 	</div>
 	<div id="footer">
 	<p>
