@@ -345,6 +345,15 @@
 									
 							<ul>
 								<li class="file">
+									<a href="/2023/11/01/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Maven/">
+										Maven
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">
 										实用工具
 									</a>
@@ -839,83 +848,6 @@ ZSH_THEME=&quot;ys&quot;
 <pre><code>-Xmx2048m
 </code></pre>
 <p>9个G的dump，自己配置成16384m。</p>
-<h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><p>下载地址：<a target="_blank" rel="noopener" href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a></p>
-<p>阿里云镜像配置，修改<code>settting.xml</code>文件，在mirrors标签下添加子节点。</p>
-<pre><code class="xml"> &lt;mirror&gt;
-     &lt;id&gt;nexus-aliyun&lt;/id&gt;
-     &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
-     &lt;name&gt;Nexus aliyun&lt;/name&gt;
-     &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
- &lt;/mirror&gt;
-</code></pre>
-<blockquote>
-<p>配置系统的环境变量：</p>
-</blockquote>
-<pre><code>open ~/.bash_profile
-
-export MAVEN_HOME=/Users/kun/Desktop/midongtools/apache-maven-3.5.0
-export PATH=$PATH:$MAVEN_HOME/bin
-
-source ~/.bash_profile
-</code></pre>
-<blockquote>
-<p>验证是否安装成功</p>
-</blockquote>
-<pre><code>mvn -v
-</code></pre>
-<p><strong>远程仓库认证</strong></p>
-<p>在<code>setting.xml</code>文件下的servers元素的子元素server中添加相关远程仓库的认证信息即可，其中id元素即为项目POM文件声明的远程仓库的ID。</p>
-<pre><code class="xml">&lt;settings&gt;
-    ...
-    &lt;servers&gt;
-    ...
-        &lt;server&gt;
-            &lt;id&gt;[repositoryId]&lt;/id&gt;
-            &lt;username&gt;[username]&lt;/username&gt;
-            &lt;password&gt;[password]&lt;/password&gt;
-        &lt;/server&gt;
-    ...
-    &lt;/servers&gt;
-    ...
-&lt;/settings&gt;
-</code></pre>
-<p><strong>依赖调解</strong></p>
-<p>当一个间接依赖存在多条引入路径时，为避免依赖重复Maven会通过<strong>依赖调解</strong>来确定该间接依赖的引入路径</p>
-<p>依赖调解遵循以下原则，优先使用第一原则，当第一原则无法解决时，则通过第二原则解决</p>
-<ul>
-<li>第一原则: 路径最短者优先</li>
-<li>第二原则: 第一声明者优先</li>
-</ul>
-<p><strong>可选依赖</strong></p>
-<p>当某个间接依赖是可选依赖时，无论依赖范围是什么，其都不会因为传递性依赖机制而被引入。</p>
-<p>只有显式地配置项目中某依赖的option元素为true时，该依赖才是可选依赖；</p>
-<p><strong>排除依赖</strong></p>
-<pre><code class="xml">&lt;dependency&gt;
-        &lt;groupId&gt;com.apple&lt;/groupId&gt;
-        &lt;artifactId&gt;B&lt;/artifactId&gt;
-        &lt;version&gt;2.3&lt;/version&gt;
-        &lt;exclusions&gt;
-            &lt;exclusion&gt;
-                &lt;groupId&gt;com.google&lt;/groupId&gt;
-                &lt;artifactId&gt;C&lt;/artifactId&gt;
-            &lt;/exclusion&gt;
-        &lt;/exclusions&gt;
-    &lt;/dependency&gt;
-</code></pre>
-<p><strong>更新父子模块版本号</strong></p>
-<p>mvn versions 插件可以帮忙更新所有子模块的版本号</p>
-<pre><code>mvn versions:set -DnewVersion=1.0.1-SNAPSHOT
-</code></pre>
-<p>或</p>
-<pre><code>mvn -N versions:update-child-modules
-</code></pre>
-<p>maven会自动安装一个versions的插件帮你完成修改父子模块版本号一系列的工作。</p>
-<p>如果不满意可以回滚</p>
-<pre><code>mvn versions:revert
-</code></pre>
-<p>最后提交</p>
-<pre><code> mvn versions:commit 
-</code></pre>
 <h1 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h1><p>删除远程分支</p>
 <pre><code>git push origin --delete branch_name
 </code></pre>
@@ -1149,7 +1081,7 @@ tags:
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1698806246501-221',
+	        blogId: '22377-1698885440126-228',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -1199,7 +1131,7 @@ tags:
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1698806246501-221',
+        blogId: '22377-1698885440126-228',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',

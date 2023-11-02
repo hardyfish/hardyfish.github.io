@@ -8,8 +8,6 @@
 	<!-- title -->
 	
 	<title>
-	
-		面试题 | 
 	 
 	月伴飞鱼
 	</title>
@@ -610,7 +608,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file active">
+								<li class="file">
 									<a href="/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
 										面试算法
 									</a>
@@ -735,381 +733,47 @@
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<h1 id="article-title">
+		<div id="index" oncontextmenu="return false;">
+	
+		<div class="index-li">
+			<a href="/2023/11/01/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Maven/">
+				<h2 class="index-title">
+					Maven
+				</h2>
+				<div class="index-brief">
+					下载地址：http://maven.apache.org/download.cgi
+基本配置安装配置：
 
-	面试算法
-</h1>
-<div class="article-meta">
-	<span>月伴飞鱼</span>
-	<span>2022-11-25 22:36:32</span>
-    
-		<div id="article-categories">
-            
-                
-                    <span>
-                        <i class="fa fa-folder" aria-hidden="true"></i>
-                        <a href="/categories/算法相关/">算法相关</a>
-						
-                    </span>
-                
-            
-		</div>
-    
-</div>
+配置系统的环境变量：
 
-<div id="container" class = "content999" oncontextmenu="return false;">
-	<div id="article-content">
-		<p><strong><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/add-without-plus-lcci/">面试题17.01不用加号的加法</a></strong></p>
-<pre><code class="java">class Solution &#123;
-    public int add(int a, int b) &#123;
-        int m = a ^ b; //不进位加法
-        int n = (a &amp; b) &lt;&lt; 1; //进位
-        while (n != 0) &#123;
-            int temp = n ^ m;
-            n = (m &amp; n) &lt;&lt; 1;
-            m = temp;
-        &#125;
-        return m;
-    &#125;
-&#125;
-</code></pre>
-<p><strong><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/smallest-k-lcci/">面试题17.14最小K个数</a></strong></p>
-<pre><code class="java">class Solution &#123;
-    public int[] smallestK(int[] arr, int k) &#123;
-        if (k &gt;= arr.length) &#123;
-            return arr;
-        &#125;
+open ~/.bash_profile
 
-        int low = 0;
-        int high = arr.length - 1;
-        while (low &lt; high) &#123;
-            int pos = partition(arr, low, high);
-            if (pos == k - 1) &#123;
-                break;
-            &#125; else if (pos &lt; k - 1) &#123;
-                low = pos + 1;
-            &#125; else &#123;
-                high = pos - 1;
-            &#125;
-        &#125;
-
-        int[] dest = new int[k];
-        System.arraycopy(arr, 0, dest, 0, k);
-        return dest;
-    &#125;
-
-    private int partition(int[] arr, int low, int high) &#123;
-        int pivot = arr[low];
-        while (low &lt; high) &#123;
-            while (low &lt; high &amp;&amp; arr[high] &gt;= pivot) &#123;
-                high--;
-            &#125;
-
-            arr[low] = arr[high];
-            while (low &lt; high &amp;&amp; arr[low] &lt;= pivot) &#123;
-                low++;
-            &#125;
-            arr[high] = arr[low];
-        &#125;
-        arr[low] = pivot;
-        return low;
-    &#125;
-&#125;
-</code></pre>
-<p><strong><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/smallest-difference-lcci/">面试题16.06最小差</a></strong></p>
-<pre><code class="java">class Solution &#123;
-
-    public int smallestDifference(int[] a, int[] b) &#123;
-        long result = Integer.MAX_VALUE;
-        Arrays.sort(a);
-        Arrays.sort(b);
-
-        for (int i = 0, j = 0; i &lt; a.length &amp;&amp; j &lt; b.length; ) &#123;
-            result = Math.min(result, Math.abs((long) a[i] - b[j]));
-            if (a[i] &lt; b[j]) &#123;
-                i++;
-            &#125; else &#123;
-                j++;
-            &#125;
-        &#125;
-
-        return (int) result;
-    &#125;
-&#125;
-</code></pre>
-<p><strong>将驼峰命名转为小写下划线命名</strong></p>
-<blockquote>
-<p>LeetCode转化为leet_code，LeetHTTPBack转化为leet_http_back</p>
-</blockquote>
-<pre><code class="python"># -*- coding: utf-8 -*-
-def get_trans_name(text):
-    length=len(text)
-    lst=[]
-    for i in range(length):
-        # 前一个字母大写，后一个字母小写，将该字母从大写转换成小写
-        if i+1&lt;length and  text[i].isupper() and not text[i+1].isupper():
-            lst.append(text[i].lower())
-        else:
-            lst.append(text[i])
-        # 前一个字母是小写，后一个字母是大写的情景
-        if not text[i].isupper() and i+1&lt;length and text[i+1].isupper():
-            lst.append(&quot;_&quot;)
-        # 前两个字母是大写，后一个字母是小写的情景
-        if text[i].isupper() and i+2&lt;length and text[i+1].isupper() and not text[i+2].isupper():
-            lst.append(&quot;_&quot;)
-    return &quot;&quot;.join(lst)
- 
- 
-if __name__ == &#39;__main__&#39;:
-    print(get_trans_name(&quot;LeetCode&quot;))
-    print(get_trans_name(&quot;LeetHTTPBack&quot;))
-</code></pre>
-<p><strong>字符串相减</strong></p>
-<pre><code class="java">public class SubString &#123;
-    /**
-     * 若a字符串表示的数字小于b字符串表示的数字则返回true
-     *
-     * @param a
-     * @param b
-     * @return
-     */
-    public static boolean isLess(String a, String b) &#123;
-        // 由于是大数，考虑转成字符串处理
-        // 长度更长的字符串，数一定更大
-        // 当长度一样的就去比较字典序
-        if (a.length() == b.length()) &#123;
-            if (a.compareTo(b) &lt; 0) &#123;
-                return true;
-            &#125; else if (a.compareTo(b) &gt;= 0) &#123;
-                return false;
-            &#125;
-        &#125;
-        return a.length() &lt; b.length();
-    &#125;
-
-    /**
-     * 大数减小数
-     * @param a
-     * @param b
-     * @return
-     */
-    public static String sub(String a, String b) &#123;
-        StringBuilder ans = new StringBuilder();
-        int borrow = 0;
-        int i = a.length() - 1, j = b.length() - 1;
-        while (i &gt;= 0 || j &gt;= 0) &#123;
-            int x = i &gt;= 0 ? (a.charAt(i) - &#39;0&#39;) : 0;
-            int y = j &gt;= 0 ? (b.charAt(j) - &#39;0&#39;) : 0;
-            int z = (x - borrow - y + 10) % 10;
-
-            ans.append(z);
-            borrow = x - borrow - y &lt; 0 ? 1 : 0;
-            i--;
-            j--;
-        &#125;
-        ans.reverse();
-        // 删除前导零，边界是 ans.length()-1, 防止当 ans 为 &quot;0000&quot; 时，清空
-        // 121-120=001 需要删除前导0
-        // 121-121=000 不能把所有 0 都删掉
-        int pos = 0;
-        while (pos &lt; ans.length()-1 &amp;&amp; ans.charAt(pos) == &#39;0&#39;) &#123;
-            pos++;
-        &#125;
-        return ans.toString().substring(pos);
-    &#125;
-
-    /**
-     * 给定两个字符串形式的非负整数num1和num2，计算它们的差
-     * 注意：
-     *  num1 和num2 都只会包含数字 0-9
-     *  num1 和num2 都不包含任何前导零
-     *  你不能使用任何內建 BigInteger 库
-     * @param a
-     * @param b
-     * @return
-     */
-    public static String subString(String a, String b) &#123;
-        String res;
-        if (isLess(a, b)) &#123;
-            res = sub(b, a);
-            // 结果为 0 时，不加负号
-            if (res != &quot;0&quot;) &#123;
-                res = &quot;-&quot; + res;
-            &#125;
-        &#125; else &#123;
-            res = sub(a, b);
-        &#125;
-        return res;
-    &#125;
-
-    public static void main(String[] args) &#123;
-        System.out.println(subString(&quot;121&quot;, &quot;120&quot;));
-        System.out.println(subString(&quot;121&quot;, &quot;121&quot;));
-    &#125;
-&#125;
-</code></pre>
-<p><strong>字符串相减（36进制）</strong></p>
-<pre><code class="java">public class Sub36 &#123;
-    public char getChar(int n) &#123;
-        if (n &lt;= 9) &#123;
-            return (char)(n + &#39;0&#39;);
-        &#125; else &#123;
-            return (char)(n - 10 + &#39;a&#39;);
-        &#125;
-    &#125;
-
-    public int getInt(char c) &#123;
-        if (c &gt;= &#39;0&#39; &amp;&amp; c &lt;= &#39;9&#39;) &#123;
-            return c - &#39;0&#39;;
-        &#125; else &#123;
-            return c - &#39;a&#39; + 10;
-        &#125;
-    &#125;
-
-    public String sub(String a, String b) &#123;
-        int borrow = 0;
-        int i = a.length() - 1;
-        int j = b.length() - 1;
-        char[] ca = a.toCharArray();
-        char[] cb = b.toCharArray();
-        StringBuilder res = new StringBuilder();
-        while (i &gt;= 0 || j &gt;= 0) &#123;
-            int x = i &gt;= 0 ? getInt(ca[i]) : 0;
-            int y = j &gt;= 0 ? getInt(cb[i]) : 0;
-            int z = (x - borrow - y + 36) % 36;
-            res.append(getChar(z));
-            borrow = x - borrow - y &lt; 0 ? 1 : 0;
-            i--;
-            j--;
-        &#125;
-        res.reverse();
-        // 删除前导0。注意：循环条件是res.size()-1是为防止&quot;0000&quot;的情况
-        int pos;
-        for (pos = 0; pos &lt; res.length() - 1; pos++) &#123;
-            if (res.charAt(pos) != &#39;0&#39;) &#123;
-                break;
-            &#125;
-        &#125;
-        return res.toString().substring(pos);
-    &#125;
-
-    boolean isLess(String a, String b) &#123;
-        if (a.length() == b.length()) &#123;
-            return a.compareTo(b) &lt; 0;
-        &#125;
-        return a.length() &lt; b.length();
-    &#125;
-
-    public String subString(String num1, String num2) &#123;
-        if (isLess(num1, num2)) &#123;
-            String res = sub(num2, num1);
-            return &quot;-&quot; + res;
-        &#125;
-        return sub(num1, num2);
-    &#125;
-
-    public static void main(String[] args) &#123;
-        String num1 = &quot;48&quot;;
-        String num2 = &quot;2x&quot;;
-        Sub36 sub36 = new Sub36();
-        System.out.println(sub36.subString(num1, num2));
-    &#125;
-&#125;
-</code></pre>
-
+export MAVEN_HOME=/Users/kun/Desktop/midongtools/apache-maven-3
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-01</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/工具相关/">工具相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+	
+	<div id="index-paginator">
+		
 	</div>
 </div>
 
-
-    <div class="post-guide">
-        <div class="item left">
-            
-              <a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/LeetCode/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  LeetCode
-              </a>
-            
-        </div>
-        <div class="item right">
-            
-              <a href="/2022/11/21/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Java%E5%9F%BA%E7%A1%80/">
-                Java基础
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </a>
-            
-        </div>
-    </div>
-
-
-
-
-<script>
-
-    //document.oncontextmenu=new Function("event.returnValue=false");
-	//document.onselectstart=new Function("event.returnValue=false");
-
-	
-
-	$(function () {
-		const btw = new BTWPlugin();
-	    btw.init({
-	        id: 'container',
-	        blogId: '22377-1698885440126-228',
-	        name: '月伴飞鱼',
-	        qrcode: '/小程序码.jpg',
-	        keyword: '验证码',
-	    });
-
-	    var contents = document.getElementsByClassName("content999");
-	    //监听文章内容的copy事件
-	    contents[0].addEventListener('copy',function(e){
-	        setClipboardText(e);
-	    });
-
-	    function setClipboardText(event){
-	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
-	        let clipboardData = event.clipboardData || window.clipboardData;
-
-	        // 如果未复制或者未剪切，则return出去
-	        if (!clipboardData) { return; }
-
-	        event.preventDefault();
-
-	        // Selection 对象，表示用户选择的文本范围或光标的当前位置。
-	        // 声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
-	        let text = window.getSelection().toString();
-	    
-	        if (text) {
-	            // 如果文本存在则先取消文本默认事件
-	            event.preventDefault();
-	            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
-	            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
-	            // data: 一个 DOMString表示要添加到 drag object的数据。
-	            var copyright = '\n\n'
-	            + '\n著作权归作者所有。'
-	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
-	            + '\n作者: 月伴飞鱼'
-	            + '\n原文地址: https://xiaoflyfish.cn/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/'
-	    
-	            clipboardData.setData('text/plain', text + copyright);
-	    
-	        }
-	    };
-	});
-
-	
-</script>
-
-<script>
-    const btw = new BTWPlugin();
-    btw.init({
-        id: 'container',
-        blogId: '22377-1698885440126-228',
-        name: '月伴飞鱼',
-        qrcode: '/小程序码.jpg',
-        keyword: '验证码',
-    });
-</script>
 	</div>
 	<div id="footer">
 	<p>

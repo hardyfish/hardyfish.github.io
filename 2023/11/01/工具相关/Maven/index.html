@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		面试题 | 
+		Maven | 
 	 
 	月伴飞鱼
 	</title>
@@ -344,7 +344,7 @@
 									</a>
 									
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2023/11/01/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Maven/">
 										Maven
 									</a>
@@ -610,7 +610,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file active">
+								<li class="file">
 									<a href="/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
 										面试算法
 									</a>
@@ -737,18 +737,18 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	面试算法
+	Maven
 </h1>
 <div class="article-meta">
 	<span>月伴飞鱼</span>
-	<span>2022-11-25 22:36:32</span>
+	<span>2023-11-01 22:44:38</span>
     
 		<div id="article-categories">
             
                 
                     <span>
                         <i class="fa fa-folder" aria-hidden="true"></i>
-                        <a href="/categories/算法相关/">算法相关</a>
+                        <a href="/categories/工具相关/">工具相关</a>
 						
                     </span>
                 
@@ -759,262 +759,270 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<p><strong><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/add-without-plus-lcci/">面试题17.01不用加号的加法</a></strong></p>
-<pre><code class="java">class Solution &#123;
-    public int add(int a, int b) &#123;
-        int m = a ^ b; //不进位加法
-        int n = (a &amp; b) &lt;&lt; 1; //进位
-        while (n != 0) &#123;
-            int temp = n ^ m;
-            n = (m &amp; n) &lt;&lt; 1;
-            m = temp;
-        &#125;
-        return m;
-    &#125;
-&#125;
-</code></pre>
-<p><strong><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/smallest-k-lcci/">面试题17.14最小K个数</a></strong></p>
-<pre><code class="java">class Solution &#123;
-    public int[] smallestK(int[] arr, int k) &#123;
-        if (k &gt;= arr.length) &#123;
-            return arr;
-        &#125;
-
-        int low = 0;
-        int high = arr.length - 1;
-        while (low &lt; high) &#123;
-            int pos = partition(arr, low, high);
-            if (pos == k - 1) &#123;
-                break;
-            &#125; else if (pos &lt; k - 1) &#123;
-                low = pos + 1;
-            &#125; else &#123;
-                high = pos - 1;
-            &#125;
-        &#125;
-
-        int[] dest = new int[k];
-        System.arraycopy(arr, 0, dest, 0, k);
-        return dest;
-    &#125;
-
-    private int partition(int[] arr, int low, int high) &#123;
-        int pivot = arr[low];
-        while (low &lt; high) &#123;
-            while (low &lt; high &amp;&amp; arr[high] &gt;= pivot) &#123;
-                high--;
-            &#125;
-
-            arr[low] = arr[high];
-            while (low &lt; high &amp;&amp; arr[low] &lt;= pivot) &#123;
-                low++;
-            &#125;
-            arr[high] = arr[low];
-        &#125;
-        arr[low] = pivot;
-        return low;
-    &#125;
-&#125;
-</code></pre>
-<p><strong><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/smallest-difference-lcci/">面试题16.06最小差</a></strong></p>
-<pre><code class="java">class Solution &#123;
-
-    public int smallestDifference(int[] a, int[] b) &#123;
-        long result = Integer.MAX_VALUE;
-        Arrays.sort(a);
-        Arrays.sort(b);
-
-        for (int i = 0, j = 0; i &lt; a.length &amp;&amp; j &lt; b.length; ) &#123;
-            result = Math.min(result, Math.abs((long) a[i] - b[j]));
-            if (a[i] &lt; b[j]) &#123;
-                i++;
-            &#125; else &#123;
-                j++;
-            &#125;
-        &#125;
-
-        return (int) result;
-    &#125;
-&#125;
-</code></pre>
-<p><strong>将驼峰命名转为小写下划线命名</strong></p>
+		<p>下载地址：<a target="_blank" rel="noopener" href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a></p>
+<h1 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h1><p><strong>安装配置：</strong></p>
 <blockquote>
-<p>LeetCode转化为leet_code，LeetHTTPBack转化为leet_http_back</p>
+<p>配置系统的环境变量：</p>
 </blockquote>
-<pre><code class="python"># -*- coding: utf-8 -*-
-def get_trans_name(text):
-    length=len(text)
-    lst=[]
-    for i in range(length):
-        # 前一个字母大写，后一个字母小写，将该字母从大写转换成小写
-        if i+1&lt;length and  text[i].isupper() and not text[i+1].isupper():
-            lst.append(text[i].lower())
-        else:
-            lst.append(text[i])
-        # 前一个字母是小写，后一个字母是大写的情景
-        if not text[i].isupper() and i+1&lt;length and text[i+1].isupper():
-            lst.append(&quot;_&quot;)
-        # 前两个字母是大写，后一个字母是小写的情景
-        if text[i].isupper() and i+2&lt;length and text[i+1].isupper() and not text[i+2].isupper():
-            lst.append(&quot;_&quot;)
-    return &quot;&quot;.join(lst)
- 
- 
-if __name__ == &#39;__main__&#39;:
-    print(get_trans_name(&quot;LeetCode&quot;))
-    print(get_trans_name(&quot;LeetHTTPBack&quot;))
+<pre><code>open ~/.bash_profile
+
+export MAVEN_HOME=/Users/kun/Desktop/midongtools/apache-maven-3.5.0
+export PATH=$PATH:$MAVEN_HOME/bin
+
+source ~/.bash_profile
 </code></pre>
-<p><strong>字符串相减</strong></p>
-<pre><code class="java">public class SubString &#123;
-    /**
-     * 若a字符串表示的数字小于b字符串表示的数字则返回true
-     *
-     * @param a
-     * @param b
-     * @return
-     */
-    public static boolean isLess(String a, String b) &#123;
-        // 由于是大数，考虑转成字符串处理
-        // 长度更长的字符串，数一定更大
-        // 当长度一样的就去比较字典序
-        if (a.length() == b.length()) &#123;
-            if (a.compareTo(b) &lt; 0) &#123;
-                return true;
-            &#125; else if (a.compareTo(b) &gt;= 0) &#123;
-                return false;
-            &#125;
-        &#125;
-        return a.length() &lt; b.length();
-    &#125;
-
-    /**
-     * 大数减小数
-     * @param a
-     * @param b
-     * @return
-     */
-    public static String sub(String a, String b) &#123;
-        StringBuilder ans = new StringBuilder();
-        int borrow = 0;
-        int i = a.length() - 1, j = b.length() - 1;
-        while (i &gt;= 0 || j &gt;= 0) &#123;
-            int x = i &gt;= 0 ? (a.charAt(i) - &#39;0&#39;) : 0;
-            int y = j &gt;= 0 ? (b.charAt(j) - &#39;0&#39;) : 0;
-            int z = (x - borrow - y + 10) % 10;
-
-            ans.append(z);
-            borrow = x - borrow - y &lt; 0 ? 1 : 0;
-            i--;
-            j--;
-        &#125;
-        ans.reverse();
-        // 删除前导零，边界是 ans.length()-1, 防止当 ans 为 &quot;0000&quot; 时，清空
-        // 121-120=001 需要删除前导0
-        // 121-121=000 不能把所有 0 都删掉
-        int pos = 0;
-        while (pos &lt; ans.length()-1 &amp;&amp; ans.charAt(pos) == &#39;0&#39;) &#123;
-            pos++;
-        &#125;
-        return ans.toString().substring(pos);
-    &#125;
-
-    /**
-     * 给定两个字符串形式的非负整数num1和num2，计算它们的差
-     * 注意：
-     *  num1 和num2 都只会包含数字 0-9
-     *  num1 和num2 都不包含任何前导零
-     *  你不能使用任何內建 BigInteger 库
-     * @param a
-     * @param b
-     * @return
-     */
-    public static String subString(String a, String b) &#123;
-        String res;
-        if (isLess(a, b)) &#123;
-            res = sub(b, a);
-            // 结果为 0 时，不加负号
-            if (res != &quot;0&quot;) &#123;
-                res = &quot;-&quot; + res;
-            &#125;
-        &#125; else &#123;
-            res = sub(a, b);
-        &#125;
-        return res;
-    &#125;
-
-    public static void main(String[] args) &#123;
-        System.out.println(subString(&quot;121&quot;, &quot;120&quot;));
-        System.out.println(subString(&quot;121&quot;, &quot;121&quot;));
-    &#125;
-&#125;
+<blockquote>
+<p>验证是否安装成功</p>
+</blockquote>
+<pre><code>mvn -v
 </code></pre>
-<p><strong>字符串相减（36进制）</strong></p>
-<pre><code class="java">public class Sub36 &#123;
-    public char getChar(int n) &#123;
-        if (n &lt;= 9) &#123;
-            return (char)(n + &#39;0&#39;);
-        &#125; else &#123;
-            return (char)(n - 10 + &#39;a&#39;);
-        &#125;
-    &#125;
+<p><strong>镜像配置:</strong></p>
+<blockquote>
+<p>阿里云镜像配置，修改<code>settting.xml</code>文件，在mirrors标签下添加子节点。</p>
+</blockquote>
+<pre><code class="xml"> &lt;mirror&gt;
+     &lt;id&gt;nexus-aliyun&lt;/id&gt;
+     &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+     &lt;name&gt;Nexus aliyun&lt;/name&gt;
+     &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+ &lt;/mirror&gt;
+</code></pre>
+<p><strong>远程仓库认证配置</strong></p>
+<blockquote>
+<p>在<code>setting.xml</code>文件下的servers元素的子元素server中添加相关远程仓库的认证信息。</p>
+<ul>
+<li>其中id元素即为项目POM文件声明的远程仓库的ID。</li>
+</ul>
+</blockquote>
+<pre><code class="xml">&lt;settings&gt;
+    ...
+    &lt;servers&gt;
+    ...
+        &lt;server&gt;
+            &lt;id&gt;[repositoryId]&lt;/id&gt;
+            &lt;username&gt;[username]&lt;/username&gt;
+            &lt;password&gt;[password]&lt;/password&gt;
+        &lt;/server&gt;
+    ...
+    &lt;/servers&gt;
+    ...
+&lt;/settings&gt;
+</code></pre>
+<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><p><strong>基本信息</strong></p>
+<table>
+<thead>
+<tr>
+<th>标 签</th>
+<th>作 用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>groupId</td>
+<td>通常为组织或公司域名反写</td>
+</tr>
+<tr>
+<td>artifactId</td>
+<td>项目的名称</td>
+</tr>
+<tr>
+<td>version</td>
+<td>项目的版本信息</td>
+</tr>
+<tr>
+<td>name</td>
+<td>项目的简称</td>
+</tr>
+<tr>
+<td>description</td>
+<td>项目的简要描述</td>
+</tr>
+</tbody></table>
+<p><strong>依赖范围</strong></p>
+<table>
+<thead>
+<tr>
+<th>作用域</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>compile</td>
+<td>编译时需要用到该 JAR 包（默认）</td>
+</tr>
+<tr>
+<td>runtime</td>
+<td>编译时不需要，但运行时需要用到</td>
+</tr>
+<tr>
+<td>provided</td>
+<td>编译时需要用到，但运行时由 JDK 或某个服务器提供</td>
+</tr>
+<tr>
+<td>test</td>
+<td>编译Test时需要用到该 JAR 包</td>
+</tr>
+</tbody></table>
+<p><strong>间接依赖</strong></p>
+<blockquote>
+<p>如果<code>Dependency-A</code> 引用了 <code>Dependency-B</code> ，而 <code>Dependency-B</code> 又依赖于 <code>Dependency-C</code>。</p>
+<ul>
+<li>只需要引入<code>Dependency-B</code>即可，<code>Maven</code>会自动将子模块所依赖的包导入。</li>
+</ul>
+</blockquote>
+<p>依赖顺序：</p>
+<blockquote>
+<p>如工程中引入 <code>Dependency-A</code> 与 <code>Dependency-B</code> 两个依赖，二者又分别引用了不同版本的 <code>Dependency-C</code> ，但最终编译时同一个依赖即便是不同的版本也只会选择一份。</p>
+<p>计算规则：</p>
+<ul>
+<li>若 <code>Dependency-A</code> 定义在 <code>Dependency-B</code> 之前，则最终将导入 <code>Dependency-A</code> 中的 <code>Dependency-C</code> 版本。</li>
+</ul>
+</blockquote>
+<p><strong>依赖调解</strong></p>
+<blockquote>
+<p>当一个间接依赖存在多条引入路径时，为避免依赖重复Maven会通过<strong>依赖调解</strong>来确定该间接依赖的引入路径。</p>
+<p>依赖调解遵循以下原则，优先使用第一原则，当第一原则无法解决时，则通过第二原则解决。</p>
+<ul>
+<li>第一原则: 路径最短者优先。</li>
+<li>第二原则: 第一声明者优先。</li>
+</ul>
+</blockquote>
+<p><strong>可选依赖</strong></p>
+<blockquote>
+<p>当某个间接依赖是可选依赖时，无论依赖范围是什么，其都不会因为传递性依赖机制而被引入。</p>
+<ul>
+<li>只有显式地配置项目中某依赖的option元素为true时，该依赖才是可选依赖。</li>
+</ul>
+</blockquote>
+<p><strong>排除依赖</strong></p>
+<blockquote>
+<p>在引用多个模块时可能会发生版本兼容冲突问题，通过 <code>exclusions</code> 标签即可实现依赖排除。</p>
+</blockquote>
+<pre><code class="xml">&lt;dependency&gt;
+        &lt;groupId&gt;com.apple&lt;/groupId&gt;
+        &lt;artifactId&gt;B&lt;/artifactId&gt;
+        &lt;version&gt;2.3&lt;/version&gt;
+        &lt;exclusions&gt;
+            &lt;exclusion&gt;
+                &lt;groupId&gt;com.google&lt;/groupId&gt;
+                &lt;artifactId&gt;C&lt;/artifactId&gt;
+            &lt;/exclusion&gt;
+        &lt;/exclusions&gt;
+    &lt;/dependency&gt;
+</code></pre>
+<p><strong>变量配置</strong></p>
+<blockquote>
+<p>当项目中引入了大量依赖，为了方便管理通常将引入依赖的版本通过变量进行统一配置，从而实现更直观的依赖管理。</p>
+<p>通过 <code>properties</code> 标签即可自定义变量配置，然后使用 <code>$&#123;&#125;</code> 引用变量。</p>
+</blockquote>
+<pre><code class="xml">&lt;properties&gt;
+    &lt;mysql.version&gt;8.0.30&lt;/mysql.version&gt;
+&lt;/properties&gt;
 
-    public int getInt(char c) &#123;
-        if (c &gt;= &#39;0&#39; &amp;&amp; c &lt;= &#39;9&#39;) &#123;
-            return c - &#39;0&#39;;
-        &#125; else &#123;
-            return c - &#39;a&#39; + 10;
-        &#125;
-    &#125;
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;mysql&lt;/groupId&gt;
+        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+        &lt;!-- 使用 &quot;$&#123;&#125;&quot; 引用上述自定义变量 --&gt;
+        &lt;version&gt;$&#123;mysql.version&#125;&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+<p><strong>模块配置</strong></p>
+<p>模块继承:</p>
+<blockquote>
+<p>通过 <code>parent</code> 即可标记当前模块的父模块，且子模块将会继承父模块中的所有依赖配置。</p>
+<ul>
+<li>子模块若没有指定的 <code>groupId</code> 和 <code>version</code> 默认继承父模块中的配置。</li>
+</ul>
+<p>其中 <code>relativePath</code> 用于指定父模块的 <code>POM</code> 文件目录，省略时默认值为 <code>../pom.xml</code> ，即当前目录的上一级中，若仍未找到则会在本地仓库中寻找。</p>
+</blockquote>
+<pre><code class="xml">&lt;!-- module-1 pom.xml --&gt;
+&lt;parent&gt;
+    &lt;groupId&gt;xyz.ibudai&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-demo&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+    &lt;relativePath&gt;../pom.xml&lt;/relativePath&gt;
+&lt;/parent&gt;
 
-    public String sub(String a, String b) &#123;
-        int borrow = 0;
-        int i = a.length() - 1;
-        int j = b.length() - 1;
-        char[] ca = a.toCharArray();
-        char[] cb = b.toCharArray();
-        StringBuilder res = new StringBuilder();
-        while (i &gt;= 0 || j &gt;= 0) &#123;
-            int x = i &gt;= 0 ? getInt(ca[i]) : 0;
-            int y = j &gt;= 0 ? getInt(cb[i]) : 0;
-            int z = (x - borrow - y + 36) % 36;
-            res.append(getChar(z));
-            borrow = x - borrow - y &lt; 0 ? 1 : 0;
-            i--;
-            j--;
-        &#125;
-        res.reverse();
-        // 删除前导0。注意：循环条件是res.size()-1是为防止&quot;0000&quot;的情况
-        int pos;
-        for (pos = 0; pos &lt; res.length() - 1; pos++) &#123;
-            if (res.charAt(pos) != &#39;0&#39;) &#123;
-                break;
-            &#125;
-        &#125;
-        return res.toString().substring(pos);
-    &#125;
-
-    boolean isLess(String a, String b) &#123;
-        if (a.length() == b.length()) &#123;
-            return a.compareTo(b) &lt; 0;
-        &#125;
-        return a.length() &lt; b.length();
-    &#125;
-
-    public String subString(String num1, String num2) &#123;
-        if (isLess(num1, num2)) &#123;
-            String res = sub(num2, num1);
-            return &quot;-&quot; + res;
-        &#125;
-        return sub(num1, num2);
-    &#125;
-
-    public static void main(String[] args) &#123;
-        String num1 = &quot;48&quot;;
-        String num2 = &quot;2x&quot;;
-        Sub36 sub36 = new Sub36();
-        System.out.println(sub36.subString(num1, num2));
-    &#125;
-&#125;
+&lt;artifactId&gt;module-1&lt;/artifactId&gt;
+</code></pre>
+<p><strong>依赖管理</strong></p>
+<blockquote>
+<p>将项目依赖统一定义在父模块的 <code>dependencyManagement</code> 标签中，子模块只需继承父模块并在 <code>dependencies</code> 引入所需的依赖，便可自动读取父模块 <code>dependencyManagement</code> 所指定的版本。</p>
+<p><code>dependencyManagement</code> 既不会在当前模块引入依赖，也不会给其子模块引入依赖，但其可以被继承的。</p>
+<p>只有在子模块下同样声明了该依赖，才会引入到模块中，子模块中只需在依赖中引入 <code>groupId</code> 与 <code>artifactId</code> 即可, 也可以指定版本则会进行覆盖。</p>
+</blockquote>
+<pre><code class="xml">&lt;dependencyManagement&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;version&gt;8.0.30&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;junit&lt;/groupId&gt;
+            &lt;artifactId&gt;junit&lt;/artifactId&gt;
+            &lt;version&gt;4.13.2&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/dependencyManagement&gt;
+</code></pre>
+<p><strong>构建配置</strong></p>
+<p>版本指定:</p>
+<blockquote>
+<p>在 <code>&lt;plugin&gt;</code> 标签内可指定工程打包编译时使用的 <code>JDK</code> 版本，可根据服务器环境手动修改版本。</p>
+</blockquote>
+<pre><code class="xml">&lt;plugins&gt;
+    &lt;plugin&gt;
+        &lt;!-- 编译时使用 JDK 版本 --&gt;
+        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+        &lt;version&gt;3.1&lt;/version&gt;
+        &lt;configuration&gt;
+            &lt;source&gt;8&lt;/source&gt;
+            &lt;target&gt;8&lt;/target&gt;
+        &lt;/configuration&gt;
+    &lt;/plugin&gt;
+&lt;/plugins&gt;
+</code></pre>
+<p><strong>主类配置</strong></p>
+<blockquote>
+<p>在打包时可能出现无法识别工程主类的问题，导致编译后的文件无法正常运行，此时则可以在 <code>pom</code> 文件中手动设置工程的主类。</p>
+<ul>
+<li>其中 <code>&lt;mainClass&gt;</code> 中配置的为项目主类的完成限定名。</li>
+</ul>
+</blockquote>
+<pre><code class="xml">&lt;plugins&gt;
+    &lt;plugin&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+        &lt;configuration&gt;
+            &lt;mainClass&gt;xyz.ibudai.TestWebApplication&lt;/mainClass&gt;
+            &lt;layout&gt;JAR&lt;/layout&gt;
+        &lt;/configuration&gt;
+    &lt;/plugin&gt;
+&lt;/plugins&gt;
+</code></pre>
+<h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><p><strong>更新父子模块版本号</strong></p>
+<blockquote>
+<p><code>mvn versions</code>插件可以帮忙更新所有子模块的版本号</p>
+<ul>
+<li>Maven会自动安装一个versions的插件帮你完成修改父子模块版本号一系列的工作。</li>
+</ul>
+</blockquote>
+<pre><code>mvn versions:set -DnewVersion=1.0.1-SNAPSHOT
+</code></pre>
+<pre><code>mvn -N versions:update-child-modules
+</code></pre>
+<blockquote>
+<p>回滚:</p>
+</blockquote>
+<pre><code>mvn versions:revert
+</code></pre>
+<blockquote>
+<p>提交:</p>
+</blockquote>
+<pre><code> mvn versions:commit 
 </code></pre>
 
 	</div>
@@ -1024,16 +1032,11 @@ if __name__ == &#39;__main__&#39;:
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/LeetCode/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  LeetCode
-              </a>
-            
         </div>
         <div class="item right">
             
-              <a href="/2022/11/21/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Java%E5%9F%BA%E7%A1%80/">
-                Java基础
+              <a href="/2023/10/31/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E4%BB%A3%E7%A0%81%E4%B9%8B%E4%B8%91/">
+                代码之丑
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
@@ -1089,7 +1092,7 @@ if __name__ == &#39;__main__&#39;:
 	            + '\n著作权归作者所有。'
 	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
 	            + '\n作者: 月伴飞鱼'
-	            + '\n原文地址: https://xiaoflyfish.cn/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/'
+	            + '\n原文地址: https://xiaoflyfish.cn/2023/11/01/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Maven/'
 	    
 	            clipboardData.setData('text/plain', text + copyright);
 	    
