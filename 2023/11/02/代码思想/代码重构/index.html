@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		电视剧 | 
+		代码重构 | 
 	 
 	月伴飞鱼
 	</title>
@@ -183,7 +183,7 @@
 									</a>
 									
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2023/11/02/%E4%BB%A3%E7%A0%81%E6%80%9D%E6%83%B3/%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84/">
 										代码重构
 									</a>
@@ -766,21 +766,249 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	电视剧
+	代码重构
 </h1>
 <div class="article-meta">
 	<span>月伴飞鱼</span>
-	<span>2020-12-03 11:29:32</span>
+	<span>2023-11-02 14:59:07</span>
+    
+		<div id="article-categories">
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/代码思想/">代码思想</a>
+						
+                    </span>
+                
+            
+		</div>
     
 </div>
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/medialist/play/927587?from=space&amp;business=space_collection&amp;business_id=106622&amp;desc=0">https://www.bilibili.com/medialist/play/927587?from=space&amp;business=space_collection&amp;business_id=106622&amp;desc=0</a></p>
+		<p><strong>代码重构的目的</strong></p>
+<blockquote>
+<p>代码重构是指在不改变代码功能的前提下，通过修改代码的内部结构和外部表现形式，来提高代码的可读性、可维护性、性能和可扩展性。</p>
+<p>通常包括以下几个方面：</p>
+<ul>
+<li>改进代码的结构，使代码更加清晰简洁。</li>
+<li>消除代码中的重复部分，减少代码冗余。</li>
+<li>提高代码的可读性，使代码更加易于理解和维护。</li>
+<li>提高代码的性能，减少代码的执行时间和内存占用。</li>
+<li>改善代码的可扩展性，使代码更容易被扩展和修改。</li>
+</ul>
+</blockquote>
+<p><strong>如何保证重构过程中不会引入新的bug？</strong></p>
+<blockquote>
+<p>既然想要重构，就意味着要修改代码，修改代码就可能引入新的bug。</p>
+<p>所以，重构只能保证设计的改进，而不能保证程序没有bug。</p>
+<p>目前发现bug的有效手段就是充分有效的测试，而保证充分有效的测试的关键是单元测试的高覆盖率。</p>
+</blockquote>
+<p><strong>什么时候选择重构？什么时候选择重写？</strong></p>
+<blockquote>
+<p>这个问题只能个人判断，很难给出一个有共通性的同类情况。</p>
+<p>不过，一些需要重写的代码肯定有迹象：</p>
+<ul>
+<li>例如：某个项目由于编程语言太老或者平台环境太老导致推进速度较慢，不适用于当前情况。<ul>
+<li>此时，这种情况下，重构代码的作用微乎其微，就需要选择重写了。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><strong>代码重构的方法</strong></p>
+<p>方法提取:</p>
+<blockquote>
+<p>一个方法不宜超过50行，超过50行的代码，就充斥着 代码坏味道。</p>
+<p>方法提取是指将一段代码抽象出来形成一个方法。</p>
+<p>这样做的好处是可以减少代码的重复，提高代码的可读性和可维护性。</p>
+</blockquote>
+<p>提取变量：</p>
+<blockquote>
+<p>提取变量是指将一段表达式抽象出来形成一个变量。</p>
+<p>这样做的好处是可以减少代码的重复，提高代码的可读性和可维护性。</p>
+</blockquote>
+<p>案例说明，重构前的代码：</p>
+<pre><code class="java">public double calculateTotalAmount(List&lt;InvoiceItem&gt; items) &#123;
+    double totalAmount = 0;
+    for (InvoiceItem item : items) &#123;
+        totalAmount += item.getPrice() * item.getQuantity();
+    &#125;
+    if (totalAmount &gt; 100) &#123;
+        totalAmount *= 0.9;
+    &#125;
+    return totalAmount;
+&#125;
+</code></pre>
+<blockquote>
+<p>在上述代码中，计算每个项目的金额是通过 <code>item.getPrice() * item.getQuantity()</code> 表达式来实现的。</p>
+</blockquote>
+<p>重构后的代码：</p>
+<blockquote>
+<p>将这个表达式抽象成一个变量 itemAmount，使代码更变得加易于理解和维护。</p>
+</blockquote>
+<pre><code class="java">public double calculateTotalAmount(List&lt;InvoiceItem&gt; items) &#123;
+    double totalAmount = 0;
+    for (InvoiceItem item : items) &#123;
+        double itemAmount = item.getPrice() * item.getQuantity();
+        totalAmount += itemAmount;
+    &#125;
+    if (totalAmount &gt; 100) &#123;
+        totalAmount *= 0.9;
+    &#125;
+    return totalAmount;
+&#125;
+</code></pre>
+<p>重构条件语句:</p>
+<blockquote>
+<p>核心思想：通过简化、合并或提取条件语句，使代码更加清晰和易于理解。</p>
+</blockquote>
+<p>重构前的代码：</p>
+<pre><code class="java">public boolean canCreateAccount(Customer customer) &#123;
+    boolean canCreate = true;
+    if (customer.getAge() &lt; 18) &#123;
+        canCreate = false;
+    &#125;
+    if (customer.getAccountNumber() != null &amp;&amp; customer.getAccountNumber().length() != 0) &#123;
+        canCreate = false;
+    &#125;
+    if (customer.getCreditScore() &lt; 500) &#123;
+        canCreate = false;
+    &#125;
+    return canCreate;
+&#125;
+</code></pre>
+<blockquote>
+<p>代码中，判断客户是否有资格创建账户的过程是通过多个条件语句实现的，如果还有其他情况，只能通过添加if&#x2F;else的方法实现。</p>
+<p>这不符合一段优秀代码的定义，根据重构条件语句的方式对其重构。</p>
+</blockquote>
+<p>重构后的代码：</p>
+<blockquote>
+<p>将多个条件语句合并成一个方法 isCustomerEligible()，使代码更加清晰易读。</p>
+<p>对于这种多分支的逻辑语句，有各种不同的重构方法，在日常开发工作中，对于多条件判断的重构，最常用的是设计模式中的策略模式，大部分判断逻辑，都可用策略模式进行重构。</p>
+</blockquote>
+<pre><code class="java">public boolean canCreateAccount(Customer customer) &#123;
+    boolean canCreate = true;
+    if (!isCustomerEligible(customer)) &#123;
+        canCreate = false;
+    &#125;
+    return canCreate;
+&#125;
+private boolean isCustomerEligible(Customer customer) &#123;
+    if (customer.getAge() &lt; 18) &#123;
+        return false;
+    &#125;
+    if (customer.getAccountNumber() != null &amp;&amp; customer.getAccountNumber().length() != 0) &#123;
+        return false;
+    &#125;
+    if (customer.getCreditScore() &lt; 500) &#123;
+        return false;
+    &#125;
+    return true;
+&#125;
+</code></pre>
+<p>提取抽象类：</p>
+<blockquote>
+<p>指将多个类中的公共方法抽象出来形成一个抽象类，使得这些类可以继承这个抽象类来继承公共方法。</p>
+<p>这样做的好处是可以减少重复代码，提高代码的复用性和可维护性。</p>
+</blockquote>
+<p>重构前的代码：</p>
+<pre><code class="java">public class SavingsAccount &#123;
+    private double balance;
+    private double interestRate;
+    public SavingsAccount(double balance, double interestRate) &#123;
+        this.balance = balance;
+        this.interestRate = interestRate;
+    &#125;
+    public double getBalance() &#123;
+        return balance;
+    &#125;
+    public double getInterestRate() &#123;
+        return interestRate;
+    &#125;
+    public double calculateInterest() &#123;
+        return balance * interestRate;
+    &#125;
+&#125;
+public class CheckingAccount &#123;
+    private double balance;
+    private double transactionFee;
+    public CheckingAccount(double balance, double transactionFee) &#123;
+        this.balance = balance;
+        this.transactionFee = transactionFee;
+    &#125;
+    public double getBalance() &#123;
+        return balance;
+    &#125;
+    public double getTransactionFee() &#123;
+        return transactionFee;
+    &#125;
+    public double calculateTransactionFee() &#123;
+        return transactionFee;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>代码中，SavingsAccount 和 CheckingAccount 类有很多相同的方法，如 getBalance() 方法。</p>
+<p>通过提取抽象类的方式对代码进行重构。</p>
+</blockquote>
+<p>重构后的代码：</p>
+<pre><code class="java">public abstract class Account &#123;
+    protected double balance;
+    public Account(double balance) &#123;
+        this.balance = balance;
+    &#125;
+    public double getBalance() &#123;
+        return balance;
+    &#125;
+    public abstract double calculateInterest();
+&#125;
+public class SavingsAccount extends Account &#123;
+    private double interestRate;
+    public SavingsAccount(double balance, double interestRate) &#123;
+        super(balance);
+        this.interestRate = interestRate;
+    &#125;
+    public double getInterestRate() &#123;
+        return interestRate;
+    &#125;
+    public double calculateInterest() &#123;
+        return balance * interestRate;
+    &#125;
+&#125;
+public class CheckingAccount extends Account &#123;
+    private double transactionFee;
+    public CheckingAccount(double balance, double transactionFee) &#123;
+        super(balance);
+        this.transactionFee = transactionFee;
+    &#125;
+    public double getTransactionFee() &#123;
+        return transactionFee;
+    &#125;
+    public double calculateTransactionFee() &#123;
+        return transactionFee;
+    &#125;
+&#125;
+</code></pre>
 
 	</div>
 </div>
 
+
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2023/11/02/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E6%9E%B6%E6%9E%84%E5%9B%BE/">
+                架构图
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
 
 
 
@@ -831,7 +1059,7 @@
 	            + '\n著作权归作者所有。'
 	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
 	            + '\n作者: 月伴飞鱼'
-	            + '\n原文地址: https://xiaoflyfish.cn/tv/index.html'
+	            + '\n原文地址: https://xiaoflyfish.cn/2023/11/02/%E4%BB%A3%E7%A0%81%E6%80%9D%E6%83%B3/%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84/'
 	    
 	            clipboardData.setData('text/plain', text + copyright);
 	    
