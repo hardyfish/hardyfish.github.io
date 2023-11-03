@@ -8,8 +8,6 @@
 	<!-- title -->
 	
 	<title>
-	
-		系统设计 | 
 	 
 	月伴飞鱼
 	</title>
@@ -552,7 +550,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file active">
+								<li class="file">
 									<a href="/2023/10/26/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
 										系统设计
 									</a>
@@ -782,275 +780,46 @@
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<h1 id="article-title">
-
-	系统设计
-</h1>
-<div class="article-meta">
-	<span>月伴飞鱼</span>
-	<span>2023-10-26 22:07:02</span>
-    
-		<div id="article-categories">
-            
-                
-                    <span>
-                        <i class="fa fa-folder" aria-hidden="true"></i>
-                        <a href="/categories/架构相关/">架构相关</a>
-						
-                    </span>
-                
-            
-		</div>
-    
-</div>
-
-<div id="container" class = "content999" oncontextmenu="return false;">
-	<div id="article-content">
-		<p>开源项目：<a target="_blank" rel="noopener" href="https://github.com/ByteByteGoHq/system-design-101">https://github.com/ByteByteGoHq/system-design-101</a></p>
-<p><strong>如何搭建一个新系统</strong></p>
-<blockquote>
-<p>架构设计按照实施过程可分为工程架构，业务架构，部署架构等多个维度。</p>
-<p>一个好的系统架构标准应该具备可扩展、可维护、可靠性、安全性和高性能等特点。</p>
-</blockquote>
-<p>价值为先：</p>
-<blockquote>
-<p>技术容易陷入的两个误区：</p>
-<ul>
-<li>
-<p>来者不拒：产品经理提的需求，都是有道理的，全都负责完成。</p>
-</li>
-<li>
-<p>技术驱动：这种技术实现特别巧妙，让产品特性适配于技术实现。</p>
-</li>
-</ul>
-<p>这两类误区，很容易让研发对产品价值的理解形成偏差，容易对后续的技术迭代产生颠覆性的影响。</p>
-<p>在方案出现歧义时，需要站在产品（商业）价值的视角审视方案并作出决策。</p>
-<p>站在产品（商业）价值维度：</p>
-<ul>
-<li>能够让协作各方站在平等的视角看问题，不仅能够容易达成共识，也能更好地为业务演进和技术迭代做好规划。</li>
-</ul>
-</blockquote>
-<p>架构设计:</p>
-<blockquote>
-<p>架构模式描述了软件系统中各个组件之间的关系、职责和交互方式，从而为软件设计提供了一种规范和约束，进而提高软件生产效率。</p>
-<p>主要体现在以下两个方面：</p>
-<ul>
-<li>帮助开发人员更好地组织和设计软件系统。</li>
-<li>促进团队之间的协作和沟通，使得团队成员更容易理解和分工。</li>
-</ul>
-</blockquote>
-<p>工程框架：</p>
-<blockquote>
-<p>新系统是从搭建项目的工程基础框架开始，包括目录结构、配置文件、代码模板等工程约束，主要用来规范项目结构、职责边界和代码风格，从而提高代码质量和可维护性。</p>
-<p>具体包括以下几个方面：</p>
-<ul>
-<li>约定了各个模块的依赖关系和交互方式。</li>
-<li>规范接口交互协议。</li>
-<li>统一异常编码、捕获和处理。</li>
-<li>规范日志打印格式。</li>
-<li>其它公共规范约束。</li>
-</ul>
-</blockquote>
-<p>技术选型：</p>
-<blockquote>
-<p>工程架构的搭建除了基础框架外，还有就是各类基础中间件的选择，也就是常说的技术选型。</p>
-<p>业务需求:</p>
-<ul>
-<li>了解业务需求，明确系统的功能、性能、安全以及未来的扩展需求。</li>
-</ul>
-<p>技术特性:</p>
-<ul>
-<li>评估不同技术的特性，包括可用性、性能、安全性、可扩展性、可维护性等方面。</li>
-</ul>
-<p>社区支持:</p>
-<ul>
-<li>考虑技术的社区支持程度，包括是否有活跃的社区、是否有大量的文档和教程、是否有成熟的第三方库等。</li>
-</ul>
-<p>团队技能:</p>
-<ul>
-<li>根据团队的技能水平选择合适的技术，避免使用过于复杂或陌生的技术。</li>
-<li>否则后期的维护成本和迭代效率将成为一个大的难题。</li>
-</ul>
-<p>成本效益:</p>
-<ul>
-<li>评估不同技术的成本效益，包括开发成本、运维成本、许可证费用等方面。
-<ul>
-<li>如果有成熟的开源插件可用，应该尽量使用它们，而不是重新发明轮子。</li>
-<li>对于其他团队已经完成的任务，需要考虑是否可以复用。</li>
-</ul>
-</li>
-</ul>
-<p>风险评估：</p>
-<ul>
-<li>评估不同技术的风险，包括技术成熟度、安全漏洞、依赖关系等方面。</li>
-</ul>
-</blockquote>
-<p>规范共识：</p>
-<blockquote>
-<p>确保团队成员之间的沟通和理解达成一致。</p>
-<p>通过制定规范和流程，可以减少重复工作和错误，避免冲突和误解，这有利于提高研发效率和质量。</p>
-<ul>
-<li>制定数据分层，异常管理，日志管理，监控管理的规范。</li>
-</ul>
-</blockquote>
-<p><strong>架构师的核心能力抽象能力</strong></p>
-<blockquote>
-<p>抽象能力就是一种化繁为简的能力。</p>
-<ul>
-<li>就是把一种复杂的事情变得简单的能力。</li>
-</ul>
-<p>有三种方法：</p>
-<ul>
-<li>
-<p>归纳法找共性，从多个问题中找到共同的问题提炼通用解决方案，去其糟粕取其精华。</p>
-</li>
-<li>
-<p>演绎法找关系，从多个问题中找关系，把多个问题串成一个问题，系统化解决问题。</p>
-</li>
-<li>
-<p>归纳法找特性：化繁为简需要不断的思考，不断的看清一件事的本质，这个事的解决方案越容易。</p>
-</li>
-</ul>
-</blockquote>
-<p>通过归纳法找共性:</p>
-<blockquote>
-<p>通过归纳法找共性有两种方法，分别是找需求的共性和找信息的共性。</p>
-<p>找需求的共性：</p>
-<ul>
-<li>从一类需求中找到共性问题，找到最大交集然后求解。
-<ul>
-<li>收到一堆需求，能分析出共同的需求是什么。</li>
-</ul>
-</li>
-</ul>
-<p>找信息的共性:</p>
-<ul>
-<li>领域建模就是一种找信息共性的方法。</li>
-<li>领域建模首先就是要区分需求里哪些是变化的哪些是不变，把这个领域不变的信息沉淀成领域模型，基于领域模型做架构。</li>
-</ul>
-</blockquote>
-<p>通过演绎法找关系：</p>
-<blockquote>
-<p>找内部关系:</p>
-<ul>
-<li>内部关系就是找到业务的生命周期和系统内部的主链路。</li>
-</ul>
-<p>找外部关系：</p>
-<ul>
-<li>梳理清楚架构的边界，什么做什么不做，什么是本领域的核心服务，这些服务提供给谁使用，需要依赖其他领域的核心服务有哪些。</li>
-</ul>
-</blockquote>
-<p>通过归纳法找特性：</p>
-<blockquote>
-<p>找特性是通过归纳法先找两个业务的共性。</p>
-<ul>
-<li>举一个例子，如果要精通JAVA要学习的内容会非常多，可能花很多时间学习也不一定能精通JAVA语言，投入产出比不高。</li>
-</ul>
-<p>但是如果想化繁为简就必须先找到JAVA的特性，针对特性进行深入学习。</p>
-<ul>
-<li>JAVA的两项特性技术是<strong>垃圾回收机制</strong>和<strong>多线程框架</strong>，剩下的就和其他语言的特性差不多。</li>
-</ul>
-<p>特性和找共性存在矛盾，所以在这个过程中需要做取舍：</p>
-<ul>
-<li>关键是面对当下的业务，判断什么当下或者未来最重要的事是什么。</li>
-<li>可能满足场景个性化需求虽然增加研发成本，但是能给业务带来技术壁垒。</li>
-<li>或者有没有一种方式能既满足共性需求又能满足部分个性化需求。</li>
-</ul>
-</blockquote>
-
+		<div id="index" oncontextmenu="return false;">
+	
+		<div class="index-li">
+			<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+				<h2 class="index-title">
+					开发工具
+				</h2>
+				<div class="index-brief">
+					网站固定尺寸图片生成工具：https://dummyimage.com/
+在线开发文档：https://devdocs.io/
+网易有道词典：https://www.youdao.com/
+命名网站：https://unbug.github.io/codelf/
+JSON格式化网站：https://
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-10-07</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/工具相关/">工具相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+	
+	<div id="index-paginator">
+		
+			<a class="extend prev" rel="prev" href="/archives/2023/page/4/">&lt;</a><a class="page-number" href="/archives/2023/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2023/page/3/">3</a><a class="page-number" href="/archives/2023/page/4/">4</a><span class="page-number current">5</span>
+		
 	</div>
 </div>
 
-
-    <div class="post-guide">
-        <div class="item left">
-            
-              <a href="/2023/10/26/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E4%BF%9D%E9%9A%9C/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  系统保障
-              </a>
-            
-        </div>
-        <div class="item right">
-            
-              <a href="/2023/10/26/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E5%A4%A7%E5%8E%82%E6%99%8B%E5%8D%87%E6%8C%87%E5%8D%97/">
-                大厂晋升指南
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </a>
-            
-        </div>
-    </div>
-
-
-
-
-<script>
-
-    //document.oncontextmenu=new Function("event.returnValue=false");
-	//document.onselectstart=new Function("event.returnValue=false");
-
-	
-
-	$(function () {
-		const btw = new BTWPlugin();
-	    btw.init({
-	        id: 'container',
-	        blogId: '22377-1698976075586-927',
-	        name: '月伴飞鱼',
-	        qrcode: '/小程序码.jpg',
-	        keyword: '验证码',
-	    });
-
-	    var contents = document.getElementsByClassName("content999");
-	    //监听文章内容的copy事件
-	    contents[0].addEventListener('copy',function(e){
-	        setClipboardText(e);
-	    });
-
-	    function setClipboardText(event){
-	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
-	        let clipboardData = event.clipboardData || window.clipboardData;
-
-	        // 如果未复制或者未剪切，则return出去
-	        if (!clipboardData) { return; }
-
-	        event.preventDefault();
-
-	        // Selection 对象，表示用户选择的文本范围或光标的当前位置。
-	        // 声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
-	        let text = window.getSelection().toString();
-	    
-	        if (text) {
-	            // 如果文本存在则先取消文本默认事件
-	            event.preventDefault();
-	            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
-	            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
-	            // data: 一个 DOMString表示要添加到 drag object的数据。
-	            var copyright = '\n\n'
-	            + '\n著作权归作者所有。'
-	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
-	            + '\n作者: 月伴飞鱼'
-	            + '\n原文地址: https://xiaoflyfish.cn/2023/10/26/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/'
-	    
-	            clipboardData.setData('text/plain', text + copyright);
-	    
-	        }
-	    };
-	});
-
-	
-</script>
-
-<script>
-    const btw = new BTWPlugin();
-    btw.init({
-        id: 'container',
-        blogId: '22377-1698976075586-927',
-        name: '月伴飞鱼',
-        qrcode: '/小程序码.jpg',
-        keyword: '验证码',
-    });
-</script>
 	</div>
 	<div id="footer">
 	<p>
