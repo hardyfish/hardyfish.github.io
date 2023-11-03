@@ -798,6 +798,196 @@
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
 		<p>官网：<a target="_blank" rel="noopener" href="https://netty.io/">https://netty.io/</a></p>
+<blockquote>
+<p>Netty 是一个基于 JAVA NIO 类库的<code>异步通信框架</code>。</p>
+<p>用于创建异步非阻塞、基于事件驱动、高性能、高可靠性和高可定制性的<code>网络客户端和服务器端</code>。</p>
+</blockquote>
+<p><strong>Netty案例</strong></p>
+<blockquote>
+<p>搭建 Server 端服务器:</p>
+<ul>
+<li>创建 <code>ServerBootstrap</code> 对象。</li>
+</ul>
+<ul>
+<li><code>ServerBootstrap</code>配置<code>eventLoopGroup</code>：
+<ul>
+<li><strong>BossGroup</strong> : 处理连接请求，用于创建 Channel 转发给 WorkerGroup。</li>
+<li><strong>workerGroup</strong> : 处理已建立的连接。</li>
+</ul>
+</li>
+<li>配置服务器处理的 <code>Channel</code> 连接的类型 ，包括 <strong>NIO</strong> 类型 ， <strong>EPOLL</strong> 类型等。</li>
+<li>配置整个处理流程的 <code>ChannelHandler</code>，用于特定的处理。</li>
+<li>Server 端 <code>bind()</code> 一个端口 , 同时阻塞等待绑定完成。</li>
+</ul>
+</blockquote>
+<pre><code class="language-java">// 第一步 ：准备后续处理业务的 Handler
+public class NettyServerHandler extends ChannelInboundHandlerAdapter &#123;
+    /**
+     * 客户端连接会触发
+     */
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception &#123;
+        System.out.println(&quot;S2 : 服务端建立连接，触发 Active .....&quot;);
+    &#125;
+
+    /**
+     * 客户端发消息会触发
+     */
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception &#123;
+        System.out.println(&quot;服务器收到消息: &quot; + msg.toString());
+        // 接收到消息后，返回一条消息给客户端
+        ctx.write(msg + &quot;World!&quot;);
+        ctx.flush();
+    &#125;
+
+    /**
+     * 发生异常触发
+     */
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception &#123;
+        cause.printStackTrace();
+        ctx.close();
+    &#125;
+&#125;
+
+
+// 第二步 ：创建 Initializer 用于初始化 Channel
+public class ServerChannelInitializer extends ChannelInitializer&lt;SocketChannel&gt; &#123;
+    @Override
+    protected void initChannel(SocketChannel socketChannel) throws Exception &#123;
+        //添加编解码
+        socketChannel.pipeline().addLast(&quot;decoder&quot;, new StringDecoder(CharsetUtil.UTF_8));
+        socketChannel.pipeline().addLast(&quot;encoder&quot;, new StringEncoder(CharsetUtil.UTF_8));
+        // 此处将 Handler 绑定到 ChannelPipeline 中
+        socketChannel.pipeline().addLast(new NettyServerHandler());
+    &#125;
+&#125;
+
+// 第三步 ： 准备好 Netty 客户端
+public class NettyServer extends Thread &#123;
+
+    public void run() &#123;
+
+        // S1 : 准备 Boss 管理线程组 和 Worker 工作线程组
+        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        EventLoopGroup workGroup = new NioEventLoopGroup(200);
+
+        // S2 : 绑定 Group , 绑定渠道 ， 绑定 Handler
+        ServerBootstrap bootstrap = new ServerBootstrap()
+                .group(bossGroup, workGroup)
+                .channel(NioServerSocketChannel.class)
+                .childHandler(new ServerChannelInitializer());
+
+        try &#123;
+            InetSocketAddress socketAddress = new InetSocketAddress(&quot;127.0.0.1&quot;, 8090);
+            
+            // S3 : 绑定对应端口和地址，用于后续阻塞监听
+            ChannelFuture future = bootstrap.bind(socketAddress).sync();
+            System.out.println(&quot;S1 : 服务端构建完成 .....&quot;);
+            future.channel().closeFuture().sync();
+        &#125; catch (InterruptedException e) &#123;
+            e.printStackTrace();
+        &#125; finally &#123;
+            //关闭主线程组
+            bossGroup.shutdownGracefully();
+            //关闭工作线程组
+            workGroup.shutdownGracefully();
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>搭建客户端:</p>
+<ul>
+<li>不同于 Server ，Client 端只需要一个 <code>EventLoopGroup</code>。</li>
+<li>创建 Bootstrap ，绑定 <code>Group / channel / handler</code>。</li>
+<li>通过 <code>writeAndFlush</code> 发送消息。</li>
+</ul>
+</blockquote>
+<pre><code class="language-java">// 第一步 ：准备客户端的 Handler 接收消息
+public class NettyClientHandler extends ChannelInboundHandlerAdapter &#123;
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception &#123;
+        System.out.println(&quot;S2 : 客户端建立连接，触发 Active .....&quot;);
+    &#125;
+
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception &#123;
+        System.out.println(&quot;客户端收到消息: &quot; + msg.toString());
+    &#125;
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception &#123;
+        cause.printStackTrace();
+        ctx.close();
+    &#125;
+&#125;
+
+
+// 第二步 ：创建 Initializer 用于初始化 Channel
+public class NettyClientInitializer extends ChannelInitializer&lt;SocketChannel&gt; &#123;
+    @Override
+    protected void initChannel(SocketChannel socketChannel) throws Exception &#123;
+        socketChannel.pipeline().addLast(&quot;decoder&quot;, new StringDecoder());
+        socketChannel.pipeline().addLast(&quot;encoder&quot;, new StringEncoder());
+         // 此处将 Handler 绑定到 ChannelPipeline 中
+        socketChannel.pipeline().addLast(new NettyClientHandler());
+    &#125;
+&#125;
+
+
+// 第三步 ： 准备启动类
+public class NettyClient extends Thread &#123;
+
+    public void run() &#123;
+        EventLoopGroup group = new NioEventLoopGroup();
+        Bootstrap bootstrap = new Bootstrap()
+                .group(group)
+                .channel(NioSocketChannel.class)
+                .handler(new NettyClientInitializer());
+        try &#123;
+
+            ChannelFuture future = bootstrap.connect(&quot;127.0.0.1&quot;, 8090).sync();
+            System.out.println(&quot;S2 : 客户端构建完成 .....&quot;);
+
+            for (int i = 0; i &lt; 10; i++) &#123;
+                String message = &quot;第&quot; + i + &quot;条消息 ， &quot; + &quot;Hello &quot;;
+                future.channel().writeAndFlush(message);
+                Thread.sleep(1000); // 暂停一秒钟
+            &#125;
+
+            future.channel().closeFuture().sync();
+        &#125; catch (InterruptedException e) &#123;
+            e.printStackTrace();
+        &#125; finally &#123;
+            group.shutdownGracefully();
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>发起请求:</p>
+<ul>
+<li>通过2个线程模拟消息的发送和接收。</li>
+</ul>
+</blockquote>
+<pre><code class="language-java">public class DemoService &#123;
+
+    public static void main(String[] args) throws InterruptedException &#123;
+        System.out.println(&quot;Start ：开始整个 Netty 搭建流程&quot;);
+
+        // S1 : 分别开2个线程模拟 Server 和 Client 的开启
+        NettyServer server = new NettyServer();
+        server.start();
+
+        NettyClient client = new NettyClient();
+        client.start();
+    &#125;
+
+&#125;
+</code></pre>
 <p><strong>解码器</strong></p>
 <p>固定长度解码器：FixedLengthFrameDecoder:</p>
 <blockquote>
@@ -807,23 +997,24 @@
 </blockquote>
 <p>特殊分隔符解码器：DelimiterBasedFrameDecoder。</p>
 <p>长度域解码器：LengthFieldBasedFrameDecoder。</p>
-<h1 id="基本架构"><a href="#基本架构" class="headerlink" title="基本架构"></a>基本架构</h1><p><strong>逻辑架构</strong></p>
+<h1>基本架构</h1>
+<p><strong>逻辑架构</strong></p>
 <blockquote>
 <p>Netty的逻辑处理架构共分为网络通信层、事件调度层、服务编排层，每一层各司其职。</p>
 </blockquote>
 <img src="/images/image-20231030162514048.png" alt="image-20231030162514048" style="zoom:80%;" />
-
 <p>网络通信层：</p>
 <blockquote>
-<p>网络通信层的职责是执行网络 I&#x2F;O 的操作。</p>
+<p>网络通信层的职责是执行网络 I/O 的操作。</p>
 <ul>
-<li>它支持多种网络协议和 I&#x2F;O 模型的连接操作。</li>
+<li>它支持多种网络协议和 I/O 模型的连接操作。</li>
 </ul>
 <p>当网络数据读取到内核缓冲区后，会触发各种网络事件，这些网络事件会分发给事件调度层进行处理。</p>
 <p>网络通信层的包含<strong>BootStrap、ServerBootStrap、Channel</strong>三个组件。</p>
 <p><strong>BootStrap &amp; ServerBootStrap</strong></p>
 <ul>
-<li>Bootstrap:<ul>
+<li>Bootstrap:
+<ul>
 <li>主要负责整个 Netty 程序的启动、初始化、服务器连接等过程。</li>
 </ul>
 </li>
@@ -836,19 +1027,21 @@
 </blockquote>
 <p>事件调度层：</p>
 <blockquote>
-<p>通过 Reactor 线程模型对各类事件进行聚合处理，通过 Selector 主循环线程集成多种事件（ I&#x2F;O 事件、信号事件、定时事件等），实际的业务处理逻辑是交由服务编排层中相关的 Handler 完成。</p>
+<p>通过 Reactor 线程模型对各类事件进行聚合处理，通过 Selector 主循环线程集成多种事件（ I/O 事件、信号事件、定时事件等），实际的业务处理逻辑是交由服务编排层中相关的 Handler 完成。</p>
 <p>事件调度层的<strong>核心组件</strong>包括 <strong>EventLoopGroup、EventLoop</strong>。</p>
 <ul>
 <li><strong>EventLoopGroup &amp; EventLoop</strong></li>
 </ul>
-<p>EventLoopGroup 本质是一个线程池，主要负责接收 I&#x2F;O 请求，并分配线程执行处理请求。</p>
+<p>EventLoopGroup 本质是一个线程池，主要负责接收 I/O 请求，并分配线程执行处理请求。</p>
 <p>EventLoopGroup、EventLoop、Channel 的关系:</p>
 <ul>
-<li>一个 EventLoopGroup 往往包含一个或者多个 EventLoop。<ul>
-<li>EventLoop 用于处理 Channel 生命周期内的所有 I&#x2F;O 事件，如 accept、connect、read、write 等 I&#x2F;O 事件。</li>
+<li>一个 EventLoopGroup 往往包含一个或者多个 EventLoop。
+<ul>
+<li>EventLoop 用于处理 Channel 生命周期内的所有 I/O 事件，如 accept、connect、read、write 等 I/O 事件。</li>
 </ul>
 </li>
-<li>EventLoop 同一时间会与一个线程绑定，每个 EventLoop 负责处理多个 Channel。<ul>
+<li>EventLoop 同一时间会与一个线程绑定，每个 EventLoop 负责处理多个 Channel。
+<ul>
 <li>每新建一个 Channel，EventLoopGroup 会选择一个 EventLoop 与其绑定。</li>
 <li>该 Channel 在生命周期内都可以对 EventLoop 进行多次绑定和解绑。</li>
 </ul>
@@ -861,15 +1054,18 @@
 <p>可以把 NioEventLoopGroup 理解为一个线程池，每个线程负责处理多个 Channel，而同一个 Channel 只会对应一个线程。</p>
 <p>Netty 通过创建不同的 EventLoopGroup 参数配置，可以支持 Reactor 的三种线程模型：</p>
 <ul>
-<li><strong>单线程模型</strong>：<ul>
+<li><strong>单线程模型</strong>：
+<ul>
 <li>EventLoopGroup 只包含一个 EventLoop，Boss 和 Worker 使用同一个EventLoopGroup。</li>
 </ul>
 </li>
-<li><strong>多线程模型</strong>：<ul>
+<li><strong>多线程模型</strong>：
+<ul>
 <li>EventLoopGroup 包含多个 EventLoop，Boss 和 Worker 使用同一个EventLoopGroup。</li>
 </ul>
 </li>
-<li><strong>主从多线程模型</strong>：<ul>
+<li><strong>主从多线程模型</strong>：
+<ul>
 <li>EventLoopGroup 包含多个 EventLoop，Boss 是主 Reactor，Worker 是从 Reactor，它们分别使用不同的 EventLoopGroup，主 Reactor 负责新的网络连接 Channel 创建，然后把 Channel 注册到从 Reactor。</li>
 </ul>
 </li>
@@ -883,7 +1079,7 @@
 <ul>
 <li>负责组装各种 ChannelHandler，实际数据的编解码以及加工处理操作都是由 ChannelHandler 完成的。</li>
 <li>ChannelPipeline 可以理解为ChannelHandler 的实例列表：内部通过双向链表将不同的 ChannelHandler 链接在一起。</li>
-<li>当 I&#x2F;O 读写事件触发时，ChannelPipeline 会依次调用 ChannelHandler 列表对 Channel 的数据进行拦截和处理。</li>
+<li>当 I/O 读写事件触发时，ChannelPipeline 会依次调用 ChannelHandler 列表对 Channel 的数据进行拦截和处理。</li>
 </ul>
 <p>ChannelPipeline 是线程安全的，因为每一个新的 Channel 都会对应绑定一个新的 ChannelPipeline。</p>
 <p>一个 ChannelPipeline 关联一个 EventLoop，一个 EventLoop 仅会绑定一个线程。</p>
@@ -902,7 +1098,7 @@
 <ul>
 <li>每个 EventLoop 都是单线程的，通过 Selector 进行事件循环。</li>
 </ul>
-<p>当客户端发起 I&#x2F;O 读写事件时，服务端 EventLoop 会进行数据的读取，然后通过 Pipeline 触发各种监听器进行数据的加工处理。</p>
+<p>当客户端发起 I/O 读写事件时，服务端 EventLoop 会进行数据的读取，然后通过 Pipeline 触发各种监听器进行数据的加工处理。</p>
 <p>客户端数据会被传递到 ChannelPipeline 的第一个 ChannelInboundHandler 中，数据处理完成后，将加工完成的数据传递给下一个 ChannelInboundHandler。</p>
 <p>当数据写回客户端时，会将处理结果在 ChannelPipeline 的 ChannelOutboundHandler 中传播，最后到达客户端。</p>
 </blockquote>
