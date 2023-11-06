@@ -824,7 +824,168 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		
+		<blockquote>
+<p>Thrift是Facebook的一款开源跨语言的RPC框架。</p>
+</blockquote>
+<p><strong>跨语言特型</strong></p>
+<blockquote>
+<p>Thrift通过一个中间语言IDL(接口定义语言)来定义RPC的数据类型和接口。</p>
+<p>这些内容写在以<code>.thrift</code>结尾的文件中，然后通过特殊的编译器来生成不同语言的代码，以满足不同需要的开发者。</p>
+<ul>
+<li>生成的代码中不但包含目标语言的接口定义，方法，数据类型，还包含有RPC协议层和传输层的实现代码。</li>
+</ul>
+</blockquote>
+<p><strong>协议栈结构</strong></p>
+<blockquote>
+<p><strong>TServer</strong>：</p>
+<ul>
+<li>高效的接受客户端请求，并将请求转发给<strong>Processor</strong>处理。</li>
+</ul>
+<p><strong>Processor</strong>：</p>
+<ul>
+<li>
+<p>负责对客户端的请求做出响应，包括RPC请求转发，调用参数解析和用户逻辑调用，返回值写回等处理。</p>
+</li>
+<li>
+<p>从<strong>TProtocol</strong>以下部分是Thirft的传输协议和底层I/O通信。</p>
+</li>
+</ul>
+<p><strong>TProtocol：</strong></p>
+<ul>
+<li>用于数据类型解析的，将结构化数据转化为字节流给<strong>TTransport</strong>进行传输。</li>
+</ul>
+<p><strong>TTransport：</strong></p>
+<ul>
+<li>
+<p>与底层数据传输密切相关的传输层，负责以字节流方式接收和发送消息体，不关注是什么数据类型。</p>
+</li>
+<li>
+<p>底层IO负责实际的数据传输，包括Socket、文件和压缩数据流等。</p>
+</li>
+</ul>
+</blockquote>
+<p><img src="/images/870109-20170221155000163-876398090.png" alt="img"></p>
+<p><strong>简单案例</strong></p>
+<blockquote>
+<p>创建一个服务Hello，创建文件<code>Hello.thrift</code>。</p>
+<ul>
+<li>这里定义了一个名为<code>helloString</code>的方法，入参和返回值都是一个string类型的参数。</li>
+</ul>
+</blockquote>
+<pre><code class="language-java">namespace java service.demo
+service Hello&#123;
+    string helloString(1:string para)
+&#125;
+</code></pre>
+<blockquote>
+<p>终端进入<code>Hello.thrift</code>所在目录，执行命令。</p>
+</blockquote>
+<pre><code>thrift -r -gen java Hello.thrift
+</code></pre>
+<blockquote>
+<p>在当前目录下多了一个<code>gen-java</code>的目录，里面的有一个<code>Hello.java</code>的文件。</p>
+<p>这个文件包含Hello服务的接口定义<strong>Hello.Iface</strong>，以及服务调用的底层通信细节：</p>
+<ul>
+<li>包括客户端的调用逻辑<strong>Hello.Client</strong>以及服务端的处理逻辑<strong>Hello.Processor</strong>。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>创建一个项目，<code>pom.xml</code>中添加相关的依赖，并将<code>Hello.java</code>文件复制到项目中。</p>
+</blockquote>
+<pre><code class="language-xml">    &lt;dependency&gt;
+      &lt;groupId&gt;org.apache.thrift&lt;/groupId&gt;
+      &lt;artifactId&gt;libthrift&lt;/artifactId&gt;
+      &lt;version&gt;0.10.0&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+      &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
+      &lt;version&gt;1.7.5&lt;/version&gt;
+    &lt;/dependency&gt;
+</code></pre>
+<blockquote>
+<p>创建HelloServiceImpl实现<code>Hello.Iface</code>接口。</p>
+</blockquote>
+<pre><code class="language-java">package service.demo;
+import org.apache.thrift.TException;
+
+public class HelloServiceImpl implements Hello.Iface &#123;
+    public String helloString(String para) throws TException &#123;
+        return &quot;result:&quot;+para;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>创建服务端实现代码HelloServiceServer，把HelloServiceImpl作为一个具体的处理器传递给Thrift服务器。</p>
+</blockquote>
+<pre><code class="language-java">package service.demo;
+import org.apache.thrift.TProcessor;
+import org.apache.thrift.protocol.TBinaryProtocol;
+import org.apache.thrift.server.TServer;
+import org.apache.thrift.server.TSimpleServer;
+import org.apache.thrift.transport.TServerSocket;
+import org.apache.thrift.transport.TTransportException;
+
+public class HelloServiceServer &#123;
+    /**
+     * 启动thrift服务器
+     * @param args
+     */
+    public static void main(String[] args) &#123;
+        try &#123;
+            System.out.println(&quot;服务端开启....&quot;);
+            TProcessor tprocessor = new Hello.Processor&lt;Hello.Iface&gt;(new HelloServiceImpl());
+            // 简单的单线程服务模型
+            TServerSocket serverTransport = new TServerSocket(9898);
+            TServer.Args tArgs = new TServer.Args(serverTransport);
+            tArgs.processor(tprocessor);
+            tArgs.protocolFactory(new TBinaryProtocol.Factory());
+            TServer server = new TSimpleServer(tArgs);
+            server.serve();
+            &#125;catch (TTransportException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>创建客户端实现代码HelloServiceClient，调用<code>Hello.client</code>访问服务端的逻辑实现。</p>
+</blockquote>
+<pre><code class="language-java">package service.demo;
+
+import org.apache.thrift.TException;
+import org.apache.thrift.protocol.TBinaryProtocol;
+import org.apache.thrift.protocol.TProtocol;
+import org.apache.thrift.transport.TSocket;
+import org.apache.thrift.transport.TTransport;
+import org.apache.thrift.transport.TTransportException;
+
+public class HelloServiceClient &#123;
+
+    public static void main(String[] args) &#123;
+        System.out.println(&quot;客户端启动....&quot;);
+        TTransport transport = null;
+        try &#123;
+            transport = new TSocket(&quot;localhost&quot;, 9898, 30000);
+            // 协议要和服务端一致
+            TProtocol protocol = new TBinaryProtocol(transport);
+            Hello.Client client = new Hello.Client(protocol);
+            transport.open();
+            String result = client.helloString(&quot;哈哈&quot;);
+            System.out.println(result);
+        &#125; catch (TTransportException e) &#123;
+            e.printStackTrace();
+        &#125; catch (TException e) &#123;
+            e.printStackTrace();
+        &#125; finally &#123;
+            if (null != transport) &#123;
+                transport.close();
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+
 	</div>
 </div>
 
