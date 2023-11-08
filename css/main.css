@@ -531,6 +531,10 @@ blockquote ul ul li {
   color: #b44343 !important;
 }
 
+blockquote ul ul ul li {
+  color: #1934bf !important;
+}
+
 hr {
   border: none;
   border-top: 3px solid #b3b4d5;
