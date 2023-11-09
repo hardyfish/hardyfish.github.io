@@ -945,7 +945,32 @@ private final Map&lt;String, Object&gt; earlySingletonObjects = new HashMap&lt;&
 </blockquote>
 <img src="/images/dea7c5c6ad33e75f752366bd42e86fa6.png" alt="img" style="zoom:100%;" />
 
-<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p><strong>事务失效</strong></p>
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p><strong>嵌套事务</strong></p>
+<blockquote>
+<p>举例，methodA 中调用了 methodB，两个方法都有对数据库的操作，而且都需要事务。</p>
+<p>这种多个方法调用链中都有事务的场景，就是嵌套事务。</p>
+<p>要注意的是，并不是说多个方法使用一个事务才叫嵌套，哪怕是不同的事务，只要在这个方法的调用链中，都是嵌套事务。</p>
+</blockquote>
+<pre><code class="java">// MethodA:
+public void methodA()&#123;
+    int updated = connection.prepareStatement().executeUpdate();
+    methodB();
+    // ...
+&#125;
+
+// MethodB:
+public void methodB()&#123;
+    // ...
+&#125;
+</code></pre>
+<p><strong>事务传播行为</strong></p>
+<blockquote>
+<p>方法调用链中的子方法，是用一个新事务，还是使用当前事务呢？</p>
+<ul>
+<li>这个子方法决定使用新事务还是当前事务（或不使用事务）的策略，就叫事务传播。</li>
+</ul>
+</blockquote>
+<p><strong>事务失效</strong></p>
 <p>1、事务方法被Final、Static关键字修饰:</p>
 <blockquote>
 <p>如果一个方法被声明为<code>final</code>或者<code>static</code>，则该方法不能被子类重写，也就是说无法在该方法上进行动态代理，这会导致<code>Spring</code>无法生成事务代理对象来管理事务。</p>
@@ -1217,7 +1242,7 @@ public class ServiceImpl implements Service &#123;
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1699407466701-309',
+	        blogId: '22377-1699494682717-266',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -1267,7 +1292,7 @@ public class ServiceImpl implements Service &#123;
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1699407466701-309',
+        blogId: '22377-1699494682717-266',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',
