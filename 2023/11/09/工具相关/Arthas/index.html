@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		学习资源 | 
+		Arthas | 
 	 
 	月伴飞鱼
 	</title>
@@ -373,7 +373,7 @@
 									</a>
 									
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2023/11/09/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Arthas/">
 										Arthas
 									</a>
@@ -829,22 +829,142 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	学习资源
+	Arthas
 </h1>
 <div class="article-meta">
 	<span>月伴飞鱼</span>
-	<span>2020-12-03 11:29:32</span>
+	<span>2023-11-09 17:40:37</span>
+    
+		<div id="article-categories">
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/工具相关/">工具相关</a>
+						
+                    </span>
+                
+            
+		</div>
     
 </div>
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<p>百度云链接分享很快会失效，所以需要以下资源的，公众号（月伴飞鱼）后台回复数字获取</p>
-<p>资源会定期更新，也欢迎加群，日常分享免费学习资源</p>
+		<blockquote>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://arthas.aliyun.com/">https://arthas.aliyun.com/</a></p>
+<p>Arthas是一款由阿里巴巴开源的Java应用诊断利器，它可以帮助开发人员在运行时对Java应用进行调试和诊断，解决线上问题。</p>
+</blockquote>
+<p><strong>连接应用</strong></p>
+<p>默认连接:</p>
+<blockquote>
+<p>指 Arthas 自动连接当前机器上正在运行的 Java 应用程序。</p>
+</blockquote>
+<pre><code>$ java -jar arthas-boot.jar
+</code></pre>
+<blockquote>
+<p>尝试连接指定的 IP 地址和端口号上的 Java 应用程序。</p>
+</blockquote>
+<pre><code>$ java -jar arthas-boot.jar --target-ip 127.0.0.1 --telnet-port 3658
+</code></pre>
+<p>Telnet 连接：</p>
+<blockquote>
+<p>通过 Telnet 协议连接到 Java 应用程序。</p>
+</blockquote>
+<pre><code>$ telnet 127.0.0.1 3658
+</code></pre>
+<p>进入Arthas Shell：</p>
+<pre><code>./as.sh
+</code></pre>
+<p>查看JVM状态:</p>
+<blockquote>
+<p>在Arthas Shell中，可以通过以下命令查看当前JVM的状态。</p>
+</blockquote>
+<pre><code>$ jvm
+</code></pre>
+<p><strong>方法调用链路追踪</strong></p>
+<blockquote>
+<p>查看某个方法被调用了多少次、被哪些方法调用了，甚至是每一次调用的参数和返回值。</p>
+</blockquote>
+<p>追踪某个方法的所有调用：</p>
+<pre><code>$ trace com.example.demo.service.UserService getUserById
+</code></pre>
+<p>追踪某个类中所有方法的调用：</p>
+<pre><code>$ trace com.example.demo.service.UserService
+</code></pre>
+<p>追踪某个方法的详细信息:</p>
+<blockquote>
+<p>追踪<code>com.example.demo.service.UserService</code>类中的<code>getUserById</code>方法的前5次调用，并打印出每次调用的参数和返回值。</p>
+</blockquote>
+<pre><code>$ trace com.example.demo.service.UserService getUserById -n 5
+</code></pre>
+<p><strong>监控系统资源消耗</strong></p>
+<p>监控CPU占用率:</p>
+<blockquote>
+<p>输出一个监控面板，其中包含了CPU占用率、Java线程数、内存使用情况等信息。</p>
+</blockquote>
+<pre><code>$ dashboard
+</code></pre>
+<p>监控线程：</p>
+<blockquote>
+<p>输出当前JVM中所有线程的信息。</p>
+</blockquote>
+<pre><code>$ thread
+</code></pre>
+<p>监控GC：</p>
+<blockquote>
+<p>输出GC的相关信息。</p>
+</blockquote>
+<p><strong>动态修改代码</strong></p>
+<p>修改某个类的某个方法的返回值：</p>
+<blockquote>
+<p>修改<code>com.example.demo.service.UserService</code>类中的<code>getUserById</code>方法的返回值为<code>&quot;Hello Arthas!&quot;</code>。</p>
+</blockquote>
+<pre><code>$ redefine com.example.demo.service.UserService getUserById &quot;return \&quot;Hello Arthas!\&quot;;&quot;
+</code></pre>
+<p>添加某个类的某个方法:</p>
+<blockquote>
+<p>在<code>com.example.demo.service.UserService</code>类中添加一个名为<code>addUser</code>的方法，并且该方法的参数为<code>String name</code>和<code>Integer age</code>，最后将会输出日志并返回<code>true</code>。</p>
+</blockquote>
+<pre><code>$ redefine -c com.example.demo.service.UserService -m addUser --params-string &quot;java.lang.String name, java.lang.Integer age&quot; &quot;logger.info(\&quot;addUser invoked! name:&#123;&#125; age:&#123;&#125;\&quot;, name, age); return true;&quot;
+</code></pre>
+<p><strong>常用命令</strong></p>
+<p>查看方法调用次数：</p>
+<blockquote>
+<p>查看<code>com.example.demo.service.UserService</code>类中的<code>getUserById</code>方法在最近的3秒钟内被调用的次数。</p>
+</blockquote>
+<pre><code>$ sc -d 3 com.example.demo.service.UserService getUserById
+</code></pre>
+<p>查看线程堆栈:</p>
+<pre><code>$ thread -i [线程ID]
+</code></pre>
+<blockquote>
+<p>输出指定ID的线程的堆栈信息。</p>
+</blockquote>
+<p>查看类的加载情况：</p>
+<blockquote>
+<p>查看<code>com.example.demo.service.UserService</code>类的加载情况。</p>
+</blockquote>
+<pre><code>$ classloader -c com.example.demo.service.UserService
+</code></pre>
 
 	</div>
 </div>
 
+
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2023/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/">
+                MongoDB
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
 
 
 
@@ -895,7 +1015,7 @@
 	            + '\n著作权归作者所有。'
 	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
 	            + '\n作者: 月伴飞鱼'
-	            + '\n原文地址: https://xiaoflyfish.cn/rescource/index.html'
+	            + '\n原文地址: https://xiaoflyfish.cn/2023/11/09/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Arthas/'
 	    
 	            clipboardData.setData('text/plain', text + copyright);
 	    
