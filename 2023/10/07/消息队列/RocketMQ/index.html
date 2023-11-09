@@ -982,6 +982,21 @@
 <li>这个时候在Broker端，它还是个Half Message(半消息)，这也会回查。</li>
 </ul>
 </blockquote>
+<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><strong>零拷贝</strong></p>
+<blockquote>
+<p>零拷贝技术是一个思想，指的是指计算机执行操作时，CPU不需要先将数据从某处内存复制到另一个特定区域。</p>
+<ul>
+<li>RocketMQ内部使用基于mmap实现的零拷贝，用来读写文件。</li>
+</ul>
+</blockquote>
+<p>mmap():</p>
+<blockquote>
+<p>mmap（memory map）是一种内存映射文件的方法。</p>
+<ul>
+<li>即将一个文件或者其它对象映射到进程的地址空间，实现文件磁盘地址和进程虚拟地址空间中一段虚拟地址的一一对映关系。</li>
+</ul>
+<p>简单地说就是内核缓冲区和应用缓冲区共享，从而减少了从读缓冲区到用户缓冲区的一次CPU拷贝。</p>
+</blockquote>
 <h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><h2 id="顺序消费"><a href="#顺序消费" class="headerlink" title="顺序消费"></a>顺序消费</h2><p>顺序消息是指对于一个指定的 Topic ，消息严格按照先进先出（FIFO）的原则进行消息发布和消费，即先发布的消息先消费，后发布的消息后消费。</p>
 <p><strong>分区顺序消息</strong></p>
 <blockquote>
