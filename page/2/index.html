@@ -417,6 +417,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/09/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/">
+										面试相关
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -801,6 +810,42 @@
 		<div id="index" oncontextmenu="return false;">
 	
 		<div class="index-li">
+			<a href="/2023/10/31/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E6%80%A7%E8%83%BD/">
+				<h2 class="index-title">
+					系统性能
+				</h2>
+				<div class="index-brief">
+					提升系统性能经验
+架构设计：
+
+冗余能力:
+
+如果一个系统的可用性为90%，两台机器的可用性为1-0.1*0.1=99%，机器越多，可用性会更高。
+对于DB这种对连接数有瓶颈的，需要在业务上做好分库分表也是一种冗余的水平扩展能力。
+
+故障转移能力:
+
+部分业务场景对于DB的依赖性很高，在DB不可用的
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-10-31</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/架构相关/">架构相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/Dubbo/">
 				<h2 class="index-title">
 					Dubbo
@@ -1114,38 +1159,6 @@ Redis 线程不会阻
                                     <span>
                                         <i class="fa fa-folder" aria-hidden="true"></i>
                                         <a href="/categories/数据库/">数据库</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/10/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/ZooKeeper/">
-				<h2 class="index-title">
-					ZooKeeper
-				</h2>
-				<div class="index-brief">
-					基本结构数据模型
-
-ZooKeeper中的数据模型是一种树形结构。
-具有一个固定的根节点，我们可以在根节点下创建子节点，并在子节点下继续创建下一级节点。
-树中的每一层级用斜杠（&#x2F;）分隔开，只能用绝对路径（如get /work/task1）的方式查询节点，不能使用相对路径。
-
-为什么 Zoo
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-19</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/中间件/">中间件</a>
 										
                                     </span>
                                 
