@@ -1230,6 +1230,22 @@ UPDATE student SET ... # 排他锁
 <p>类似于<code>ES、Solr</code>搜索中间件中的分词器。</p>
 <p>只能创建在<code>CHAR、VARCHAR、TEXT</code>等这些文本类型字段上，而且使用全文索引查询时，条件字符数量必须大于<code>3</code>才生效。</p>
 </blockquote>
+<p><strong>哪些情况下适合建索引</strong></p>
+<blockquote>
+<p>作为where条件语句查询的字段。</p>
+<p>关联字段需要建立索引。</p>
+<p>排序字段可以建立索引。</p>
+<p>分组字段可以建立索引。</p>
+<p>统计字段可以建立索引，如<code>count()，max()</code>。</p>
+</blockquote>
+<p><strong>哪些情况下不适合建索引</strong></p>
+<blockquote>
+<p>频繁更新的字段不适合建立索引。</p>
+<p>where条件中用不到的字段不适合建立索引。</p>
+<p>表数据比较少的不需要建索引。</p>
+<p>数据重复且发布比较均匀的的字段不适合建索引。</p>
+<p>参与列计算的列不适合建索引。</p>
+</blockquote>
 <p><strong>索引覆盖</strong></p>
 <blockquote>
 <p>要查询的列，在使用的索引中已经包含，这种情况称之为索引覆盖。</p>
@@ -1918,7 +1934,7 @@ SELECT ... FOR SHARE; # (8.0新增语法)
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1699580456746-701',
+	        blogId: '22377-1699661831041-982',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -1968,7 +1984,7 @@ SELECT ... FOR SHARE; # (8.0新增语法)
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1699580456746-701',
+        blogId: '22377-1699661831041-982',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',
