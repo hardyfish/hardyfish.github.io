@@ -96,6 +96,10 @@
 		<li class="menu-item">
 			<a href="/个人公众号.jpg" class="menu-item-link" target="_blank">我的公众号</a>
 		</li>
+
+		<li class="menu-item">
+			<a href="/网站反馈群.jpeg" class="menu-item-link" target="_blank">网站反馈群</a>
+		</li>
 		
 		<li class="menu-item">
 			<a href="https://tech.meituan.com/" class="menu-item-link" target="_blank">
@@ -240,6 +244,15 @@
 										基础知识
 									</a>
 									
+							<ul>
+								<li class="file">
+									<a href="/2023/11/11/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Go%E5%9F%BA%E7%A1%80/">
+										Go基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 							<ul>
 								<li class="file">
 									<a href="/2022/11/27/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/JVM/">
@@ -863,14 +876,34 @@
 <p>官网文档：<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html</a></p>
 <p>中文权威指南：<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html">https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html</a></p>
 </blockquote>
-<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><strong>正排索引</strong></p>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><strong>index索引</strong></p>
+<blockquote>
+<p>类比称mysql中的database数据库，存储数据的地方。</p>
+</blockquote>
+<p><strong>type类型</strong></p>
+<blockquote>
+<p>用于定义数据结构，类似mysql的一张表，属于index中的逻辑分类。</p>
+</blockquote>
+<p><strong>mapping</strong></p>
+<blockquote>
+<p>定义存储字段类型。</p>
+</blockquote>
+<p><strong>document</strong></p>
+<blockquote>
+<p>类比mysql中一行数据，不同之处在于es中每个文档可以有不同的字段。</p>
+</blockquote>
+<p><strong>field字段</strong></p>
+<blockquote>
+<p>类比mysql中的字段，属于es的最小单位。</p>
+</blockquote>
+<p><strong>正排索引</strong></p>
 <blockquote>
 <p>文档ID到文档内容、单词的关联关系。</p>
 </blockquote>
 <p><strong>倒排索引</strong></p>
 <blockquote>
 <p>单词到文档ID的关联关系。</p>
-<p>倒排索引主要包含两个部分：</p>
+<p>倒排索引主要包含两个部分。</p>
 <p>单词词典：</p>
 <ul>
 <li><p>记录所有文档的单词。</p>
@@ -878,7 +911,10 @@
 <li><p>记录单词到倒排列表的关联信息。</p>
 </li>
 </ul>
-<p>倒排列表：记录了单词对应的文档集合，由倒排索引项组成。</p>
+<p>倒排列表：</p>
+<ul>
+<li>记录了单词对应的文档集合，由倒排索引项组成。</li>
+</ul>
 <p>倒排索引项包含如下信息：</p>
 <ul>
 <li>文档ID，用于获取原始信息。</li>
@@ -887,10 +923,53 @@
 <li>偏移，记录单词在文档的开始和结束位置，用于做高亮显示。</li>
 </ul>
 </blockquote>
-<p><strong>Term和Match的区别</strong></p>
+<p><strong>Term和Match</strong></p>
 <blockquote>
-<p>Term：完全匹配，精确查询，搜索前不会再对搜索词进行分词拆解。</p>
-<p>Match：搜索的时会先进行分词拆分，拆完后，再来匹配。</p>
+<p>Term：</p>
+<ul>
+<li>完全匹配，精确查询，搜索前不会再对搜索词进行分词拆解。</li>
+</ul>
+<p>Match：</p>
+<ul>
+<li>搜索的时会先进行分词拆分，拆完后，再来匹配。</li>
+</ul>
+</blockquote>
+<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><p><strong>基本语法</strong></p>
+<blockquote>
+<p><strong>query</strong>：</p>
+<ul>
+<li>代表查询，搜索 类似于SQL的select关键字。</li>
+</ul>
+<p><strong>aggs</strong>：</p>
+<ul>
+<li>代表聚合，类似于SQL的group by关键字，对查询出来的数据进行聚合，求平均值最大值等。</li>
+</ul>
+<p><strong>highlight</strong>：</p>
+<ul>
+<li>对搜索出来的结果中的指定字段进行高亮显示，搜索 中华人民共和国万岁，结果里面符合搜索关键字 全部是红色的高亮显示。</li>
+</ul>
+<p><strong>sort</strong>： </p>
+<ul>
+<li>指定字段对查询结果进行排序显示，类比SQL的order by关键字。</li>
+</ul>
+<p><strong>from</strong>和<strong>size</strong>： </p>
+<ul>
+<li>对查询结果分页，类似于SQL的limit关键字。</li>
+</ul>
+<p><strong>post_filter</strong>：</p>
+<ul>
+<li>后置过滤器，在聚合查询结果之后，再对查询结果进行过滤。</li>
+</ul>
+</blockquote>
+<p><strong>字段类型</strong></p>
+<blockquote>
+<p>string类型</p>
+<p>text类型</p>
+<p>keyword类型</p>
+<p>数值类型</p>
+<p>日期类型</p>
+<p>布尔类型</p>
+<p>二进制</p>
 </blockquote>
 <h1 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h1><blockquote>
 <p>分词是指将文本转换成一系列单词的过程，也叫做文本分析。</p>
@@ -900,6 +979,23 @@
 <p>Standard Analyzer：默认分词器，按词切分，小写处理。</p>
 </blockquote>
 <h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1><p><strong>分片</strong></p>
+<blockquote>
+<p>分片是数据的容器，文档保存在分片内，分片又被分配到集群内的各个节点里。</p>
+<p>单台机器无法存储大量数据，es可以将一个索引中的数据切分称多个shard，分布在多台机器上存储。</p>
+<ul>
+<li>有了shard就可以横向扩展，存储更多数据。</li>
+</ul>
+</blockquote>
+<p>主分片：</p>
+<blockquote>
+<p>在索引建立的时候就已经确定了主分片数，但是副本分片数可以随时修改。</p>
+<p>索引内任意一个文档都归属于一个主分片，所以主分片的数目决定着索引能够保存的最大数据量。</p>
+</blockquote>
+<p>副分片：</p>
+<blockquote>
+<p>一个副本分片只是一个主分片的拷贝。</p>
+<p>副本分片作为硬件故障时保护数据不丢失的冗余备份，并为搜索和返回文档等读操作提供服务。</p>
+</blockquote>
 <p>文档到分片的映射算法:</p>
 <blockquote>
 <p>Hash保证数据均匀分布在分片中，Routing作为关键参数，默认为文档ID，<code>number_of_primary_shards</code>为主分片数。</p>
@@ -949,7 +1045,87 @@
 <p>将冷数据写入一个索引中，然后热数据写入另外一个索引中。</p>
 <p>这样可以确保热数据在被预热之后，尽量都让他们留在 ES内存 里，别让冷数据给冲掉。</p>
 </blockquote>
-<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p><strong>深度分页</strong></p>
+<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><strong>写数据</strong></p>
+<blockquote>
+<p>在文档写入时，会根据<code>_routing</code>来计算，得出文档要写入哪个分片。</p>
+<p>写入请求只会写主分片，当主分片写入成功后，会同时把写入请求发送给所有的副本分片。</p>
+<p>当副本分片写入成功后，会传回返回信息给主分片，主分片得到所有副本分片的返回信息后，再返回给客户端。</p>
+</blockquote>
+<p><strong>搜索数据</strong></p>
+<blockquote>
+<p>客户端发送请求到一个 coordinate node（调度节点）。</p>
+<p>协调节点将搜索请求转发到该索引所有的 shard 对应的 primary shard或 replica shard 上。</p>
+<p>query phase：</p>
+<ul>
+<li>每个 shard 将自己的搜索结果（一些 doc id）返回给协调节点。</li>
+<li>由协调节点进行数据的<strong>合并、排序、分页</strong>等操作，产出最终结果。</li>
+</ul>
+<p>fetch phase（读数据过程）：</p>
+<ul>
+<li><p>接着由协调节点根据 <code>doc id</code> 去各个节点上拉取实际的 doc 数据，最终返回给客户端。</p>
+</li>
+<li><p>写请求是写入 primary shard，然后同步给所有的 replica shard。</p>
+</li>
+<li><p>读请求可以从 primary shard 或 replica shard 读取，采用的是随机轮询算法。</p>
+</li>
+</ul>
+</blockquote>
+<p><strong>写入过程</strong></p>
+<blockquote>
+<p><strong>refresh</strong>：</p>
+<ul>
+<li><p>ES 接收数据请求时先存入 ES 的内存中，默认每隔一秒会从内存 buffer 中将数据写入操作系统缓存 os cache。</p>
+</li>
+<li><p>到了 os cache 数据就能被搜索到（所以ES 是近实时的，因为1s 的延迟后执行 refresh 便可让数据被搜索到）。</p>
+</li>
+</ul>
+<p><strong>fsync</strong>：</p>
+<ul>
+<li>translog 会每隔5秒或者在一个变更请求完成之后执行一次 fsync 操作，将 translog 从缓存刷入磁盘，这个操作比较耗时，如果对数据一致性要求不是跟高时建议将索引改为异步，如果节点宕机时会有5秒数据丢失。</li>
+</ul>
+<p><strong>flush</strong>：</p>
+<ul>
+<li>ES 默认每隔30分钟会将 os cache 中的数据刷入磁盘，同时清空 translog 日志文件。</li>
+</ul>
+<p><strong>merge</strong>：</p>
+<ul>
+<li>ES 的一个 index 由多个 shard 组成，而一个 shard 其实就是一个 Lucene 的 index，它又由多个 segment 组成，且 Lucene 会不断地把一些小的 segment 合并成一个大的 segment。</li>
+<li>执行索引操作时，ES会先生成小的segment，ES 有离线的逻辑对小的 segment 进行合并，优化查询性能。</li>
+<li>但是合并过程中会消耗较多磁盘 IO，会影响查询性能。</li>
+</ul>
+</blockquote>
+<p><img src="/images/image-20231111232733271.png" alt="image-20231111232733271"></p>
+<p><strong>删除和更新过程</strong></p>
+<blockquote>
+<p>删除和更新都是写操作，但是<strong>由于 Elasticsearch 中的文档是不可变的</strong>，因此不能被删除或者改动以展示其变更。</p>
+<ul>
+<li><strong>所以 ES 利用 .del 文件 标记文档是否被删除</strong>，磁盘上的每个段都有一个相应的<code>.del</code> 文件。</li>
+</ul>
+<p>如果是删除操作，文档其实并没有真的被删除，而是在 <code>.del</code> 文件中被标记为 deleted 状态。</p>
+<ul>
+<li>该文档依然能匹配查询，但是会在结果中被过滤掉。</li>
+</ul>
+<p>如果是更新操作，就是将旧的 doc 标识为 deleted 状态，然后创建一个新的 doc。</p>
+<p>每次segment merge 的时候，会将多个 segment 文件合并成一个，<strong>同时这里会将标识为 deleted 的 doc 给物理删除掉</strong>，不写入到新的 segment 中，然后将新的 segment 文件写入磁盘，这里会写一个 commit point ，标识所有新的 segment 文件，然后打开 segment 文件供搜索使用，同时删除旧的 segment 文件。</p>
+</blockquote>
+<p><strong>搜索过程</strong></p>
+<blockquote>
+<p>搜索分为两个阶段执行，Query、Fetch。</p>
+<p>Query：</p>
+<ul>
+<li>客户端发送请求到 coordinate node，协调节点将搜索请求广播到所有的 primary shard 或 replica shard。</li>
+<li>每个分片在本地执行搜索并构建一个匹配文档的大小为 from + size 的优先队列。</li>
+<li>每个分片返回各自优先队列中 所有文档的 ID 和排序值 给协调节点，由协调节点及逆行数据的合并、排序、分页等操作，产出最终结果。</li>
+</ul>
+<p>Fetch：</p>
+<ul>
+<li>协调节点根据 doc id 去各个节点上查询实际的 document 数据，由协调节点返回结果给客户端。</li>
+<li>coordinate node 对 doc id 进行哈希路由，将请求转发到对应的 node，此时会使用 round-robin 随机轮询算法，在 primary shard 以及其所有 replica 中随机选择一个，让读请求负载均衡。</li>
+<li>接收请求的 node 返回 document 给 coordinate node。</li>
+<li>coordinate node 返回 document 给客户端。</li>
+</ul>
+</blockquote>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p><strong>深度分页</strong></p>
 <table>
 <thead>
 <tr>
@@ -1136,7 +1312,7 @@ POST ip:port/index/type/_search?scroll=1m
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1699661831041-982',
+	        blogId: '22377-1699717702393-159',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -1186,7 +1362,7 @@ POST ip:port/index/type/_search?scroll=1m
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1699661831041-982',
+        blogId: '22377-1699717702393-159',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',
