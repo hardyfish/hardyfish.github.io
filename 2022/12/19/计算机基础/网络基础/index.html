@@ -1098,48 +1098,84 @@
 <p>Client使用对称密钥解密响应的密文，得到明文内容A。</p>
 <p>Client再次发起HTTPS的请求，使用对称密钥加密请求的明文内容B，然后Server使用对称密钥解密密文，得到明文内容B。</p>
 </blockquote>
-<h1 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h1><h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><p>SQL注入是把SQL命令插入到Web表单提交或页面请求url的查询字符串，破坏原有SQL结构，最终达到欺骗服务器执行恶意的SQL命令。</p>
-<blockquote>
-<p>原理是在一些对server端发起的请求参数中植入一些sql代码，server端在执行sql操作时，会拼接对应参数，同时也将一些sql注入攻击的sql拼接起来，导致会执行一些预期之外的操作。</p>
-</blockquote>
-<p>举例：日常使用的登录接口：在登录界面包括用户名和密码输入框，以及提交按钮，输入用户名和密码，提交。</p>
-<blockquote>
-<p>假设正确的用户名和密码为ls和123456，输入正确的用户名和密码、提交，相当于调用了以下的SQL语句。</p>
-<p><code>SELECT * FROM user WHERE username = &#39;ls&#39; AND password = &#39;123456&#39;</code></p>
-<p>sql中会将#及–以后的字符串当做注释处理，如果我们使用<code>&#39; or 1=1#</code>作为用户名参数，sql语句就如下：</p>
-<p><code>select * from users where username=&#39;&#39; or 1=1#&#39; and password=&#39;123456&#39;</code></p>
-<p>而#会忽略后面的语句，因此上面的sql也等价于：</p>
-<p><code>select * from users where username=&#39;&#39; or 1=1</code></p>
-<p>而1&#x3D;1属于常等型条件，因此这个sql便成为了如下，查询出所有的登陆用户。</p>
-<p><code>select * from users</code></p>
-<p>如果用户名使用这个<code>&#39; or 1=1;delete * from users;#</code>，那么在<code>;</code>之后相当于是另外一条新的sql，这个sql是删除全表。</p>
-</blockquote>
-<p><strong>SQL注入的危害：</strong></p>
-<p>如果网站存在 SQL 注入漏洞，相当于将数据库直接暴露在攻击者面前。</p>
-<p><strong>如何有效防止SQL注入：</strong></p>
-<blockquote>
-<p>数据校验：</p>
-<p>对来自用户的数据，最好做到以下过滤校验(前后端最好能同时校验)：</p>
+<h1 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h1><h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><blockquote>
+<p>一种代码注入技术，通过把SQL命令插入到Web表单递交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。</p>
+<p>SQL注入攻击者通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，传入后端的SQL服务器执行。</p>
 <ul>
-<li><p>检查输入的数据是否具有所期望的数据格式。</p>
+<li>结果是可以执行恶意攻击者设计的任意SQL命令。</li>
+</ul>
+</blockquote>
+<p>例如，Web应用程序具有以下登录页面:</p>
+<pre><code>User Name: admin
+Password: 1234
+</code></pre>
+<blockquote>
+<p>攻击者在密码框中输入:</p>
+</blockquote>
+<pre><code>&#39;1234 &#39; or &#39;1&#39;=&#39;1
+</code></pre>
+<blockquote>
+<p>之后构造的SQL查询为:</p>
+</blockquote>
+<pre><code class="sql">SELECT * FROM users WHERE name=&#39;admin&#39; AND password=&#39;1234 &#39; or &#39;1&#39;=&#39;1&#39;;
+</code></pre>
+<blockquote>
+<p>由于’或’1’&#x3D;’1 总是为真，所以可以绕过密码验证登录系统。</p>
+</blockquote>
+<p><strong>如何防止SQL注入：</strong></p>
+<blockquote>
+<p>SQL注入可以通过多种方式进行防范，如使用参数化的SQL语句、输入验证和过滤等方法。</p>
+</blockquote>
+<p>PreparedStatement防止SQL注入:</p>
+<blockquote>
+<p>PreparedStatement会先将SQL语句发送到数据库进行预编译，之后再将参数值单独传递，从而避免了SQL语句拼接的过程。</p>
+</blockquote>
+<p>Mybatis中<code>#&#123;&#125;</code>防止SQL注入：</p>
+<blockquote>
+<p>在MyBatis中，可以使用<code>#&#123;&#125;</code>来防止SQL注入。</p>
+<ul>
+<li><p><code>#&#123;&#125;</code>是MyBatis提供的PreparedStatement的参数占位符。</p>
 </li>
-<li><p>使用数据库特定的敏感字符转义函数把用户提交上来的非数字数据进行转义。</p>
+<li><p>MyBatis会自动将<code>#&#123;&#125;</code>替换为? ，并且对用户传入的参数自动进行Escape处理，以防止SQL注入。</p>
 </li>
 </ul>
-<p>权限限制：</p>
-<ul>
-<li>严格限制Web应用的数据库的操作权限，从而最大限度的减少注入攻击对数据库的危害。</li>
-</ul>
-<p>SQL预编译:</p>
-<ul>
-<li>通过prepareStatementsql进行预编译，将绑定的参数传到mysql服务器，mysql服务器对参数进行编译，即填充到相应的占位符的过程中，做了转义操作。</li>
-</ul>
 </blockquote>
-<p>在编写MyBatis的映射语句时，尽量采用<code>#&#123;xxx&#125;</code>这样的格式。这样格式的参数会直接参与SQL编译，从而不能避免注入攻击。</p>
-<p>若不得不使用<code>$&#123;xxx&#125;</code>这样的参数，要手工地做好过滤工作，来防止SQL注入攻击。</p>
+<p>对请求参数的敏感词汇进行过滤：</p>
 <blockquote>
-<p>涉及到动态表名和列名时，只能使用<code>$&#123;xxx&#125;</code>这样的参数格式。</p>
+<p>对用户请求参数中的敏感词汇进行过滤，可以防止多种注入攻击，包括SQL注入、XSS等。 </p>
+<p>常见的防范措施包括:</p>
+<ul>
+<li>构建敏感词汇库，收集所有可能的敏感词汇，如delete、drop、script等，并定期更新。</li>
+<li>对用户请求参数进行遍历，判断参数值是否包含敏感词汇，可以用正则表达式或包含关系来判断。</li>
+<li>对关键参数与业务规则进行校验，例如长度、类型、允许范围等。</li>
+<li>考虑在边界处过滤，如WAF、防火墙等。</li>
+<li>输出时对敏感数据编码或替换。</li>
+</ul>
 </blockquote>
+<p>Nginx反向代理防止SQL注入：</p>
+<blockquote>
+<p>可以使用nginx的<code>ngx_http_rewrite_module</code>模块，在server区域加入过滤规则，对请求参数中敏感字符进行过滤或拦截。</p>
+<p><strong>WAF功能</strong>：</p>
+<ul>
+<li>启用nginx的Web应用防火墙功能，对疑似SQL注入的请求进行拦截，如检测特殊字符，语句规则等。</li>
+</ul>
+<p><strong>访问控制：</strong> </p>
+<ul>
+<li>通过nginx的access模，禁止某些IP地址或子网段访问，限制请求频率，以防止滥用。</li>
+</ul>
+<p><strong>隐藏数据库结构信息</strong>：</p>
+<ul>
+<li>基于请求中的User-Agent等信息，显示不同的错误页面，避免泄露数据库元信息。</li>
+</ul>
+<p><strong>连接数据库的用户权限控制</strong>：</p>
+<ul>
+<li>只允许访问应用需要的最小权限集。</li>
+</ul>
+</blockquote>
+<pre><code class="nginx">if ($args ~* &quot;select|insert|update|delete|drop|exec&quot;) &#123;
+ return 403;
+&#125;
+</code></pre>
 <h2 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h2><p>Cross-Site Scripting(跨站脚本攻击)，简称XSS，是一种代码注入攻击。</p>
 <blockquote>
 <p>攻击者通过在目标网站上注入恶意脚本，使之在用户的浏览器上运行。</p>

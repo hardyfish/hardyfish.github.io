@@ -1421,21 +1421,34 @@
 </blockquote>
 <img src="/images/image-20231012145132206.png" alt="image-20231012145132206" style="zoom:80%;" />
 
-<p><strong>用uid分库，uname上的查询怎么办？</strong></p>
-<p>业务场景：用户中心，数据量大，通过uid分库后，通过uname路由不到库。</p>
+<p><strong>分库分表后非分片键如何查询</strong></p>
 <blockquote>
-<p>思路：uname基因融入uid：</p>
+<p><strong>基因法:</strong></p>
+<p>将分片键的信息保存在想要查询的列中，这样通过查询的列就能直接知道所在的分片信息，叫做基因法。</p>
 <ul>
-<li>从uname抽取基因，融入uid中。</li>
+<li>基因法的原理理论：对一个数取余2的n次方，那么余数就是这个数的二进制的最后n位数。</li>
 </ul>
+<p>这样实现的缺点是，主键值会变大一些，存储也会相应变大，这样空间换时间的设计。</p>
+<ul>
+<li>实际上淘宝的订单号也是这样构建的。</li>
+</ul>
+<p>假如现在根据<code>user_id</code>进行分片，采用<code>user_id % 16</code>的方式来进行数据库路由，这里的<code>user_id%16</code>，其本质是<code>user_id</code>的最后4个bit位 <strong>log(16,2) &#x3D; 4</strong> 决定这行数据落在哪个分片上，这4个bit就是分片基因。</p>
 </blockquote>
-<p>假设分8库，采用<code>uid%8</code>路由，uid的最后3个bit决定这条数据落在哪个库上，这3个bit就是所谓的基因。</p>
+<p><img src="/images/image-20231112224850091.png" alt="image-20231112224850091"></p>
 <blockquote>
-<p>在用户注册时，设计函数uname生成3bit基因，<code>uname_gene=f(uname)</code></p>
-<p>同时，生成61bit的全局唯一id，作为用户的标识</p>
-<p>接着把3bit的<code>uname_gene</code>也作为uid的一部分</p>
-<p>生成64bit的uid，由id和<code>uname_gene</code>拼装而成，并按照uid分库插入数据</p>
-<p>用uname来访问时，先通过函数由uname再次复原3bit基因，<code>uname_gene=f(uname)</code>，通过<code>uname_gene%8</code>直接定位到库</p>
+<p>如上图所示，<code>user_id=20160169</code>的用户创建了一个订单（20160169的二进制表示为：1001100111001111010101001)</p>
+<ul>
+<li>使用<code>user_id%16</code>分片，决定这行数据要插入到哪个分片中</li>
+<li>分库基因是<code>user_id</code>的最后4个bit，<code>log(16,2) = 4</code>，即1001</li>
+<li>在生成<code>order_id</code>时，先使用一种分布式ID生成算法生成前60bit（上图中绿色部分）</li>
+<li>将分库基因加入到<code>order_id</code>的最后4个bit（上图中粉色部分）</li>
+<li>拼装成最终的64bit订单<code>order_id</code>（上图中蓝色部分）</li>
+</ul>
+<p>这样保证了同一个用户创建的所有订单都落到了同一个分片上，<code>order_id</code>的最后4个bit都相同，于是：</p>
+<ul>
+<li>通过<code>user_id %16</code> 能够定位到分片</li>
+<li>通过<code>order_id % 16</code>也能定位到分片</li>
+</ul>
 </blockquote>
 <h1 id="分布式算法"><a href="#分布式算法" class="headerlink" title="分布式算法"></a>分布式算法</h1><h2 id="Paxos算法"><a href="#Paxos算法" class="headerlink" title="Paxos算法"></a>Paxos算法</h2><p>在常见的 <strong>分布式系统</strong> 中，总会发生 <strong>节点宕机</strong> 或 <strong>网络异常</strong> (包括消息的 <strong>重复</strong>、<strong>丢失</strong>、<strong>延迟</strong>、<strong>乱序</strong>、<strong>网络分区</strong>) 等情况。</p>
 <blockquote>
@@ -1605,7 +1618,7 @@
 </blockquote>
 <p>空回滚问题:</p>
 <blockquote>
-<p>在 try 阶段服务 1 这个节点发生了故障，try 阶段在不考虑重试的情况下，全局事务必须要走向结束状态，这样就需要在服务上执行一次 cancel 操作，这样就空跑了一次回滚操作。</p>
+<p>在 try 阶段服务 发生了故障，try 阶段在不考虑重试的情况下，全局事务必须要走向结束状态，这样就需要在服务上执行一次 cancel 操作，这样就空跑了一次回滚操作。</p>
 <p>解决办法：</p>
 <ul>
 <li><p>第一阶段 Try 方法里会插入一条记录（事务记录表），表示一阶段执行了。</p>
