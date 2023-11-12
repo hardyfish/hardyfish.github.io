@@ -553,15 +553,6 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2023/10/21/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/DDD/">
-										DDD
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
 									<a href="/2023/11/02/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E6%9E%B6%E6%9E%84%E5%9B%BE/">
 										架构图
 									</a>
@@ -1167,6 +1158,18 @@ tags:
 systemctl enable nginx
 
 sudo nginx -s reload
+</code></pre>
+<blockquote>
+<p>配置 Nginx 托管文件目录:</p>
+<ul>
+<li>创建目录并修改目录所有权和权限。</li>
+</ul>
+</blockquote>
+<pre><code>mkdir -p /usr/share/nginx/mysite
+
+chown -R $USER:$USER /usr/share/nginx/mysite
+
+chmod -R 755 /usr/share/nginx/mysite
 </code></pre>
 <blockquote>
 <p>安装GIT：</p>
