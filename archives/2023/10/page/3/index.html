@@ -878,10 +878,33 @@ https://movie.douban.com/subject/130624
 					Nginx
 				</h2>
 				<div class="index-brief">
-					基本配置反向代理在浏览器输入 www.abc.com，从 nginx 服务器跳转到 linux 系统 tomcat 主页面。
-    server &#123;
-        listen       80;   
-        server_name  192.168.4.32;   #监听地
+					配置文件
+
+
+
+配置块
+功能描述
+
+
+
+全局块
+与Nginx运行相关的全局设置
+
+
+events块
+与网络连接有关的设置
+
+
+http块
+代理、缓存、日志、虚拟主机等的配置
+
+
+server块
+虚拟主机的参数设置（一个http块可包含多个server块）
+
+
+location块
+定义请求路由及页面处
 					...
 				</div>
 			</a>

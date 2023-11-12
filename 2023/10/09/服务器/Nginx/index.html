@@ -860,112 +860,503 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<h1 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h1><h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><p>在浏览器输入 <code>www.abc.com</code>，从 nginx 服务器跳转到 linux 系统 tomcat 主页面。</p>
-<pre><code class="nginx">    server &#123;
-        listen       80;   
-        server_name  192.168.4.32;   #监听地址
-   
-        location  / &#123;       
-           root html;  #/html目录
-           proxy_pass http://127.0.0.1:8080;  #请求转向
-           index  index.html index.htm;      #设置默认页       
-        &#125; 
-    &#125;
-</code></pre>
-<p>根据在浏览器输入的路径不同，跳转到不同端口的服务中。</p>
-<pre><code class="nginx">    server &#123;
-        listen       9000;   
-        server_name  192.168.4.32;   #监听地址       
-        
-        location  ~ /example1/ &#123;  
-           proxy_pass http://127.0.0.1:5000;         
-        &#125; 
+		<p><strong>配置文件</strong></p>
+<table>
+<thead>
+<tr>
+<th>配置块</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>全局块</td>
+<td>与Nginx运行相关的全局设置</td>
+</tr>
+<tr>
+<td>events块</td>
+<td>与网络连接有关的设置</td>
+</tr>
+<tr>
+<td>http块</td>
+<td>代理、缓存、日志、虚拟主机等的配置</td>
+</tr>
+<tr>
+<td>server块</td>
+<td>虚拟主机的参数设置（一个http块可包含多个server块）</td>
+</tr>
+<tr>
+<td>location块</td>
+<td>定义请求路由及页面处理方式</td>
+</tr>
+</tbody></table>
+<img src="/images/image-20231112204121913.png" alt="image-20231112204121913" style="zoom:45%;" />
 
-        location  ~ /example2/ &#123;  
-           proxy_pass http://127.0.0.1:8080;         
-        &#125; 
-    &#125;
-</code></pre>
-<p><strong>location</strong> 指令说明：</p>
 <blockquote>
-<p><strong>~ :</strong> 表示uri包含正则表达式，且区分大小写。</p>
-<p><strong>~* :</strong> 表示uri包含正则表达式，且不区分大小写。</p>
-<p><strong>&#x3D; :</strong> 表示uri不含正则表达式，要求严格匹配。</p>
+<p>配置文件示例：</p>
 </blockquote>
-<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>在浏览器地址栏输入 <code>http://192.168.4.32/example/a.html</code> ，平均到 5000 和 8080 端口中，实现负载均衡效果。</p>
-<pre><code class="nginx">    upstream myserver &#123;   
-      server 192.167.4.32:5000;
-      server 192.168.4.32:8080;
-    &#125;
-    
+<pre><code class="nginx"># 全局段配置
+# ------------------------------
 
+# 指定运行nginx的用户或用户组，默认为nobody。
+#user administrator administrators;
+
+# 设置工作进程数，通常设置为等于CPU核心数。
+#worker_processes 2;
+
+# 指定nginx进程的PID文件存放位置。
+#pid /nginx/pid/nginx.pid;
+
+# 指定错误日志的存放路径和日志级别。
+error_log log/error.log debug;
+
+# events段配置信息
+# ------------------------------
+events &#123;
+    # 设置网络连接序列化，用于防止多个进程同时接受到新连接的情况，这种情况称为&quot;惊群&quot;。
+    accept_mutex on;
+
+    # 设置一个进程是否可以同时接受多个新连接。
+    multi_accept on;
+
+    # 设置工作进程的最大连接数。
+    worker_connections  1024;
+&#125;
+
+# http配置段，用于配置HTTP服务器的参数。
+# ------------------------------
+http &#123;
+    # 包含文件扩展名与MIME类型的映射。
+    include       mime.types;
+
+    # 设置默认的MIME类型。
+    default_type  application/octet-stream;
+
+    # 定义日志格式。
+    log_format myFormat &#39;$remote_addr–$remote_user [$time_local] $request $status $body_bytes_sent $http_referer $http_user_agent $http_x_forwarded_for&#39;;
+
+    # 指定访问日志的存放路径和使用的格式。
+    access_log log/access.log myFormat;
+
+    # 允许使用sendfile方式传输文件。
+    sendfile on;
+
+    # 限制每次调用sendfile传输的数据量。
+    sendfile_max_chunk 100k;
+
+    # 设置连接的保持时间。
+    keepalive_timeout 65;
+
+    # 定义一个上游服务器组。
+    upstream mysvr &#123;   
+      server 127.0.0.1:7878;
+      server 192.168.10.121:3333 backup;  #此服务器为备份服务器。
+    &#125;
+
+    # 定义错误页面的重定向地址。
+    error_page 404 https://www.baidu.com;
+
+    # 定义一个虚拟主机。
     server &#123;
-        listen       80;   #监听端口
-        server_name  192.168.4.32;   #监听地址
-   
-        location  / &#123;       
-           root html;  #html目录
-           index index.html index.htm;  #设置默认页
-           proxy_pass  http://myserver;  #请求转向 myserver 定义的服务器列表      
+        # 设置单个连接上的最大请求次数。
+        keepalive_requests 120;
+
+        # 设置监听的端口和地址。
+        listen       4545;
+        server_name  127.0.0.1;
+
+        # 定义location块，用于匹配特定的请求URI。
+        location  ~*^.+$ &#123;
+           # 设置请求的根目录。
+           #root path;
+
+           # 设置默认页面。
+           #index vv.txt;
+
+           # 将请求转发到上游服务器组。
+           proxy_pass  http://mysvr;
+
+           # 定义访问控制规则。
+           deny 127.0.0.1;
+           allow 172.18.5.54;          
         &#125; 
     &#125;
+&#125;
 </code></pre>
-<p><strong>分配服务器策略</strong></p>
+<blockquote>
+<p>location 路径映射：</p>
 <ul>
-<li><strong>轮询</strong>（默认）：按请求的时间顺序依次逐一分配，如果服务器down掉，能自动剔除。</li>
-<li><strong>权重</strong>：weight 越高，被分配的请求越多，默认为 1。</li>
+<li><p><code>=</code>：精确匹配，如果匹配成功，立即停止搜索并处理此请求。</p>
+</li>
+<li><p><code>~</code>：执行正则匹配，区分大小写。</p>
+</li>
+<li><p><code>~*</code>：执行正则匹配，不区分大小写。</p>
+</li>
+<li><p><code>!~</code>：正则匹配，区分大小写不匹配。</p>
+</li>
+<li><p><code>!~*</code>：正则匹配，不区分大小写不匹配。</p>
+</li>
+<li><p><code>^~</code>：前缀匹配，如果匹配成功，不再匹配其他<code>location</code>，且不查询正则表达式。</p>
+</li>
+<li><p><code>@</code>：指定命名的<code>location</code>，主要用于内部重定向请求，如 <code>error_page</code> 和 <code>try_files</code>。</p>
+</li>
+<li><p><code>uri</code>：待匹配的请求字符串，可以是普通字符串或包含正则表达式。</p>
+</li>
 </ul>
+<p>优先级顺序：无特定标识 &lt; <code>^~</code> &lt; <code>=</code> &lt; 正则匹配 (<code>~</code>, <code>~*</code>, <code>!~</code>, <code>!~*</code>)</p>
+</blockquote>
+<pre><code>location [ = | ~ | ~* | !~ | !~* | ^~ | @ ] uri &#123;...&#125;
+</code></pre>
+<pre><code class="nginx">location = / &#123;
+    # 精确匹配 /，主机名后面不能带任何字符串
+    # http://abc.com [匹配成功]
+    # http://abc.com/index [匹配失败]
+&#125;
+
+location ^~ /img/ &#123;
+    # 以 /img/ 开头的请求，都会匹配上
+    # http://abc.com/img/a.jpg [匹配成功]
+    # http://abc.com/img/b.mp4 [匹配成功]
+&#125;
+
+location ~* /Example/ &#123;
+    # 忽略 uri 部分的大小写
+    # http://abc.com/test/Example/ [匹配成功]
+    # http://abc.com/example/ [匹配成功]
+&#125;
+
+location /documents &#123;
+    # 如果有正则表达式可以匹配，则优先匹配正则表达式
+    # http://abc.com/documentsabc [匹配成功]
+&#125;
+
+location / &#123;
+    # http://abc.com/abc [匹配成功]
+&#125;
+</code></pre>
+<p><strong>内置变量</strong></p>
+<blockquote>
+<p>nginx的配置文件中可以使用的内置变量以美元符<code>$</code>开始。</p>
+<ul>
+<li>其中，大部分预定义的变量的值由客户端发送携带。</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>$args</code></td>
+<td>请求行中的参数，同<code>$query_string</code></td>
+</tr>
+<tr>
+<td><code>$content_length</code></td>
+<td>请求头中的Content-length字段</td>
+</tr>
+<tr>
+<td><code>$content_type</code></td>
+<td>请求头中的Content-Type字段</td>
+</tr>
+<tr>
+<td><code>$document_root</code></td>
+<td>当前请求在root指令中指定的值</td>
+</tr>
+<tr>
+<td><code>$host</code></td>
+<td>请求行的主机名，或请求头字段 Host 中的主机名</td>
+</tr>
+<tr>
+<td><code>$http_user_agent</code></td>
+<td>客户端agent信息</td>
+</tr>
+<tr>
+<td><code>$http_cookie</code></td>
+<td>客户端cookie信息</td>
+</tr>
+<tr>
+<td><code>$limit_rate</code></td>
+<td>可以限制连接速率的变量</td>
+</tr>
+<tr>
+<td><code>$request_method</code></td>
+<td>客户端请求的动作，如GET或POST</td>
+</tr>
+<tr>
+<td><code>$remote_addr</code></td>
+<td>客户端的IP地址</td>
+</tr>
+<tr>
+<td><code>$remote_port</code></td>
+<td>客户端的端口</td>
+</tr>
+<tr>
+<td><code>$remote_user</code></td>
+<td>已经经过Auth Basic Module验证的用户名</td>
+</tr>
+<tr>
+<td><code>$request_filename</code></td>
+<td>当前请求的文件路径</td>
+</tr>
+<tr>
+<td><code>$scheme</code></td>
+<td>HTTP方法（如http，https）</td>
+</tr>
+<tr>
+<td><code>$server_protocol</code></td>
+<td>请求使用的协议，如HTTP&#x2F;1.0或HTTP&#x2F;1.1</td>
+</tr>
+<tr>
+<td><code>$server_addr</code></td>
+<td>服务器地址</td>
+</tr>
+<tr>
+<td><code>$server_name</code></td>
+<td>服务器名称</td>
+</tr>
+<tr>
+<td><code>$server_port</code></td>
+<td>请求到达服务器的端口号</td>
+</tr>
+<tr>
+<td><code>$request_uri</code></td>
+<td>包含请求参数的原始URI</td>
+</tr>
+<tr>
+<td><code>$uri</code></td>
+<td>不带请求参数的当前URI</td>
+</tr>
+<tr>
+<td><code>$document_uri</code></td>
+<td>与<code>$uri</code>相同</td>
+</tr>
+</tbody></table>
+<h1 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h1><p><strong>反向代理</strong></p>
+<blockquote>
+<p>允许Nginx将来自客户端的请求转发到后端服务器，并将后端服务器的响应返回给客户端。</p>
+<p>使用<code>location</code>块中的<code>proxy_pass</code>指令：</p>
+<ul>
+<li><p><code>proxy_pass</code>：定义后端服务器的地址。</p>
+</li>
+<li><p><code>proxy_set_header</code>：修改从客户端传递到代理服务器的请求头。</p>
+</li>
+<li><p><code>proxy_hide_header</code>：隐藏从代理服务器返回的响应头。</p>
+</li>
+<li><p><code>proxy_redirect</code>：修改从代理服务器返回的响应头中的<code>Location</code>和<code>Refresh</code>头字段。</p>
+</li>
+</ul>
+<p><strong>注意事项</strong></p>
+<ul>
+<li><p>当使用<code>proxy_pass</code>指令时，确保后端服务器是可用的，否则Nginx将返回错误。</p>
+</li>
+<li><p>使用<code>proxy_set_header</code>确保后端服务器接收到正确的请求头。</p>
+</li>
+</ul>
+</blockquote>
+<pre><code class="nginx">location /some/path/ &#123;
+    proxy_pass http://your_backend_address;
+&#125;
+</code></pre>
+<blockquote>
+<p>例子：所有发送到<code>example.com</code>的请求都被代理到<code>localhost:8080</code>。</p>
+</blockquote>
+<pre><code class="nginx">server &#123;
+    listen 80;
+    server_name example.com;
+
+    location / &#123;
+        proxy_pass http://localhost:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>负载均衡</strong></p>
+<blockquote>
+<p>当有多台服务器时，代理服务器根据规则将请求分发到指定的服务器上处理。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>策略名称</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>RR (round robin)</strong></td>
+<td>默认的负载均衡方法，按时间顺序逐一分配到不同的后端服务器</td>
+<td><code>upstream web_servers &#123; server localhost:8081; server localhost:8082; &#125;</code></td>
+</tr>
+<tr>
+<td><strong>热备</strong></td>
+<td>当主服务器发生故障时，才将流量转发到备用服务器</td>
+<td><code>upstream web_servers &#123; server 127.0.0.1:7878; server 192.168.10.121:3333 backup; &#125;</code></td>
+</tr>
+<tr>
+<td><strong>权重</strong></td>
+<td>根据预设权重分配请求，权重越高的服务器接收的请求越多</td>
+<td><code>upstream web_servers &#123; server localhost:8081 weight=1; server localhost:8082 weight=2; &#125;</code></td>
+</tr>
+<tr>
+<td><strong>ip_hash</strong></td>
+<td>根据客户端IP地址的hash结果分配请求，确保特定客户端IP的请求总是发给同一个后端服务器</td>
+<td><code>upstream test &#123; ip_hash; server localhost:8080; server localhost:8081; &#125;</code></td>
+</tr>
+<tr>
+<td><strong>fair (第三方)</strong></td>
+<td>根据后端服务器的响应时间分配请求，响应时间短的优先分配</td>
+<td><code>upstream backend &#123; fair; server localhost:8080; server localhost:8081; &#125;</code></td>
+</tr>
+<tr>
+<td><strong>url_hash (第三方)</strong></td>
+<td>根据请求的URL的hash结果分配请求，确保同一个URL的请求总是发给同一个后端服务器</td>
+<td><code>upstream backend &#123; hash_method crc32; hash $request_uri; server localhost:8080; server localhost:8081; &#125;</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>权重</strong>：weight 越高，被分配的请求越多，默认为 1。</p>
+</blockquote>
 <pre><code class="nginx">      upstream myserver &#123;   
         server 192.167.4.32:5000 weight=10;
         server 192.168.4.32:8080 weight=5;
       &#125;
 </code></pre>
-<p><strong>ip</strong>：按请求 ip 的 hash 值分配，每个请求固定访问一个后端服务器。</p>
-<pre><code class="nginx">      upstream myserver &#123; 
-        ip_hash;  
-        server 192.167.4.32:5000;
-        server 192.168.4.32:8080;
-      &#125;
-</code></pre>
-<p><strong>fair</strong>：按后端服务器的响应时间来分配，响应时间短的优先分配到请求。</p>
-<pre><code class="nginx">      upstream myserver &#123; 
-        fair;  
-        server 192.168.4.32:5000;
-        server 192.168.4.32:8080;
-      &#125;
-</code></pre>
-<h2 id="动静分离"><a href="#动静分离" class="headerlink" title="动静分离"></a>动静分离</h2><p>通过浏览器地址栏访问 <code>www.abc.com/a.html</code> ，访问静态资源服务器的静态资源内容。</p>
-<p>通过浏览器地址栏访问 <code>www.abc.com/a.jsp</code> ，访问动态资源服务器的动态资源内容。</p>
-<pre><code class="nginx">upstream static &#123;   
-    server 192.167.4.31:80;
+<p><strong>动静分离</strong></p>
+<blockquote>
+<p>动静分离是指将动态内容和静态内容分开处理。</p>
+<ul>
+<li><p>静态内容通常包括：图片、CSS、JavaScript、HTML文件等，这些内容不需要经常更改。</p>
+</li>
+<li><p>而动态内容则是经常变化的，如：PHP、ASP、JSP、Servlet等生成的内容。</p>
+</li>
+</ul>
+<p><strong>注意事项</strong>：</p>
+<ul>
+<li>确保静态文件路径配置正确，避免404错误。</li>
+<li>使用<code>expires</code>指令为静态内容设置缓存，这可以减少服务器的负载并提高页面加载速度。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>直接为静态内容设置一个别名或根目录。</p>
+<p>所有的静态文件都被存放在<code>/path/to/static/files</code>目录下。</p>
+<ul>
+<li><code>expires</code>指令设置了静态文件的缓存时间。</li>
+</ul>
+</blockquote>
+<pre><code class="nginx">location ~* .(jpg|jpeg|png|gif|ico|css|js)$ &#123;
+    root /path/to/static/files;
+    expires 30d;  # 设置缓存时间
 &#125;
-
-upstream dynamic &#123;   
-    server 192.167.4.32:8080;
+</code></pre>
+<blockquote>
+<p>使用alias别名。</p>
+<p>如果静态文件不在项目的主目录下，可以使用<code>alias</code>来指定静态文件的实际路径。</p>
+<p>URL中的<code>/static/</code>会映射到文件系统的<code>/path/to/static/files/</code>。</p>
+</blockquote>
+<pre><code class="nginx">location /static/ &#123;
+    alias /path/to/static/files/;
+</code></pre>
+<blockquote>
+<p>代理动态内容：</p>
+<ul>
+<li>对于动态内容，可能需要将请求代理到后端的应用服务器，如Tomcat、uWSGI等。</li>
+</ul>
+</blockquote>
+<pre><code class="nginx">location / &#123;
+    proxy_pass http://backend_server_address;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
 &#125;
+</code></pre>
+<p><strong>跨域</strong></p>
+<blockquote>
+<p>跨域资源共享（CORS）是一种安全策略，用于控制哪些网站可以访问资源。</p>
+<p>当前端应用程序和后端API位于不同的域上时，通常会遇到跨域问题。</p>
+<ul>
+<li>Nginx可以通过设置响应头来帮助解决这个问题。</li>
+</ul>
+<p>在生产环境中，出于安全考虑，建议不要使用 <code>&#39;Access-Control-Allow-Origin&#39; &#39;*&#39;</code>，而是指定确切的域名。</p>
+</blockquote>
+<img src="/images/image-20231112205711768.png" alt="image-20231112205711768" style="zoom:50%;" />
 
-server &#123;
-    listen       80;   #监听端口
-    server_name  www.abc.com; 监听地址
+<pre><code class="nginx">location / &#123;
+    # 其他配置...
 
-    # 拦截动态资源
-    location ~ .*\.(php|jsp)$ &#123;
-       proxy_pass http://dynamic;
+    # 设置允许来自所有域名请求。如果需要指定域名，将&#39;*&#39;替换为您的域名。
+    add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;;
+
+    # 允许的请求方法。
+    add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, OPTIONS&#39;;
+
+    # 允许的请求头。
+    add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&#39;;
+
+    # 允许浏览器缓存预检请求的结果，单位为秒。
+    add_header &#39;Access-Control-Max-Age&#39; 1728000;
+
+    # 允许浏览器在实际请求中携带用户凭证。
+    add_header &#39;Access-Control-Allow-Credentials&#39; &#39;true&#39;;
+
+    # 设置响应类型为JSON。
+    add_header &#39;Content-Type&#39; &#39;application/json charset=UTF-8&#39;;
+
+    # 针对OPTIONS请求单独处理，因为预检请求使用OPTIONS方法。
+    if ($request_method = &#39;OPTIONS&#39;) &#123;
+        return 204;
     &#125;
-   
-    # 拦截静态资源
-    location ~ .*\.(jpg|png|htm|html|css|js)$ &#123;       
-       root /data/;  #html目录
-       proxy_pass http://static;
-       autoindex on;;  #自动打开文件列表
-    &#125;  
 &#125;
+</code></pre>
+<p><strong>防盗链</strong></p>
+<blockquote>
+<p>防盗链是指防止其他网站直接链接到你的网站资源（如图片、视频等），从而消耗服务器带宽。</p>
+<ul>
+<li>Nginx提供了一个非常方便的模块——<code>ngx_http_referer_module</code>，用于实现防盗链功能。</li>
+</ul>
+<p><code>valid_referers</code>：</p>
+<ul>
+<li>定义了合法的来源页面：<code>none</code>表示直接访问，<code>blocked</code>表示没有<code>Referer</code>头的访问，<code>www.example.com</code>和<code>example.com</code>是合法的来源域名，<code>*.example.net</code>表示<code>example.net</code>的所有子域名都是合法的来源。</li>
+</ul>
+<p><code>$invalid_referer</code>：</p>
+<ul>
+<li>会在来源不在<code>valid_referers</code>列表中时变为”true”。</li>
+</ul>
+<ul>
+<li>如果来源不合法，服务器将返回403禁止访问的状态码。</li>
+</ul>
+<p>防盗链配置可能会影响搜索引擎的爬虫，因此在实施防盗链策略时要小心。</p>
+<p>如果网站使用了CDN，确保CDN的服务器也在<code>valid_referers</code>列表中，否则CDN可能无法正常工作。</p>
+</blockquote>
+<pre><code class="nginx">location ~ .*.(gif|jpg|jpeg|png|bmp|swf)$ &#123;
+    valid_referers none blocked www.example.com example.com *.example.net;
+    
+    if ($invalid_referer) &#123;
+        return 403;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>使用错误图片代替原图片。</p>
+<p>如果不想显示403错误，而是想显示一个错误图片（例如：“禁止外链”的图片），可以这样配置。</p>
+</blockquote>
+<pre><code class="nginx">location ~ .*.(gif|jpg|jpeg|png|bmp|swf)$ &#123;
+    valid_referers none blocked www.example.com example.com *.example.net;
+    
+    if ($invalid_referer) &#123;
+        rewrite ^/.*$ /path/to/error/image.jpg;
+    &#125;
 </code></pre>
 <h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><img src="/images/image-20231009180407173.png" alt="image-20231009180407173"></p>
+<blockquote>
 <p>Nginx 启动之后，在 Linux 系统中有两个进程，一个为 master，一个为 worker。</p>
 <p>master 作为管理员不参与任何工作，只负责给多个 worker 分配不同的任务（worker一般有多个）。</p>
+</blockquote>
 <p><strong>worker是如何工作的？</strong></p>
+<blockquote>
 <p>客户端发送一个请求首先要经过 master，管理员收到请求后会将请求通知给 worker，多个 worker 以<strong>争抢</strong>的机制来抢夺任务，得到任务的 worker 会将请求经由 tomcat 等做请求转发、反向代理等。</p>
+</blockquote>
 <p><img src="/images/image-20231009180547513.png" alt="image-20231009180547513"></p>
 <p><strong>一个 master 和多个 worker 的好处？</strong></p>
 <ul>
