@@ -1154,6 +1154,102 @@ tags:
 ---
 </code></pre>
 <p>如果存在多个置顶文章，top后的参数越大，越靠前。</p>
+<p><strong>部署云服务器</strong></p>
+<blockquote>
+<p>安装nginx：</p>
+</blockquote>
+<pre><code>yum install -y nginx
+</code></pre>
+<blockquote>
+<p>启动 nginx 服务器:</p>
+</blockquote>
+<pre><code>systemctl start nginx
+systemctl enable nginx
+</code></pre>
+<blockquote>
+<p>安装GIT：</p>
+</blockquote>
+<pre><code>yum install git
+</code></pre>
+<blockquote>
+<p>建立文件路径：</p>
+</blockquote>
+<pre><code>mkdir /root/gitrepo/
+</code></pre>
+<blockquote>
+<p>修改权限：</p>
+</blockquote>
+<pre><code>chown -R $USER:$USER /root/gitrepo/
+chmod -R 755 /root/gitrepo/
+</code></pre>
+<blockquote>
+<p>创建远程 Git 仓库：</p>
+</blockquote>
+<pre><code>cd /root/gitrepo/
+git init --bare &#123;自定义仓库名name&#125;.git
+</code></pre>
+<blockquote>
+<p>Git 钩子（hooks):</p>
+<ul>
+<li>在生成的仓库<code>&#123;自定义仓库名name&#125;/hooks</code> 目录下创建一个新的钩子文件。</li>
+</ul>
+</blockquote>
+<pre><code>vim /root/gitrepo/hexo.git/hooks/post-receive
+</code></pre>
+<blockquote>
+<p>打开文件添加下面的代码：</p>
+</blockquote>
+<pre><code>#!/bin/bash
+
+git --work-tree=/usr/share/nginx/mysite --git-dir=/root/gitrepo/hexo.git checkout -f
+</code></pre>
+<blockquote>
+<p>赋予该文件可执行权限：</p>
+</blockquote>
+<pre><code>chmod +x /root/gitrepo/hexo.git/hooks/post-receive
+</code></pre>
+<blockquote>
+<p>设置 SSH Key 免密登录服务器</p>
+<ul>
+<li>服务器登陆然后找到 <code>.ssh</code> 目录，如果没有的话，就新建并赋予权限。</li>
+</ul>
+</blockquote>
+<pre><code>mkdir .ssh &amp;&amp; chmod 700 .ssh
+</code></pre>
+<blockquote>
+<p>然后接着新建文件<code>authorized_keys</code>：</p>
+</blockquote>
+<pre><code>touch .ssh/authorized_keys &amp;&amp; chmod 600 .ssh/authorized_keys
+</code></pre>
+<blockquote>
+<p>查看repo的用户信息：</p>
+</blockquote>
+<pre><code>git config -l
+</code></pre>
+<blockquote>
+<p>本地查看是否在<code>.ssh</code>下有公钥私钥，如果没有需要创建：</p>
+</blockquote>
+<pre><code>ssh-keygen
+</code></pre>
+<blockquote>
+<p>将本地<code>id_rsa.pub</code>中的公钥复制粘贴添加到<code>authorized_keys</code>中</p>
+</blockquote>
+<p>Nginx配置：</p>
+<blockquote>
+<p>执行命令<code>vim /etc/nginx/nginx.conf</code>，找到<code>http &#123; ... &#125;</code>部分，并向其中添加如下的server：</p>
+</blockquote>
+<pre><code class="nginx">    server &#123;
+        listen       80;
+        server_name blog.jackjiang.top; # 你的博客域名
+
+        location / &#123;
+            root   /home/blog/hexo-blog;  # 博客所在目录
+            index index.html index.php index.htm;
+        &#125;
+    &#125;
+</code></pre>
+<pre><code>    service nginx restart
+</code></pre>
 
 	</div>
 </div>
@@ -1227,7 +1323,7 @@ tags:
 	            + '\n著作权归作者所有。'
 	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
 	            + '\n作者: 月伴飞鱼'
-	            + '\n原文地址: https://xiaoflyfish.cn/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/'
+	            + '\n原文地址: https://hardyfish.top/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/'
 	    
 	            clipboardData.setData('text/plain', text + copyright);
 	    
