@@ -1248,7 +1248,23 @@ git --work-tree=/usr/share/nginx/mysite --git-dir=/root/gitrepo/hexo.git checkou
         &#125;
     &#125;
 </code></pre>
-<pre><code>    service nginx restart
+<pre><code>service nginx restart
+</code></pre>
+<blockquote>
+<p>博客部署云服务器：</p>
+<ul>
+<li>修改本地Hexo博客的配置文件<code>_config.yml</code>，找到<code>url:</code>和<code>deploy:</code>部分，做如下的修改：</li>
+</ul>
+</blockquote>
+<pre><code>    url: http://blog.jackjiang.top       # 修改为你的博客域名
+    root: /
+    permalink: :year-:month-:day/:title/
+    permalink_defaults:
+    
+    deploy:
+        type: git
+        repo: blog@your_server_ip:/home/blog/github-blog.git    # 修改为你的服务器IP
+        branch: master
 </code></pre>
 
 	</div>
