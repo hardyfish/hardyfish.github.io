@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		面试相关 | 
+		RPC框架 | 
 	 
 	月伴飞鱼
 	</title>
@@ -438,7 +438,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file active">
+								<li class="file">
 									<a href="/2023/11/09/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/">
 										面试相关
 									</a>
@@ -626,7 +626,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2023/11/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/RPC%E6%A1%86%E6%9E%B6/">
 										RPC框架
 									</a>
@@ -847,18 +847,18 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	面试相关
+	RPC框架
 </h1>
 <div class="article-meta">
 	<span>月伴飞鱼</span>
-	<span>2023-11-09 13:05:09</span>
+	<span>2023-11-14 15:31:21</span>
     
 		<div id="article-categories">
             
                 
                     <span>
                         <i class="fa fa-folder" aria-hidden="true"></i>
-                        <a href="/categories/成长相关/">成长相关</a>
+                        <a href="/categories/框架相关/">框架相关</a>
 						
                     </span>
                 
@@ -869,114 +869,30 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<p>简历模版：<a target="_blank" rel="noopener" href="https://www.polebrief.com/">https://www.polebrief.com/</a></p>
-<p><strong>面试考察点</strong></p>
-<blockquote>
-<p>考察点：技能、能力、价值观、匹配度。</p>
-<p>技能：</p>
-<ul>
-<li>Java基础，开源框架，中间件，代码设计，项目实战等。</li>
-</ul>
-<p>能力：</p>
-<ul>
-<li><p>工作年限和职级越高，对能力的要求越大，对技能的要求反而没那么大。</p>
-</li>
-<li><p>学习能力：</p>
-<ul>
-<li>具备快速学习的能力，能够迅速掌握并应用新的知识。</li>
-</ul>
-</li>
-<li><p>沟通能力：</p>
-<ul>
-<li>能够清晰、准确地表达自己的想法和观点，并理解他人的意见和观点，以进行有效的沟通和交流。</li>
-</ul>
-</li>
-</ul>
-<p>价值观：</p>
-<ul>
-<li>是否与公司的价值观一致？</li>
-<li>是否具备以公司事务为己任的Owner意识？</li>
-</ul>
-<p>匹配度:</p>
-<ul>
-<li>面试官的目的是找到适合职位要求的候选人。<ul>
-<li>这里所说的是适合的人选，而不是最好的人选。</li>
-<li>这不仅考虑到用人成本，还考虑到员工的职业发展和工作质量。</li>
-</ul>
-</li>
-<li>许多面试官不会选择经验和技能过剩的应聘者，而是选择经验和技能匹配，甚至稍微差一些，但是具备潜力和动机的应聘者。</li>
-<li>这样的人选会更加珍惜这个机会，对工作充满兴趣，更有动力去接受挑战，主动学习并将工作做好。</li>
-</ul>
+		<blockquote>
+<p>RPC远程过程调用（Remote Procedure Call Protocol），是从一台机器通过网络调用到另一台机器的某个方法。</p>
 </blockquote>
-<p><strong>面试表达技巧</strong></p>
+<p><strong>基本结构</strong></p>
 <blockquote>
-<p>金字塔法则：</p>
-<ul>
-<li>先把我们最重要的优势先提出来，然后按照时间顺序从近到远讲解自己的工作经历。</li>
-<li>用实际做的事来印证我们的优势。</li>
-</ul>
-<p>STAR法则：</p>
-<ul>
-<li>STAR法则是一种在面试中有效回答问题的方法。</li>
-<li>包括以下几个步骤：<ul>
-<li>Situation（情境）：描述你所面临的具体情境或挑战。</li>
-<li>Task（任务）：解释你在该情境下的任务或目标。</li>
-<li>Action（行动）：详细说明你采取的具体行动步骤。</li>
-<li>Result（结果）：阐述你的行动带来的具体结果和成就。</li>
-</ul>
-</li>
-<li>使用STAR法则可以帮助你在面试中清晰、有条理地回答问题，展示自己的能力和经验。</li>
-<li>我们讲解做过的项目的时候非常适合使用STAR法则。<ul>
-<li>先介绍我们项目的业务背景技术背景，再说明当前要做一个什么事。</li>
-<li>然后说明具体的技术方案以及如何落地。</li>
-<li>最后说明我们这个项目取得了什么结果。</li>
-</ul>
-</li>
-</ul>
-<p>学会倾听：</p>
-<ul>
-<li>面试官问一个问题，一定不要抢答。</li>
-<li>面试官就是你的未来同事，可以把面试官当成你的工作搭档去沟通，方便去做双向筛选。</li>
-</ul>
+<p>当调用本地的一个服务类的某个方法时，实际上这个服务类已经是一个代理类了，调用这个类的某个方法，实际上代理方法中可以加入很多额外的逻辑，比如构造 HTTP 请求、构造TCP 请求等等，最终穿过网络调用到真正的服务提供方的同名方法。</p>
 </blockquote>
-<p><strong>海量数据场景题</strong></p>
+<img src="/images/image-20231114154837419.png" alt="image-20231114154837419" style="zoom:50%;" />
+
 <blockquote>
-<p>假如有一个<strong>1G</strong>大小的文件，文件里每一行是一个词，每个词的大小不超过<strong>16byte</strong>，要求返回出现频率最高的100个词。</p>
-<ul>
-<li>内存大小限制是<strong>10M</strong>。</li>
-</ul>
+<p>序列化和反序列化功能会在代理中进行（编解码）。</p>
+<p>封装的网络请求既有可能是 HTTP 请求，也有可能是 Sockets 请求，比如有很多 RPC 功能都使用 Netty 作为通讯层。</p>
 </blockquote>
+<img src="/images/image-20231114155711518.png" alt="image-20231114155711518" style="zoom:60%;" />
+
+<p><strong>网络通信协议协议</strong></p>
 <blockquote>
-<p>由于内存限制，无法直接将大文件的所有词一次性读到内存中。</p>
-<p>可以采用<strong>分治策略</strong>，把一个大文件分解成多个小文件，保证每个文件的大小小于10M，进而直接将单个小文件读取到内存中进行处理。</p>
-<p><strong>第一步</strong>，首先遍历大文件，对遍历到的每个词x，执行 <code>hash(x) % 500</code>，将结果为i的词存放到文件<code>f(i)</code>中，遍历结束后，可以得到500个小文件，每个小文件的大小为2M左右。</p>
-<p><strong>第二步</strong>，接着统计每个小文件中出现频数最高的100个词，可以使用HashMap来实现，其中key为词，value为该词出现的频率。</p>
-<ul>
-<li><p>对于遍历到的词x，如果在map中不存在，则执行 <code>map.put(x, 1)。</code></p>
-</li>
-<li><p>若存在，则执行 <code>map.put(x, map.get(x)+1)</code>，将该词出现的次数加1。</p>
-</li>
-</ul>
-<p><strong>第三步</strong>，在第二步中找出了每个文件出现频率最高的100个词之后，通过维护一个<strong>小顶堆</strong>来找出所有小文件中出现频率最高的100个词。</p>
-<ul>
-<li><p>遍历第一个文件，把第一个文件中出现频率最高的100个词构建成一个小顶堆。</p>
-</li>
-<li><p>如果第一个文件中词的个数小于100，可以继续遍历第二个文件，直到构建好有100个结点的小顶堆为止。</p>
-</li>
-<li><p>继续遍历其他小文件，如果遍历到的词的出现次数大于堆顶上词的出现次数，可以用新遍历到的词替换堆顶的词，然后重新调整这个堆为小顶堆。</p>
-</li>
-<li><p>当遍历完所有小文件后，这个小顶堆中的词就是出现频率最高的100个词。</p>
-</li>
-</ul>
-<p>主要思路如下：</p>
-<ul>
-<li><p>采用<strong>分治</strong>的思想，进行哈希取余</p>
-</li>
-<li><p>使用<strong>HashMap</strong>统计每个小文件单词出现的次数</p>
-</li>
-<li><p>使用<strong>小顶堆</strong>，遍历步骤2中的小文件，找出词频top100的单词</p>
-</li>
-</ul>
+<p>用来规范传输的数据的，它是一个应用层协议，比如 HTTP ，而不是传输层的协议，比如 TCP 、UDP。</p>
+<p>比如 GRPC 框架中用的协议是 HTTP2，Dubbo中可以选择多种协议，比如Hession、HTTP等。</p>
+</blockquote>
+<p><strong>序列化和反序列化</strong></p>
+<blockquote>
+<p>数据要想在网络中传输，必须是二进制的形式。</p>
+<p>在远程调用里，像调用本地方法那样调用，使用的参数都是和当前项目语言一致的参数类型，比如Java中的 <code>String</code>、<code>List</code>、<code>Map</code>等等，要把这些类型转换成二进制，需要序列化算法。</p>
 </blockquote>
 
 	</div>
@@ -986,16 +902,11 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2023/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  MongoDB
-              </a>
-            
         </div>
         <div class="item right">
             
-              <a href="/2023/11/05/%E5%A8%B1%E4%B9%90%E7%9B%B8%E5%85%B3/%E7%9F%A5%E8%AF%86/">
-                知识
+              <a href="/2023/11/11/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Go%E5%9F%BA%E7%A1%80/">
+                Go基础
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
@@ -1051,7 +962,7 @@
 	            + '\n著作权归作者所有。'
 	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
 	            + '\n作者: 月伴飞鱼'
-	            + '\n原文地址: https://hardyfish.top/2023/11/09/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/'
+	            + '\n原文地址: https://hardyfish.top/2023/11/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/RPC%E6%A1%86%E6%9E%B6/'
 	    
 	            clipboardData.setData('text/plain', text + copyright);
 	    
