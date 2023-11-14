@@ -860,7 +860,8 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<h1 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h1><p><strong>OSI七层模型</strong></p>
+		<h1>网络模型</h1>
+<p><strong>OSI七层模型</strong></p>
 <p>物理层：</p>
 <blockquote>
 <p>解决两个硬件之间怎么通信的问题，常见的物理媒介有光纤、电缆、中继器等。</p>
@@ -899,30 +900,52 @@
 <blockquote>
 <p>应用层是计算机用户，以及各种应用程序和网络之间的接口，其功能是直接向用户提供服务，完成用户希望在网络上完成的各种工作。</p>
 </blockquote>
-<h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><p><strong>请求报文组成</strong></p>
-<p>HTTP请求报文由3部分组成： <strong>请求行</strong> + <strong>请求头</strong> + <strong>请求体</strong> </p>
+<p><strong>TCP/IP4层模型</strong></p>
+<blockquote>
+<p>TCP/IP 模型是事实上的标准模型，在 7 层模型的基础上将最上面三层的应用层、表示层、会话层统一为应用层，将数据链路层和物理层统一为链路层或者叫网络接口层。</p>
+</blockquote>
+<img src="/images/image-20231114142542365.png" alt="image-20231114142542365" style="zoom:70%;" />
+<p><strong>数据发送和接收过程</strong></p>
+<blockquote>
+<p>数据从应用层进入，到达传输层，添加上 TCP首部，将数据加工成 TCP  段，称为 Segment：这是为了保证数据的可靠性。</p>
+<p>接着数据到达网络层，在网络层使用 IP 协议，被添加上 IP 首部，将数据加工成 IP数据报，称为 datagram 。</p>
+<p>经过网络层 IP 协议的加工，指定目标地址和 MAC 地址，保证数据准确的发送到目标机器。</p>
+<p>接着数据到达链路层，添加上以太网头部，将数据加工成以太网帧，称为 frame，包含了网卡等硬件相关的数据。</p>
+</blockquote>
+<img src="/images/image-20231114142934648.png" alt="image-20231114142934648" style="zoom:50%;" />
+<h1>应用层</h1>
+<h2 id="HTTP">HTTP</h2>
+<p><strong>请求报文组成</strong></p>
+<p>HTTP请求报文由3部分组成： <strong>请求行</strong> + <strong>请求头</strong> + <strong>请求体</strong></p>
 <blockquote>
 <p><strong>请求行：</strong></p>
 <ul>
-<li><p>请求方法，GET和POST是最常见的HTTP方法，除此以外还包括DELETE、HEAD、OPTIONS、PUT、TRACE。</p>
+<li>
+<p>请求方法，GET和POST是最常见的HTTP方法，除此以外还包括DELETE、HEAD、OPTIONS、PUT、TRACE。</p>
 </li>
-<li><p>请求对应的URL地址，它和报文头的Host属性组成完整的请求URL。</p>
+<li>
+<p>请求对应的URL地址，它和报文头的Host属性组成完整的请求URL。</p>
 </li>
-<li><p>协议名称及版本号。</p>
+<li>
+<p>协议名称及版本号。</p>
 </li>
 </ul>
 <p><strong>请求头：</strong></p>
 <ul>
-<li><p>是HTTP的报文头，报文头包含若干个属性，格式为 属性名:属性值，服务端据此获取客户端的信息。</p>
+<li>
+<p>是HTTP的报文头，报文头包含若干个属性，格式为 属性名:属性值，服务端据此获取客户端的信息。</p>
 </li>
-<li><p>与缓存相关的规则信息，均包含在header中</p>
+<li>
+<p>与缓存相关的规则信息，均包含在header中</p>
 </li>
 </ul>
 <p><strong>请求体：</strong></p>
 <ul>
-<li><p>是报文体，它将一个页面表单中的组件值通过<code>param1=value1&amp;param2=value2</code>的键值对形式编码成一个格式化串，它承载多个请求参数的数据。</p>
+<li>
+<p>是报文体，它将一个页面表单中的组件值通过<code>param1=value1&amp;param2=value2</code>的键值对形式编码成一个格式化串，它承载多个请求参数的数据。</p>
 </li>
-<li><p>不但报文体可以传递请求参数，请求URL也可以通过类似于<code>/chapter15/user.html? param1=value1&amp;param2=value2</code>的方式传递请求参数。</p>
+<li>
+<p>不但报文体可以传递请求参数，请求URL也可以通过类似于<code>/chapter15/user.html? param1=value1&amp;param2=value2</code>的方式传递请求参数。</p>
 </li>
 </ul>
 </blockquote>
@@ -955,7 +978,8 @@
 <p>对于GET请求，浏览器会把http header和data一起发送出去，服务器响应200，请求成功。</p>
 <p>对于POST请求，浏览器先发送header，服务器会响应100（已经收到请求的第一部分，正在等待其余部分），浏览器再次发送data，服务器返回200，请求成功。</p>
 </blockquote>
-<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>HTTP 是无状态的协议（对于事务处理没有记忆能力，每次客户端和服务端会话完成时，服务端不会保存任何会话信息）。</p>
+<p><strong>Cookie</strong></p>
+<p>HTTP 是无状态的协议（对于事务处理没有记忆能力，每次客户端和服务端会话完成时，服务端不会保存任何会话信息）。</p>
 <p>每个HTTP请求都是完全独立的，服务端无法确认当前访问者的身份信息，无法分辨上一次的请求发送者和这一次的发送者是不是同一个人。</p>
 <blockquote>
 <p>所以服务器与浏览器为了进行会话跟踪（知道是谁在访问我），就必须主动的去维护一个状态，这个状态用于告知服务端前后两个请求是否来自同一浏览器。</p>
@@ -973,12 +997,13 @@
 <blockquote>
 <p>如果给某个 cookie 设置了 httpOnly 属性，则无法通过 JS 脚本 读取到该 cookie 的信息，但还是能通过 Application 中手动修改 cookie，<code>所以只是在一定程度上可以防止 XSS 攻击，不是绝对的安全</code> 。</p>
 </blockquote>
-<h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><p>session 是基于 cookie 实现的，session 存储在服务器端，sessionID 会被存储到客户端的 cookie 中。</p>
+<p><strong>Session</strong></p>
+<p>session 是基于 cookie 实现的，session 存储在服务器端，sessionID 会被存储到客户端的 cookie 中。</p>
 <blockquote>
 <p>服务端执行session机制时候会生成 sessionID 值，这个ID值会发送给客户端，客户端每次请求都会把这个ID值放到HTTP请求的头部发送给服务端，而这个id值在客户端会保存下来，保存的容器就是cookie，因此当我们完全禁掉浏览器的cookie的时候，服务端的session也会不能正常使用。</p>
 </blockquote>
 <p><img src="/images/cc3f6cf26dbd4603b0d9963a4fd01477.png" alt="在这里插入图片描述"></p>
-<p><strong>Session认证流程:</strong></p>
+<p>Session认证流程:</p>
 <blockquote>
 <p>用户第一次请求服务器的时候，服务器根据用户提交的相关信息，创建对应的 Session；</p>
 <p>请求返回时将此 Session 的唯一标识信息 SessionID 返回给浏览器；</p>
@@ -986,9 +1011,9 @@
 <p>当用户第二次访问服务器的时候，请求会自动判断此域名下是否存在 Cookie 信息;</p>
 <p>如果存在自动将 Cookie 信息也发送给服务端，服务端会从 Cookie 中获取 SessionID，再根据 SessionID 查找对应的 Session 信息；</p>
 </blockquote>
-<p><strong>Cookie与Session的区别</strong></p>
+<p>Cookie与Session的区别：</p>
 <blockquote>
-<p>安全性： </p>
+<p>安全性：</p>
 <ul>
 <li>Session 比 Cookie 安全，Session 是存储在服务器端的，Cookie 是存储在客户端的。</li>
 </ul>
@@ -996,16 +1021,17 @@
 <ul>
 <li>Cookie 只支持存字符串数据，想要设置其他类型的数据，需要将其转换成字符串，Session 可以存任意数据类型。</li>
 </ul>
-<p>有效期不同： </p>
+<p>有效期不同：</p>
 <ul>
 <li>Cookie 可设置为长时间保持，比如我们经常使用的默认登录功能，Session 一般失效时间较短，客户端关闭（默认情况下）或者 Session 超时都会失效。</li>
 </ul>
-<p>存储大小不同： </p>
+<p>存储大小不同：</p>
 <ul>
 <li>单个 Cookie 保存的数据不能超过 3K，Session 可存储数据远高于 Cookie，但是当访问量过多，会占用过多的服务器资源。</li>
 </ul>
 </blockquote>
-<h2 id="HTTP1-1"><a href="#HTTP1-1" class="headerlink" title="HTTP1.1"></a>HTTP1.1</h2><p>HTTP 1.1支持长连接。</p>
+<p><strong>HTTP1.1</strong></p>
+<p>HTTP 1.1支持长连接。</p>
 <blockquote>
 <p>HTTP 1.0规定浏览器与服务器只保持短暂的连接，浏览器的每次请求都需要与服务器建立一个TCP连接，服务器完成请求处理后立即断开TCP连接，服务器不跟踪每个客户也不记录过去的请求。</p>
 <p>HTTP 1.1则支持持久连接, 并且默认使用长连接，在同一个tcp的连接中可以传送多个HTTP请求和响应，多个请求和响应可以重叠，多个请求和响应可以同时进行。</p>
@@ -1013,7 +1039,7 @@
 </blockquote>
 <p>HTTP 1.1还提供了与身份认证、状态管理和Cache缓存等机制相关的请求头和响应头。</p>
 <blockquote>
-<p>HTTP&#x2F;1.1在1.0的基础上加入了一些cache的新特性，当缓存对象的Age超过Expire时变为stale对象，cache不需要直接抛弃stale对象，而是与源服务器进行重新激活）。</p>
+<p>HTTP/1.1在1.0的基础上加入了一些cache的新特性，当缓存对象的Age超过Expire时变为stale对象，cache不需要直接抛弃stale对象，而是与源服务器进行重新激活）。</p>
 </blockquote>
 <p>请求的流水线（Pipelining）处理，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟。</p>
 <blockquote>
@@ -1035,7 +1061,8 @@
 <p>发送方将消息分割成若干个任意大小的数据块，每个数据块在发送时都会附上块的长度，最后用一个零长度的块作为消息结束的标志。</p>
 <p>这种方法允许发送方只缓冲消息的一个片段，避免缓冲整个消息带来的过载。</p>
 </blockquote>
-<h2 id="HTTP2-0"><a href="#HTTP2-0" class="headerlink" title="HTTP2.0"></a>HTTP2.0</h2><p>HTTP2.0和HTTP1.X相比的新特性：</p>
+<p><strong>HTTP2.0</strong></p>
+<p>HTTP2.0和HTTP1.X相比的新特性：</p>
 <blockquote>
 <p><strong>新的二进制格式</strong>：</p>
 <ul>
@@ -1053,22 +1080,23 @@
 <li>HTTP2.0也具有server push功能。</li>
 </ul>
 </blockquote>
-<p><strong>HTTP2.0的多路复用和HTTP1.1中的长连接复用有什么区别？</strong></p>
+<p>HTTP2.0的多路复用和HTTP1.1中的长连接复用有什么区别？</p>
 <blockquote>
-<p>HTTP&#x2F;1.0：</p>
+<p>HTTP/1.0：</p>
 <ul>
 <li>一次请求-响应，建立一个连接，用完关闭；每一个请求都要建立一个连接；</li>
 </ul>
-<p>HTTP&#x2F;1.1：</p>
+<p>HTTP/1.1：</p>
 <ul>
 <li>若干个请求排队串行化单线程处理，后面的请求等待前面请求的返回才能获得执行机会，一旦有某请求超时等，后续请求只能被阻塞。</li>
 </ul>
-<p>HTTP&#x2F;2.0：</p>
+<p>HTTP/2.0：</p>
 <ul>
 <li>多个请求可同时在一个连接上并行执行。某个请求任务耗时严重，不会影响到其它连接的正常执行；</li>
 </ul>
 </blockquote>
-<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>HTTPS是在HTTP上建立SSL加密层，并对传输数据进行加密，是HTTP协议的安全版。</p>
+<p><strong>HTTPS</strong></p>
+<p>HTTPS是在HTTP上建立SSL加密层，并对传输数据进行加密，是HTTP协议的安全版。</p>
 <blockquote>
 <p>现在它被广泛用于万维网上安全敏感的通讯，例如交易支付方面。</p>
 </blockquote>
@@ -1077,7 +1105,7 @@
 <p>对数据进行加密，并建立一个信息安全通道，来保证传输过程中的数据安全。</p>
 <p>对网站服务器进行真实身份认证。</p>
 </blockquote>
-<p><strong>HTTP 与 HTTPS 的区别</strong></p>
+<p>HTTP 与 HTTPS 的区别：</p>
 <blockquote>
 <p>HTTPS比HTTP更加安全，对搜索引擎更友好，利于SEO,谷歌、百度优先索引HTTPS网页。</p>
 <p>HTTPS需要用到SSL证书，而HTTP不用。</p>
@@ -1086,7 +1114,7 @@
 <p>HTTPS在浏览器显示绿色安全锁，HTTP没有显示。</p>
 <p>注意：要进行HTTPS通信，证书是必不可少的，而使用的证书必须向认证机构（CA）购买，成本高。</p>
 </blockquote>
-<p><strong>工作流程</strong></p>
+<p>HTTPS工作流程：</p>
 <p><img src="/images/168328-20170705120750128-432542799.png" alt="img"></p>
 <blockquote>
 <p>Client发起一个HTTPS的请求。</p>
@@ -1098,208 +1126,8 @@
 <p>Client使用对称密钥解密响应的密文，得到明文内容A。</p>
 <p>Client再次发起HTTPS的请求，使用对称密钥加密请求的明文内容B，然后Server使用对称密钥解密密文，得到明文内容B。</p>
 </blockquote>
-<h1 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h1><h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><blockquote>
-<p>一种代码注入技术，通过把SQL命令插入到Web表单递交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。</p>
-<p>SQL注入攻击者通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，传入后端的SQL服务器执行。</p>
-<ul>
-<li>结果是可以执行恶意攻击者设计的任意SQL命令。</li>
-</ul>
-</blockquote>
-<p>例如，Web应用程序具有以下登录页面:</p>
-<pre><code>User Name: admin
-Password: 1234
-</code></pre>
-<blockquote>
-<p>攻击者在密码框中输入:</p>
-</blockquote>
-<pre><code>&#39;1234 &#39; or &#39;1&#39;=&#39;1
-</code></pre>
-<blockquote>
-<p>之后构造的SQL查询为:</p>
-</blockquote>
-<pre><code class="sql">SELECT * FROM users WHERE name=&#39;admin&#39; AND password=&#39;1234 &#39; or &#39;1&#39;=&#39;1&#39;;
-</code></pre>
-<blockquote>
-<p>由于’或’1’&#x3D;’1 总是为真，所以可以绕过密码验证登录系统。</p>
-</blockquote>
-<p><strong>如何防止SQL注入：</strong></p>
-<blockquote>
-<p>SQL注入可以通过多种方式进行防范，如使用参数化的SQL语句、输入验证和过滤等方法。</p>
-</blockquote>
-<p>PreparedStatement防止SQL注入:</p>
-<blockquote>
-<p>PreparedStatement会先将SQL语句发送到数据库进行预编译，之后再将参数值单独传递，从而避免了SQL语句拼接的过程。</p>
-</blockquote>
-<p>Mybatis中<code>#&#123;&#125;</code>防止SQL注入：</p>
-<blockquote>
-<p>在MyBatis中，可以使用<code>#&#123;&#125;</code>来防止SQL注入。</p>
-<ul>
-<li><p><code>#&#123;&#125;</code>是MyBatis提供的PreparedStatement的参数占位符。</p>
-</li>
-<li><p>MyBatis会自动将<code>#&#123;&#125;</code>替换为? ，并且对用户传入的参数自动进行Escape处理，以防止SQL注入。</p>
-</li>
-</ul>
-</blockquote>
-<p>对请求参数的敏感词汇进行过滤：</p>
-<blockquote>
-<p>对用户请求参数中的敏感词汇进行过滤，可以防止多种注入攻击，包括SQL注入、XSS等。 </p>
-<p>常见的防范措施包括:</p>
-<ul>
-<li>构建敏感词汇库，收集所有可能的敏感词汇，如delete、drop、script等，并定期更新。</li>
-<li>对用户请求参数进行遍历，判断参数值是否包含敏感词汇，可以用正则表达式或包含关系来判断。</li>
-<li>对关键参数与业务规则进行校验，例如长度、类型、允许范围等。</li>
-<li>考虑在边界处过滤，如WAF、防火墙等。</li>
-<li>输出时对敏感数据编码或替换。</li>
-</ul>
-</blockquote>
-<p>Nginx反向代理防止SQL注入：</p>
-<blockquote>
-<p>可以使用nginx的<code>ngx_http_rewrite_module</code>模块，在server区域加入过滤规则，对请求参数中敏感字符进行过滤或拦截。</p>
-<p><strong>WAF功能</strong>：</p>
-<ul>
-<li>启用nginx的Web应用防火墙功能，对疑似SQL注入的请求进行拦截，如检测特殊字符，语句规则等。</li>
-</ul>
-<p><strong>访问控制：</strong> </p>
-<ul>
-<li>通过nginx的access模，禁止某些IP地址或子网段访问，限制请求频率，以防止滥用。</li>
-</ul>
-<p><strong>隐藏数据库结构信息</strong>：</p>
-<ul>
-<li>基于请求中的User-Agent等信息，显示不同的错误页面，避免泄露数据库元信息。</li>
-</ul>
-<p><strong>连接数据库的用户权限控制</strong>：</p>
-<ul>
-<li>只允许访问应用需要的最小权限集。</li>
-</ul>
-</blockquote>
-<pre><code class="nginx">if ($args ~* &quot;select|insert|update|delete|drop|exec&quot;) &#123;
- return 403;
-&#125;
-</code></pre>
-<h2 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h2><p>Cross-Site Scripting(跨站脚本攻击)，简称XSS，是一种代码注入攻击。</p>
-<blockquote>
-<p>攻击者通过在目标网站上注入恶意脚本，使之在用户的浏览器上运行。</p>
-<p>利用这些恶意脚本，攻击者可获取用户的敏感信息如Cookie、SessionID等，进而危害数据安全。</p>
-</blockquote>
-<p><strong>XSS注入方法</strong></p>
-<blockquote>
-<p>任何可以输入的地方都有可能引起XSS攻击：</p>
-<ul>
-<li><p>在HTML内嵌的文本中，恶意内容以script标签形成注入</p>
-</li>
-<li><p>在内联的JavaScript中，拼接的数据突破了原本的限制（字符串，变量，方法名）等</p>
-</li>
-<li><p>在标签属性中，恶意内容包含引号，从而突破属性值的限制，注入其他属性或者标签</p>
-</li>
-<li><p>在标签的 href、src 等属性中，包含 javascript: (伪协议)等可执行代码。</p>
-</li>
-<li><p>在 onload、onerror、onclick 等事件中，注入不受控制代码。</p>
-</li>
-</ul>
-</blockquote>
-<p><strong>防御XSS攻击的方法</strong></p>
-<blockquote>
-<p>输入过滤：</p>
-<ul>
-<li>一般是用于对于输入格式的检查，例如：邮箱，电话号码，用户名，密码……等，按照规定的格式输入。</li>
-</ul>
-<p>转义HTML：</p>
-<ul>
-<li>如果拼接 HTML 是必要的，就需要对于引号，尖括号，斜杠进行转义。</li>
-</ul>
-</blockquote>
-<h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><p>CSRF(跨站请求伪造)，是一种挟持用户在当前已登陆的Web应用程序上执行非本意的操作的攻击方法。</p>
-<p><strong>CSRF攻击流程</strong></p>
-<blockquote>
-<p>攻击者诱导受害者进入第三方网站，在第三方网站中，向被攻击网站发送跨站请求。</p>
-<p>利用受害者在被攻击网站已经获取的注册凭证，绕过后台的用户验证，达到冒充用户对被攻击的网站执行某项操作的目的。</p>
-<p>这样攻击者盗用了用户的身份，以用户的名义发送恶意请求，对服务器来说这个请求是完全合法的，但是却完成了攻击者所期望的一个操作，比如以用户的名义发送邮件、发消息，盗取你的账号，添加系统管理员，甚至于购买商品、虚拟货币转账等。</p>
-</blockquote>
-<p>举例：Web A为存在CSRF漏洞的网站，Web B为攻击者构建的恶意网站，User C为Web A网站的合法用户。</p>
-<blockquote>
-<p>第一步：用户C打开浏览器，访问受信任网站A，输入用户名和密码请求登录网站A；</p>
-<p>第二步：在用户信息通过验证后，网站A产生Cookie信息并返回给浏览器，此时用户登录网站A成功，可以正常发送请求到网站A；</p>
-<p>第三步：用户未退出网站A之前，在同一浏览器中，打开一个TAB页 访问 网站B；</p>
-<p>第四步：网站B接收到用户请求后，返回一些攻击性代码，并发出一个请求要求访问第三方站点A；</p>
-<p>第五步：浏览器在接收到这些攻击性代码后：</p>
-<ul>
-<li><p>用户相当于无意中在自己的 浏览器 上执行了网站B返回的攻击代码中的http请求，在用户不知情的情况下携带Cookie信息，向网站A发出请求；</p>
-</li>
-<li><p>网站A并不知道该请求其实是由B发起的，所以会根据用户C的Cookie信息以C的权限处理该请求，导致来自网站B的恶意代码被执行。</p>
-</li>
-</ul>
-</blockquote>
-<p><strong>防御CSRF的方法</strong></p>
-<blockquote>
-<p>验证码:</p>
-<ul>
-<li>强制用户必须与应用进行交互，才能完成最终请求。</li>
-</ul>
-<p>请求来源限制(Referer)；</p>
-<ul>
-<li>不能保证 100% 有效，服务器并不是什么时候都能取到 Referer，而且低版本的浏览器存在伪造 Referer 的风险。</li>
-</ul>
-<p>Token验证：</p>
-<ul>
-<li>CSRF防御机制最合适的方案。</li>
-</ul>
-</blockquote>
-<h2 id="DOS"><a href="#DOS" class="headerlink" title="DOS"></a>DOS</h2><p>DOS（拒绝服务），一切能引起DOS行为的攻击都被称为DOS攻击。</p>
-<blockquote>
-<p>该攻击的效果是使得计算机或网络无法提供正常的服务。</p>
-</blockquote>
-<p><strong>DOS攻击的原理：</strong></p>
-<blockquote>
-<p> 首先攻击者向被攻击的服务器发送大量的虚假IP请求，被攻击者在收到请求后返回确认信息，等待攻击者进行确认，由于攻击者发送的请求信息是虚假的，所以服务器接收不到返回的确认信息，在一段时间内服务器会处与等待状态，而分配给这次请求的资源却被有被释放。</p>
-<p>当被攻击者等待一定的时间后，会因连接超时而断开，这时攻击者在次发送新的虚假信息请求，这样最终服务器资源被耗尽，直到瘫痪。</p>
-</blockquote>
-<p><strong>DDOS：</strong></p>
-<p>分布式拒绝服务攻击，指的是攻击者控制多台主机同时向同一主机或网络发起DOS攻击。</p>
-<p><strong>DDOS究竟如何攻击?</strong></p>
-<p>目前最流行也是最好用的攻击方法就是使用SYN-Flood进行攻击，SYN-Flood也就是SYN洪水攻击。</p>
-<blockquote>
-<p>SYN-Flood不会完成TCP三次握手的第三步，也就是不发送确认连接的信息给服务器。</p>
-<ul>
-<li><p>这样，服务器无法完成第三次握手，但服务器不会立即放弃，服务器会不停的重试并等待一定的时间后放弃这个未完成的连接，这段时间叫做SYN Timeout，这段时间大约30秒-2分钟左右。</p>
-</li>
-<li><p>一个服务器若是处理这些大量的半连接信息而消耗大量的系统资源和网络带宽，这样服务器就不会再有空余处理普通用户的正常请求。</p>
-</li>
-</ul>
-</blockquote>
-<p><strong>减少DDOS的攻击方法</strong>:</p>
-<blockquote>
-<p>限制同时打开的SYN半连接数目。</p>
-<p>缩短SYN半连接的time out时间。</p>
-<p>正确设置防火墙。</p>
-<p>禁止对主机的非开放服务的访问。</p>
-<p>限制特定IP地址的访问。</p>
-<p>启用防火墙的防DDOS的属性。</p>
-<p>严格限制对外开放的服务器的向外访问。</p>
-<p>运行端口映射程序祸端口扫描程序，要认真检查特权端口和非特权端口。</p>
-</blockquote>
-<h1 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h1><p><strong>MD5算法</strong></p>
-<p><code>MD5</code> 用的是 <strong>哈希函数</strong>，它的典型应用是对一段信息产生 <strong>信息摘要</strong>，以 <strong>防止被篡改</strong>。</p>
-<blockquote>
-<p>严格来说，<code>MD5</code> 不是一种 <strong>加密算法</strong> 而是 <strong>摘要算法</strong>。</p>
-<p>无论是多长的输入，<code>MD5</code> 都会输出长度为 <code>128bits</code> 的一个串 (通常用 <code>16</code> <strong>进制</strong> 表示为 <code>32</code> 个字符)。</p>
-</blockquote>
-<h2 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h2><p>在 <strong>对称加密算法</strong> 中，使用的密钥只有一个，<strong>发送</strong> 和 <strong>接收</strong> 双方都使用这个密钥对数据进行 <strong>加密</strong> 和 <strong>解密</strong>。</p>
-<blockquote>
-<p>这就要求加密和解密方事先都必须知道加密的密钥。</p>
-</blockquote>
-<p><img src="/images/image-20231011180653517.png" alt="image-20231011180653517"></p>
-<p>常见的 <strong>对称加密</strong> 算法主要有 <code>DES</code>、<code>3DES</code>、<code>AES</code> 等。</p>
-<h2 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h2><p>非对称加密算法有两个密钥，一个称为 <strong>公开密钥</strong>，即 <strong>公钥</strong>，另一个称为 <strong>私有密钥</strong>，即 <strong>私钥</strong>。</p>
-<blockquote>
-<p>如果使用 <strong>公钥</strong> 对数据 <strong>进行加密</strong>，只有用对应的 <strong>私钥</strong> 才能 <strong>进行解密</strong>。</p>
-<p>如果使用 <strong>私钥</strong> 对数据 <strong>进行加密</strong>，只有用对应的 <strong>公钥</strong> 才能 <strong>进行解密</strong>。</p>
-</blockquote>
-<p><img src="/images/image-20231011180711713.png" alt="image-20231011180711713"></p>
-<blockquote>
-<p><strong>例子</strong>：甲方生成 <strong>一对密钥</strong> 并将其中的一把作为 <strong>公钥</strong> 向其它人公开，得到该公钥的 <strong>乙方</strong> 使用该密钥对机密信息 <strong>进行加密</strong> 后再发送给甲方，甲方再使用自己保存的另一把 <strong>专用密钥</strong> (<strong>私钥</strong>)，对 <strong>加密</strong> 后的信息 <strong>进行解密</strong>。</p>
-</blockquote>
-<p>常见的 <strong>非对称算法</strong> 主要有 <code>RSA</code>、<code>DSA</code> 等。</p>
-<h1 id="TCP和UDP"><a href="#TCP和UDP" class="headerlink" title="TCP和UDP"></a>TCP和UDP</h1><p><strong>TCP和UDP各自适用的场景</strong></p>
+<h1>传输层</h1>
+<p><strong>TCP和UDP各自适用的场景</strong></p>
 <blockquote>
 <p>当要求通信数据可靠时，选择TCP协议:</p>
 <ul>
@@ -1310,7 +1138,8 @@ Password: 1234
 <li>适合多媒体信息分发的场景，如直播，视频，语音，实时信息（股票走势）等。</li>
 </ul>
 </blockquote>
-<h2 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h2><p><strong>UDP特点</strong></p>
+<h2 id="UDP">UDP</h2>
+<p><strong>UDP特点</strong></p>
 <blockquote>
 <p>UDP是无连接的传输层协议。</p>
 <p>UDP使用尽最大努力交付，不保证可靠交付。</p>
@@ -1327,7 +1156,8 @@ Password: 1234
 </blockquote>
 <p><strong>如何保证UDP协议可靠？</strong></p>
 <p>模拟TPC的可靠机制来实现，保证四个无即可（无丢失、无失序、无错误、无重复）。</p>
-<h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><p><strong>TCP特点</strong></p>
+<h2 id="TCP">TCP</h2>
+<p><strong>TCP特点</strong></p>
 <blockquote>
 <p>TCP是面向连接的传输层协议，也就是说，在双方传输数据之前，必须先建立起连接，传输完数据后要结束连接。</p>
 <p>每一条TCP连接只能有两个端点，即点对点通信（一对一）。</p>
@@ -1338,12 +1168,13 @@ Password: 1234
 </ul>
 <p>TCP是面向字节流的协议。</p>
 </blockquote>
-<h3 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h3><p>TCP 利用滑动窗口实现流量控制，流量控制是为了控制发送方发送速率，保证接收方来得及接收数据。</p>
+<p><strong>流量控制</strong></p>
+<p>TCP 利用滑动窗口实现流量控制，流量控制是为了控制发送方发送速率，保证接收方来得及接收数据。</p>
 <blockquote>
 <p>接收方发送的确认报文中的窗口字段可以用来控制发送方窗口大小，从而影响发送方的发送速率。</p>
 <p>将窗口字段设置为 0，则发送方不能发送数据。</p>
 </blockquote>
-<p><strong>特殊的情况：</strong></p>
+<p>特殊的情况：</p>
 <blockquote>
 <p>当接收方窗口大小为0时，发送方不能发送数据，在接收方把数据处理完之后，向接收方发送<code>rwnd=1000</code>，通知发送方我还可以接收1000个字节的数据，但是这个字段在传输时丢失了，接收方并没有接收到这个数据，默认接收方当前窗口为0。</p>
 </blockquote>
@@ -1352,17 +1183,22 @@ Password: 1234
 <p>当接收到窗口为0的消息，则启动定时器。</p>
 <p>坚持定时器会每隔一段时间发送一个窗口探测报文，来询问接收方当前的窗口大小。</p>
 </blockquote>
-<h3 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h3><p>网络传输过程中，某段时间如果网络中某一资源的需求超过了该资源所能提供的可用部分，网络性能就会变坏，这种情况就叫做<strong>网络拥塞</strong>。</p>
+<p><strong>拥塞控制</strong></p>
+<p>网络传输过程中，某段时间如果网络中某一资源的需求超过了该资源所能提供的可用部分，网络性能就会变坏，这种情况就叫做<strong>网络拥塞</strong>。</p>
 <p>为解决这个问题，TCP中使用了四种拥塞控制算法。</p>
-<p><strong>慢开始</strong></p>
+<p>慢开始：</p>
+<blockquote>
 <p>发送方会维持一个拥塞窗口cwnd的状态变量，拥塞窗口的大小取决于拥塞程度，并且会在收发包过程中动态的进行变化。</p>
+</blockquote>
 <p>核心思想：</p>
 <blockquote>
 <p>指数级由小到大逐渐增加拥塞窗口大小，如果网络出现阻塞，拥塞窗口就减小。</p>
 <p>判断出现网络拥塞的依据：没有按时收到应当到达的确认报文（即发生重传）。</p>
 </blockquote>
-<p><strong>拥塞避免算法</strong></p>
+<p>拥塞避免算法：</p>
+<blockquote>
 <p>拥塞避免算法是让拥塞窗口缓慢增长，每经过一个往返时间RTT就把发送方的拥塞窗口cwnd加1，而不是加倍，拥塞窗口按线性规律缓慢增长。</p>
+</blockquote>
 <blockquote>
 <p>不论是在慢开始期间还是拥塞避免期间，只要判断网络发生了拥塞ssthresh就设置为当前发送窗口大小的一半，然后重新开始执行慢开始算法，这样做的目的是迅速减少主机发送到网络中的分组数，使发生拥塞的路由器有足够的时间把队列中积压的分组处理完毕。</p>
 </blockquote>
@@ -1370,11 +1206,11 @@ Password: 1234
 <blockquote>
 <p>当cwnd &lt; ssthresh 时，使用慢开始算法。</p>
 <p>当cwnd &gt; ssthresh 时，停止使用慢开始算法而改用拥塞避免算法。</p>
-<p>当cwnd &#x3D; ssthresh 时，既可以使用慢开始算法，也可以使用拥塞避免算法。</p>
+<p>当cwnd = ssthresh 时，既可以使用慢开始算法，也可以使用拥塞避免算法。</p>
 <p>假设发送方拥塞窗口cwnd的值为1，发送窗口swnd等于拥塞窗口cwnd，那么目前发送方只能发送一个报文段，cwnd为几就能发送几个报文段，接收方收到报文段后发送回复确认，发送方收到确认报文，会将拥塞窗口的值乘2，变为2。</p>
-<p>发送方此时一次就能发送两个报文段，接收方收到报文段后返回两次确认报文段，发送方收到之后拥塞窗口再乘2，cwnd&#x3D;4。</p>
+<p>发送方此时一次就能发送两个报文段，接收方收到报文段后返回两次确认报文段，发送方收到之后拥塞窗口再乘2，cwnd=4。</p>
 <p>知道发送方发送16个报文段都按时收到确认报文，拥塞窗口变为32，但是这一次没有按时收到确认报文，即有报文需要重传，表示网络发生了拥塞，这时候设定ssthresh为当前窗口cwnd的一半，即<code>ssthresh = cwnd/2 = 16</code>，重新开始慢开始。</p>
-<p>再一次cwnd&#x3D;16的时候，开启拥塞避免算法。</p>
+<p>再一次cwnd=16的时候，开启拥塞避免算法。</p>
 </blockquote>
 <p><strong>快速重传</strong></p>
 <p>在数据传送过程中，网络有可能不太稳定，个别报文段在网络中丢失了，但是实际上网络并没有发生拥塞。</p>
@@ -1388,7 +1224,7 @@ Password: 1234
 <p>当发送方连续收到三个重复确认的时候，执行 乘法减小 算法，将ssthresh门限减半（为了预防网络发生拥塞），但是接下来不执行慢开始算法，因为如果网络发生拥塞的话就不会收到好几个重复的确认，所以发送方现在认为网络可能没有出现拥塞。</p>
 <p>此时不会执行慢开始算法，而是将拥塞窗口cwnd设置为ssthresh减半后的值，然后执行拥塞避免算法，让cwnd缓慢变大。</p>
 </blockquote>
-<h3 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h3><p><strong>四次挥手的过程如下：</strong></p>
+<p><strong>四次挥手</strong></p>
 <p>第一次挥手：</p>
 <blockquote>
 <p>客户端向服务器发送一个 FIN 数据包（<code>FIN = 1，seq = u</code>）主动断开连接，报文中会指定一个序列号。</p>
@@ -1415,12 +1251,12 @@ Password: 1234
 <p>需要过一了一定时间（2MSL）之后，客户端发送确认包（<code>ACK = 1， ack = w + 1</code>），此时客户端才会进入 CLOSED 状态，以确保发送方的ACK可以到达接收方，防止已失效连接请求报文段出现在此连接中。</p>
 <p>至此，完成四次挥手。</p>
 </blockquote>
-<p><strong>等待计时器（TIME-WAIT）</strong></p>
+<p>等待计时器（TIME-WAIT）：</p>
 <blockquote>
 <p>MSL（Max Segment Lifetime）：最长报文段寿命。</p>
 <p>等待计时器等待的时间为2MSL，MSL一般设置为2分钟。</p>
 </blockquote>
-<p><strong>为什么需要等待2MSL？</strong></p>
+<p>为什么需要等待2MSL？</p>
 <blockquote>
 <p>确保发送方发送的第四次挥手ACK报文可以到达接收方。</p>
 <p>确保当前连接的所有报文都已经过期。</p>
@@ -1429,6 +1265,240 @@ Password: 1234
 <p>另外一个功能是为了确保当前连接的所有报文都已经过期，防止已失效的连接请求报文段出现在本连接中。</p>
 <p>因为最后一个报文都已经等待了2MSL时间，所以对于其他报文，肯定也超过2MSL的时间，都是过期的报文。</p>
 </blockquote>
+<h1>网络层</h1>
+<p><strong>IP协议</strong></p>
+<blockquote>
+<p>IP协议是TCP\IP协议簇中最核心的协议，大部分的上层（传输层、应用层）应用都直接或间接的使用IP协议传输，TCP协议、UDP协议都会使用 IP 协议。</p>
+<p>IP 协议是无连接的，不可靠的网络层协议，它只负责数据的传输，但是并不能保证数据一定能到达，要想保证数据可靠，需要上层应用处理，例如 TCP协议利用IP协议传输数据，但是丢包、超时等情况还是要靠 TCP 自己解决。</p>
+</blockquote>
+<p><strong>ARP协议</strong></p>
+<blockquote>
+<p>ARP 的作用是根据 IP 地址获取对应的 MAC 地址。</p>
+<p>在网络中最终传输的数据叫做数据帧，是数据链路层最后封装的，而数据帧要根据 MAC 地址找到目的主机，一般是目的主机的某个网卡。</p>
+<ul>
+<li>而一般只知道目的主机的 IP，不知道 MAC 地址，所以需要 ARP 协议。</li>
+</ul>
+</blockquote>
+<h1>网络安全</h1>
+<p><strong>SQL注入</strong></p>
+<blockquote>
+<p>一种代码注入技术，通过把SQL命令插入到Web表单递交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。</p>
+<p>SQL注入攻击者通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，传入后端的SQL服务器执行。</p>
+<ul>
+<li>结果是可以执行恶意攻击者设计的任意SQL命令。</li>
+</ul>
+</blockquote>
+<p>例如，Web应用程序具有以下登录页面:</p>
+<pre><code>User Name: admin
+Password: 1234
+</code></pre>
+<blockquote>
+<p>攻击者在密码框中输入:</p>
+</blockquote>
+<pre><code>'1234 ' or '1'='1
+</code></pre>
+<blockquote>
+<p>之后构造的SQL查询为:</p>
+</blockquote>
+<pre><code class="language-sql">SELECT * FROM users WHERE name='admin' AND password='1234 ' or '1'='1';
+</code></pre>
+<blockquote>
+<p>由于’或’1’='1 总是为真，所以可以绕过密码验证登录系统。</p>
+</blockquote>
+<p>如何防止SQL注入：</p>
+<blockquote>
+<p>SQL注入可以通过多种方式进行防范，如使用参数化的SQL语句、输入验证和过滤等方法。</p>
+</blockquote>
+<p>PreparedStatement防止SQL注入:</p>
+<blockquote>
+<p>PreparedStatement会先将SQL语句发送到数据库进行预编译，之后再将参数值单独传递，从而避免了SQL语句拼接的过程。</p>
+</blockquote>
+<p>Mybatis中<code>#&#123;&#125;</code>防止SQL注入：</p>
+<blockquote>
+<p>在MyBatis中，可以使用<code>#&#123;&#125;</code>来防止SQL注入。</p>
+<ul>
+<li>
+<p><code>#&#123;&#125;</code>是MyBatis提供的PreparedStatement的参数占位符。</p>
+</li>
+<li>
+<p>MyBatis会自动将<code>#&#123;&#125;</code>替换为? ，并且对用户传入的参数自动进行Escape处理，以防止SQL注入。</p>
+</li>
+</ul>
+</blockquote>
+<p>对请求参数的敏感词汇进行过滤：</p>
+<blockquote>
+<p>对用户请求参数中的敏感词汇进行过滤，可以防止多种注入攻击，包括SQL注入、XSS等。</p>
+<p>常见的防范措施包括:</p>
+<ul>
+<li>构建敏感词汇库，收集所有可能的敏感词汇，如delete、drop、script等，并定期更新。</li>
+<li>对用户请求参数进行遍历，判断参数值是否包含敏感词汇，可以用正则表达式或包含关系来判断。</li>
+<li>对关键参数与业务规则进行校验，例如长度、类型、允许范围等。</li>
+<li>考虑在边界处过滤，如WAF、防火墙等。</li>
+<li>输出时对敏感数据编码或替换。</li>
+</ul>
+</blockquote>
+<p>Nginx反向代理防止SQL注入：</p>
+<blockquote>
+<p>可以使用nginx的<code>ngx_http_rewrite_module</code>模块，在server区域加入过滤规则，对请求参数中敏感字符进行过滤或拦截。</p>
+<p><strong>WAF功能</strong>：</p>
+<ul>
+<li>启用nginx的Web应用防火墙功能，对疑似SQL注入的请求进行拦截，如检测特殊字符，语句规则等。</li>
+</ul>
+<p><strong>访问控制：</strong></p>
+<ul>
+<li>通过nginx的access模，禁止某些IP地址或子网段访问，限制请求频率，以防止滥用。</li>
+</ul>
+<p><strong>隐藏数据库结构信息</strong>：</p>
+<ul>
+<li>基于请求中的User-Agent等信息，显示不同的错误页面，避免泄露数据库元信息。</li>
+</ul>
+<p><strong>连接数据库的用户权限控制</strong>：</p>
+<ul>
+<li>只允许访问应用需要的最小权限集。</li>
+</ul>
+</blockquote>
+<pre><code class="language-nginx">if ($args ~* &quot;select|insert|update|delete|drop|exec&quot;) &#123;
+ return 403;
+&#125;
+</code></pre>
+<p><strong>XSS</strong></p>
+<p>Cross-Site Scripting(跨站脚本攻击)，简称XSS，是一种代码注入攻击。</p>
+<blockquote>
+<p>攻击者通过在目标网站上注入恶意脚本，使之在用户的浏览器上运行。</p>
+<p>利用这些恶意脚本，攻击者可获取用户的敏感信息如Cookie、SessionID等，进而危害数据安全。</p>
+</blockquote>
+<p>XSS注入方法:</p>
+<blockquote>
+<p>任何可以输入的地方都有可能引起XSS攻击：</p>
+<ul>
+<li>
+<p>在HTML内嵌的文本中，恶意内容以script标签形成注入</p>
+</li>
+<li>
+<p>在内联的JavaScript中，拼接的数据突破了原本的限制（字符串，变量，方法名）等</p>
+</li>
+<li>
+<p>在标签属性中，恶意内容包含引号，从而突破属性值的限制，注入其他属性或者标签</p>
+</li>
+<li>
+<p>在标签的 href、src 等属性中，包含 javascript: (伪协议)等可执行代码。</p>
+</li>
+<li>
+<p>在 onload、onerror、onclick 等事件中，注入不受控制代码。</p>
+</li>
+</ul>
+</blockquote>
+<p>防御XSS攻击的方法:</p>
+<blockquote>
+<p>输入过滤：</p>
+<ul>
+<li>一般是用于对于输入格式的检查，例如：邮箱，电话号码，用户名，密码……等，按照规定的格式输入。</li>
+</ul>
+<p>转义HTML：</p>
+<ul>
+<li>如果拼接 HTML 是必要的，就需要对于引号，尖括号，斜杠进行转义。</li>
+</ul>
+</blockquote>
+<p><strong>CSRF</strong></p>
+<p>CSRF(跨站请求伪造)，是一种挟持用户在当前已登陆的Web应用程序上执行非本意的操作的攻击方法。</p>
+<p>CSRF攻击流程：</p>
+<blockquote>
+<p>攻击者诱导受害者进入第三方网站，在第三方网站中，向被攻击网站发送跨站请求。</p>
+<p>利用受害者在被攻击网站已经获取的注册凭证，绕过后台的用户验证，达到冒充用户对被攻击的网站执行某项操作的目的。</p>
+<p>这样攻击者盗用了用户的身份，以用户的名义发送恶意请求，对服务器来说这个请求是完全合法的，但是却完成了攻击者所期望的一个操作，比如以用户的名义发送邮件、发消息，盗取你的账号，添加系统管理员，甚至于购买商品、虚拟货币转账等。</p>
+</blockquote>
+<p>举例：Web A为存在CSRF漏洞的网站，Web B为攻击者构建的恶意网站，User C为Web A网站的合法用户。</p>
+<blockquote>
+<p>第一步：用户C打开浏览器，访问受信任网站A，输入用户名和密码请求登录网站A；</p>
+<p>第二步：在用户信息通过验证后，网站A产生Cookie信息并返回给浏览器，此时用户登录网站A成功，可以正常发送请求到网站A；</p>
+<p>第三步：用户未退出网站A之前，在同一浏览器中，打开一个TAB页 访问 网站B；</p>
+<p>第四步：网站B接收到用户请求后，返回一些攻击性代码，并发出一个请求要求访问第三方站点A；</p>
+<p>第五步：浏览器在接收到这些攻击性代码后：</p>
+<ul>
+<li>
+<p>用户相当于无意中在自己的 浏览器 上执行了网站B返回的攻击代码中的http请求，在用户不知情的情况下携带Cookie信息，向网站A发出请求；</p>
+</li>
+<li>
+<p>网站A并不知道该请求其实是由B发起的，所以会根据用户C的Cookie信息以C的权限处理该请求，导致来自网站B的恶意代码被执行。</p>
+</li>
+</ul>
+</blockquote>
+<p>防御CSRF的方法：</p>
+<blockquote>
+<p>验证码:</p>
+<ul>
+<li>强制用户必须与应用进行交互，才能完成最终请求。</li>
+</ul>
+<p>请求来源限制(Referer)；</p>
+<ul>
+<li>不能保证 100% 有效，服务器并不是什么时候都能取到 Referer，而且低版本的浏览器存在伪造 Referer 的风险。</li>
+</ul>
+<p>Token验证：</p>
+<ul>
+<li>CSRF防御机制最合适的方案。</li>
+</ul>
+</blockquote>
+<p><strong>DOS</strong></p>
+<p>DOS（拒绝服务），一切能引起DOS行为的攻击都被称为DOS攻击。</p>
+<blockquote>
+<p>该攻击的效果是使得计算机或网络无法提供正常的服务。</p>
+</blockquote>
+<p>DOS攻击的原理：</p>
+<blockquote>
+<p>首先攻击者向被攻击的服务器发送大量的虚假IP请求，被攻击者在收到请求后返回确认信息，等待攻击者进行确认，由于攻击者发送的请求信息是虚假的，所以服务器接收不到返回的确认信息，在一段时间内服务器会处与等待状态，而分配给这次请求的资源却被有被释放。</p>
+<p>当被攻击者等待一定的时间后，会因连接超时而断开，这时攻击者在次发送新的虚假信息请求，这样最终服务器资源被耗尽，直到瘫痪。</p>
+</blockquote>
+<p><strong>DDOS：</strong></p>
+<p>分布式拒绝服务攻击，指的是攻击者控制多台主机同时向同一主机或网络发起DOS攻击。</p>
+<p>DDOS究竟如何攻击?</p>
+<blockquote>
+<p>目前最流行也是最好用的攻击方法就是使用SYN-Flood进行攻击，SYN-Flood也就是SYN洪水攻击。</p>
+<p>SYN-Flood不会完成TCP三次握手的第三步，也就是不发送确认连接的信息给服务器。</p>
+<ul>
+<li>
+<p>这样，服务器无法完成第三次握手，但服务器不会立即放弃，服务器会不停的重试并等待一定的时间后放弃这个未完成的连接，这段时间叫做SYN Timeout，这段时间大约30秒-2分钟左右。</p>
+</li>
+<li>
+<p>一个服务器若是处理这些大量的半连接信息而消耗大量的系统资源和网络带宽，这样服务器就不会再有空余处理普通用户的正常请求。</p>
+</li>
+</ul>
+</blockquote>
+<p>减少DDOS的攻击方法：</p>
+<blockquote>
+<p>限制同时打开的SYN半连接数目。</p>
+<p>缩短SYN半连接的time out时间。</p>
+<p>正确设置防火墙。</p>
+<p>禁止对主机的非开放服务的访问。</p>
+<p>限制特定IP地址的访问。</p>
+<p>启用防火墙的防DDOS的属性。</p>
+<p>严格限制对外开放的服务器的向外访问。</p>
+<p>运行端口映射程序祸端口扫描程序，要认真检查特权端口和非特权端口。</p>
+</blockquote>
+<h1>加密算法</h1>
+<p><strong>MD5算法</strong></p>
+<p><code>MD5</code> 用的是 <strong>哈希函数</strong>，它的典型应用是对一段信息产生 <strong>信息摘要</strong>，以 <strong>防止被篡改</strong>。</p>
+<blockquote>
+<p>严格来说，<code>MD5</code> 不是一种 <strong>加密算法</strong> 而是 <strong>摘要算法</strong>。</p>
+<p>无论是多长的输入，<code>MD5</code> 都会输出长度为 <code>128bits</code> 的一个串 (通常用 <code>16</code> <strong>进制</strong> 表示为 <code>32</code> 个字符)。</p>
+</blockquote>
+<p><strong>对称加密</strong></p>
+<p>在 <strong>对称加密算法</strong> 中，使用的密钥只有一个，<strong>发送</strong> 和 <strong>接收</strong> 双方都使用这个密钥对数据进行 <strong>加密</strong> 和 <strong>解密</strong>。</p>
+<blockquote>
+<p>这就要求加密和解密方事先都必须知道加密的密钥。</p>
+</blockquote>
+<p><img src="/images/image-20231011180653517.png" alt="image-20231011180653517"></p>
+<p>常见的 <strong>对称加密</strong> 算法主要有 <code>DES</code>、<code>3DES</code>、<code>AES</code> 等。</p>
+<p><strong>非对称加密</strong></p>
+<p>非对称加密算法有两个密钥，一个称为 <strong>公开密钥</strong>，即 <strong>公钥</strong>，另一个称为 <strong>私有密钥</strong>，即 <strong>私钥</strong>。</p>
+<blockquote>
+<p>如果使用 <strong>公钥</strong> 对数据 <strong>进行加密</strong>，只有用对应的 <strong>私钥</strong> 才能 <strong>进行解密</strong>。</p>
+<p>如果使用 <strong>私钥</strong> 对数据 <strong>进行加密</strong>，只有用对应的 <strong>公钥</strong> 才能 <strong>进行解密</strong>。</p>
+</blockquote>
+<p><img src="/images/image-20231011180711713.png" alt="image-20231011180711713"></p>
+<blockquote>
+<p><strong>例子</strong>：甲方生成 <strong>一对密钥</strong> 并将其中的一把作为 <strong>公钥</strong> 向其它人公开，得到该公钥的 <strong>乙方</strong> 使用该密钥对机密信息 <strong>进行加密</strong> 后再发送给甲方，甲方再使用自己保存的另一把 <strong>专用密钥</strong> (<strong>私钥</strong>)，对 <strong>加密</strong> 后的信息 <strong>进行解密</strong>。</p>
+</blockquote>
+<p>常见的 <strong>非对称算法</strong> 主要有 <code>RSA</code>、<code>DSA</code> 等。</p>
 
 	</div>
 </div>
