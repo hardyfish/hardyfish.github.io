@@ -618,6 +618,15 @@
 									
 							<ul>
 								<li class="file">
+									<a href="/2023/11/15/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/JWT/">
+										JWT
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2023/10/08/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/MyBatis/">
 										MyBatis
 									</a>
@@ -869,8 +878,7 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<h1>网络模型</h1>
-<p><strong>OSI七层模型</strong></p>
+		<h1 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h1><p><strong>OSI七层模型</strong></p>
 <p>物理层：</p>
 <blockquote>
 <p>解决两个硬件之间怎么通信的问题，常见的物理媒介有光纤、电缆、中继器等。</p>
@@ -909,11 +917,12 @@
 <blockquote>
 <p>应用层是计算机用户，以及各种应用程序和网络之间的接口，其功能是直接向用户提供服务，完成用户希望在网络上完成的各种工作。</p>
 </blockquote>
-<p><strong>TCP/IP4层模型</strong></p>
+<p><strong>TCP&#x2F;IP4层模型</strong></p>
 <blockquote>
-<p>TCP/IP 模型是事实上的标准模型，在 7 层模型的基础上将最上面三层的应用层、表示层、会话层统一为应用层，将数据链路层和物理层统一为链路层或者叫网络接口层。</p>
+<p>TCP&#x2F;IP 模型是事实上的标准模型，在 7 层模型的基础上将最上面三层的应用层、表示层、会话层统一为应用层，将数据链路层和物理层统一为链路层或者叫网络接口层。</p>
 </blockquote>
 <img src="/images/image-20231114142542365.png" alt="image-20231114142542365" style="zoom:70%;" />
+
 <p><strong>数据发送和接收过程</strong></p>
 <blockquote>
 <p>数据从应用层进入，到达传输层，添加上 TCP首部，将数据加工成 TCP  段，称为 Segment：这是为了保证数据的可靠性。</p>
@@ -922,39 +931,31 @@
 <p>接着数据到达链路层，添加上以太网头部，将数据加工成以太网帧，称为 frame，包含了网卡等硬件相关的数据。</p>
 </blockquote>
 <img src="/images/image-20231114142934648.png" alt="image-20231114142934648" style="zoom:50%;" />
-<h1>应用层</h1>
-<h2 id="HTTP">HTTP</h2>
-<p><strong>请求报文组成</strong></p>
-<p>HTTP请求报文由3部分组成： <strong>请求行</strong> + <strong>请求头</strong> + <strong>请求体</strong></p>
+
+<h1 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h1><h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p><strong>请求报文组成</strong></p>
+<p>HTTP请求报文由3部分组成： <strong>请求行</strong> + <strong>请求头</strong> + <strong>请求体</strong> </p>
 <blockquote>
 <p><strong>请求行：</strong></p>
 <ul>
-<li>
-<p>请求方法，GET和POST是最常见的HTTP方法，除此以外还包括DELETE、HEAD、OPTIONS、PUT、TRACE。</p>
+<li><p>请求方法，GET和POST是最常见的HTTP方法，除此以外还包括DELETE、HEAD、OPTIONS、PUT、TRACE。</p>
 </li>
-<li>
-<p>请求对应的URL地址，它和报文头的Host属性组成完整的请求URL。</p>
+<li><p>请求对应的URL地址，它和报文头的Host属性组成完整的请求URL。</p>
 </li>
-<li>
-<p>协议名称及版本号。</p>
+<li><p>协议名称及版本号。</p>
 </li>
 </ul>
 <p><strong>请求头：</strong></p>
 <ul>
-<li>
-<p>是HTTP的报文头，报文头包含若干个属性，格式为 属性名:属性值，服务端据此获取客户端的信息。</p>
+<li><p>是HTTP的报文头，报文头包含若干个属性，格式为 属性名:属性值，服务端据此获取客户端的信息。</p>
 </li>
-<li>
-<p>与缓存相关的规则信息，均包含在header中</p>
+<li><p>与缓存相关的规则信息，均包含在header中</p>
 </li>
 </ul>
 <p><strong>请求体：</strong></p>
 <ul>
-<li>
-<p>是报文体，它将一个页面表单中的组件值通过<code>param1=value1&amp;param2=value2</code>的键值对形式编码成一个格式化串，它承载多个请求参数的数据。</p>
+<li><p>是报文体，它将一个页面表单中的组件值通过<code>param1=value1&amp;param2=value2</code>的键值对形式编码成一个格式化串，它承载多个请求参数的数据。</p>
 </li>
-<li>
-<p>不但报文体可以传递请求参数，请求URL也可以通过类似于<code>/chapter15/user.html? param1=value1&amp;param2=value2</code>的方式传递请求参数。</p>
+<li><p>不但报文体可以传递请求参数，请求URL也可以通过类似于<code>/chapter15/user.html? param1=value1&amp;param2=value2</code>的方式传递请求参数。</p>
 </li>
 </ul>
 </blockquote>
@@ -1022,7 +1023,7 @@
 </blockquote>
 <p>Cookie与Session的区别：</p>
 <blockquote>
-<p>安全性：</p>
+<p>安全性： </p>
 <ul>
 <li>Session 比 Cookie 安全，Session 是存储在服务器端的，Cookie 是存储在客户端的。</li>
 </ul>
@@ -1030,11 +1031,11 @@
 <ul>
 <li>Cookie 只支持存字符串数据，想要设置其他类型的数据，需要将其转换成字符串，Session 可以存任意数据类型。</li>
 </ul>
-<p>有效期不同：</p>
+<p>有效期不同： </p>
 <ul>
 <li>Cookie 可设置为长时间保持，比如我们经常使用的默认登录功能，Session 一般失效时间较短，客户端关闭（默认情况下）或者 Session 超时都会失效。</li>
 </ul>
-<p>存储大小不同：</p>
+<p>存储大小不同： </p>
 <ul>
 <li>单个 Cookie 保存的数据不能超过 3K，Session 可存储数据远高于 Cookie，但是当访问量过多，会占用过多的服务器资源。</li>
 </ul>
@@ -1048,7 +1049,7 @@
 </blockquote>
 <p>HTTP 1.1还提供了与身份认证、状态管理和Cache缓存等机制相关的请求头和响应头。</p>
 <blockquote>
-<p>HTTP/1.1在1.0的基础上加入了一些cache的新特性，当缓存对象的Age超过Expire时变为stale对象，cache不需要直接抛弃stale对象，而是与源服务器进行重新激活）。</p>
+<p>HTTP&#x2F;1.1在1.0的基础上加入了一些cache的新特性，当缓存对象的Age超过Expire时变为stale对象，cache不需要直接抛弃stale对象，而是与源服务器进行重新激活）。</p>
 </blockquote>
 <p>请求的流水线（Pipelining）处理，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟。</p>
 <blockquote>
@@ -1091,15 +1092,15 @@
 </blockquote>
 <p>HTTP2.0的多路复用和HTTP1.1中的长连接复用有什么区别？</p>
 <blockquote>
-<p>HTTP/1.0：</p>
+<p>HTTP&#x2F;1.0：</p>
 <ul>
 <li>一次请求-响应，建立一个连接，用完关闭；每一个请求都要建立一个连接；</li>
 </ul>
-<p>HTTP/1.1：</p>
+<p>HTTP&#x2F;1.1：</p>
 <ul>
 <li>若干个请求排队串行化单线程处理，后面的请求等待前面请求的返回才能获得执行机会，一旦有某请求超时等，后续请求只能被阻塞。</li>
 </ul>
-<p>HTTP/2.0：</p>
+<p>HTTP&#x2F;2.0：</p>
 <ul>
 <li>多个请求可同时在一个连接上并行执行。某个请求任务耗时严重，不会影响到其它连接的正常执行；</li>
 </ul>
@@ -1135,8 +1136,7 @@
 <p>Client使用对称密钥解密响应的密文，得到明文内容A。</p>
 <p>Client再次发起HTTPS的请求，使用对称密钥加密请求的明文内容B，然后Server使用对称密钥解密密文，得到明文内容B。</p>
 </blockquote>
-<h1>传输层</h1>
-<p><strong>TCP和UDP各自适用的场景</strong></p>
+<h1 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h1><p><strong>TCP和UDP各自适用的场景</strong></p>
 <blockquote>
 <p>当要求通信数据可靠时，选择TCP协议:</p>
 <ul>
@@ -1147,8 +1147,7 @@
 <li>适合多媒体信息分发的场景，如直播，视频，语音，实时信息（股票走势）等。</li>
 </ul>
 </blockquote>
-<h2 id="UDP">UDP</h2>
-<p><strong>UDP特点</strong></p>
+<h2 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h2><p><strong>UDP特点</strong></p>
 <blockquote>
 <p>UDP是无连接的传输层协议。</p>
 <p>UDP使用尽最大努力交付，不保证可靠交付。</p>
@@ -1165,8 +1164,7 @@
 </blockquote>
 <p><strong>如何保证UDP协议可靠？</strong></p>
 <p>模拟TPC的可靠机制来实现，保证四个无即可（无丢失、无失序、无错误、无重复）。</p>
-<h2 id="TCP">TCP</h2>
-<p><strong>TCP特点</strong></p>
+<h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><p><strong>TCP特点</strong></p>
 <blockquote>
 <p>TCP是面向连接的传输层协议，也就是说，在双方传输数据之前，必须先建立起连接，传输完数据后要结束连接。</p>
 <p>每一条TCP连接只能有两个端点，即点对点通信（一对一）。</p>
@@ -1215,11 +1213,11 @@
 <blockquote>
 <p>当cwnd &lt; ssthresh 时，使用慢开始算法。</p>
 <p>当cwnd &gt; ssthresh 时，停止使用慢开始算法而改用拥塞避免算法。</p>
-<p>当cwnd = ssthresh 时，既可以使用慢开始算法，也可以使用拥塞避免算法。</p>
+<p>当cwnd &#x3D; ssthresh 时，既可以使用慢开始算法，也可以使用拥塞避免算法。</p>
 <p>假设发送方拥塞窗口cwnd的值为1，发送窗口swnd等于拥塞窗口cwnd，那么目前发送方只能发送一个报文段，cwnd为几就能发送几个报文段，接收方收到报文段后发送回复确认，发送方收到确认报文，会将拥塞窗口的值乘2，变为2。</p>
-<p>发送方此时一次就能发送两个报文段，接收方收到报文段后返回两次确认报文段，发送方收到之后拥塞窗口再乘2，cwnd=4。</p>
+<p>发送方此时一次就能发送两个报文段，接收方收到报文段后返回两次确认报文段，发送方收到之后拥塞窗口再乘2，cwnd&#x3D;4。</p>
 <p>知道发送方发送16个报文段都按时收到确认报文，拥塞窗口变为32，但是这一次没有按时收到确认报文，即有报文需要重传，表示网络发生了拥塞，这时候设定ssthresh为当前窗口cwnd的一半，即<code>ssthresh = cwnd/2 = 16</code>，重新开始慢开始。</p>
-<p>再一次cwnd=16的时候，开启拥塞避免算法。</p>
+<p>再一次cwnd&#x3D;16的时候，开启拥塞避免算法。</p>
 </blockquote>
 <p><strong>快速重传</strong></p>
 <p>在数据传送过程中，网络有可能不太稳定，个别报文段在网络中丢失了，但是实际上网络并没有发生拥塞。</p>
@@ -1274,8 +1272,7 @@
 <p>另外一个功能是为了确保当前连接的所有报文都已经过期，防止已失效的连接请求报文段出现在本连接中。</p>
 <p>因为最后一个报文都已经等待了2MSL时间，所以对于其他报文，肯定也超过2MSL的时间，都是过期的报文。</p>
 </blockquote>
-<h1>网络层</h1>
-<p><strong>IP协议</strong></p>
+<h1 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h1><p><strong>IP协议</strong></p>
 <blockquote>
 <p>IP协议是TCP\IP协议簇中最核心的协议，大部分的上层（传输层、应用层）应用都直接或间接的使用IP协议传输，TCP协议、UDP协议都会使用 IP 协议。</p>
 <p>IP 协议是无连接的，不可靠的网络层协议，它只负责数据的传输，但是并不能保证数据一定能到达，要想保证数据可靠，需要上层应用处理，例如 TCP协议利用IP协议传输数据，但是丢包、超时等情况还是要靠 TCP 自己解决。</p>
@@ -1288,8 +1285,7 @@
 <li>而一般只知道目的主机的 IP，不知道 MAC 地址，所以需要 ARP 协议。</li>
 </ul>
 </blockquote>
-<h1>网络安全</h1>
-<p><strong>SQL注入</strong></p>
+<h1 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h1><p><strong>SQL注入</strong></p>
 <blockquote>
 <p>一种代码注入技术，通过把SQL命令插入到Web表单递交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。</p>
 <p>SQL注入攻击者通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，传入后端的SQL服务器执行。</p>
@@ -1304,15 +1300,15 @@ Password: 1234
 <blockquote>
 <p>攻击者在密码框中输入:</p>
 </blockquote>
-<pre><code>'1234 ' or '1'='1
+<pre><code>&#39;1234 &#39; or &#39;1&#39;=&#39;1
 </code></pre>
 <blockquote>
 <p>之后构造的SQL查询为:</p>
 </blockquote>
-<pre><code class="language-sql">SELECT * FROM users WHERE name='admin' AND password='1234 ' or '1'='1';
+<pre><code class="sql">SELECT * FROM users WHERE name=&#39;admin&#39; AND password=&#39;1234 &#39; or &#39;1&#39;=&#39;1&#39;;
 </code></pre>
 <blockquote>
-<p>由于’或’1’='1 总是为真，所以可以绕过密码验证登录系统。</p>
+<p>由于’或’1’&#x3D;’1 总是为真，所以可以绕过密码验证登录系统。</p>
 </blockquote>
 <p>如何防止SQL注入：</p>
 <blockquote>
@@ -1326,17 +1322,15 @@ Password: 1234
 <blockquote>
 <p>在MyBatis中，可以使用<code>#&#123;&#125;</code>来防止SQL注入。</p>
 <ul>
-<li>
-<p><code>#&#123;&#125;</code>是MyBatis提供的PreparedStatement的参数占位符。</p>
+<li><p><code>#&#123;&#125;</code>是MyBatis提供的PreparedStatement的参数占位符。</p>
 </li>
-<li>
-<p>MyBatis会自动将<code>#&#123;&#125;</code>替换为? ，并且对用户传入的参数自动进行Escape处理，以防止SQL注入。</p>
+<li><p>MyBatis会自动将<code>#&#123;&#125;</code>替换为? ，并且对用户传入的参数自动进行Escape处理，以防止SQL注入。</p>
 </li>
 </ul>
 </blockquote>
 <p>对请求参数的敏感词汇进行过滤：</p>
 <blockquote>
-<p>对用户请求参数中的敏感词汇进行过滤，可以防止多种注入攻击，包括SQL注入、XSS等。</p>
+<p>对用户请求参数中的敏感词汇进行过滤，可以防止多种注入攻击，包括SQL注入、XSS等。 </p>
 <p>常见的防范措施包括:</p>
 <ul>
 <li>构建敏感词汇库，收集所有可能的敏感词汇，如delete、drop、script等，并定期更新。</li>
@@ -1353,7 +1347,7 @@ Password: 1234
 <ul>
 <li>启用nginx的Web应用防火墙功能，对疑似SQL注入的请求进行拦截，如检测特殊字符，语句规则等。</li>
 </ul>
-<p><strong>访问控制：</strong></p>
+<p><strong>访问控制：</strong> </p>
 <ul>
 <li>通过nginx的access模，禁止某些IP地址或子网段访问，限制请求频率，以防止滥用。</li>
 </ul>
@@ -1366,7 +1360,7 @@ Password: 1234
 <li>只允许访问应用需要的最小权限集。</li>
 </ul>
 </blockquote>
-<pre><code class="language-nginx">if ($args ~* &quot;select|insert|update|delete|drop|exec&quot;) &#123;
+<pre><code class="nginx">if ($args ~* &quot;select|insert|update|delete|drop|exec&quot;) &#123;
  return 403;
 &#125;
 </code></pre>
@@ -1380,20 +1374,15 @@ Password: 1234
 <blockquote>
 <p>任何可以输入的地方都有可能引起XSS攻击：</p>
 <ul>
-<li>
-<p>在HTML内嵌的文本中，恶意内容以script标签形成注入</p>
+<li><p>在HTML内嵌的文本中，恶意内容以script标签形成注入</p>
 </li>
-<li>
-<p>在内联的JavaScript中，拼接的数据突破了原本的限制（字符串，变量，方法名）等</p>
+<li><p>在内联的JavaScript中，拼接的数据突破了原本的限制（字符串，变量，方法名）等</p>
 </li>
-<li>
-<p>在标签属性中，恶意内容包含引号，从而突破属性值的限制，注入其他属性或者标签</p>
+<li><p>在标签属性中，恶意内容包含引号，从而突破属性值的限制，注入其他属性或者标签</p>
 </li>
-<li>
-<p>在标签的 href、src 等属性中，包含 javascript: (伪协议)等可执行代码。</p>
+<li><p>在标签的 href、src 等属性中，包含 javascript: (伪协议)等可执行代码。</p>
 </li>
-<li>
-<p>在 onload、onerror、onclick 等事件中，注入不受控制代码。</p>
+<li><p>在 onload、onerror、onclick 等事件中，注入不受控制代码。</p>
 </li>
 </ul>
 </blockquote>
@@ -1424,11 +1413,9 @@ Password: 1234
 <p>第四步：网站B接收到用户请求后，返回一些攻击性代码，并发出一个请求要求访问第三方站点A；</p>
 <p>第五步：浏览器在接收到这些攻击性代码后：</p>
 <ul>
-<li>
-<p>用户相当于无意中在自己的 浏览器 上执行了网站B返回的攻击代码中的http请求，在用户不知情的情况下携带Cookie信息，向网站A发出请求；</p>
+<li><p>用户相当于无意中在自己的 浏览器 上执行了网站B返回的攻击代码中的http请求，在用户不知情的情况下携带Cookie信息，向网站A发出请求；</p>
 </li>
-<li>
-<p>网站A并不知道该请求其实是由B发起的，所以会根据用户C的Cookie信息以C的权限处理该请求，导致来自网站B的恶意代码被执行。</p>
+<li><p>网站A并不知道该请求其实是由B发起的，所以会根据用户C的Cookie信息以C的权限处理该请求，导致来自网站B的恶意代码被执行。</p>
 </li>
 </ul>
 </blockquote>
@@ -1454,8 +1441,8 @@ Password: 1234
 </blockquote>
 <p>DOS攻击的原理：</p>
 <blockquote>
-<p>首先攻击者向被攻击的服务器发送大量的虚假IP请求，被攻击者在收到请求后返回确认信息，等待攻击者进行确认，由于攻击者发送的请求信息是虚假的，所以服务器接收不到返回的确认信息，在一段时间内服务器会处与等待状态，而分配给这次请求的资源却被有被释放。</p>
-<p>当被攻击者等待一定的时间后，会因连接超时而断开，这时攻击者在次发送新的虚假信息请求，这样最终服务器资源被耗尽，直到瘫痪。</p>
+<p> 首先攻击者向被攻击的服务器发送大量的虚假IP请求，被攻击者在收到请求后返回确认信息，等待攻击者进行确认，由于攻击者发送的请求信息是虚假的，所以服务器接收不到返回的确认信息，在一段时间内服务器会处与等待状态，而分配给这次请求的资源却被有被释放。</p>
+<p> 当被攻击者等待一定的时间后，会因连接超时而断开，这时攻击者在次发送新的虚假信息请求，这样最终服务器资源被耗尽，直到瘫痪。</p>
 </blockquote>
 <p><strong>DDOS：</strong></p>
 <p>分布式拒绝服务攻击，指的是攻击者控制多台主机同时向同一主机或网络发起DOS攻击。</p>
@@ -1464,11 +1451,9 @@ Password: 1234
 <p>目前最流行也是最好用的攻击方法就是使用SYN-Flood进行攻击，SYN-Flood也就是SYN洪水攻击。</p>
 <p>SYN-Flood不会完成TCP三次握手的第三步，也就是不发送确认连接的信息给服务器。</p>
 <ul>
-<li>
-<p>这样，服务器无法完成第三次握手，但服务器不会立即放弃，服务器会不停的重试并等待一定的时间后放弃这个未完成的连接，这段时间叫做SYN Timeout，这段时间大约30秒-2分钟左右。</p>
+<li><p>这样，服务器无法完成第三次握手，但服务器不会立即放弃，服务器会不停的重试并等待一定的时间后放弃这个未完成的连接，这段时间叫做SYN Timeout，这段时间大约30秒-2分钟左右。</p>
 </li>
-<li>
-<p>一个服务器若是处理这些大量的半连接信息而消耗大量的系统资源和网络带宽，这样服务器就不会再有空余处理普通用户的正常请求。</p>
+<li><p>一个服务器若是处理这些大量的半连接信息而消耗大量的系统资源和网络带宽，这样服务器就不会再有空余处理普通用户的正常请求。</p>
 </li>
 </ul>
 </blockquote>
@@ -1483,8 +1468,7 @@ Password: 1234
 <p>严格限制对外开放的服务器的向外访问。</p>
 <p>运行端口映射程序祸端口扫描程序，要认真检查特权端口和非特权端口。</p>
 </blockquote>
-<h1>加密算法</h1>
-<p><strong>MD5算法</strong></p>
+<h1 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h1><p><strong>MD5算法</strong></p>
 <p><code>MD5</code> 用的是 <strong>哈希函数</strong>，它的典型应用是对一段信息产生 <strong>信息摘要</strong>，以 <strong>防止被篡改</strong>。</p>
 <blockquote>
 <p>严格来说，<code>MD5</code> 不是一种 <strong>加密算法</strong> 而是 <strong>摘要算法</strong>。</p>

@@ -618,6 +618,15 @@
 									
 							<ul>
 								<li class="file">
+									<a href="/2023/11/15/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/JWT/">
+										JWT
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2023/10/08/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/MyBatis/">
 										MyBatis
 									</a>
@@ -3486,10 +3495,12 @@ public class MustDeadLock implements Runnable &#123;
 <p>代码块:</p>
 <blockquote>
 <p>通过 monitorenter 和monitorexit 两个指令进行控制的。</p>
-<p>本质上是通过 monitor 来实现的。</p>
+<ul>
+<li>本质上是通过 monitor 来实现的。</li>
+</ul>
 </blockquote>
 <p>在Java虚拟机（HotSpot）中，Monitor是由ObjectMonitor实现的，其主要数据结构如下：</p>
-<pre><code>ObjectMonitor() &#123;
+<pre><code class="c">ObjectMonitor() &#123;
     _header       = NULL; //markOop对象头
     _count        = 0; //记录个数
     _waiters      = 0, //等待线程数
