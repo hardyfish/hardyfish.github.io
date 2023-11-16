@@ -8,8 +8,6 @@
 	<!-- title -->
 	
 	<title>
-	
-		CSS | 
 	 
 	月伴飞鱼
 	</title>
@@ -203,7 +201,7 @@
 									</a>
 									
 							<ul>
-								<li class="file active">
+								<li class="file">
 									<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/CSS/">
 										CSS
 									</a>
@@ -874,166 +872,44 @@
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<h1 id="article-title">
+		<div id="index" oncontextmenu="return false;">
+	
+		<div class="index-li">
+			<a href="/2023/11/16/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
+				<h2 class="index-title">
+					Java开发手册
+				</h2>
+				<div class="index-brief">
+					下载地址：https://github.com/alibaba/p3c/tree/master
+编程规约命名风格
 
-	CSS
-</h1>
-<div class="article-meta">
-	<span>月伴飞鱼</span>
-	<span>2023-10-07 14:48:34</span>
-    
-		<div id="article-categories">
-            
-                
-                    <span>
-                        <i class="fa fa-folder" aria-hidden="true"></i>
-                        <a href="/categories/前端相关/">前端相关</a>
-						
-                    </span>
-                
-            
-		</div>
-    
-</div>
-
-<div id="container" class = "content999" oncontextmenu="return false;">
-	<div id="article-content">
-		<p><strong>设置元素的前缀和后缀内容</strong></p>
-<blockquote>
-<p>使用了<code>::after</code>伪元素，将其作为元素的后缀，并通过<code>content</code>属性来设置替换文本的内容。</p>
-</blockquote>
-<pre><code class="css">.my-class::after &#123;
-  content: &quot;替换的文本&quot;;
-&#125;
-
-.my-class::before &#123;
-  content: &quot;替换的文本&quot;;
-&#125;
-</code></pre>
-<p><strong>隐藏img标签</strong></p>
-<pre><code class="css">img &#123;
-  display: none;
-&#125;
-</code></pre>
-<p><strong>禁用右键</strong></p>
-<pre><code class="html">&lt;body oncontextmenu=&quot;return false;&quot; style=&quot;background-color: #f5deb338&quot;&gt;
-  &lt;!-- 页面内容 --&gt;
-&lt;/body&gt;
-</code></pre>
-<p><strong>禁止选中文字</strong></p>
-<pre><code class="css">* &#123;
-    /*	以下可以禁止选中文字 */
-    -webkit-user-select:none;    
-    -moz-user-select:none;    
-    -o-user-select:none;    
-    user-select:none;
-&#125;
-</code></pre>
-<p><strong>隐藏文本内容</strong></p>
-<pre><code class="css">#footer &#123;
-    opacity: 0;
-&#125;
-</code></pre>
-<p>隐藏元素并禁用其中的链接：</p>
-<pre><code class="css">#btw-footer &#123;
-    pointer-events: none;
-    opacity: 0;
-&#125;
-</code></pre>
-
+所有编程相关的命名均不能以下划线或美元符号开始，也不能以下划线或美元符号结束。 
+如:_name / __name / $Object / name_ / name$ / Object
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-16</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/学习书籍/">学习书籍</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+	
+	<div id="index-paginator">
+		
 	</div>
 </div>
 
-
-    <div class="post-guide">
-        <div class="item left">
-            
-              <a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  设计模式
-              </a>
-            
-        </div>
-        <div class="item right">
-            
-              <a href="/2023/10/07/%E6%9C%8D%E5%8A%A1%E5%99%A8/Docker/">
-                Docker
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </a>
-            
-        </div>
-    </div>
-
-
-
-
-<script>
-
-    //document.oncontextmenu=new Function("event.returnValue=false");
-	//document.onselectstart=new Function("event.returnValue=false");
-
-	
-
-	$(function () {
-		const btw = new BTWPlugin();
-	    btw.init({
-	        id: 'container',
-	        blogId: '22377-1700097639981-614',
-	        name: '月伴飞鱼',
-	        qrcode: '/小程序码.jpg',
-	        keyword: '验证码',
-	    });
-
-	    var contents = document.getElementsByClassName("content999");
-	    //监听文章内容的copy事件
-	    contents[0].addEventListener('copy',function(e){
-	        setClipboardText(e);
-	    });
-
-	    function setClipboardText(event){
-	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
-	        let clipboardData = event.clipboardData || window.clipboardData;
-
-	        // 如果未复制或者未剪切，则return出去
-	        if (!clipboardData) { return; }
-
-	        event.preventDefault();
-
-	        // Selection 对象，表示用户选择的文本范围或光标的当前位置。
-	        // 声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
-	        let text = window.getSelection().toString();
-	    
-	        if (text) {
-	            // 如果文本存在则先取消文本默认事件
-	            event.preventDefault();
-	            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
-	            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
-	            // data: 一个 DOMString表示要添加到 drag object的数据。
-	            var copyright = '\n\n'
-	            + '\n著作权归作者所有。'
-	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
-	            + '\n作者: 月伴飞鱼'
-	            + '\n原文地址: https://hardyfish.top/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/CSS/'
-	    
-	            clipboardData.setData('text/plain', text + copyright);
-	    
-	        }
-	    };
-	});
-
-	
-</script>
-
-<script>
-    const btw = new BTWPlugin();
-    btw.init({
-        id: 'container',
-        blogId: '22377-1700097639981-614',
-        name: '月伴飞鱼',
-        qrcode: '/小程序码.jpg',
-        keyword: '验证码',
-    });
-</script>
 	</div>
 	<div id="footer">
 	<p>
