@@ -1499,6 +1499,12 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
 <p>5、进行着色和旋转，结束。</p>
 </blockquote>
 <p><strong>扩容机制</strong></p>
+<blockquote>
+<p>扩容阈值:</p>
+<ul>
+<li><code>阈值 = 容量 x 负载因子</code>，假设当前 <code>HashMap</code>的容量是 16，负载因子是默认值 0.75，当 size 到达 <code>16 x 0.75=</code> 12 的时候，就会触发扩容。</li>
+</ul>
+</blockquote>
 <p><strong>查找</strong></p>
 <blockquote>
 <p>根据 hash 算法定位数组的索引位置，equals 判断当前节点是否是我们需要寻找的 key，是的话直接返回，不是的话往下。</p>
@@ -2028,7 +2034,7 @@ private void linkNodeLast(LinkedHashMap.Entry&lt;K,V&gt; p) &#123;
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1700011385875-929',
+	        blogId: '22377-1700097639981-614',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -2078,7 +2084,7 @@ private void linkNodeLast(LinkedHashMap.Entry&lt;K,V&gt; p) &#123;
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1700011385875-929',
+        blogId: '22377-1700097639981-614',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',

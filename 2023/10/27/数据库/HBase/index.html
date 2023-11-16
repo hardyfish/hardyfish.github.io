@@ -883,7 +883,21 @@
 <p>Apache HBase 是 Hadoop中一个支持分布式的、可扩展的大数据存储的数据库。</p>
 <p>当需要对大数据进行随机、实时读&#x2F;写访问时，可以用 Apache HBase。</p>
 </blockquote>
-<p><strong>Shell操作</strong></p>
+<p><strong>HBase特点</strong></p>
+<p>列式存储:</p>
+<blockquote>
+<p>HBase是面向列族的非关系型数据库，每行数据列都可以不同，并且列可以按照需求进行动态增加。</p>
+<p>因此在开始创建HBase表时，可以只创建列族，等需要时再创建相应的列。</p>
+</blockquote>
+<p>数据压缩：</p>
+<blockquote>
+<p>列式存储意味着数据往往类型相同，可以采用某种压缩算法进行统一的压缩存储。</p>
+</blockquote>
+<p>海量存储:</p>
+<blockquote>
+<p>HDFS支持的海量存储，存储PB级数据仍能有百毫秒内的响应速度。</p>
+</blockquote>
+<h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><p><strong>Shell操作</strong></p>
 <p>进入HBase客户端命令操作界面：</p>
 <pre><code>hbase shell
 </code></pre>
@@ -1097,7 +1111,12 @@ hbase(main):037:0&gt; drop &#39;user&#39;
 #如果不进行disable，直接drop会报错
 ERROR: Table user is enabled. Disable it first.
 </code></pre>
-<p><strong>数据模型</strong></p>
+<h1 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h1><p><strong>逻辑结构:</strong></p>
+<img src="/images/57a4933067c04c4b9648409ac781bdc4.png" alt="请添加图片描述" style="zoom:80%;" />
+
+<p><strong>物理架构：</strong></p>
+<img src="/images/3c94d37b23034fda97bc843efa99c565.png" alt="在这里插入图片描述" style="zoom:80%;" />
+
 <p><img src="/images/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Nob2NrYW5n,size_16,color_FFFFFF,t_70.png" alt="img"></p>
 <blockquote>
 <p>Rowkey（行键）:</p>
@@ -1126,35 +1145,7 @@ ERROR: Table user is enabled. Disable it first.
 </li>
 </ul>
 </blockquote>
-<p><strong>负载均衡</strong></p>
-<blockquote>
-<p>HBase 官方目前支持两种负载均衡策略： </p>
-<ul>
-<li>SimpleLoadBalancer 策略和 StochasticLoadBalancer 策略。</li>
-</ul>
-</blockquote>
-<p>SimpleLoadBalancer 策略：</p>
-<blockquote>
-<p>这种策略能够保证每个 RegionServer 的 Region 个数基本相等。</p>
-<p>假设集群中一共有 n 个 RegionServer，m 个 Region ，那么集群的平均负载就是 average &#x3D; m&#x2F;n。</p>
-<ul>
-<li>这种策略能够保证所有 RegionServer 上的 Region 个数都在 <code>[floor(average)，ceil(average)]</code>之间。</li>
-</ul>
-<p>因此， SimpleLoadBalancer 策略中负载就是 Region 个数，集群负载迁移计划就是 Region 从个数较多的 RegionServer 上迁移到个数较少的 RegionServer 上。</p>
-<p>虽然集群中每个 RegionServer 的 Region 个数都基本相同，但如果某台 RegionServer 上的 Region 全部都是热点数据，导致 90 %的读写请求还是落在了这台 RegionServer 上，这样没有达到负载均衡的目的。</p>
-</blockquote>
-<p>StochasticLoadBalancer 策略：</p>
-<blockquote>
-<p>它对于负载的定义不再是 Region 个数这么简单，而是由多种独立负载加权计算的复合值，这些独立负载包括：</p>
-<ul>
-<li>Region 个数，Region 负载，读请求数，写请求数，Storefile 大小，MemStore 大小，数据本地率，移动代价。</li>
-</ul>
-<p>这些独立负载经过加权计算会得到一个代价值，系统使用这个代价值来评估当前 Region 分布是否均衡，越均衡代价值越低。</p>
-<ul>
-<li>HBase 通过不断随机挑选迭代来找到一组 Region 迁移计划，使得代价值最小。</li>
-</ul>
-</blockquote>
-<p><strong>如何支持海量数据的随机存取</strong></p>
+<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><strong>如何支持海量数据的随机存取</strong></p>
 <blockquote>
 <p>1、利用了HDFS的分布式存储和Hadoop的分布式计算能力：</p>
 <ul>
@@ -1229,36 +1220,32 @@ ERROR: Table user is enabled. Disable it first.
 </blockquote>
 <p><img src="/images/image-20231029233549412.png" alt="image-20231029233549412"></p>
 <p><img src="/images/image-20231029233748961.png" alt="image-20231029233748961"></p>
-<p><strong>热点问题</strong></p>
-<p>什么是热点？</p>
+<p><strong>负载均衡</strong></p>
 <blockquote>
-<p>检索 HBase 的记录首先要通过Row Key来定位数据行。</p>
-<p>当大量的 Client 访问 HBase 集群的一个或少数几个节点，造成少数 Region Server 的读&#x2F;写请求过多、负载过大，而其他Region Server 负载却很小，就造成了 热点 现象。</p>
+<p>HBase 官方目前支持两种负载均衡策略： </p>
+<ul>
+<li>SimpleLoadBalancer 策略和 StochasticLoadBalancer 策略。</li>
+</ul>
 </blockquote>
-<p>解决方案:</p>
+<p>SimpleLoadBalancer 策略：</p>
 <blockquote>
-<p>预分区:</p>
+<p>这种策略能够保证每个 RegionServer 的 Region 个数基本相等。</p>
+<p>假设集群中一共有 n 个 RegionServer，m 个 Region ，那么集群的平均负载就是 average &#x3D; m&#x2F;n。</p>
 <ul>
-<li>目的让表的数据可以均衡的分散在集群中，而不是默认只有一个Region分布在集群的一个节点上。</li>
+<li>这种策略能够保证所有 RegionServer 上的 Region 个数都在 <code>[floor(average)，ceil(average)]</code>之间。</li>
 </ul>
-<p>加盐:</p>
+<p>因此， SimpleLoadBalancer 策略中负载就是 Region 个数，集群负载迁移计划就是 Region 从个数较多的 RegionServer 上迁移到个数较少的 RegionServer 上。</p>
+<p>虽然集群中每个 RegionServer 的 Region 个数都基本相同，但如果某台 RegionServer 上的 Region 全部都是热点数据，导致 90 %的读写请求还是落在了这台 RegionServer 上，这样没有达到负载均衡的目的。</p>
+</blockquote>
+<p>StochasticLoadBalancer 策略：</p>
+<blockquote>
+<p>它对于负载的定义不再是 Region 个数这么简单，而是由多种独立负载加权计算的复合值，这些独立负载包括：</p>
 <ul>
-<li>在Rowkey的前面增加随机数，具体就是给Rowkey分配一个随机前缀以使得它和之前的Rowkey的开头不同。</li>
+<li>Region 个数，Region 负载，读请求数，写请求数，Storefile 大小，MemStore 大小，数据本地率，移动代价。</li>
 </ul>
-<p>哈希:</p>
+<p>这些独立负载经过加权计算会得到一个代价值，系统使用这个代价值来评估当前 Region 分布是否均衡，越均衡代价值越低。</p>
 <ul>
-<li>哈希会使同一行永远用一个前缀加盐。<ul>
-<li>也可以使负载分散到整个集群，但是读是可以预测的。</li>
-</ul>
-</li>
-<li>使用确定的哈希可以让客户端重构完整的Rowkey，可以使用get操作准确获取某一个行数据。</li>
-</ul>
-<p>反转：</p>
-<ul>
-<li>反转固定长度或者数字格式的Rowkey。<ul>
-<li>这样可以使得Rowkey中经常改变的部分放在前面。</li>
-</ul>
-</li>
+<li>HBase 通过不断随机挑选迭代来找到一组 Region 迁移计划，使得代价值最小。</li>
 </ul>
 </blockquote>
 <p><strong>Flush机制</strong></p>
@@ -1462,6 +1449,38 @@ ERROR: Table user is enabled. Disable it first.
 <p>BulkLoad 首先使用 MapReduce 将待写入集群数据转换为 HFile 文件，再直接将这些 HFile 文件加载到在线集群中。</p>
 <p>BulkLoad 没有将写请求发送给 RegionServer 处理，可以有效避免上述一系列问题。</p>
 </blockquote>
+<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><p><strong>热点问题</strong></p>
+<p>什么是热点？</p>
+<blockquote>
+<p>检索 HBase 的记录首先要通过Row Key来定位数据行。</p>
+<p>当大量的 Client 访问 HBase 集群的一个或少数几个节点，造成少数 Region Server 的读&#x2F;写请求过多、负载过大，而其他Region Server 负载却很小，就造成了 热点 现象。</p>
+</blockquote>
+<p>解决方案:</p>
+<blockquote>
+<p>预分区:</p>
+<ul>
+<li>目的让表的数据可以均衡的分散在集群中，而不是默认只有一个Region分布在集群的一个节点上。</li>
+</ul>
+<p>加盐:</p>
+<ul>
+<li>在Rowkey的前面增加随机数，具体就是给Rowkey分配一个随机前缀以使得它和之前的Rowkey的开头不同。</li>
+</ul>
+<p>哈希:</p>
+<ul>
+<li>哈希会使同一行永远用一个前缀加盐。<ul>
+<li>也可以使负载分散到整个集群，但是读是可以预测的。</li>
+</ul>
+</li>
+<li>使用确定的哈希可以让客户端重构完整的Rowkey，可以使用get操作准确获取某一个行数据。</li>
+</ul>
+<p>反转：</p>
+<ul>
+<li>反转固定长度或者数字格式的Rowkey。<ul>
+<li>这样可以使得Rowkey中经常改变的部分放在前面。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
 
 	</div>
 </div>
@@ -1500,7 +1519,7 @@ ERROR: Table user is enabled. Disable it first.
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1700011385875-929',
+	        blogId: '22377-1700097639981-614',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -1550,7 +1569,7 @@ ERROR: Table user is enabled. Disable it first.
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1700011385875-929',
+        blogId: '22377-1700097639981-614',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',
