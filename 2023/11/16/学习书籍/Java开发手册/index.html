@@ -899,16 +899,17 @@
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
 		<p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/alibaba/p3c/tree/master">https://github.com/alibaba/p3c/tree/master</a></p>
-<h1 id="编程规约"><a href="#编程规约" class="headerlink" title="编程规约"></a>编程规约</h1><p><strong>命名风格</strong></p>
+<h1>编程规约</h1>
+<h2 id="命名风格">命名风格</h2>
 <blockquote>
-<p>所有编程相关的命名均不能以下划线或美元符号开始，也不能以下划线或美元符号结束。 </p>
+<p>所有编程相关的命名均不能以下划线或美元符号开始，也不能以下划线或美元符号结束。</p>
 <p>如:<code>_name / __name / $Object / name_ / name$ / Object$</code></p>
 </blockquote>
 <hr>
 <blockquote>
 <p>类名使用 UpperCamelCase 风格。</p>
 <ul>
-<li>以下情形例外：DO &#x2F; PO &#x2F; DTO &#x2F; BO &#x2F; VO &#x2F; UID 等。</li>
+<li>以下情形例外：DO / PO / DTO / BO / VO / UID 等。</li>
 </ul>
 <p>正例:</p>
 <ul>
@@ -921,7 +922,7 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>方法名、参数名、成员变量、局部变量都统一使用 lowerCamelCase 风格。 </p>
+<p>方法名、参数名、成员变量、局部变量都统一使用 lowerCamelCase 风格。</p>
 <p>正例:</p>
 <ul>
 <li><code>localValue / getHttpMessage() / inputUserId</code></li>
@@ -929,7 +930,7 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>常量命名应该全部大写，单词间用下划线隔开，力求语义表达完整清楚，不要嫌名字长。 </p>
+<p>常量命名应该全部大写，单词间用下划线隔开，力求语义表达完整清楚，不要嫌名字长。</p>
 <p>正例:</p>
 <ul>
 <li><code>MAX_STOCK_COUNT / CACHE_EXPIRED_TIME</code></li>
@@ -947,7 +948,7 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>POJO 类中的任何布尔类型的变量，都不要加 is 前缀，否则部分框架解析会引起序列化错误。 </p>
+<p>POJO 类中的任何布尔类型的变量，都不要加 is 前缀，否则部分框架解析会引起序列化错误。</p>
 <p>定义为布尔类型 <code>Boolean isDeleted</code> 的字段，它的 getter 方法也是 <code>isDeleted()</code>，部分框架在反向解析时，误以为 对应的字段名称是 <code>deleted</code>，导致字段获取不到，得到意料之外的结果或抛出异常。</p>
 </blockquote>
 <hr>
@@ -972,7 +973,7 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>在常量与变量命名时，表示类型的名词放在词尾，以提升辨识度。 </p>
+<p>在常量与变量命名时，表示类型的名词放在词尾，以提升辨识度。</p>
 <p>正例:</p>
 <ul>
 <li><code>startTime / workQueue / nameList / TERMINATED_THREAD_COUNT</code></li>
@@ -984,8 +985,8 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>如果模块、接口、类、方法使用了设计模式，在命名时要体现出具体模式。 </p>
-<p>正例: </p>
+<p>如果模块、接口、类、方法使用了设计模式，在命名时要体现出具体模式。</p>
+<p>正例:</p>
 <ul>
 <li><code>public class OrderFactory;</code></li>
 <li><code>public class LoginProxy;</code></li>
@@ -1002,7 +1003,7 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>如果是形容能力的接口名称，取对应的形容词为接口名(通常是 <code>–able</code> 结尾的形容词)。 </p>
+<p>如果是形容能力的接口名称，取对应的形容词为接口名(通常是 <code>–able</code> 结尾的形容词)。</p>
 <p>正例:</p>
 <ul>
 <li>AbstractTranslator 实现 Translatable。</li>
@@ -1010,7 +1011,7 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>枚举类名带上 Enum 后缀，枚举成员名称需要全大写，单词间用下划线隔开。 </p>
+<p>枚举类名带上 Enum 后缀，枚举成员名称需要全大写，单词间用下划线隔开。</p>
 <ul>
 <li>枚举其实就是特殊的常量类，且构造方法被默认强制是私有。</li>
 </ul>
@@ -1021,19 +1022,25 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>Service &#x2F; DAO 层方法命名规约:</p>
+<p>Service / DAO 层方法命名规约:</p>
 <ul>
-<li><p>获取单个对象的方法用 get 做前缀。 </p>
+<li>
+<p>获取单个对象的方法用 get 做前缀。</p>
 </li>
-<li><p>获取多个对象的方法用 list 做前缀，复数结尾，如<code>:listObjects </code></p>
+<li>
+<p>获取多个对象的方法用 list 做前缀，复数结尾，如<code>:listObjects </code></p>
 </li>
-<li><p>获取统计值的方法用 count 做前缀。</p>
+<li>
+<p>获取统计值的方法用 count 做前缀。</p>
 </li>
-<li><p>插入的方法用 <code>save / insert</code> 做前缀。</p>
+<li>
+<p>插入的方法用 <code>save / insert</code> 做前缀。</p>
 </li>
-<li><p>删除的方法用 <code>remove / delete</code> 做前缀。</p>
+<li>
+<p>删除的方法用 <code>remove / delete</code> 做前缀。</p>
 </li>
-<li><p>修改的方法用 <code>update</code> 做前缀。</p>
+<li>
+<p>修改的方法用 <code>update</code> 做前缀。</p>
 </li>
 </ul>
 </blockquote>
@@ -1041,14 +1048,222 @@
 <blockquote>
 <p>领域模型命名规约:</p>
 <ul>
-<li><p>数据对象：xxxDO，xxx 即为数据表名。 </p>
+<li>
+<p>数据对象：xxxDO，xxx 即为数据表名。</p>
 </li>
-<li><p>数据传输对象：xxxDTO，xxx 为业务领域相关的名称。 </p>
+<li>
+<p>数据传输对象：xxxDTO，xxx 为业务领域相关的名称。</p>
 </li>
-<li><p>展示对象：xxxVO，xxx 一般为网页名称。</p>
+<li>
+<p>展示对象：xxxVO，xxx 一般为网页名称。</p>
 </li>
 </ul>
-<p>POJO 是 DO &#x2F; DTO &#x2F; BO &#x2F; VO 的统称，禁止命名成 xxxPOJO。</p>
+<p>POJO 是 DO / DTO / BO / VO 的统称，禁止命名成 xxxPOJO。</p>
+</blockquote>
+<h2 id="常量定义">常量定义</h2>
+<blockquote>
+<p>不允许任何魔法值(即未经预先定义的常量)直接出现在代码中。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>long 或 Long 赋值时，数值后使用大写 L，不能是小写 l，小写容易跟数字混淆，造成误解。</p>
+<p>比如：<code>public static final Long NUM = 2l;</code> 写的是数字的 21，还是 Long 型的 2?</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>浮点数类型的数值后缀统一为大写的 D 或 F。</p>
+<p>正例：</p>
+<ul>
+<li>
+<p><code>public static final double HEIGHT = 175.5D;</code></p>
+</li>
+<li>
+<p><code>public static final float WEIGHT = 150.3F;</code></p>
+</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>不要使用一个常量类维护所有常量，要按常量功能进行归类，分开维护。</p>
+<p>正例:</p>
+<ul>
+<li>缓存相关常量放在类 <code>CacheConsts</code> 下。</li>
+<li>系统配置相关常量放在类 <code>SystemConfigConsts</code> 下。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>如果变量值仅在一个固定范围内变化用 <code>enum</code> 类型来定义。</p>
+</blockquote>
+<h2 id="OOP规约">OOP规约</h2>
+<blockquote>
+<p>相同参数类型，相同业务含义，才可以使用的可变参数，参数类型避免定义为 Object。</p>
+<ul>
+<li>
+<p>可变参数必须放置在参数列表的最后。</p>
+</li>
+<li>
+<p>建议开发者尽量不用可变参数编程。</p>
+</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>Object 的 <code>equals</code> 方法容易抛空指针异常，应使用常量或确定有值的对象来调用 equals。</p>
+<p>正例:</p>
+<ul>
+<li><code>&quot;test&quot;.equals(param);</code></li>
+</ul>
+<p>反例:</p>
+<ul>
+<li><code>param.equals(&quot;test&quot;);</code></li>
+</ul>
+<p>推荐使用 JDK7 引入的工具类 <code>java.util.Objects#equals(Object a, Object b)</code></p>
+</blockquote>
+<hr>
+<blockquote>
+<p>所有整型包装类对象之间值的比较，全部使用 <code>equals</code> 方法比较。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>任何货币金额，均以最小货币单位且为整型类型进行存储。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>浮点数之间的等值判断，基本数据类型不能使用 == 进行比较，包装数据类型不能使用 <code>equals</code> 进行判断。</p>
+<p>使用 <code>BigDecimal</code> 来定义值，再进行浮点数的运算操作。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>BigDecimal 的等值比较应使用 <code>compareTo()</code> 方法，而不是 <code>equals()</code> 方法。</p>
+<ul>
+<li><code>equals()</code> 方法会比较值和精度(1.0 与 1.00 返回结果为 false)，而 <code>compareTo()</code> 则会忽略精度。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>定义数据对象 DO 类时，属性类型要与数据库字段类型相匹配。</p>
+<p>正例:</p>
+<ul>
+<li>数据库字段的 bigint 必须与类属性的 Long 类型相对应。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>禁止使用构造方法 <code>BigDecimal(double)</code> 的方式把 double 值转化为 BigDecimal 对象。</p>
+<p><code>BigDecimal(double)</code> 存在精度损失风险，在精确计算或值比较的场景中可能会导致业务逻辑异常。</p>
+<p>如: <code>BigDecimal g = new BigDecimal(0.1F);</code></p>
+<ul>
+<li>实际的存储值为:<code>0.100000001490116119384765625</code></li>
+</ul>
+<p>优先推荐入参为 String 的构造方法，或使用 <code>BigDecimal</code> 的 valueOf 方法，此方法内部其实执行了 Double 的 toString，而 <code>Double</code> 的 toString 按 double 的实际能表达的精度对尾数进行了截断。</p>
+</blockquote>
+<pre><code class="language-java">BigDecimal recommend1 = new BigDecimal(&quot;0.1&quot;); 
+BigDecimal recommend2 = BigDecimal.valueOf(0.1);
+</code></pre>
+<hr>
+<blockquote>
+<p>基本数据类型与包装数据类型的使用标准:</p>
+<ul>
+<li>
+<p>所有的 POJO 类属性必须使用包装数据类型。</p>
+</li>
+<li>
+<p>RPC 方法的返回值和参数必须使用包装数据类型。</p>
+</li>
+<li>
+<p>所有的局部变量使用基本数据类型。</p>
+</li>
+</ul>
+<p>POJO 类属性没有初值是提醒使用者在需要使用时，必须自己显式地进行赋值，任何 NPE 问题，或者入库检查， 都由使用者来保证。</p>
+<p>正例:</p>
+<ul>
+<li>数据库的查询结果可能是 <code>null</code>，因为自动拆箱，用基本数据类型接收有 NPE 风险。</li>
+</ul>
+<p>反例:</p>
+<ul>
+<li>
+<p>某业务的交易报表上显示成交总额涨跌情况，即正负 <code>x%</code>，x 为基本数据类型，调用的 RPC 服务，调用不成功时，返回的是默认值，页面显示为 <code>0%</code>，这是不合理的，应该显示成中划线<code>-</code>。</p>
+</li>
+<li>
+<p>所以包装数据类型的 <code>null</code> 值，能够表示额外的信息，如：远程调用失败，异常退出。</p>
+</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>定义 DO / PO / DTO / VO 等 POJO 类时，不要设定任何属性默认值。</p>
+<p>反例:</p>
+<ul>
+<li>
+<p>某业务的 DO 的 createTime 默认值为 <code>new Date();</code></p>
+</li>
+<li>
+<p>但是这个属性在数据提取时并没有置入具体值，在更新其它字段时又附带更新了此字段，导致创建时间被修改成当前时间。</p>
+</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>序列化类新增属性时，不要修改 <code>serialVersionUID</code> 字段，避免反序列失败。</p>
+<p>如果完全不兼容升级，避免反序列化混乱，需要修改 <code>serialVersionUID</code> 值。</p>
+<ul>
+<li><code>serialVersionUID</code> 不一致会抛出序列化运行时异常。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>构造方法里面禁止加入任何业务逻辑，如果有初始化逻辑，放在 <code>init</code> 方法中。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>POJO 类必须写 <code>toString</code> 方法。</p>
+<p>使用 IDE 中的工具 <code>source &gt; generate toString</code> 时，如果继 承了另一个 POJO 类，注意在前面加一下<code>super.toString()</code>。</p>
+<ul>
+<li>在方法执行抛出异常时，可以直接调用 POJO 的 <code>toString()</code> 方法打印其属性值，便于排查问题。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>禁止在 POJO 类中，同时存在对应属性 xxx 的 <code>isXxx()</code> 和 <code>getXxx()</code> 方法。</p>
+<ul>
+<li>框架在调用属性 xxx 的提取方法时，并不能确定哪个方法一定是被优先调用到。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>使用索引访问用 String 的 split 方法得到的数组时，需做最后一个分隔符后有无内容的检查，</p>
+<p>否则会有抛 <code>IndexOutOfBoundsException</code> 的风险。</p>
+<ul>
+<li>由于<code>String.Split()</code>的特性，忽略了空值，导致异常。</li>
+</ul>
+</blockquote>
+<pre><code class="language-java">String str = &quot;a,b,c,,&quot;;
+String[] ary = str.split(&quot;,&quot;);
+// 预期大于 3，结果等于 3 
+System.out.println(ary.length);
+</code></pre>
+<hr>
+<blockquote>
+<p>当一个类有多个构造方法，或者多个同名方法，这些方法应该按顺序放置在一起，便于阅读。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>类内方法定义的顺序依次是：<code>公有方法或保护方法 &gt; 私有方法 &gt; getter / setter 方法</code>。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>setter 方法中，参数名称与类成员变量名称一致，<code>this.成员名=参数名</code>。</p>
+<p>在 <code>getter/setter</code> 方 法中，不要增加业务逻辑，增加排查问题的难度。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>循环体内，字符串的连接方式，使用 <code>StringBuilder</code> 的 <code>append</code> 方法进行扩展。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>慎用 Object 的 <code>clone</code> 方法来拷贝对象。</p>
+<p>对象 clone 方法默认是浅拷贝，若想实现深拷贝需覆写 <code>clone</code> 方法实现域对象的深度遍历式拷贝。</p>
 </blockquote>
 
 	</div>
