@@ -1269,12 +1269,541 @@ System.out.println(ary.length);
 </blockquote>
 <hr>
 <blockquote>
-<p>使用 Map 的方法 <code>keySet()/values()/entrySet()</code> 返回集合对象时，不可以对其进行添加元素 操作，否则会抛出 <code>UnsupportedOperationException</code> 异常。</p>
+<p>使用 Map 的方法 <code>keySet()/values()/entrySet()</code> 返回集合对象时，不可以对其进行添加元素 操作，否则会抛出<code>UnsupportedOperationException</code> 异常。</p>
 </blockquote>
 <hr>
 <blockquote>
 <p>Collections 类返回的对象，如:<code>emptyList()/singletonList()</code> 等都是 <code>immutable list</code>，不可对其进行添加或者删除元素的操作。</p>
 <p>一旦集合中进行了添加元素的操作，就会触发 <code>UnsupportedOperationException</code> 异常。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>在 <code>subList</code> 场景中，高度注意对父集合元素的增加或删除，均会导致子列表的遍历、增加、删除产生<code>ConcurrentModificationException</code> 异常。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>使用集合转数组的方法，必须使用集合的 <code>toArray(T[] array)</code>，传入的是类型完全一致、长度为 0 的空数组。</p>
+</blockquote>
+<pre><code class="java">List&lt;String&gt; list = new ArrayList&lt;&gt;(2);
+list.add(&quot;guan&quot;);
+list.add(&quot;bao&quot;);
+String[] array = list.toArray(new String[0]);
+</code></pre>
+<hr>
+<blockquote>
+<p>使用 <code>Collection</code> 接口任何实现类的 <code>addAll()</code> 方法时，要对输入的集合参数进行 NPE 判断。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>使用工具类 <code>Arrays.asList()</code> 把数组转换成集合时，不能使用其修改集合相关的方法，它的 <code>add/remove/clear</code> 方法会抛出 <code>UnsupportedOperationException</code> 异常。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>泛型通配符<code>&lt;? extends T&gt;</code>来接收返回的数据，此写法的泛型集合不能使用 add 方法。</p>
+<p><code>&lt;? super T&gt;</code>不能使用 get 方法，两者在接口调用赋值的场景中容易出错。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>不要在 <code>foreach</code> 循环里进行元素的 <code>remove/add</code> 操作。</p>
+<p>remove 元素使用 <code>iterator</code> 方式。</p>
+<ul>
+<li>如果并发操作，需要对 iterator 对象加锁。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>集合初始化时，指定集合初始值大小。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>使用 <code>entrySet</code> 遍历 Map 类集合 KV，而不是 <code>keySet</code> 方式进行遍历。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>注意 Map 类集合 <code>K/V</code> 能不能存储 null 值的情况。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">集合类</th>
+<th align="left">Key</th>
+<th align="left">Value</th>
+<th align="left">Super</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Hashtable</td>
+<td align="left">不允许为null</td>
+<td align="left">不允许为null</td>
+<td align="left">Dictionary</td>
+<td align="left">线程安全</td>
+</tr>
+<tr>
+<td align="left">ConcurrentHashMap</td>
+<td align="left">不允许为null</td>
+<td align="left">不允许为null</td>
+<td align="left">AbstractMap</td>
+<td align="left">锁分段技术（JDK8:CAS）</td>
+</tr>
+<tr>
+<td align="left">TreeMap</td>
+<td align="left">不允许为null</td>
+<td align="left">允许为null</td>
+<td align="left">AbstractMap</td>
+<td align="left">线程不安全</td>
+</tr>
+<tr>
+<td align="left">HashMap</td>
+<td align="left">允许为null</td>
+<td align="left">允许为null</td>
+<td align="left">AbstractMap</td>
+<td align="left">线程不安全</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p>利用 Set 元素唯一的特性，可以快速对一个集合进行去重操作，避免使用 List 的 <code>contains()</code> 进行遍历去重或者判断包含操作。</p>
+</blockquote>
+<h2 id="并发处理"><a href="#并发处理" class="headerlink" title="并发处理"></a>并发处理</h2><blockquote>
+<p>获取单例对象需要保证线程安全，其中的方法也要保证线程安全。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>创建线程或线程池时请指定有意义的线程名称，方便出错时回溯。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>线程资源必须通过线程池提供，不允许在应用中自行显式创建线程。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>线程池不允许使用 <code>Executors</code> 去创建，而是通过 <code>ThreadPoolExecutor</code> 的方式，这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><code>SimpleDateFormat</code> 是线程不安全的类，一般不要定义为 static 变量。</p>
+<p>如果定义为 static，必须 加锁，或者使用 <code>DateUtils</code> 工具类。</p>
+<p>如果是 JDK8 的应用，可以使用 Instant 代替 Date，<code>LocalDateTime</code> 代替 Calendar。</p>
+<p>DateTimeFormatter 代替 <code>SimpleDateFormat</code>。</p>
+</blockquote>
+<pre><code class="java">private static final ThreadLocal&lt;DateFormat&gt; dateStyle = new ThreadLocal&lt;DateFormat&gt;() &#123;
+    @Override
+    protected DateFormat initialValue() &#123;
+        return new SimpleDateFormat(&quot;yyyy-MM-dd&quot;); 
+    &#125;
+&#125;;
+</code></pre>
+<hr>
+<blockquote>
+<p>必须回收自定义的 ThreadLocal 变量记录的当前线程的值，尤其在线程池场景下，线程经常会被复用。</p>
+<p>如果不清理自定义的 ThreadLocal 变量，可能会影响后续业务逻辑和造成内存泄露等问题。</p>
+<p>尽量在代码中使用 <code>try-finally</code> 块进行回收。</p>
+</blockquote>
+<pre><code class="java">objectThreadLocal.set(userInfo);
+try &#123;
+    // ...
+&#125; finally &#123; 
+  objectThreadLocal.remove();
+&#125;
+</code></pre>
+<hr>
+<blockquote>
+<p>高并发时，同步调用应该去考量锁的性能损耗。</p>
+<p>能用无锁数据结构，就不要用锁。</p>
+<p>能锁区块，就不要锁整个方法体，能用对象锁，就不要用类锁。</p>
+<p>尽可能使加锁的代码块工作量尽可能的小，避免在锁代码块中调用 RPC 方法。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>对多个资源、数据库表、对象同时加锁时，需要保持一致的加锁顺序，否则可能会造成死锁。</p>
+<p>线程一需要对表 A、B、C 依次全部加锁后才可以进行更新操作，那么线程二的加锁顺序也必须是 A、B、C，否则可能出现死锁。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>在使用阻塞等待获取锁的方式中，必须在 try 代码块之外，并且在加锁方法与 try 代码块之间没有任何可能抛出异常的方法调用，避免加锁成功后，在 finally 中无法解锁。</p>
+<ul>
+<li>在 lock 方法与 try 代码块之间的方法调用抛出异常，无法解锁，造成其它线程无法成功获取锁。</li>
+<li>如果 lock 方法在 try 代码块之内，可能由于其它方法抛出异常，导致在 finally 代码块中，unlock 对未加锁的对象解锁，它会调用 AQS 的 <code>tryRelease</code> 方法(取决于具体实现类)，抛出 <code>IllegalMonitorStateException</code> 异常。 </li>
+<li>在 Lock 对象的 lock 方法实现中可能抛出 <code>unchecked</code> 异常，产生的后果与二相同。</li>
+</ul>
+</blockquote>
+<p>正例：</p>
+<pre><code class="java">Lock lock = new XxxLock();
+// ...
+lock.lock();
+try &#123;
+    doSomething();
+    doOthers();
+&#125; finally &#123;
+    lock.unlock();
+&#125;
+</code></pre>
+<p>反例：</p>
+<pre><code class="java">Lock lock = new XxxLock();
+// ...
+try &#123;
+    // 如果在此抛出异常，会直接执行 finally 块的代码
+    doSomething();
+    // 不管锁是否成功，finally 块都会执行
+    lock.lock();
+    doOthers();
+
+&#125; finally &#123;
+    lock.unlock();
+&#125;
+</code></pre>
+<blockquote>
+<p>在使用尝试机制来获取锁的方式中，进入业务代码块之前，必须先判断当前线程是否持有锁。</p>
+<ul>
+<li>锁的释放规则与锁的阻塞等待方式相同。</li>
+</ul>
+<p>Lock 对象的 <code>unlock</code> 方法在执行时，它会调用 AQS 的 <code>tryRelease</code> 方法(取决于具体实现类)，如果当前线程不持有锁，则抛出 <code>IllegalMonitorStateException</code> 异常。</p>
+</blockquote>
+<pre><code class="java">Lock lock = new XxxLock();
+// ...
+boolean isLocked = lock.tryLock();
+    if (isLocked) &#123;
+         try &#123;
+             doSomething();
+             doOthers();
+     	&#125; finally &#123;
+         	lock.unlock();
+         &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>并发修改同一记录时，避免更新丢失，需要加锁。</p>
+<p>要么在应用层加锁，要么在缓存加锁，要么在数据库层使用乐观锁，使用 <code>version</code> 作为更新依据。</p>
+<ul>
+<li>如果每次访问冲突概率小于 20%，推荐使用乐观锁，否则使用悲观锁。</li>
+<li>乐观锁的重试次数不得小于 3 次。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>资金相关的金融敏感信息，使用悲观锁策略。</p>
+<p>乐观锁在获得锁的同时已经完成了更新操作，校验逻辑容易出现漏洞，另外，乐观锁对冲突的解决策略有较复杂的要求，处理不当容易造成系统压力或数据异常，所以资金相关的金融敏感信息不建议使用乐观锁更新。 </p>
+</blockquote>
+<hr>
+<blockquote>
+<p>避免 <code>Random</code> 实例被多线程使用，虽然共享该实例是线程安全的，但会因竞争同一<code>seed</code> 导致的性能下降。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>通过双重检查锁(<code>double-checked locking</code>)，实现延迟初始化需要将目标属性声明为 <code>volatile</code> 型，(比如修改 helper 的属性声明为 <code>private volatile Helper helper = null;</code>)。</p>
+</blockquote>
+<pre><code class="java">public class LazyInitDemo &#123;
+    private volatile Helper helper = null;
+    public Helper getHelper() &#123;
+    if (helper == null) &#123;    
+        synchronized(this) &#123;  
+            if (helper == null) &#123;   
+                helper = new Helper();   
+            &#125;    
+        &#125;   
+    &#125;   
+    return helper;   
+&#125;    
+// other methods and fields...   
+&#125;
+</code></pre>
+<blockquote>
+<p>volatile 解决多线程内存不可见问题对于一写多读，是可以解决变量同步问题，但是如果多写，同样无法解决线程安全问题。</p>
+<p>如果是 <code>count++</code> 操作，使用如下类实现:</p>
+<ul>
+<li>如果是 JDK8，推荐使用 <code>LongAdder</code> 对象，比 <code>AtomicLong</code> 性能更好(减少乐观锁的重试次数)。</li>
+</ul>
+</blockquote>
+<pre><code class="java">AtomicInteger count = new AtomicInteger();
+count.addAndGet(1);
+</code></pre>
+<hr>
+<blockquote>
+<p>HashMap 在容量不够进行 <code>resize</code> 时由于高并发可能出现死链，导致 CPU 飙升，在开发过程中注意规避此风险。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>ThreadLocal 对象使用 static 修饰，<code>ThreadLocal</code> 无法解决共享对象的更新问题。</p>
+<p>这个变量是针对一个线程内所有操作共享的，所以设置为静态变量，所有此类实例共享此静态变量，也就是说在类第一次被使用时装载，只分配一块存储空间，所有此类的对象(只要是这个线程内定义的)都可以操控这个变量。</p>
+</blockquote>
+<h2 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h2><blockquote>
+<p>当 <code>switch</code> 括号内的变量类型为 String 并且此变量为外部参数时，必须先进行 null 判断。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>三目运算符 condition ? 表达式 1:表达式 2 中，高度注意表达式 1 和 2 在类型对齐时，可能抛出因自动拆箱导致的 NPE 异常。 </p>
+<p>以下两种场景会触发类型对齐的拆箱操作:</p>
+<ul>
+<li>表达式 1 或 表达式 2 的值只要有一个是原始类型。</li>
+<li>表达式 1 或 表达式 2 的值的类型不一致，会强制拆箱升级成表示范围更大的那个类型。</li>
+</ul>
+</blockquote>
+<pre><code class="java">Integer a = 1;
+Integer b = 2;
+Integer c = null;
+Boolean flag = false;
+// a*b的结果是int类型，那么c会强制拆箱成int类型，抛出NPE异常 
+Integer result = (flag ? a * b : c);
+</code></pre>
+<blockquote>
+<p>在高并发场景中，避免使用 等于 判断作为中断或退出的条件。 </p>
+<p>如果并发控制没有处理好，容易产生等值判断被 击穿 的情况，使用大于或小于的区间判断条件来代替。 </p>
+<p>如：判断剩余奖品数量等于 0 时，终止发放奖品，但因为并发处理错误导致奖品数量瞬间变成了负数，这样的话，活动无法终止。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>循环体中的语句要考量性能，以下操作尽量移至循环体外处理：</p>
+<ul>
+<li>如定义对象、变量、获取数据库连接，进行不必要的 <code>try-catch</code> 操作(这个 <code>try-catch</code> 是否可以移至循环体外)。</li>
+</ul>
+</blockquote>
+<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="建表规约"><a href="#建表规约" class="headerlink" title="建表规约"></a>建表规约</h2><blockquote>
+<p>表达是与否概念的字段，必须使用 <code>is_xxx</code> 的方式命名，数据类型是 <code>unsigned tinyint</code>(1 表示是，0 表示否)。</p>
+<ul>
+<li>任何字段如果为非负数，必须是 unsigned。</li>
+<li>表达逻辑删除的字段名 <code>is_deleted</code>，1 表示删除，0 表示未删除。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>表名、字段名必须使用小写字母或数字，禁止出现数字开头禁止两个下划线中间只出现数字。</p>
+<p>正例:</p>
+<ul>
+<li>aliyun_admin，rdc_config，level3_name</li>
+</ul>
+<p>反例:</p>
+<ul>
+<li>AliyunAdmin，rdcConfig，level_3_name</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>表名不使用复数名词。</p>
+<p>表名应该仅仅表示表里面的实体内容，不应该表示实体数量，对应于 DO 类名也是单数形式，符合表达习惯。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>主键索引名为 <code>pk_</code>字段名。</p>
+<p>唯一索引名为 <code>uk_</code>字段名。</p>
+<p>普通索引名为 <code>idx_</code>字段名。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>小数类型为 decimal，禁止使用 float 和 double。</p>
+<p>在存储的时候，float 和 double 都存在精度损失的问题，很可能在比较值的时候，得到不正确的结果。</p>
+<p>如果存储的数据范围超过 decimal 的范围，建议将数据拆成整数和小数并分开存储。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>如果存储的字符串长度几乎相等，使用 <code>char</code> 定长字符串类型。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>varchar 是可变长字符串，不预先分配存储空间，长度不要超过 5000，如果存储长度大于此值，定义字段类型为 text，独立出来一张表，用主键来对应，避免影响其它字段索引率。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>表必备三字段:<code>id，create_time，update_time</code>。</p>
+<p>其中 id 必为主键，类型为 bigint unsigned、单表时自增、步长为 1。</p>
+<p><code>create_time，update_time</code> 的类型均为 datetime 类型，如果要记录时区信息，那么类型设置为 timestamp。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>在数据库中不能使用物理删除操作，要使用逻辑删除。 </p>
+<p>逻辑删除在数据删除后可以追溯到行为操作。</p>
+<p>不过会使得一些情况下的唯一主键变得不唯一，需要根据情况来酌情解决。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>表的命名最好是遵循 业务名称_表的作用。 </p>
+<p>正例:</p>
+<ul>
+<li><code>alipay_task / force_project / trade_config / tes_question</code></li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>库名与应用名称尽量一致。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>单表行数超过 500 万行或者单表容量超过 2GB，才推荐进行分库分表。</p>
+<ul>
+<li>如果预计三年后的数据量根本达不到这个级别，请不要在创建表时就分库分表。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>合适的字符存储长度，不但节约数据库表空间、节约索引存储，更重要的是提升检索速度。 </p>
+<ul>
+<li>无符号值可以避免误存负数，且扩大了表示范围。</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">对象</th>
+<th align="center">年龄区间</th>
+<th align="center">类型</th>
+<th align="center">字节</th>
+<th align="center">表示范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">人</td>
+<td align="center">150 岁之内</td>
+<td align="center">tinyint unsigned</td>
+<td align="center">1</td>
+<td align="center">无符号值：0 到 255</td>
+</tr>
+<tr>
+<td align="center">龟</td>
+<td align="center">数百岁</td>
+<td align="center">smallint unsigned</td>
+<td align="center">2</td>
+<td align="center">无符号值：0 到 65535</td>
+</tr>
+<tr>
+<td align="center">恐龙化石</td>
+<td align="center">数千万年</td>
+<td align="center">int unsigned</td>
+<td align="center">4</td>
+<td align="center">无符号值：0 到约 42.9 亿</td>
+</tr>
+<tr>
+<td align="center">太阳</td>
+<td align="center">约 50 亿年</td>
+<td align="center">bigint unsigned</td>
+<td align="center">8</td>
+<td align="center">无符号值：0 到约 10 的 19 次方</td>
+</tr>
+</tbody></table>
+<h2 id="索引规约"><a href="#索引规约" class="headerlink" title="索引规约"></a>索引规约</h2><blockquote>
+<p>业务上具有唯一特性的字段，即使是组合字段，也必须建成唯一索引。</p>
+<p>不要以为唯一索引影响了 insert 速度，这个速度损耗可以忽略，但提高查找速度是明显的。</p>
+<p>另外，即使在应用层做了非常完善的校验控制，只要没有唯一索引，根据墨菲定律，必然有脏数据产生。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>超过三个表禁止 join。</p>
+<p>需要 join 的字段，数据类型保持绝对一致。</p>
+<p>多表关联查询时，保证被关联的字段需要有索引。</p>
+<ul>
+<li>即使双表 join 也要注意表索引、SQL 性能。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>在 varchar 字段上建立索引时，必须指定索引长度，没必要对全字段建立索引，根据实际文本区分度决定索引长度。</p>
+<p>索引的长度与区分度是一对矛盾体，一般对字符串类型数据，长度为 20 的索引，区分度会高达 90% 以上，可以使用 <code>count(distinct left(列名，索引长度)) / count(*)</code> 的区分度来确定。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>页面搜索严禁左模糊或者全模糊，如果需要走搜索引擎来解决。 </p>
+<ul>
+<li>索引文件具有 B-Tree 的最左前缀匹配特性，如果左边的值未确定，那么无法使用此索引。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>如果有 order by 的场景，请注意利用索引的有序性。</p>
+<p>order by 最后的字段是组合索引的一部分，并且放在索引组合顺序的最后，避免出现 filesort 的情况，影响查询性能。</p>
+<p>正例:</p>
+<ul>
+<li><code>where a = ? and b = ? order by c;索引:a_b_c </code></li>
+</ul>
+<p>反例:</p>
+<ul>
+<li>索引如果存在范围查询，那么索引有序性无法利用，如:<code>WHERE a &gt; 10 ORDER BY b;</code>索引 a_b 无法排序。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>利用覆盖索引来进行查询操作，避免回表。</p>
+<p>用 explain 的结果，extra 列会出现:<code>using index</code>。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>利用延迟关联或者子查询优化超多分页场景。</p>
+<p>先快速定位需要获取的 id 段，然后再关联:</p>
+<p><code>SELECT t1.* FROM 表 1 as t1 , (select id from 表 1 where 条件 LIMIT 100000 , 20) as t2 where t1.id = t2.id</code></p>
+</blockquote>
+<hr>
+<blockquote>
+<p>SQL 性能优化的目标:至少要达到 <code>range</code> 级别，要求是 <code>ref</code> 级别，如果可以是 <code>const</code> 最好。 </p>
+<ul>
+<li>consts 单表中最多只有一个匹配行(主键或者唯一索引)，在优化阶段即可读取到数据。</li>
+<li>ref 指的是使用普通的索引(normal index)。</li>
+<li>range 对索引进行范围检索。</li>
+</ul>
+<p>explain 表的结果，<code>type = index</code>，索引物理文件全扫描，速度非常慢。</p>
+<p>这个 index 级别比较 range 还低，与全表扫描是小巫见大巫。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>建组合索引的时候，区分度最高的在最左边。</p>
+<p>正例:</p>
+<ul>
+<li>如果 <code>where a = ? and b = ?</code>，a 列的几乎接近于唯一值，那么只需要单建 <code>idx_a</code> 索引即可。</li>
+</ul>
+<p>存在非等号和等号混合判断条件时，在建索引时，请把等号条件的列前置。</p>
+<p>如:<code>where c &gt; ? and d = ?</code> 那么即使 c 的区分度更高，也必须把 d 放在索引的最前列，即建立组合索引 <code>idx_d_c</code>。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>防止因字段类型不同造成的隐式转换，导致索引失效。</p>
+</blockquote>
+<h2 id="SQL语句"><a href="#SQL语句" class="headerlink" title="SQL语句"></a>SQL语句</h2><blockquote>
+<p>不要使用 count(列名) 或 count(常量) 来替代 <code>count(*)</code>，<code>count(*)</code> 是 SQL92 定义的标准统计行数的语法，跟数据库无关，跟 NULL 和非 NULL 无关。</p>
+<ul>
+<li><code>count(*)</code> 会统计值为 NULL 的行，而 count(列名) 不会统计此列为 NULL 值的行。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p><code>count(distinct col)</code> 计算该列除 NULL 之外的不重复行数。</p>
+<p>注意 <code>count(distinct col1 , col2)</code> 如果其中一列全为 NULL，那么即使另一列有不同的值，也返回为 0。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>当某一列的值全是 NULL 时，<code>count(col)</code> 的返回结果为 0。</p>
+<p>但 <code>sum(col)</code> 的返回结果为 NULL，因此使用 sum() 时需注意 NPE 问题。</p>
+<p>可以使用如下方式来避免 sum 的 NPE 问题:</p>
+<ul>
+<li><code>SELECT IFNULL(SUM(column) , 0) FROM table;</code></li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>SQL 语句中表的别名前加 as，并且以 t1、t2、t3、…的顺序依次命名。 </p>
+<p>别名可以是表的简称，或者是依照表在 SQL 语句中出现的顺序，以 t1、t2、t3 的方式命名。 </p>
+<p>别名前加 as 使别名更容易识别。</p>
+<p>正例:</p>
+<ul>
+<li><code>select t1.name from first_table as t1 , second_table as t2 where t1.id = t2.id;</code></li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>in 操作能避免则避免，若实在避免不了，需要仔细评估 in 后边的集合元素数量，控制在 1000 个之内。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>因国际化需要，所有的字符存储与表示，均采用 <code>utf8mb4</code> 字符集，字符计数方法需要注意。 </p>
+<p>说明:</p>
+<ul>
+<li><p><code>SELECT LENGTH(&quot;轻松工作&quot;);--返回为 12</code></p>
+</li>
+<li><p><code>SELECT CHARACTER_LENGTH(&quot;轻松工作&quot;);--返回为 4</code></p>
+</li>
+</ul>
+<p>表情需要用 <code>utf8mb4</code> 来进行存储，注意它与 utf8 编码的区别。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><code>TRUNCATE TABLE</code> 比 DELETE 速度快，且使用的系统和事务日志资源少，但 TRUNCATE 无事务且不触发 trigger，有可能造成事故，故不建议在开发代码中使用此语句。</p>
+<p><code>TRUNCATE TABLE</code> 在功能上与不带 WHERE 子句的 DELETE 语句相同。</p>
 </blockquote>
 
 	</div>
