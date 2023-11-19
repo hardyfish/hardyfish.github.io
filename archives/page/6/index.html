@@ -763,6 +763,44 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										系统相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E5%B9%BF%E5%91%8A%E7%B3%BB%E7%BB%9F/">
+										广告系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">
+										推荐系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E8%AE%A2%E5%8D%95%E7%B3%BB%E7%BB%9F/">
+										订单系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										英语相关
 									</a>
 									
@@ -873,6 +911,98 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index" oncontextmenu="return false;">
+	
+		<div class="index-li">
+			<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/KAFKA/">
+				<h2 class="index-title">
+					KAFKA
+				</h2>
+				<div class="index-brief">
+					基础知识版本号
+版本命名：Scala 2.11 - kafka_2.11-2.1.1
+
+前面的版本号是编译 Kafka 源代码的 Scala 编译器版本。Kafka 服务器端的代码完全由 Scala 语言编写，Scala 同时支持面向对象编程和函数式编程。
+真正的 Kafka 版本号实际上是 2.1
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-10-07</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/消息队列/">消息队列</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RocketMQ/">
+				<h2 class="index-title">
+					RocketMQ
+				</h2>
+				<div class="index-brief">
+					基本概念Topic：
+
+一类消息的集合，消息发送者将一类消息发送到一个主题中，例如订单模块将订单发送到 order_topic 中，而用户登录时，将登录事件发送到 user_login_topic 中。
+
+ConsumeGroup：
+
+消息消费组，一个消费组拥有多个消费者，消费组首先在启动时需要订阅
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-10-07</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/消息队列/">消息队列</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+				<h2 class="index-title">
+					开发工具
+				</h2>
+				<div class="index-brief">
+					网站固定尺寸图片生成工具：https://dummyimage.com/
+在线开发文档：https://devdocs.io/
+网易有道词典：https://www.youdao.com/
+命名网站：https://unbug.github.io/codelf/
+JSON格式化网站：https://
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-10-07</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/工具相关/">工具相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2022/12/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/">
@@ -1110,70 +1240,10 @@ public f
                 </div>
 		</div>	
 	
-		<div class="index-li">
-			<a href="/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
-				<h2 class="index-title">
-					面试算法
-				</h2>
-				<div class="index-brief">
-					面试题17.01不用加号的加法
-class Solution &#123;
-    public int add(int a, int b) &#123;
-        int m = a ^ b; //不进位加法
-        int n = (a &amp; b) &lt;&lt; 1; /
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2022-11-25</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/算法相关/">算法相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2022/11/21/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Java%E5%9F%BA%E7%A1%80/">
-				<h2 class="index-title">
-					Java基础
-				</h2>
-				<div class="index-brief">
-					不同版本JDK安装网站：https://adoptium.net/zh-CN/
-编译期与运行期
-
-编译期是指把源码交给编译器编译成计算机可执行文件的过程，运行期是指把编译后的文件交给计算机执行，直到程序结束。
-在Java中就是把.java文件编译成.class文件，再把编译后的文件交给JVM加载执行
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2022-11-21</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/基础知识/">基础知识</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
 	
 	<div id="index-paginator">
 		
-			<a class="extend prev" rel="prev" href="/archives/page/5/">&lt;</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="page-number current">6</span>
+			<a class="extend prev" rel="prev" href="/archives/page/5/">&lt;</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/7/">&gt;</a>
 		
 	</div>
 </div>
