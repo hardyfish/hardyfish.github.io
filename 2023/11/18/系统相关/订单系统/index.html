@@ -770,6 +770,15 @@
 									
 							<ul>
 								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E4%BB%BB%E5%8A%A1%E7%B3%BB%E7%BB%9F/">
+										任务系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E5%B9%BF%E5%91%8A%E7%B3%BB%E7%BB%9F/">
 										广告系统
 									</a>
@@ -779,8 +788,71 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E6%89%93%E8%BD%A6%E7%B3%BB%E7%BB%9F/">
+										打车系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">
 										推荐系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%94%A8%E6%88%B7%E7%B3%BB%E7%BB%9F/">
+										用户系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%9B%B4%E6%92%AD%E7%B3%BB%E7%BB%9F/">
+										直播系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%9F%AD%E9%93%BE%E7%B3%BB%E7%BB%9F/">
+										短链系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%A4%BE%E5%8C%BA%E7%B3%BB%E7%BB%9F/">
+										社区系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F/">
+										秒杀系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%BA%A2%E5%8C%85%E7%B3%BB%E7%BB%9F/">
+										红包系统
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -947,7 +1019,8 @@
 <li>调用支付通道之后，如果支付通道端返回<strong>支付受理成功或者支付处理中</strong>，将这类订单插入掉单表。</li>
 <li>补单应用将会定时查询数据库，批量查询掉单记录。</li>
 <li>调用支付通道支付查询接口。</li>
-<li>如果支付结果查询为以下状态：<ul>
+<li>如果支付结果查询为以下状态：
+<ul>
 <li>扣款成功，明确失败，掉单记录查询达到最大次数。</li>
 </ul>
 </li>
@@ -971,6 +1044,31 @@
 <li>Web端可以使用<code>Websocket</code>，APP端可以用自定义Push。</li>
 </ul>
 </blockquote>
+<p><strong>幂等问题</strong></p>
+<blockquote>
+<p>订单服务在调用库存服务时，因为网络等原因，订单服务调用失败，但其实库存服务已经处理完成，只是返回给订单服务处理结果时出现了异常。</p>
+<p>这个时候一般系统会作补偿方案，也就是订单服务再此发起库存服务的调用。</p>
+</blockquote>
+<p>乐观锁方案：</p>
+<blockquote>
+<p>根据version版本，也就是在操作库存前先获取当前商品的version版本号，然后操作的时候带上此version号。</p>
+<ul>
+<li>
+<p>第一次操作库存时，得到version为1，调用库存服务version变成了2。</p>
+</li>
+<li>
+<p>但返回给订单服务出现了问题，订单服务又一次发起调用库存服务，当订单服务传如的version还是1，再执行上面的sql语句时，就不会执行。</p>
+</li>
+<li>
+<p>因为version已经变为2了，where条件就不成立。</p>
+</li>
+<li>
+<p>这样就保证了不管调用几次，只会真正的处理一次。</p>
+</li>
+</ul>
+</blockquote>
+<pre><code class="language-sql">	update t_goods set count = count -1 , version = version + 1 where good_id=2 and version = 1
+</code></pre>
 <p><strong>订单重复支付问题</strong></p>
 <blockquote>
 <p>加锁:</p>
@@ -979,20 +1077,26 @@
 </ul>
 <p>缓存结果:</p>
 <ul>
-<li><p>申请支付成功，支付回调成功，都应该缓存结果。</p>
+<li>
+<p>申请支付成功，支付回调成功，都应该缓存结果。</p>
 </li>
-<li><p>再申请支付，收到成功回调的时候，都应该先去检查支付的状态。</p>
+<li>
+<p>再申请支付，收到成功回调的时候，都应该先去检查支付的状态。</p>
 </li>
 </ul>
 <p>支付中流水取消:</p>
 <ul>
-<li><p>用户重复支付了，再次申请支付的时候，如果已经申请支付成功了，那么这笔支付肯定是要拒绝的。</p>
+<li>
+<p>用户重复支付了，再次申请支付的时候，如果已经申请支付成功了，那么这笔支付肯定是要拒绝的。</p>
 </li>
-<li><p>但是，要是已经存在的这笔流水还在支付中呢？</p>
+<li>
+<p>但是，要是已经存在的这笔流水还在支付中呢？</p>
 </li>
-<li><p>不确定它是成功还是失败，肯定是不能拒绝支付的，因为可能用户支付失败了，但是状态还没同步，这样肯定是不行的。</p>
+<li>
+<p>不确定它是成功还是失败，肯定是不能拒绝支付的，因为可能用户支付失败了，但是状态还没同步，这样肯定是不行的。</p>
 </li>
-<li><p>所以，可以取消掉正在支付中的流水，再进行支付。</p>
+<li>
+<p>所以，可以取消掉正在支付中的流水，再进行支付。</p>
 </li>
 </ul>
 <p>已支付流水退款:</p>
@@ -1011,13 +1115,13 @@
 <p>记录库存余额的方案是：每次购买时库存余额都减去购买数量。</p>
 <p>一旦库存余额小于等于 0，则无法再减少库存数量，商品则不可再售卖，直至库存得到补充。</p>
 </blockquote>
-<pre><code class="sql">update inventory set cnt = cnt - #&#123;buyCnt&#125; WHERE productId = #&#123;productId&#125; AND cnt - #&#123;buyCnt&#125; &gt;= 0
+<pre><code class="language-sql">update inventory set cnt = cnt - #&#123;buyCnt&#125; WHERE productId = #&#123;productId&#125; AND cnt - #&#123;buyCnt&#125; &gt;= 0
 </code></pre>
 <blockquote>
 <p>记录售卖数量的方案是：每次购买时，已售卖数量 + 当前购买数量。</p>
 <p>加和以后，一旦已购买数量大于库存总数时，则库存不足，商品则不可再对外售卖，直至库存得到补充。</p>
 </blockquote>
-<pre><code class="sql">update inventory set cnt = cnt + #&#123;buyCnt&#125; WHERE productId = #&#123;productId&#125; AND cnt + #&#123;buyCnt&#125; &lt;= totalCnt
+<pre><code class="language-sql">update inventory set cnt = cnt + #&#123;buyCnt&#125; WHERE productId = #&#123;productId&#125; AND cnt + #&#123;buyCnt&#125; &lt;= totalCnt
 </code></pre>
 <blockquote>
 <p>在方案1中，因为C端交易流程需要操作库存余额，B端调整库存总数也会涉及调整库存余额。</p>
@@ -1035,17 +1139,23 @@
 <p>这个方案可以保证用户下单成功就一定能购买成功，下单阶段就占用库存的坏处是，如果大量用户虚假下单，但是不支付订单，就会有大量库存被占用，影响正常用户下单。</p>
 <p>解决办法:</p>
 <ul>
-<li><p>通常情况下，业界会限制订单支付时长，要求用户在15-30分钟内完成支付，以避免订单长时间处于待支付状态。</p>
+<li>
+<p>通常情况下，业界会限制订单支付时长，要求用户在15-30分钟内完成支付，以避免订单长时间处于待支付状态。</p>
 </li>
-<li><p>如果订单未在规定时间内支付，订单会被取消，库存也会被还原，因此不会一直占用库存的情况发生。</p>
+<li>
+<p>如果订单未在规定时间内支付，订单会被取消，库存也会被还原，因此不会一直占用库存的情况发生。</p>
 </li>
-<li><p>大量正常用户下单后不支付而导致订单取消率过高，说明系统存在问题阻碍用户支付。</p>
+<li>
+<p>大量正常用户下单后不支付而导致订单取消率过高，说明系统存在问题阻碍用户支付。</p>
 </li>
-<li><p>这种情况下，大量占用库存属于异常场景，可以忽略不计。</p>
+<li>
+<p>这种情况下，大量占用库存属于异常场景，可以忽略不计。</p>
 </li>
-<li><p>只有黑产用户才会故意使用大量账号占用库存，以影响售卖。</p>
+<li>
+<p>只有黑产用户才会故意使用大量账号占用库存，以影响售卖。</p>
 </li>
-<li><p>需要让订单提单接口接入风控，风控接口识别并封杀黑产用户。</p>
+<li>
+<p>需要让订单提单接口接入风控，风控接口识别并封杀黑产用户。</p>
 </li>
 </ul>
 </blockquote>
@@ -1068,7 +1178,6 @@
 <p>新增库存流水在前，新增流水时，还未锁定 库存行锁，其他事务可扣减库存，这样并发度更高。</p>
 </blockquote>
 <img src="/images/image-20231118165615372.png" alt="image-20231118165615372" style="zoom:50%;" />
-
 
 	</div>
 </div>

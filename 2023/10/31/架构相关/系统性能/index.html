@@ -770,6 +770,15 @@
 									
 							<ul>
 								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E4%BB%BB%E5%8A%A1%E7%B3%BB%E7%BB%9F/">
+										任务系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E5%B9%BF%E5%91%8A%E7%B3%BB%E7%BB%9F/">
 										广告系统
 									</a>
@@ -779,8 +788,71 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E6%89%93%E8%BD%A6%E7%B3%BB%E7%BB%9F/">
+										打车系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">
 										推荐系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%94%A8%E6%88%B7%E7%B3%BB%E7%BB%9F/">
+										用户系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%9B%B4%E6%92%AD%E7%B3%BB%E7%BB%9F/">
+										直播系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%9F%AD%E9%93%BE%E7%B3%BB%E7%BB%9F/">
+										短链系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%A4%BE%E5%8C%BA%E7%B3%BB%E7%BB%9F/">
+										社区系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F/">
+										秒杀系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%BA%A2%E5%8C%85%E7%B3%BB%E7%BB%9F/">
+										红包系统
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -946,22 +1018,26 @@
 </ul>
 <p>故障转移能力:</p>
 <ul>
-<li><p>部分业务场景对于DB的依赖性很高，在DB不可用的情况下，能不能转移或者先中断现场，保存上下文。</p>
+<li>
+<p>部分业务场景对于DB的依赖性很高，在DB不可用的情况下，能不能转移或者先中断现场，保存上下文。</p>
 <ul>
 <li>对当前的业务场景上下文写入延迟队列，等故障恢复后再对数据进行消费和计算。</li>
 </ul>
 </li>
-<li><p>有些不可抗力和第三方问题，可能会严重影响整个业务的可用性，因此要做好异地多话，冗余灾备以及定期演练。</p>
+<li>
+<p>有些不可抗力和第三方问题，可能会严重影响整个业务的可用性，因此要做好异地多话，冗余灾备以及定期演练。</p>
 </li>
 </ul>
 <p>系统资源隔离性:</p>
 <ul>
-<li><p>在异常处理中，经常会因为上游数据的大量上报导致队列阻塞，影响时效性。</p>
+<li>
+<p>在异常处理中，经常会因为上游数据的大量上报导致队列阻塞，影响时效性。</p>
 <ul>
 <li>因此可以做好核心业务和非核心业务资源隔离，对于秒杀类的场景甚至可以单独部署独立的集群支撑业务。</li>
 </ul>
 </li>
-<li><p>如果A系统可用性90%，B系统的可用性40%，A系统某服务强依赖B系统，那么A系统的可用性为P(A|B), 可用性大大降低。</p>
+<li>
+<p>如果A系统可用性90%，B系统的可用性40%，A系统某服务强依赖B系统，那么A系统的可用性为P(A|B), 可用性大大降低。</p>
 </li>
 </ul>
 </blockquote>
@@ -971,7 +1047,7 @@
 <ul>
 <li>对系统的CPU，线程CE、IO、服务调用TPS、DB计算耗时等设置合理的监控阈值，发现问题及时应急。</li>
 </ul>
-<p>做好限流&#x2F;熔断&#x2F;降级等：</p>
+<p>做好限流/熔断/降级等：</p>
 <ul>
 <li>瞬间流量问题很容易引发故障，一定要做好压测和熔断能力。</li>
 <li>秒杀类的业务减少对核心系统的强依赖，提前做好预案管控，对于缓存的雪崩等也要有一定的预热和保护机制。</li>
@@ -1014,34 +1090,61 @@
 </ul>
 <p>使用优化：</p>
 <ul>
-<li>合理加锁。<ul>
+<li>合理加锁。
+<ul>
 <li>尽量使用乐观锁，悲观锁场景控制锁粒度。</li>
 </ul>
 </li>
-<li>异步法。<ul>
+<li>异步法。
+<ul>
 <li>将同步的过程转换为异步的过程。</li>
 </ul>
 </li>
-<li>批量插入。<ul>
-<li>内存聚合：<ul>
+<li>批量插入。
+<ul>
+<li>内存聚合：
+<ul>
 <li>多个请求过来，写到内存的queue中。</li>
 <li>然后每个线程循环检查自己的状态。</li>
 <li>系统中定时从queue中捞取批量请求一起执行。</li>
 </ul>
 </li>
-<li>流水聚合：<ul>
+<li>流水聚合：
+<ul>
 <li>把请求的流水落库，然后通过定时任务捞取所有的流水，并在内存中统一计算结果。</li>
 <li>然后更新数据库，标记原流水状态，结束。</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>文件法。<ul>
+<li>文件法。
+<ul>
 <li>第一步：写文件。</li>
 <li>第二步：定时任务去读取文件信息，然后执行写入DB动作。</li>
 </ul>
 </li>
 </ul>
+</blockquote>
+<p><strong>接口超时问题</strong></p>
+<blockquote>
+<p>网络异常:</p>
+<ul>
+<li>网络抖动，带宽被占满</li>
+</ul>
+<p>线程池满了:</p>
+<ul>
+<li>多种业务场景共用<code>同一个线程池</code>，可以拆分成<code>多个线程池</code></li>
+</ul>
+<p>数据库死锁</p>
+<p>SQL语句没走索引</p>
+<p>传入参数太多</p>
+<p>超时时间设置过短:</p>
+<ul>
+<li>不建议多种业务场景共用同一个<code>超时时间</code>，最好根据并发量的不同，单独设置不同的超时时间。</li>
+</ul>
+<p>一次性返回数据太多</p>
+<p>死循环</p>
+<p>服务OOM</p>
 </blockquote>
 
 	</div>
