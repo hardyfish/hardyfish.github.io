@@ -1434,19 +1434,53 @@
 <li>Redis存储</li>
 </ul>
 </blockquote>
-<h2 id="分布式ID"><a href="#分布式ID" class="headerlink" title="分布式ID"></a>分布式ID</h2><p><strong>雪花Snowflake算法</strong></p>
+<h2 id="分布式ID"><a href="#分布式ID" class="headerlink" title="分布式ID"></a>分布式ID</h2><p><strong>数据库号段模式</strong></p>
+<blockquote>
+<p>号段模式为从数据库批量的获取自增ID，每次从数据库取出一个号段范围。</p>
+<p>例如 (1,1000] 代表1000个ID，具体的业务服务将本号段，生成1~1000的自增ID并加载到内存。</p>
+<ul>
+<li><p><code>biz_type</code> ：代表不同业务类型</p>
+</li>
+<li><p><code>max_id</code> ：当前最大的可用id</p>
+</li>
+<li><p><code>step</code> ：代表号段的长度</p>
+</li>
+<li><p><code>version</code> ：是一个乐观锁，每次都更新version，保证并发时数据的正确性</p>
+</li>
+</ul>
+</blockquote>
+<pre><code class="sql">CREATE TABLE id_generator (
+  id int(10) NOT NULL,
+  max_id bigint(20) NOT NULL COMMENT &#39;当前最大id&#39;,
+  step int(20) NOT NULL COMMENT &#39;号段的布长&#39;,
+  biz_type	int(20) NOT NULL COMMENT &#39;业务类型&#39;,
+  version int(20) NOT NULL COMMENT &#39;版本号&#39;,
+  PRIMARY KEY (`id`)
+) 
+</code></pre>
+<blockquote>
+<p>等这批号段ID用完，再次向数据库申请新号段，对<code>max_id</code>字段做一次<code>update</code>操作，<code>update max_id= max_id + step</code>，update成功则说明新号段获取成功，新的号段范围是<code>(max_id ,max_id +step]</code>。</p>
+</blockquote>
+<pre><code class="sql">update id_generator set max_id = #&#123;max_id+step&#125;, version = version + 1 where version = # &#123;version&#125; and biz_type = XXX
+</code></pre>
+<blockquote>
+<p>由于多业务端可能同时操作，所以采用版本号<code>version</code>乐观锁方式更新，这种<code>分布式ID</code>生成方式不强依赖于数据库，不会频繁的访问数据库，对数据库的压力小很多。</p>
+</blockquote>
+<p><strong>雪花SnowFlake算法</strong></p>
+<blockquote>
 <p>雪花算法生成64位的二进制正整数，然后转换成10进制的数。</p>
 <p>64位二进制数由如下部分组成：</p>
+</blockquote>
 <p><img src="/images/image-20231012141356009.png" alt="image-20231012141356009"></p>
 <blockquote>
 <p><strong>1位标识符：</strong>始终是0</p>
-<p><strong>41位时间戳：</strong>41位时间截不是存储当前时间的时间截，而是<strong>存储时间截的差值（当前时间截 - 开始时间截 )得到的值</strong>，这里的的开始时间截，一般是我们的id生成器开始使用的时间，由我们程序来指定的</p>
+<p><strong>41位时间戳</strong>：存储时间截的差值（当前时间截 - 开始时间截 )得到的值，这里的的开始时间截，一般是ID生成器开始使用的时间，由程序来指定的</p>
 <p><strong>10位机器标识码：</strong>可以<strong>部署在1024个节点</strong>，如果机器<strong>分机房（IDC）部署</strong>，这10位可以由 <strong>5位机房ID + 5位机器ID</strong> 组成</p>
 <p><strong>12位序列：</strong>毫秒内的计数，12位的计数顺序号支持每个节点每毫秒(同一机器，同一时间截)产生4096个ID序号</p>
 </blockquote>
 <p>优点：</p>
 <blockquote>
-<p>此方案每秒能够产生409.6万个ID，性能快</p>
+<p>每秒能够产生409.6万个ID，性能快</p>
 <p>时间戳在高位，自增序列在低位，整个ID是趋势递增的，按照时间有序递增</p>
 <p>灵活度高，可以根据业务需求，调整bit位的划分，满足不同的需求</p>
 </blockquote>
@@ -1456,7 +1490,7 @@
 </blockquote>
 <p>优化思路:</p>
 <blockquote>
-<p>思路就是我们在系统中<strong>监控每台时钟是否回拨</strong>？如果回拨了，我们作一下调整就行了。</p>
+<p>思路就是在系统中<strong>监控每台时钟是否回拨</strong>？如果回拨了，作一下调整就行了。</p>
 <p><strong>持久化节点</strong>的作用：就是保存<strong>各个ID服务的节点信息，并保存时钟</strong>。</p>
 </blockquote>
 <p><img src="/images/image-20231012141726598.png" alt="image-20231012141726598"></p>
@@ -1466,7 +1500,7 @@
 <p>2、检查是否之前注册过，如果没有注册过，就把此服务注册到Zookeeper中。</p>
 <p>3、节点的信息利用顺序节点，保证唯一。</p>
 <ul>
-<li>ID服务再把此生成的顺序ID当作workID，保存到本地文件系统中，这样以后再次启动时，就拿着此workId到 zk 上面去查找，是否之前注册过。</li>
+<li>ID服务把此生成的顺序ID当作workID，保存到本地文件系统中，这样以后再次启动时，就拿着此workId到 zk 上面去查找，是否之前注册过。</li>
 </ul>
 <p>4、如果之前没有注册过，生成了ID服务的zk节点，并把本地的时钟保存到此zk节点中。</p>
 <ul>
@@ -1478,6 +1512,121 @@
 <li>否则表示本地的时钟发生了回拨，启动不成功，启动报警机制。</li>
 </ul>
 </blockquote>
+<p>算法实现：</p>
+<pre><code class="java">/**
+ * Twitter的SnowFlake算法,使用SnowFlake算法生成一个整数，然后转化为62进制变成一个短地址URL
+ *
+ * https://github.com/beyondfengyu/SnowFlake
+ */
+public class SnowFlakeShortUrl &#123;
+
+    /**
+     * 起始的时间戳
+     */
+    private final static long START_TIMESTAMP = 1480166465631L;
+
+    /**
+     * 每一部分占用的位数
+     */
+    private final static long SEQUENCE_BIT = 12;   //序列号占用的位数
+    private final static long MACHINE_BIT = 5;     //机器标识占用的位数
+    private final static long DATA_CENTER_BIT = 5; //数据中心占用的位数
+
+    /**
+     * 每一部分的最大值
+     */
+    private final static long MAX_SEQUENCE = -1L ^ (-1L &lt;&lt; SEQUENCE_BIT);
+    private final static long MAX_MACHINE_NUM = -1L ^ (-1L &lt;&lt; MACHINE_BIT);
+    private final static long MAX_DATA_CENTER_NUM = -1L ^ (-1L &lt;&lt; DATA_CENTER_BIT);
+
+    /**
+     * 每一部分向左的位移
+     */
+    private final static long MACHINE_LEFT = SEQUENCE_BIT;
+    private final static long DATA_CENTER_LEFT = SEQUENCE_BIT + MACHINE_BIT;
+    private final static long TIMESTAMP_LEFT = DATA_CENTER_LEFT + DATA_CENTER_BIT;
+
+    private long dataCenterId;  //数据中心
+    private long machineId;     //机器标识
+    private long sequence = 0L; //序列号
+    private long lastTimeStamp = -1L;  //上一次时间戳
+
+    private long getNextMill() &#123;
+        long mill = getNewTimeStamp();
+        while (mill &lt;= lastTimeStamp) &#123;
+            mill = getNewTimeStamp();
+        &#125;
+        return mill;
+    &#125;
+
+    private long getNewTimeStamp() &#123;
+        return System.currentTimeMillis();
+    &#125;
+
+    /**
+     * 根据指定的数据中心ID和机器标志ID生成指定的序列号
+     *
+     * @param dataCenterId 数据中心ID
+     * @param machineId    机器标志ID
+     */
+    public SnowFlakeShortUrl(long dataCenterId, long machineId) &#123;
+        if (dataCenterId &gt; MAX_DATA_CENTER_NUM || dataCenterId &lt; 0) &#123;
+            throw new IllegalArgumentException(&quot;DtaCenterId can&#39;t be greater than MAX_DATA_CENTER_NUM or less than 0！&quot;);
+        &#125;
+        if (machineId &gt; MAX_MACHINE_NUM || machineId &lt; 0) &#123;
+            throw new IllegalArgumentException(&quot;MachineId can&#39;t be greater than MAX_MACHINE_NUM or less than 0！&quot;);
+        &#125;
+        this.dataCenterId = dataCenterId;
+        this.machineId = machineId;
+    &#125;
+
+    /**
+     * 产生下一个ID
+     *
+     * @return
+     */
+    public synchronized long nextId() &#123;
+        long currTimeStamp = getNewTimeStamp();
+        if (currTimeStamp &lt; lastTimeStamp) &#123;
+            throw new RuntimeException(&quot;Clock moved backwards.  Refusing to generate id&quot;);
+        &#125;
+
+        if (currTimeStamp == lastTimeStamp) &#123;
+            //相同毫秒内，序列号自增
+            sequence = (sequence + 1) &amp; MAX_SEQUENCE;
+            //同一毫秒的序列数已经达到最大
+            if (sequence == 0L) &#123;
+                currTimeStamp = getNextMill();
+            &#125;
+        &#125; else &#123;
+            //不同毫秒内，序列号置为0
+            sequence = 0L;
+        &#125;
+
+        lastTimeStamp = currTimeStamp;
+
+        return (currTimeStamp - START_TIMESTAMP) &lt;&lt; TIMESTAMP_LEFT //时间戳部分
+                | dataCenterId &lt;&lt; DATA_CENTER_LEFT       //数据中心部分
+                | machineId &lt;&lt; MACHINE_LEFT             //机器标识部分
+                | sequence;                             //序列号部分
+    &#125;
+    
+    public static void main(String[] args) &#123;
+        SnowFlakeShortUrl snowFlake = new SnowFlakeShortUrl(2, 3);
+
+        for (int i = 0; i &lt; (1 &lt;&lt; 4); i++) &#123;
+            //10进制
+            System.out.println(snowFlake.nextId());
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>百度（uid-generator）</strong></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/baidu/uid-generator">https://github.com/baidu/uid-generator</a></p>
+<p><strong>美团（Leaf）</strong></p>
+<p><a href="https://link.zhihu.com/?target=https://github.com/Meituan-Dianping/Leaf">https://link.zhihu.com/?target=https%3A//github.com/Meituan-Dianping/Leaf</a></p>
+<p><strong>滴滴（Tinyid）</strong></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/didi/tinyid">https://github.com/didi/tinyid</a></p>
 <h2 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h2><p>分布式锁是控制分布式系统不同进程共同访问共享资源的一种锁的实现。</p>
 <p>如果不同的系统或同一个系统的不同主机之间共享了某个临界资源，往往需要互斥来防止彼此干扰，以保证一致性。</p>
 <p>业界分布式锁的实现，一般有这3种方式：</p>
@@ -1852,7 +2001,7 @@
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1700793286549-233',
+	        blogId: '22377-1700924814524-423',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -1902,7 +2051,7 @@
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1700793286549-233',
+        blogId: '22377-1700924814524-423',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',

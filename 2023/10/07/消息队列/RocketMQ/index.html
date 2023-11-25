@@ -1133,7 +1133,23 @@
 <p>Master 和 Slave 再通过异步的方式同步数据，这种复制模式具有较小的延迟，可以实现比较高的吞吐量。</p>
 <p>若 Master 出现故障，有些数据可能未写入 Slave，未同步的数据可能丢失。</p>
 </blockquote>
-<h1 id="消息类型"><a href="#消息类型" class="headerlink" title="消息类型"></a>消息类型</h1><h2 id="事务消息"><a href="#事务消息" class="headerlink" title="事务消息"></a>事务消息</h2><p>支持在分布式场景下保障消息生产和本地事务的最终一致性。</p>
+<h1 id="消息类型"><a href="#消息类型" class="headerlink" title="消息类型"></a>消息类型</h1><p><strong>延迟消息</strong></p>
+<blockquote>
+<p>RocketMQ支持18个等级，每个等级代表一个延迟时间。</p>
+</blockquote>
+<pre><code class="java">private String messageDelayLevel = &quot;1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h&quot;;
+</code></pre>
+<p>原理解析：</p>
+<blockquote>
+<p>Brocker启动时，根据不同等级开启定时器，即分别对每个延迟等级都开启一个定时器。</p>
+<ul>
+<li>RocketMQ是基于<code>java.util.Timer</code>的定时器。</li>
+</ul>
+</blockquote>
+<img src="/images/image-20231125220819038.png" alt="image-20231125220819038" style="zoom:50%;" />
+
+<p><strong>事务消息</strong></p>
+<p>支持在分布式场景下保障消息生产和本地事务的最终一致性。</p>
 <p><img src="/images/image-20231007114659517.png" alt="image-20231007114659517"></p>
 <blockquote>
 <p>1、生产者将消息发送至 Broker。</p>
@@ -1154,11 +1170,11 @@
 </li>
 </ul>
 </blockquote>
-<p><strong>为什么要先发送Half Message(半消息)</strong></p>
+<p>为什么要先发送Half Message(半消息)：</p>
 <blockquote>
 <p>可以先确认Broker服务器是否正常，如果半消息都发送失败了，那说明Broker挂了。 </p>
 </blockquote>
-<p><strong>什么情况会回查</strong></p>
+<p>什么情况会回查：</p>
 <blockquote>
 <p>执行本地事务的时候，由于突然网络等原因一直没有返回执行事务的结果(Commit或者Rollback)导致最终返回UNKNOW，就会回查。</p>
 <p>本地事务执行成功后，返回Commit进行消息二次确认的时候的服务挂了。</p>
@@ -1245,7 +1261,7 @@
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1700793286549-233',
+	        blogId: '22377-1700924814524-423',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -1295,7 +1311,7 @@
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1700793286549-233',
+        blogId: '22377-1700924814524-423',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',

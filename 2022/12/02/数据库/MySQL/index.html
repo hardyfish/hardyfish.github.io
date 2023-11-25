@@ -1120,6 +1120,25 @@
 </blockquote>
 <img src="/images/image-20231025215619612.png" alt="image-20231025215619612" style="zoom:50%;" />
 
+<p><strong>分页查询优化</strong></p>
+<pre><code class="sql">select * from table where type = 2 and level = 9 order by id asc limit 190289,10;
+</code></pre>
+<blockquote>
+<p>延迟关联：</p>
+<ul>
+<li>先通过where条件提取出主键，在将该表与原数据表关联，通过主键id提取数据行，而不是通过原来的二级索引提取数据行</li>
+</ul>
+</blockquote>
+<pre><code class="sql">select a.* from table a, (select id from table where type = 2 and level = 9 order by id asc limit 190289,10 ) b where a.id = b.id
+</code></pre>
+<blockquote>
+<p>书签方式:</p>
+<ul>
+<li>找到limit第一个参数对应的主键值，再根据这个主键值再去过滤并limit</li>
+</ul>
+</blockquote>
+<pre><code class="sql">select * from table where id &gt; (select * from table where type = 2 and level = 9 order by id asc limit 190289, 1) limit 10;
+</code></pre>
 <h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p><strong>ACID</strong></p>
 <blockquote>
 <p>原子性（atomicity）:</p>
@@ -1494,6 +1513,10 @@ UPDATE student SET ... # 排他锁
 <ul>
 <li>联合索引首先通过条件找到所有<code>age&gt;10</code>的数据，根据联合索引中已经存在的<code>name</code>数据进行过滤，找到符合条件的数据。</li>
 </ul>
+</blockquote>
+<p><strong>索引合并</strong></p>
+<blockquote>
+<p>在MySQL 5.1之后进行引入，它可以在多个索引上进行查询，并将结果合并返回。</p>
 </blockquote>
 <p><strong>CBO</strong></p>
 <p>CBO（Cost-Based Optimizer，基于成本的优化器）。</p>
@@ -1883,6 +1906,24 @@ SELECT ... FOR SHARE; # (8.0新增语法)
 <p>如果查询条件用了<strong>索引&#x2F;主键</strong>，<code>select ..... for update</code> 会进行行锁。</p>
 <p>如果是普通字段（<strong>没有索引&#x2F;主键</strong>）， <code>select ..... for update</code> 会进行锁表。</p>
 </blockquote>
+<p><strong>如何有效的避免死锁的发生</strong></p>
+<blockquote>
+<p>设置事务等待锁的超时时间：</p>
+<ul>
+<li>当一个事务的等待时间超过该值后，就对这个事务进行回滚，于是锁就释放了，另一个事务就可以继续执行了。</li>
+<li>在 InnoDB 中，参数 <code>innodb_lock_wait_timeout</code> 是用来设置超时时间的，默认值时 50 秒。</li>
+</ul>
+<p>开启主动死锁检测：</p>
+<ul>
+<li>主动死锁检测在发现死锁后，主动回滚死锁链条中的某一个事务，让其他事务得以继续执行。</li>
+<li>将参数 <code>innodb_deadlock_detect</code> 设置为 on，表示开启这个逻辑，默认就开启。</li>
+</ul>
+<p>修改数据库隔离级别为RC：</p>
+<ul>
+<li>MySql默认级别为RR，RC没有间隙锁<code>Gap Lock</code>和组合锁<code>Next-Key Lock</code>，能一定程度的避免死锁的发生。</li>
+</ul>
+<p>尽量少使用当前读<code>for update</code>，数据更新时尽量使用主键。</p>
+</blockquote>
 <h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><strong>Buffer Pool</strong></p>
 <blockquote>
 <p><code>Buffer Pool</code>作为缓存页。</p>
@@ -2082,7 +2123,7 @@ SELECT ... FOR SHARE; # (8.0新增语法)
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1700793286549-233',
+	        blogId: '22377-1700924814524-423',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -2132,7 +2173,7 @@ SELECT ... FOR SHARE; # (8.0新增语法)
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1700793286549-233',
+        blogId: '22377-1700924814524-423',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',
