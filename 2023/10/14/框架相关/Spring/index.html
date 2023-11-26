@@ -682,6 +682,15 @@
 							</ul>
 			
 							<ul>
+								<li class="file">
+									<a href="/2023/11/26/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Seata/">
+										Seata
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
 								<li class="file active">
 									<a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
 										Spring
@@ -1199,6 +1208,63 @@ private final Map&lt;String, Object&gt; earlySingletonObjects = new HashMap&lt;&
 <p>动态的生成代理类，代理类的执行过程为：执行增加的代码（例如方法日志记录）-&gt; 回调原方法 -&gt; 增加的代码逻辑。</p>
 <p>Spring AOP 动态代理采用 JDK 动态代理或 CGlib 动态生成代理类，判断被切面的类是否有其实现的接口，如果有对应的接口，则采用 JDK 动态代理，否则采用 CGlib 字节码生成机制动态代理方式。</p>
 </blockquote>
+<h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><blockquote>
+<p>SpringMVC是一个基于Servlet容器的Web应用框架。</p>
+<ul>
+<li>Servlet容器通常指Tomcat等服务容器。</li>
+</ul>
+<p>Servlet容器会负责监听端口消息并映射为Request&#x2F;Response对象，然后交给Servlet实例去处理。</p>
+<p>SpringMVC框架的作用核心就是Servlet实例。</p>
+<ul>
+<li>这个实例在Spring中默认是DispatcherServlet。</li>
+</ul>
+</blockquote>
+<p><img src="/images/2529502-20220111124944310-1685586053.jpg" alt="Spring MVC结构图"></p>
+<p><strong>核心组件DispatcherServlet</strong></p>
+<blockquote>
+<p>在Spring容器启动阶段读取映射规则，如RequestMapping。</p>
+<p>在请求到来的时候，按照加载的请求映射规则找到合适的处理方法。</p>
+<p>当处理请求的过程中出现了异常，对异常进行处理，如返回合适的界面或状态码。</p>
+<p>解析返回View的主题、时区等信息。</p>
+<p>渲染返回的视图。</p>
+</blockquote>
+<p><img src="/images/2529502-20220111124945404-258353533.jpg" alt="DispatcherServlet功能图"></p>
+<p><strong>请求映射HandlerMapping</strong></p>
+<blockquote>
+<p>请求映射用于根据请求找到该请求需要调用的所有方法，包含过滤器和处理方法等。</p>
+<p>比较常用的一种请求映射是RequestMappingHandlerMapping。</p>
+<ul>
+<li>从名称上可以看出来这个HandlerMapping是用于处理<code>@RequestMapping</code>注解请求映射的类。</li>
+</ul>
+<p>该类的主要作用是在收到请求之后，按顺序拿到所有需要调用的方法（主要包含拦截器和处理方法），然后一一调用这些方法。</p>
+</blockquote>
+<p><img src="/images/2529502-20220111124946065-309697782.jpg" alt="Handler Mapping原理"></p>
+<p><strong>拦截器HandlerInterceptor</strong></p>
+<blockquote>
+<p>Spring的拦截器可以灵活的在请求处理前、请求处理后和请求完成三个阶段自定义操作，比如用户权限校验等。</p>
+</blockquote>
+<p><img src="/images/2529502-20220111124946566-1624526484.jpg" alt="Hadler Interceptor"></p>
+<p><strong>处理方法Handler</strong></p>
+<blockquote>
+<p>处理方法在DispatcherServlet定义为Object类型，如果使用了<code>@RequestMapping</code>来根据请求查找处理方法，那么查找到的处理方法就是<code>HandlerMethod</code>类型，对应于Controller中添加了对应RequestMapping的方法。</p>
+</blockquote>
+<p><strong>处理方法适配器HandlerAdapter</strong></p>
+<blockquote>
+<p>DispatcherServlet从HandlerMapping中获取到的处理方法是Object类型，意味着不同的处理方法可能返回不同的对象。</p>
+<p>DispatcherServlet本身是一个调度器，不应该关注如何调用不同的处理方法。</p>
+<ul>
+<li>所以Spring提供了HandlerAdapter列表用户处理不同的调度方法。</li>
+</ul>
+</blockquote>
+<p><img src="/images/2529502-20220111124947329-1366115042.jpg" alt="Hadler"></p>
+<p><strong>异常处理HandlerExceptionResolver</strong></p>
+<blockquote>
+<p>HandlerExceptionResolver用于处理请求过程中出现的异常。</p>
+<ul>
+<li>日常开发中使用比较多的是ExceptionHandlerExceptionResolver，也就是<code>@ExceptionHandler</code>注解。</li>
+</ul>
+<p><code>@ExceptionHander</code>可以放在<code>@ControllerAdvice</code>注解的类中，表示对所有的Controller都会生效。</p>
+</blockquote>
 <h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p><strong>嵌套事务</strong></p>
 <blockquote>
 <p>举例，methodA 中调用了 methodB，两个方法都有对数据库的操作，而且都需要事务。</p>
@@ -1224,6 +1290,42 @@ public void methodB()&#123;
 <li>这个子方法决定使用新事务还是当前事务（或不使用事务）的策略，就叫事务传播。</li>
 </ul>
 </blockquote>
+<table>
+<thead>
+<tr>
+<th>Spring传播行为</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>REQUIRED</td>
+<td>支持当前事务，如果不存在，就新建一个</td>
+</tr>
+<tr>
+<td>SUPPORTS</td>
+<td>支持当前事务，如果不存在，就不使用事务</td>
+</tr>
+<tr>
+<td>MANDATORY</td>
+<td>支持当前事务，如果不存在，抛出异常</td>
+</tr>
+<tr>
+<td>REQUIRES_NEW</td>
+<td>如果有事务存在，挂起当前事务，创建一个新的事务</td>
+</tr>
+<tr>
+<td>NOT_SUPPORTED</td>
+<td>以非事务方式运行，如果有事务存在，挂起当前事务</td>
+</tr>
+<tr>
+<td>NEVER</td>
+<td>以非事务方式运行，如果有事务存在，抛出异常</td>
+</tr>
+<tr>
+<td>NESTED</td>
+<td>如果当前事务存在，则嵌套事务执行（嵌套式事务）</td>
+</tr>
+</tbody></table>
 <p><strong>事务失效</strong></p>
 <p>1、事务方法被Final、Static关键字修饰:</p>
 <blockquote>
@@ -1537,6 +1639,13 @@ public class FishService &#123;
 <p>也可以通过 <code>mvn package deploy</code> 发布到私服。或者发布到中央仓库。</p>
 </blockquote>
 <p><strong>自动配置原理</strong></p>
+<blockquote>
+<p>Spring启用全自动配置功能的注解就是<code>@EnableAutoConfiguration</code>，应用添加了<code>@EnableAutoConfiguration</code>注解之后，会读取所有jar包下面的<code>spring.factories</code>文件，获取文件中配置的自动装配模块，然后去装配对应的模块。</p>
+<p><code>@EnableAutoConfiguration</code>的功能可总结为：</p>
+<ul>
+<li>使Spring启用factories机制导入各个starter模块的配置。</li>
+</ul>
+</blockquote>
 <h1 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h1><h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><p><strong>三级缓存架构</strong></p>
 <p>Eureka 注册中心的 Server 端有三级缓存来保存注册信息，可以利用缓存的快速读取来提高系统性能。</p>
 <blockquote>

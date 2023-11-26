@@ -683,6 +683,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2023/11/26/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Seata/">
+										Seata
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
 										Spring
 									</a>
@@ -1407,6 +1416,7 @@ UPDATE student SET ... # 排他锁
 <li>叶子节点存放的是主键值，而不是实际数据。</li>
 </ul>
 </blockquote>
+<p><img src="/images/2529502-20220105141617752-154425145.jpg" alt="B+树索引"></p>
 <p>二级索引：</p>
 <blockquote>
 <p>使用 二级索引 字段作为条件查询的时候，如果要查询的数据都在 聚簇索引 的叶子节点里，需要检索两颗B+树：</p>
@@ -1901,6 +1911,17 @@ SELECT ... FOR SHARE; # (8.0新增语法)
 <li>它是在 可重复读 的情况下使用的数据库锁，Innodb默认的锁就是<code>Next-Key Locks</code>。</li>
 </ul>
 </blockquote>
+<hr>
+<blockquote>
+<p>1、update 命令会施加一个 X 型记录锁，X 型记录锁是写写互斥的。</p>
+<ul>
+<li>如果 A 事务对 goods 表中 id &#x3D; 1 的记录行加了记录锁，B 事务想要对这行记录加记录锁就会被阻塞。</li>
+</ul>
+<p>2、insert 命令会施加一个插入意向锁，但插入意向锁是互相兼容的。</p>
+<ul>
+<li>如果 A 事务向 order 表 insert 一条记录，不会影响 B 事务 insert 一条记录。</li>
+</ul>
+</blockquote>
 <p><strong>select……for update锁表还是锁行</strong></p>
 <blockquote>
 <p>如果查询条件用了<strong>索引&#x2F;主键</strong>，<code>select ..... for update</code> 会进行行锁。</p>
@@ -1974,6 +1995,46 @@ SELECT ... FOR SHARE; # (8.0新增语法)
 <ul>
 <li>当<code>free</code>链表为空的时候，直接淘汰<code>LRU</code>链表尾部缓存页即可。</li>
 </ul>
+</blockquote>
+<p><strong>ChangeBuffer</strong></p>
+<blockquote>
+<p>ChangeBuffer是InnoDB缓存区的一种特殊的数据结构，当用户执行SQL对非唯一索引进行更改时，如果索引对应的数据页不在缓存中时，InnoDB不会直接加载磁盘数据到缓存数据页中，而是缓存对这些更改操作。</p>
+<ul>
+<li>这些更改操作可能由插入、更新或删除操作(DML)触发。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>ChangeBuffer用于存储SQL变更操作，比如Insert&#x2F;Update&#x2F;Delete等SQL语句。</p>
+<p>ChangeBuffer中的每个变更操作都有其对应的数据页，并且该数据页未加载到缓存中。</p>
+<p>当ChangeBufferd中变更操作对应的数据页加载到缓存中后，InnoDB会把变更操作Merge到数据页上。</p>
+<p>InnoDB会定期加载ChangeBuffer中操作对应的数据页到缓存中，并Merge变更操作。</p>
+</blockquote>
+<p><img src="/images/2529502-20211208163538663-634533368.jpg" alt="InnoDB缓存区结构"></p>
+<p>在什么场景下会触发ChangeBuffer的Merge操作?</p>
+<blockquote>
+<p>访问变更操作对应的数据页。</p>
+<p>InnoDB后台定期Merge。</p>
+<p>数据库BufferPool空间不足。</p>
+<p>数据库正常关闭时。</p>
+<p>RedoLog写满时。</p>
+</blockquote>
+<p>为什么ChangeBuffer只缓存非唯一索引数据?</p>
+<blockquote>
+<p>由于唯一索引需要进行唯一性校验，所以对唯一索引进行更新时必须将对应的数据页加载到缓存中进行校验，从而导致ChangeBuffer失效。</p>
+</blockquote>
+<p>ChangeBuffer适用场景:</p>
+<blockquote>
+<p>数据库大部分索引是非唯一索引。</p>
+<p>业务是写多读少，或者不是写后立刻读取。</p>
+</blockquote>
+<p>普通索引还是唯一索引?</p>
+<blockquote>
+<p>从索引修改角度来看：</p>
+<ul>
+<li>由于非唯一索引无法使用ChangeBuffer，对索引的修改会引起大量的磁盘IO，影响数据库性能。</li>
+</ul>
+<p>如果不是业务中要求数据库对某个字段做唯一性检查，最好使用普通索引而不是唯一索引。</p>
 </blockquote>
 <p><strong>SQL查询</strong></p>
 <blockquote>
