@@ -1310,13 +1310,33 @@ try &#123;
 <p><strong>最佳配置:</strong></p>
 <blockquote>
 <p>不要使用 <code>producer.send(msg)</code>，而要使用 <code>producer.send(msg, callback)</code>。</p>
-<p>设置 acks &#x3D; all：acks 是 Producer 的一个参数，代表了你对 已提交 消息的定义。如果设置成 all，则表明所有副本 Broker 都要接收到消息，该消息才算是 已提交。</p>
-<p>设置 retries 为一个较大的值。这里的 retries 同样是 Producer 的参数，对应前面提到的 Producer 自动重试。当出现网络的瞬时抖动时，消息发送可能会失败，此时配置了retries &gt; 0 的 Producer 能够自动重试消息发送，避免消息丢失。</p>
+<p>设置 acks &#x3D; all：</p>
+<ul>
+<li>设置成 all，则表明所有副本 Broker 都要接收到消息，该消息才算是 已提交。</li>
+</ul>
+<p>设置 retries 为一个较大的值。</p>
+<ul>
+<li>当出现网络的瞬时抖动时，消息发送可能会失败，此时配置了<code>retries &gt; 0</code> 的 Producer 能够自动重试消息发送，避免消息丢失。</li>
+</ul>
 <p>设置 <code>unclean.leader.election.enable = false</code>。</p>
-<p>设置 <code>replication.factor &gt;= 3</code>。防止消息丢失的主要机制就是冗余。</p>
-<p>设置 <code>min.insync.replicas &gt; 1</code>。控制的是消息至少要被写入到多少个副本才算是 已提交 。设置成大于 1 可以提升消息持久性。在实际环境中千万不要使用默认值 1。</p>
-<p>确保 <code>replication.factor &gt; min.insync.replicas</code>。如果两者相等，那么只要有一个副本挂机，整个分区就无法正常工作了。</p>
-<p>确保消息消费完成再提交。Consumer 端有个参数 <code>enable.auto.commit</code>，最好把它设置成 false，并采用手动提交位移的方式。</p>
+<p>设置 <code>replication.factor &gt;= 3</code>。</p>
+<ul>
+<li>防止消息丢失的主要机制就是冗余。</li>
+</ul>
+<p>设置 <code>min.insync.replicas &gt; 1</code>。</p>
+<ul>
+<li>控制的是消息至少要被写入到多少个副本才算是 已提交 。</li>
+<li>设置成大于 1 可以提升消息持久性。</li>
+<li>在实际环境中千万不要使用默认值 1。</li>
+</ul>
+<p>确保 <code>replication.factor &gt; min.insync.replicas</code>。</p>
+<ul>
+<li>如果两者相等，那么只要有一个副本挂机，整个分区就无法正常工作了。</li>
+</ul>
+<p>确保消息消费完成再提交。</p>
+<ul>
+<li>Consumer 端有个参数 <code>enable.auto.commit</code>，最好把它设置成 false，并采用手动提交位移的方式。</li>
+</ul>
 </blockquote>
 <h2 id="消息顺序"><a href="#消息顺序" class="headerlink" title="消息顺序"></a>消息顺序</h2><p><strong>乱序场景一</strong></p>
 <p>因为一个topic可以有多个partition，kafka只能保证partition内部有序。</p>
@@ -1367,7 +1387,7 @@ try &#123;
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1700924814524-423',
+	        blogId: '22377-1701134716680-506',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -1417,7 +1437,7 @@ try &#123;
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1700924814524-423',
+        blogId: '22377-1701134716680-506',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',

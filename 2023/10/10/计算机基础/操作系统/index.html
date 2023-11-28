@@ -1643,6 +1643,103 @@
 <p>第8-10位：其他用户（其他人）权限，用o（other）表示</p>
 <p>第2-10位：表示所有的权限，用a（all）表示</p>
 </blockquote>
+<h2 id="VIM"><a href="#VIM" class="headerlink" title="VIM"></a>VIM</h2><p><strong>VIM模式</strong></p>
+<img src="/images/v2-dcd25a6082e1989975c280213f3e1052_1440w.png" alt="img" style="zoom:60%;" />
+
+<p>命令模式：</p>
+<blockquote>
+<p>Vim 启动后，默认进入命令模式，在任何模式下，都可以按 Esc 键返回到命令模式。</p>
+<ul>
+<li>可以多按几次 Esc 键，保证顺利返回到命令模式。</li>
+</ul>
+<p>在此模式下，可以使用上、下、左、右键进行光标移动，也可以键入不同的命令完成选择、复制、粘贴、删除等操作。</p>
+</blockquote>
+<p>命令光标跳转：</p>
+<pre><code>G (shift + g)       跳转光标至末尾
+gg                  跳转光标至开头
+Ngg                 跳转光标至当前文件内的N行(N为数字)
+$                   将当前光标跳转至光标所在行的末端(尾部)
+^|0                 将当前光标跳转至光标所在行的头部  —&gt; 数字0 可实现类似效果
+</code></pre>
+<p>复制粘贴：</p>
+<pre><code>yy                复制当前光标所在的行
+Nyy|yNy           复制当前光标以及光标向下N行（N为数字）
+p(小写)            粘贴至当前光标下一行   
+P(大写)            粘贴至当前光标上一行
+</code></pre>
+<p>删除剪切:</p>
+<pre><code>dd              删除当前光标所在的行   
+Ndd|dNd         删除当前光标所在的行以及往下的N行(N为数字)
+dG              删除当前光标以后的所有行
+D               删除当前光标及光标以后的内容  
+x               删除当前光标标记往后的字符
+X               删除当前光标标记往前的字符
+ddp             先删除dd(number dd)，后粘贴p
+</code></pre>
+<p>撤销替换回滚:</p>
+<pre><code>u           撤销上一次的操作(类似windows下的ctrl+z) 
+r           替换当前光标标记的单个字符
+R           进入REPLACE模式, 连续替换，ESC结束
+Ctrl+r      当你执行了撤销u的时候，发现撤销错了，回滚
+</code></pre>
+<p><strong>编辑模式</strong></p>
+<blockquote>
+<p>在编辑模式下可以编辑文本内容。</p>
+<p>在命令模式下按 i、 a 、o等键可以进入编辑模式，在此模式下可以输入文本，但命令执行后的字符插入位置不同。</p>
+</blockquote>
+<pre><code>i   进入编辑模式，光标不做任何操作
+I   进入编辑模式，并且光标会跳转至本行的头部
+ 
+a   进入编辑模式，将当前光标往后一位
+A   进入编辑模式，将光标移动至本行的尾部
+ 
+o   进入编辑模式，并在当前光标下添加一行空白内容
+O   进入编辑模式，并在当前光标上添加一行空白内容
+ 
+s   进入编辑模式，并删除当前光标下的字符
+S   进入编辑模式，并删除当前光标所在行
+</code></pre>
+<p><strong>底行模式</strong></p>
+<blockquote>
+<p>键进入底行模式，这时光标会移到屏幕底部，在这里可以输入相关指令保存修改或退出 Vim。</p>
+<ul>
+<li>也可以设置编辑环境、寻找字符串、列出行号等。</li>
+</ul>
+</blockquote>
+<pre><code>:w          //保存当前状态
+:w!         //强制保存当前状态
+:q          //退出当前文档(文档必须保存才能退出)
+:q!         //强制退出文档不会修改当前内容
+:wq         //先保存，在退出
+:wq!        //强制保存并退出
+:x          //先保存，在退出
+ZZ          //保存退出, shfit+zz
+:number     //跳转至对应的行号,和普通模式Ngg一个意思
+</code></pre>
+<p>低行模式(查找和替换):</p>
+<pre><code>查找  /string 需要搜索的内容（查找）
+        n 按搜索到的内容依次往下进行查找
+        N 按搜索到的内容依次往上进行查找
+替换
+    :1,5s#sbin#test#g          替换1-5行中包含sbin的内容为test
+    :%s#sbin#test#g            替换整个文本文件中包含sbin的替换为test
+    :%s#sbin#test#gc           替换内容时时提示是否需要替换
+    %表示所有行   s表示替换   g表示所有匹配到的内容     c表示提示
+    
+    替换为 w (y/n/a/q/l/^E/^Y)？
+    y:替换一次
+    n:选中下一个
+    a:全部替换
+    q:退出
+    l:替换一次并退出询问
+ 
+另存
+:w /root/test  将文件所有内容另存为/root/test
+    
+读入
+:r  /etc/hosts  读入/etc/hosts文件至当前光标下面
+:5r /etc/hosts  指定/etc/hosts文件当前文件的哪行下面
+</code></pre>
 
 	</div>
 </div>
@@ -1681,7 +1778,7 @@
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1700924814524-423',
+	        blogId: '22377-1701134716680-506',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -1731,7 +1828,7 @@
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1700924814524-423',
+        blogId: '22377-1701134716680-506',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',

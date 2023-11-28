@@ -1056,6 +1056,65 @@
 <p>官网文档：<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html</a></p>
 <p>中文权威指南：<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html">https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html</a></p>
 </blockquote>
+<p><strong>使用规范</strong></p>
+<p>分片(Shard)：</p>
+<blockquote>
+<p>非日志型（搜索型、线上业务型）的 shard 容量在 20~40GB（建议在 20G）</p>
+<p>日志型的 <code>shard</code> 容量在 <strong>35~100GB（建议 35G）</strong></p>
+<p>单个 <code>shard</code> 的文档个数不能超过 20 亿左右(<code>Integer.MAX_VALUE - 128</code>)</p>
+<p>一个节点管理的 <code>shard</code> 数不要超过 200 个</p>
+<p>一个索引的 <code>shard</code> 数一旦确定不能改变</p>
+</blockquote>
+<p>索引(Index):</p>
+<blockquote>
+<p>大索引需要拆分</p>
+<p><strong>反例</strong>：例如一个 10 多 T 的索引，按 date 查询、name 查询</p>
+<p><strong>正例</strong>：</p>
+<ul>
+<li><code>index*name</code> 拆成多个 <code>index_name*$&#123;date&#125;</code></li>
+</ul>
+<p><strong>正例</strong>：</p>
+<ul>
+<li><code>index*name</code> 按 hash 拆分 <code>index_name*&#123;1,2,3,...100..&#125;</code></li>
+</ul>
+</blockquote>
+<p>Refresh频率：</p>
+<blockquote>
+<p><strong>ES</strong> 的定位是准实时搜索引擎，该值默认是 <strong>1s</strong>，表示写入后 1 秒后可被搜索到，所以这里的值取决于业务对实时性的要求。</p>
+<p>注意这里并不是越小越好，刷新频率高也意味着对 <strong>ES</strong> 的开销也大，通常业务类型在 <strong>1-5s</strong>，日志型在 <strong>30s-120s</strong>。</p>
+<p>如果集中导入数据可将其设置为-1，<strong>ES</strong> 会自动完成数据刷新（注意完成后更改回来，否则后续会出现搜索不到数据）。</p>
+</blockquote>
+<p>字段设计：</p>
+<blockquote>
+<p><code>text</code> 和 <code>keyword</code> 的用途必须分清：分词和关键词（确定字段是否需要分词）</p>
+<p>确定字段是否需要独立存储</p>
+<p>字段类型不支持修改，必须谨慎</p>
+<p>对不需要进行聚合&#x2F;排序的字段禁用 <code>doc_values</code></p>
+<p>不要在 <code>text</code> 做模糊搜索</p>
+<p><code>text</code>类型：</p>
+<ul>
+<li>适用于分词用于搜索，适用于 email 、内容、描述等需要分词的全文检索，不适用聚合。</li>
+<li>text 类型的字段不要使用聚合查询<ul>
+<li>text<code>类型</code>fileddata<code>会加大对内存的占用，如果有需求使用，建议使用</code>keyword</li>
+</ul>
+</li>
+</ul>
+<p><code>keyword</code>类型：</p>
+<ul>
+<li>无需分词，整段完整精确匹配，适用于：email 、地址、状态码、分类 tags。</li>
+</ul>
+<p>避免大宽表：</p>
+<ul>
+<li>ES 默认最大 1000，但建议不要超过 100</li>
+</ul>
+</blockquote>
+<p>查询相关：</p>
+<blockquote>
+<p>聚合查询避免使用过多嵌套：</p>
+<ul>
+<li>聚合查询的中间结果和最终结果都会在内存中进行，嵌套过多，会导致内存耗尽。</li>
+</ul>
+</blockquote>
 <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><strong>index索引</strong></p>
 <blockquote>
 <p>类比称mysql中的database数据库，存储数据的地方。</p>
@@ -1492,7 +1551,7 @@ POST ip:port/index/type/_search?scroll=1m
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1700924814524-423',
+	        blogId: '22377-1701134716680-506',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -1542,7 +1601,7 @@ POST ip:port/index/type/_search?scroll=1m
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1700924814524-423',
+        blogId: '22377-1701134716680-506',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',

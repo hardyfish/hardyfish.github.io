@@ -1512,6 +1512,15 @@ UPDATE student SET ... # 排他锁
 </ul>
 <p>针对写操作，B+树需要拆分合并索引数据页，跳表则独立插入，并根据随机函数确定层数，没有旋转和维持平衡的开销，因此<strong>跳表的写入性能会比B+树要好。</strong></p>
 </blockquote>
+<p><strong>为什么Redis有序集合底层选择跳表而非B+树</strong></p>
+<blockquote>
+<p>Redis是基于内存的数据库，因此不需要考虑磁盘IO。</p>
+<ul>
+<li>B+树在数据写入时，存在拆分和合并数据页的开销，目的是为了保持树的平衡。</li>
+<li>跳表在数据写入时，只需要通过随机函数生成当前节点的层数即可，然后更新每一层索引，往其中加入一个节点，相比于B+树而言，少了旋转平衡带来的开销。</li>
+</ul>
+<p>由于跳表的查询复杂度在O<code>(logn)</code>，因此Redis中Zset数据类型底层结合使用<code>skiplist</code>和<code>hash</code>，用空间换时间，利用跳表支持范围查询和有序查询，利用Hash支持精确查询。</p>
+</blockquote>
 <p><strong>索引下推ICP(Index Condition Pushdown)</strong></p>
 <blockquote>
 <p>一张<code>user</code>表，有<code>age_name</code>的联合索引。</p>
@@ -2184,7 +2193,7 @@ SELECT ... FOR SHARE; # (8.0新增语法)
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1700924814524-423',
+	        blogId: '22377-1701134716680-506',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -2234,7 +2243,7 @@ SELECT ... FOR SHARE; # (8.0新增语法)
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1700924814524-423',
+        blogId: '22377-1701134716680-506',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',
