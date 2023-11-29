@@ -4,6 +4,7 @@
 <head oncontextmenu="return false;">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="baidu-site-verification" content="codeva-QodU0Nk5F7" />
+	<meta name="google-site-verification" content="DbSTw8OJwtH5Qei7n8Jnew0YyQ5naPzdLAPiscu7zQE" />
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 	
 	<!-- title -->
@@ -1054,7 +1055,8 @@
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
 		<p>下载地址：<a target="_blank" rel="noopener" href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a></p>
-<h1 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h1><p><strong>安装配置：</strong></p>
+<h1>基本配置</h1>
+<p><strong>安装配置：</strong></p>
 <blockquote>
 <p>配置系统的环境变量：</p>
 </blockquote>
@@ -1074,11 +1076,11 @@ source ~/.bash_profile
 <blockquote>
 <p>阿里云镜像配置，修改<code>settting.xml</code>文件，在mirrors标签下添加子节点。</p>
 </blockquote>
-<pre><code class="xml"> &lt;mirror&gt;
-     &lt;id&gt;nexus-aliyun&lt;/id&gt;
-     &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
-     &lt;name&gt;Nexus aliyun&lt;/name&gt;
-     &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+<pre><code class="language-xml"> &lt;mirror&gt;
+ 	&lt;id&gt;nexus-aliyun&lt;/id&gt;
+ 	&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+ 	&lt;name&gt;Nexus aliyun&lt;/name&gt;
+	 &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
  &lt;/mirror&gt;
 </code></pre>
 <p><strong>远程仓库认证配置</strong></p>
@@ -1088,7 +1090,7 @@ source ~/.bash_profile
 <li>其中id元素即为项目POM文件声明的远程仓库的ID。</li>
 </ul>
 </blockquote>
-<pre><code class="xml">&lt;settings&gt;
+<pre><code class="language-xml">&lt;settings&gt;
     ...
     &lt;servers&gt;
     ...
@@ -1102,7 +1104,8 @@ source ~/.bash_profile
     ...
 &lt;/settings&gt;
 </code></pre>
-<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><p><strong>基本信息</strong></p>
+<h1>基础知识</h1>
+<p><strong>基本信息</strong></p>
 <table>
 <thead>
 <tr>
@@ -1110,7 +1113,8 @@ source ~/.bash_profile
 <th>作 用</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>groupId</td>
 <td>通常为组织或公司域名反写</td>
 </tr>
@@ -1130,7 +1134,8 @@ source ~/.bash_profile
 <td>description</td>
 <td>项目的简要描述</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p><strong>依赖范围</strong></p>
 <table>
 <thead>
@@ -1139,7 +1144,8 @@ source ~/.bash_profile
 <th>效果</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>compile</td>
 <td>编译时需要用到该 JAR 包（默认）</td>
 </tr>
@@ -1155,7 +1161,8 @@ source ~/.bash_profile
 <td>test</td>
 <td>编译Test时需要用到该 JAR 包</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p><strong>间接依赖</strong></p>
 <blockquote>
 <p>如果<code>Dependency-A</code> 引用了 <code>Dependency-B</code> ，而 <code>Dependency-B</code> 又依赖于 <code>Dependency-C</code>。</p>
@@ -1191,7 +1198,7 @@ source ~/.bash_profile
 <blockquote>
 <p>在引用多个模块时可能会发生版本兼容冲突问题，通过 <code>exclusions</code> 标签即可实现依赖排除。</p>
 </blockquote>
-<pre><code class="xml">&lt;dependency&gt;
+<pre><code class="language-xml">&lt;dependency&gt;
         &lt;groupId&gt;com.apple&lt;/groupId&gt;
         &lt;artifactId&gt;B&lt;/artifactId&gt;
         &lt;version&gt;2.3&lt;/version&gt;
@@ -1208,7 +1215,7 @@ source ~/.bash_profile
 <p>当项目中引入了大量依赖，为了方便管理通常将引入依赖的版本通过变量进行统一配置，从而实现更直观的依赖管理。</p>
 <p>通过 <code>properties</code> 标签即可自定义变量配置，然后使用 <code>$&#123;&#125;</code> 引用变量。</p>
 </blockquote>
-<pre><code class="xml">&lt;properties&gt;
+<pre><code class="language-xml">&lt;properties&gt;
     &lt;mysql.version&gt;8.0.30&lt;/mysql.version&gt;
 &lt;/properties&gt;
 
@@ -1230,7 +1237,7 @@ source ~/.bash_profile
 </ul>
 <p>其中 <code>relativePath</code> 用于指定父模块的 <code>POM</code> 文件目录，省略时默认值为 <code>../pom.xml</code> ，即当前目录的上一级中，若仍未找到则会在本地仓库中寻找。</p>
 </blockquote>
-<pre><code class="xml">&lt;!-- module-1 pom.xml --&gt;
+<pre><code class="language-xml">&lt;!-- module-1 pom.xml --&gt;
 &lt;parent&gt;
     &lt;groupId&gt;xyz.ibudai&lt;/groupId&gt;
     &lt;artifactId&gt;maven-demo&lt;/artifactId&gt;
@@ -1246,7 +1253,7 @@ source ~/.bash_profile
 <p><code>dependencyManagement</code> 既不会在当前模块引入依赖，也不会给其子模块引入依赖，但其可以被继承的。</p>
 <p>只有在子模块下同样声明了该依赖，才会引入到模块中，子模块中只需在依赖中引入 <code>groupId</code> 与 <code>artifactId</code> 即可, 也可以指定版本则会进行覆盖。</p>
 </blockquote>
-<pre><code class="xml">&lt;dependencyManagement&gt;
+<pre><code class="language-xml">&lt;dependencyManagement&gt;
     &lt;dependencies&gt;
         &lt;dependency&gt;
             &lt;groupId&gt;mysql&lt;/groupId&gt;
@@ -1266,7 +1273,7 @@ source ~/.bash_profile
 <blockquote>
 <p>在 <code>&lt;plugin&gt;</code> 标签内可指定工程打包编译时使用的 <code>JDK</code> 版本，可根据服务器环境手动修改版本。</p>
 </blockquote>
-<pre><code class="xml">&lt;plugins&gt;
+<pre><code class="language-xml">&lt;plugins&gt;
     &lt;plugin&gt;
         &lt;!-- 编译时使用 JDK 版本 --&gt;
         &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
@@ -1286,7 +1293,7 @@ source ~/.bash_profile
 <li>其中 <code>&lt;mainClass&gt;</code> 中配置的为项目主类的完成限定名。</li>
 </ul>
 </blockquote>
-<pre><code class="xml">&lt;plugins&gt;
+<pre><code class="language-xml">&lt;plugins&gt;
     &lt;plugin&gt;
         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
         &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
@@ -1297,7 +1304,8 @@ source ~/.bash_profile
     &lt;/plugin&gt;
 &lt;/plugins&gt;
 </code></pre>
-<h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><p><strong>更新父子模块版本号</strong></p>
+<h1>基本操作</h1>
+<p><strong>更新父子模块版本号</strong></p>
 <blockquote>
 <p><code>mvn versions</code>插件可以帮忙更新所有子模块的版本号</p>
 <ul>

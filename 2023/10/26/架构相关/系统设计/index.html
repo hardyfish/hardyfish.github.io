@@ -4,6 +4,7 @@
 <head oncontextmenu="return false;">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="baidu-site-verification" content="codeva-QodU0Nk5F7" />
+	<meta name="google-site-verification" content="DbSTw8OJwtH5Qei7n8Jnew0YyQ5naPzdLAPiscu7zQE" />
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 	
 	<!-- title -->
@@ -1063,9 +1064,11 @@
 <blockquote>
 <p>技术容易陷入的两个误区：</p>
 <ul>
-<li><p>来者不拒：产品经理提的需求，都是有道理的，全都负责完成。</p>
+<li>
+<p>来者不拒：产品经理提的需求，都是有道理的，全都负责完成。</p>
 </li>
-<li><p>技术驱动：这种技术实现特别巧妙，让产品特性适配于技术实现。</p>
+<li>
+<p>技术驱动：这种技术实现特别巧妙，让产品特性适配于技术实现。</p>
 </li>
 </ul>
 <p>这两类误区，很容易让研发对产品价值的理解形成偏差，容易对后续的技术迭代产生颠覆性的影响。</p>
@@ -1118,7 +1121,8 @@
 </ul>
 <p>成本效益:</p>
 <ul>
-<li>评估不同技术的成本效益，包括开发成本、运维成本、许可证费用等方面。<ul>
+<li>评估不同技术的成本效益，包括开发成本、运维成本、许可证费用等方面。
+<ul>
 <li>如果有成熟的开源插件可用，应该尽量使用它们，而不是重新发明轮子。</li>
 <li>对于其他团队已经完成的任务，需要考虑是否可以复用。</li>
 </ul>
@@ -1156,11 +1160,11 @@
 <p>从业务角度来评估：</p>
 <blockquote>
 <p>能解决当下业务需求和问题。</p>
-<p>高效完成业务需求: </p>
+<p>高效完成业务需求:</p>
 <ul>
 <li>能以优雅且可复用的方式解决当下所有业务问题。</li>
 </ul>
-<p>前瞻性设计: </p>
+<p>前瞻性设计:</p>
 <ul>
 <li>能在未来一段时间都能以第2种方式满足业务，从而不会每次当业务进行演变时，导致架构翻天覆地的变化。</li>
 </ul>
@@ -1173,20 +1177,24 @@
 </ul>
 <p>有三种方法：</p>
 <ul>
-<li><p>归纳法找共性，从多个问题中找到共同的问题提炼通用解决方案，去其糟粕取其精华。</p>
+<li>
+<p>归纳法找共性，从多个问题中找到共同的问题提炼通用解决方案，去其糟粕取其精华。</p>
 </li>
-<li><p>演绎法找关系，从多个问题中找关系，把多个问题串成一个问题，系统化解决问题。</p>
+<li>
+<p>演绎法找关系，从多个问题中找关系，把多个问题串成一个问题，系统化解决问题。</p>
 </li>
-<li><p>归纳法找特性：化繁为简需要不断的思考，不断的看清一件事的本质，这个事的解决方案越容易。</p>
+<li>
+<p>归纳法找特性：化繁为简需要不断的思考，不断的看清一件事的本质，这个事的解决方案越容易。</p>
 </li>
 </ul>
 </blockquote>
 <p>通过归纳法找共性:</p>
 <blockquote>
-<p>﻿通过归纳法找共性有两种方法，分别是找需求的共性和找信息的共性。</p>
+<p>通过归纳法找共性有两种方法，分别是找需求的共性和找信息的共性。</p>
 <p>找需求的共性：</p>
 <ul>
-<li>从一类需求中找到共性问题，找到最大交集然后求解。<ul>
+<li>从一类需求中找到共性问题，找到最大交集然后求解。
+<ul>
 <li>收到一堆需求，能分析出共同的需求是什么。</li>
 </ul>
 </li>
@@ -1210,7 +1218,7 @@
 </blockquote>
 <p>通过归纳法找特性：</p>
 <blockquote>
-<p>﻿找特性是通过归纳法先找两个业务的共性。</p>
+<p>找特性是通过归纳法先找两个业务的共性。</p>
 <ul>
 <li>举一个例子，如果要精通JAVA要学习的内容会非常多，可能花很多时间学习也不一定能精通JAVA语言，投入产出比不高。</li>
 </ul>
@@ -1231,7 +1239,6 @@
 </blockquote>
 <p>Token机制:</p>
 <img src="/images/image-20231119212407156.png" alt="image-20231119212407156" style="zoom:40%;" />
-
 <blockquote>
 <p>服务端提供了发送token的接口。</p>
 <ul>
@@ -1242,7 +1249,7 @@
 <p>如果判断token不存在redis中，就表示是重复操作，直接返回重复标记给client，这样就保证了业务代码，不被重复执行。</p>
 </blockquote>
 <p>乐观锁机制：</p>
-<pre><code class="sql">update user set point = point + 20, version = version + 1 where userid=1 and version=1
+<pre><code class="language-sql">update user set point = point + 20, version = version + 1 where userid=1 and version=1
 </code></pre>
 <p>唯一主键机制:</p>
 <blockquote>
@@ -1251,7 +1258,6 @@
 </blockquote>
 <p>去重表机制:</p>
 <img src="/images/image-20231119212836996.png" alt="image-20231119212836996" style="zoom:40%;" />
-
 <blockquote>
 <p>这个去重表中只要一个字段就行，<strong>设置唯一主键约束</strong>，当然根据业务自行添加其他字段。</p>
 <p>把唯一主键插入去重表，再进行业务操作，且他们在同一个事务中。</p>

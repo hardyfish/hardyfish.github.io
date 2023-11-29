@@ -4,6 +4,7 @@
 <head oncontextmenu="return false;">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="baidu-site-verification" content="codeva-QodU0Nk5F7" />
+	<meta name="google-site-verification" content="DbSTw8OJwtH5Qei7n8Jnew0YyQ5naPzdLAPiscu7zQE" />
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 	
 	<!-- title -->
@@ -1053,11 +1054,12 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<h1 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h1><p><strong>数据模型</strong></p>
+		<h1>基本结构</h1>
+<p><strong>数据模型</strong></p>
 <blockquote>
 <p>ZooKeeper中的数据模型是一种树形结构。</p>
 <p>具有一个固定的根节点，我们可以在根节点下创建子节点，并在子节点下继续创建下一级节点。</p>
-<p>树中的每一层级用斜杠（&#x2F;）分隔开，只能用绝对路径（如<code>get /work/task1</code>）的方式查询节点，不能使用相对路径。</p>
+<p>树中的每一层级用斜杠（/）分隔开，只能用绝对路径（如<code>get /work/task1</code>）的方式查询节点，不能使用相对路径。</p>
 </blockquote>
 <p>为什么 ZooKeeper不能采用相对路径查找节点？</p>
 <blockquote>
@@ -1097,7 +1099,8 @@
 <li>ZooKeeper 的版本信息表示的是对节点数据内容、子节点信息或者是 ACL 信息的修改次数。</li>
 </ul>
 </blockquote>
-<h1 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h1><p><strong>内存数据</strong></p>
+<h1>数据存储</h1>
+<p><strong>内存数据</strong></p>
 <blockquote>
 <p>ZooKeeper的数据模型是存储在内存中的。</p>
 <ul>
@@ -1114,9 +1117,11 @@
 <p>在 ZooKeeper 服务运行过程中，会不断地接收和处理来自客户端的事务性会话请求，每次在处理事务性请求的时候，都要记录这些信息到事务日志中。</p>
 <p>同时集群中，Leader服务器会向 ZooKeeper 集群中的其他角色服务发送数据同步信息，在接收到数据同步信息后，ZooKeeper 集群中的 Follow 和 Observer 服务器就会进行数据同步。</p>
 <ul>
-<li><p>这两种角色服务器所接收到的信息就是 Leader 服务器的事务日志。</p>
+<li>
+<p>这两种角色服务器所接收到的信息就是 Leader 服务器的事务日志。</p>
 </li>
-<li><p>在接收到事务日志后，并在本地服务器上执行。</p>
+<li>
+<p>在接收到事务日志后，并在本地服务器上执行。</p>
 </li>
 </ul>
 </blockquote>
@@ -1127,7 +1132,8 @@
 <li>与内存数据相比，快照文件的数据具有滞后性。</li>
 </ul>
 </blockquote>
-<h1 id="会话机制"><a href="#会话机制" class="headerlink" title="会话机制"></a>会话机制</h1><p><strong>会话创建</strong></p>
+<h1>会话机制</h1>
+<p><strong>会话创建</strong></p>
 <blockquote>
 <p>在一个请求的发送过程中，首先，客户端要与服务端进行连接，而一个连接就是一个会话。</p>
 <p>一个会话可以看作是一个用于表示客户端与服务器端连接的数据结构 Session。</p>
@@ -1166,7 +1172,8 @@
 <blockquote>
 <p>在 ZooKeeper 中，会话将按照不同的时间间隔进行划分，超时时间相近的会话将被放在同一个间隔区间中，这种方式避免了 ZooKeeper 对每一个会话进行检查，而是采用分批次的方式管理会话。</p>
 </blockquote>
-<h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1><p>在 ZooKeeper 集群中将服务器分成 Leader 、Follow 、Observer 三种角色服务器。</p>
+<h1>集群</h1>
+<p>在 ZooKeeper 集群中将服务器分成 Leader 、Follow 、Observer 三种角色服务器。</p>
 <blockquote>
 <p>Leader：服务器负责管理集群中其他的服务器，是集群中工作的分配和调度者。</p>
 <p>Follow：选举出 Leader 服务器，在发生 Leader 服务器选举的时候，系统会从 Follow 服务器之间根据多数投票原则，选举出一个 Follow 服务器作为新的 Leader 服务器。</p>
@@ -1191,28 +1198,36 @@
 <blockquote>
 <p>发起投票：</p>
 <ul>
-<li><p>在 ZooKeeper 服务器集群初始化启动的时候，集群中的每一台服务器都会将自己作为 Leader 服务器进行投票。</p>
+<li>
+<p>在 ZooKeeper 服务器集群初始化启动的时候，集群中的每一台服务器都会将自己作为 Leader 服务器进行投票。</p>
 </li>
-<li><p>也就是每次投票时，发送的服务器的 myid（服务器标识符）和 ZXID (集群投票信息标识符)等选票信息字段都指向本机服务器。</p>
+<li>
+<p>也就是每次投票时，发送的服务器的 myid（服务器标识符）和 ZXID (集群投票信息标识符)等选票信息字段都指向本机服务器。</p>
 </li>
 </ul>
 <p>一个投票信息就是通过这两个字段组成的。</p>
 <p>接收投票:</p>
 <ul>
-<li><p>集群中各个服务器在发起投票的同时，也通过网络接收来自集群中其他服务器的投票信息。</p>
+<li>
+<p>集群中各个服务器在发起投票的同时，也通过网络接收来自集群中其他服务器的投票信息。</p>
 </li>
-<li><p>在接收到网络中的投票信息后，服务器内部首先会判断该条投票信息的有效性。</p>
+<li>
+<p>在接收到网络中的投票信息后，服务器内部首先会判断该条投票信息的有效性。</p>
 </li>
-<li><p>检查该条投票信息的时效性，是否是本轮最新投票，并检查该条投票信息是否是处于LOOKING状态的服务器发的。</p>
+<li>
+<p>检查该条投票信息的时效性，是否是本轮最新投票，并检查该条投票信息是否是处于LOOKING状态的服务器发的。</p>
 </li>
 </ul>
 <p>统计投票:</p>
 <ul>
-<li><p>每条接收到的投票信息，集群中的每一台服务器都会将自己的投票信息与其接收到的 ZooKeeper 集群中的其他投票信息进行对比。</p>
+<li>
+<p>每条接收到的投票信息，集群中的每一台服务器都会将自己的投票信息与其接收到的 ZooKeeper 集群中的其他投票信息进行对比。</p>
 </li>
-<li><p>对比的内容是 ZXID，ZXID 数值比较大的投票信息优先作为 Leader 服务器。</p>
+<li>
+<p>对比的内容是 ZXID，ZXID 数值比较大的投票信息优先作为 Leader 服务器。</p>
 </li>
-<li><p>如果每个投票信息中的 ZXID 相同，就会比对投票信息中的 myid 信息字段，选举出 myid 较大的服务器作为 Leader 服务器。</p>
+<li>
+<p>如果每个投票信息中的 ZXID 相同，就会比对投票信息中的 myid 信息字段，选举出 myid 较大的服务器作为 Leader 服务器。</p>
 </li>
 </ul>
 <p>每轮投票过后，ZooKeeper 服务都会统计集群中服务器的投票结果，判断是否有过半数的机器投出一样的信息。</p>
@@ -1220,7 +1235,8 @@
 <p>当 ZooKeeper 集群选举出 Leader 服务器后，ZooKeeper 集群中的服务器就开始更新自己的角色信息。</p>
 <p><strong>除被选举成 Leader 的服务器之外，其他集群中的服务器角色变更为 Following。</strong></p>
 </blockquote>
-<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><strong>序列化机制</strong></p>
+<h1>基本原理</h1>
+<p><strong>序列化机制</strong></p>
 <blockquote>
 <p>ZooKeeper 采用了Jute 作为 ZooKeeper 的序列化方式。</p>
 <p>在 ZooKeeper 中默认的序列化实现方式是 Binary 二进制方式。</p>
@@ -1262,9 +1278,11 @@
 <blockquote>
 <p>logicClock：</p>
 <ul>
-<li><p>用来记录服务器的投票轮次。</p>
+<li>
+<p>用来记录服务器的投票轮次。</p>
 </li>
-<li><p>logicClock 会从 1 开始计数，每当该台服务经过一轮投票后，logicClock 的数值就会加 1 。</p>
+<li>
+<p>logicClock 会从 1 开始计数，每当该台服务经过一轮投票后，logicClock 的数值就会加 1 。</p>
 </li>
 </ul>
 <p>state：</p>
@@ -1276,7 +1294,7 @@
 <ul>
 <li>用来表示当前服务器的 ID 信息，该字段在 ZooKeeper 集群中主要用来作为服务器的身份标识符。</li>
 </ul>
-<p>self_zxid： </p>
+<p>self_zxid：</p>
 <ul>
 <li>当前服务器上所保存的数据的最大事务 ID ，从 0 开始计数。</li>
 </ul>
@@ -1293,15 +1311,20 @@
 <blockquote>
 <p>Follow 服务器进行选票对比的过程：</p>
 <ul>
-<li><p>首先，会对比 logicClock 服务器的投票轮次。</p>
+<li>
+<p>首先，会对比 logicClock 服务器的投票轮次。</p>
 </li>
-<li><p>当 logicClock 相同时，表明两张选票处于相同的投票阶段，并进入下一阶段，否则跳过。</p>
+<li>
+<p>当 logicClock 相同时，表明两张选票处于相同的投票阶段，并进入下一阶段，否则跳过。</p>
 </li>
-<li><p>再对比 <code>vote_zxid</code> 被选举的服务器 ID 信息，若接收到的外部投票信息中的 <code>vote_zxid</code> 字段较大，则将自己的票中的 <code>vote_zxid</code> 与 <code>vote_myid</code> 更新为收到的票中的 <code>vote_zxid</code> 与 <code>vote_myid</code> ，并广播出去。</p>
+<li>
+<p>再对比 <code>vote_zxid</code> 被选举的服务器 ID 信息，若接收到的外部投票信息中的 <code>vote_zxid</code> 字段较大，则将自己的票中的 <code>vote_zxid</code> 与 <code>vote_myid</code> 更新为收到的票中的 <code>vote_zxid</code> 与 <code>vote_myid</code> ，并广播出去。</p>
 </li>
-<li><p>对比的结果相同，则继续对比 <code>vote_myid</code> 被选举服务器上所保存的最大事务 ID ，若外部投票的 <code>vote_myid</code> 比较大，则将自己的票中的 <code>vote_myid</code> 更新为收到的票中的 <code>vote_myid</code> 。 </p>
+<li>
+<p>对比的结果相同，则继续对比 <code>vote_myid</code> 被选举服务器上所保存的最大事务 ID ，若外部投票的 <code>vote_myid</code> 比较大，则将自己的票中的 <code>vote_myid</code> 更新为收到的票中的 <code>vote_myid</code> 。</p>
 </li>
-<li><p>经过这些对比和替换后，最终该台 Follow 服务器会产生新的投票信息，并在下一轮的投票中发送到 ZooKeeper 集群中。</p>
+<li>
+<p>经过这些对比和替换后，最终该台 Follow 服务器会产生新的投票信息，并在下一轮的投票中发送到 ZooKeeper 集群中。</p>
 </li>
 </ul>
 </blockquote>
@@ -1337,11 +1360,14 @@
 <p>权限模式是用来设置 ZooKeeper 服务器进行权限验证的方式。</p>
 <p>ZooKeeper 的权限验证方式分为两种类型，一种是范围验证，另外一种是口令验证。</p>
 <ul>
-<li><p>范围验证：ZooKeeper 可以针对一个 IP 或者一段 IP 地址授予某种权限。</p>
+<li>
+<p>范围验证：ZooKeeper 可以针对一个 IP 或者一段 IP 地址授予某种权限。</p>
 </li>
-<li><p>口令验证：可以理解为用户名密码的方式。</p>
+<li>
+<p>口令验证：可以理解为用户名密码的方式。</p>
 </li>
-<li><p>World模式：设置了 World 权限模式系统中的所有用户操作都可以不进行权限验证。</p>
+<li>
+<p>World模式：设置了 World 权限模式系统中的所有用户操作都可以不进行权限验证。</p>
 </li>
 </ul>
 </blockquote>
@@ -1359,7 +1385,8 @@
 <p>数据节点（delete）删除权限，可以删除该数据节点的子节点。</p>
 <p>数据节点（admin）管理者权限，可以对该数据节点体进行 ACL 权限设置。</p>
 </blockquote>
-<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p><strong>悲观锁</strong></p>
+<h1>应用场景</h1>
+<p><strong>悲观锁</strong></p>
 <blockquote>
 <p>通过进程创建 ZooKeeper 节点 <code>/locks</code> 的方式获取锁。</p>
 <p>线程 a 通过成功创建 ZooKeeper 节点<code>/locks</code>的方式获取锁后继续执行。</p>
@@ -1392,9 +1419,11 @@
 <p>如果所有的锁请求者都 watch 锁持有者，当代表锁请求者的 znode 被删除以后，所有的锁请求者都会通知到，但是只有一个锁请求者能拿到锁，这就是羊群效应。</p>
 <p>为了避免羊群效应，每个锁请求者 watch 它前面的锁请求者。</p>
 <ul>
-<li><p>每次锁被释放，只会有一个锁请求者 会被通知到。</p>
+<li>
+<p>每次锁被释放，只会有一个锁请求者 会被通知到。</p>
 </li>
-<li><p>这样做还让锁的分配具有公平性，锁定的分配遵循先到先得的原则。</p>
+<li>
+<p>这样做还让锁的分配具有公平性，锁定的分配遵循先到先得的原则。</p>
 </li>
 </ul>
 </blockquote>

@@ -4,6 +4,7 @@
 <head oncontextmenu="return false;">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="baidu-site-verification" content="codeva-QodU0Nk5F7" />
+	<meta name="google-site-verification" content="DbSTw8OJwtH5Qei7n8Jnew0YyQ5naPzdLAPiscu7zQE" />
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 	
 	<!-- title -->
@@ -1057,9 +1058,11 @@
 <blockquote>
 <p>301代表的是永久重定向：</p>
 <ul>
-<li><p>对于GET请求, 301跳转会默认被浏览器cache。</p>
+<li>
+<p>对于GET请求, 301跳转会默认被浏览器cache。</p>
 </li>
-<li><p>也就是说，用户第一次访问某个短链接后，如果服务器返回301状态码，则这个用户在后续多次访问同一短链接地址，浏览器会直接请求跳转地址，而不会再去短链接系统上取。</p>
+<li>
+<p>也就是说，用户第一次访问某个短链接后，如果服务器返回301状态码，则这个用户在后续多次访问同一短链接地址，浏览器会直接请求跳转地址，而不会再去短链接系统上取。</p>
 </li>
 </ul>
 <p>这么做的优点是，降低了服务器压力，但是无法统计到短链接地址的点击次数。</p>
@@ -1071,7 +1074,6 @@
 <p>这么做的优点是，能够统计到短地址被点击的次数了，但是服务器的压力变大了。</p>
 </blockquote>
 <img src="/images/image-20231119214615001.png" alt="image-20231119214615001" style="zoom:50%;" />
-
 <p><strong>算法原理</strong></p>
 <blockquote>
 <p>由于短链接是由 a-z、A-Z 和 0-9 共 62 个字符可以选择。</p>
@@ -1082,14 +1084,17 @@
 <p><code>62^7 = 3,521,614,606,208 (合计3.5万亿)</code></p>
 <p>说明：</p>
 <ul>
-<li><p>10进制：最大只能生成 <code>10 ^ 6 - 1 =999999个</code></p>
+<li>
+<p>10进制：最大只能生成 <code>10 ^ 6 - 1 =999999个</code></p>
 </li>
-<li><p>16进制：最大只能生成 <code>16 ^ 6 - 1 =16777215个</code></p>
+<li>
+<p>16进制：最大只能生成 <code>16 ^ 6 - 1 =16777215个</code></p>
 <ul>
 <li>16进制里面已经包含了 A B C D E F 这几个字母</li>
 </ul>
 </li>
-<li><p>62进制：最大能生成 <code>62 ^ 6 - 1 =56800235583个</code> 基本上够了</p>
+<li>
+<p>62进制：最大能生成 <code>62 ^ 6 - 1 =56800235583个</code> 基本上够了</p>
 </li>
 </ul>
 </blockquote>
@@ -1106,15 +1111,17 @@
 <p>不希望反推出全局ID：</p>
 <p>用一个洗牌算法，打乱算出的值。</p>
 <ul>
-<li><p>比如十进制的201314就可以转换为Qn0。</p>
+<li>
+<p>比如十进制的201314就可以转换为Qn0。</p>
 </li>
-<li><p>然后再使用洗牌算法，可以返回n0Q、Q0n….其中之一，但是会有一定几率冲突，多洗几次就行。</p>
+<li>
+<p>然后再使用洗牌算法，可以返回n0Q、Q0n…其中之一，但是会有一定几率冲突，多洗几次就行。</p>
 </li>
 </ul>
 <p>希望反推出全局ID：</p>
 <ul>
 <li>在得到Qn0这个数字后，将其转换为二进制数。</li>
-<li>然后在固定位，第五位，第十位…(等等)插入一个随机值即可。 </li>
+<li>然后在固定位，第五位，第十位…(等等)插入一个随机值即可。</li>
 <li>拿到短链接key后，将固定位的数字去除，再转换为十进制即可。</li>
 </ul>
 <p>用户在点击短链接的时候：</p>

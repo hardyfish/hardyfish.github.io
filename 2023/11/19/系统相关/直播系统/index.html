@@ -4,6 +4,7 @@
 <head oncontextmenu="return false;">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="baidu-site-verification" content="codeva-QodU0Nk5F7" />
+	<meta name="google-site-verification" content="DbSTw8OJwtH5Qei7n8Jnew0YyQ5naPzdLAPiscu7zQE" />
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 	
 	<!-- title -->
@@ -1058,11 +1059,14 @@
 <p>为了不影响读写的性能，采用读写分离架构。</p>
 <p>写服务：</p>
 <ul>
-<li><p>若不考虑历史弹幕可回放，可以直接使用 Redis 作为唯一存储。</p>
+<li>
+<p>若不考虑历史弹幕可回放，可以直接使用 Redis 作为唯一存储。</p>
 </li>
-<li><p>若考虑支持弹幕的回放，数据还是需要持久化，可以考虑使用 MySQL 或者 TiDB，暂且认为写入不是较大的瓶颈。</p>
+<li>
+<p>若考虑支持弹幕的回放，数据还是需要持久化，可以考虑使用 MySQL 或者 TiDB，暂且认为写入不是较大的瓶颈。</p>
 </li>
-<li><p>如果有更高性能的写需求，<code>HBase、OpenTSDB</code> 等都可以解决问题。</p>
+<li>
+<p>如果有更高性能的写需求，<code>HBase、OpenTSDB</code> 等都可以解决问题。</p>
 </li>
 </ul>
 <p>读服务：</p>
@@ -1083,7 +1087,6 @@
 <p>本地内存的使用量也随直播间的数量增长而膨胀，每个直播间的缓存的数据量降低，导致本地缓存的命中率降低，容易导致 GC 频繁。</p>
 </blockquote>
 <img src="/images/image-20231119130239040.png" alt="image-20231119130239040" style="zoom:50%;" />
-
 <p>如何降低本地缓存的使用量？</p>
 <blockquote>
 <p>因为火爆的直播间会占据整个平台大部分的流量，可以只针对火爆的直播间开启本地缓存。</p>
@@ -1091,7 +1094,6 @@
 <p>通过减少读服务机器上的直播间数量，达到降低本地缓存使用量的目的。</p>
 </blockquote>
 <img src="/images/image-20231119130401432.png" alt="image-20231119130401432" style="zoom:50%;" />
-
 <blockquote>
 <p>上述方法可以有效地解决问题，但是不能解决流量不均衡的问题。</p>
 <p>不同直播间分配的机器资源不是拍脑袋定的，需要有理论依据，可以根据直播间的一些数据指标进行动态分配机器资源。</p>
@@ -1109,11 +1111,14 @@
 <blockquote>
 <p>为了保障客户端消息的推送性能和实时性，长连接基本是必备的，最新的消息可以直接采用长连接实时推送。</p>
 <ul>
-<li><p>Push Server 从 Redis 中获取用户和直播间的订阅关系以及长连接信息。</p>
+<li>
+<p>Push Server 从 Redis 中获取用户和直播间的订阅关系以及长连接信息。</p>
 </li>
-<li><p>连接代理只负责与客户端保持长连接。</p>
+<li>
+<p>连接代理只负责与客户端保持长连接。</p>
 </li>
-<li><p>海量的消息推送需要批量压缩。</p>
+<li>
+<p>海量的消息推送需要批量压缩。</p>
 </li>
 </ul>
 <p>增加一组专门用于回放的 Redis 集群，同时增加回放的本地缓存。</p>

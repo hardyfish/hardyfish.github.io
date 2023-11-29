@@ -4,6 +4,7 @@
 <head oncontextmenu="return false;">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="baidu-site-verification" content="codeva-QodU0Nk5F7" />
+	<meta name="google-site-verification" content="DbSTw8OJwtH5Qei7n8Jnew0YyQ5naPzdLAPiscu7zQE" />
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 	
 	<!-- title -->
@@ -1060,9 +1061,11 @@
 <blockquote>
 <p>任务堆积根本原因是任务的流入速度大于任务的消费速度，导致任务失去时效性。</p>
 <ul>
-<li><p>一个稳定的系统，产生任务堆积的原因可能是流入速度的瞬时增大，例如业务准入规则的变化。</p>
+<li>
+<p>一个稳定的系统，产生任务堆积的原因可能是流入速度的瞬时增大，例如业务准入规则的变化。</p>
 </li>
-<li><p>也可能是任务消费速度的下降，例如业务完结条件的改变、操作人处理效率下降等。</p>
+<li>
+<p>也可能是任务消费速度的下降，例如业务完结条件的改变、操作人处理效率下降等。</p>
 </li>
 </ul>
 </blockquote>
@@ -1071,7 +1074,6 @@
 <p>将任务发放由系统通过业务处理计算分配改成用户主动来获取当前任务。</p>
 </blockquote>
 <img src="/images/image-20231119121842853.png" alt="image-20231119121842853" style="zoom:80%;" />
-
 <p><strong>任务异常消费</strong></p>
 <blockquote>
 <p>任务异常消费，定义为任务的完成不符合预期的业务规范。</p>
@@ -1080,7 +1082,6 @@
 <p>每次分发任务时，对用户锁队列进行业务规则校验与维护，再随机从维护后的m件任务选择一件任务分发给来申领任务的用户。</p>
 </blockquote>
 <img src="/images/image-20231119121935751.png" alt="image-20231119121935751" style="zoom:80%;" />
-
 <p><strong>任务过消</strong></p>
 <blockquote>
 <p>任务过消是一种并发下的业务系统现象。</p>
@@ -1088,19 +1089,26 @@
 <p><strong>申领时分配-任务锁队列</strong></p>
 <p>在每次进行任务发放时:</p>
 <ul>
-<li><p>从数据库中捞取n件任务到内存中</p>
+<li>
+<p>从数据库中捞取n件任务到内存中</p>
 </li>
-<li><p>判断当前是否还有可剩余任务，若有否则进入下一步，否则进入步骤6</p>
+<li>
+<p>判断当前是否还有可剩余任务，若有否则进入下一步，否则进入步骤6</p>
 </li>
-<li><p>任务锁队列作校验</p>
+<li>
+<p>任务锁队列作校验</p>
 </li>
-<li><p>如果队列 <code>size &gt; m</code> ，重试步骤2</p>
+<li>
+<p>如果队列 <code>size &gt; m</code> ，重试步骤2</p>
 </li>
-<li><p>如果队列 <code>size &lt; m</code> ，将用户加入该队列，并设置相应缓存失效时间</p>
+<li>
+<p>如果队列 <code>size &lt; m</code> ，将用户加入该队列，并设置相应缓存失效时间</p>
 </li>
-<li><p>返回该任务</p>
+<li>
+<p>返回该任务</p>
 </li>
-<li><p>不返回任务</p>
+<li>
+<p>不返回任务</p>
 </li>
 </ul>
 </blockquote>

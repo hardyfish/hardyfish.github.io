@@ -4,6 +4,7 @@
 <head oncontextmenu="return false;">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="baidu-site-verification" content="codeva-QodU0Nk5F7" />
+	<meta name="google-site-verification" content="DbSTw8OJwtH5Qei7n8Jnew0YyQ5naPzdLAPiscu7zQE" />
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 	
 	<!-- title -->
@@ -1054,15 +1055,17 @@
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
 		<p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/alibaba/p3c/tree/master">https://github.com/alibaba/p3c/tree/master</a></p>
-<h1 id="编程规约"><a href="#编程规约" class="headerlink" title="编程规约"></a>编程规约</h1><h2 id="命名风格"><a href="#命名风格" class="headerlink" title="命名风格"></a>命名风格</h2><blockquote>
-<p>所有编程相关的命名均不能以下划线或美元符号开始，也不能以下划线或美元符号结束。 </p>
+<h1>编程规约</h1>
+<h2 id="命名风格">命名风格</h2>
+<blockquote>
+<p>所有编程相关的命名均不能以下划线或美元符号开始，也不能以下划线或美元符号结束。</p>
 <p>如:<code>_name / __name / $Object / name_ / name$ / Object$</code></p>
 </blockquote>
 <hr>
 <blockquote>
 <p>类名使用 UpperCamelCase 风格。</p>
 <ul>
-<li>以下情形例外：DO &#x2F; PO &#x2F; DTO &#x2F; BO &#x2F; VO &#x2F; UID 等。</li>
+<li>以下情形例外：DO / PO / DTO / BO / VO / UID 等。</li>
 </ul>
 <p>正例:</p>
 <ul>
@@ -1075,7 +1078,7 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>方法名、参数名、成员变量、局部变量都统一使用 lowerCamelCase 风格。 </p>
+<p>方法名、参数名、成员变量、局部变量都统一使用 lowerCamelCase 风格。</p>
 <p>正例:</p>
 <ul>
 <li><code>localValue / getHttpMessage() / inputUserId</code></li>
@@ -1083,7 +1086,7 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>常量命名应该全部大写，单词间用下划线隔开，力求语义表达完整清楚，不要嫌名字长。 </p>
+<p>常量命名应该全部大写，单词间用下划线隔开，力求语义表达完整清楚，不要嫌名字长。</p>
 <p>正例:</p>
 <ul>
 <li><code>MAX_STOCK_COUNT / CACHE_EXPIRED_TIME</code></li>
@@ -1101,7 +1104,7 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>POJO 类中的任何布尔类型的变量，都不要加 is 前缀，否则部分框架解析会引起序列化错误。 </p>
+<p>POJO 类中的任何布尔类型的变量，都不要加 is 前缀，否则部分框架解析会引起序列化错误。</p>
 <p>定义为布尔类型 <code>Boolean isDeleted</code> 的字段，它的 getter 方法也是 <code>isDeleted()</code>，部分框架在反向解析时，误以为 对应的字段名称是 <code>deleted</code>，导致字段获取不到，得到意料之外的结果或抛出异常。</p>
 </blockquote>
 <hr>
@@ -1126,7 +1129,7 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>在常量与变量命名时，表示类型的名词放在词尾，以提升辨识度。 </p>
+<p>在常量与变量命名时，表示类型的名词放在词尾，以提升辨识度。</p>
 <p>正例:</p>
 <ul>
 <li><code>startTime / workQueue / nameList / TERMINATED_THREAD_COUNT</code></li>
@@ -1138,8 +1141,8 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>如果模块、接口、类、方法使用了设计模式，在命名时要体现出具体模式。 </p>
-<p>正例: </p>
+<p>如果模块、接口、类、方法使用了设计模式，在命名时要体现出具体模式。</p>
+<p>正例:</p>
 <ul>
 <li><code>public class OrderFactory;</code></li>
 <li><code>public class LoginProxy;</code></li>
@@ -1156,7 +1159,7 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>如果是形容能力的接口名称，取对应的形容词为接口名(通常是 <code>–able</code> 结尾的形容词)。 </p>
+<p>如果是形容能力的接口名称，取对应的形容词为接口名(通常是 <code>–able</code> 结尾的形容词)。</p>
 <p>正例:</p>
 <ul>
 <li>AbstractTranslator 实现 Translatable。</li>
@@ -1164,7 +1167,7 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>枚举类名带上 Enum 后缀，枚举成员名称需要全大写，单词间用下划线隔开。 </p>
+<p>枚举类名带上 Enum 后缀，枚举成员名称需要全大写，单词间用下划线隔开。</p>
 <ul>
 <li>枚举其实就是特殊的常量类，且构造方法被默认强制是私有。</li>
 </ul>
@@ -1175,19 +1178,25 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>Service &#x2F; DAO 层方法命名规约:</p>
+<p>Service / DAO 层方法命名规约:</p>
 <ul>
-<li><p>获取单个对象的方法用 get 做前缀。 </p>
+<li>
+<p>获取单个对象的方法用 get 做前缀。</p>
 </li>
-<li><p>获取多个对象的方法用 list 做前缀，复数结尾，如<code>:listObjects </code></p>
+<li>
+<p>获取多个对象的方法用 list 做前缀，复数结尾，如<code>:listObjects </code></p>
 </li>
-<li><p>获取统计值的方法用 count 做前缀。</p>
+<li>
+<p>获取统计值的方法用 count 做前缀。</p>
 </li>
-<li><p>插入的方法用 <code>save / insert</code> 做前缀。</p>
+<li>
+<p>插入的方法用 <code>save / insert</code> 做前缀。</p>
 </li>
-<li><p>删除的方法用 <code>remove / delete</code> 做前缀。</p>
+<li>
+<p>删除的方法用 <code>remove / delete</code> 做前缀。</p>
 </li>
-<li><p>修改的方法用 <code>update</code> 做前缀。</p>
+<li>
+<p>修改的方法用 <code>update</code> 做前缀。</p>
 </li>
 </ul>
 </blockquote>
@@ -1195,16 +1204,20 @@
 <blockquote>
 <p>领域模型命名规约:</p>
 <ul>
-<li><p>数据对象：xxxDO，xxx 即为数据表名。 </p>
+<li>
+<p>数据对象：xxxDO，xxx 即为数据表名。</p>
 </li>
-<li><p>数据传输对象：xxxDTO，xxx 为业务领域相关的名称。 </p>
+<li>
+<p>数据传输对象：xxxDTO，xxx 为业务领域相关的名称。</p>
 </li>
-<li><p>展示对象：xxxVO，xxx 一般为网页名称。</p>
+<li>
+<p>展示对象：xxxVO，xxx 一般为网页名称。</p>
 </li>
 </ul>
-<p>POJO 是 DO &#x2F; DTO &#x2F; BO &#x2F; VO 的统称，禁止命名成 xxxPOJO。</p>
+<p>POJO 是 DO / DTO / BO / VO 的统称，禁止命名成 xxxPOJO。</p>
 </blockquote>
-<h2 id="常量定义"><a href="#常量定义" class="headerlink" title="常量定义"></a>常量定义</h2><blockquote>
+<h2 id="常量定义">常量定义</h2>
+<blockquote>
 <p>不允许任何魔法值(即未经预先定义的常量)直接出现在代码中。</p>
 </blockquote>
 <hr>
@@ -1217,9 +1230,11 @@
 <p>浮点数类型的数值后缀统一为大写的 D 或 F。</p>
 <p>正例：</p>
 <ul>
-<li><p><code>public static final double HEIGHT = 175.5D;</code></p>
+<li>
+<p><code>public static final double HEIGHT = 175.5D;</code></p>
 </li>
-<li><p><code>public static final float WEIGHT = 150.3F;</code></p>
+<li>
+<p><code>public static final float WEIGHT = 150.3F;</code></p>
 </li>
 </ul>
 </blockquote>
@@ -1236,18 +1251,21 @@
 <blockquote>
 <p>如果变量值仅在一个固定范围内变化用 <code>enum</code> 类型来定义。</p>
 </blockquote>
-<h2 id="OOP规约"><a href="#OOP规约" class="headerlink" title="OOP规约"></a>OOP规约</h2><blockquote>
+<h2 id="OOP规约">OOP规约</h2>
+<blockquote>
 <p>相同参数类型，相同业务含义，才可以使用的可变参数，参数类型避免定义为 Object。</p>
 <ul>
-<li><p>可变参数必须放置在参数列表的最后。</p>
+<li>
+<p>可变参数必须放置在参数列表的最后。</p>
 </li>
-<li><p>建议开发者尽量不用可变参数编程。</p>
+<li>
+<p>建议开发者尽量不用可变参数编程。</p>
 </li>
 </ul>
 </blockquote>
 <hr>
 <blockquote>
-<p>Object 的 <code>equals</code> 方法容易抛空指针异常，应使用常量或确定有值的对象来调用 equals。 </p>
+<p>Object 的 <code>equals</code> 方法容易抛空指针异常，应使用常量或确定有值的对象来调用 equals。</p>
 <p>正例:</p>
 <ul>
 <li><code>&quot;test&quot;.equals(param);</code></li>
@@ -1268,12 +1286,12 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>浮点数之间的等值判断，基本数据类型不能使用 &#x3D;&#x3D; 进行比较，包装数据类型不能使用 <code>equals</code> 进行判断。</p>
+<p>浮点数之间的等值判断，基本数据类型不能使用 == 进行比较，包装数据类型不能使用 <code>equals</code> 进行判断。</p>
 <p>使用 <code>BigDecimal</code> 来定义值，再进行浮点数的运算操作。</p>
 </blockquote>
 <hr>
 <blockquote>
-<p>BigDecimal 的等值比较应使用 <code>compareTo()</code> 方法，而不是 <code>equals()</code> 方法。 </p>
+<p>BigDecimal 的等值比较应使用 <code>compareTo()</code> 方法，而不是 <code>equals()</code> 方法。</p>
 <ul>
 <li><code>equals()</code> 方法会比较值和精度(1.0 与 1.00 返回结果为 false)，而 <code>compareTo()</code> 则会忽略精度。</li>
 </ul>
@@ -1288,7 +1306,7 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>禁止使用构造方法 <code>BigDecimal(double)</code> 的方式把 double 值转化为 BigDecimal 对象。 </p>
+<p>禁止使用构造方法 <code>BigDecimal(double)</code> 的方式把 double 值转化为 BigDecimal 对象。</p>
 <p><code>BigDecimal(double)</code> 存在精度损失风险，在精确计算或值比较的场景中可能会导致业务逻辑异常。</p>
 <p>如: <code>BigDecimal g = new BigDecimal(0.1F);</code></p>
 <ul>
@@ -1296,18 +1314,21 @@
 </ul>
 <p>优先推荐入参为 String 的构造方法，或使用 <code>BigDecimal</code> 的 valueOf 方法，此方法内部其实执行了 Double 的 toString，而 <code>Double</code> 的 toString 按 double 的实际能表达的精度对尾数进行了截断。</p>
 </blockquote>
-<pre><code class="java">BigDecimal recommend1 = new BigDecimal(&quot;0.1&quot;); 
+<pre><code class="language-java">BigDecimal recommend1 = new BigDecimal(&quot;0.1&quot;); 
 BigDecimal recommend2 = BigDecimal.valueOf(0.1);
 </code></pre>
 <hr>
 <blockquote>
-<p>基本数据类型与包装数据类型的使用标准: </p>
+<p>基本数据类型与包装数据类型的使用标准:</p>
 <ul>
-<li><p>所有的 POJO 类属性必须使用包装数据类型。</p>
+<li>
+<p>所有的 POJO 类属性必须使用包装数据类型。</p>
 </li>
-<li><p>RPC 方法的返回值和参数必须使用包装数据类型。</p>
+<li>
+<p>RPC 方法的返回值和参数必须使用包装数据类型。</p>
 </li>
-<li><p>所有的局部变量使用基本数据类型。</p>
+<li>
+<p>所有的局部变量使用基本数据类型。</p>
 </li>
 </ul>
 <p>POJO 类属性没有初值是提醒使用者在需要使用时，必须自己显式地进行赋值，任何 NPE 问题，或者入库检查， 都由使用者来保证。</p>
@@ -1317,20 +1338,24 @@ BigDecimal recommend2 = BigDecimal.valueOf(0.1);
 </ul>
 <p>反例:</p>
 <ul>
-<li><p>某业务的交易报表上显示成交总额涨跌情况，即正负 <code>x%</code>，x 为基本数据类型，调用的 RPC 服务，调用不成功时，返回的是默认值，页面显示为 <code>0%</code>，这是不合理的，应该显示成中划线<code>-</code>。</p>
+<li>
+<p>某业务的交易报表上显示成交总额涨跌情况，即正负 <code>x%</code>，x 为基本数据类型，调用的 RPC 服务，调用不成功时，返回的是默认值，页面显示为 <code>0%</code>，这是不合理的，应该显示成中划线<code>-</code>。</p>
 </li>
-<li><p>所以包装数据类型的 <code>null</code> 值，能够表示额外的信息，如：远程调用失败，异常退出。</p>
+<li>
+<p>所以包装数据类型的 <code>null</code> 值，能够表示额外的信息，如：远程调用失败，异常退出。</p>
 </li>
 </ul>
 </blockquote>
 <hr>
 <blockquote>
-<p>定义 DO &#x2F; PO &#x2F; DTO &#x2F; VO 等 POJO 类时，不要设定任何属性默认值。</p>
+<p>定义 DO / PO / DTO / VO 等 POJO 类时，不要设定任何属性默认值。</p>
 <p>反例:</p>
 <ul>
-<li><p>某业务的 DO 的 createTime 默认值为 <code>new Date();</code></p>
+<li>
+<p>某业务的 DO 的 createTime 默认值为 <code>new Date();</code></p>
 </li>
-<li><p>但是这个属性在数据提取时并没有置入具体值，在更新其它字段时又附带更新了此字段，导致创建时间被修改成当前时间。</p>
+<li>
+<p>但是这个属性在数据提取时并没有置入具体值，在更新其它字段时又附带更新了此字段，导致创建时间被修改成当前时间。</p>
 </li>
 </ul>
 </blockquote>
@@ -1369,7 +1394,7 @@ BigDecimal recommend2 = BigDecimal.valueOf(0.1);
 <li>由于<code>String.Split()</code>的特性，忽略了空值，导致异常。</li>
 </ul>
 </blockquote>
-<pre><code class="java">String str = &quot;a,b,c,,&quot;;
+<pre><code class="language-java">String str = &quot;a,b,c,,&quot;;
 String[] ary = str.split(&quot;,&quot;);
 // 预期大于 3，结果等于 3 
 System.out.println(ary.length);
@@ -1380,7 +1405,7 @@ System.out.println(ary.length);
 </blockquote>
 <hr>
 <blockquote>
-<p>类内方法定义的顺序依次是：<code>公有方法或保护方法 &gt; 私有方法 &gt; getter / setter 方法</code>。 </p>
+<p>类内方法定义的顺序依次是：<code>公有方法或保护方法 &gt; 私有方法 &gt; getter / setter 方法</code>。</p>
 </blockquote>
 <hr>
 <blockquote>
@@ -1396,10 +1421,12 @@ System.out.println(ary.length);
 <p>慎用 Object 的 <code>clone</code> 方法来拷贝对象。</p>
 <p>对象 clone 方法默认是浅拷贝，若想实现深拷贝需覆写 <code>clone</code> 方法实现域对象的深度遍历式拷贝。</p>
 </blockquote>
-<h2 id="集合处理"><a href="#集合处理" class="headerlink" title="集合处理"></a>集合处理</h2><blockquote>
+<h2 id="集合处理">集合处理</h2>
+<blockquote>
 <p>hashCode 和 equals 的处理，遵循如下规则:</p>
 <ul>
-<li>只要覆写 equals，就必须覆写 hashCode。<ul>
+<li>只要覆写 equals，就必须覆写 hashCode。
+<ul>
 <li>因为 Set 存储的是不重复的对象，依据 <code>hashCode</code> 和 <code>equals</code> 进行判断，所以 Set 存储的对象必须覆写这两种方法。</li>
 </ul>
 </li>
@@ -1408,7 +1435,7 @@ System.out.println(ary.length);
 </blockquote>
 <hr>
 <blockquote>
-<p>判断所有集合内部的元素是否为空，使用 <code>isEmpty()</code> 方法，而不是 <code>size() == 0</code> 的方式。 </p>
+<p>判断所有集合内部的元素是否为空，使用 <code>isEmpty()</code> 方法，而不是 <code>size() == 0</code> 的方式。</p>
 <ul>
 <li>在某些集合中，前者的时间复杂度为 <code>O(1)</code>，而且可读性更好。</li>
 </ul>
@@ -1439,7 +1466,7 @@ System.out.println(ary.length);
 <blockquote>
 <p>使用集合转数组的方法，必须使用集合的 <code>toArray(T[] array)</code>，传入的是类型完全一致、长度为 0 的空数组。</p>
 </blockquote>
-<pre><code class="java">List&lt;String&gt; list = new ArrayList&lt;&gt;(2);
+<pre><code class="language-java">List&lt;String&gt; list = new ArrayList&lt;&gt;(2);
 list.add(&quot;guan&quot;);
 list.add(&quot;bao&quot;);
 String[] array = list.toArray(new String[0]);
@@ -1480,47 +1507,50 @@ String[] array = list.toArray(new String[0]);
 <table>
 <thead>
 <tr>
-<th align="left">集合类</th>
-<th align="left">Key</th>
-<th align="left">Value</th>
-<th align="left">Super</th>
-<th align="left">说明</th>
+<th style="text-align:left">集合类</th>
+<th style="text-align:left">Key</th>
+<th style="text-align:left">Value</th>
+<th style="text-align:left">Super</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">Hashtable</td>
-<td align="left">不允许为null</td>
-<td align="left">不允许为null</td>
-<td align="left">Dictionary</td>
-<td align="left">线程安全</td>
+<tbody>
+<tr>
+<td style="text-align:left">Hashtable</td>
+<td style="text-align:left">不允许为null</td>
+<td style="text-align:left">不允许为null</td>
+<td style="text-align:left">Dictionary</td>
+<td style="text-align:left">线程安全</td>
 </tr>
 <tr>
-<td align="left">ConcurrentHashMap</td>
-<td align="left">不允许为null</td>
-<td align="left">不允许为null</td>
-<td align="left">AbstractMap</td>
-<td align="left">锁分段技术（JDK8:CAS）</td>
+<td style="text-align:left">ConcurrentHashMap</td>
+<td style="text-align:left">不允许为null</td>
+<td style="text-align:left">不允许为null</td>
+<td style="text-align:left">AbstractMap</td>
+<td style="text-align:left">锁分段技术（JDK8:CAS）</td>
 </tr>
 <tr>
-<td align="left">TreeMap</td>
-<td align="left">不允许为null</td>
-<td align="left">允许为null</td>
-<td align="left">AbstractMap</td>
-<td align="left">线程不安全</td>
+<td style="text-align:left">TreeMap</td>
+<td style="text-align:left">不允许为null</td>
+<td style="text-align:left">允许为null</td>
+<td style="text-align:left">AbstractMap</td>
+<td style="text-align:left">线程不安全</td>
 </tr>
 <tr>
-<td align="left">HashMap</td>
-<td align="left">允许为null</td>
-<td align="left">允许为null</td>
-<td align="left">AbstractMap</td>
-<td align="left">线程不安全</td>
+<td style="text-align:left">HashMap</td>
+<td style="text-align:left">允许为null</td>
+<td style="text-align:left">允许为null</td>
+<td style="text-align:left">AbstractMap</td>
+<td style="text-align:left">线程不安全</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <hr>
 <blockquote>
 <p>利用 Set 元素唯一的特性，可以快速对一个集合进行去重操作，避免使用 List 的 <code>contains()</code> 进行遍历去重或者判断包含操作。</p>
 </blockquote>
-<h2 id="并发处理"><a href="#并发处理" class="headerlink" title="并发处理"></a>并发处理</h2><blockquote>
+<h2 id="并发处理">并发处理</h2>
+<blockquote>
 <p>获取单例对象需要保证线程安全，其中的方法也要保证线程安全。</p>
 </blockquote>
 <hr>
@@ -1542,11 +1572,11 @@ String[] array = list.toArray(new String[0]);
 <p>如果是 JDK8 的应用，可以使用 Instant 代替 Date，<code>LocalDateTime</code> 代替 Calendar。</p>
 <p>DateTimeFormatter 代替 <code>SimpleDateFormat</code>。</p>
 </blockquote>
-<pre><code class="java">private static final ThreadLocal&lt;DateFormat&gt; dateStyle = new ThreadLocal&lt;DateFormat&gt;() &#123;
-    @Override
-    protected DateFormat initialValue() &#123;
-        return new SimpleDateFormat(&quot;yyyy-MM-dd&quot;); 
-    &#125;
+<pre><code class="language-java">private static final ThreadLocal&lt;DateFormat&gt; dateStyle = new ThreadLocal&lt;DateFormat&gt;() &#123;
+	@Override
+	protected DateFormat initialValue() &#123;
+		return new SimpleDateFormat(&quot;yyyy-MM-dd&quot;); 
+	&#125;
 &#125;;
 </code></pre>
 <hr>
@@ -1555,9 +1585,9 @@ String[] array = list.toArray(new String[0]);
 <p>如果不清理自定义的 ThreadLocal 变量，可能会影响后续业务逻辑和造成内存泄露等问题。</p>
 <p>尽量在代码中使用 <code>try-finally</code> 块进行回收。</p>
 </blockquote>
-<pre><code class="java">objectThreadLocal.set(userInfo);
+<pre><code class="language-java">objectThreadLocal.set(userInfo);
 try &#123;
-    // ...
+	// ...
 &#125; finally &#123; 
   objectThreadLocal.remove();
 &#125;
@@ -1579,12 +1609,12 @@ try &#123;
 <p>在使用阻塞等待获取锁的方式中，必须在 try 代码块之外，并且在加锁方法与 try 代码块之间没有任何可能抛出异常的方法调用，避免加锁成功后，在 finally 中无法解锁。</p>
 <ul>
 <li>在 lock 方法与 try 代码块之间的方法调用抛出异常，无法解锁，造成其它线程无法成功获取锁。</li>
-<li>如果 lock 方法在 try 代码块之内，可能由于其它方法抛出异常，导致在 finally 代码块中，unlock 对未加锁的对象解锁，它会调用 AQS 的 <code>tryRelease</code> 方法(取决于具体实现类)，抛出 <code>IllegalMonitorStateException</code> 异常。 </li>
+<li>如果 lock 方法在 try 代码块之内，可能由于其它方法抛出异常，导致在 finally 代码块中，unlock 对未加锁的对象解锁，它会调用 AQS 的 <code>tryRelease</code> 方法(取决于具体实现类)，抛出 <code>IllegalMonitorStateException</code> 异常。</li>
 <li>在 Lock 对象的 lock 方法实现中可能抛出 <code>unchecked</code> 异常，产生的后果与二相同。</li>
 </ul>
 </blockquote>
 <p>正例：</p>
-<pre><code class="java">Lock lock = new XxxLock();
+<pre><code class="language-java">Lock lock = new XxxLock();
 // ...
 lock.lock();
 try &#123;
@@ -1595,7 +1625,7 @@ try &#123;
 &#125;
 </code></pre>
 <p>反例：</p>
-<pre><code class="java">Lock lock = new XxxLock();
+<pre><code class="language-java">Lock lock = new XxxLock();
 // ...
 try &#123;
     // 如果在此抛出异常，会直接执行 finally 块的代码
@@ -1615,16 +1645,16 @@ try &#123;
 </ul>
 <p>Lock 对象的 <code>unlock</code> 方法在执行时，它会调用 AQS 的 <code>tryRelease</code> 方法(取决于具体实现类)，如果当前线程不持有锁，则抛出 <code>IllegalMonitorStateException</code> 异常。</p>
 </blockquote>
-<pre><code class="java">Lock lock = new XxxLock();
+<pre><code class="language-java">Lock lock = new XxxLock();
 // ...
 boolean isLocked = lock.tryLock();
-    if (isLocked) &#123;
-         try &#123;
-             doSomething();
-             doOthers();
-     	&#125; finally &#123;
-         	lock.unlock();
-         &#125;
+	if (isLocked) &#123;
+ 		try &#123;
+ 			doSomething();
+ 			doOthers();
+	 	&#125; finally &#123;
+		 	lock.unlock();
+ 		&#125;
 &#125;
 </code></pre>
 <blockquote>
@@ -1638,7 +1668,7 @@ boolean isLocked = lock.tryLock();
 <hr>
 <blockquote>
 <p>资金相关的金融敏感信息，使用悲观锁策略。</p>
-<p>乐观锁在获得锁的同时已经完成了更新操作，校验逻辑容易出现漏洞，另外，乐观锁对冲突的解决策略有较复杂的要求，处理不当容易造成系统压力或数据异常，所以资金相关的金融敏感信息不建议使用乐观锁更新。 </p>
+<p>乐观锁在获得锁的同时已经完成了更新操作，校验逻辑容易出现漏洞，另外，乐观锁对冲突的解决策略有较复杂的要求，处理不当容易造成系统压力或数据异常，所以资金相关的金融敏感信息不建议使用乐观锁更新。</p>
 </blockquote>
 <hr>
 <blockquote>
@@ -1648,7 +1678,7 @@ boolean isLocked = lock.tryLock();
 <blockquote>
 <p>通过双重检查锁(<code>double-checked locking</code>)，实现延迟初始化需要将目标属性声明为 <code>volatile</code> 型，(比如修改 helper 的属性声明为 <code>private volatile Helper helper = null;</code>)。</p>
 </blockquote>
-<pre><code class="java">public class LazyInitDemo &#123;
+<pre><code class="language-java">public class LazyInitDemo &#123;
     private volatile Helper helper = null;
     public Helper getHelper() &#123;
     if (helper == null) &#123;    
@@ -1670,7 +1700,7 @@ boolean isLocked = lock.tryLock();
 <li>如果是 JDK8，推荐使用 <code>LongAdder</code> 对象，比 <code>AtomicLong</code> 性能更好(减少乐观锁的重试次数)。</li>
 </ul>
 </blockquote>
-<pre><code class="java">AtomicInteger count = new AtomicInteger();
+<pre><code class="language-java">AtomicInteger count = new AtomicInteger();
 count.addAndGet(1);
 </code></pre>
 <hr>
@@ -1682,19 +1712,20 @@ count.addAndGet(1);
 <p>ThreadLocal 对象使用 static 修饰，<code>ThreadLocal</code> 无法解决共享对象的更新问题。</p>
 <p>这个变量是针对一个线程内所有操作共享的，所以设置为静态变量，所有此类实例共享此静态变量，也就是说在类第一次被使用时装载，只分配一块存储空间，所有此类的对象(只要是这个线程内定义的)都可以操控这个变量。</p>
 </blockquote>
-<h2 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h2><blockquote>
+<h2 id="控制语句">控制语句</h2>
+<blockquote>
 <p>当 <code>switch</code> 括号内的变量类型为 String 并且此变量为外部参数时，必须先进行 null 判断。</p>
 </blockquote>
 <hr>
 <blockquote>
-<p>三目运算符 condition ? 表达式 1:表达式 2 中，高度注意表达式 1 和 2 在类型对齐时，可能抛出因自动拆箱导致的 NPE 异常。 </p>
+<p>三目运算符 condition ? 表达式 1:表达式 2 中，高度注意表达式 1 和 2 在类型对齐时，可能抛出因自动拆箱导致的 NPE 异常。</p>
 <p>以下两种场景会触发类型对齐的拆箱操作:</p>
 <ul>
 <li>表达式 1 或 表达式 2 的值只要有一个是原始类型。</li>
 <li>表达式 1 或 表达式 2 的值的类型不一致，会强制拆箱升级成表示范围更大的那个类型。</li>
 </ul>
 </blockquote>
-<pre><code class="java">Integer a = 1;
+<pre><code class="language-java">Integer a = 1;
 Integer b = 2;
 Integer c = null;
 Boolean flag = false;
@@ -1702,8 +1733,8 @@ Boolean flag = false;
 Integer result = (flag ? a * b : c);
 </code></pre>
 <blockquote>
-<p>在高并发场景中，避免使用 等于 判断作为中断或退出的条件。 </p>
-<p>如果并发控制没有处理好，容易产生等值判断被 击穿 的情况，使用大于或小于的区间判断条件来代替。 </p>
+<p>在高并发场景中，避免使用 等于 判断作为中断或退出的条件。</p>
+<p>如果并发控制没有处理好，容易产生等值判断被 击穿 的情况，使用大于或小于的区间判断条件来代替。</p>
 <p>如：判断剩余奖品数量等于 0 时，终止发放奖品，但因为并发处理错误导致奖品数量瞬间变成了负数，这样的话，活动无法终止。</p>
 </blockquote>
 <hr>
@@ -1713,7 +1744,9 @@ Integer result = (flag ? a * b : c);
 <li>如定义对象、变量、获取数据库连接，进行不必要的 <code>try-catch</code> 操作(这个 <code>try-catch</code> 是否可以移至循环体外)。</li>
 </ul>
 </blockquote>
-<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="建表规约"><a href="#建表规约" class="headerlink" title="建表规约"></a>建表规约</h2><blockquote>
+<h1>数据库</h1>
+<h2 id="建表规约">建表规约</h2>
+<blockquote>
 <p>表达是与否概念的字段，必须使用 <code>is_xxx</code> 的方式命名，数据类型是 <code>unsigned tinyint</code>(1 表示是，0 表示否)。</p>
 <ul>
 <li>任何字段如果为非负数，必须是 unsigned。</li>
@@ -1765,13 +1798,13 @@ Integer result = (flag ? a * b : c);
 </blockquote>
 <hr>
 <blockquote>
-<p>在数据库中不能使用物理删除操作，要使用逻辑删除。 </p>
+<p>在数据库中不能使用物理删除操作，要使用逻辑删除。</p>
 <p>逻辑删除在数据删除后可以追溯到行为操作。</p>
 <p>不过会使得一些情况下的唯一主键变得不唯一，需要根据情况来酌情解决。</p>
 </blockquote>
 <hr>
 <blockquote>
-<p>表的命名最好是遵循 业务名称_表的作用。 </p>
+<p>表的命名最好是遵循 业务名称_表的作用。</p>
 <p>正例:</p>
 <ul>
 <li><code>alipay_task / force_project / trade_config / tes_question</code></li>
@@ -1790,7 +1823,7 @@ Integer result = (flag ? a * b : c);
 </blockquote>
 <hr>
 <blockquote>
-<p>合适的字符存储长度，不但节约数据库表空间、节约索引存储，更重要的是提升检索速度。 </p>
+<p>合适的字符存储长度，不但节约数据库表空间、节约索引存储，更重要的是提升检索速度。</p>
 <ul>
 <li>无符号值可以避免误存负数，且扩大了表示范围。</li>
 </ul>
@@ -1798,43 +1831,46 @@ Integer result = (flag ? a * b : c);
 <table>
 <thead>
 <tr>
-<th align="center">对象</th>
-<th align="center">年龄区间</th>
-<th align="center">类型</th>
-<th align="center">字节</th>
-<th align="center">表示范围</th>
+<th style="text-align:center">对象</th>
+<th style="text-align:center">年龄区间</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">字节</th>
+<th style="text-align:center">表示范围</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">人</td>
-<td align="center">150 岁之内</td>
-<td align="center">tinyint unsigned</td>
-<td align="center">1</td>
-<td align="center">无符号值：0 到 255</td>
+<tbody>
+<tr>
+<td style="text-align:center">人</td>
+<td style="text-align:center">150 岁之内</td>
+<td style="text-align:center">tinyint unsigned</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">无符号值：0 到 255</td>
 </tr>
 <tr>
-<td align="center">龟</td>
-<td align="center">数百岁</td>
-<td align="center">smallint unsigned</td>
-<td align="center">2</td>
-<td align="center">无符号值：0 到 65535</td>
+<td style="text-align:center">龟</td>
+<td style="text-align:center">数百岁</td>
+<td style="text-align:center">smallint unsigned</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">无符号值：0 到 65535</td>
 </tr>
 <tr>
-<td align="center">恐龙化石</td>
-<td align="center">数千万年</td>
-<td align="center">int unsigned</td>
-<td align="center">4</td>
-<td align="center">无符号值：0 到约 42.9 亿</td>
+<td style="text-align:center">恐龙化石</td>
+<td style="text-align:center">数千万年</td>
+<td style="text-align:center">int unsigned</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">无符号值：0 到约 42.9 亿</td>
 </tr>
 <tr>
-<td align="center">太阳</td>
-<td align="center">约 50 亿年</td>
-<td align="center">bigint unsigned</td>
-<td align="center">8</td>
-<td align="center">无符号值：0 到约 10 的 19 次方</td>
+<td style="text-align:center">太阳</td>
+<td style="text-align:center">约 50 亿年</td>
+<td style="text-align:center">bigint unsigned</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">无符号值：0 到约 10 的 19 次方</td>
 </tr>
-</tbody></table>
-<h2 id="索引规约"><a href="#索引规约" class="headerlink" title="索引规约"></a>索引规约</h2><blockquote>
+</tbody>
+</table>
+<h2 id="索引规约">索引规约</h2>
+<blockquote>
 <p>业务上具有唯一特性的字段，即使是组合字段，也必须建成唯一索引。</p>
 <p>不要以为唯一索引影响了 insert 速度，这个速度损耗可以忽略，但提高查找速度是明显的。</p>
 <p>另外，即使在应用层做了非常完善的校验控制，只要没有唯一索引，根据墨菲定律，必然有脏数据产生。</p>
@@ -1855,7 +1891,7 @@ Integer result = (flag ? a * b : c);
 </blockquote>
 <hr>
 <blockquote>
-<p>页面搜索严禁左模糊或者全模糊，如果需要走搜索引擎来解决。 </p>
+<p>页面搜索严禁左模糊或者全模糊，如果需要走搜索引擎来解决。</p>
 <ul>
 <li>索引文件具有 B-Tree 的最左前缀匹配特性，如果左边的值未确定，那么无法使用此索引。</li>
 </ul>
@@ -1886,7 +1922,7 @@ Integer result = (flag ? a * b : c);
 </blockquote>
 <hr>
 <blockquote>
-<p>SQL 性能优化的目标:至少要达到 <code>range</code> 级别，要求是 <code>ref</code> 级别，如果可以是 <code>const</code> 最好。 </p>
+<p>SQL 性能优化的目标:至少要达到 <code>range</code> 级别，要求是 <code>ref</code> 级别，如果可以是 <code>const</code> 最好。</p>
 <ul>
 <li>consts 单表中最多只有一个匹配行(主键或者唯一索引)，在优化阶段即可读取到数据。</li>
 <li>ref 指的是使用普通的索引(normal index)。</li>
@@ -1909,7 +1945,8 @@ Integer result = (flag ? a * b : c);
 <blockquote>
 <p>防止因字段类型不同造成的隐式转换，导致索引失效。</p>
 </blockquote>
-<h2 id="SQL语句"><a href="#SQL语句" class="headerlink" title="SQL语句"></a>SQL语句</h2><blockquote>
+<h2 id="SQL语句">SQL语句</h2>
+<blockquote>
 <p>不要使用 count(列名) 或 count(常量) 来替代 <code>count(*)</code>，<code>count(*)</code> 是 SQL92 定义的标准统计行数的语法，跟数据库无关，跟 NULL 和非 NULL 无关。</p>
 <ul>
 <li><code>count(*)</code> 会统计值为 NULL 的行，而 count(列名) 不会统计此列为 NULL 值的行。</li>
@@ -1931,8 +1968,8 @@ Integer result = (flag ? a * b : c);
 </blockquote>
 <hr>
 <blockquote>
-<p>SQL 语句中表的别名前加 as，并且以 t1、t2、t3、…的顺序依次命名。 </p>
-<p>别名可以是表的简称，或者是依照表在 SQL 语句中出现的顺序，以 t1、t2、t3 的方式命名。 </p>
+<p>SQL 语句中表的别名前加 as，并且以 t1、t2、t3、…的顺序依次命名。</p>
+<p>别名可以是表的简称，或者是依照表在 SQL 语句中出现的顺序，以 t1、t2、t3 的方式命名。</p>
 <p>别名前加 as 使别名更容易识别。</p>
 <p>正例:</p>
 <ul>
@@ -1945,12 +1982,14 @@ Integer result = (flag ? a * b : c);
 </blockquote>
 <hr>
 <blockquote>
-<p>因国际化需要，所有的字符存储与表示，均采用 <code>utf8mb4</code> 字符集，字符计数方法需要注意。 </p>
+<p>因国际化需要，所有的字符存储与表示，均采用 <code>utf8mb4</code> 字符集，字符计数方法需要注意。</p>
 <p>说明:</p>
 <ul>
-<li><p><code>SELECT LENGTH(&quot;轻松工作&quot;);--返回为 12</code></p>
+<li>
+<p><code>SELECT LENGTH(&quot;轻松工作&quot;);--返回为 12</code></p>
 </li>
-<li><p><code>SELECT CHARACTER_LENGTH(&quot;轻松工作&quot;);--返回为 4</code></p>
+<li>
+<p><code>SELECT CHARACTER_LENGTH(&quot;轻松工作&quot;);--返回为 4</code></p>
 </li>
 </ul>
 <p>表情需要用 <code>utf8mb4</code> 来进行存储，注意它与 utf8 编码的区别。</p>

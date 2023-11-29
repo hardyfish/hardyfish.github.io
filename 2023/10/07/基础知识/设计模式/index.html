@@ -4,6 +4,7 @@
 <head oncontextmenu="return false;">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="baidu-site-verification" content="codeva-QodU0Nk5F7" />
+	<meta name="google-site-verification" content="DbSTw8OJwtH5Qei7n8Jnew0YyQ5naPzdLAPiscu7zQE" />
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 	
 	<!-- title -->
@@ -1053,7 +1054,8 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><strong>封装</strong></p>
+		<h1>基本概念</h1>
+<p><strong>封装</strong></p>
 <p>通过对类的封装，仅仅暴露少许必要的方法给调用方使用，调用方不需要了解太多背后的业务细节，大大降低了用错的概率，提高了代码的易用性。</p>
 <p><strong>抽象</strong></p>
 <p>通过抽象化只暴露出方法定义，而隐藏方法的具体实现，让调用者只需要关心方法提供了哪些功能，并不需要知道这些功能是如何实现的。</p>
@@ -1073,7 +1075,8 @@
 <p><strong>面向对象和面向过程</strong></p>
 <p>面向对象编程：以类为组织代码的基本单元，面向过程编程：以过程（或方法）作为组织代码的基本单元。</p>
 <p>面向过程编程：数据和方法相分离。不支持丰富的面向对象编程特性，比如继承、多态、封装。</p>
-<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><p><strong>单一职责原则（Single Responsibility Principle）</strong></p>
+<h2 id="设计原则">设计原则</h2>
+<p><strong>单一职责原则（Single Responsibility Principle）</strong></p>
 <p>对类来说的，即一个类应该只负责一项职责。如类A负责两个不同职责:职责1，职责2。当职责1需求变更而改变A时，可能造成职责2执行错误，所以需要将类A的粒度分解为A1，A2。</p>
 <p><strong>接口隔离原则（Interface Segregation Principle）</strong></p>
 <p>客户端不应该依赖它不需要的接口，即一个类对另一个类的依赖应该建立在最小的接口上</p>
@@ -1090,12 +1093,15 @@
 <p><strong>迪米特法制（Demeter Principle）</strong></p>
 <p>一个对象应该对其他对象保持最少的了解。</p>
 <p><strong>合成复用原则（Composite Reuse principle）</strong></p>
-<p>尽量使用合成&#x2F;聚合的方式，而不是使用继承。</p>
-<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><p>简单工厂模式指由一个工厂对象决定创建哪一种产品类型的实例。</p>
+<p>尽量使用合成/聚合的方式，而不是使用继承。</p>
+<h1>工厂模式</h1>
+<h2 id="简单工厂模式">简单工厂模式</h2>
+<p>简单工厂模式指由一个工厂对象决定创建哪一种产品类型的实例。</p>
 <blockquote>
 <p>只适用于工厂类负责创建的对象较少的场景，且客户端只需要传入工厂类的参数，对于如何创建对象不需要关心。</p>
 </blockquote>
-<h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><p>工厂方法定义一个创建对象的接口，但让实现这个接口的类来决定实例化哪个类。工厂方法让类的实例化推迟到子类中进行。</p>
+<h2 id="工厂方法模式">工厂方法模式</h2>
+<p>工厂方法定义一个创建对象的接口，但让实现这个接口的类来决定实例化哪个类。工厂方法让类的实例化推迟到子类中进行。</p>
 <blockquote>
 <p>当创建对象需要大量重复的代码，客户端(应用层)不依赖与产品类型实例如何被创建，实现等细节时可以考虑工厂方法。</p>
 </blockquote>
@@ -1106,41 +1112,41 @@
 <p><strong>代码体现</strong></p>
 <p>某平台先拥有Java和Python学习视频，将来需要拓展业务开放FE(前端)视频学习。</p>
 <p><img src="/images/image-20231007150732447.png" alt="image-20231007150732447"></p>
-<pre><code class="java">public abstract class Video &#123;
+<pre><code class="language-java">public abstract class Video &#123;
     public abstract void produce();
 &#125;
 </code></pre>
-<pre><code class="java">public class JavaVideo extends Video &#123;
+<pre><code class="language-java">public class JavaVideo extends Video &#123;
     @Override
     public void produce() &#123;
         System.out.println(&quot;录制Java课程视频&quot;);
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class PythonVideo extends Video &#123;
+<pre><code class="language-java">public class PythonVideo extends Video &#123;
     @Override
     public void produce() &#123;
         System.out.println(&quot;录制Python课程视频&quot;);
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public abstract class VideoFactory &#123;
+<pre><code class="language-java">public abstract class VideoFactory &#123;
     public abstract Video getVideo();
 &#125;
 </code></pre>
-<pre><code class="java">public class JavaVideoFactory extends VideoFactory &#123;
+<pre><code class="language-java">public class JavaVideoFactory extends VideoFactory &#123;
     public Video getVideo() &#123;
         return new JavaVideo();
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class PythonVideoFactory extends VideoFactory &#123;
+<pre><code class="language-java">public class PythonVideoFactory extends VideoFactory &#123;
     public Video getVideo() &#123;
         return new PythonVideo();
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class Test &#123;
+<pre><code class="language-java">public class Test &#123;
     public static void main(String[] args) &#123;
         VideoFactory videoFactory = new JavaVideoFactory();
         Video video = videoFactory.getVideo();
@@ -1152,10 +1158,13 @@
 <blockquote>
 <p>当拓展业务时，可以仿照<code>Java</code>与<code>Python</code>。可以直接添加<code>FEVideo</code>与<code>FEVideoFactory</code>，可以体现出开放封闭原则。</p>
 </blockquote>
-<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><h1 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h1><p>建造者模式适用于创建对象需要很多步骤，但是步骤的顺序不一定固定。如果一个对象有非常复杂的内部结构（很多属性），可以将复杂对象的创建和使用进行分离。</p>
-<h1 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h1><p>桥接模式就是把抽象和实现分离出来，然后中间通过<strong>组合</strong>来搭建他们之间的桥梁。</p>
+<h2 id="抽象工厂模式">抽象工厂模式</h2>
+<h1>建造者模式</h1>
+<p>建造者模式适用于创建对象需要很多步骤，但是步骤的顺序不一定固定。如果一个对象有非常复杂的内部结构（很多属性），可以将复杂对象的创建和使用进行分离。</p>
+<h1>桥接模式</h1>
+<p>桥接模式就是把抽象和实现分离出来，然后中间通过<strong>组合</strong>来搭建他们之间的桥梁。</p>
 <p>业务场景：中国有很多银行，有中国农业银行和中国工商银行；关于我们的账号，有定期账号和活期账号，一个就是银行一个就是我们的账号。</p>
-<pre><code class="java">public interface Account &#123;
+<pre><code class="language-java">public interface Account &#123;
     /** 打开我们的账号，打开账号，就要返回账号 */
     Account openAccount();
     
@@ -1164,7 +1173,7 @@
 
 &#125;
 </code></pre>
-<pre><code class="java">/** 定期的账号 */
+<pre><code class="language-java">/** 定期的账号 */
 public class DepositAccount implements Account &#123;
     @Override
     public Account openAccount() &#123;
@@ -1178,7 +1187,7 @@ public class DepositAccount implements Account &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">/** 活期账号 */
+<pre><code class="language-java">/** 活期账号 */
 public class SavingAccount implements Account &#123;
     @Override
     public Account openAccount() &#123;
@@ -1192,7 +1201,7 @@ public class SavingAccount implements Account &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public abstract class Bank &#123;
+<pre><code class="language-java">public abstract class Bank &#123;
     /** 只有子类能拿到这个Account的这个接口 */
     protected Account account;
 
@@ -1206,7 +1215,7 @@ public class SavingAccount implements Account &#123;
 
 &#125;
 </code></pre>
-<pre><code class="java">public class ABCBank extends Bank &#123;
+<pre><code class="language-java">public class ABCBank extends Bank &#123;
     /**
      * 组合的时候，可以通过构造器的方式来进行注入也可以通过set方法的方式来进行注入
      *
@@ -1223,7 +1232,7 @@ public class SavingAccount implements Account &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class ICBCBank extends Bank &#123;
+<pre><code class="language-java">public class ICBCBank extends Bank &#123;
     /**
      * 组合的时候，可以通过构造器的方式来进行注入也可以通过set方法的方式来进行注入
      *
@@ -1240,7 +1249,7 @@ public class SavingAccount implements Account &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class Test &#123;
+<pre><code class="language-java">public class Test &#123;
     public static void main(String[]args)&#123;
         Bank icbcBank = new ICBCBank(new DepositAccount());
         Account icbcAccount = icbcBank.openAccount();
@@ -1256,9 +1265,10 @@ public class SavingAccount implements Account &#123;
     &#125;
 &#125;
 </code></pre>
-<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><p>单例模式就是在程序运行中只实例化一次，创建一个全局唯一对象。</p>
+<h1>单例模式</h1>
+<p>单例模式就是在程序运行中只实例化一次，创建一个全局唯一对象。</p>
 <p><strong>饿汉模式</strong></p>
-<pre><code class="java">//在类加载时就完成了初始化，所以类加载较慢，但获取对象的速度快
+<pre><code class="language-java">//在类加载时就完成了初始化，所以类加载较慢，但获取对象的速度快
 public class SingletonObject &#123;
     // 利用静态变量来存储唯一实例
     private static final SingletonObject instance = new SingletonObject();
@@ -1283,7 +1293,7 @@ public class SingletonObject &#123;
 </blockquote>
 <p><strong>懒汉模式</strong></p>
 <p>在程序初始化时不会创建实例，只有在使用实例的时候才会创建实例，所以懒汉模式解决了饿汉模式带来的空间浪费问题。</p>
-<pre><code class="java">public class SingletonObject &#123;
+<pre><code class="language-java">public class SingletonObject &#123;
     // 定义静态变量时，未初始化实例
     private static SingletonObject instance;
  
@@ -1301,7 +1311,7 @@ public class SingletonObject &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class SingletonObject &#123;
+<pre><code class="language-java">public class SingletonObject &#123;
     private static SingletonObject instance;
  
     private SingletonObject()&#123;
@@ -1332,7 +1342,7 @@ public class SingletonObject &#123;
 </ul>
 </blockquote>
 <p><strong>双重检查锁模式</strong></p>
-<pre><code class="java">public class SingletonObject &#123;
+<pre><code class="language-java">public class SingletonObject &#123;
     private static SingletonObject instance;
  
     private SingletonObject()&#123;
@@ -1355,20 +1365,20 @@ public class SingletonObject &#123;
 &#125;
 </code></pre>
 <p>在多线程的情况下，可能会出现<strong>空指针问题</strong>，出现问题的原因是JVM在实例化对象的时候会进行优化和指令重排序操作。</p>
-<pre><code class="java">    private SingletonObject()&#123;
+<pre><code class="language-java">    private SingletonObject()&#123;
      1   int x = 10;
      2   int y = 30;
      3  Object o = new Object();
                 
     &#125;
 </code></pre>
-<p>我们编写的顺序是1、2、3，JVM 会对它进行指令重排序，所以执行顺序可能是3、1、2，也可能是2、3、1，不管是那种执行顺序，JVM 最后都会保证所以实例都完成实例化。 </p>
+<p>我们编写的顺序是1、2、3，JVM 会对它进行指令重排序，所以执行顺序可能是3、1、2，也可能是2、3、1，不管是那种执行顺序，JVM 最后都会保证所以实例都完成实例化。</p>
 <blockquote>
 <p>如果构造函数中操作比较多时，为了提升效率，JVM 会在构造函数里面的属性未全部完成实例化时，就返回对象。</p>
 <p>双重检测锁出现空指针问题的原因就是出现在这里，当某个线程获取锁进行实例化时，其他线程就直接获取实例使用，由于JVM指令重排序的原因，其他线程获取的对象也许不是一个完整的对象，所以在使用实例的时候就会出现空指针异常问题。</p>
 </blockquote>
 <p>要解决双重检查锁模式带来空指针异常的问题，只需要使用<code>volatile</code>关键字。</p>
-<pre><code class="java">    // 添加volatile关键字
+<pre><code class="language-java">    // 添加volatile关键字
     private static volatile SingletonObject instance;
  
     private SingletonObject()&#123;
@@ -1389,9 +1399,9 @@ public class SingletonObject &#123;
 &#125;
 </code></pre>
 <p><strong>静态内部类单例模式</strong></p>
-<p>静态内部类单例模式实例由内部类创建，由于 JVM 在加载外部类的过程中, 是不会加载静态内部类的, 只有内部类的属性&#x2F;方法被调用时才会被加载, 并初始化其静态属性。</p>
+<p>静态内部类单例模式实例由内部类创建，由于 JVM 在加载外部类的过程中, 是不会加载静态内部类的, 只有内部类的属性/方法被调用时才会被加载, 并初始化其静态属性。</p>
 <p>静态属性由<code>static</code>修饰，保证只被实例化一次，并且严格保证实例化顺序。</p>
-<pre><code class="java">public class SingletonObject &#123;
+<pre><code class="language-java">public class SingletonObject &#123;
  
  
     private SingletonObject()&#123;
@@ -1412,7 +1422,7 @@ public class SingletonObject &#123;
 </code></pre>
 <p><strong>枚举类单例模式</strong></p>
 <p>枚举类型是线程安全的，并且只会装载一次，设计者充分的利用了枚举的这个特性来实现单例模式，枚举的写法非常简单，而且枚举类型是所用单例实现中唯一一种不会被破坏的单例实现模式。</p>
-<pre><code class="java">public class SingletonObject &#123;
+<pre><code class="language-java">public class SingletonObject &#123;
  
  
     private SingletonObject()&#123;
@@ -1444,24 +1454,26 @@ public class SingletonObject &#123;
 </code></pre>
 <p><strong>破坏单例模式的方法及解决办法</strong></p>
 <p>除枚举方式外，其他方法都会通过反射的方式破坏单例，反射是通过调用构造方法生成新的对象，所以如果我们想要阻止单例破坏，可以在构造方法中进行判断，若已有实例, 则阻止生成新的实例。</p>
-<pre><code class="java">private SingletonObject()&#123;
+<pre><code class="language-java">private SingletonObject()&#123;
     if (instance !=null)&#123;
         throw new RuntimeException(&quot;实例已经存在，请通过 getInstance()方法获取&quot;);
     &#125;
 &#125;
 </code></pre>
 <p>如果单例类实现了序列化接口Serializable, 就可以通过反序列化破坏单例，所以我们可以不实现序列化接口，如果非得实现序列化接口，可以重写反序列化方法readResolve(), 反序列化时直接返回相关单例对象。</p>
-<pre><code class="java">  public Object readResolve() throws ObjectStreamException &#123;
+<pre><code class="language-java">  public Object readResolve() throws ObjectStreamException &#123;
         return instance;
     &#125;
 </code></pre>
-<h1 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h1><h1 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h1><p>适配器模式它将不兼容的接口转换为可兼容的接口，让原本由于接口不兼容而不能一起工作的类可以一起工作。</p>
+<h1>策略模式</h1>
+<h1>适配器模式</h1>
+<p>适配器模式它将不兼容的接口转换为可兼容的接口，让原本由于接口不兼容而不能一起工作的类可以一起工作。</p>
 <p>适配器模式有两种实现方式：类适配器和对象适配器。</p>
 <blockquote>
 <p>其中，类适配器使用继承关系来实现，对象适配器使用组合关系来实现。</p>
 </blockquote>
 <p>具体的代码实现如下所示。其中，ITarget 表示要转化成的接口定义。Adaptee 是一组不兼容 ITarget 接口定义的接口，Adaptor 将 Adaptee 转化成一组符合 ITarget 接口定义的接口。</p>
-<pre><code class="java">// 类适配器: 基于继承
+<pre><code class="language-java">// 类适配器: 基于继承
 public interface ITarget &#123;
   void f1();
   void f2();
@@ -1533,23 +1545,25 @@ public class Adaptor implements ITarget &#123;
 <p>假设我们的系统要对用户输入的文本内容做敏感词过滤，为了提高过滤的召回率，我们引入了多款第三方敏感词过滤系统，依次对用户输入的内容进行过滤，过滤掉尽可能多的敏感词。</p>
 <p>但是，每个系统提供的过滤接口都是不同的。这就意味着我们没法复用一套逻辑来调用各个系统。这个时候，我们就可以使用适配器模式，将所有系统的接口适配为统一的接口定义，这样我们可以复用调用敏感词过滤的代码。</p>
 </blockquote>
-<h1 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h1><p>代理模式是一种设计模式，提供了对目标对象额外的访问方式，即通过代理对象访问目标对象，这样可以在不修改原目标对象的前提下，提供额外的功能操作，扩展目标对象的功能。</p>
-<h2 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h2><p>在编译时就已经实现，编译完成后代理类是一个实际的class文件。</p>
+<h1>代理模式</h1>
+<p>代理模式是一种设计模式，提供了对目标对象额外的访问方式，即通过代理对象访问目标对象，这样可以在不修改原目标对象的前提下，提供额外的功能操作，扩展目标对象的功能。</p>
+<h2 id="静态代理">静态代理</h2>
+<p>在编译时就已经实现，编译完成后代理类是一个实际的class文件。</p>
 <p><strong>使用方式</strong></p>
 <p>创建一个接口，然后创建被代理的类实现该接口并且实现该接口中的抽象方法。</p>
 <p>之后再创建一个代理类，同时使其也实现这个接口。在代理类中持有一个被代理对象的引用，而后在代理类方法中调用该对象的方法。</p>
-<pre><code class="java">public interface UserDao &#123;    
+<pre><code class="language-java">public interface UserDao &#123;    
   void save();     
 &#125;
 </code></pre>
-<pre><code class="java">public class UserDaoImpl implements UserDao &#123;
+<pre><code class="language-java">public class UserDaoImpl implements UserDao &#123;
     @Override
     public void save() &#123;
         System.out.println(&quot;正在保存用户...&quot;);
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class TransactionHandler implements UserDao &#123;
+<pre><code class="language-java">public class TransactionHandler implements UserDao &#123;
     //目标代理对象
     private UserDao target;
     //构造代理对象时传入目标对象
@@ -1567,7 +1581,7 @@ public class Adaptor implements ITarget &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class Main &#123;
+<pre><code class="language-java">public class Main &#123;
     public static void main(String[] args) &#123;
         //新建目标对象
         UserDaoImpl target = new UserDaoImpl();
@@ -1579,7 +1593,8 @@ public class Adaptor implements ITarget &#123;
 &#125;
 </code></pre>
 <p>使用JDK静态代理很容易就完成了对一个类的代理操作。但是<code>JDK</code>静态代理的缺点也暴露了出来：由于代理只能为一个类服务，如果需要代理的类很多，那么就需要编写大量的代理类，比较繁琐。</p>
-<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p><strong>JDK动态代理</strong></p>
+<h2 id="动态代理">动态代理</h2>
+<p><strong>JDK动态代理</strong></p>
 <blockquote>
 <p><strong>使用JDK动态代理的五大步骤：</strong></p>
 <ol>
@@ -1590,18 +1605,18 @@ public class Adaptor implements ITarget &#123;
 <li>通过代理对象调用目标方法；</li>
 </ol>
 </blockquote>
-<pre><code class="java">public interface IHello &#123;
+<pre><code class="language-java">public interface IHello &#123;
     void sayHello();
 &#125;
 </code></pre>
-<pre><code class="java"> public class HelloImpl implements IHello &#123;
+<pre><code class="language-java"> public class HelloImpl implements IHello &#123;
     @Override
     public void sayHello() &#123;
         System.out.println(&quot;Hello world!&quot;);
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">import java.lang.reflect.InvocationHandler;
+<pre><code class="language-java">import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
  
 public class MyInvocationHandler implements InvocationHandler &#123;
@@ -1623,7 +1638,7 @@ public class MyInvocationHandler implements InvocationHandler &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">import java.lang.reflect.Constructor;
+<pre><code class="language-java">import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Proxy;
@@ -1656,7 +1671,7 @@ public class MyProxyTest &#123;
 &#125;
 </code></pre>
 <blockquote>
-<p><strong>JDK静态代理与JDK动态代理不同之处：</strong> </p>
+<p><strong>JDK静态代理与JDK动态代理不同之处：</strong></p>
 <p>在静态代理中我们需要对哪个接口和哪个被代理类创建代理类，所以我们在编译前就需要代理类实现与被代理类相同的接口，并且直接在实现的方法中调用被代理类相应的方法；</p>
 <p>但是动态代理我们不知道要针对哪个接口、哪个被代理类创建代理类，因为它是在运行时被创建的。</p>
 </blockquote>
@@ -1669,7 +1684,7 @@ public class MyProxyTest &#123;
 <li>然后在需要使用的时候，通过CGLIB动态代理获取代理对象。</li>
 </ol>
 </blockquote>
-<pre><code class="java"> public class HelloService &#123;
+<pre><code class="language-java"> public class HelloService &#123;
  
     public HelloService() &#123;
         System.out.println(&quot;HelloService构造&quot;);
@@ -1688,7 +1703,7 @@ public class MyProxyTest &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">import net.sf.cglib.proxy.MethodInterceptor;
+<pre><code class="language-java">import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
  
 import java.lang.reflect.Method;
@@ -1713,7 +1728,7 @@ public class MyMethodInterceptor implements MethodInterceptor&#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">import net.sf.cglib.core.DebuggingClassWriter;
+<pre><code class="language-java">import net.sf.cglib.core.DebuggingClassWriter;
 import net.sf.cglib.proxy.Enhancer;
  
 public class Client &#123;
@@ -1753,35 +1768,37 @@ public class Client &#123;
 <table>
 <thead>
 <tr>
-<th align="left">代理方式</th>
-<th align="left">实现</th>
-<th align="left">优点</th>
-<th align="left">缺点</th>
-<th align="left">特点</th>
+<th style="text-align:left">代理方式</th>
+<th style="text-align:left">实现</th>
+<th style="text-align:left">优点</th>
+<th style="text-align:left">缺点</th>
+<th style="text-align:left">特点</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">JDK静态代理</td>
-<td align="left">代理类与委托类实现同一接口，并且在代理类中需要硬编码接口</td>
-<td align="left">实现简单，容易理解</td>
-<td align="left">代理类需要硬编码接口，在实际应用中可能会导致重复编码，浪费存储空间并且效率很低</td>
-<td align="left">好像没啥特点</td>
+<tbody>
+<tr>
+<td style="text-align:left">JDK静态代理</td>
+<td style="text-align:left">代理类与委托类实现同一接口，并且在代理类中需要硬编码接口</td>
+<td style="text-align:left">实现简单，容易理解</td>
+<td style="text-align:left">代理类需要硬编码接口，在实际应用中可能会导致重复编码，浪费存储空间并且效率很低</td>
+<td style="text-align:left">好像没啥特点</td>
 </tr>
 <tr>
-<td align="left">JDK动态代理</td>
-<td align="left">代理类与委托类实现同一接口，主要是通过代理类实现InvocationHandler并重写<code>invoke</code>方法来进行动态代理的，在invoke方法中将对方法进行增强处理</td>
-<td align="left">不需要硬编码接口，代码复用率高</td>
-<td align="left">只能够代理实现了接口的委托类</td>
-<td align="left">底层使用反射机制进行方法的调用</td>
+<td style="text-align:left">JDK动态代理</td>
+<td style="text-align:left">代理类与委托类实现同一接口，主要是通过代理类实现InvocationHandler并重写<code>invoke</code>方法来进行动态代理的，在invoke方法中将对方法进行增强处理</td>
+<td style="text-align:left">不需要硬编码接口，代码复用率高</td>
+<td style="text-align:left">只能够代理实现了接口的委托类</td>
+<td style="text-align:left">底层使用反射机制进行方法的调用</td>
 </tr>
 <tr>
-<td align="left">CGLIB动态代理</td>
-<td align="left">代理类将委托类作为自己的父类并为其中的非final委托方法创建两个方法，一个是与委托方法签名相同的方法，它在方法中会通过<code>super</code>调用委托方法；另一个是代理类独有的方法。在代理方法中，它会判断是否存在实现了<code>MethodInterceptor</code>接口的对象，若存在则将调用intercept方法对委托方法进行代理</td>
-<td align="left">可以在运行时对类或者是接口进行增强操作，且委托类无需实现接口</td>
-<td align="left">不能对<code>final</code>类以及final方法进行代理</td>
-<td align="left">底层将方法全部存入一个数组中，通过数组索引直接进行方法调用</td>
+<td style="text-align:left">CGLIB动态代理</td>
+<td style="text-align:left">代理类将委托类作为自己的父类并为其中的非final委托方法创建两个方法，一个是与委托方法签名相同的方法，它在方法中会通过<code>super</code>调用委托方法；另一个是代理类独有的方法。在代理方法中，它会判断是否存在实现了<code>MethodInterceptor</code>接口的对象，若存在则将调用intercept方法对委托方法进行代理</td>
+<td style="text-align:left">可以在运行时对类或者是接口进行增强操作，且委托类无需实现接口</td>
+<td style="text-align:left">不能对<code>final</code>类以及final方法进行代理</td>
+<td style="text-align:left">底层将方法全部存入一个数组中，通过数组索引直接进行方法调用</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p><strong>CGlib比JDK快？</strong></p>
 <ul>
 <li>使用CGLiB实现动态代理，CGLib底层采用ASM字节码生成框架，使用字节码技术生成代理类， 在jdk6之前比使用Java反射效率要高。唯一需要注意的是，CGLib不能对声明为final的方法进行代理， 因为CGLib原理是动态生成被代理类的子类。</li>
