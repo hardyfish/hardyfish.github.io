@@ -1207,32 +1207,37 @@
 </ul>
 </blockquote>
 <p><strong>HTTP1.1</strong></p>
-<p>HTTP 1.1支持长连接。</p>
+<p>支持长连接:</p>
 <blockquote>
-<p>HTTP 1.0规定浏览器与服务器只保持短暂的连接，浏览器的每次请求都需要与服务器建立一个TCP连接，服务器完成请求处理后立即断开TCP连接，服务器不跟踪每个客户也不记录过去的请求。</p>
-<p>HTTP 1.1则支持持久连接, 并且默认使用长连接，在同一个tcp的连接中可以传送多个HTTP请求和响应，多个请求和响应可以重叠，多个请求和响应可以同时进行。</p>
-<p>HTTP 1.1的持续连接，也需要增加新的请求头来帮助实现，例如，Connection请求头的值为Keep-Alive时，客户端通知服务器返回本次请求结果后保持连接；Connection请求头的值为close时，客户端通知服务器返回本次请求结果后关闭连接。</p>
+<p>HTTP 1.0 规定浏览器与服务器只保持短暂的连接，浏览器的每次请求都需要与服务器建立一个TCP连接，服务器完成请求处理后立即断开TCP连接，服务器不跟踪每个客户也不记录过去的请求。</p>
+<p>HTTP 1.1 支持持久连接, 并且默认使用长连接，在同一个TPC的连接中可以传送多个HTTP请求和响应，多个请求和响应可以重叠，多个请求和响应可以同时进行。</p>
+<p>HTTP 1.1的持续连接，也需要增加新的请求头来帮助实现：</p>
+<ul>
+<li>Connection请求头的值为Keep-Alive时，客户端通知服务器返回本次请求结果后保持连接。</li>
+<li>Connection请求头的值为Close时，客户端通知服务器返回本次请求结果后关闭连接。</li>
+</ul>
 </blockquote>
-<p>HTTP 1.1还提供了与身份认证、状态管理和Cache缓存等机制相关的请求头和响应头。</p>
+<p>提供了Cache缓存机制：</p>
 <blockquote>
-<p>HTTP&#x2F;1.1在1.0的基础上加入了一些cache的新特性，当缓存对象的Age超过Expire时变为stale对象，cache不需要直接抛弃stale对象，而是与源服务器进行重新激活）。</p>
+<p>当缓存对象的Age超过Expire时变为Stale对象，Cache不需要直接抛弃Stale对象，而是与源服务器进行重新激活。</p>
 </blockquote>
-<p>请求的流水线（Pipelining）处理，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟。</p>
+<p>请求的流水线（Pipelining）处理:</p>
 <blockquote>
+<p>在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟。</p>
 <p>例如：一个包含有许多图像的网页文件的多个请求和应答可以在一个连接中传输，但每个单独的网页文件的请求和应答仍然需要使用各自的连接，HTTP 1.1还允许客户端不用等待上一次请求结果返回，就可以发出下一次请求，但服务器端必须按照接收到客户端请求的先后顺序依次回送响应结果，以保证客户端能够区分出每次请求的响应内容。</p>
 </blockquote>
-<p>增加Host字段。</p>
+<p>增加Host字段:</p>
 <blockquote>
 <p>在HTTP1.0中认为每台服务器都绑定一个唯一的IP地址，因此，请求消息中的URL并没有传递主机名。</p>
 <p>在一台物理服务器上可以存在多个虚拟主机，并且它们共享一个IP地址。</p>
 <p>HTTP1.1的请求消息和响应消息都应支持Host头域，且请求消息中如果没有Host头域会报告一个错误（400 Bad Request）。</p>
 </blockquote>
-<p>100(Continue)Status。</p>
+<p>100(Continue)Status:</p>
 <blockquote>
 <p>客户端事先发送一个只带头域的请求，如果服务器因为权限拒绝了请求，就回送响应码401（Unauthorized）；</p>
 <p>如果服务器接收此请求就回送响应码100，客户端就可以继续发送带实体的完整请求了。</p>
 </blockquote>
-<p>Chunked机制。</p>
+<p>Chunked机制:</p>
 <blockquote>
 <p>发送方将消息分割成若干个任意大小的数据块，每个数据块在发送时都会附上块的长度，最后用一个零长度的块作为消息结束的标志。</p>
 <p>这种方法允许发送方只缓冲消息的一个片段，避免缓冲整个消息带来的过载。</p>
@@ -1247,20 +1252,26 @@
 </ul>
 <p><strong>多路复用</strong>：</p>
 <ul>
-<li>每一个request都是是用作连接共享机制的。一个request对应一个id，这样一个连接上可以有多个request，每个连接的request可以随机的混杂在一起，接收方可以根据request的 id将request再归属到各自不同的服务端请求里面。</li>
+<li>一个Request对应一个ID，这样一个连接上可以有多个Request，每个连接的Request可以随机的混杂在一起，接收方可以根据Request的ID将Request再归属到各自不同的服务端请求里面。</li>
 </ul>
-<p><strong>header压缩</strong>:</p>
-<p>HTTP1.x的header带有大量信息，而且每次都要重复发送，HTTP2.0使用encoder来减少需要传输的header大小，通讯双方各自cache一份header fields表，差量更新HTTP头部，只发送改变的，既避免了重复header的传输，又减小了需要传输的大小。</p>
+<p><strong>Hseader压缩</strong>:</p>
+<ul>
+<li><p>HTTP1.x的Header带有大量信息，而且每次都要重复发送。</p>
+</li>
+<li><p>HTTP2.0使用Encoder来减少需要传输的Header大小，通讯双方各自Cache一份Header Fields表，差量更新HTTP头部，只发送改变的，既避免了重复Header的传输，又减小了需要传输的大小。</p>
+</li>
+</ul>
 <p><strong>服务端推送</strong>：</p>
 <ul>
-<li>HTTP2.0也具有server push功能。</li>
+<li>HTTP2.0具有Server Push功能。</li>
 </ul>
 </blockquote>
 <p>HTTP2.0的多路复用和HTTP1.1中的长连接复用有什么区别？</p>
 <blockquote>
 <p>HTTP&#x2F;1.0：</p>
 <ul>
-<li>一次请求-响应，建立一个连接，用完关闭；每一个请求都要建立一个连接；</li>
+<li>一次请求-响应，建立一个连接，用完关闭。</li>
+<li>每一个请求都要建立一个连接；</li>
 </ul>
 <p>HTTP&#x2F;1.1：</p>
 <ul>
@@ -1268,8 +1279,14 @@
 </ul>
 <p>HTTP&#x2F;2.0：</p>
 <ul>
-<li>多个请求可同时在一个连接上并行执行。某个请求任务耗时严重，不会影响到其它连接的正常执行；</li>
+<li>多个请求可同时在一个连接上并行执行。</li>
+<li>某个请求任务耗时严重，不会影响到其它连接的正常执行。</li>
 </ul>
+</blockquote>
+<p><strong>HTTP3.0</strong></p>
+<blockquote>
+<p>底层的传输协议由 TCP 协议改为使用基于 UDP 协议的 QUIC 协议，在应用层实现了拥塞控制、可靠传输的特性。</p>
+<p>HTTP 2 和 HTTP 3 都是默认建立在 HTTPS 之上的。</p>
 </blockquote>
 <p><strong>HTTPS</strong></p>
 <p>HTTPS是在HTTP上建立SSL加密层，并对传输数据进行加密，是HTTP协议的安全版。</p>
