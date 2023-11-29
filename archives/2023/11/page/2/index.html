@@ -708,6 +708,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2023/11/29/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/XXLJOB/">
+										XXLJOB
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2023/10/10/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">
 										开源框架
 									</a>
@@ -1019,6 +1028,44 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index" oncontextmenu="return false;">
+	
+		<div class="index-li">
+			<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%9B%B4%E6%92%AD%E7%B3%BB%E7%BB%9F/">
+				<h2 class="index-title">
+					直播系统
+				</h2>
+				<div class="index-brief">
+					直播弹幕
+
+为了不影响读写的性能，采用读写分离架构。
+写服务：
+
+
+若不考虑历史弹幕可回放，可以直接使用 Redis 作为唯一存储。
+
+
+若考虑支持弹幕的回放，数据还是需要持久化，可以考虑使用 MySQL 或者 TiDB，暂且认为写入不是较大的瓶颈。
+
+
+如果有更高性能的写需求，HBase、Open
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-19</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/系统相关/">系统相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E4%BB%BB%E5%8A%A1%E7%B3%BB%E7%BB%9F/">
@@ -1337,49 +1384,10 @@ RPC远程过程调用（Remote Procedure Call Protocol），是从一台机器�
                 </div>
 		</div>	
 	
-		<div class="index-li">
-			<a href="/2023/11/11/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Go%E5%9F%BA%E7%A1%80/">
-				<h2 class="index-title">
-					Go基础
-				</h2>
-				<div class="index-brief">
-					安装
-
-下载地址：https://go.dev/dl/
-
-
-配置环境变量。
-
-$ vim ~/.bash_profile
-
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/go
-export PATH=$GOROOT/bin:$PATH
-
-$ sour
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-11</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/基础知识/">基础知识</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
 	
 	<div id="index-paginator">
 		
-			<a class="extend prev" rel="prev" href="/archives/2023/11/">&lt;</a><a class="page-number" href="/archives/2023/11/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2023/11/page/3/">3</a><a class="extend next" rel="next" href="/archives/2023/11/page/3/">&gt;</a>
+			<a class="extend prev" rel="prev" href="/archives/2023/11/">&lt;</a><a class="page-number" href="/archives/2023/11/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2023/11/page/3/">3</a><a class="page-number" href="/archives/2023/11/page/4/">4</a><a class="extend next" rel="next" href="/archives/2023/11/page/3/">&gt;</a>
 		
 	</div>
 </div>
