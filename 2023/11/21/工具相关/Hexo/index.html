@@ -1090,8 +1090,8 @@ ssh-keygen -t rsa -C &quot;792321264@qq.com&quot;
 <p>输入<code>ssh -T git@github.com</code>，出现你的用户名，那就成功了。</p>
 </blockquote>
 <p><strong>主页文章按更新时间排序</strong></p>
-<pre><code class="yaml">index_generator:
-  path: &#39;&#39;
+<pre><code class="language-yaml">index_generator:
+  path: ''
   per_page: 20
   order_by: -updated
 </code></pre>
@@ -1115,13 +1115,17 @@ ssh-keygen -t rsa -C &quot;792321264@qq.com&quot;
 <blockquote>
 <p>给解析添加A类型：</p>
 <ul>
-<li><p>185.199.108.153</p>
+<li>
+<p>185.199.108.153</p>
 </li>
-<li><p>185.199.109.153</p>
+<li>
+<p>185.199.109.153</p>
 </li>
-<li><p>185.199.110.153</p>
+<li>
+<p>185.199.110.153</p>
 </li>
-<li><p>185.199.111.153</p>
+<li>
+<p>185.199.111.153</p>
 </li>
 </ul>
 </blockquote>
@@ -1168,7 +1172,7 @@ package.json         安装包的名称                       必须备份
 <p>安装一个扩展<code>npm i hexo-deployer-git</code></p>
 <p>最后输入<code>hexo d</code>上传到GitHub上。</p>
 </blockquote>
-<pre><code class="yaml">deploy:
+<pre><code class="language-yaml">deploy:
   type: git
   repository: https://github.com/xiaoflyfish/xiaoflyfish.github.io
   branch: master
@@ -1189,8 +1193,8 @@ package.json         安装包的名称                       必须备份
 </code></pre>
 <pre><code>&#123;% aplayer "Caffeine" "Jeff Williams" "11.mp3" "autoplay" %&#125;
 </code></pre>
-<pre><code>    &lt;%- css(&#39;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css&#39;) %&gt;
-    &lt;%- js(&#39;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js&#39;) %&gt;
+<pre><code>	&lt;%- css('https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css') %&gt;
+	&lt;%- js('https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js') %&gt;
 </code></pre>
 <p><strong>置顶文章</strong></p>
 <pre><code> npm install hexo-generator-topindex --save
@@ -1324,15 +1328,15 @@ git --work-tree=/usr/share/nginx/mysite --git-dir=/root/gitrepo/hexo.git checkou
 <li>修改本地Hexo博客的配置文件<code>_config.yml</code>，找到<code>url:</code>和<code>deploy:</code>部分，做如下的修改：</li>
 </ul>
 </blockquote>
-<pre><code>    url: http://blog.jackjiang.top       # 修改为你的博客域名
-    root: /
-    permalink: :year-:month-:day/:title/
-    permalink_defaults:
-    
-    deploy:
-        type: git
-        repo: blog@your_server_ip:/home/blog/github-blog.git    # 修改为你的服务器IP
-        branch: master
+<pre><code>	url: http://blog.jackjiang.top       # 修改为你的博客域名
+	root: /
+	permalink: :year-:month-:day/:title/
+	permalink_defaults:
+	
+	deploy:
+	    type: git
+	    repo: blog@your_server_ip:/home/blog/github-blog.git    # 修改为你的服务器IP
+	    branch: master
 </code></pre>
 <p>域名解析:</p>
 <blockquote>
@@ -1341,19 +1345,21 @@ git --work-tree=/usr/share/nginx/mysite --git-dir=/root/gitrepo/hexo.git checkou
 <table>
 <thead>
 <tr>
-<th align="left">主机记录</th>
-<th align="left">记录类型</th>
-<th align="left">解析路线</th>
-<th align="left">记录值</th>
+<th style="text-align:left">主机记录</th>
+<th style="text-align:left">记录类型</th>
+<th style="text-align:left">解析路线</th>
+<th style="text-align:left">记录值</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">@</td>
-<td align="left">A</td>
-<td align="left">默认</td>
-<td align="left">你的云服务器公网 ip</td>
+<tbody>
+<tr>
+<td style="text-align:left">@</td>
+<td style="text-align:left">A</td>
+<td style="text-align:left">默认</td>
+<td style="text-align:left">你的云服务器公网 ip</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <blockquote>
 <p>之后就可以输入域名访问博客。</p>
 <p>注意：这里用云服务器的 80 端口，使用 http 访问，如果需要 https 访问，还需要 SSL 证书。</p>
@@ -1362,12 +1368,13 @@ git --work-tree=/usr/share/nginx/mysite --git-dir=/root/gitrepo/hexo.git checkou
 <p>查看网站是否被收录：</p>
 <blockquote>
 <p>可以输入 <code>site:域名</code> 来查看域名是否被搜索引擎收录。</p>
-<p>如：site:<a target="_blank" rel="noopener" href="http://www.hardyfish.top/">www.hardyfish.top</a></p>
+<p>如：site:hardyfish.top</p>
 </blockquote>
 <p>百度资源平台配置:</p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://ziyuan.baidu.com/">https://ziyuan.baidu.com/</a></p>
 <p>依次选择：用户中心 - 站点管理，添加你的网站。</p>
+<p>如：hardyfish.top</p>
 </blockquote>
 <p>网站验证：</p>
 <blockquote>
@@ -1376,8 +1383,35 @@ git --work-tree=/usr/share/nginx/mysite --git-dir=/root/gitrepo/hexo.git checkou
 </blockquote>
 <p>提交百度搜索：</p>
 <blockquote>
-<p>安装插件 <code>npm install hexo-baidu-url-submit --save</code>，然后在根目录 <code>_config.yml</code> 文件里写入以下配置：</p>
+<p>安装插件 <code>npm install hexo-baidu-url-submit --save</code>，然后在根目录 <code>_config.yml</code> 文件里写入以下配置。</p>
 </blockquote>
+<pre><code>baidu_url_submit:
+  count: 1               # 提交最新的多少个链接
+  host: www.itrhx.com    # 在百度站长平台中添加的域名
+  token: your_token      # 秘钥
+  path: baidu_urls.txt   # 文本文档的地址， 新链接会保存在此文本文档里
+</code></pre>
+<blockquote>
+<p>在根目录的 <code>_config.yml</code> 文件，url 要改为在百度站长平台添加的域名，也就是网站的首页地址。</p>
+</blockquote>
+<pre><code># URL
+url: https://www.itrhx.com
+root: /
+permalink: :year/:month/:day/:title/
+</code></pre>
+<blockquote>
+<p>加入新的 deployer。</p>
+</blockquote>
+<pre><code># Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+- type: git
+  repository:
+    github: git@github.com:TRHX/TRHX.github.io.git  # 这是原来的 github 配置
+    coding: git@git.dev.tencent.com:TRHX/TRHX.git   # 这是原来的 coding 配置
+  branch: master
+- type: baidu_url_submitter                         # 这是新加的主动推送
+</code></pre>
 
 	</div>
 </div>
@@ -1451,7 +1485,7 @@ git --work-tree=/usr/share/nginx/mysite --git-dir=/root/gitrepo/hexo.git checkou
 	            + '\n著作权归作者所有。'
 	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
 	            + '\n作者: 月伴飞鱼'
-	            + '\n原文地址: https://hardyfish.top/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Hexo/'
+	            + '\n原文地址: http://hardyfish.top/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Hexo/'
 	    
 	            clipboardData.setData('text/plain', text + copyright);
 	    
