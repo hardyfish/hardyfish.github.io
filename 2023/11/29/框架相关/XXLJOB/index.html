@@ -81,7 +81,7 @@
 <meta name="generator" content="Hexo 6.3.0"></head>
 
 <body oncontextmenu="return false;">
-	<header id="header">
+	<header id="header" oncontextmenu="return false;">
     <a id="title" href="/" class="logo">公众号月伴飞鱼</a>
 
 	<ul id="menu">
@@ -1029,11 +1029,11 @@
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<h1 id="article-title">
+		<h1 id="article-title" oncontextmenu="return false;">
 
 	XXLJOB
 </h1>
-<div class="article-meta">
+<div class="article-meta" oncontextmenu="return false;">
 	<span>月伴飞鱼</span>
 	<span>2023-11-29 14:30:43</span>
     
@@ -1182,6 +1182,23 @@
 <blockquote>
 <p>为了真正达到幂等性，还需要设置一下 XXL-JOB 的调度过期策略和阻塞处理策略来保证真正的幂等性。</p>
 <p>分别设置为 <strong>忽略</strong>（调度过期后，忽略过期的任务，从当前时间开始重新计算下次触发时间） 和 <strong>丢弃后续调度</strong>（调度请求进入单机执行器后，发现执行器存在运行的调度任务，本次请求将会被丢弃并标记为失败）。</p>
+</blockquote>
+<p><strong>常见问题</strong></p>
+<p>并发大导致任务丢失:</p>
+<blockquote>
+<p>当大量任务并发的时候，任务会丢失。</p>
+<p><strong>解决方案</strong></p>
+<p>可以通过动态更新线程池的方式，调大整个线程池的缓冲区数量，其次可以重写拒绝策略，当超过最大缓存数量的时候，先往数据库塞，然后当有空间的时候慢慢的读出然后删除待执行的记录。</p>
+</blockquote>
+<p>服务宕机导致任务丢失：</p>
+<blockquote>
+<p>当任务的那台服务器宕机之后，任务也会被中断，任务丢失会导致部分数据丢失。</p>
+<p><strong>解决方案</strong></p>
+<p>业务端去缓存这个拉取的时间，比如说上次拉取是什么时候，如果中间有段丢失了，那我们下次任务就从上次丢失的地方开始拉数据，这样就补齐了。</p>
+</blockquote>
+<p>Kill任务导致部分数据问题：</p>
+<blockquote>
+<p>Kill任务的时候，有些数据是无法回滚的，会给修复数据带来麻烦。</p>
 </blockquote>
 <p><strong>分布式定时任务调度的框架对比</strong></p>
 <table>
