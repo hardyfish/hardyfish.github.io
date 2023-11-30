@@ -1,3 +1,4 @@
+http://hardyfish.top/2023/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/
 http://hardyfish.top/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Hexo/
 http://hardyfish.top/2023/11/29/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/XXLJOB/
 http://hardyfish.top/2022/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/
@@ -43,7 +44,6 @@ http://hardyfish.top/2023/11/02/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E6%9E%B6%E
 http://hardyfish.top/2023/11/11/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Go%E5%9F%BA%E7%A1%80/
 http://hardyfish.top/2023/10/26/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E4%BF%9D%E9%9A%9C/
 http://hardyfish.top/2023/11/09/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Arthas/
-http://hardyfish.top/2023/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/
 http://hardyfish.top/2023/11/03/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/
 http://hardyfish.top/2023/11/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/Tomcat/
 http://hardyfish.top/2023/10/10/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/

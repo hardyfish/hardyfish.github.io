@@ -1065,6 +1065,115 @@
 <blockquote>
 <p>数据量大，读写操作频繁，数据价值较低，对事务要求不高。</p>
 </blockquote>
+<p><strong>存储结构</strong></p>
+<blockquote>
+<p><strong>文档（Document）</strong> ：</p>
+<ul>
+<li>MongoDB 中最基本的单元，由 BSON 键值对组成，类似于关系型数据库中的行（Row）。</li>
+</ul>
+<p><strong>集合（Collection）</strong> ：</p>
+<ul>
+<li>一个集合可以包含多个文档，类似于关系型数据库中的表（Table）。</li>
+</ul>
+<p><strong>数据库（Database）</strong> ：</p>
+<ul>
+<li>一个数据库中可以包含多个集合，可以在 MongoDB 中创建多个数据库，类似于关系型数据库中的数据库（Database）。</li>
+</ul>
+</blockquote>
+<p><strong>SQL与MongoDB常见术语对比</strong> ：</p>
+<table>
+<thead>
+<tr>
+<th>SQL</th>
+<th>MongoDB</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>表（Table）</td>
+<td>集合（Collection）</td>
+</tr>
+<tr>
+<td>行（Row）</td>
+<td>文档（Document）</td>
+</tr>
+<tr>
+<td>列（Col）</td>
+<td>字段（Field）</td>
+</tr>
+<tr>
+<td>主键（Primary Key）</td>
+<td>对象 ID（Objectid）</td>
+</tr>
+<tr>
+<td>索引（Index）</td>
+<td>索引（Index）</td>
+</tr>
+<tr>
+<td>嵌套表（Embeded Table）</td>
+<td>嵌入式文档（Embeded Document）</td>
+</tr>
+<tr>
+<td>数组（Array）</td>
+<td>数组（Array）</td>
+</tr>
+</tbody></table>
+<p><strong>文档</strong></p>
+<blockquote>
+<p>MongoDB 中的记录就是一个 BSON 文档，它是由键值对组成的数据结构，类似于 JSON 对象，是 MongoDB 中的基本数据单元。</p>
+<ul>
+<li>字段的值可能包括其他文档、数组和文档数组。</li>
+</ul>
+</blockquote>
+<img src="/images/image-20231130183817232.png" alt="image-20231130183817232" style="zoom:50%;" />
+
+<blockquote>
+<p>文档的键是字符串，除了少数例外情况，键可以使用任意 UTF-8 字符：</p>
+<ul>
+<li>键不能含有 <code>\0</code>(空字符），这个字符用来表示键的结尾。</li>
+<li><code>.</code> 和 <code>$</code> 有特别的意义，只有在特定环境下才能使用。</li>
+<li>以下划线<code>_</code>开头的键是保留的(不是严格要求的)。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>BSON 是 Binary JSON的简称，是 JSON 文档的二进制表示，支持将文档和数组嵌入到其他文档和数组中，还包含允许表示不属于JSON 规范的数据类型的扩展。</p>
+<p>BJSON 的遍历速度优于 JSON，这也是 MongoDB 选择 BSON 的主要原因，但 BJSON 需要更多的存储空间。</p>
+</blockquote>
+<p><strong>集合</strong></p>
+<blockquote>
+<p>MongoDB 集合存在于数据库中，<strong>没有固定的结构</strong>，也就是 <strong>无模式</strong> 的，这意味着可以往集合插入不同格式和类型的数据。</p>
+<ul>
+<li>通常情况插入集合中的数据都会有一定的关联性。</li>
+</ul>
+</blockquote>
+<img src="/images/image-20231130184339470.png" alt="image-20231130184339470" style="zoom:50%;" />
+
+<blockquote>
+<p>集合不需要事先创建，当第一个文档插入或者第一个索引创建时，如果该集合不存在，则会创建一个新的集合。</p>
+<p>集合名可以是满足下列条件的任意 UTF-8 字符串：</p>
+<ul>
+<li>集合名不能是空字符串<code>&quot;&quot;</code>。</li>
+<li>集合名不能含有 <code>\0</code> （空字符)，这个字符表示集合名的结尾。</li>
+<li>集合名不能以<code>system.</code>开头，这是为系统集合保留的前缀。<ul>
+<li><code>system.users</code> 集合保存着数据库的用户信息。</li>
+<li><code>system.namespaces</code> 集合保存着所有数据库集合的信息。</li>
+</ul>
+</li>
+<li>集合名必须以下划线或者字母符号开始，并且不能包含 <code>$</code>。</li>
+</ul>
+</blockquote>
+<p><strong>数据库</strong></p>
+<blockquote>
+<p>数据库用于存储所有集合，而集合又用于存储所有文档。</p>
+<p>一个 MongoDB 中可以创建多个数据库，每一个数据库都有自己的集合和权限。</p>
+<p>数据库名可以是满足以下条件的任意 UTF-8 字符串：</p>
+<ul>
+<li>不能是空字符串<code>&quot;&quot;</code>。</li>
+<li>不得含有<code>&#39; &#39;</code>（空格)、<code>.</code>、<code>$</code>、<code>/</code>、<code>\</code>和 <code>\0</code> (空字符)。</li>
+<li>应全部小写。</li>
+<li>最多 64 字节。</li>
+</ul>
+<p>数据库名最终会变成文件系统里的文件。</p>
+</blockquote>
 
 	</div>
 </div>
