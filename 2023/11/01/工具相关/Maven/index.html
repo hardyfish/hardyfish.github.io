@@ -1136,30 +1136,93 @@ source ~/.bash_profile
 </tr>
 </tbody>
 </table>
+<p><strong>生命周期</strong></p>
+<blockquote>
+<p><code>clean</code>：</p>
+<ul>
+<li>清除当前工程编译后生成的文件（即删除<code>target</code>整个目录）</li>
+</ul>
+<p><code>validate</code>：</p>
+<ul>
+<li>对工程进行基础验证，如工程结构、<code>pom</code>、资源文件等是否正确</li>
+</ul>
+<p><code>compile</code>：</p>
+<ul>
+<li>对<code>src/main/java</code>目录下的源码进行编译（会生成<code>target</code>目录）</li>
+</ul>
+<p><code>test</code>：</p>
+<ul>
+<li>编译并执行<code>src/test/java/</code>目录下的所有测试用例</li>
+</ul>
+<p><code>package</code>：</p>
+<ul>
+<li>将当前项目打包，普通项目打<code>jar</code>包，<code>webapp</code>项目打<code>war</code>包</li>
+</ul>
+<p><code>verify</code>：</p>
+<ul>
+<li>验证工程所有代码、配置进行是否正确，如类中代码的语法检测等</li>
+</ul>
+<p><code>install</code>：</p>
+<ul>
+<li>将当前工程打包，然后安装到本地仓库，别人可通过<code>GAV</code>导入</li>
+</ul>
+<p><code>site</code>：</p>
+<ul>
+<li>生成项目的概述、源码测试覆盖率、开发者列表等站点文档（需要额外配置）</li>
+</ul>
+<p><code>deploy</code>：</p>
+<ul>
+<li>将当前工程对应的包，上传到远程仓库，提供给他人使用（私服会用）</li>
+</ul>
+</blockquote>
 <p><strong>依赖范围</strong></p>
+<blockquote>
+<p>项目引入的所有依赖，如果不显式指定依赖范围，默认是<code>compile</code>，意味着所有环境下都生效。</p>
+<p>一般的依赖包无需更改，只有某些特殊的依赖，才需要手动配置一下，如：</p>
+<ul>
+<li><code>JUnit、spring-test</code>这类包，只在测试环境使用，所以配成<code>test</code></li>
+<li><code>Tomcat</code>内置<code>servlet-api</code>包，为了避免在运行环境冲突，应该配成<code>provided</code></li>
+</ul>
+</blockquote>
 <table>
 <thead>
 <tr>
-<th>作用域</th>
-<th>效果</th>
+<th>依赖范围</th>
+<th>编译环境</th>
+<th>测试环境</th>
+<th>运行环境</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>compile</td>
-<td>编译时需要用到该 JAR 包（默认）</td>
+<td><code>compile</code></td>
+<td>生效</td>
+<td>生效</td>
+<td>生效</td>
 </tr>
 <tr>
-<td>runtime</td>
-<td>编译时不需要，但运行时需要用到</td>
+<td><code>provided</code></td>
+<td>生效</td>
+<td>生效</td>
+<td>不生效</td>
 </tr>
 <tr>
-<td>provided</td>
-<td>编译时需要用到，但运行时由 JDK 或某个服务器提供</td>
+<td><code>system</code></td>
+<td>生效</td>
+<td>生效</td>
+<td>不生效</td>
 </tr>
 <tr>
-<td>test</td>
-<td>编译Test时需要用到该 JAR 包</td>
+<td><code>runtime</code></td>
+<td>不生效</td>
+<td>生效</td>
+<td>生效</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>不生效</td>
+<td>生效</td>
+<td>不生效</td>
 </tr>
 </tbody>
 </table>
@@ -1364,7 +1427,7 @@ source ~/.bash_profile
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1701308737582-558',
+	        blogId: '22377-1701395655139-344',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -1414,7 +1477,7 @@ source ~/.bash_profile
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1701308737582-558',
+        blogId: '22377-1701395655139-344',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',

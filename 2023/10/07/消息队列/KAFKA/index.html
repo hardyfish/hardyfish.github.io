@@ -1054,7 +1054,34 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<h1>基础知识</h1>
+		<p><strong>消息队列对比</strong></p>
+<blockquote>
+<p>Kafka：</p>
+<ul>
+<li>追求高吞吐量，一开始用于日志收集和传输，适合产生大量数据的互联网服务的数据收集业务，大型公司可以选用。</li>
+<li>如果有日志采集功能，肯定首选 Kafka。</li>
+</ul>
+<p>RocketMQ：</p>
+<ul>
+<li>天生为金融互联网领域而生，对于可靠性要求很高的场景。
+<ul>
+<li>尤其是电商里面的订单扣款，以及业务削峰，在大量交易涌入时，后端可能无法及时处理的情况。</li>
+</ul>
+</li>
+<li>RoketMQ 在稳定性上可能更值得信赖。
+<ul>
+<li>这些业务场景在阿里双 11 已经经历了多次考验，如果业务有上述并发场景，建议选择 RocketMQ。</li>
+</ul>
+</li>
+</ul>
+<p>RabbitMQ：</p>
+<ul>
+<li>结合 Erlang 语言本身的并发优势，性能较好，社区活跃度也比较高，但是不利于做二次开发和维护。</li>
+<li>不过 RabbitMQ 的社区十分活跃，可以解决开发过程中遇到的 Bug。</li>
+<li>如果数据量没有那么大，小公司优先选择功能比较完备的 RabbitMQ。</li>
+</ul>
+</blockquote>
+<h1>基础知识</h1>
 <p><strong>版本号</strong></p>
 <p>版本命名：<code>Scala 2.11 - kafka_2.11-2.1.1</code></p>
 <blockquote>
@@ -1416,7 +1443,7 @@ try &#123;
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1701308737582-558',
+	        blogId: '22377-1701395655139-344',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -1466,7 +1493,7 @@ try &#123;
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1701308737582-558',
+        blogId: '22377-1701395655139-344',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',
