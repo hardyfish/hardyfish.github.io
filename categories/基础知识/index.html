@@ -41,12 +41,21 @@
 	
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 
+
+    
+<link rel="stylesheet" href="/css/readmore.css">
+
 	
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 
 
 	
 <script src="/lib/highlight/highlight.min.js"></script>
+
+
+	
+<script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js"></script>
+
 
 	
 <script src="https://readmore.openwrite.cn/js/readmore.js"></script>
@@ -1075,12 +1084,13 @@ $ sour
 					设计模式
 				</h2>
 				<div class="index-brief">
-					基本概念封装
+					基本概念
+封装
 通过对类的封装，仅仅暴露少许必要的方法给调用方使用，调用方不需要了解太多背后的业务细节，大大降低了用错的概率，提高了代码的易用性。
 抽象
 通过抽象化只暴露出方法定义，而隐藏方法的具体实现，让调用者只需要关心方法提供了哪些功能，并不需要知道这些功能是如何实现的。
 
-作用：通过抽象化手段，
+作用：通过抽象化手段
 					...
 				</div>
 			</a>
@@ -1106,17 +1116,18 @@ $ sour
 					分布式
 				</h2>
 				<div class="index-brief">
-					基本概念背压
+					基本概念
+背压
 
 背压思想，被请求方不会直接将请求端的流量直接丢掉，而是不断的反馈自己的处理能力。
-请求端根据这些反馈，实时的调整自己的发送频率，比如：TCP&#x2F;IP中使用滑动窗口来进行流量控制。
+请求端根据这些反馈，实时的调整自己的发送频率，比如：TCP/IP中使用滑动窗口来进行流量控制。
 
 CAP原则
 Consistency（一致性）
 
 所有节点返回的数据是一致的。
 
-Availab
+Availabilit
 					...
 				</div>
 			</a>
@@ -1142,7 +1153,8 @@ Availab
 					并发编程
 				</h2>
 				<div class="index-brief">
-					线程线程优先级
+					线程
+线程优先级
 
 线程的优先级：线程抢占 CPU 时间片的概率，优先级越高的线程优先执行的概率就越大，但并不能保证优先级高的线程一定先执行。
 
@@ -1150,7 +1162,7 @@ Availab
 public final static int MIN_PRIORITY = 1;
 
 // 线程默认优先级
-public f
+public 
 					...
 				</div>
 			</a>
@@ -1176,7 +1188,8 @@ public f
 					JVM
 				</h2>
 				<div class="index-brief">
-					内存模型内存结构
+					内存模型
+内存结构
 
 堆：
 
@@ -1185,9 +1198,9 @@ public f
 虚拟机栈:
 
 栈帧:用于支持虚拟机进行方法执行的数据结构。
+
 存储了方法的局部变量表， 操作数栈，动态连接和返回地址等地址。
 每个方法从调用到执行完成的过程，都对应着一个栈帧在虚拟机栈里从入栈到出栈的过程。
-栈
 					...
 				</div>
 			</a>

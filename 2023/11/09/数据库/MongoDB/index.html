@@ -43,12 +43,21 @@
 	
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 
+
+    
+<link rel="stylesheet" href="/css/readmore.css">
+
 	
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 
 
 	
 <script src="/lib/highlight/highlight.min.js"></script>
+
+
+	
+<script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js"></script>
+
 
 	
 <script src="https://readmore.openwrite.cn/js/readmore.js"></script>
@@ -1054,7 +1063,7 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<blockquote>
+		<div id="readmore-container"><blockquote>
 <p>官网：<a target="_blank" rel="noopener" href="https://www.mongodb.com/">https://www.mongodb.com/</a></p>
 <p>MongoDB是一款开源、跨平台、分布式，具有大数据处理能力的文档存储数据库。</p>
 <ul>
@@ -1088,7 +1097,8 @@
 <th>MongoDB</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>表（Table）</td>
 <td>集合（Collection）</td>
 </tr>
@@ -1116,7 +1126,8 @@
 <td>数组（Array）</td>
 <td>数组（Array）</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p><strong>文档</strong></p>
 <blockquote>
 <p>MongoDB 中的记录就是一个 BSON 文档，它是由键值对组成的数据结构，类似于 JSON 对象，是 MongoDB 中的基本数据单元。</p>
@@ -1125,7 +1136,6 @@
 </ul>
 </blockquote>
 <img src="/images/image-20231130183817232.png" alt="image-20231130183817232" style="zoom:50%;" />
-
 <blockquote>
 <p>文档的键是字符串，除了少数例外情况，键可以使用任意 UTF-8 字符：</p>
 <ul>
@@ -1146,14 +1156,14 @@
 </ul>
 </blockquote>
 <img src="/images/image-20231130184339470.png" alt="image-20231130184339470" style="zoom:50%;" />
-
 <blockquote>
 <p>集合不需要事先创建，当第一个文档插入或者第一个索引创建时，如果该集合不存在，则会创建一个新的集合。</p>
 <p>集合名可以是满足下列条件的任意 UTF-8 字符串：</p>
 <ul>
 <li>集合名不能是空字符串<code>&quot;&quot;</code>。</li>
 <li>集合名不能含有 <code>\0</code> （空字符)，这个字符表示集合名的结尾。</li>
-<li>集合名不能以<code>system.</code>开头，这是为系统集合保留的前缀。<ul>
+<li>集合名不能以<code>system.</code>开头，这是为系统集合保留的前缀。
+<ul>
 <li><code>system.users</code> 集合保存着数据库的用户信息。</li>
 <li><code>system.namespaces</code> 集合保存着所有数据库集合的信息。</li>
 </ul>
@@ -1168,13 +1178,42 @@
 <p>数据库名可以是满足以下条件的任意 UTF-8 字符串：</p>
 <ul>
 <li>不能是空字符串<code>&quot;&quot;</code>。</li>
-<li>不得含有<code>&#39; &#39;</code>（空格)、<code>.</code>、<code>$</code>、<code>/</code>、<code>\</code>和 <code>\0</code> (空字符)。</li>
+<li>不得含有<code>' '</code>（空格)、<code>.</code>、<code>$</code>、<code>/</code>、<code>\</code>和 <code>\0</code> (空字符)。</li>
 <li>应全部小写。</li>
 <li>最多 64 字节。</li>
 </ul>
 <p>数据库名最终会变成文件系统里的文件。</p>
 </blockquote>
-
+</div>
+				<link rel="stylesheet" type="text/css" href="/css/readmore.css">
+				<script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script>
+				<script>
+				var isMobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
+				var isEncrypt = document.getElementById('hexo-blog-encrypt');
+				var allowMobile = true;
+				if (!isEncrypt && (!isMobile || (isMobile && allowMobile))) {
+					try {
+						var plugin = new ReadmorePlugin();
+						plugin.init({
+							"type": "hexo",
+							"id": "readmore-container",
+							"name": "月伴飞鱼",
+							"blogId": "80022-2481144997660-197",
+							"qrcode": "https://img-blog.csdnimg.cn/20210613214230408.jpeg",
+							"keyword": "验证码",
+							"random": "1",
+							"height": "auto",
+							"expires": "365",
+							"lockToc": "yes",
+							"interval": "60",
+							"baseUrl": ""
+						});
+					} catch(e) {
+						console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
+					}
+				}
+				</script>
+			
 	</div>
 </div>
 
@@ -1210,13 +1249,32 @@
 
 	$(function () {
 		const btw = new BTWPlugin();
-	    btw.init({
-	        id: 'container',
-	        blogId: '22377-1701577207733-710',
-	        name: '月伴飞鱼',
-	        qrcode: '/小程序码.jpg',
-	        keyword: '验证码',
-	    });
+	    //btw.init({
+	    //    id: 'container',
+	    //    blogId: '22377-1701577207733-710',
+	    //    name: '月伴飞鱼',
+	    //    qrcode: '/小程序码.jpg',
+	    //    keyword: '验证码',
+	    //});
+
+	    try {
+            var plugin = new ReadmorePlugin();
+            plugin.init({
+                id: "readmore-container",
+                blogId: "06889-1119417401343-139",
+                name: "月伴飞鱼",
+                keyword: "验证码",
+                qrcode: "/小程序码.jpg",
+                cssUrl: '/css/readmore.css',
+                type: "hexo",
+                height: "auto",
+                expires: "1",
+                interval: "60",
+                random: "1"
+            })
+        } catch (e) {
+            console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
+        }
 
 	    var contents = document.getElementsByClassName("content999");
 	    //监听文章内容的copy事件
@@ -1260,13 +1318,31 @@
 
 <script>
     const btw = new BTWPlugin();
-    btw.init({
-        id: 'container',
-        blogId: '22377-1701577207733-710',
-        name: '月伴飞鱼',
-        qrcode: '/小程序码.jpg',
-        keyword: '验证码',
-    });
+    //btw.init({
+    //    id: 'container',
+    //    blogId: '22377-1701577207733-710',
+    //    name: '月伴飞鱼',
+    //    qrcode: '/小程序码.jpg',
+    //    keyword: '验证码',
+    //});
+    try {
+        var plugin = new ReadmorePlugin();
+        plugin.init({
+            id: "readmore-container",
+            blogId: "06889-1119417401343-139",
+            name: "月伴飞鱼",
+            keyword: "验证码",
+            qrcode: "/小程序码.jpg",
+            cssUrl: '/css/readmore.css',
+            type: "hexo",
+            height: "auto",
+            expires: "1",
+            interval: "60",
+            random: "1"
+        })
+    } catch (e) {
+        console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
+    }
 </script>
 	</div>
 	<div id="footer">

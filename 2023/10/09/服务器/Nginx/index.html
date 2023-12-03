@@ -43,12 +43,21 @@
 	
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 
+
+    
+<link rel="stylesheet" href="/css/readmore.css">
+
 	
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 
 
 	
 <script src="/lib/highlight/highlight.min.js"></script>
+
+
+	
+<script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js"></script>
+
 
 	
 <script src="https://readmore.openwrite.cn/js/readmore.js"></script>
@@ -1054,7 +1063,7 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<p><strong>配置文件</strong></p>
+		<div id="readmore-container"><p><strong>配置文件</strong></p>
 <table>
 <thead>
 <tr>
@@ -1062,7 +1071,8 @@
 <th>功能描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>全局块</td>
 <td>与Nginx运行相关的全局设置</td>
 </tr>
@@ -1082,13 +1092,13 @@
 <td>location块</td>
 <td>定义请求路由及页面处理方式</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <img src="/images/image-20231112204121913.png" alt="image-20231112204121913" style="zoom:45%;" />
-
 <blockquote>
 <p>配置文件示例：</p>
 </blockquote>
-<pre><code class="nginx"># 全局段配置
+<pre><code class="language-nginx"># 全局段配置
 # ------------------------------
 
 # 指定运行nginx的用户或用户组，默认为nobody。
@@ -1126,7 +1136,7 @@ http &#123;
     default_type  application/octet-stream;
 
     # 定义日志格式。
-    log_format myFormat &#39;$remote_addr–$remote_user [$time_local] $request $status $body_bytes_sent $http_referer $http_user_agent $http_x_forwarded_for&#39;;
+    log_format myFormat '$remote_addr–$remote_user [$time_local] $request $status $body_bytes_sent $http_referer $http_user_agent $http_x_forwarded_for';
 
     # 指定访问日志的存放路径和使用的格式。
     access_log log/access.log myFormat;
@@ -1179,28 +1189,36 @@ http &#123;
 <blockquote>
 <p>location 路径映射：</p>
 <ul>
-<li><p><code>=</code>：精确匹配，如果匹配成功，立即停止搜索并处理此请求。</p>
+<li>
+<p><code>=</code>：精确匹配，如果匹配成功，立即停止搜索并处理此请求。</p>
 </li>
-<li><p><code>~</code>：执行正则匹配，区分大小写。</p>
+<li>
+<p><code>~</code>：执行正则匹配，区分大小写。</p>
 </li>
-<li><p><code>~*</code>：执行正则匹配，不区分大小写。</p>
+<li>
+<p><code>~*</code>：执行正则匹配，不区分大小写。</p>
 </li>
-<li><p><code>!~</code>：正则匹配，区分大小写不匹配。</p>
+<li>
+<p><code>!~</code>：正则匹配，区分大小写不匹配。</p>
 </li>
-<li><p><code>!~*</code>：正则匹配，不区分大小写不匹配。</p>
+<li>
+<p><code>!~*</code>：正则匹配，不区分大小写不匹配。</p>
 </li>
-<li><p><code>^~</code>：前缀匹配，如果匹配成功，不再匹配其他<code>location</code>，且不查询正则表达式。</p>
+<li>
+<p><code>^~</code>：前缀匹配，如果匹配成功，不再匹配其他<code>location</code>，且不查询正则表达式。</p>
 </li>
-<li><p><code>@</code>：指定命名的<code>location</code>，主要用于内部重定向请求，如 <code>error_page</code> 和 <code>try_files</code>。</p>
+<li>
+<p><code>@</code>：指定命名的<code>location</code>，主要用于内部重定向请求，如 <code>error_page</code> 和 <code>try_files</code>。</p>
 </li>
-<li><p><code>uri</code>：待匹配的请求字符串，可以是普通字符串或包含正则表达式。</p>
+<li>
+<p><code>uri</code>：待匹配的请求字符串，可以是普通字符串或包含正则表达式。</p>
 </li>
 </ul>
 <p>优先级顺序：无特定标识 &lt; <code>^~</code> &lt; <code>=</code> &lt; 正则匹配 (<code>~</code>, <code>~*</code>, <code>!~</code>, <code>!~*</code>)</p>
 </blockquote>
 <pre><code>location [ = | ~ | ~* | !~ | !~* | ^~ | @ ] uri &#123;...&#125;
 </code></pre>
-<pre><code class="nginx">location = / &#123;
+<pre><code class="language-nginx">location = / &#123;
     # 精确匹配 /，主机名后面不能带任何字符串
     # http://abc.com [匹配成功]
     # http://abc.com/index [匹配失败]
@@ -1241,7 +1259,8 @@ location / &#123;
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>$args</code></td>
 <td>请求行中的参数，同<code>$query_string</code></td>
 </tr>
@@ -1299,7 +1318,7 @@ location / &#123;
 </tr>
 <tr>
 <td><code>$server_protocol</code></td>
-<td>请求使用的协议，如HTTP&#x2F;1.0或HTTP&#x2F;1.1</td>
+<td>请求使用的协议，如HTTP/1.0或HTTP/1.1</td>
 </tr>
 <tr>
 <td><code>$server_addr</code></td>
@@ -1325,37 +1344,45 @@ location / &#123;
 <td><code>$document_uri</code></td>
 <td>与<code>$uri</code>相同</td>
 </tr>
-</tbody></table>
-<h1 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h1><p><strong>反向代理</strong></p>
+</tbody>
+</table>
+<h1>基本配置</h1>
+<p><strong>反向代理</strong></p>
 <blockquote>
 <p>允许Nginx将来自客户端的请求转发到后端服务器，并将后端服务器的响应返回给客户端。</p>
 <p>使用<code>location</code>块中的<code>proxy_pass</code>指令：</p>
 <ul>
-<li><p><code>proxy_pass</code>：定义后端服务器的地址。</p>
+<li>
+<p><code>proxy_pass</code>：定义后端服务器的地址。</p>
 </li>
-<li><p><code>proxy_set_header</code>：修改从客户端传递到代理服务器的请求头。</p>
+<li>
+<p><code>proxy_set_header</code>：修改从客户端传递到代理服务器的请求头。</p>
 </li>
-<li><p><code>proxy_hide_header</code>：隐藏从代理服务器返回的响应头。</p>
+<li>
+<p><code>proxy_hide_header</code>：隐藏从代理服务器返回的响应头。</p>
 </li>
-<li><p><code>proxy_redirect</code>：修改从代理服务器返回的响应头中的<code>Location</code>和<code>Refresh</code>头字段。</p>
+<li>
+<p><code>proxy_redirect</code>：修改从代理服务器返回的响应头中的<code>Location</code>和<code>Refresh</code>头字段。</p>
 </li>
 </ul>
 <p><strong>注意事项</strong></p>
 <ul>
-<li><p>当使用<code>proxy_pass</code>指令时，确保后端服务器是可用的，否则Nginx将返回错误。</p>
+<li>
+<p>当使用<code>proxy_pass</code>指令时，确保后端服务器是可用的，否则Nginx将返回错误。</p>
 </li>
-<li><p>使用<code>proxy_set_header</code>确保后端服务器接收到正确的请求头。</p>
+<li>
+<p>使用<code>proxy_set_header</code>确保后端服务器接收到正确的请求头。</p>
 </li>
 </ul>
 </blockquote>
-<pre><code class="nginx">location /some/path/ &#123;
+<pre><code class="language-nginx">location /some/path/ &#123;
     proxy_pass http://your_backend_address;
 &#125;
 </code></pre>
 <blockquote>
 <p>例子：所有发送到<code>example.com</code>的请求都被代理到<code>localhost:8080</code>。</p>
 </blockquote>
-<pre><code class="nginx">server &#123;
+<pre><code class="language-nginx">server &#123;
     listen 80;
     server_name example.com;
 
@@ -1379,7 +1406,8 @@ location / &#123;
 <th>示例</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><strong>RR (round robin)</strong></td>
 <td>默认的负载均衡方法，按时间顺序逐一分配到不同的后端服务器</td>
 <td><code>upstream web_servers &#123; server localhost:8081; server localhost:8082; &#125;</code></td>
@@ -1409,11 +1437,12 @@ location / &#123;
 <td>根据请求的URL的hash结果分配请求，确保同一个URL的请求总是发给同一个后端服务器</td>
 <td><code>upstream backend &#123; hash_method crc32; hash $request_uri; server localhost:8080; server localhost:8081; &#125;</code></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <blockquote>
 <p><strong>权重</strong>：weight 越高，被分配的请求越多，默认为 1。</p>
 </blockquote>
-<pre><code class="nginx">      upstream myserver &#123;   
+<pre><code class="language-nginx">      upstream myserver &#123;   
         server 192.167.4.32:5000 weight=10;
         server 192.168.4.32:8080 weight=5;
       &#125;
@@ -1422,9 +1451,11 @@ location / &#123;
 <blockquote>
 <p>动静分离是指将动态内容和静态内容分开处理。</p>
 <ul>
-<li><p>静态内容通常包括：图片、CSS、JavaScript、HTML文件等，这些内容不需要经常更改。</p>
+<li>
+<p>静态内容通常包括：图片、CSS、JavaScript、HTML文件等，这些内容不需要经常更改。</p>
 </li>
-<li><p>而动态内容则是经常变化的，如：PHP、ASP、JSP、Servlet等生成的内容。</p>
+<li>
+<p>而动态内容则是经常变化的，如：PHP、ASP、JSP、Servlet等生成的内容。</p>
 </li>
 </ul>
 <p><strong>注意事项</strong>：</p>
@@ -1440,7 +1471,7 @@ location / &#123;
 <li><code>expires</code>指令设置了静态文件的缓存时间。</li>
 </ul>
 </blockquote>
-<pre><code class="nginx">location ~* .(jpg|jpeg|png|gif|ico|css|js)$ &#123;
+<pre><code class="language-nginx">location ~* .(jpg|jpeg|png|gif|ico|css|js)$ &#123;
     root /path/to/static/files;
     expires 30d;  # 设置缓存时间
 &#125;
@@ -1450,8 +1481,9 @@ location / &#123;
 <p>如果静态文件不在项目的主目录下，可以使用<code>alias</code>来指定静态文件的实际路径。</p>
 <p>URL中的<code>/static/</code>会映射到文件系统的<code>/path/to/static/files/</code>。</p>
 </blockquote>
-<pre><code class="nginx">location /static/ &#123;
+<pre><code class="language-nginx">location /static/ &#123;
     alias /path/to/static/files/;
+
 </code></pre>
 <blockquote>
 <p>代理动态内容：</p>
@@ -1459,7 +1491,7 @@ location / &#123;
 <li>对于动态内容，可能需要将请求代理到后端的应用服务器，如Tomcat、uWSGI等。</li>
 </ul>
 </blockquote>
-<pre><code class="nginx">location / &#123;
+<pre><code class="language-nginx">location / &#123;
     proxy_pass http://backend_server_address;
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
@@ -1472,33 +1504,32 @@ location / &#123;
 <ul>
 <li>Nginx可以通过设置响应头来帮助解决这个问题。</li>
 </ul>
-<p>在生产环境中，出于安全考虑，建议不要使用 <code>&#39;Access-Control-Allow-Origin&#39; &#39;*&#39;</code>，而是指定确切的域名。</p>
+<p>在生产环境中，出于安全考虑，建议不要使用 <code>'Access-Control-Allow-Origin' '*'</code>，而是指定确切的域名。</p>
 </blockquote>
 <img src="/images/image-20231112205711768.png" alt="image-20231112205711768" style="zoom:50%;" />
-
-<pre><code class="nginx">location / &#123;
+<pre><code class="language-nginx">location / &#123;
     # 其他配置...
 
-    # 设置允许来自所有域名请求。如果需要指定域名，将&#39;*&#39;替换为您的域名。
-    add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;;
+    # 设置允许来自所有域名请求。如果需要指定域名，将'*'替换为您的域名。
+    add_header 'Access-Control-Allow-Origin' '*';
 
     # 允许的请求方法。
-    add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, OPTIONS&#39;;
+    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
 
     # 允许的请求头。
-    add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range&#39;;
+    add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
 
     # 允许浏览器缓存预检请求的结果，单位为秒。
-    add_header &#39;Access-Control-Max-Age&#39; 1728000;
+    add_header 'Access-Control-Max-Age' 1728000;
 
     # 允许浏览器在实际请求中携带用户凭证。
-    add_header &#39;Access-Control-Allow-Credentials&#39; &#39;true&#39;;
+    add_header 'Access-Control-Allow-Credentials' 'true';
 
     # 设置响应类型为JSON。
-    add_header &#39;Content-Type&#39; &#39;application/json charset=UTF-8&#39;;
+    add_header 'Content-Type' 'application/json charset=UTF-8';
 
     # 针对OPTIONS请求单独处理，因为预检请求使用OPTIONS方法。
-    if ($request_method = &#39;OPTIONS&#39;) &#123;
+    if ($request_method = 'OPTIONS') &#123;
         return 204;
     &#125;
 &#125;
@@ -1515,7 +1546,7 @@ location / &#123;
 </ul>
 <p><code>$invalid_referer</code>：</p>
 <ul>
-<li>会在来源不在<code>valid_referers</code>列表中时变为”true”。</li>
+<li>会在来源不在<code>valid_referers</code>列表中时变为&quot;true&quot;。</li>
 </ul>
 <ul>
 <li>如果来源不合法，服务器将返回403禁止访问的状态码。</li>
@@ -1523,7 +1554,7 @@ location / &#123;
 <p>防盗链配置可能会影响搜索引擎的爬虫，因此在实施防盗链策略时要小心。</p>
 <p>如果网站使用了CDN，确保CDN的服务器也在<code>valid_referers</code>列表中，否则CDN可能无法正常工作。</p>
 </blockquote>
-<pre><code class="nginx">location ~ .*.(gif|jpg|jpeg|png|bmp|swf)$ &#123;
+<pre><code class="language-nginx">location ~ .*.(gif|jpg|jpeg|png|bmp|swf)$ &#123;
     valid_referers none blocked www.example.com example.com *.example.net;
     
     if ($invalid_referer) &#123;
@@ -1535,14 +1566,16 @@ location / &#123;
 <p>使用错误图片代替原图片。</p>
 <p>如果不想显示403错误，而是想显示一个错误图片（例如：“禁止外链”的图片），可以这样配置。</p>
 </blockquote>
-<pre><code class="nginx">location ~ .*.(gif|jpg|jpeg|png|bmp|swf)$ &#123;
+<pre><code class="language-nginx">location ~ .*.(gif|jpg|jpeg|png|bmp|swf)$ &#123;
     valid_referers none blocked www.example.com example.com *.example.net;
     
     if ($invalid_referer) &#123;
         rewrite ^/.*$ /path/to/error/image.jpg;
     &#125;
+
 </code></pre>
-<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><img src="/images/image-20231009180407173.png" alt="image-20231009180407173"></p>
+<h1>基本原理</h1>
+<p><img src="/images/image-20231009180407173.png" alt="image-20231009180407173"></p>
 <blockquote>
 <p>Nginx 启动之后，在 Linux 系统中有两个进程，一个为 master，一个为 worker。</p>
 <p>master 作为管理员不参与任何工作，只负责给多个 worker 分配不同的任务（worker一般有多个）。</p>
@@ -1561,7 +1594,36 @@ location / &#123;
 <blockquote>
 <p>Nginx 和 redis 类似，都采用 io 多路复用机制，每个 worker 都是一个独立的进程，每个进程里只有一个主线程，通过异步非阻塞的方式来处理请求，每个 worker 的线程可以把一个 cpu 的性能发挥到极致，因此，<strong>worker 数和服务器的 cpu 数相等是最为适宜的</strong>。</p>
 </blockquote>
-
+</div>
+				<link rel="stylesheet" type="text/css" href="/css/readmore.css">
+				<script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script>
+				<script>
+				var isMobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
+				var isEncrypt = document.getElementById('hexo-blog-encrypt');
+				var allowMobile = true;
+				if (!isEncrypt && (!isMobile || (isMobile && allowMobile))) {
+					try {
+						var plugin = new ReadmorePlugin();
+						plugin.init({
+							"type": "hexo",
+							"id": "readmore-container",
+							"name": "月伴飞鱼",
+							"blogId": "80022-2481144997660-197",
+							"qrcode": "https://img-blog.csdnimg.cn/20210613214230408.jpeg",
+							"keyword": "验证码",
+							"random": "1",
+							"height": "auto",
+							"expires": "365",
+							"lockToc": "yes",
+							"interval": "60",
+							"baseUrl": ""
+						});
+					} catch(e) {
+						console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
+					}
+				}
+				</script>
+			
 	</div>
 </div>
 
@@ -1597,13 +1659,32 @@ location / &#123;
 
 	$(function () {
 		const btw = new BTWPlugin();
-	    btw.init({
-	        id: 'container',
-	        blogId: '22377-1701577207733-710',
-	        name: '月伴飞鱼',
-	        qrcode: '/小程序码.jpg',
-	        keyword: '验证码',
-	    });
+	    //btw.init({
+	    //    id: 'container',
+	    //    blogId: '22377-1701577207733-710',
+	    //    name: '月伴飞鱼',
+	    //    qrcode: '/小程序码.jpg',
+	    //    keyword: '验证码',
+	    //});
+
+	    try {
+            var plugin = new ReadmorePlugin();
+            plugin.init({
+                id: "readmore-container",
+                blogId: "06889-1119417401343-139",
+                name: "月伴飞鱼",
+                keyword: "验证码",
+                qrcode: "/小程序码.jpg",
+                cssUrl: '/css/readmore.css',
+                type: "hexo",
+                height: "auto",
+                expires: "1",
+                interval: "60",
+                random: "1"
+            })
+        } catch (e) {
+            console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
+        }
 
 	    var contents = document.getElementsByClassName("content999");
 	    //监听文章内容的copy事件
@@ -1647,13 +1728,31 @@ location / &#123;
 
 <script>
     const btw = new BTWPlugin();
-    btw.init({
-        id: 'container',
-        blogId: '22377-1701577207733-710',
-        name: '月伴飞鱼',
-        qrcode: '/小程序码.jpg',
-        keyword: '验证码',
-    });
+    //btw.init({
+    //    id: 'container',
+    //    blogId: '22377-1701577207733-710',
+    //    name: '月伴飞鱼',
+    //    qrcode: '/小程序码.jpg',
+    //    keyword: '验证码',
+    //});
+    try {
+        var plugin = new ReadmorePlugin();
+        plugin.init({
+            id: "readmore-container",
+            blogId: "06889-1119417401343-139",
+            name: "月伴飞鱼",
+            keyword: "验证码",
+            qrcode: "/小程序码.jpg",
+            cssUrl: '/css/readmore.css',
+            type: "hexo",
+            height: "auto",
+            expires: "1",
+            interval: "60",
+            random: "1"
+        })
+    } catch (e) {
+        console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
+    }
 </script>
 	</div>
 	<div id="footer">

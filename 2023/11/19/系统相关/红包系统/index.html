@@ -43,12 +43,21 @@
 	
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 
+
+    
+<link rel="stylesheet" href="/css/readmore.css">
+
 	
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 
 
 	
 <script src="/lib/highlight/highlight.min.js"></script>
+
+
+	
+<script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js"></script>
+
 
 	
 <script src="https://readmore.openwrite.cn/js/readmore.js"></script>
@@ -1054,9 +1063,9 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<p><strong>微信红包的业务特点:</strong></p>
+		<div id="readmore-container"><p><strong>微信红包的业务特点:</strong></p>
 <blockquote>
-<p>类似 秒杀 活动，群里发一个红包&#x3D; 秒杀 商品上架；抢红包的动作&#x3D; 秒杀 的查询库存：拆红包&#x3D; 秒杀</p>
+<p>类似 秒杀 活动，群里发一个红包= 秒杀 商品上架；抢红包的动作= 秒杀 的查询库存：拆红包= 秒杀</p>
 </blockquote>
 <blockquote>
 <p>首先，微信红包业务比普通商品 秒杀 有更海量的并发要求。</p>
@@ -1100,7 +1109,6 @@
 <p>在内存操作<strong>成功</strong>但<strong>DB持久化失败</strong>，或者内存<strong>Cache故障</strong>的情况下，DB持久化会<strong>丢数据</strong>，不适合微信红包这种资金交易系统。</p>
 </blockquote>
 <img src="/images/webp" alt="img" style="zoom:50%;" />
-
 <p>使用乐观锁替代悲观锁:</p>
 <blockquote>
 <p>在DB的 库存 记录中维护一个版本号。</p>
@@ -1120,9 +1128,11 @@
 <p>接下来这个红包的所有发红包、抢红包、拆红包、查询红包详情等操作，都根据这个ID关联。</p>
 <p>红包系统根据这个红包ID，按一定的规则（如按ID尾号取模等），垂直上下切分。</p>
 <ul>
-<li><p>切分后，一个垂直链条上的逻辑Server服务器、DB统称为一个SET。</p>
+<li>
+<p>切分后，一个垂直链条上的逻辑Server服务器、DB统称为一个SET。</p>
 </li>
-<li><p>各个SET之间相互独立，互相解耦。</p>
+<li>
+<p>各个SET之间相互独立，互相解耦。</p>
 </li>
 </ul>
 <p>并且同一个红包ID的所有请求，包括发红包、抢红包、拆红包、查详情详情等，垂直stick到同一个SET内处理，高度内聚。</p>
@@ -1130,27 +1140,29 @@
 <p>这个方案解决了同时存在海量事务级操作的问题，将海量化为小量。</p>
 </blockquote>
 <img src="/images/webp-20231119224127893" alt="img" style="zoom:50%;" />
-
 <p>逻辑Server层将请求排队，解决DB并发问题:</p>
 <blockquote>
 <p>如果到达DB的事务操作（也即拆红包行为）不是并发的，而是串行的，就不会存在 并发抢锁 的问题了。</p>
 <p>按这个思路，为了使拆红包的事务操作串行地进入DB，只需要将请求在<strong>Server层以FIFO</strong>（<strong>先进先出</strong>）的方式排队，就可以达到这个效果。从而问题就集中到Server的FIFO队列设计上。</p>
 <p>其具体实现如下：</p>
 <ul>
-<li><p>首先，将同一个红包ID的所有请求stick到同一台Server。</p>
+<li>
+<p>首先，将同一个红包ID的所有请求stick到同一台Server。</p>
 <ul>
 <li>同个红包ID的所有请求，按红包ID stick到同个SET中。</li>
 <li>不过在同个SET中，会存在多台Server服务器同时连接同一台DB（基于容灾、性能考虑，需要多台Server互备、均衡压力）。</li>
 <li>为了使同一个红包ID的所有请求，stick到同一台Server服务器上，在SET化的设计之外，微信红包系统添加了一层基于红包ID hash值的分流。</li>
 </ul>
 </li>
-<li><p>其次，设计单机请求排队方案。</p>
+<li>
+<p>其次，设计单机请求排队方案。</p>
 <ul>
 <li>将stick到同一台Server上的所有请求在被接收进程接收后，按红包ID进行排队。</li>
 <li>然后<strong>串行地进入worker进程</strong>（执行业务逻辑）进行处理，从而达到<strong>排队</strong>的效果。</li>
 </ul>
 </li>
-<li><p>最后，增加memcached控制并发。</p>
+<li>
+<p>最后，增加memcached控制并发。</p>
 <ul>
 <li>为了<strong>防止</strong>Server中的请求队列过载导致队列被降级，从而所有请求<strong>拥进DB</strong>，系统增加了与Server服务器同机部署的<strong>memcached</strong>，用于控制拆同一个红包的<strong>请求并发数</strong>。</li>
 <li>利用memcached的<strong>CAS原子累增操作</strong>，控制同时进入<strong>DB执行拆红包事务的请求数</strong>，超过预先设定数值则<strong>直接拒绝服务</strong>。</li>
@@ -1168,11 +1180,40 @@
 <ul>
 <li>系统在以<strong>红包ID维度</strong>分库表的基础上，增加了以<strong>循环天分表的维度</strong>，形成了<strong>双维度分库表</strong>的特色。</li>
 </ul>
-<p>分库表规则像<code>db_xx.t_y_dd</code>设计，其中，xx&#x2F;y是红包ID的<strong>hash值后三位</strong>，dd的取值范围在<code>01~31</code>，代表一个月天数最多<strong>31</strong>天。</p>
+<p>分库表规则像<code>db_xx.t_y_dd</code>设计，其中，xx/y是红包ID的<strong>hash值后三位</strong>，dd的取值范围在<code>01~31</code>，代表一个月天数最多<strong>31</strong>天。</p>
 <p>通过这种双维度分库表方式，解决了DB单表数据量膨胀导致性能下降的问题，保障了系统性能的稳定性。</p>
 <p>同时，在热冷分离的问题上，又使得数据搬迁变得简单而优雅。</p>
 </blockquote>
-
+</div>
+				<link rel="stylesheet" type="text/css" href="/css/readmore.css">
+				<script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script>
+				<script>
+				var isMobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
+				var isEncrypt = document.getElementById('hexo-blog-encrypt');
+				var allowMobile = true;
+				if (!isEncrypt && (!isMobile || (isMobile && allowMobile))) {
+					try {
+						var plugin = new ReadmorePlugin();
+						plugin.init({
+							"type": "hexo",
+							"id": "readmore-container",
+							"name": "月伴飞鱼",
+							"blogId": "80022-2481144997660-197",
+							"qrcode": "https://img-blog.csdnimg.cn/20210613214230408.jpeg",
+							"keyword": "验证码",
+							"random": "1",
+							"height": "auto",
+							"expires": "365",
+							"lockToc": "yes",
+							"interval": "60",
+							"baseUrl": ""
+						});
+					} catch(e) {
+						console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
+					}
+				}
+				</script>
+			
 	</div>
 </div>
 
@@ -1208,13 +1249,32 @@
 
 	$(function () {
 		const btw = new BTWPlugin();
-	    btw.init({
-	        id: 'container',
-	        blogId: '22377-1701577207733-710',
-	        name: '月伴飞鱼',
-	        qrcode: '/小程序码.jpg',
-	        keyword: '验证码',
-	    });
+	    //btw.init({
+	    //    id: 'container',
+	    //    blogId: '22377-1701577207733-710',
+	    //    name: '月伴飞鱼',
+	    //    qrcode: '/小程序码.jpg',
+	    //    keyword: '验证码',
+	    //});
+
+	    try {
+            var plugin = new ReadmorePlugin();
+            plugin.init({
+                id: "readmore-container",
+                blogId: "06889-1119417401343-139",
+                name: "月伴飞鱼",
+                keyword: "验证码",
+                qrcode: "/小程序码.jpg",
+                cssUrl: '/css/readmore.css',
+                type: "hexo",
+                height: "auto",
+                expires: "1",
+                interval: "60",
+                random: "1"
+            })
+        } catch (e) {
+            console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
+        }
 
 	    var contents = document.getElementsByClassName("content999");
 	    //监听文章内容的copy事件
@@ -1258,13 +1318,31 @@
 
 <script>
     const btw = new BTWPlugin();
-    btw.init({
-        id: 'container',
-        blogId: '22377-1701577207733-710',
-        name: '月伴飞鱼',
-        qrcode: '/小程序码.jpg',
-        keyword: '验证码',
-    });
+    //btw.init({
+    //    id: 'container',
+    //    blogId: '22377-1701577207733-710',
+    //    name: '月伴飞鱼',
+    //    qrcode: '/小程序码.jpg',
+    //    keyword: '验证码',
+    //});
+    try {
+        var plugin = new ReadmorePlugin();
+        plugin.init({
+            id: "readmore-container",
+            blogId: "06889-1119417401343-139",
+            name: "月伴飞鱼",
+            keyword: "验证码",
+            qrcode: "/小程序码.jpg",
+            cssUrl: '/css/readmore.css',
+            type: "hexo",
+            height: "auto",
+            expires: "1",
+            interval: "60",
+            random: "1"
+        })
+    } catch (e) {
+        console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
+    }
 </script>
 	</div>
 	<div id="footer">

@@ -464,27 +464,59 @@ h1 {
 	pointer-events: none;
 }
 
+#readmore-modal-footer {
+/*	display: none;*/
+	opacity: 0;
+	pointer-events: none;
+}
+
 /*#btw-modal > img {
 	display: none;
 }*/
 
-#btw-modal > img{
+/*#btw-modal > img{
 	margin-top: 40px !important;
 /*	opacity: 0;*/
+/*}*/
+
+#readmore-modal-qrcode > img {
+	margin-top: 40px !important;
+/*	width: 180px !important;*/
+/*	border: 8px solid rgb(230, 230, 230) !important;*/
+/*	opacity: 0;*/
+}
+
+#readmore-modal-qrcode img {
+		margin-top: 40px !important;
 }
 
 /*#btw-modal-input {
 	z-index: 1;
 }*/
 
-#btw-modal-input-code::before {
+/*#btw-modal-input-code::before {
+  content: "";
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}*/
+
+#readmore-modal-form::before {
   content: "";
   display: block;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-#btw-modal-input-code::after {
+/*#btw-modal-input-code::after {
+  content: "为防止机器采集和刷接口，需要进行验证码验证";
+  display: block;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #2d2b9c;
+}*/
+
+#readmore-modal-form::after {
   content: "为防止机器采集和刷接口，需要进行验证码验证";
   display: block;
   font-weight: bold;
@@ -492,27 +524,51 @@ h1 {
   color: #2d2b9c;
 }
 
-#btw-modal-input-code::before {
+/*#btw-modal-input-code::before {
+  content: "微信搜索小程序：HardyFish，获取验证码";
+  display: inline-block;
+  color: #f20622;
+  font-weight: bold;
+}*/
+
+#readmore-modal-form::before {
   content: "微信搜索小程序：HardyFish，获取验证码";
   display: inline-block;
   color: #f20622;
   font-weight: bold;
 }
 
-#btw-modal-input-code::before strong {
+/*#btw-modal-input-code::before strong {
+  font-weight: bold;
+  color: #ff5722;
+}*/
+
+#readmore-modal-form::before strong {
   font-weight: bold;
   color: #ff5722;
 }
 
-#btw-submit-btn {
+/*#btw-submit-btn {
+	background: rgb(23, 29, 241) !important;
+}*/
+
+#readmore-modal-submit-btn {
 	background: rgb(23, 29, 241) !important;
 }
 
-#btw-modal {
+/*#btw-modal {
+	background: rgb(192, 209, 182) !important;
+}*/
+
+#readmore-modal-content {
 	background: rgb(192, 209, 182) !important;
 }
 
-#btw-modal-input-code {
+/*#btw-modal-input-code {
+	background: rgb(192, 209, 182) !important;
+}
+*/
+#readmore-modal-form {
 	background: rgb(192, 209, 182) !important;
 }
 
@@ -523,7 +579,11 @@ h1 {
   user-select: initial !important;
 }*/
 
-#btw-modal-header {
+/*#btw-modal-header {
+	display: none;
+}*/
+
+#readmore-modal-header {
 	display: none;
 }
 
