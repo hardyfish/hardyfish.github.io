@@ -1063,23 +1063,19 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<div id="readmore-container"><h1>数据绑定</h1>
-<p>单项数据绑定（<code>v-bind</code>）：数据只能从data流向页面。</p>
+		<div id="readmore-container"><h1 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h1><p>单项数据绑定（<code>v-bind</code>）：数据只能从data流向页面。</p>
 <p>双向数据绑定（<code>v-model</code>）：数据不仅能从data流向页面，还可以从页面流向data。</p>
 <blockquote>
 <p>双向绑定一般都应用在表单类元素上（如：input、select等）</p>
 <p><code>v-mode:value</code>可以简写为<code>v-model</code>，因为<code>v-model</code>默认收集的就是value值。</p>
 </blockquote>
-<h1>事件处理</h1>
-<p>使用<code>v-on:xxx</code>或者<code>@xxx</code>绑定事件，其中xxx是事件名。通常使用<code>@xxx</code>，例如：<code>@click</code>；</p>
+<h1 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h1><p>使用<code>v-on:xxx</code>或者<code>@xxx</code>绑定事件，其中xxx是事件名。通常使用<code>@xxx</code>，例如：<code>@click</code>；</p>
 <blockquote>
 <p>事件的回调需要配置在methods对象中，最终会在vm上；</p>
 <ul>
-<li>
-<p>methods中配置的函数，不要用箭头函数！否则this就不是vm实例化对象了；</p>
+<li><p>methods中配置的函数，不要用箭头函数！否则this就不是vm实例化对象了；</p>
 </li>
-<li>
-<p>methods中配置的函数，都是被Vue所管理的函数，this的指向是vm或组件实例对象；</p>
+<li><p>methods中配置的函数，都是被Vue所管理的函数，this的指向是vm或组件实例对象；</p>
 </li>
 </ul>
 </blockquote>

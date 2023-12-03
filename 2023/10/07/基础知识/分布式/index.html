@@ -1063,11 +1063,10 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<div id="readmore-container"><h1>基本概念</h1>
-<p><strong>背压</strong></p>
+		<div id="readmore-container"><h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><strong>背压</strong></p>
 <blockquote>
 <p>背压思想，被请求方不会直接将请求端的流量直接丢掉，而是不断的反馈自己的处理能力。</p>
-<p>请求端根据这些反馈，实时的调整自己的发送频率，比如：TCP/IP中使用滑动窗口来进行流量控制。</p>
+<p>请求端根据这些反馈，实时的调整自己的发送频率，比如：TCP&#x2F;IP中使用滑动窗口来进行流量控制。</p>
 </blockquote>
 <p><strong>CAP原则</strong></p>
 <p>Consistency（一致性）</p>
@@ -1113,11 +1112,11 @@
 <li>正常情况下，在一个电商网站上进行购物的时候，消费者几乎能够顺利完成每一笔订单，但是在一些节日大促购物高峰的时候，由于消费者的购物行为激增，为了保护购物系统的稳定性，部分消费者可能会被引导到一个降级页面；</li>
 </ul>
 </blockquote>
-<p>软状态（Soft State）：</p>
+<p>软状态（Soft State）： </p>
 <blockquote>
 <p>软状态是指允许系统中的数据存在中间状态，并认为该中间状态的存在不会影响系统的整体可用性，即允许系统在不同节点的数据副本之间进行数据同步的过程存在延时；</p>
 </blockquote>
-<p>最终一致性（Eventually Consistent）：</p>
+<p>最终一致性（Eventually Consistent）： </p>
 <blockquote>
 <p>最终一致性强调的是系统中所有的数据副本，在经过一段时间的同步后，最终能够达到一个一致的状态。</p>
 <p>因此，最终一致性的本质是需要系统保证最终数据能够达到一致，而不需要实时保证系统数据的强一致性。</p>
@@ -1158,6 +1157,7 @@
 </blockquote>
 <p>将这<code>2^32</code>个值抽象成一个圆环，圆环的正上方的点代表0，顺时针排列，以此类推，1、2、3、4、5、6……直到<code>2^32-1</code>，而这个由2的32次方个点组成的圆环统称为<code>hash环</code>。</p>
 <img src="/images/4c29a6671b747f2af446021617898836.png" alt="img" style="zoom:60%;" />
+
 <p>服务器映射到hash环:</p>
 <blockquote>
 <p>使用服务器IP地址进行hash计算，用哈希后的结果对<code>2^32</code>取模，结果一定是一个0到<code>2^32-1</code>之间的整数，而这个整数映射在hash环上的位置代表了一个服务器，依次将<code>node0</code>、<code>node1</code>、<code>node2</code>三个缓存服务器映射到hash环上。</p>
@@ -1177,8 +1177,7 @@
 <blockquote>
 <p>一致性hash在分布式系统中应该是实现负载均衡的首选算法，比如日常使用较多的缓存中间件<code>memcached</code>和<code>redis</code>集群都有用到它。</p>
 </blockquote>
-<h1>限流算法</h1>
-<p><strong>固定窗口限流算法</strong></p>
+<h1 id="限流算法"><a href="#限流算法" class="headerlink" title="限流算法"></a>限流算法</h1><p><strong>固定窗口限流算法</strong></p>
 <blockquote>
 <p>原理是在<strong>固定时间窗口</strong>(<code>单位时间</code>)内限制请求的数量。</p>
 <ul>
@@ -1190,6 +1189,7 @@
 <p>在单位时间<code>1</code>秒内，每来一个请求，计数器就加<code>1</code>，如果计数器累加的次数超过限流阀值<code>3</code>，后续的请求全部拒绝。</p>
 <p>等到<code>1s</code>结束后，计数器清<code>0</code>，重新开始计数。</p>
 <img src="/images/image-20231012114901262.png" alt="image-20231012114901262" style="zoom:60%;" />
+
 <p>固定窗口算法的缺点:</p>
 <blockquote>
 <p>存在<strong>明显的临界问题</strong>，比如: 假设限流阀值为<code>5</code>个请求，单位时间窗口是<code>1s</code>，如果我们在单位时间内的<code>前0.8-1s</code>和<code>1-1.2s</code>，分别并发5个请求，虽然都没有超过阀值，但是如果算0.8-1.2s，则并发数高达10，<strong>已经超过单位时间1s不超过5阀值的定义</strong>了。</p>
@@ -1206,7 +1206,7 @@
 </blockquote>
 <p>当滑动窗口的<strong>格子周期划分的越多，那么滑动窗口的滚动就越平滑，限流的统计就会越精确</strong>。</p>
 <p>伪代码实现：</p>
-<pre><code class="language-java"> /**
+<pre><code class="java"> /**
      * 单位时间划分的小周期（单位时间是1分钟，10s一个小格子窗口，一共6个格子）
      */
     private int SUB_CYCLE = 10;
@@ -1260,7 +1260,6 @@
         &#125;
         return count;
     &#125;
-
 </code></pre>
 <p>滑动窗口限流算法的缺点:</p>
 <blockquote>
@@ -1308,8 +1307,7 @@
 <th>限流实现方式</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>Sentinel</td>
 <td>阿里巴巴开源服务稳定性保障组件</td>
 <td>令牌桶算法</td>
@@ -1329,15 +1327,14 @@
 <td>Uber开源go语言限流组件</td>
 <td>漏桶算法</td>
 </tr>
-</tbody>
-</table>
-<h1>异地多活</h1>
-<p><strong>同城灾备</strong></p>
+</tbody></table>
+<h1 id="异地多活"><a href="#异地多活" class="headerlink" title="异地多活"></a>异地多活</h1><p><strong>同城灾备</strong></p>
 <blockquote>
 <p>在同一个城市 再搭建一个机房，原机房叫作 A 机房，新机房叫 B 机房，这两个机房的网络用一条 专线 连通。</p>
 <p>为了避免 A 机房故障导致数据丢失，所以我们需要把数据在 B 机房也存一份。</p>
 </blockquote>
 <img src="/images/a1eae275f0fb2efeb9b425cc795d01e2.jpeg" alt="img" style="zoom:50%;" />
+
 <p><strong>两地三中心</strong></p>
 <blockquote>
 <p>两地是指 2 个城市，三中心是指有 3 个机房。</p>
@@ -1352,23 +1349,20 @@
 <blockquote>
 <p>需要在接入层之上，再部署一个路由层（通常部署在云服务器上），自己可以配置路由规则，把用户分流到不同的机房内。</p>
 <ul>
-<li>
-<p>按业务类型分片</p>
+<li><p>按业务类型分片</p>
 </li>
-<li>
-<p>直接哈希分片</p>
+<li><p>直接哈希分片</p>
 </li>
-<li>
-<p>按地理位置分片</p>
+<li><p>按地理位置分片</p>
 </li>
 </ul>
 </blockquote>
 <img src="/images/fda1a0564cc8547a8b27580c7d9ee0a6.jpeg" alt="img" style="zoom:50%;" />
-<h1>基本架构</h1>
-<p><strong>面向服务架构(SOA)</strong></p>
+
+<h1 id="基本架构"><a href="#基本架构" class="headerlink" title="基本架构"></a>基本架构</h1><p><strong>面向服务架构(SOA)</strong></p>
 <blockquote>
 <p>基于分布式架构模式演变而来，俗称服务化，也就是面向接口开发(服务开发)，将共同存在的业务逻辑抽取成一个共同的服务，提供给其他的服务接口实现调用、服务与服务之间通讯采用RPC远程调用技术，可以解决代码冗余性问题。</p>
-<p>采用SOAP协议(http/https+XML)实现传输，在高并发情况下会存在大量的冗余性传输，非常占用带宽，所以微服务框架用json替代了xml。</p>
+<p>采用SOAP协议(http&#x2F;https+XML)实现传输，在高并发情况下会存在大量的冗余性传输，非常占用带宽，所以微服务框架用json替代了xml。</p>
 <p>实现方案为WebService或者是ESB企业服务总线，底层通讯协议SOAP协议（Http+XML）实现传输。</p>
 <ul>
 <li>采用SOAP协议实现通讯，xml传输非常重，效率比较低，而且很占带宽。</li>
@@ -1408,31 +1402,28 @@
 <p>我们的业务代码只需要关心业务逻辑就可以，简化开发工作。</p>
 </blockquote>
 <img src="/images/image-20231012132207344.png" alt="image-20231012132207344" style="zoom:80%;" />
+
 <p>Service Mesh 和 API 网关的区别：</p>
 <blockquote>
 <p>部署方式不同，在整体系统架构中的位置不一样。</p>
 <p>API 网关通常是独立部署，通过单独的系统提供服务，为了实现高可用，还会通过网关集群等来管理。</p>
-<p>而服务网格通常是集成在应用容器内的，服务网格离应用本身更近。</p>
+<p>而服务网格通常是集成在应用容器内的，服务网格离应用本身更近。 </p>
 </blockquote>
 <p>Service Mesh 解决方案：</p>
 <blockquote>
 <p>目前两款流行的 Service Mesh 开源软件分别是 Istio 和 Linker。</p>
 </blockquote>
-<h1>应用场景</h1>
-<p><strong>TraceId</strong></p>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p><strong>TraceId</strong></p>
 <p>通过 TraceId 来将一个请求在各个服务器上的调用日志串联起来，TraceId 一般由接收请求经过的第一个服务器产生。</p>
 <p>SpanId 代表本次调用在整个调用链路树中的位置。</p>
 <blockquote>
 <p>假设一次分布式调用中产生的 TraceId 是 <code>0a1234</code>，SpanId 的产生过程：</p>
 <ul>
-<li>
-<p>系统 A 接收了一次用户请求，记录下的 SpanId 是 0，代表是整个调用的根节点。</p>
+<li><p>系统 A 接收了一次用户请求，记录下的 SpanId 是 0，代表是整个调用的根节点。</p>
 </li>
-<li>
-<p>A 系统处理这次请求，依次调用 B、C、D 三个系统，SpanId 分别是 0.1，0.2 和 0.3。</p>
+<li><p>A 系统处理这次请求，依次调用 B、C、D 三个系统，SpanId 分别是 0.1，0.2 和 0.3。</p>
 </li>
-<li>
-<p>C 系统在处理请求的时候又调用了 E，F 两个系统，那么 E、F 两个系统是 0.2.1 和 0.2.2。</p>
+<li><p>C 系统在处理请求的时候又调用了 E，F 两个系统，那么 E、F 两个系统是 0.2.1 和 0.2.2。</p>
 </li>
 </ul>
 </blockquote>
@@ -1443,19 +1434,17 @@
 <p><strong>Session复制方案是一个服务器端的方案</strong>，对客户端是透明的，客户端不需要改变什么。</p>
 </blockquote>
 <img src="/images/image-20231012140331252.png" alt="image-20231012140331252" style="zoom:80%;" />
+
 <p>这个方案本质是利用了<strong>应用服务器自身的特性</strong>，如：Tomcat。</p>
 <p>修改一下Tomcat的配置文件，就是让<strong>应用服务器之间进行Session复制</strong>，这样就可以达到<strong>每个服务器都有一样的Session。</strong></p>
 <blockquote>
 <p>服务器一旦多起来，就会有问题:</p>
 <ul>
-<li>
-<p>Ssession之间的复制就会占用很大的网络带宽。</p>
+<li><p>Ssession之间的复制就会占用很大的网络带宽。</p>
 </li>
-<li>
-<p>Session复制是有时间延迟的。</p>
+<li><p>Session复制是有时间延迟的。</p>
 </li>
-<li>
-<p>服务器的内存是有限的，代表着Session存放是有限的。</p>
+<li><p>服务器的内存是有限的，代表着Session存放是有限的。</p>
 </li>
 </ul>
 </blockquote>
@@ -1473,39 +1462,34 @@
 <li>Redis存储</li>
 </ul>
 </blockquote>
-<h2 id="分布式ID">分布式ID</h2>
-<p><strong>数据库号段模式</strong></p>
+<h2 id="分布式ID"><a href="#分布式ID" class="headerlink" title="分布式ID"></a>分布式ID</h2><p><strong>数据库号段模式</strong></p>
 <blockquote>
 <p>号段模式为从数据库批量的获取自增ID，每次从数据库取出一个号段范围。</p>
 <p>例如 (1,1000] 代表1000个ID，具体的业务服务将本号段，生成1~1000的自增ID并加载到内存。</p>
 <ul>
-<li>
-<p><code>biz_type</code> ：代表不同业务类型</p>
+<li><p><code>biz_type</code> ：代表不同业务类型</p>
 </li>
-<li>
-<p><code>max_id</code> ：当前最大的可用id</p>
+<li><p><code>max_id</code> ：当前最大的可用id</p>
 </li>
-<li>
-<p><code>step</code> ：代表号段的长度</p>
+<li><p><code>step</code> ：代表号段的长度</p>
 </li>
-<li>
-<p><code>version</code> ：是一个乐观锁，每次都更新version，保证并发时数据的正确性</p>
+<li><p><code>version</code> ：是一个乐观锁，每次都更新version，保证并发时数据的正确性</p>
 </li>
 </ul>
 </blockquote>
-<pre><code class="language-sql">CREATE TABLE id_generator (
+<pre><code class="sql">CREATE TABLE id_generator (
   id int(10) NOT NULL,
-  max_id bigint(20) NOT NULL COMMENT '当前最大id',
-  step int(20) NOT NULL COMMENT '号段的布长',
-  biz_type	int(20) NOT NULL COMMENT '业务类型',
-  version int(20) NOT NULL COMMENT '版本号',
+  max_id bigint(20) NOT NULL COMMENT &#39;当前最大id&#39;,
+  step int(20) NOT NULL COMMENT &#39;号段的布长&#39;,
+  biz_type	int(20) NOT NULL COMMENT &#39;业务类型&#39;,
+  version int(20) NOT NULL COMMENT &#39;版本号&#39;,
   PRIMARY KEY (`id`)
 ) 
 </code></pre>
 <blockquote>
 <p>等这批号段ID用完，再次向数据库申请新号段，对<code>max_id</code>字段做一次<code>update</code>操作，<code>update max_id= max_id + step</code>，update成功则说明新号段获取成功，新的号段范围是<code>(max_id ,max_id +step]</code>。</p>
 </blockquote>
-<pre><code class="language-sql">update id_generator set max_id = #&#123;max_id+step&#125;, version = version + 1 where version = # &#123;version&#125; and biz_type = XXX
+<pre><code class="sql">update id_generator set max_id = #&#123;max_id+step&#125;, version = version + 1 where version = # &#123;version&#125; and biz_type = XXX
 </code></pre>
 <blockquote>
 <p>由于多业务端可能同时操作，所以采用版本号<code>version</code>乐观锁方式更新，这种<code>分布式ID</code>生成方式不强依赖于数据库，不会频繁的访问数据库，对数据库的压力小很多。</p>
@@ -1517,10 +1501,10 @@
 </blockquote>
 <p><img src="/images/image-20231012141356009.png" alt="image-20231012141356009"></p>
 <blockquote>
-<p>**1位标识符：**始终是0</p>
+<p><strong>1位标识符：</strong>始终是0</p>
 <p><strong>41位时间戳</strong>：存储时间截的差值（当前时间截 - 开始时间截 )得到的值，这里的的开始时间截，一般是ID生成器开始使用的时间，由程序来指定的</p>
-<p><strong>10位机器标识码：<strong>可以</strong>部署在1024个节点</strong>，如果机器<strong>分机房（IDC）部署</strong>，这10位可以由 <strong>5位机房ID + 5位机器ID</strong> 组成</p>
-<p>**12位序列：**毫秒内的计数，12位的计数顺序号支持每个节点每毫秒(同一机器，同一时间截)产生4096个ID序号</p>
+<p><strong>10位机器标识码：</strong>可以<strong>部署在1024个节点</strong>，如果机器<strong>分机房（IDC）部署</strong>，这10位可以由 <strong>5位机房ID + 5位机器ID</strong> 组成</p>
+<p><strong>12位序列：</strong>毫秒内的计数，12位的计数顺序号支持每个节点每毫秒(同一机器，同一时间截)产生4096个ID序号</p>
 </blockquote>
 <p>优点：</p>
 <blockquote>
@@ -1557,7 +1541,7 @@
 </ul>
 </blockquote>
 <p>算法实现：</p>
-<pre><code class="language-java">/**
+<pre><code class="java">/**
  * Twitter的SnowFlake算法,使用SnowFlake算法生成一个整数，然后转化为62进制变成一个短地址URL
  *
  * https://github.com/beyondfengyu/SnowFlake
@@ -1615,10 +1599,10 @@ public class SnowFlakeShortUrl &#123;
      */
     public SnowFlakeShortUrl(long dataCenterId, long machineId) &#123;
         if (dataCenterId &gt; MAX_DATA_CENTER_NUM || dataCenterId &lt; 0) &#123;
-            throw new IllegalArgumentException(&quot;DtaCenterId can't be greater than MAX_DATA_CENTER_NUM or less than 0！&quot;);
+            throw new IllegalArgumentException(&quot;DtaCenterId can&#39;t be greater than MAX_DATA_CENTER_NUM or less than 0！&quot;);
         &#125;
         if (machineId &gt; MAX_MACHINE_NUM || machineId &lt; 0) &#123;
-            throw new IllegalArgumentException(&quot;MachineId can't be greater than MAX_MACHINE_NUM or less than 0！&quot;);
+            throw new IllegalArgumentException(&quot;MachineId can&#39;t be greater than MAX_MACHINE_NUM or less than 0！&quot;);
         &#125;
         this.dataCenterId = dataCenterId;
         this.machineId = machineId;
@@ -1668,11 +1652,10 @@ public class SnowFlakeShortUrl &#123;
 <p><strong>百度（uid-generator）</strong></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/baidu/uid-generator">https://github.com/baidu/uid-generator</a></p>
 <p><strong>美团（Leaf）</strong></p>
-<p><a href="https://link.zhihu.com/?target=https%3A//github.com/Meituan-Dianping/Leaf">https://link.zhihu.com/?target=https%3A//github.com/Meituan-Dianping/Leaf</a></p>
+<p><a href="https://link.zhihu.com/?target=https://github.com/Meituan-Dianping/Leaf">https://link.zhihu.com/?target=https%3A//github.com/Meituan-Dianping/Leaf</a></p>
 <p><strong>滴滴（Tinyid）</strong></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/didi/tinyid">https://github.com/didi/tinyid</a></p>
-<h2 id="分布式锁">分布式锁</h2>
-<p>分布式锁是控制分布式系统不同进程共同访问共享资源的一种锁的实现。</p>
+<h2 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h2><p>分布式锁是控制分布式系统不同进程共同访问共享资源的一种锁的实现。</p>
 <p>如果不同的系统或同一个系统的不同主机之间共享了某个临界资源，往往需要互斥来防止彼此干扰，以保证一致性。</p>
 <p>业界分布式锁的实现，一般有这3种方式：</p>
 <blockquote>
@@ -1681,14 +1664,11 @@ public class SnowFlakeShortUrl &#123;
 <p>基于Zookeeper实现的分布式锁</p>
 <p>对比：</p>
 <ul>
-<li>
-<p>从性能角度（从高到低）Redis &gt; Zookeeper &gt;= 数据库；</p>
+<li><p>从性能角度（从高到低）Redis &gt; Zookeeper &gt;&#x3D; 数据库；</p>
 </li>
-<li>
-<p>从实现的复杂性角度（从低到高）Zookeeper &gt; Redis &gt; 数据库。</p>
+<li><p>从实现的复杂性角度（从低到高）Zookeeper &gt; Redis &gt; 数据库。</p>
 </li>
-<li>
-<p>从可靠性角度（从高到低）Zookeeper &gt; Redis &gt; 数据库。</p>
+<li><p>从可靠性角度（从高到低）Zookeeper &gt; Redis &gt; 数据库。</p>
 </li>
 </ul>
 </blockquote>
@@ -1701,8 +1681,7 @@ public class SnowFlakeShortUrl &#123;
 <blockquote>
 <p>加个version字段，每次更新修改，都会自增加一，然后去更新时，把查出来的那个版本号，带上条件去更新，如果是上次那个版本号，就更新，如果不是，就继续重试。</p>
 </blockquote>
-<h2 id="分库分表">分库分表</h2>
-<p>分库分表是在海量数据下，由于单库、表数据量过大，导致数据库性能持续下降的问题，演变出的技术方案。</p>
+<h2 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h2><p>分库分表是在海量数据下，由于单库、表数据量过大，导致数据库性能持续下降的问题，演变出的技术方案。</p>
 <p><strong>为什么分库分表</strong></p>
 <blockquote>
 <p>单机数据库的存储能力、连接数是有限的，它自身就很容易会成为系统的瓶颈。</p>
@@ -1759,6 +1738,7 @@ public class SnowFlakeShortUrl &#123;
 <p>有效的避免数据分布不均匀的问题，数据库水平扩展也简单，直接添加实例无需迁移历史数据。</p>
 </blockquote>
 <img src="/images/640.png" alt="图片" style="zoom:60%;" />
+
 <p><strong>分库分表出来的问题</strong></p>
 <blockquote>
 <p>分页、排序、跨节点联合查询</p>
@@ -1779,11 +1759,9 @@ public class SnowFlakeShortUrl &#123;
 <blockquote>
 <p>假设一张叫 <code>test_tb</code> 的表进行拆分，因为你要进行双写，系统里和 <code>test_tb</code>表有关的业务之前必定会加入一段双写代码，同时往老库和新库中写，然后进行部署。</p>
 <ul>
-<li>
-<p>历史数据:在部署前，数据库表 <code>test_tb</code> 的有关数据。</p>
+<li><p>历史数据:在部署前，数据库表 <code>test_tb</code> 的有关数据。</p>
 </li>
-<li>
-<p>增量数据:在部署后，数据库表 <code>test_tb</code> 的新产生的数据。</p>
+<li><p>增量数据:在部署后，数据库表 <code>test_tb</code> 的新产生的数据。</p>
 </li>
 </ul>
 </blockquote>
@@ -1794,6 +1772,7 @@ public class SnowFlakeShortUrl &#123;
 <p>与 <code>test_tb</code> 有关的业务，多加一条往消息队列中发消息的代码，将操作的写SQL发送到消息队列中：增量数据。</p>
 </blockquote>
 <img src="/images/image-20231012145132206.png" alt="image-20231012145132206" style="zoom:80%;" />
+
 <p><strong>分库分表后非分片键如何查询</strong></p>
 <blockquote>
 <p><strong>基因法:</strong></p>
@@ -1805,7 +1784,7 @@ public class SnowFlakeShortUrl &#123;
 <ul>
 <li>实际上淘宝的订单号也是这样构建的。</li>
 </ul>
-<p>假如现在根据<code>user_id</code>进行分片，采用<code>user_id % 16</code>的方式来进行数据库路由，这里的<code>user_id%16</code>，其本质是<code>user_id</code>的最后4个bit位 <strong>log(16,2) = 4</strong> 决定这行数据落在哪个分片上，这4个bit就是分片基因。</p>
+<p>假如现在根据<code>user_id</code>进行分片，采用<code>user_id % 16</code>的方式来进行数据库路由，这里的<code>user_id%16</code>，其本质是<code>user_id</code>的最后4个bit位 <strong>log(16,2) &#x3D; 4</strong> 决定这行数据落在哪个分片上，这4个bit就是分片基因。</p>
 </blockquote>
 <p><img src="/images/image-20231112224850091.png" alt="image-20231112224850091"></p>
 <blockquote>
@@ -1823,9 +1802,7 @@ public class SnowFlakeShortUrl &#123;
 <li>通过<code>order_id % 16</code>也能定位到分片</li>
 </ul>
 </blockquote>
-<h1>分布式算法</h1>
-<h2 id="Paxos算法">Paxos算法</h2>
-<p>在常见的 <strong>分布式系统</strong> 中，总会发生 <strong>节点宕机</strong> 或 <strong>网络异常</strong> (包括消息的 <strong>重复</strong>、<strong>丢失</strong>、<strong>延迟</strong>、<strong>乱序</strong>、<strong>网络分区</strong>) 等情况。</p>
+<h1 id="分布式算法"><a href="#分布式算法" class="headerlink" title="分布式算法"></a>分布式算法</h1><h2 id="Paxos算法"><a href="#Paxos算法" class="headerlink" title="Paxos算法"></a>Paxos算法</h2><p>在常见的 <strong>分布式系统</strong> 中，总会发生 <strong>节点宕机</strong> 或 <strong>网络异常</strong> (包括消息的 <strong>重复</strong>、<strong>丢失</strong>、<strong>延迟</strong>、<strong>乱序</strong>、<strong>网络分区</strong>) 等情况。</p>
 <blockquote>
 <p><code>Paxos</code> 算法主要就是解决如何在一个 <strong>发生如上故障</strong> 的分布式系统中，快速正确的在集群内 <strong>对某个值达成一致</strong>，并且保证 <strong>整个系统的一致性</strong>。</p>
 </blockquote>
@@ -1840,19 +1817,16 @@ public class SnowFlakeShortUrl &#123;
 <p><strong>学习阶段：Prepare请求</strong></p>
 <p><code>Proposer</code> 选择一个新的提案 向 <code>Acceptor</code> 集合 （数目在<strong>半数以上</strong>）发送请求，要求 每一个 <code>Acceptor</code> 做出如下响应：</p>
 <ul>
-<li>
-<p>如果 <code>Acceptor</code> 没有接受过提案，则向 <code>Proposer</code> 保证 <strong>不再接受编号小于N的提案</strong>。</p>
+<li><p>如果 <code>Acceptor</code> 没有接受过提案，则向 <code>Proposer</code> 保证 <strong>不再接受编号小于N的提案</strong>。</p>
 </li>
-<li>
-<p>如果 <code>Acceptor</code> 接受过请求，则向 <code>Proposer</code> 返回 <strong>已经接受过的编号小于N的编号最大的提案</strong>。</p>
+<li><p>如果 <code>Acceptor</code> 接受过请求，则向 <code>Proposer</code> 返回 <strong>已经接受过的编号小于N的编号最大的提案</strong>。</p>
 </li>
 </ul>
 <p><strong>接受阶段：Acceptor请求</strong></p>
 <p>如果 <code>Proposer</code> 收到 <strong>半数以上</strong> 的 <code>Acceptor</code> 响应，则 <strong>生成编号为</strong> <code>N</code>，<code>value</code> 为 <code>V</code> 的提案，<code>V</code> 为所有响应中 <strong>编号最大</strong> 的提案的 <code>value</code>。</p>
 <p>如果 <code>Proposer</code> 收到的响应中 <strong>没有提案</strong>，那么 <code>value</code> 由 <code>Proposer</code> <strong>自己生成</strong>，生成后将此提案发送，并期望 <code>Acceptor</code> 能接受此提案。</p>
 </blockquote>
-<h2 id="Raft算法">Raft算法</h2>
-<p>三类角色：</p>
+<h2 id="Raft算法"><a href="#Raft算法" class="headerlink" title="Raft算法"></a>Raft算法</h2><p>三类角色：</p>
 <blockquote>
 <p>Leader（领袖），Follower（群众），Candidate（候选人）</p>
 </blockquote>
@@ -1868,16 +1842,15 @@ public class SnowFlakeShortUrl &#123;
 <p>若 <code>Follower</code> 一段时间未收到 <code>Leader</code> 的 <strong>心跳</strong>，则认为 <code>Leader</code> 可能已经挂了，然后再次发起 <strong>选举</strong> 过程。</p>
 </blockquote>
 <img src="/images/image-20231012151732458.png" alt="image-20231012151732458" style="zoom:100%;" />
-<h1>分布式事务</h1>
-<p><strong>柔性事务</strong></p>
+
+<h1 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h1><p><strong>柔性事务</strong></p>
 <p>柔性事务主要分为补偿型和通知型。</p>
 <blockquote>
 <p>补偿型事务分：TCC、Saga。</p>
 <p>通知型事务分：MQ事务消息、最⼤努⼒通知型。</p>
 <p>补偿型事务都是同步的，通知型事务都是异步的。</p>
 </blockquote>
-<h2 id="二阶段提交">二阶段提交</h2>
-<p><strong>二阶段提交协议(2PC)</strong></p>
+<h2 id="二阶段提交"><a href="#二阶段提交" class="headerlink" title="二阶段提交"></a>二阶段提交</h2><p><strong>二阶段提交协议(2PC)</strong></p>
 <p>二阶段提交算法的成立基于以下假设：</p>
 <blockquote>
 <p>在该分布式系统中，存在一个节点作为协调者（Coordinator），其他节点作为参与者（Participants），且节点之间可以进行网络通信；</p>
@@ -1911,8 +1884,7 @@ public class SnowFlakeShortUrl &#123;
 <p>在 Commit 阶段出现数据不一致:</p>
 <p>在第二阶段中，假设协调者发出了事务 Commit 的通知，但是由于网络问题该通知仅被一部分参与者所收到并执行 Commit，其余的参与者没有收到通知，一直处于阻塞状态，那么，这段时间就产生了数据的不一致性。</p>
 </blockquote>
-<h2 id="三阶段提交">三阶段提交</h2>
-<p><strong>三阶段提交协议(3PC)</strong></p>
+<h2 id="三阶段提交"><a href="#三阶段提交" class="headerlink" title="三阶段提交"></a>三阶段提交</h2><p><strong>三阶段提交协议(3PC)</strong></p>
 <p>为了解决二阶段协议中的同步阻塞等问题，三阶段提交协议在协调者和参与者中都引入了超时机制，并且把两阶段提交协议的第一个阶段拆分成了两步：询问，然后再锁资源，最后真正提交。</p>
 <p>三阶段中的 Three Phase 分别为 CanCommit、PreCommit、DoCommit 阶段。</p>
 <p><img src="/images/image-20231012155323587.png" alt="image-20231012155323587"></p>
@@ -1929,8 +1901,7 @@ public class SnowFlakeShortUrl &#123;
 <blockquote>
 <p>在阶段三中，如果参与者接收到了 PreCommit 消息后，出现了不能与协调者正常通信的问题，在这种情况下，参与者依然会进行事务的提交，这就出现了数据的不一致性。</p>
 </blockquote>
-<h2 id="MQ消息事务">MQ消息事务</h2>
-<blockquote>
+<h2 id="MQ消息事务"><a href="#MQ消息事务" class="headerlink" title="MQ消息事务"></a>MQ消息事务</h2><blockquote>
 <p>方案一：依靠MQ的事务消息机制来实现投递消息和参与者⾃身本地事务的⼀致性保障。</p>
 </blockquote>
 <p><img src="/images/2529502-20211122161700726-1810030666.png" alt="RocketMQ"></p>
@@ -1965,8 +1936,7 @@ public class SnowFlakeShortUrl &#123;
 <p>消费者消费成功后，ack时，除了对消息队列进行ack，对于独立消息服务也要进行ack，独立消息服务一般是把这条消息删除。</p>
 <p>而定时扫描prepare状态的消息，向消息发送端(生产者)确认的工作也由独立消息服务来完成。</p>
 </blockquote>
-<h2 id="最大努力通知">最大努力通知</h2>
-<p>适用于一些最终一致性时间敏感度低的业务，且被动方处理结果 不影响主动方的处理结果。</p>
+<h2 id="最大努力通知"><a href="#最大努力通知" class="headerlink" title="最大努力通知"></a>最大努力通知</h2><p>适用于一些最终一致性时间敏感度低的业务，且被动方处理结果 不影响主动方的处理结果。</p>
 <blockquote>
 <p>典型的使用场景：如银行通知、商户通知等。</p>
 </blockquote>
@@ -1984,6 +1954,7 @@ public class SnowFlakeShortUrl &#123;
 <p>举例：一个短信发送平台，背景是公司内部有多个业务都有发送短信的需求，如果每个业务独立实现短信发送功能，存在功能实现上的重复。</p>
 <p>有一个短信平台项目，所有的业务方都接入这个短信平台，来实现发送短信的功能。</p>
 <img src="/images/1517793734283093270.png" alt="E14FE394-01AF-45BE-A371-8B46611884BD.png" style="zoom:50%;" />
+
 <blockquote>
 <p>1、业务方将短信发送请求提交给短信平台</p>
 <p>2、短信平台接收到要发送的短信，记录到数据库中，并标记其状态为已接收</p>
@@ -1994,8 +1965,7 @@ public class SnowFlakeShortUrl &#123;
 <p>7、如果最多只通知N次，如果都失败了的话，那么短信平台将不知道短信到底有没有成功发送</p>
 <p>8、短信发送供应商需要提供一个查询接口，以方便短信平台驱动的去查询，进行定期校对</p>
 </blockquote>
-<h2 id="TCC事务">TCC事务</h2>
-<p>TCC将事务过程分为Try（尝试）、Confirm（确认）和Cancel（取消）三个阶段，每个阶段由业务代码控制，避免了长事务的问题，从而提高了性能。</p>
+<h2 id="TCC事务"><a href="#TCC事务" class="headerlink" title="TCC事务"></a>TCC事务</h2><p>TCC将事务过程分为Try（尝试）、Confirm（确认）和Cancel（取消）三个阶段，每个阶段由业务代码控制，避免了长事务的问题，从而提高了性能。</p>
 <p><img src="/images/a2cc7cd98d1001e935946ae51df604e056e797b0.png" alt="img"></p>
 <blockquote>
 <p><strong>Try阶段</strong>：</p>
@@ -2018,9 +1988,9 @@ public class SnowFlakeShortUrl &#123;
 <p>TCC对微服务的侵入性较强，需要对业务系统进行改造，每个分支的业务逻辑都需要实现try、confirm和cancel操作，并且confirm和cancel操作必须保证幂等性。</p>
 <p>TCC的事务管理器需要记录事务日志，这也会带来一定的性能损耗。</p>
 </blockquote>
-<p>与2PC/XA两阶段提交的区别:</p>
+<p>与2PC&#x2F;XA两阶段提交的区别:</p>
 <blockquote>
-<p>2PC/XA关注数据库层面的强一致性，持有数据库锁。</p>
+<p>2PC&#x2F;XA关注数据库层面的强一致性，持有数据库锁。</p>
 <p>而TCC关注业务层面的最终一致性，不涉及加锁，并且将相关的处理从数据库转移到业务中，实现跨数据库的事务。</p>
 </blockquote>
 <p>空回滚问题:</p>
@@ -2028,11 +1998,9 @@ public class SnowFlakeShortUrl &#123;
 <p>在 try 阶段服务 发生了故障，try 阶段在不考虑重试的情况下，全局事务必须要走向结束状态，这样就需要在服务上执行一次 cancel 操作，这样就空跑了一次回滚操作。</p>
 <p>解决办法：</p>
 <ul>
-<li>
-<p>第一阶段 Try 方法里会插入一条记录（事务记录表），表示一阶段执行了。</p>
+<li><p>第一阶段 Try 方法里会插入一条记录（事务记录表），表示一阶段执行了。</p>
 </li>
-<li>
-<p>Cancel 接口里读取该记录，如果该记录存在，则正常回滚；如果该记录不存在，则是空回滚。</p>
+<li><p>Cancel 接口里读取该记录，如果该记录存在，则正常回滚；如果该记录不存在，则是空回滚。</p>
 </li>
 </ul>
 </blockquote>
@@ -2042,11 +2010,9 @@ public class SnowFlakeShortUrl &#123;
 <p>在此之后，拥堵在网络上的一阶段Try数据包被TCC服务收到，出现了二阶段Cancel请求比一阶段Try请求先执行的情况；</p>
 <p>解决思路：</p>
 <ul>
-<li>
-<p>如果二阶段执行完成，那一阶段就不能再继续执行。</p>
+<li><p>如果二阶段执行完成，那一阶段就不能再继续执行。</p>
 </li>
-<li>
-<p>在执行一阶段事务时判断在该全局事务下，事务记录表中是否已经有二阶段事务记录，如果有则不执行Try。</p>
+<li><p>在执行一阶段事务时判断在该全局事务下，事务记录表中是否已经有二阶段事务记录，如果有则不执行Try。</p>
 </li>
 </ul>
 </blockquote>

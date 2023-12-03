@@ -1076,6 +1076,7 @@
 <p>在<code>Java</code>中就是把<code>.java</code>文件编译成<code>.class</code>文件，再把编译后的文件交给<code>JVM</code>加载执行。</p>
 </blockquote>
 <img src="/images/image-20231016000034082.png" alt="image-20231016000034082" style="zoom:40%;" />
+
 <p><strong>接口和抽象的区别</strong></p>
 <blockquote>
 <p>抽象类带来的很大的作用就是实现代码复用，比如当有多个子类有相同的属性或方法时，我们可以抽象出一个公共的类，然后子类继承这个抽象类，当然，这个公共类可以是普通父类，也可以是抽象类。</p>
@@ -1094,8 +1095,7 @@
 <li>这种动态获取信息以及动态调用对象的方法的功能是反射机制。</li>
 </ul>
 </blockquote>
-<h1>关键字</h1>
-<p><strong>Final</strong></p>
+<h1 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h1><p><strong>Final</strong></p>
 <p>Final可以用来修饰变量、方法或者类。</p>
 <blockquote>
 <p>修饰变量：</p>
@@ -1123,11 +1123,9 @@
 </ul>
 <p><strong>修饰方法:</strong></p>
 <ul>
-<li>
-<p>代表该方法和当前类是无关的，任意类都可以直接访问（如果权限是 public 的话）。</p>
+<li><p>代表该方法和当前类是无关的，任意类都可以直接访问（如果权限是 public 的话）。</p>
 </li>
-<li>
-<p>被 static 修饰的方法，在类初始化的时候并不会初始化，只有当自己被调用时，才会被执行。</p>
+<li><p>被 static 修饰的方法，在类初始化的时候并不会初始化，只有当自己被调用时，才会被执行。</p>
 </li>
 </ul>
 <p><strong>修饰方法块:</strong></p>
@@ -1170,9 +1168,8 @@
 <li>子类的构造函数</li>
 </ul>
 </blockquote>
-<h2 id="Long">Long</h2>
-<p>Long 自己实现了一种缓存机制，缓存了从 -128 到 127 内的所有 Long 值，如果是这个范围内的 Long 值，就不会初始化，而是从缓存中拿，缓存初始化源码如下：</p>
-<pre><code class="language-java">private static class LongCache &#123;
+<h2 id="Long"><a href="#Long" class="headerlink" title="Long"></a>Long</h2><p>Long 自己实现了一种缓存机制，缓存了从 -128 到 127 内的所有 Long 值，如果是这个范围内的 Long 值，就不会初始化，而是从缓存中拿，缓存初始化源码如下：</p>
+<pre><code class="java">private static class LongCache &#123;
     private LongCache()&#123;&#125;
     // 缓存，范围从 -128 到 127，+1 是因为有个 0
     static final Long cache[] = new Long[-(-128) + 127 + 1];
@@ -1185,10 +1182,9 @@
     &#125;
 &#125;
 </code></pre>
-<h2 id="String">String</h2>
-<p><strong>字符串是一个常量</strong>，一旦创建了一个 String 对象，就无法改变它的值，它的内容也就不可能发生变化（不考虑反射这种特殊行为）。</p>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p><strong>字符串是一个常量</strong>，一旦创建了一个 String 对象，就无法改变它的值，它的内容也就不可能发生变化（不考虑反射这种特殊行为）。</p>
 <p><strong>String 具备不变性背后的原因是什么：</strong></p>
-<pre><code class="language-java">public final class String
+<pre><code class="java">public final class String
     implements Java.io.Serializable, Comparable&lt;String&gt;, CharSequence &#123;
     /** The value is used for character storage. */
     private final char value[];
@@ -1208,8 +1204,7 @@
 <p>3、缓存 HashCode。</p>
 <p>4、<strong>线程安全</strong>。</p>
 </blockquote>
-<h1>泛型</h1>
-<p>泛型就是在定义类、接口、方法的时候指定某一种特定类型，让类、接口、方法的使用者来决定具体用哪一种类型的参数。</p>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>泛型就是在定义类、接口、方法的时候指定某一种特定类型，让类、接口、方法的使用者来决定具体用哪一种类型的参数。</p>
 <blockquote>
 <p>泛型是在<code>1.5</code>引入的，只在<strong>编译期</strong>做泛型检查，<strong>运行期</strong>泛型就会消失，称为 <strong>泛型擦除</strong>，最终类型都会变成<code>Object</code>。</p>
 <p>泛型的本质是参数化类型，而类型擦除使得类型参数只存在于编译期，在运行时，<code>JVM</code>是并不知道泛型的存在的。</p>
@@ -1219,7 +1214,7 @@
 <p>在编译的时候能够检查类型安全，并且所有的强制转换都是自动和隐式的。</p>
 </blockquote>
 <p><strong>类型擦除</strong></p>
-<pre><code class="language-java">public static void main(String[] args) &#123;
+<pre><code class="java">public static void main(String[] args) &#123;
     List&lt;String&gt; list1=new ArrayList&lt;String&gt;();
     List&lt;Integer&gt; list2=new ArrayList&lt;Integer&gt;();
     System.out.println(list1.getClass()==list2.getClass());
@@ -1233,7 +1228,7 @@
 <p>主要目的是避免过多的创建类而造成的运行时的过度消耗。</p>
 </blockquote>
 <p><strong>泛型类</strong></p>
-<pre><code class="language-java">public class GenericClass&lt;T&gt;&#123;
+<pre><code class="java">public class GenericClass&lt;T&gt;&#123;
     //成员变量
     private T t;
     
@@ -1248,7 +1243,7 @@
 &#125;
 </code></pre>
 <p><strong>泛型接口</strong></p>
-<pre><code class="language-java">public interface GenericInterface&lt;T&gt; &#123;
+<pre><code class="java">public interface GenericInterface&lt;T&gt; &#123;
     
     public T get();
     
@@ -1262,7 +1257,7 @@
 &#125;
 </code></pre>
 <p><strong>泛型函数</strong></p>
-<pre><code class="language-java">public class GenericFunction &#123;
+<pre><code class="java">public class GenericFunction &#123;
 
     public &lt;T&gt; void function(T t) &#123;
     &#125;
@@ -1293,15 +1288,14 @@
 <li>不作为函数返回类型，只作为函数入参，比如<code>List&lt;? super T&gt;</code>的<code>add</code>函数正常调用，<code>get</code>函数也没问题，但只会返回<code>Object</code>，所以意义不大。</li>
 </ul>
 </blockquote>
-<h1>ThreadLocal</h1>
-<p>ThreadLocal 提供了线程本地变量的实例，它与普通变量的区别在于，每个使用该变量的线程都会初始化一个完全独立的实例副本。</p>
+<h1 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h1><p>ThreadLocal 提供了线程本地变量的实例，它与普通变量的区别在于，每个使用该变量的线程都会初始化一个完全独立的实例副本。</p>
 <p><strong>使用场景</strong></p>
 <blockquote>
 <p>ThreadLocal 用作保存每个线程独享的对象，为每个线程都创建一个副本，这样每个线程都可以修改自己所拥有的副本, 而不会影响其他线程的副本，确保了线程安全。</p>
 <p>ThreadLocal 用作每个线程内需要独立保存信息，以便供其他方法更方便地获取该信息的场景，避免了传参，类似于全局变量的概念。</p>
 </blockquote>
 <p><strong>关键属性</strong></p>
-<pre><code class="language-java">// threadLocalHashCode 表示当前 ThreadLocal 的 hashCode，用于计算当前 ThreadLocal 在 ThreadLocalMap 中的索引位置
+<pre><code class="java">// threadLocalHashCode 表示当前 ThreadLocal 的 hashCode，用于计算当前 ThreadLocal 在 ThreadLocalMap 中的索引位置
 private final int threadLocalHashCode = nextHashCode();
 // 计算 ThreadLocal 的 hashCode 值(就是递增)
 private static int nextHashCode() &#123;
@@ -1315,7 +1309,7 @@ private static AtomicInteger nextHashCode = new AtomicInteger();
 <blockquote>
 <p>ThreadLocalMap 本身就是一个简单的 Map 结构，key 是 ThreadLocal，value 是 ThreadLocal 保存的值，底层是数组的数据结构。</p>
 </blockquote>
-<pre><code class="language-java">static class ThreadLocalMap &#123;
+<pre><code class="java">static class ThreadLocalMap &#123;
         // 数组中的每个节点值，WeakReference 是弱引用，当没有引用指向时，会直接被回收
         static class Entry extends WeakReference&lt;ThreadLocal&lt;?&gt;&gt; &#123;
             // 当前 ThreadLocal 关联的值
@@ -1341,7 +1335,7 @@ private static AtomicInteger nextHashCode = new AtomicInteger();
 <p>父线程在创建子线程的情况下，会拷贝 inheritableThreadLocals 的值，但不会拷贝 threadLocals 的值。</p>
 </blockquote>
 <p><strong>set 方法</strong></p>
-<pre><code class="language-java">// set 操作每个线程都是串行的，不会有线程安全的问题
+<pre><code class="java">// set 操作每个线程都是串行的，不会有线程安全的问题
 public void set(T value) &#123;
     Thread t = Thread.currentThread();
     ThreadLocalMap map = getMap(t);
@@ -1353,7 +1347,7 @@ public void set(T value) &#123;
         createMap(t, value);
 &#125;
 </code></pre>
-<pre><code class="language-java">private void set(ThreadLocal&lt;?&gt; key, Object value) &#123;
+<pre><code class="java">private void set(ThreadLocal&lt;?&gt; key, Object value) &#123;
     Entry[] tab = table;
     int len = tab.length;
     // 计算 key 在数组中的下标，其实就是 ThreadLocal 的 hashCode 和数组大小-1取余
@@ -1394,7 +1388,7 @@ public void set(T value) &#123;
 <p>3、通过 hashCode 计算的索引位置 i 处如果已经有值了，会从 i 开始，通过 +1 不断的往后寻找，直到找到索引位置为空的地方，把当前 ThreadLocal 作为 key 放进去。</p>
 </blockquote>
 <p><strong>get 方法</strong></p>
-<pre><code class="language-java">public T get() &#123;
+<pre><code class="java">public T get() &#123;
     // 因为 threadLocal 属于线程的属性，所以需要先把当前线程拿出来
     Thread t = Thread.currentThread();
     // 从线程中拿到 ThreadLocalMap
@@ -1413,7 +1407,7 @@ public void set(T value) &#123;
     return setInitialValue();
 &#125;
 </code></pre>
-<pre><code class="language-java">// 自旋 i+1，直到找到为止
+<pre><code class="java">// 自旋 i+1，直到找到为止
 private Entry getEntryAfterMiss(ThreadLocal&lt;?&gt; key, int i, Entry e) &#123;
     Entry[] tab = table;
     int len = tab.length;
@@ -1436,7 +1430,7 @@ private Entry getEntryAfterMiss(ThreadLocal&lt;?&gt; key, int i, Entry e) &#123;
 </code></pre>
 <p><strong>扩容</strong></p>
 <p>ThreadLocalMap 中的 ThreadLocal 的个数超过阈值时，ThreadLocalMap 就要开始扩容了：</p>
-<pre><code class="language-java">//扩容
+<pre><code class="java">//扩容
 private void resize() &#123;
     // 拿出旧的数组
     Entry[] oldTab = table;
@@ -1487,7 +1481,7 @@ private void resize() &#123;
 </blockquote>
 <p><strong>如何避免内存泄露</strong></p>
 <p>调用remove方法，就会删除对应的Entry对象，可以避兔内存泄漏，所以使用完ThreadLocal之后，应该调用remove方法。</p>
-<pre><code class="language-java">ThreadLocal&lt;String&gt; localName = new ThreadLocal();
+<pre><code class="java">ThreadLocal&lt;String&gt; localName = new ThreadLocal();
 try &#123;
     localName.set(&quot;月伴飞鱼&quot;);
     // 其它业务逻辑
@@ -1497,7 +1491,7 @@ try &#123;
 </code></pre>
 <p><strong>空指针问题</strong></p>
 <p>ThreadLocal在进行get之前，必须先set，否则会报空指针异常。</p>
-<pre><code class="language-java">public class ThreadLocalNPE &#123;
+<pre><code class="java">public class ThreadLocalNPE &#123;
     ThreadLocal&lt;Long&gt; longThreadLocal = new ThreadLocal&lt;&gt;();
     public void set() &#123;
         longThreadLocal.set(Thread.currentThread().getId());
@@ -1532,15 +1526,14 @@ try &#123;
 </ul>
 <p>TransmittableThreadLocal通过将线程封装成TtlRunnable，然后通过快照还有hold一个总收集变量来解决。</p>
 </blockquote>
-<h1>集合类</h1>
-<h2 id="HashMap">HashMap</h2>
-<p>HashMap 底层的数据结构主要是：数组 + 链表 + 红黑树。</p>
+<h1 id="集合类"><a href="#集合类" class="headerlink" title="集合类"></a>集合类</h1><h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><p>HashMap 底层的数据结构主要是：数组 + 链表 + 红黑树。</p>
 <blockquote>
 <p>其中当链表的长度大于等于 8 时，链表会转化成红黑树，当红黑树的大小小于等于 6 时，红黑树会转化成链表。</p>
 </blockquote>
 <img src="/images/format,png.png" alt="图片描述" style="zoom:50%;" />
+
 <p><strong>常见属性</strong></p>
-<pre><code class="language-java"> //初始容量为 16
+<pre><code class="java"> //初始容量为 16
  static final int DEFAULT_INITIAL_CAPACITY = 1 &lt;&lt; 4;
  
  //最大容量
@@ -1589,7 +1582,8 @@ try &#123;
 <p>7、判断是否需要扩容，需要扩容进行扩容，结束。</p>
 </blockquote>
 <img src="/images/format,png-20231016190034410.png" alt="图片描述" style="zoom:50%;" />
-<pre><code class="language-java">// 入参 hash：通过 hash 算法计算出来的值。
+
+<pre><code class="java">// 入参 hash：通过 hash 算法计算出来的值。
 // 入参 onlyIfAbsent：false 表示即使 key 已经存在了，仍然会用新值覆盖原来的值，默认为 false
 final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
                boolean evict) &#123;
@@ -1685,11 +1679,9 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
 <blockquote>
 <p>1、首先判断新增的节点在红黑树上是不是已经存在：</p>
 <ul>
-<li>
-<p>如果节点没有实现 Comparable 接口，使用 equals 进行判断。</p>
+<li><p>如果节点没有实现 Comparable 接口，使用 equals 进行判断。</p>
 </li>
-<li>
-<p>如果节点自己实现了 Comparable 接口，使用 compareTo 进行判断。</p>
+<li><p>如果节点自己实现了 Comparable 接口，使用 compareTo 进行判断。</p>
 </li>
 </ul>
 <p>2、新增的节点如果已经在红黑树上，直接返回；不在的话，判断新增节点是在当前节点的左边还是右边，左边值小，右边值大。</p>
@@ -1710,7 +1702,7 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
 <p>判断当前节点有无 next 节点，有的话判断是链表类型，还是红黑树类型。</p>
 <p>分别走链表和红黑树不同类型的查找方法。</p>
 </blockquote>
-<pre><code class="language-java">// 采用自旋方式从链表中查找 key，e 初始为为链表的头节点
+<pre><code class="java">// 采用自旋方式从链表中查找 key，e 初始为为链表的头节点
 do &#123;
     // 如果当前节点 hash 等于 key 的 hash，并且 equals 相等，当前节点就是我们要找的节点
     // 当 hash 冲突时，同一个 hash 值上是一个链表的时候，我们是通过 equals 方法来比较 key 是否相等的
@@ -1735,8 +1727,7 @@ do &#123;
 <li>扩容的时候，会反转散列桶中的节点顺序，当有多个线程同时进行扩容的时候，如果两个线程同时反转的话，便可能形成一个循环。</li>
 </ul>
 </blockquote>
-<h2 id="ArrayList">ArrayList</h2>
-<p>ArrayList整体架构是一个数组结构:</p>
+<h2 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h2><p>ArrayList整体架构是一个数组结构:</p>
 <p><img src="/images/image-20231016184326651.png" alt="image-20231016184326651"></p>
 <p>基本概念：</p>
 <blockquote>
@@ -1753,21 +1744,21 @@ do &#123;
 <p>判断是否需要扩容，如果需要则执行扩容操作。</p>
 <p>赋值新元素。</p>
 </blockquote>
-<pre><code class="language-java">public boolean add(E e) &#123;
-	// 确保数组大小是否足够，不够则执行扩容，size 为当前数组的大小
+<pre><code class="java">public boolean add(E e) &#123;
+    // 确保数组大小是否足够，不够则执行扩容，size 为当前数组的大小
     ensureCapacityInternal(size + 1);  // Increments modCount!!
     // 直接赋值
     elementData[size++] = e;
     return true;
 &#125;
 </code></pre>
-<pre><code class="language-java">private void ensureCapacityInternal(int minCapacity) &#123;
+<pre><code class="java">private void ensureCapacityInternal(int minCapacity) &#123;
     ensureExplicitCapacity(calculateCapacity(elementData, minCapacity));
 &#125;
 
 // 计算 capacity
 private static int calculateCapacity(Object[] elementData, int minCapacity) &#123;
-	// 如果数组为空，则返回默认容量(10) 和最小容量(比如初始化 List add 一个 element 时 minCapacity 为 1)之间的 max 值
+    // 如果数组为空，则返回默认容量(10) 和最小容量(比如初始化 List add 一个 element 时 minCapacity 为 1)之间的 max 值
     if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) &#123;
         return Math.max(DEFAULT_CAPACITY, minCapacity);
     &#125;
@@ -1776,7 +1767,7 @@ private static int calculateCapacity(Object[] elementData, int minCapacity) &#12
 
 // 确保容量足够
 private void ensureExplicitCapacity(int minCapacity) &#123;
-	// 记录数组被修改 
+    // 记录数组被修改 
     modCount++;
 
     // 如果我们期望的最小容量大于目前数组的长度，则执行扩容操作
@@ -1811,7 +1802,7 @@ private void grow(int minCapacity) &#123;
 <blockquote>
 <p>扩容会先新建一个符合我们预期容量 <code>newCapacity</code> 的新数组，然后把旧数组的数据拷贝过去。</p>
 </blockquote>
-<pre><code class="language-java">public static int[] copyOf(int[] original, int newLength) &#123;
+<pre><code class="java">public static int[] copyOf(int[] original, int newLength) &#123;
     int[] copy = new int[newLength];
     System.arraycopy(original, 0, copy, 0,
                      Math.min(original.length, newLength));
@@ -1825,9 +1816,9 @@ public static native void arraycopy(Object src,  int  srcPos, Object dest, int d
 <p>只有当 <code>ArrayList</code> 作为共享变量时，才会有线程安全问题，当 <code>ArrayList</code> 是方法内部局部变量时，是没有线程安全问题的。</p>
 <p>本质是因为 ArrayList 自身的 elementData、size、modCount 在进行各种操作时，都没有加锁，而且这些变量的类型并非是可见的(volatile)的，所以如果多个线程对这些变量进行操作时，可能会有值被覆盖的情况。</p>
 </blockquote>
-<h2 id="LinkedList">LinkedList</h2>
-<p>LinkedList 适用于要求有顺序、并且会按照顺序进行迭代的场景，底层数据结构是一个双向链表:</p>
+<h2 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h2><p>LinkedList 适用于要求有顺序、并且会按照顺序进行迭代的场景，底层数据结构是一个双向链表:</p>
 <img src="/images/image-20231015001829797.png" alt="image-20231015001829797" style="zoom:30%;" />
+
 <blockquote>
 <p>链表每个节点我们叫做 Node，Node 有 prev 属性，代表前一个节点的位置，next 属性，代表后一个节点的位置。</p>
 <p>first 是双向链表的头节点，它的前一个节点是 null。</p>
@@ -1835,10 +1826,10 @@ public static native void arraycopy(Object src,  int  srcPos, Object dest, int d
 <p>当链表中没有数据时，first 和 last 是同一个节点，前后指向都是 null。</p>
 <p>因为是个双向链表，只要机器内存足够强大，是没有大小限制的。</p>
 </blockquote>
-<pre><code class="language-java">    transient Node&lt;E&gt; first;//第一个节点
+<pre><code class="java">    transient Node&lt;E&gt; first;//第一个节点
     transient Node&lt;E&gt; last;//最后一个节点
 </code></pre>
-<pre><code class="language-java">private static class Node&lt;E&gt; &#123;
+<pre><code class="java">private static class Node&lt;E&gt; &#123;
     E item;// 节点值
     Node&lt;E&gt; next; // 指向的下一个节点
     Node&lt;E&gt; prev; // 指向的前一个节点
@@ -1856,7 +1847,7 @@ public static native void arraycopy(Object src,  int  srcPos, Object dest, int d
 <p>追加节点时，add 方法默认是从尾部开始追加，addFirst 方法是从头部开始追加。</p>
 <p>尾部追加节点比较简单，只需要简单地把指向位置修改下即可。</p>
 </blockquote>
-<pre><code class="language-java">// 从尾部开始追加节点
+<pre><code class="java">// 从尾部开始追加节点
 public void addLast(E e) &#123;
         linkLast(e);
     &#125;
@@ -1885,7 +1876,7 @@ void linkLast(E e) &#123;
 <p>节点删除的方式和追加类似，可以选择从头部删除，也可以选择从尾部删除，删除操作会把节点的值，前后指向节点都置为 null，帮助 GC 进行回收。</p>
 <p><strong>链表结构的节点新增、删除都非常简单，仅仅把前后节点的指向修改下就好了，所以 LinkedList 新增和删除速度很快。</strong></p>
 </blockquote>
-<pre><code class="language-java">public E removeFirst() &#123;
+<pre><code class="java">public E removeFirst() &#123;
     final Node&lt;E&gt; f = first;
     if (f == null)
         throw new NoSuchElementException();
@@ -1920,7 +1911,7 @@ private E unlinkFirst(Node&lt;E&gt; f) &#123;
 <p>LinkedList 并没有采用从头循环到尾的做法，而是采取了<strong>简单二分法</strong>，首先看看 index 是在链表的前半部分，还是后半部分。</p>
 <p>如果是前半部分，就从头开始寻找，反之亦然。通过这种方式，使循环的次数至少降低了一半，提高了查找的性能。</p>
 </blockquote>
-<pre><code class="language-java">// 根据链表索引位置查询节点
+<pre><code class="java">// 根据链表索引位置查询节点
 Node&lt;E&gt; node(int index) &#123;
     // 如果 index 处于队列的前半部分，从头开始找，size &gt;&gt; 1 是 size 除以 2 的意思。
     if (index &lt; (size &gt;&gt; 1)) &#123;
@@ -1938,14 +1929,13 @@ Node&lt;E&gt; node(int index) &#123;
     &#125;
 &#125;
 </code></pre>
-<h2 id="HashSet">HashSet</h2>
-<blockquote>
+<h2 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h2><blockquote>
 <p>HashSet原理：使用的就是组合 HashMap。</p>
 <ul>
 <li>把 HashMap 当作自己的一个局部变量。</li>
 </ul>
 </blockquote>
-<pre><code class="language-java">// 把 HashMap 组合进来，key 是 Hashset 的 key，value 是下面的 PRESENT
+<pre><code class="java">// 把 HashMap 组合进来，key 是 Hashset 的 key，value 是下面的 PRESENT
 private transient HashMap&lt;E,Object&gt; map;
 // HashMap 中的 value
 private static final Object PRESENT = new Object();
@@ -1954,18 +1944,16 @@ private static final Object PRESENT = new Object();
 <p>1、在使用 HashSet 时，比如 add 方法，只有一个入参，但组合的 Map 的 add 方法却有 key，value 两个入参，相对应上 Map 的 key 就是我们 add 的入参，value 就是第二行代码中的 PRESENT，用一个默认值 PRESENT 来代替 Map 的 Value；</p>
 <p>2、如果 HashSet 是被共享的，当多个线程访问的时候，就会有线程安全问题，因为在后续的所有操作中，并没有加锁。</p>
 </blockquote>
-<h2 id="TreeSet">TreeSet</h2>
-<blockquote>
+<h2 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h2><blockquote>
 <p>TreeSet底层组合的是 TreeMap，所以继承了 TreeMap key 能够排序的功能，迭代的时候，也可以按照 key 的排序顺序进行迭代。</p>
 </blockquote>
-<h2 id="TreeMap">TreeMap</h2>
-<blockquote>
+<h2 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h2><blockquote>
 <p>TreeMap 底层的数据结构就是红黑树，和 HashMap 的红黑树结构一样。</p>
 <p>不同的是：TreeMap 利用了红黑树左节点小，右节点大的性质，根据 key 进行排序，使每个元素能够插入到红黑树大小适当的位置，维护了 key 的大小关系，适用于 key 需要排序的场景。</p>
 <p>因为底层使用的是平衡红黑树的结构，所以 containsKey、get、put、remove 等方法的时间复杂度都是 <code>log(n)</code>。</p>
 </blockquote>
 <p>TreeMap 常见的属性有：</p>
-<pre><code class="language-java">//比较器，如果外部有传进来 Comparator 比较器，首先用外部的
+<pre><code class="java">//比较器，如果外部有传进来 Comparator 比较器，首先用外部的
 //如果外部比较器为空，则使用 key 自己实现的 Comparable#compareTo 方法
 //比较手段和上面日常工作中的比较 demo 是一致的
 private final Comparator&lt;? super K&gt; comparator;
@@ -1986,7 +1974,7 @@ static final class Entry&lt;K,V&gt; implements Map.Entry&lt;K,V&gt; &#123;&#125;
 <blockquote>
 <p>判断红黑树的节点是否为空，为空的话，新增的节点直接作为根节点：</p>
 </blockquote>
-<pre><code class="language-java">Entry&lt;K,V&gt; t = root;
+<pre><code class="java">Entry&lt;K,V&gt; t = root;
 //红黑树根节点为空，直接新建
 if (t == null) &#123;
     // compare 方法限制了 key 不能为 null
@@ -2001,7 +1989,7 @@ if (t == null) &#123;
 <blockquote>
 <p>根据红黑树左小右大的特性，进行判断，找到应该新增节点的父节点：</p>
 </blockquote>
-<pre><code class="language-kotlin">Comparator&lt;? super K&gt; cpr = comparator;
+<pre><code class="kotlin">Comparator&lt;? super K&gt; cpr = comparator;
 if (cpr != null) &#123;
     //自旋找到 key 应该新增的位置，就是应该挂载那个节点的头上
     do &#123;
@@ -2025,7 +2013,7 @@ if (cpr != null) &#123;
 <blockquote>
 <p>在父节点的左边或右边插入新增节点：</p>
 </blockquote>
-<pre><code class="language-java">//cmp 代表最后一次对比的大小，小于 0 ，代表 e 在上一节点的左边
+<pre><code class="java">//cmp 代表最后一次对比的大小，小于 0 ，代表 e 在上一节点的左边
 if (cmp &lt; 0)
     parent.left = e;
 //cmp 代表最后一次对比的大小，大于 0 ，代表 e 在上一节点的右边，相等的情况第二步已经处理了。
@@ -2038,8 +2026,7 @@ else
 <p>3、查找过程中，发现 key 值已经存在，直接覆盖。</p>
 <p>4、TreeMap 是禁止 key 是 null 值的。</p>
 </blockquote>
-<h2 id="LinkedHashMap">LinkedHashMap</h2>
-<blockquote>
+<h2 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h2><blockquote>
 <p>LinkedHashMap 是继承 HashMap 的，所以它拥有 HashMap 的所有特性，再此基础上，还提供了两大特性：</p>
 <ul>
 <li>按照插入顺序进行访问。</li>
@@ -2047,7 +2034,7 @@ else
 </ul>
 </blockquote>
 <p><strong>LinkedHashMap链表结构</strong></p>
-<pre><code class="language-java">// 链表头
+<pre><code class="java">// 链表头
 transient LinkedHashMap.Entry&lt;K,V&gt; head;
  
 // 链表尾
@@ -2071,12 +2058,12 @@ final boolean accessOrder;
 </blockquote>
 <p><strong>如何按照顺序新增</strong></p>
 <blockquote>
-<p>LinkedHashMap 初始化时，默认 accessOrder 为 false，就是会按照插入顺序提供访问，插入方法使用的是父类 HashMap 的 put 方法，不过覆写了 put 方法执行中调用的 newNode/newTreeNode 和 afterNodeAccess 方法。</p>
+<p>LinkedHashMap 初始化时，默认 accessOrder 为 false，就是会按照插入顺序提供访问，插入方法使用的是父类 HashMap 的 put 方法，不过覆写了 put 方法执行中调用的 newNode&#x2F;newTreeNode 和 afterNodeAccess 方法。</p>
 </blockquote>
 <blockquote>
-<p>newNode/newTreeNode 方法，控制新增节点追加到链表的尾部，这样每次新节点都追加到尾部，即可保证插入顺序了。</p>
+<p>newNode&#x2F;newTreeNode 方法，控制新增节点追加到链表的尾部，这样每次新节点都追加到尾部，即可保证插入顺序了。</p>
 </blockquote>
-<pre><code class="language-java">// 新增节点，并追加到链表的尾部
+<pre><code class="java">// 新增节点，并追加到链表的尾部
 Node&lt;K,V&gt; newNode(int hash, K key, V value, Node&lt;K,V&gt; e) &#123;
     // 新增节点
     LinkedHashMap.Entry&lt;K,V&gt; p =
@@ -2103,12 +2090,12 @@ private void linkNodeLast(LinkedHashMap.Entry&lt;K,V&gt; p) &#123;
 <blockquote>
 <p>LinkedHashMap 通过新增头节点、尾节点，给每个节点增加 before、after 属性，每次新增时，都把节点追加到尾节点等手段，在新增的时候，就已经维护了按照插入顺序的链表结构了。</p>
 </blockquote>
-<h1>IO模型</h1>
-<p><strong>同步阻塞</strong></p>
+<h1 id="IO模型"><a href="#IO模型" class="headerlink" title="IO模型"></a>IO模型</h1><p><strong>同步阻塞</strong></p>
 <blockquote>
 <p>用户空间的应用程序执行一个系统调用，这会导致应用程序阻塞，直到数据准备好，并且将数据从内核复制到用户进程，最后进程再处理数据，在等待数据到处理数据的两个阶段，整个进程都被阻塞，不能处理别的网络IO。</p>
 </blockquote>
 <img src="/images/640-8212892.png" alt="图片" style="zoom:80%;" />
+
 <p><strong>同步非阻塞</strong></p>
 <p>非阻塞的系统调用调用之后，进程并没有被阻塞，内核马上返回给进程，如果数据还没准备好，此时会返回一个error。</p>
 <blockquote>
@@ -2118,22 +2105,25 @@ private void linkNodeLast(LinkedHashMap.Entry&lt;K,V&gt; p) &#123;
 <p>需要注意，拷贝数据整个过程，进程仍然是属于阻塞的状态。</p>
 </blockquote>
 <img src="/images/640-20231025134847570.png" alt="图片" style="zoom:80%;" />
+
 <p><strong>IO多路复用</strong></p>
 <blockquote>
 <p>IO多路复用，这是一种进程预先告知内核的能力，让内核发现进程指定的一个或多个IO条件就绪了，就通知进程。</p>
 <p>IO复用的实现方式目前主要有Select、Poll和Epoll。</p>
 </blockquote>
 <img src="/images/640-20231025134928516.png" alt="图片" style="zoom:80%;" />
+
 <p><strong>信号驱动</strong></p>
 <blockquote>
 <p>首先允许Socket进行信号驱动IO，并安装一个信号处理函数，进程继续运行并不阻塞。</p>
-<p>当数据准备好时，进程会收到一个SIGIO信号，可以在信号处理函数中调用I/O操作函数处理数据。</p>
+<p>当数据准备好时，进程会收到一个SIGIO信号，可以在信号处理函数中调用I&#x2F;O操作函数处理数据。</p>
 <p>此种IO方式存在的一个很大的问题：</p>
 <ul>
 <li>Linux中信号队列是有限制的，如果超过这个数字问题就无法读取数据。</li>
 </ul>
 </blockquote>
 <img src="/images/640-20231025134954345.png" alt="图片" style="zoom:80%;" />
+
 <p><strong>异步非阻塞</strong></p>
 <blockquote>
 <p>当用户线程进行了系统调用，立刻就可以开始去做其它的事，用户线程不阻塞。</p>
@@ -2151,6 +2141,7 @@ private void linkNodeLast(LinkedHashMap.Entry&lt;K,V&gt; p) &#123;
 </ul>
 </blockquote>
 <img src="/images/640-20231025135037054.png" alt="图片" style="zoom:80%;" />
+
 <p><strong>BIO，NIO，AIO的区别：</strong></p>
 <blockquote>
 <p>BIO：</p>
@@ -2161,7 +2152,7 @@ private void linkNodeLast(LinkedHashMap.Entry&lt;K,V&gt; p) &#123;
 </ul>
 <p>NIO：</p>
 <ul>
-<li>同步非阻塞，服务实现模式是一个线程可以处理多个连接，即客户端发送的连接都会注册到多路复用器上，然后进行轮询连接，有I/O请求就处理。</li>
+<li>同步非阻塞，服务实现模式是一个线程可以处理多个连接，即客户端发送的连接都会注册到多路复用器上，然后进行轮询连接，有I&#x2F;O请求就处理。</li>
 <li>适用连接数目多且连接比较短的架构，如：聊天服务器，弹幕系统等，编程比较复杂。</li>
 </ul>
 <p>AIO：</p>
@@ -2170,8 +2161,7 @@ private void linkNodeLast(LinkedHashMap.Entry&lt;K,V&gt; p) &#123;
 <li>适用连接数目多且连接长的架构，如相册服务器。</li>
 </ul>
 </blockquote>
-<h1>新特性</h1>
-<p><strong>JDK 17</strong></p>
+<h1 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h1><p><strong>JDK 17</strong></p>
 <p>Sealed类：</p>
 <blockquote>
 <p>Sealed类是一种新的类修饰符，用于限制类的继承。</p>

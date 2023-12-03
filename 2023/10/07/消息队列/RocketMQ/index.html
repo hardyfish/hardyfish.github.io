@@ -1063,8 +1063,7 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<div id="readmore-container"><h1>基本概念</h1>
-<p><strong>Topic：</strong></p>
+		<div id="readmore-container"><h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><strong>Topic：</strong></p>
 <blockquote>
 <p>一类消息的集合，消息发送者将一类消息发送到一个主题中，例如订单模块将订单发送到<code> order_topic</code> 中，而用户登录时，将登录事件发送到 <code>user_login_topic</code> 中。</p>
 </blockquote>
@@ -1121,15 +1120,14 @@
 <p>消息生产者把消息发送给MQ，如果接收成功，MQ会返回一个ack消息给生产者。</p>
 <p>如果消息接收不成功，MQ会返回一个nack消息给生产者。</p>
 </blockquote>
-<p><img src="/images/5b6002787f1244ffac494eaaf4eaf855~tplv-tt-origin-asy2:5aS05p2hQOiAgemhvuiBiuaKgOacrw==.image?_iz=58558&amp;from=article.png" alt="img"></p>
+<p><img src="/images/5b6002787f1244ffac494eaaf4eaf855~tplv-tt-origin-asy2:5aS05p2hQOiAgemhvuiBiuaKgOacrw==.image?_iz=58558&from=article.png" alt="img"></p>
 <p><strong>重试机制</strong></p>
 <blockquote>
 <p>集群消费下，<strong>重试机制</strong>的本质是 RocketMQ 的延迟消息功能。</p>
 <p>Broker 端会为每个 Topic 创建一个<strong>重试队列</strong> ，队列名称是：<code>%RETRY% + 消费者组名</code> ，达到重试时间后将消息投递到重试队列中进行消费重试（消费者组会自动订阅重试 Topic）。</p>
 <p>最多重试消费 16 次，重试的时间间隔逐渐变长，若达到最大重试次数后消息还没有成功被消费，则消息将被投递至死信队列。</p>
 </blockquote>
-<h1>基本组件</h1>
-<p><img src="/images/9ac36ee1c9a590d7cb60daae4c4a3760-20231018235000669.webp" alt="image"></p>
+<h1 id="基本组件"><a href="#基本组件" class="headerlink" title="基本组件"></a>基本组件</h1><p><img src="/images/9ac36ee1c9a590d7cb60daae4c4a3760-20231018235000669.webp" alt="image"></p>
 <p>Nameserver：</p>
 <blockquote>
 <p>Nameserver集群，Topic的路由注册中心，为客户端根据Topic提供路由服务，从而引导客户端向Broker发送消息。</p>
@@ -1159,16 +1157,15 @@
 </blockquote>
 <p><strong>异步复制</strong></p>
 <blockquote>
-<p>生产者发送消息后，Master 接收到存储消息请求，将消息存储后，直接将存储结果返回给生产者。</p>
+<p>生产者发送消息后，Master 接收到存储消息请求，将消息存储后，直接将存储结果返回给生产者。 </p>
 <p>Master 和 Slave 再通过异步的方式同步数据，这种复制模式具有较小的延迟，可以实现比较高的吞吐量。</p>
 <p>若 Master 出现故障，有些数据可能未写入 Slave，未同步的数据可能丢失。</p>
 </blockquote>
-<h1>消息类型</h1>
-<p><strong>延迟消息</strong></p>
+<h1 id="消息类型"><a href="#消息类型" class="headerlink" title="消息类型"></a>消息类型</h1><p><strong>延迟消息</strong></p>
 <blockquote>
 <p>RocketMQ支持18个等级，每个等级代表一个延迟时间。</p>
 </blockquote>
-<pre><code class="language-java">private String messageDelayLevel = &quot;1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h&quot;;
+<pre><code class="java">private String messageDelayLevel = &quot;1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h&quot;;
 </code></pre>
 <p>原理解析：</p>
 <blockquote>
@@ -1178,35 +1175,32 @@
 </ul>
 </blockquote>
 <img src="/images/image-20231125220819038.png" alt="image-20231125220819038" style="zoom:50%;" />
+
 <p><strong>事务消息</strong></p>
 <p>支持在分布式场景下保障消息生产和本地事务的最终一致性。</p>
 <p><img src="/images/image-20231007114659517.png" alt="image-20231007114659517"></p>
 <blockquote>
 <p>1、生产者将消息发送至 Broker。</p>
-<p>2、Broker 将消息持久化成功之后，向生产者返回 Ack 确认消息已经发送成功，此时消息被标记为&quot;暂不能投递&quot;，这种状态下的消息即为半事务消息。</p>
+<p>2、Broker 将消息持久化成功之后，向生产者返回 Ack 确认消息已经发送成功，此时消息被标记为”暂不能投递”，这种状态下的消息即为半事务消息。</p>
 <p>3、生产者开始执行本地事务逻辑。</p>
 <p>4、生产者根据本地事务执行结果向服务端提交二次确认结果（Commit 或是 Rollback），Broker 收到确认结果后处理逻辑如下：</p>
 <ul>
-<li>
-<p>二次确认结果为 Commit ：Broker 将半事务消息标记为可投递，并投递给消费者。</p>
+<li><p>二次确认结果为 Commit ：Broker 将半事务消息标记为可投递，并投递给消费者。</p>
 </li>
-<li>
-<p>二次确认结果为 Rollback ：Broker 将回滚事务，不会将半事务消息投递给消费者。</p>
+<li><p>二次确认结果为 Rollback ：Broker 将回滚事务，不会将半事务消息投递给消费者。</p>
 </li>
 </ul>
 <p>5、在断网或者是生产者应用重启的特殊情况下，若 Broker 未收到发送者提交的二次确认结果，或 Broker 收到的二次确认结果为 Unknown 未知状态，经过固定时间后，服务端将对消息生产者即生产者集群中任一生产者实例发起消息回查。</p>
 <ul>
-<li>
-<p>生产者收到消息回查后，需要检查对应消息的本地事务执行的最终结果。</p>
+<li><p>生产者收到消息回查后，需要检查对应消息的本地事务执行的最终结果。</p>
 </li>
-<li>
-<p>生产者根据检查到的本地事务的最终状态再次提交二次确认，服务端仍按照步骤4对半事务消息进行处理。</p>
+<li><p>生产者根据检查到的本地事务的最终状态再次提交二次确认，服务端仍按照步骤4对半事务消息进行处理。</p>
 </li>
 </ul>
 </blockquote>
 <p>为什么要先发送Half Message(半消息)：</p>
 <blockquote>
-<p>可以先确认Broker服务器是否正常，如果半消息都发送失败了，那说明Broker挂了。</p>
+<p>可以先确认Broker服务器是否正常，如果半消息都发送失败了，那说明Broker挂了。 </p>
 </blockquote>
 <p>什么情况会回查：</p>
 <blockquote>
@@ -1216,8 +1210,7 @@
 <li>这个时候在Broker端，它还是个Half Message(半消息)，这也会回查。</li>
 </ul>
 </blockquote>
-<h1>基本原理</h1>
-<p><strong>零拷贝</strong></p>
+<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><strong>零拷贝</strong></p>
 <blockquote>
 <p>零拷贝技术是一个思想，指的是指计算机执行操作时，CPU不需要先将数据从某处内存复制到另一个特定区域。</p>
 <ul>
@@ -1232,9 +1225,7 @@
 </ul>
 <p>简单地说就是内核缓冲区和应用缓冲区共享，从而减少了从读缓冲区到用户缓冲区的一次CPU拷贝。</p>
 </blockquote>
-<h1>应用场景</h1>
-<h2 id="顺序消费">顺序消费</h2>
-<p>顺序消息是指对于一个指定的 Topic ，消息严格按照先进先出（FIFO）的原则进行消息发布和消费，即先发布的消息先消费，后发布的消息后消费。</p>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><h2 id="顺序消费"><a href="#顺序消费" class="headerlink" title="顺序消费"></a>顺序消费</h2><p>顺序消息是指对于一个指定的 Topic ，消息严格按照先进先出（FIFO）的原则进行消息发布和消费，即先发布的消息先消费，后发布的消息后消费。</p>
 <p><strong>分区顺序消息</strong></p>
 <blockquote>
 <p>对于指定的一个 Topic ，所有消息根据 Sharding Key 进行区块分区，同一个分区内的消息按照严格的先进先出（FIFO）原则进行发布和消费。</p>

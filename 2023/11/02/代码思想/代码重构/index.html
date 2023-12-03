@@ -1086,8 +1086,7 @@
 <p>这个问题只能个人判断，很难给出一个有共通性的同类情况。</p>
 <p>不过，一些需要重写的代码肯定有迹象：</p>
 <ul>
-<li>例如：某个项目由于编程语言太老或者平台环境太老导致推进速度较慢，不适用于当前情况。
-<ul>
+<li>例如：某个项目由于编程语言太老或者平台环境太老导致推进速度较慢，不适用于当前情况。<ul>
 <li>此时，这种情况下，重构代码的作用微乎其微，就需要选择重写了。</li>
 </ul>
 </li>
@@ -1106,7 +1105,7 @@
 <p>这样做的好处是可以减少代码的重复，提高代码的可读性和可维护性。</p>
 </blockquote>
 <p>案例说明，重构前的代码：</p>
-<pre><code class="language-java">public double calculateTotalAmount(List&lt;InvoiceItem&gt; items) &#123;
+<pre><code class="java">public double calculateTotalAmount(List&lt;InvoiceItem&gt; items) &#123;
     double totalAmount = 0;
     for (InvoiceItem item : items) &#123;
         totalAmount += item.getPrice() * item.getQuantity();
@@ -1124,7 +1123,7 @@
 <blockquote>
 <p>将这个表达式抽象成一个变量 itemAmount，使代码更变得加易于理解和维护。</p>
 </blockquote>
-<pre><code class="language-java">public double calculateTotalAmount(List&lt;InvoiceItem&gt; items) &#123;
+<pre><code class="java">public double calculateTotalAmount(List&lt;InvoiceItem&gt; items) &#123;
     double totalAmount = 0;
     for (InvoiceItem item : items) &#123;
         double itemAmount = item.getPrice() * item.getQuantity();
@@ -1141,7 +1140,7 @@
 <p>核心思想：通过简化、合并或提取条件语句，使代码更加清晰和易于理解。</p>
 </blockquote>
 <p>重构前的代码：</p>
-<pre><code class="language-java">public boolean canCreateAccount(Customer customer) &#123;
+<pre><code class="java">public boolean canCreateAccount(Customer customer) &#123;
     boolean canCreate = true;
     if (customer.getAge() &lt; 18) &#123;
         canCreate = false;
@@ -1156,7 +1155,7 @@
 &#125;
 </code></pre>
 <blockquote>
-<p>代码中，判断客户是否有资格创建账户的过程是通过多个条件语句实现的，如果还有其他情况，只能通过添加if/else的方法实现。</p>
+<p>代码中，判断客户是否有资格创建账户的过程是通过多个条件语句实现的，如果还有其他情况，只能通过添加if&#x2F;else的方法实现。</p>
 <p>这不符合一段优秀代码的定义，根据重构条件语句的方式对其重构。</p>
 </blockquote>
 <p>重构后的代码：</p>
@@ -1164,7 +1163,7 @@
 <p>将多个条件语句合并成一个方法 isCustomerEligible()，使代码更加清晰易读。</p>
 <p>对于这种多分支的逻辑语句，有各种不同的重构方法，在日常开发工作中，对于多条件判断的重构，最常用的是设计模式中的策略模式，大部分判断逻辑，都可用策略模式进行重构。</p>
 </blockquote>
-<pre><code class="language-java">public boolean canCreateAccount(Customer customer) &#123;
+<pre><code class="java">public boolean canCreateAccount(Customer customer) &#123;
     boolean canCreate = true;
     if (!isCustomerEligible(customer)) &#123;
         canCreate = false;
@@ -1190,7 +1189,7 @@ private boolean isCustomerEligible(Customer customer) &#123;
 <p>这样做的好处是可以减少重复代码，提高代码的复用性和可维护性。</p>
 </blockquote>
 <p>重构前的代码：</p>
-<pre><code class="language-java">public class SavingsAccount &#123;
+<pre><code class="java">public class SavingsAccount &#123;
     private double balance;
     private double interestRate;
     public SavingsAccount(double balance, double interestRate) &#123;
@@ -1230,7 +1229,7 @@ public class CheckingAccount &#123;
 <p>通过提取抽象类的方式对代码进行重构。</p>
 </blockquote>
 <p>重构后的代码：</p>
-<pre><code class="language-java">public abstract class Account &#123;
+<pre><code class="java">public abstract class Account &#123;
     protected double balance;
     public Account(double balance) &#123;
         this.balance = balance;

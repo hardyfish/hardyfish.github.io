@@ -1100,8 +1100,8 @@ ssh-keygen -t rsa -C &quot;792321264@qq.com&quot;
 <p>输入<code>ssh -T git@github.com</code>，出现你的用户名，那就成功了。</p>
 </blockquote>
 <p><strong>主页文章按更新时间排序</strong></p>
-<pre><code class="language-yaml">index_generator:
-  path: ''
+<pre><code class="yaml">index_generator:
+  path: &#39;&#39;
   per_page: 20
   order_by: -updated
 </code></pre>
@@ -1125,17 +1125,13 @@ ssh-keygen -t rsa -C &quot;792321264@qq.com&quot;
 <blockquote>
 <p>给解析添加A类型：</p>
 <ul>
-<li>
-<p>185.199.108.153</p>
+<li><p>185.199.108.153</p>
 </li>
-<li>
-<p>185.199.109.153</p>
+<li><p>185.199.109.153</p>
 </li>
-<li>
-<p>185.199.110.153</p>
+<li><p>185.199.110.153</p>
 </li>
-<li>
-<p>185.199.111.153</p>
+<li><p>185.199.111.153</p>
 </li>
 </ul>
 </blockquote>
@@ -1182,7 +1178,7 @@ package.json         安装包的名称                       必须备份
 <p>安装一个扩展<code>npm i hexo-deployer-git</code></p>
 <p>最后输入<code>hexo d</code>上传到GitHub上。</p>
 </blockquote>
-<pre><code class="language-yaml">deploy:
+<pre><code class="yaml">deploy:
   type: git
   repository: https://github.com/xiaoflyfish/xiaoflyfish.github.io
   branch: master
@@ -1203,8 +1199,8 @@ package.json         安装包的名称                       必须备份
 </code></pre>
 <pre><code>&#123;% aplayer "Caffeine" "Jeff Williams" "11.mp3" "autoplay" %&#125;
 </code></pre>
-<pre><code>	&lt;%- css('https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css') %&gt;
-	&lt;%- js('https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js') %&gt;
+<pre><code>    &lt;%- css(&#39;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css&#39;) %&gt;
+    &lt;%- js(&#39;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js&#39;) %&gt;
 </code></pre>
 <p><strong>置顶文章</strong></p>
 <pre><code> npm install hexo-generator-topindex --save
@@ -1243,8 +1239,7 @@ password: abcd1234xxx
 <blockquote>
 <p>按标签加密：</p>
 <ul>
-<li>对博文禁用 Tag 加密:
-<ul>
+<li>对博文禁用 Tag 加密:<ul>
 <li>将博文头部的 <code>password</code> 设置为 <code>&quot;&quot;</code> 即可取消 Tag 加密。</li>
 </ul>
 </li>
@@ -1391,15 +1386,15 @@ git --work-tree=/usr/share/nginx/mysite --git-dir=/root/gitrepo/hexo.git checkou
 <li>修改本地Hexo博客的配置文件<code>_config.yml</code>，找到<code>url:</code>和<code>deploy:</code>部分，做如下的修改：</li>
 </ul>
 </blockquote>
-<pre><code>	url: http://blog.jackjiang.top       # 修改为你的博客域名
-	root: /
-	permalink: :year-:month-:day/:title/
-	permalink_defaults:
-	
-	deploy:
-	    type: git
-	    repo: blog@your_server_ip:/home/blog/github-blog.git    # 修改为你的服务器IP
-	    branch: master
+<pre><code>    url: http://blog.jackjiang.top       # 修改为你的博客域名
+    root: /
+    permalink: :year-:month-:day/:title/
+    permalink_defaults:
+    
+    deploy:
+        type: git
+        repo: blog@your_server_ip:/home/blog/github-blog.git    # 修改为你的服务器IP
+        branch: master
 </code></pre>
 <p>域名解析:</p>
 <blockquote>
@@ -1408,21 +1403,19 @@ git --work-tree=/usr/share/nginx/mysite --git-dir=/root/gitrepo/hexo.git checkou
 <table>
 <thead>
 <tr>
-<th style="text-align:left">主机记录</th>
-<th style="text-align:left">记录类型</th>
-<th style="text-align:left">解析路线</th>
-<th style="text-align:left">记录值</th>
+<th align="left">主机记录</th>
+<th align="left">记录类型</th>
+<th align="left">解析路线</th>
+<th align="left">记录值</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:left">@</td>
-<td style="text-align:left">A</td>
-<td style="text-align:left">默认</td>
-<td style="text-align:left">你的云服务器公网 ip</td>
+<tbody><tr>
+<td align="left">@</td>
+<td align="left">A</td>
+<td align="left">默认</td>
+<td align="left">你的云服务器公网 ip</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <blockquote>
 <p>之后就可以输入域名访问博客。</p>
 <p>注意：这里用云服务器的 80 端口，使用 http 访问，如果需要 https 访问，还需要 SSL 证书。</p>
