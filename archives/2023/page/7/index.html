@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" oncontextmenu="return false;">
 
 <head oncontextmenu="return false;">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -1036,13 +1036,12 @@
 					设计模式
 				</h2>
 				<div class="index-brief">
-					基本概念
-封装
+					基本概念封装
 通过对类的封装，仅仅暴露少许必要的方法给调用方使用，调用方不需要了解太多背后的业务细节，大大降低了用错的概率，提高了代码的易用性。
 抽象
 通过抽象化只暴露出方法定义，而隐藏方法的具体实现，让调用者只需要关心方法提供了哪些功能，并不需要知道这些功能是如何实现的。
 
-作用：通过抽象化手段
+作用：通过抽象化手段，
 					...
 				</div>
 			</a>
@@ -1103,12 +1102,11 @@
 					Docker
 				</h2>
 				<div class="index-brief">
-					基本概念
-虚拟化技术VM
+					基本概念虚拟化技术VM
 虚拟化技术通过 Hypervisor 实现虚拟机与底层硬件的解耦，虚拟机实现依赖 Hypervisor 层，Hypervisor 是整个虚拟机的核心所在。
 
 Hypervisor是一种运行在基础物理服务器和操作系统之间的中间软件层，可允许多个操作系统和应用共享硬件。
-Hyp
+Hype
 					...
 				</div>
 			</a>
@@ -1134,18 +1132,17 @@ Hyp
 					分布式
 				</h2>
 				<div class="index-brief">
-					基本概念
-背压
+					基本概念背压
 
 背压思想，被请求方不会直接将请求端的流量直接丢掉，而是不断的反馈自己的处理能力。
-请求端根据这些反馈，实时的调整自己的发送频率，比如：TCP/IP中使用滑动窗口来进行流量控制。
+请求端根据这些反馈，实时的调整自己的发送频率，比如：TCP&#x2F;IP中使用滑动窗口来进行流量控制。
 
 CAP原则
 Consistency（一致性）
 
 所有节点返回的数据是一致的。
 
-Availabilit
+Availab
 					...
 				</div>
 			</a>
@@ -1181,8 +1178,7 @@ Kafka：
 RocketMQ：
 
 天生为金融互联网领域而生，对于可靠性要求很高的场景。
-
-尤其是电商里面的订单扣款，以及业务削峰，
+尤其是电商里面的订单扣款，以及业务削峰，在
 					...
 				</div>
 			</a>
@@ -1208,14 +1204,13 @@ RocketMQ：
 					RocketMQ
 				</h2>
 				<div class="index-brief">
-					基本概念
-Topic：
+					基本概念Topic：
 
 一类消息的集合，消息发送者将一类消息发送到一个主题中，例如订单模块将订单发送到 order_topic 中，而用户登录时，将登录事件发送到 user_login_topic 中。
 
 ConsumeGroup：
 
-消息消费组，一个消费组拥有多个消费者，消费组首先在启动时需要订
+消息消费组，一个消费组拥有多个消费者，消费组首先在启动时需要订阅
 					...
 				</div>
 			</a>

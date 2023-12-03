@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" oncontextmenu="return false;">
 
 <head oncontextmenu="return false;">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -1076,14 +1076,14 @@
 <p><strong>Cron表达式</strong></p>
 <blockquote>
 <p>Cron表达式是一个字符串，以 5 或 6 个空格隔开，分为 6 或 7 个域，每一个域代表一个含义。</p>
-<p>[秒] [分] [时] [日期] [月] [星期]</p>
+<p>[秒] [分] [时] [日期] [月] [星期] </p>
 <p>[秒] [分] [时] [日期] [月] [星期] [年]</p>
 </blockquote>
 <blockquote>
-<p>*：表示任何时间触发任务</p>
-<p>,：表示指定的时间触发任务</p>
-<p>-：表示一段时间内触发任务</p>
-<p>/：表示从哪一个时刻开始，每隔多长时间触发一次任务</p>
+<p>*：表示任何时间触发任务 </p>
+<p>,：表示指定的时间触发任务 </p>
+<p>-：表示一段时间内触发任务 </p>
+<p>&#x2F;：表示从哪一个时刻开始，每隔多长时间触发一次任务</p>
 <p>?：表示用于月中的天和周中的天两个子表达式，表示不指定值</p>
 <p>如：<code>0 30 8 * * ?</code>表示每天早上8点半</p>
 </blockquote>
@@ -1091,13 +1091,11 @@
 <blockquote>
 <p>XXL-JOB有2个角色：</p>
 <ul>
-<li><code>xxl-job-admin</code>调度中心：
-<ul>
+<li><code>xxl-job-admin</code>调度中心：<ul>
 <li>统一管理任务调度平台上的调度任务，负责触发调度执行，并且提供任务管理平台。</li>
 </ul>
 </li>
-<li><code>xxl-job-executor</code>执行器：
-<ul>
+<li><code>xxl-job-executor</code>执行器：<ul>
 <li>执行器通常是业务系统，如springboot项目。</li>
 </ul>
 </li>
@@ -1136,16 +1134,13 @@
 <ul>
 <li>关闭自动提交事务</li>
 <li>利MySQL的悲观锁，其他事务无法进入</li>
-<li>读取数据库中的<code>xxl_job_info</code>：
-<ul>
+<li>读取数据库中的<code>xxl_job_info</code>：<ul>
 <li>记录定时任务的相关信息，该表中有<code>trigger_next_time</code>字段表示下一次任务的触发时间</li>
 </ul>
 </li>
-<li>拿到距离当前时间5s内的任务列表，分为三种情况处理：
-<ul>
+<li>拿到距离当前时间5s内的任务列表，分为三种情况处理：<ul>
 <li>对于当前时间-任务的下一次触发时间&gt;5，直接调过不执行，重置<code>trigger_next_time</code>的时间(超过5s)</li>
-<li>对于任务的下一次触发时间&lt;当前时间&lt;任务的下一次触发时间+5的任务（不超过5s的）：
-<ul>
+<li>对于任务的下一次触发时间&lt;当前时间&lt;任务的下一次触发时间+5的任务（不超过5s的）：<ul>
 <li>开线程处理执行触发逻辑，根据当前时间更新下一次任务触发时间</li>
 <li>如果新的任务下一次触发时间-当前时间&lt;5，放到时间轮中，时间轮是一个MAP</li>
 <li>根据新的任务下一次触发时间更新下下一次任务触发时间</li>
@@ -1157,7 +1152,7 @@
 <li>Commit提交事务，同时释放排他锁</li>
 </ul>
 </blockquote>
-<pre><code class="language-sql">select * from xxl_job_lock where lock_name = 'schedule_lock' for update
+<pre><code class="sql">select * from xxl_job_lock where lock_name = &#39;schedule_lock&#39; for update
 </code></pre>
 <p>执行器的操作：</p>
 <blockquote>
@@ -1173,11 +1168,13 @@
 <p>通过 <strong>分片广播 ＋ 取模</strong> 的方式即可实现对集群服务均分任务的操作。</p>
 </blockquote>
 <img src="/images/1460000043732489.jpeg" alt="img" style="zoom:80%;" />
+
 <p><strong>怎么确保任务不会被重复消费？</strong></p>
 <blockquote>
 <p>有三台集群机器和六个任务，刚开始分配好了每台机器两个任务，<strong>执行器0正准备执行任务3</strong>时，刚好执行器2宕机了，此时执行器1刚好执行一次任务，因为分片总数减小，导致<strong>执行器1重新分配到需要执行的任务正好也是任务3</strong>，那么此时就会出现<strong>执行器0和执行器1都在执行任务3</strong>的情况。</p>
 </blockquote>
 <img src="/images/1460000043732490.jpeg" alt="img" style="zoom:70%;" />
+
 <blockquote>
 <p>XXL-JOB 使用乐观锁的方式实现幂等性。</p>
 <p>使用CAS 的方式<strong>通过比较和设置的方式只有在状态为未处理或处理失败时才能设置为处理中</strong>。</p>
@@ -1214,8 +1211,7 @@
 <th>xxl-job</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>HA(高可用)</td>
 <td>多节点部署，通过数据库锁来保证只有一个节点执行任务</td>
 <td>通过zookeeper的注册和发现，可以动态添加服务器，支持水平扩容</td>
@@ -1257,8 +1253,7 @@
 <td>需要引入zookeeper，增加系统复杂度，比较复杂</td>
 <td>通过获取数据库锁的方式，保证集群中执行任务的唯一性，性能不好</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 
 	</div>
 </div>

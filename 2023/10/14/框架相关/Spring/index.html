@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" oncontextmenu="return false;">
 
 <head oncontextmenu="return false;">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -1075,11 +1075,9 @@
 <blockquote>
 <p>BeanFactoryPostProcessor：</p>
 <ul>
-<li>
-<p>在 Bean 工厂实例化 Bean 之前对 Bean 的定义进行修改。</p>
+<li><p>在 Bean 工厂实例化 Bean 之前对 Bean 的定义进行修改。</p>
 </li>
-<li>
-<p>可以读取和修改 Bean 的定义元数据，例如修改 Bean 的属性值、添加额外的配置信息等。</p>
+<li><p>可以读取和修改 Bean 的定义元数据，例如修改 Bean 的属性值、添加额外的配置信息等。</p>
 </li>
 </ul>
 <p>BeanPostProcessor：</p>
@@ -1114,7 +1112,7 @@
 </blockquote>
 <p><strong>循环依赖</strong></p>
 <p>循环依赖指的是<strong>一个实例或多个实例存在相互依赖的关系</strong>（类之间循环嵌套引用）。</p>
-<pre><code class="language-java">public class AService &#123;
+<pre><code class="java">public class AService &#123;
     private BService bService;
 &#125;
 
@@ -1141,7 +1139,7 @@ public class BService &#123;
 <p><img src="/images/image-20231014162629222.png" alt="image-20231014162629222"></p>
 <p>三大循环依赖问题场景:</p>
 <blockquote>
-<p>单例作用域下的Setter方法注入/Field属性注入出现的循环依赖。</p>
+<p>单例作用域下的Setter方法注入&#x2F;Field属性注入出现的循环依赖。</p>
 <ul>
 <li>在 Spring 中是不会产生循环依赖问题的，这主要是靠 <strong>三级缓存</strong> 机制解决。</li>
 </ul>
@@ -1155,7 +1153,7 @@ public class BService &#123;
 </ul>
 </blockquote>
 <p>三级缓存：</p>
-<pre><code class="language-java">/** Cache of singleton objects: bean name to bean instance. */
+<pre><code class="java">/** Cache of singleton objects: bean name to bean instance. */
 private final Map&lt;String, Object&gt; singletonObjects = new ConcurrentHashMap&lt;&gt;(256);
 
 /** Cache of singleton factories: bean name to ObjectFactory. */
@@ -1194,19 +1192,20 @@ private final Map&lt;String, Object&gt; earlySingletonObjects = new HashMap&lt;&
 <li>相当于 AOP 提前在属性注入前完成，这样就不会导致后面生成的代理对象与属性注入时的对象的不一致。</li>
 </ul>
 </blockquote>
-<h1>基本概念</h1>
-<p><strong>IOC（控制反转）</strong></p>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><strong>IOC（控制反转）</strong></p>
 <p>Spring中有一个容器，我们将Bean放到这个容器中，让这个容器为我们创建实例，当需要时我们直接从这个容器中进行获取即可。</p>
 <blockquote>
 <p>使用IOC最大的好处就是减少了代码的耦合度，降低了程序的维护成本。</p>
 </blockquote>
 <img src="/images/6bb7f50e2e6d394bfee76b366f060a11.png" alt="img" style="zoom:60%;" />
+
 <p>实现原理:</p>
 <blockquote>
 <p>Spring实现IOC容器的是通过：工厂 + 反射，实现的。</p>
 <p>如果是基于全注解形式的话，只是将读取配置文件的步骤改成了读取配置类，然后通过配置类获取需要创建实现的Bean，并通过反射将其创建。</p>
 </blockquote>
 <img src="/images/dea7c5c6ad33e75f752366bd42e86fa6.png" alt="img" style="zoom:100%;" />
+
 <p><strong>AOP</strong></p>
 <blockquote>
 <p>AOP 面向切面的编程：在不改变源代码的情况下，实现对逻辑功能的修改。</p>
@@ -1219,13 +1218,12 @@ private final Map&lt;String, Object&gt; earlySingletonObjects = new HashMap&lt;&
 <p>动态的生成代理类，代理类的执行过程为：执行增加的代码（例如方法日志记录）-&gt; 回调原方法 -&gt; 增加的代码逻辑。</p>
 <p>Spring AOP 动态代理采用 JDK 动态代理或 CGlib 动态生成代理类，判断被切面的类是否有其实现的接口，如果有对应的接口，则采用 JDK 动态代理，否则采用 CGlib 字节码生成机制动态代理方式。</p>
 </blockquote>
-<h1>SpringMVC</h1>
-<blockquote>
+<h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><blockquote>
 <p>SpringMVC是一个基于Servlet容器的Web应用框架。</p>
 <ul>
 <li>Servlet容器通常指Tomcat等服务容器。</li>
 </ul>
-<p>Servlet容器会负责监听端口消息并映射为Request/Response对象，然后交给Servlet实例去处理。</p>
+<p>Servlet容器会负责监听端口消息并映射为Request&#x2F;Response对象，然后交给Servlet实例去处理。</p>
 <p>SpringMVC框架的作用核心就是Servlet实例。</p>
 <ul>
 <li>这个实例在Spring中默认是DispatcherServlet。</li>
@@ -1277,14 +1275,13 @@ private final Map&lt;String, Object&gt; earlySingletonObjects = new HashMap&lt;&
 </ul>
 <p><code>@ExceptionHander</code>可以放在<code>@ControllerAdvice</code>注解的类中，表示对所有的Controller都会生效。</p>
 </blockquote>
-<h1>事务</h1>
-<p><strong>嵌套事务</strong></p>
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p><strong>嵌套事务</strong></p>
 <blockquote>
 <p>举例，methodA 中调用了 methodB，两个方法都有对数据库的操作，而且都需要事务。</p>
 <p>这种多个方法调用链中都有事务的场景，就是嵌套事务。</p>
 <p>要注意的是，并不是说多个方法使用一个事务才叫嵌套，哪怕是不同的事务，只要在这个方法的调用链中，都是嵌套事务。</p>
 </blockquote>
-<pre><code class="language-java">// MethodA:
+<pre><code class="java">// MethodA:
 public void methodA()&#123;
     int updated = connection.prepareStatement().executeUpdate();
     methodB();
@@ -1310,8 +1307,7 @@ public void methodB()&#123;
 <th>介绍</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>REQUIRED</td>
 <td>支持当前事务，如果不存在，就新建一个</td>
 </tr>
@@ -1339,14 +1335,13 @@ public void methodB()&#123;
 <td>NESTED</td>
 <td>如果当前事务存在，则嵌套事务执行（嵌套式事务）</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p><strong>事务失效</strong></p>
 <p>1、事务方法被Final、Static关键字修饰:</p>
 <blockquote>
 <p>如果一个方法被声明为<code>final</code>或者<code>static</code>，则该方法不能被子类重写，也就是说无法在该方法上进行动态代理，这会导致<code>Spring</code>无法生成事务代理对象来管理事务。</p>
 </blockquote>
-<pre><code class="language-java">@Service
+<pre><code class="java">@Service
 public class ServiceImpl  &#123;
 
     @Autowired
@@ -1370,7 +1365,7 @@ public class ServiceImpl  &#123;
 </ul>
 <p><strong>解决方案</strong>：可以新建多一个类，让这两个方法分开，分别在不同的类中。</p>
 </blockquote>
-<pre><code class="language-java">@Service
+<pre><code class="java">@Service
 public class ServiceImpl implements Service &#123;
 
     @Autowired
@@ -1397,13 +1392,13 @@ public class ServiceImpl implements Service &#123;
 </blockquote>
 <p>4、RollbackFor属性配置错误:</p>
 <blockquote>
-<p><code>rollbackFor</code>属性指定的异常必须是<code>Throwable</code>或者其子类。</p>
+<p> <code>rollbackFor</code>属性指定的异常必须是<code>Throwable</code>或者其子类。</p>
 <ul>
 <li>默认情况下，<code>RuntimeException</code>和<code>Error</code>两种异常都是会自动回滚的。</li>
 </ul>
 <p>代码例子：指定了<code>rollbackFor = Error.class</code>，但是抛出的异常又是<code>Exception</code>，因此事务就不生效。</p>
 </blockquote>
-<pre><code class="language-java">    @Transactional(rollbackFor = Error.class)
+<pre><code class="java">    @Transactional(rollbackFor = Error.class)
     public void add(Test test) &#123;
         mapper1.save(test);
         mapper2.save(test);
@@ -1421,7 +1416,7 @@ public class ServiceImpl implements Service &#123;
 <p>因此，当<code>MyRepository</code>的<code>save()</code>方法被调用时，事务将不会被启动，也不会回滚。</p>
 <p>这将导致数据不一致的问题，因为在<code>MyRepository</code>的<code>save()</code>方法中进行的数据库操作将不会回滚。</p>
 </blockquote>
-<pre><code class="language-java">public interface MyRepository &#123;
+<pre><code class="java">public interface MyRepository &#123;
     @Transactional
     void save(String data);
 &#125;
@@ -1456,7 +1451,7 @@ public class MyTestService extends MyService &#123;
 <p>如果<code>saveFlow</code>出现运行时异常，会继续往上抛，到外层<code>add</code>的方法，导致<code>mapper.save</code>也会回滚啦。</p>
 <p><strong>如果不想因为被内部嵌套的事务影响</strong>，可以用<code>try-catch</code>包住。</p>
 </blockquote>
-<pre><code class="language-java">@Service
+<pre><code class="java">@Service
 public class ServiceInOutService &#123;
 
     @Autowired
@@ -1484,7 +1479,7 @@ public class FlowService &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="language-java">@Transactional
+<pre><code class="java">@Transactional
 public void add(Test test) throws Exception &#123;
   mapper.save(test);
   try &#123;
@@ -1499,7 +1494,7 @@ public void add(Test test) throws Exception &#123;
 <p><code>Spring</code>事务是基于线程绑定的，<strong>每个线程都有自己的事务上下文</strong>，而多线程环境下可能会存在多个线程共享同一个事务上下文的情况，导致事务失效。</p>
 <p><code>Spring</code>事务管理器通过使用线程本地变量（<code>ThreadLocal</code>）来实现线程安全。</p>
 </blockquote>
-<pre><code class="language-java">@Service
+<pre><code class="java">@Service
 public class Service &#123;
 
     @Autowired
@@ -1535,7 +1530,7 @@ public class FlowService &#123;
 <p>事务中的异常已经被业务代码捕获并处理，而没有被正确地传播回事务管理器，事务将无法回滚。</p>
 <p>在<code>spring</code>事务方法中，当我们使用了<code>try-catch</code>，catch住异常，一定要重新把异常抛出来。</p>
 </blockquote>
-<pre><code class="language-java">@Service
+<pre><code class="java">@Service
 public class ServiceImpl implements Service &#123;
 
     @Autowired
@@ -1561,8 +1556,7 @@ public class ServiceImpl implements Service &#123;
 <blockquote>
 <p>如果手动抛了<code>Exception</code>异常，但是是不会回滚的，因为Spring默认只处理<code>RuntimeException和Error</code>，对于普通的<code>Exception</code>不会回滚，除非，用<code>rollbackFor</code>属性指定配置。</p>
 </blockquote>
-<h1>SpringBoot</h1>
-<p><strong>Spring Boot Starter</strong></p>
+<h1 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h1><p><strong>Spring Boot Starter</strong></p>
 <blockquote>
 <p>实现一个Starter：</p>
 <ul>
@@ -1577,13 +1571,13 @@ public class ServiceImpl implements Service &#123;
 <p>官方的 starter 的命名格式为 <code>spring-boot-starter-&#123;name&#125;</code>。</p>
 <p>非官方的 starter 的命名格式为 <code>&#123;name&#125;-spring-boot-starter</code>，把自定义的 starter 命名为 <code>fish-spring-boot-starter</code>，命名在 pom 文件里。</p>
 </blockquote>
-<pre><code class="language-xml">&lt;groupId&gt;fish.springcloud&lt;/groupId&gt;
+<pre><code class="xml">&lt;groupId&gt;fish.springcloud&lt;/groupId&gt;
 &lt;artifactId&gt;fish-spring-boot-starter&lt;/artifactId&gt;
 &lt;packaging&gt;jar&lt;/packaging&gt;
 &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
 </code></pre>
 <p>引入自动配置包及其它相关依赖包:</p>
-<pre><code class="language-xml">&lt;dependency&gt;
+<pre><code class="xml">&lt;dependency&gt;
     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
     &lt;artifactId&gt;spring-boot-configuration-processor&lt;/artifactId&gt;
 &lt;/dependency&gt;
@@ -1604,7 +1598,7 @@ public class ServiceImpl implements Service &#123;
 <blockquote>
 <p>自动配置类是用来初始化 starter 中的相关 bean 的。</p>
 </blockquote>
-<pre><code class="language-java">@Configuration
+<pre><code class="java">@Configuration
 @ConditionalOnClass(FishService.class)
 @EnableConfigurationProperties(FishProperties.class)
 @Slf4j
@@ -1622,7 +1616,7 @@ public class FishAutoConfigure &#123;
 &#125;
 </code></pre>
 <p>实现属性配置类:</p>
-<pre><code class="language-java">@Data
+<pre><code class="java">@Data
 @ConfigurationProperties(&quot;fish.example&quot;)
 public class FishProperties &#123;
 
@@ -1632,7 +1626,7 @@ public class FishProperties &#123;
 &#125;
 </code></pre>
 <p>实现相关功能类：</p>
-<pre><code class="language-java">@Slf4j
+<pre><code class="java">@Slf4j
 public class FishService &#123;
 
     private String host;
@@ -1662,9 +1656,7 @@ public class FishService &#123;
 <li>使Spring启用factories机制导入各个starter模块的配置。</li>
 </ul>
 </blockquote>
-<h1>SpringCloud</h1>
-<h2 id="Eureka">Eureka</h2>
-<p><strong>三级缓存架构</strong></p>
+<h1 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h1><h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><p><strong>三级缓存架构</strong></p>
 <p>Eureka 注册中心的 Server 端有三级缓存来保存注册信息，可以利用缓存的快速读取来提高系统性能。</p>
 <blockquote>
 <p>一级缓存：只读缓存 <code>readOnlyCacheMap</code>，数据结构 ConcurrentHashMap。</p>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" oncontextmenu="return false;">
 
 <head oncontextmenu="return false;">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -1062,13 +1062,11 @@
 <blockquote>
 <p>推荐系统的应用场景通常分为以下两类：</p>
 <ul>
-<li>基于用户维度的推荐：
-<ul>
+<li>基于用户维度的推荐：<ul>
 <li>根据用户的历史行为和兴趣进行推荐，比如淘宝首页的猜你喜欢、抖音的首页推荐等。</li>
 </ul>
 </li>
-<li>基于物品维度的推荐：
-<ul>
+<li>基于物品维度的推荐：<ul>
 <li>根据用户当前浏览的标的物进行推荐，比如打开京东APP的商品详情页，会推荐和主商品相关的商品给你。</li>
 </ul>
 </li>
@@ -1105,13 +1103,13 @@
 </blockquote>
 <p><img src="/images/fd039245d688d43f76d33c07affaa61c0ff43b3d.jpeg" alt="img"></p>
 <img src="/images/9a66f9cca6134745a6dd5e96bed13abb~tplv-k3u1fbpfcp-zoom-1.image" alt="img" style="zoom:80%;" />
+
 <p><strong>协同过滤算法</strong></p>
 <blockquote>
 <p>协同过滤算法的核心就是 <strong>找相似</strong>，它基于用户的历史行为（浏览、收藏、评论等），去发现用户对物品的喜好，并对喜好进行度量和打分，最终筛选出推荐集合。</p>
 <p>包括两个分支：</p>
 <ul>
-<li><strong>基于用户的协同过滤</strong>：
-<ul>
+<li><strong>基于用户的协同过滤</strong>： <ul>
 <li>User-CF，核心是找相似的人。</li>
 <li>用户 A 和用户 C 都购买过物品 a 和物品 b，那么可以认为 A 和 C 是相似的，因为他们共同喜欢的物品多。</li>
 <li>这样，就可以将用户 A 购买过的物品 d 推荐给用户 C。</li>
@@ -1119,8 +1117,7 @@
 </li>
 </ul>
 <ul>
-<li><strong>基于物品的协同过滤</strong>：
-<ul>
+<li><strong>基于物品的协同过滤</strong>：<ul>
 <li>Item-CF，核心是找相似的物品。</li>
 <li>物品 a 和物品 b 同时被用户 A，B，C 购买了，那么物品 a 和 物品 b 被认为是相似的，因为它们的共现次数很高。</li>
 <li>这样，如果用户 D 购买了物品 a，则可以将和物品 a 最相似的物品 b 推荐给用户 D。</li>
