@@ -1064,7 +1064,7 @@
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
 		<div id="readmore-container"><p><strong><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/add-without-plus-lcci/">面试题17.01不用加号的加法</a></strong></p>
-<pre><code class="java">class Solution &#123;
+<pre><code class="language-java">class Solution &#123;
     public int add(int a, int b) &#123;
         int m = a ^ b; //不进位加法
         int n = (a &amp; b) &lt;&lt; 1; //进位
@@ -1078,7 +1078,7 @@
 &#125;
 </code></pre>
 <p><strong><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/smallest-k-lcci/">面试题17.14最小K个数</a></strong></p>
-<pre><code class="java">class Solution &#123;
+<pre><code class="language-java">class Solution &#123;
     public int[] smallestK(int[] arr, int k) &#123;
         if (k &gt;= arr.length) &#123;
             return arr;
@@ -1121,7 +1121,7 @@
 &#125;
 </code></pre>
 <p><strong><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/smallest-difference-lcci/">面试题16.06最小差</a></strong></p>
-<pre><code class="java">class Solution &#123;
+<pre><code class="language-java">class Solution &#123;
 
     public int smallestDifference(int[] a, int[] b) &#123;
         long result = Integer.MAX_VALUE;
@@ -1145,7 +1145,7 @@
 <blockquote>
 <p>LeetCode转化为leet_code，LeetHTTPBack转化为leet_http_back</p>
 </blockquote>
-<pre><code class="python"># -*- coding: utf-8 -*-
+<pre><code class="language-python"># -*- coding: utf-8 -*-
 def get_trans_name(text):
     length=len(text)
     lst=[]
@@ -1164,12 +1164,12 @@ def get_trans_name(text):
     return &quot;&quot;.join(lst)
  
  
-if __name__ == &#39;__main__&#39;:
+if __name__ == '__main__':
     print(get_trans_name(&quot;LeetCode&quot;))
     print(get_trans_name(&quot;LeetHTTPBack&quot;))
 </code></pre>
 <p><strong>字符串相减</strong></p>
-<pre><code class="java">public class SubString &#123;
+<pre><code class="language-java">public class SubString &#123;
     /**
      * 若a字符串表示的数字小于b字符串表示的数字则返回true
      *
@@ -1202,8 +1202,8 @@ if __name__ == &#39;__main__&#39;:
         int borrow = 0;
         int i = a.length() - 1, j = b.length() - 1;
         while (i &gt;= 0 || j &gt;= 0) &#123;
-            int x = i &gt;= 0 ? (a.charAt(i) - &#39;0&#39;) : 0;
-            int y = j &gt;= 0 ? (b.charAt(j) - &#39;0&#39;) : 0;
+            int x = i &gt;= 0 ? (a.charAt(i) - '0') : 0;
+            int y = j &gt;= 0 ? (b.charAt(j) - '0') : 0;
             int z = (x - borrow - y + 10) % 10;
 
             ans.append(z);
@@ -1216,7 +1216,7 @@ if __name__ == &#39;__main__&#39;:
         // 121-120=001 需要删除前导0
         // 121-121=000 不能把所有 0 都删掉
         int pos = 0;
-        while (pos &lt; ans.length()-1 &amp;&amp; ans.charAt(pos) == &#39;0&#39;) &#123;
+        while (pos &lt; ans.length()-1 &amp;&amp; ans.charAt(pos) == '0') &#123;
             pos++;
         &#125;
         return ans.toString().substring(pos);
@@ -1253,20 +1253,20 @@ if __name__ == &#39;__main__&#39;:
 &#125;
 </code></pre>
 <p><strong>字符串相减（36进制）</strong></p>
-<pre><code class="java">public class Sub36 &#123;
+<pre><code class="language-java">public class Sub36 &#123;
     public char getChar(int n) &#123;
         if (n &lt;= 9) &#123;
-            return (char)(n + &#39;0&#39;);
+            return (char)(n + '0');
         &#125; else &#123;
-            return (char)(n - 10 + &#39;a&#39;);
+            return (char)(n - 10 + 'a');
         &#125;
     &#125;
 
     public int getInt(char c) &#123;
-        if (c &gt;= &#39;0&#39; &amp;&amp; c &lt;= &#39;9&#39;) &#123;
-            return c - &#39;0&#39;;
+        if (c &gt;= '0' &amp;&amp; c &lt;= '9') &#123;
+            return c - '0';
         &#125; else &#123;
-            return c - &#39;a&#39; + 10;
+            return c - 'a' + 10;
         &#125;
     &#125;
 
@@ -1290,7 +1290,7 @@ if __name__ == &#39;__main__&#39;:
         // 删除前导0。注意：循环条件是res.size()-1是为防止&quot;0000&quot;的情况
         int pos;
         for (pos = 0; pos &lt; res.length() - 1; pos++) &#123;
-            if (res.charAt(pos) != &#39;0&#39;) &#123;
+            if (res.charAt(pos) != '0') &#123;
                 break;
             &#125;
         &#125;
