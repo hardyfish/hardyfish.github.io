@@ -44,19 +44,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 
 
-    
-<link rel="stylesheet" href="/css/readmore.css">
-
 	
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 
 
 	
 <script src="/lib/highlight/highlight.min.js"></script>
-
-
-	
-<script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js"></script>
 
 
 	
@@ -1063,8 +1056,7 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<div id="readmore-container"><h1>基本概念</h1>
-<p><strong>虚拟化技术VM</strong></p>
+		<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><strong>虚拟化技术VM</strong></p>
 <p>虚拟化技术通过 Hypervisor 实现虚拟机与底层硬件的解耦，虚拟机实现依赖 Hypervisor 层，Hypervisor 是整个虚拟机的核心所在。</p>
 <blockquote>
 <p>Hypervisor是一种运行在基础物理服务器和操作系统之间的中间软件层，可允许多个操作系统和应用共享硬件。</p>
@@ -1100,51 +1092,20 @@
 <blockquote>
 <p>总结：镜像是容器的基石，容器是由镜像创建的。一个镜像可以创建多个容器，容器是镜像运行的实体。仓库就是用来存放和分发镜像的。</p>
 </blockquote>
-<h1>基本原理</h1>
-<p><strong>Namespace</strong></p>
+<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><strong>Namespace</strong></p>
 <p>Namespace对<strong>内核资源进行隔离</strong>，使得容器中的进程都可以在单独的命名空间中运行并且只可以访问当前容器命名空间的资源。</p>
 <blockquote>
 <p>Namespace 可以隔离进程ID、主机名、用户ID、文件名、网络访问和进程间通信等相关资源。</p>
 </blockquote>
 <p><strong>Cgroup</strong></p>
-<p>一种Linux内核功能，可以限制和隔离进程的资源使用情况（CPU、内存、磁盘I/O、网络等）。</p>
+<p>一种Linux内核功能，可以限制和隔离进程的资源使用情况（CPU、内存、磁盘I&#x2F;O、网络等）。</p>
 <p><strong>联合文件系统</strong></p>
 <p>又叫UnionFS，是一种通过创建文件层进程操作的文件系统。常用的联合文件系统：AUFS、Overlay和Devicemapper。</p>
 <blockquote>
 <p>联合文件系统非常轻快，Docker通过联合文件系统为容器提供构建层，使得容器可以实现写时复制以及镜像的分层构建和存储。</p>
 </blockquote>
-<h1>容器编排</h1>
-<p>Docker三种常用的编排工具：Docker Compose、Docker Swarm 和 Kubernetes。</p>
-</div>
-				<link rel="stylesheet" type="text/css" href="/css/readmore.css">
-				<script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script>
-				<script>
-				var isMobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
-				var isEncrypt = document.getElementById('hexo-blog-encrypt');
-				var allowMobile = true;
-				if (!isEncrypt && (!isMobile || (isMobile && allowMobile))) {
-					try {
-						var plugin = new ReadmorePlugin();
-						plugin.init({
-							"type": "hexo",
-							"id": "readmore-container",
-							"name": "月伴飞鱼",
-							"blogId": "80022-2481144997660-197",
-							"qrcode": "https://img-blog.csdnimg.cn/20210613214230408.jpeg",
-							"keyword": "验证码",
-							"random": "1",
-							"height": "auto",
-							"expires": "365",
-							"lockToc": "yes",
-							"interval": "60",
-							"baseUrl": ""
-						});
-					} catch(e) {
-						console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
-					}
-				}
-				</script>
-			
+<h1 id="容器编排"><a href="#容器编排" class="headerlink" title="容器编排"></a>容器编排</h1><p>Docker三种常用的编排工具：Docker Compose、Docker Swarm 和 Kubernetes。</p>
+
 	</div>
 </div>
 
@@ -1180,32 +1141,13 @@
 
 	$(function () {
 		const btw = new BTWPlugin();
-	    //btw.init({
-	    //    id: 'container',
-	    //    blogId: '22377-1701577207733-710',
-	    //    name: '月伴飞鱼',
-	    //    qrcode: '/小程序码.jpg',
-	    //    keyword: '验证码',
-	    //});
-
-	    try {
-            var plugin = new ReadmorePlugin();
-            plugin.init({
-                id: "readmore-container",
-                blogId: "06889-1119417401343-139",
-                name: "月伴飞鱼",
-                keyword: "验证码",
-                qrcode: "/小程序码.jpg",
-                cssUrl: '/css/readmore.css',
-                type: "hexo",
-                height: "auto",
-                expires: "1",
-                interval: "60",
-                random: "1"
-            })
-        } catch (e) {
-            console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
-        }
+	    btw.init({
+	        id: 'container',
+	        blogId: '22377-1701655161572-766',
+	        name: '月伴飞鱼',
+	        qrcode: '/小程序码.jpg',
+	        keyword: '验证码',
+	    });
 
 	    var contents = document.getElementsByClassName("content999");
 	    //监听文章内容的copy事件
@@ -1249,31 +1191,13 @@
 
 <script>
     const btw = new BTWPlugin();
-    //btw.init({
-    //    id: 'container',
-    //    blogId: '22377-1701577207733-710',
-    //    name: '月伴飞鱼',
-    //    qrcode: '/小程序码.jpg',
-    //    keyword: '验证码',
-    //});
-    try {
-        var plugin = new ReadmorePlugin();
-        plugin.init({
-            id: "readmore-container",
-            blogId: "06889-1119417401343-139",
-            name: "月伴飞鱼",
-            keyword: "验证码",
-            qrcode: "/小程序码.jpg",
-            cssUrl: '/css/readmore.css',
-            type: "hexo",
-            height: "auto",
-            expires: "1",
-            interval: "60",
-            random: "1"
-        })
-    } catch (e) {
-        console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
-    }
+    btw.init({
+        id: 'container',
+        blogId: '22377-1701655161572-766',
+        name: '月伴飞鱼',
+        qrcode: '/小程序码.jpg',
+        keyword: '验证码',
+    });
 </script>
 	</div>
 	<div id="footer">

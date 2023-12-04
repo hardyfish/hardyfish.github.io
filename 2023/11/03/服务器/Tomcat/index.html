@@ -44,19 +44,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 
 
-    
-<link rel="stylesheet" href="/css/readmore.css">
-
 	
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 
 
 	
 <script src="/lib/highlight/highlight.min.js"></script>
-
-
-	
-<script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js"></script>
 
 
 	
@@ -1063,8 +1056,7 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<div id="readmore-container"><h1>基本架构</h1>
-<p><strong>总体架构</strong></p>
+		<h1 id="基本架构"><a href="#基本架构" class="headerlink" title="基本架构"></a>基本架构</h1><p><strong>总体架构</strong></p>
 <blockquote>
 <p>最顶层是Server：指的是一个Tomcat实例。</p>
 <p>一个Server中有一个或者多个Service，一个Service中有多个连接器和一个容器。</p>
@@ -1073,6 +1065,7 @@
 </ul>
 </blockquote>
 <img src="/images/7b0377be2dde4696be981e7691b982f1.jpg" alt="img" style="zoom:50%;" />
+
 <p><strong>容器结构</strong></p>
 <blockquote>
 <p>Tomcat设计了4种容器，分别是Engine、Host、Context和Wrapper。</p>
@@ -1097,6 +1090,7 @@
 </ul>
 </blockquote>
 <img src="/images/53f53b9903b6419f8e97d95fa2cee894.jpg" alt="img" style="zoom:70%;" />
+
 <p>请求定位Servlet的过程:</p>
 <blockquote>
 <p>Tomcat会创建一个Service组件和一个Engine容器组件。</p>
@@ -1105,8 +1099,8 @@
 <p>每个容器都有对应的访问路径。</p>
 </blockquote>
 <img src="/images/b7227aaf452c4d6cbf7e88dcbecc2e59.jpg" alt="img" style="zoom:50%;" />
-<h1>线程池</h1>
-<blockquote>
+
+<h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><blockquote>
 <p>Tomcat线程池扩展了原生的ThreadPoolExecutor，通过重写execute方法实现了自己的任务处理逻辑：</p>
 <ul>
 <li>前corePoolSize个任务时，来一个任务就创建一个新线程。</li>
@@ -1120,7 +1114,7 @@
 </ul>
 <p><strong>因为Tomcat属于IO密集型，所以才优先尝试新建线程，线程池满载了，再添加任务到阻塞队列里排队等待</strong>。</p>
 </blockquote>
-<pre><code class="language-java">public class ThreadPoolExecutor extends java.util.concurrent.ThreadPoolExecutor &#123;
+<pre><code class="java">public class ThreadPoolExecutor extends java.util.concurrent.ThreadPoolExecutor &#123;
   
   ...
   
@@ -1145,8 +1139,7 @@
       &#125;
 &#125;
 </code></pre>
-<h1>类加载器</h1>
-<blockquote>
+<h1 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h1><blockquote>
 <p>假如使用JVM默认AppClassLoader来加载Web应用，AppClassLoader只能加载一个Servlet类，在加载第二个同名Servlet类时，AppClassLoader会返回第一个Servlet类的Class实例。</p>
 <ul>
 <li>在AppClassLoader看来，同名的Servlet类只被加载一次。</li>
@@ -1165,6 +1158,7 @@
 <p><strong>CommonClassLoader</strong></p>
 </blockquote>
 <img src="/images/8decb136b3864381aa385f606af2253e.jpg" alt="img" style="zoom:80%;" />
+
 <blockquote>
 <p>Tomcat的自定义类加载器WebAppClassLoader打破了双亲委托机制，<strong>首先自己尝试去加载某个类，如果找不到再代理给父类加载器</strong></p>
 <ul>
@@ -1172,36 +1166,7 @@
 <li>具体实现就是重写ClassLoader的两个方法：findClass和loadClass。</li>
 </ul>
 </blockquote>
-</div>
-				<link rel="stylesheet" type="text/css" href="/css/readmore.css">
-				<script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script>
-				<script>
-				var isMobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
-				var isEncrypt = document.getElementById('hexo-blog-encrypt');
-				var allowMobile = true;
-				if (!isEncrypt && (!isMobile || (isMobile && allowMobile))) {
-					try {
-						var plugin = new ReadmorePlugin();
-						plugin.init({
-							"type": "hexo",
-							"id": "readmore-container",
-							"name": "月伴飞鱼",
-							"blogId": "80022-2481144997660-197",
-							"qrcode": "https://img-blog.csdnimg.cn/20210613214230408.jpeg",
-							"keyword": "验证码",
-							"random": "1",
-							"height": "auto",
-							"expires": "365",
-							"lockToc": "yes",
-							"interval": "60",
-							"baseUrl": ""
-						});
-					} catch(e) {
-						console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
-					}
-				}
-				</script>
-			
+
 	</div>
 </div>
 
@@ -1237,32 +1202,13 @@
 
 	$(function () {
 		const btw = new BTWPlugin();
-	    //btw.init({
-	    //    id: 'container',
-	    //    blogId: '22377-1701577207733-710',
-	    //    name: '月伴飞鱼',
-	    //    qrcode: '/小程序码.jpg',
-	    //    keyword: '验证码',
-	    //});
-
-	    try {
-            var plugin = new ReadmorePlugin();
-            plugin.init({
-                id: "readmore-container",
-                blogId: "06889-1119417401343-139",
-                name: "月伴飞鱼",
-                keyword: "验证码",
-                qrcode: "/小程序码.jpg",
-                cssUrl: '/css/readmore.css',
-                type: "hexo",
-                height: "auto",
-                expires: "1",
-                interval: "60",
-                random: "1"
-            })
-        } catch (e) {
-            console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
-        }
+	    btw.init({
+	        id: 'container',
+	        blogId: '22377-1701655161572-766',
+	        name: '月伴飞鱼',
+	        qrcode: '/小程序码.jpg',
+	        keyword: '验证码',
+	    });
 
 	    var contents = document.getElementsByClassName("content999");
 	    //监听文章内容的copy事件
@@ -1306,31 +1252,13 @@
 
 <script>
     const btw = new BTWPlugin();
-    //btw.init({
-    //    id: 'container',
-    //    blogId: '22377-1701577207733-710',
-    //    name: '月伴飞鱼',
-    //    qrcode: '/小程序码.jpg',
-    //    keyword: '验证码',
-    //});
-    try {
-        var plugin = new ReadmorePlugin();
-        plugin.init({
-            id: "readmore-container",
-            blogId: "06889-1119417401343-139",
-            name: "月伴飞鱼",
-            keyword: "验证码",
-            qrcode: "/小程序码.jpg",
-            cssUrl: '/css/readmore.css',
-            type: "hexo",
-            height: "auto",
-            expires: "1",
-            interval: "60",
-            random: "1"
-        })
-    } catch (e) {
-        console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
-    }
+    btw.init({
+        id: 'container',
+        blogId: '22377-1701655161572-766',
+        name: '月伴飞鱼',
+        qrcode: '/小程序码.jpg',
+        keyword: '验证码',
+    });
 </script>
 	</div>
 	<div id="footer">

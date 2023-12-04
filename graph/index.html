@@ -44,19 +44,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 
 
-    
-<link rel="stylesheet" href="/css/readmore.css">
-
 	
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 
 
 	
 <script src="/lib/highlight/highlight.min.js"></script>
-
-
-	
-<script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js"></script>
 
 
 	
@@ -1051,42 +1044,10 @@
 
 <div id="container" class = "content999" oncontextmenu="return false;">
 	<div id="article-content">
-		<div id="readmore-container"><h1>ZooKeeper分布式技术</h1>
-<p><img src="https://img-blog.csdnimg.cn/d198ba306aac46e7b8f095c20d0dbe30.png" alt=""></p>
-<h1>Apache KAFKA实战</h1>
-<p><img src="https://img-blog.csdnimg.cn/3b8c74eba9f94346a81c745b65717bda.png" alt=""></p>
-<h1>Effective Java</h1>
-<p><img src="https://img-blog.csdnimg.cn/2d5e816b8fdc4b439089d2071a37694c.png" alt=""></p>
-</div>
-				<link rel="stylesheet" type="text/css" href="/css/readmore.css">
-				<script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script>
-				<script>
-				var isMobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
-				var isEncrypt = document.getElementById('hexo-blog-encrypt');
-				var allowMobile = true;
-				if (!isEncrypt && (!isMobile || (isMobile && allowMobile))) {
-					try {
-						var plugin = new ReadmorePlugin();
-						plugin.init({
-							"type": "hexo",
-							"id": "readmore-container",
-							"name": "月伴飞鱼",
-							"blogId": "80022-2481144997660-197",
-							"qrcode": "https://img-blog.csdnimg.cn/20210613214230408.jpeg",
-							"keyword": "验证码",
-							"random": "1",
-							"height": "auto",
-							"expires": "365",
-							"lockToc": "yes",
-							"interval": "60",
-							"baseUrl": ""
-						});
-					} catch(e) {
-						console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
-					}
-				}
-				</script>
-			
+		<h1 id="ZooKeeper分布式技术"><a href="#ZooKeeper分布式技术" class="headerlink" title="ZooKeeper分布式技术"></a>ZooKeeper分布式技术</h1><p><img src="https://img-blog.csdnimg.cn/d198ba306aac46e7b8f095c20d0dbe30.png"></p>
+<h1 id="Apache-KAFKA实战"><a href="#Apache-KAFKA实战" class="headerlink" title="Apache KAFKA实战"></a>Apache KAFKA实战</h1><p><img src="https://img-blog.csdnimg.cn/3b8c74eba9f94346a81c745b65717bda.png"></p>
+<h1 id="Effective-Java"><a href="#Effective-Java" class="headerlink" title="Effective Java"></a>Effective Java</h1><p><img src="https://img-blog.csdnimg.cn/2d5e816b8fdc4b439089d2071a37694c.png"></p>
+
 	</div>
 </div>
 
@@ -1103,32 +1064,13 @@
 
 	$(function () {
 		const btw = new BTWPlugin();
-	    //btw.init({
-	    //    id: 'container',
-	    //    blogId: '22377-1701577207733-710',
-	    //    name: '月伴飞鱼',
-	    //    qrcode: '/小程序码.jpg',
-	    //    keyword: '验证码',
-	    //});
-
-	    try {
-            var plugin = new ReadmorePlugin();
-            plugin.init({
-                id: "readmore-container",
-                blogId: "06889-1119417401343-139",
-                name: "月伴飞鱼",
-                keyword: "验证码",
-                qrcode: "/小程序码.jpg",
-                cssUrl: '/css/readmore.css',
-                type: "hexo",
-                height: "auto",
-                expires: "1",
-                interval: "60",
-                random: "1"
-            })
-        } catch (e) {
-            console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
-        }
+	    btw.init({
+	        id: 'container',
+	        blogId: '22377-1701655161572-766',
+	        name: '月伴飞鱼',
+	        qrcode: '/小程序码.jpg',
+	        keyword: '验证码',
+	    });
 
 	    var contents = document.getElementsByClassName("content999");
 	    //监听文章内容的copy事件
@@ -1172,31 +1114,13 @@
 
 <script>
     const btw = new BTWPlugin();
-    //btw.init({
-    //    id: 'container',
-    //    blogId: '22377-1701577207733-710',
-    //    name: '月伴飞鱼',
-    //    qrcode: '/小程序码.jpg',
-    //    keyword: '验证码',
-    //});
-    try {
-        var plugin = new ReadmorePlugin();
-        plugin.init({
-            id: "readmore-container",
-            blogId: "06889-1119417401343-139",
-            name: "月伴飞鱼",
-            keyword: "验证码",
-            qrcode: "/小程序码.jpg",
-            cssUrl: '/css/readmore.css',
-            type: "hexo",
-            height: "auto",
-            expires: "1",
-            interval: "60",
-            random: "1"
-        })
-    } catch (e) {
-        console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
-    }
+    btw.init({
+        id: 'container',
+        blogId: '22377-1701655161572-766',
+        name: '月伴飞鱼',
+        qrcode: '/小程序码.jpg',
+        keyword: '验证码',
+    });
 </script>
 	</div>
 	<div id="footer">
