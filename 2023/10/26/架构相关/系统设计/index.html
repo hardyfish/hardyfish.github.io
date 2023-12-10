@@ -1280,6 +1280,38 @@
 </ul>
 <p>这个方案比较常用，<strong>去重表是跟业务无关的</strong>，很多业务可以共用同一个去重表，只要规划好唯一主键就行了。</p>
 </blockquote>
+<p><strong>本地缓存一致性刷新</strong></p>
+<blockquote>
+<p>服务是多节点部署的，要保证是本地缓存一致性的，就要短时间内操作所有服务。</p>
+<p>方案1-MQ广播消息</p>
+<p>方案2-Zookeeper Watcher机制</p>
+<p>方案3-RPC框架广播调用(如Dubbo广播调用方式)</p>
+<p>方案4-分布式任务调度的广播执行任务</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MQ广播消息</td>
+<td>有消息积压、消息顺序的问题</td>
+</tr>
+<tr>
+<td>Zookeeper Watcher机制</td>
+<td>Zookeeper本身适合读多写少的场景</td>
+</tr>
+<tr>
+<td>RPC框架广播调用(如Dubbo广播调用方式)</td>
+<td>循环调用所有的实例，所有要考虑实例过多的情况</td>
+</tr>
+<tr>
+<td>分布式任务调度的广播执行任务</td>
+<td>便于定时发布</td>
+</tr>
+</tbody></table>
 
 	</div>
 </div>

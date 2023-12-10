@@ -1082,7 +1082,7 @@
 <blockquote>
 <p>数据量大，读写操作频繁，数据价值较低，对事务要求不高。</p>
 </blockquote>
-<p><strong>存储结构</strong></p>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p><strong>存储结构</strong></p>
 <blockquote>
 <p><strong>文档（Document）</strong> ：</p>
 <ul>
@@ -1139,6 +1139,7 @@
 <p>MongoDB 中的记录就是一个 BSON 文档，它是由键值对组成的数据结构，类似于 JSON 对象，是 MongoDB 中的基本数据单元。</p>
 <ul>
 <li>字段的值可能包括其他文档、数组和文档数组。</li>
+<li><a target="_blank" rel="noopener" href="https://www.mongodb.com/docs/manual/reference/bson-types/">https://www.mongodb.com/docs/manual/reference/bson-types/</a></li>
 </ul>
 </blockquote>
 <img src="/images/image-20231130183817232.png" alt="image-20231130183817232" style="zoom:50%;" />
@@ -1190,6 +1191,95 @@
 <li>最多 64 字节。</li>
 </ul>
 <p>数据库名最终会变成文件系统里的文件。</p>
+</blockquote>
+<p><strong>数据类型</strong></p>
+<blockquote>
+<p><code>String</code>：存储变长的字符串</p>
+<p><code>Number</code>：存储整数或浮点型小数</p>
+<p><code>Boolean</code>：存储<code>true、flase</code>两个布尔值</p>
+<p><code>Date</code>：存储日期和时间</p>
+<p><code>Array</code>：可以存储由任意类型组成的数组</p>
+<p><code>Embedded-Document</code>：可以将其他结构的文档，嵌套到一个文档的字段中</p>
+<p><code>Binary</code>：存储由<code>0、1</code>组成的二进制数据，如图像、音&#x2F;视频等</p>
+<p><code>Code</code>：<code>MongoDB</code>支持直接存储<code>JavaScript</code>代码</p>
+<p><code>Timestamp</code>：存储格林威治时间（<code>GMT</code>）的时间戳</p>
+<p><code>GeoJSON</code>：存储地理空间数据</p>
+<p><code>Text</code>：存储大文本数据</p>
+</blockquote>
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><blockquote>
+<p><code>3.0</code>版本中，引入<code>WiredTiger</code>存储引擎，开始支持单文档事务</p>
+<p><code>4.0</code>版本中，开始支持多文档事务，以及副本集（主从复制）架构下的事务</p>
+<p><code>4.2</code>版本中，开始支持分片集群、分片式多副本集架构下的事务</p>
+<p>类比<code>MySQL</code>，<code>MongoDB</code>支持了分片集群中的事务，而<code>MySQL</code>只支持主从集群下的事务，并不支持分库环境下的事务</p>
+</blockquote>
+<p><code>MongoDB</code>不适用于强事务的场景，原因如下：</p>
+<blockquote>
+<p><code>MongoDB</code>的事务必须在<code>60s</code>内完成，超时将自动取消（因为要考虑分布式环境）</p>
+<p>涉及到事务的分片集群中，不能有<strong>仲裁节点</strong></p>
+<p>事务会影响集群数据同步效率、节点数据迁移效率</p>
+<p>多文档事务的所有操作，必须在主节点上完成，包括读操作</p>
+</blockquote>
+<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><blockquote>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://www.mongodb.com/docs/manual/indexes">https://www.mongodb.com/docs/manual/indexes</a></p>
+<p>早版本的<code>MongoDB</code>中，索引底层默认使用<code>B-Tree</code>结构</p>
+<p><code>4.x</code>版本后，<code>MongoDB</code>推出了<code>V2</code>版索引，默认使用变种<code>B+Tree</code>来作为索引的数据结构（和<code>MySQL</code>索引的数据结构相同）</p>
+<p>复合索引：</p>
+<ul>
+<li>指基于多个字段创建的索引</li>
+</ul>
+<p>唯一索引：</p>
+<ul>
+<li>基于唯一索引查找数据时，找到第一个满足条件的数据，就会立马停止匹配</li>
+</ul>
+<p>部分索引：</p>
+<ul>
+<li>使用字段的一部分开创建索引，要结合<code>partialFilterExpression</code>选项来实现</li>
+</ul>
+<p>TTL索引：</p>
+<ul>
+<li>可以基于它实现过期自动删除的效果</li>
+<li>主要依靠<code>expireAfterSeconds</code>选项来创建，不过只能在<code>Date、ISODate</code>类型的字段上，建立<code>TTL</code>索引</li>
+</ul>
+<p>为什么<code>TTL</code>索引必须基于<code>Date</code>类型的字段创建？</p>
+<ul>
+<li>因为<code>MongoDB</code>会使用该字段的值，作为计算的起始时间</li>
+<li>如果在一个<code>Date</code>数组类型的字段上建立<code>TTL</code>索引，<code>MongoDB</code>会使用其中最早的时间来计算过期时间</li>
+</ul>
+</blockquote>
+<p><strong>Explain工具</strong></p>
+<blockquote>
+<p>执行<code>explain</code>命令，输出了特别多的信息，主要关注<code>stage</code>这个值，类似于<code>MySQL-explain</code>的<code>type</code>字段</p>
+<p>代表着本次语句的查询类型，该字段可能会出现以下值：</p>
+<ul>
+<li><code>COLLSCAN</code>：扫描整个集合进行查询</li>
+<li><code>IXSCAN</code>：通过索引进行查询</li>
+<li><code>COUNT_SCAN</code>：使用索引在进行<code>count</code>操作</li>
+<li><code>COUNTSCAN</code>：没使用索引在进行<code>count</code>操作</li>
+<li><code>FETCH</code>：根据索引键去磁盘拿具体的数据</li>
+<li><code>SORT</code>：执行了<code>sort</code>排序查询</li>
+<li><code>LIMIT</code>：使用了<code>limit</code>限制返回行数</li>
+<li><code>SKIP</code>：使用了<code>skip</code>跳过了某些数据</li>
+<li><code>IDHACK</code>：通过<code>_id</code>主键查询数据</li>
+<li><code>SHARD_MERGE</code>：从多个分片中查询、合并数据</li>
+<li><code>SHARDING_FILTER</code>：通过<code>mongos</code>对分片集群执行查询操作</li>
+<li><code>SUBPLA</code>：未使用索引的<code>$or</code>查询</li>
+<li><code>TEXT</code>：使用全文索引进行查询</li>
+<li><code>PROJECTION</code>：本次查询指定了返回的结果集字段（投影查询）</li>
+</ul>
+</blockquote>
+<h1 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h1><p><strong>常用命令</strong></p>
+<blockquote>
+<p>查询所有数据库：<code>show dbs;</code>或<code>show databases;</code></p>
+<p>切换&#x2F;创建数据库：<code>use 库名;</code></p>
+<p>查看目前所在的数据库：<code>db;</code></p>
+<p>查看<code>MongoDB</code>目前的连接信息：<code>db.currentOp();</code></p>
+<p>查看当前数据库的统计信息：<code>db.stats();</code></p>
+<p>删除数据库：<code>db.dropDatabase(&quot;库名&quot;);</code></p>
+<p>查看库中的所有集合：<code>show collections;</code>或<code>show tables;</code></p>
+<p>显式创建集合：<code>db.createCollection(&quot;集合名&quot;);</code></p>
+<p>查看集合统计信息：<code>db.集合名.stats();</code></p>
+<p>查看集合的数据大小：<code>db.集合名.totalSize();</code></p>
+<p>删除指定集合：<code>db.集合名.drop();</code></p>
 </blockquote>
 
 	</div>
