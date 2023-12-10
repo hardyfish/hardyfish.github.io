@@ -1082,7 +1082,8 @@
 <blockquote>
 <p>数据量大，读写操作频繁，数据价值较低，对事务要求不高。</p>
 </blockquote>
-<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p><strong>存储结构</strong></p>
+<h1>数据结构</h1>
+<p><strong>存储结构</strong></p>
 <blockquote>
 <p><strong>文档（Document）</strong> ：</p>
 <ul>
@@ -1105,7 +1106,8 @@
 <th>MongoDB</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>表（Table）</td>
 <td>集合（Collection）</td>
 </tr>
@@ -1133,7 +1135,8 @@
 <td>数组（Array）</td>
 <td>数组（Array）</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p><strong>文档</strong></p>
 <blockquote>
 <p>MongoDB 中的记录就是一个 BSON 文档，它是由键值对组成的数据结构，类似于 JSON 对象，是 MongoDB 中的基本数据单元。</p>
@@ -1143,7 +1146,6 @@
 </ul>
 </blockquote>
 <img src="/images/image-20231130183817232.png" alt="image-20231130183817232" style="zoom:50%;" />
-
 <blockquote>
 <p>文档的键是字符串，除了少数例外情况，键可以使用任意 UTF-8 字符：</p>
 <ul>
@@ -1164,14 +1166,14 @@
 </ul>
 </blockquote>
 <img src="/images/image-20231130184339470.png" alt="image-20231130184339470" style="zoom:50%;" />
-
 <blockquote>
 <p>集合不需要事先创建，当第一个文档插入或者第一个索引创建时，如果该集合不存在，则会创建一个新的集合。</p>
 <p>集合名可以是满足下列条件的任意 UTF-8 字符串：</p>
 <ul>
 <li>集合名不能是空字符串<code>&quot;&quot;</code>。</li>
 <li>集合名不能含有 <code>\0</code> （空字符)，这个字符表示集合名的结尾。</li>
-<li>集合名不能以<code>system.</code>开头，这是为系统集合保留的前缀。<ul>
+<li>集合名不能以<code>system.</code>开头，这是为系统集合保留的前缀。
+<ul>
 <li><code>system.users</code> 集合保存着数据库的用户信息。</li>
 <li><code>system.namespaces</code> 集合保存着所有数据库集合的信息。</li>
 </ul>
@@ -1186,7 +1188,7 @@
 <p>数据库名可以是满足以下条件的任意 UTF-8 字符串：</p>
 <ul>
 <li>不能是空字符串<code>&quot;&quot;</code>。</li>
-<li>不得含有<code>&#39; &#39;</code>（空格)、<code>.</code>、<code>$</code>、<code>/</code>、<code>\</code>和 <code>\0</code> (空字符)。</li>
+<li>不得含有<code>' '</code>（空格)、<code>.</code>、<code>$</code>、<code>/</code>、<code>\</code>和 <code>\0</code> (空字符)。</li>
 <li>应全部小写。</li>
 <li>最多 64 字节。</li>
 </ul>
@@ -1200,13 +1202,14 @@
 <p><code>Date</code>：存储日期和时间</p>
 <p><code>Array</code>：可以存储由任意类型组成的数组</p>
 <p><code>Embedded-Document</code>：可以将其他结构的文档，嵌套到一个文档的字段中</p>
-<p><code>Binary</code>：存储由<code>0、1</code>组成的二进制数据，如图像、音&#x2F;视频等</p>
+<p><code>Binary</code>：存储由<code>0、1</code>组成的二进制数据，如图像、音/视频等</p>
 <p><code>Code</code>：<code>MongoDB</code>支持直接存储<code>JavaScript</code>代码</p>
 <p><code>Timestamp</code>：存储格林威治时间（<code>GMT</code>）的时间戳</p>
 <p><code>GeoJSON</code>：存储地理空间数据</p>
 <p><code>Text</code>：存储大文本数据</p>
 </blockquote>
-<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><blockquote>
+<h1>事务</h1>
+<blockquote>
 <p><code>3.0</code>版本中，引入<code>WiredTiger</code>存储引擎，开始支持单文档事务</p>
 <p><code>4.0</code>版本中，开始支持多文档事务，以及副本集（主从复制）架构下的事务</p>
 <p><code>4.2</code>版本中，开始支持分片集群、分片式多副本集架构下的事务</p>
@@ -1219,7 +1222,8 @@
 <p>事务会影响集群数据同步效率、节点数据迁移效率</p>
 <p>多文档事务的所有操作，必须在主节点上完成，包括读操作</p>
 </blockquote>
-<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><blockquote>
+<h1>索引</h1>
+<blockquote>
 <p>官方文档：<a target="_blank" rel="noopener" href="https://www.mongodb.com/docs/manual/indexes">https://www.mongodb.com/docs/manual/indexes</a></p>
 <p>早版本的<code>MongoDB</code>中，索引底层默认使用<code>B-Tree</code>结构</p>
 <p><code>4.x</code>版本后，<code>MongoDB</code>推出了<code>V2</code>版索引，默认使用变种<code>B+Tree</code>来作为索引的数据结构（和<code>MySQL</code>索引的数据结构相同）</p>
@@ -1267,10 +1271,142 @@
 <li><code>PROJECTION</code>：本次查询指定了返回的结果集字段（投影查询）</li>
 </ul>
 </blockquote>
-<h1 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h1><p><strong>常用命令</strong></p>
+<h1>集群</h1>
+<blockquote>
+<p><code>MongoDB</code>副本集群源自于主从集群，但在主从的基础上做了很大拓展，其中总共有三种节点角色：</p>
+<ul>
+<li><code>Primary</code>主节点：拥有读写能力，为集群内的副本节点，提供数据拷贝的支持</li>
+<li><code>Replicate</code>副本节点：拥有读能力，数据完全拷贝自主节点，即主从概念中的从节点</li>
+<li><code>Arbiter</code>仲裁节点：不具备读写能力，用于故障恢复，提供故障检测、选举投票能力</li>
+</ul>
+<p>仲裁节点作用等同于哨兵节点，但它并不是副本集群必须存在的节点。</p>
+<ul>
+<li>因为主节点、副本节点都拥有投票能力，它的存在只是为了维护集群内的平衡，如集群节点为偶数时，可以添加一个<strong>仲裁节点</strong>，让集群保持奇数特性，确保每轮选举一次就能推出新主，避免多轮无效竞选的现象出现。</li>
+</ul>
+</blockquote>
+<p><strong>分片</strong></p>
+<blockquote>
+<p>以往的副本集会受到硬件配置的限制，如果写性能出现瓶颈，只能依靠拉高<code>CPU</code>、内存配置来提升性能，而分片集群无需考虑这点，毕竟整个集群都是由不同节点组合对外服务，如果性能出现瓶颈，只需要继续增加分片节点即可，相较于副本集群，分片集群的上限更高。</p>
+<p>分片集群总共有三种角色：</p>
+<ul>
+<li><code>Router</code>路由：负责接收、分发客户端的读写请求，类似于代理中间件</li>
+<li><code>Shard</code>分片：存储数据、处理读写请求的具体节点</li>
+<li><code>Config</code>配置：存储路由、分片节点的元数据和配置信息</li>
+</ul>
+<p>路由可以由一或多个<code>mongos</code>节点组成，<code>config</code>同理，而<code>shard</code>则并非单独的<code>mongodb</code>节点，而是一个个的<code>replicaSet</code>复制集（副本集群）。</p>
+<p>当一个写入请求出现时，<code>Mongos</code>会找到配置的分片键，再使用已配置的分片规则进行计算，从而得出本次数据要落入的分片，最后将该写入请求分发到对应的分片即可。</p>
+</blockquote>
+<img src="/images/image-20231210223530025.png" alt="image-20231210223530025" style="zoom:30%;" />
+<blockquote>
+<p>在集群的分片动态伸缩（数量发生变化）时，会自动触发数据迁移机制，由<code>MongoDB</code>内部来自动维护数据的平衡，无需任何外力介入！</p>
+<p>这个功能，无论在<code>Redis</code>、还是分库分表中，都需要开发者手动完成数据迁移，维护成本特别高。</p>
+</blockquote>
+<p><strong>集群原理</strong></p>
+<p>自动切主:</p>
+<blockquote>
+<p>成为主节点的依据是：<strong>获得集群内大多数节点的投票（节点数量一半以上的票数）</strong>。</p>
+<p>集群初始化时：由于其他节点还未添加进集群，所以集群内只有执行初始化的这一个节点，它会给自己投一票，此时就只有它自己，所以它会理所当然的成为集群内的第一代主节点，如果集群后续期间一直正常，则不会触发新一轮的选举。</p>
+</blockquote>
+<p>整个集群内部的工作阶段：</p>
+<blockquote>
+<p>故障检测：当一个节点感知到其他节点不可用时，会先发起通信向其他可用节点进行二次确认</p>
+<p>故障处理：如果检测到主节点不可用，从节点会将自己转换为候选人，并向其他成员宣布</p>
+<p>选举开始：轮次号加一，开启一轮新的选举，每个候选人节点开始向其他成员发送拉票请求</p>
+<p>投票开始：在一个新的选举轮次中，每个节点只能投一票，可以投给自己或者其他节点</p>
+<p>投票结束：所有节点已投票，或抵达本轮选举的时间限制后，将获得大多数投票的节点立为新主</p>
+<p>主从切换：新主会向其他节点发送 <strong>上位</strong> 消息，其他节点更新自己的配置，接受新主上位</p>
+<p>数据同步：完成主从切换后，从节点以新主为数据基准，校验自身数据是否完整，有缺失则同步</p>
+<p>上述每一步都是由<code>MongoDB</code>集群自动完成，无需任何外力介入</p>
+</blockquote>
+<p>故障检测：</p>
+<blockquote>
+<p>检测出一个集群节点是否故障，主要依靠心跳机制来完成，集群每个成员会以<code>10s</code>一次为频率，定期向其他成员发出心跳包，从而告知其他节点自己还活着。</p>
+<p>当某个节点不再发出心跳时，其他节点将无法收到心跳包，此时会有一或多个节点率先发现问题，将会判定这个没有心跳的节点出现故障。</p>
+<p>为了避免网络波动、延迟、故障带来的误判，率先发现问题的节点，会向集群内的其他成员发起通讯，从其他成员那里二次确认，是否收到了 <strong>故障节点</strong> 的心跳？</p>
+<ul>
+<li>如果其他成员收到了，当前节点不会进行额外处理。</li>
+<li>如果其他成员也未收到，当前节点会通知所有成员，<strong>故障节点</strong>已经下线。</li>
+<li>如果其他节点均未回复，当前节点会认为自己网络出现了问题，或者整个集群不可用，当前节点会停止工作，尝试重连恢复。</li>
+<li>还有一种情况，当从节点去主节点同步数据时，如果发现自己无法连接到主节点时，这时从节点也会试图向其他节点发起通信，二次确认主节点是否故障。</li>
+</ul>
+</blockquote>
+<p>故障处理:</p>
+<blockquote>
+<p>其余节点收到故障节点下线的通知后，集群内所有存活的节点，会判断此次下线的节点身份，如果是从节点或仲裁节点，存活节点只会修改自身的集群配置，将下线的节点从集群中剔除。</p>
+<p>如果此次下线的是主节点，集群内的所有从（副本）节点，会将自己转换为<strong>候选人</strong>角色，并通知其他节点自己想成为<strong>新主</strong>。</p>
+<p>如果集群内有仲裁节点，仲裁节点收到主节点下线的消息后，并不会将自己转变为<strong>候选人</strong>，因为仲裁节点只有投票权，没有竞选权！</p>
+</blockquote>
+<h2 id="选举机制">选举机制</h2>
+<blockquote>
+<p>当主节点下线、并且集群内出现候选人时，整个集群会开启新的选举轮次（<code>term</code>），每个轮次都会拥有一个唯一的轮次号（标识）</p>
+<p>集群内第一个成为候选人的节点，会递增轮次号，同时率先向其他节点发出选举请求，并把自己的票投给自己</p>
+<p>新一轮的选举可能由好几种原因触发：</p>
+<ul>
+<li>通过心跳机制，检测到主节点不可用、并向其余节点已确认主节点下线的情况</li>
+<li>从节点同步数据，无法正常连接主节点</li>
+<li>主节点优先级降低，或具有较高优先级的新节点加入集群</li>
+<li>开发者在主节点上手动执行<code>rs.stepDown()</code>命令时</li>
+</ul>
+</blockquote>
+<p><strong>投票开始</strong></p>
+<blockquote>
+<p>新一轮的选举开始后，当集群内的其他从节点收到拉票请求时，可以选择给其他节点投票，或者把票投给自己、向集群宣布自己也想成为新主，并向其余节点发出拉票请求。</p>
+<p>如果收到拉票请求的节点，角色属于仲裁节点，它无法将票投给自己，只能选择投给其他节点。</p>
+<p>集群内存在多个候选人时，仲裁节点投票时，会遵循先到先得的原则，先收到谁的拉票请求，就把自己的票投给对应节点。</p>
+<p>如果同时收到多个候选人拉票时，此时则会通过<code>oplog</code>操作日志来判断哪个节点的数据最新，该值越高的节点享有越高的竞票权。</p>
+<p>并不是所有从节点，在收到其他从节点拉票时，会把票投给自己、转变为新的候选人开始拉票。</p>
+<ul>
+<li>只有当收到的拉票请求，其数据比自己老时，才会将票投给自己。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p><code>oplog</code>：从节点的操作日志，用于记录主节点的写操作，一个从节点的操作日志越新，说明数据和旧主越接近。</p>
+</blockquote>
+<p><strong>投票结束</strong></p>
+<blockquote>
+<p>当集群内所有存活节点都已投票后，投票阶段将会结束，但如果集群内有节点迟迟不投票，此时选举会陷入僵局，所以每轮选举都有时间限制，如果超出了该限制还未投票的节点，将会被视为弃权。</p>
+<p>投票阶段结束后，集群各个从节点会交换各自的票数，只有当获得大多数节点投票的从节点，才有资格成为新主，具体的数字为：<strong>集群节点数量的一半+1</strong>。</p>
+<ul>
+<li>如果集群的可用节点小于数量的一半时，整个集群将会陷入不可写入状态，只处理读请求。</li>
+</ul>
+<p>某些情况下，投票结束后的状况会更极端一点，比如两个从节点，获得的票数相同，推选谁成为新主？</p>
+<ul>
+<li>此时则会比对两个从节点的<code>oplog</code>，也就是看谁的数据更完整，谁就会成为新主。</li>
+</ul>
+<p>如果两个节点的票数、<code>oplog</code>一模一样，谁作为新主？</p>
+<ul>
+<li><code>MongoDB</code>给每个节点设计了<code>priority</code>优先级的概念，每个节点的优先级默认为<code>1</code>，仲裁节点的为<code>0</code>，表示没有竞选权。</li>
+</ul>
+<p>特殊情况，有<code>A、B</code>两个节点票数相同，但<code>A</code>的<code>oplog</code>最新，<code>B</code>的<code>priority</code>值最高，谁会成为新的主节点？</p>
+<ul>
+<li>是<code>A</code>，因为如果数据落后的<code>B</code>成为了新主，那么数据比它更新的<code>A</code>节点，还需要把多出来的那部分数据删掉，显然并不合理。</li>
+</ul>
+<p>如果两个节点的票数、<code>oplog、priority</code>完全相同，谁会成为新主？</p>
+<ul>
+<li>都不会，而是会触发一轮新的选举过程，重复前面的步骤，直到选出新主为止。</li>
+<li>这也是为什么建议集群节点数量保持在奇数的原因，节点数量为奇数时，几乎不会出现票数持平的现象。</li>
+</ul>
+<p>如果集群从节点数量为偶数，得加入一个仲裁节点，或者将某个节点的优先级调高，保证极端情况下，不会由于票数持平而触发重新选举。</p>
+</blockquote>
+<p><strong>主从切换</strong></p>
+<blockquote>
+<p>新主会向其他成员发送：自己成为新主，以及选举轮次号，其余节点收到后，会先对比轮次号，是不是自己投票过的那轮选举。</p>
+<p>如果不是，说明期间触发过新的选举，而自己没有参与进去，此时该节点会否定这次的新主，又会触发新的选举。</p>
+<p>如果轮次号与自己投票的相同，收到信息的节点则会认可新主，接着变更自己的配置，将原本的旧主标为下线状态，竞选胜利的从节点标为新主。</p>
+</blockquote>
+<p><strong>数据同步</strong></p>
+<blockquote>
+<p>在主从切换完成后，新的主节点会向所有从节点发送<code>oplog</code>，以此来同步数据，其余从节点会拿自身的<code>oplog</code>与之比对，如果发现不完整，则会主动去新主上拉取缺少的数据，从而确保集群内所有节点的数据一致性。</p>
+<ul>
+<li>如果触发了选举过程，集群将会陷入不可用状态，只有当选举、数据同步完成后，才会恢复对外部的数据读写服务。</li>
+</ul>
+</blockquote>
+<h1>常用操作</h1>
+<p><strong>常用命令</strong></p>
 <blockquote>
 <p>查询所有数据库：<code>show dbs;</code>或<code>show databases;</code></p>
-<p>切换&#x2F;创建数据库：<code>use 库名;</code></p>
+<p>切换/创建数据库：<code>use 库名;</code></p>
 <p>查看目前所在的数据库：<code>db;</code></p>
 <p>查看<code>MongoDB</code>目前的连接信息：<code>db.currentOp();</code></p>
 <p>查看当前数据库的统计信息：<code>db.stats();</code></p>
