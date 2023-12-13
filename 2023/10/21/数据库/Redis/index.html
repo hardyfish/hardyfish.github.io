@@ -1212,6 +1212,27 @@ list
 <li>当集合类型 <strong>无法满足</strong> <code>intset</code> 的条件时，<code>Redis</code>会使用<code>hashtable</code>作为集合的 <strong>内部实现</strong>。</li>
 </ul>
 </blockquote>
+<p><strong>有序集合</strong></p>
+<blockquote>
+<p>有序集合的内部实现有两种：压缩列表和跳跃表。</p>
+<p>当有序集合的元素个数小于<code>zset-max-ziplist-entries</code>（默认为128个），并且每个元素成员的长度小于<code>zset-max-ziplist-value</code>（默认为64字节）的时候，使用压缩列表作为有序集合的内部实现。</p>
+<ul>
+<li>每个集合元素由两个紧挨在一起的两个压缩列表结点组成，其中第一个结点保存元素的成员，第二个结点保存元素的分支。</li>
+<li>压缩列表中的元素按照分数从小到大依次紧挨着排列，有效减少了内存空间的使用。</li>
+</ul>
+<p>当有序集合的元素个数大于等于<code>zset-max-ziplist-entries</code>（默认为128个），或者每个元素成员的长度大于等于<code>zset-max-ziplist-value</code>（默认为64字节）的时候，使用跳跃表作为有序集合的内部实现。</p>
+<ul>
+<li>在跳跃表中，所有元素按照从小到大的顺序排列。</li>
+<li>跳跃表的结点中的<code>object</code>指针指向元素成员的字符串对象，<code>score</code>保存了元素的分数。</li>
+<li>通过跳跃表，Redis可以快速地对有序集合进行分数范围、排名等操作。</li>
+</ul>
+<p>在哈希表中，为有序集合创建了一个从元素成员到元素分数的映射。</p>
+<p>键值对中的键指向元素成员的字符串对象，键值对中的值保存了元素的分数。</p>
+<ul>
+<li>通过哈希表，Redis可以快速查找指定元素的分数。</li>
+</ul>
+<p>虽然有序集合同时使用跳跃表和哈希表，但是这两种数据结构都使用指针共享元素中的成员和分数，不会额外的内存浪费。</p>
+</blockquote>
 <p><strong>Pipeline</strong></p>
 <blockquote>
 <p>通过将一批命令进行打包，然后发送给服务器，服务器执行完按顺序打包返回，这样就减少了频繁交互往返的时间，提升了性能。</p>
