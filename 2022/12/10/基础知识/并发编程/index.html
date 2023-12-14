@@ -1337,7 +1337,7 @@ public final static int MAX_PRIORITY = 10
 <ul>
 <li>当另一个线程读取volatile变量的值，它会在读取前插入一个<strong>读屏障</strong>，告诉处理器<strong>在读屏障之后的所有读操作都能获得内存屏障之前的所有写操作的最新结果</strong>。</li>
 </ul>
-<p>如果被 volatile 修饰时会多一个 **<code>ACC_VOLATILE</code>**，JVM把字节码生成机器码时会在相应位置插入内存屏障指令，因此可以通过读写屏障实现 <code>volatile</code> 修饰变量的可见性。</p>
+<p>如果被 volatile 修饰时会多一个 <code>ACC_VOLATILE</code>，JVM把字节码生成机器码时会在相应位置插入内存屏障指令，因此可以通过读写屏障实现 <code>volatile</code> 修饰变量的可见性。</p>
 </blockquote>
 <p><strong><code>volatile</code> 如何实现有序性？</strong></p>
 <blockquote>
