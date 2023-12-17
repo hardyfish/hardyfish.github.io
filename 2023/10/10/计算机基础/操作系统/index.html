@@ -205,6 +205,15 @@
 									
 							<ul>
 								<li class="file">
+									<a href="/2023/12/15/%E4%BB%A3%E7%A0%81%E6%80%9D%E6%83%B3/CodeReview/">
+										CodeReview
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2023/11/02/%E4%BB%A3%E7%A0%81%E6%80%9D%E6%83%B3/%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84/">
 										代码重构
 									</a>
@@ -330,6 +339,15 @@
 								<li class="file">
 									<a href="/2023/10/27/%E5%A8%B1%E4%B9%90%E7%9B%B8%E5%85%B3/%E4%B9%A6%E7%B1%8D/">
 										书籍
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/17/%E5%A8%B1%E4%B9%90%E7%9B%B8%E5%85%B3/%E5%81%9A%E8%8F%9C/">
+										做菜
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1458,8 +1476,11 @@
 </blockquote>
 <p><code>top -Hp 【PID】</code>，显示一个进程的线程运行信息列表，找到最耗CPU的线程。</p>
 <p><code>printf %x\n 【线程pid】</code>，转换多个线程数字为十六进制。</p>
-<p><code>jstack 【进程PID】| grep 【线程转换后十六进制】-A10</code> ， 使用jstack获取进程PID堆栈，利用grep定位线程id，打印后续10行信息。</p>
-<p><code>jstack 【进程PID】&gt; 【文件】</code>，将jstack堆栈信息存储到文件。</p>
+<p><code>jstack 【进程PID】| grep 【线程转换后十六进制】-A10</code> ， 使用JStack获取进程PID堆栈，利用Grep定位线程ID，打印后续10行信息。</p>
+<blockquote>
+<p>如果<code>VM Thread os_prio=0 tid=0x00007f871806e000 nid=0xa runnable</code>，第一个是线程名，如果是<code>VM Thread</code>就是虚拟机GC回收线程了。</p>
+</blockquote>
+<p><code>jstack 【进程PID】&gt; 【文件】</code>，将JStack堆栈信息存储到文件。</p>
 <p><strong>CPU负载情况</strong></p>
 <pre><code>top 
 15:52:00 up 42:35, 1 user, load average: 0.15, 0.05, 0.01
