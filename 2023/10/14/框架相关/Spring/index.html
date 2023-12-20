@@ -1732,7 +1732,59 @@ public class FishService &#123;
 <li>使Spring启用factories机制导入各个starter模块的配置。</li>
 </ul>
 </blockquote>
-<h1 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h1><h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><p><strong>三级缓存架构</strong></p>
+<h1 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h1><h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><blockquote>
+<p>Spring Cloud Eureka 是 Netflix 公司开发的注册发现组件，本身是一个基于 REST 的服务。</p>
+<ul>
+<li>提供注册与发现，同时还提供了负载均衡、故障转移等能力。</li>
+</ul>
+<p>Eureka 有 3 个角色:</p>
+<ul>
+<li>服务中心（Eureka Server）：<ul>
+<li>服务器端，它提供服务的注册和发现功能，即实现服务的治理。</li>
+</ul>
+</li>
+<li>服务提供者（Service Provider）：<ul>
+<li>服务提供者，它将自身服务注册到 服务中心，以便 服务消费者 能够通过服务器提供的服务清单（服务注册列表）来调用它。</li>
+</ul>
+</li>
+<li>服务消费者（Service Consumer）：<ul>
+<li>服务消费者，它从 服务中心 获取已注册的服务列表，从而消费服务。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>Eureka 是 AP 架构（可用性和分区容错性），Zookeeper 是 CP 架构（一致性和分区容错性）。</p>
+<ul>
+<li><p>Eueka 优先保证服务的可用性。</p>
+</li>
+<li><p>Zookeeper 在 Master 节点因网络故障与其他节点失去联系时，剩余节点选取 Leader 时间太长，导致选举期间注册服务瘫痪。</p>
+</li>
+</ul>
+</blockquote>
+<p>服务自保机制（Service Self-Preservation Mechanism）：</p>
+<blockquote>
+<p>用于保护在 Eureka 注册中心上注册的微服务实例免受意外删除的影响。</p>
+<p>当微服务实例在心跳超时时间内没有发送心跳信号给 Eureka Server 时:</p>
+<ul>
+<li>Eureka Server 不会立即将其从服务注册表中删除，而是认为该实例可能处于网络故障等临时异常情况。</li>
+<li>会将其保留在注册表中，提供一定的自我保护，防止误删健康的实例。</li>
+</ul>
+<p>这样可以避免因网络抖动、服务器负载或其他临时问题导致服务实例被误删，从而提高服务的稳定性和可用性。</p>
+</blockquote>
+<p>服务剔除机制（Service Eviction Mechanism）：</p>
+<blockquote>
+<p>是指当服务实例连续长时间未发送心跳信号、或注册中心发现某个服务实例心跳连续失败的次数超过一定阈值时：</p>
+<ul>
+<li>Eureka Server 会将该服务实例从服务注册表中剔除。</li>
+</ul>
+<p>通过服务剔除机制，可以排除不健康、异常或故障状态的服务实例：</p>
+<ul>
+<li>防止其他服务继续调用故障的实例减少错误的传播范围，提高系统的稳定性。</li>
+</ul>
+</blockquote>
+<p><strong>基本原理</strong></p>
 <p>Eureka 注册中心的 Server 端有三级缓存来保存注册信息，可以利用缓存的快速读取来提高系统性能。</p>
 <blockquote>
 <p>一级缓存：只读缓存 <code>readOnlyCacheMap</code>，数据结构 ConcurrentHashMap。</p>
