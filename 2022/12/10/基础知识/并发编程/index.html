@@ -1130,11 +1130,12 @@
       </div>
       <!--打赏-->
 	<div id="article-content">
-		<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><p><strong>线程优先级</strong></p>
+		<h1>线程</h1>
+<p><strong>线程优先级</strong></p>
 <blockquote>
 <p>线程的优先级：线程抢占 CPU 时间片的概率，优先级越高的线程优先执行的概率就越大，但并不能保证优先级高的线程一定先执行。</p>
 </blockquote>
-<pre><code class="java">// 线程可以拥有的最小优先级
+<pre><code class="language-java">// 线程可以拥有的最小优先级
 public final static int MIN_PRIORITY = 1;
 
 // 线程默认优先级
@@ -1155,12 +1156,12 @@ public final static int MAX_PRIORITY = 10
 <li>yield() 执行非常不稳定，线程调度器不一定会采纳 yield() 出让 CPU 使用权的建议。</li>
 </ul>
 </blockquote>
-<p><strong>wait&#x2F;notify和sleep方法的异同？</strong></p>
+<p><strong>wait/notify和sleep方法的异同？</strong></p>
 <blockquote>
 <p>wait 方法必须在 synchronized 保护的代码中使用，而 sleep 方法并没有这个要求。</p>
 <p>在同步代码中执行 sleep 方法时，并不会释放 monitor 锁，但执行 wait 方法时会主动释放 monitor 锁。</p>
 <p>sleep 方法中会要求必须定义一个时间，时间到期后会主动恢复，而对于没有参数的 wait 方法而言，意味着永久等待，直到被中断或被唤醒才能恢复，它并不会主动恢复。</p>
-<p>wait&#x2F;notify 是 Object 类的方法，而 sleep 是 Thread 类的方法。</p>
+<p>wait/notify 是 Object 类的方法，而 sleep 是 Thread 类的方法。</p>
 </blockquote>
 <p><strong>线程状态</strong></p>
 <p>新建状态（New）:</p>
@@ -1187,13 +1188,17 @@ public final static int MAX_PRIORITY = 10
 <blockquote>
 <p>运行状态的线程执行<code>wait()、join()、LockSupport.park()</code>任意函数，该线程进入等待状态。</p>
 <ul>
-<li><p>其中<code>wait()</code>与<code>join()</code>函数会让JVM把该线程放入锁等待队列。</p>
+<li>
+<p>其中<code>wait()</code>与<code>join()</code>函数会让JVM把该线程放入锁等待队列。</p>
 </li>
-<li><p>处于这种状态的线程不会被分配CPU执行时间，它们要等待被<strong>主动唤醒</strong>，否则会一直处于等待状态。</p>
+<li>
+<p>处于这种状态的线程不会被分配CPU执行时间，它们要等待被<strong>主动唤醒</strong>，否则会一直处于等待状态。</p>
 </li>
-<li><p>执行<code>LockSupport.unpark(t)</code>函数唤醒指定线程，该线程回到就绪状态。</p>
+<li>
+<p>执行<code>LockSupport.unpark(t)</code>函数唤醒指定线程，该线程回到就绪状态。</p>
 </li>
-<li><p>通过<code>notify()、notifyAll()、join线程执行完毕</code>方式，会唤醒锁等待队列的线程，出队的线程回到就绪状态。</p>
+<li>
+<p>通过<code>notify()、notifyAll()、join线程执行完毕</code>方式，会唤醒锁等待队列的线程，出队的线程回到就绪状态。</p>
 </li>
 </ul>
 </blockquote>
@@ -1224,7 +1229,7 @@ public final static int MAX_PRIORITY = 10
 <blockquote>
 <p>如果我们操作的正确性是依赖时序的，而在多线程的情况下又不能保障执行的顺序和我们预想的一致，这个时候就会发生线程安全问题。</p>
 </blockquote>
-<pre><code class="java">if (map.containsKey(key)) &#123;
+<pre><code class="language-java">if (map.containsKey(key)) &#123;
     map.remove(obj)
 &#125;
 </code></pre>
@@ -1256,11 +1261,11 @@ public final static int MAX_PRIORITY = 10
 <blockquote>
 <p>在 while 循环体判断语句中，通过 <code>Thread.currentThread().isInterrupt()</code>判断线程是否被中断。</p>
 </blockquote>
-<pre><code class="java">while (!Thread.currentThread().islnterrupted() &amp;&amp; more work to do) &#123;
+<pre><code class="language-java">while (!Thread.currentThread().islnterrupted() &amp;&amp; more work to do) &#123;
     do more work
 &#125;
 </code></pre>
-<pre><code class="java">public class StopThread implements Runnable &#123;
+<pre><code class="language-java">public class StopThread implements Runnable &#123;
  
     @Override
     public void run() &#123;
@@ -1283,11 +1288,11 @@ public final static int MAX_PRIORITY = 10
 <p>这样一来就不用担心长时间休眠中线程感受不到中断了，因为即便线程还在休眠，仍然能够响应中断通知，并抛出异常。</p>
 </blockquote>
 <p>如果我们负责编写的方法需要被别人调用，方法内调用了 sleep 或者 wait 等能响应中断的方法时，仅仅 catch 住异常是不够的。</p>
-<p>方式一：方法签名抛异常，run() 强制 try&#x2F;catch：</p>
+<p>方式一：方法签名抛异常，run() 强制 try/catch：</p>
 <blockquote>
 <p>将中断信号层层传递到顶层，最终让 run() 方法可以捕获到异常。</p>
 </blockquote>
-<pre><code class="java">void subTask() throws InterruptedException &#123;
+<pre><code class="language-java">void subTask() throws InterruptedException &#123;
     Thread.sleep(1000);
 &#125;
 </code></pre>
@@ -1296,7 +1301,7 @@ public final static int MAX_PRIORITY = 10
 <p>手动添加中断信号，中断信号依然可以被捕捉到。</p>
 <p>这样后续执行的方法依然可以检测到这里发生过中断，可以做出相应的处理。</p>
 </blockquote>
-<pre><code class="java">private void reInterrupt() &#123;
+<pre><code class="language-java">private void reInterrupt() &#123;
     try &#123;
         Thread.sleep(2000);
     &#125; catch (InterruptedException e) &#123;
@@ -1306,7 +1311,7 @@ public final static int MAX_PRIORITY = 10
 &#125;
 </code></pre>
 <p><strong>生产者消费者模式</strong></p>
-<pre><code class="java">public class MyBlockingQueueForCondition &#123;
+<pre><code class="language-java">public class MyBlockingQueueForCondition &#123;
  
    private Queue queue;
    private int max = 16;
@@ -1348,10 +1353,11 @@ public final static int MAX_PRIORITY = 10
    &#125;
 &#125;
 </code></pre>
-<h2 id="Volatile"><a href="#Volatile" class="headerlink" title="Volatile"></a>Volatile</h2><p>相比于 <strong><code>synchronized</code></strong> 关键字（重量级锁）对性能影响较大。</p>
+<h2 id="Volatile">Volatile</h2>
+<p>相比于 <strong><code>synchronized</code></strong> 关键字（重量级锁）对性能影响较大。</p>
 <p>使用 <strong><code>volatile</code></strong> 不会引起上下文的切换和调度，所以 <strong><code>volatile</code></strong> 对性能的影响较小，开销较低。</p>
 <blockquote>
-<p><code>volatile</code> 可以保证其修饰的变量的<strong>可见性</strong>和<strong>有序性</strong>，无法保证<strong>原子性</strong>（不能保证完全的原子性，只能保证单次读&#x2F;写操作具有原子性，即无法保证复合操作的原子性）。</p>
+<p><code>volatile</code> 可以保证其修饰的变量的<strong>可见性</strong>和<strong>有序性</strong>，无法保证<strong>原子性</strong>（不能保证完全的原子性，只能保证单次读/写操作具有原子性，即无法保证复合操作的原子性）。</p>
 </blockquote>
 <p><strong><code>volatile</code> 如何实现可见性？</strong></p>
 <blockquote>
@@ -1394,7 +1400,8 @@ public final static int MAX_PRIORITY = 10
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>LoadLoad 屏障</td>
 <td>保证在该屏障之后的读操作，不会被重排序到该屏障之前的读操作</td>
 </tr>
@@ -1410,7 +1417,8 @@ public final static int MAX_PRIORITY = 10
 <td>LoadStore 屏障</td>
 <td>保证在该屏障之后的写操作，不会被重排序到该屏障之前的读操作</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <blockquote>
 <p><strong>volatile的插入屏障策略</strong></p>
 </blockquote>
@@ -1422,17 +1430,16 @@ public final static int MAX_PRIORITY = 10
 </ul>
 <p>即在每个volatile写操作前后分别插入内存屏障，在每个volatile读操作后插入两个内存屏障。</p>
 <img src="/images/image-20231017154024898.png" alt="image-20231017154024898" style="zoom:100%;" />
-
 <p><strong><code>volatile</code> 为什么不能保证原子性？</strong></p>
 <blockquote>
-<p> <code>volatile</code> 无法保证复合操作的原子性，但能保证单个操作的原子性。</p>
+<p><code>volatile</code> 无法保证复合操作的原子性，但能保证单个操作的原子性。</p>
 </blockquote>
 <p><strong><code>volatile</code> 常见的应用场景？</strong></p>
 <p>状态标志位:</p>
 <blockquote>
 <p>使用 <code>volatile</code> 修饰一个变量<strong>通过赋值不同的常数或值来标识不同的状态</strong>。</p>
 </blockquote>
-<pre><code class="java">/**
+<pre><code class="language-java">/**
  * 可以通过布尔值来控制线程的启动和停止
  */
 public class MyThread extends Thread &#123;
@@ -1456,15 +1463,16 @@ public class MyThread extends Thread &#123;
 <blockquote>
 <p>单例模式的双重检查DLC可以通过 <code>volatile</code> 来修饰从存储单例模式对象的变量。</p>
 </blockquote>
-<h1 id="原子类"><a href="#原子类" class="headerlink" title="原子类"></a>原子类</h1><h2 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h2><blockquote>
+<h1>原子类</h1>
+<h2 id="CAS">CAS</h2>
+<blockquote>
 <p><code>CAS（compareAndSwap）</code>比较交换，是一种无锁原子算法，映射到操作系统就是一条<code>cmpxchg</code>硬件汇编指令（<strong>保证原子性</strong>）。</p>
-<p>其作用是让<code>CPU</code>将内存值更新为新值，但是有个条件，内存值必须与期望值相同，并且<code>CAS</code>操作无需用户态与内核态切换，直接在用户态对内存进行读写操作（<strong>意味着不会阻塞&#x2F;线程上下文切换</strong>）。</p>
+<p>其作用是让<code>CPU</code>将内存值更新为新值，但是有个条件，内存值必须与期望值相同，并且<code>CAS</code>操作无需用户态与内核态切换，直接在用户态对内存进行读写操作（<strong>意味着不会阻塞/线程上下文切换</strong>）。</p>
 </blockquote>
 <blockquote>
 <p>它包含<code>3</code>个参数<code>CAS（V，E，N）</code>，<code>V</code>表示待更新的内存值，<code>E</code>表示预期值，<code>N</code>表示新值，当 <code>V</code>值等于<code>E</code>值时，才会将<code>V</code>值更新成<code>N</code>值，如果<code>V</code>值和<code>E</code>值不等，不做更新，这就是一次<code>CAS</code>的操作。</p>
 </blockquote>
 <img src="/images/image-20231017135339775.png" alt="image-20231017135339775" style="zoom:80%;" />
-
 <p><strong>CAS如何保证原子性</strong></p>
 <p>总线锁定:</p>
 <blockquote>
@@ -1490,7 +1498,7 @@ public class MyThread extends Thread &#123;
 <p>自旋时间太长：</p>
 <blockquote>
 <p>当一个线程获取锁时失败，不进行阻塞挂起，而是间隔一段时间再次尝试获取，直到成功为止，这种循环获取的机制被称为自旋。</p>
-<p>自旋锁好处：持有锁的线程在短时间内释放锁，那些等待竞争锁的线程就不需进入阻塞状态（<strong>无需线程上下文切换&#x2F;无需用户态与内核态切换</strong>），它们只需要等一等（<strong>自旋</strong>），等到持有锁的线程释放锁之后即可获取，这样就避免了用户态和内核态的切换消耗。</p>
+<p>自旋锁好处：持有锁的线程在短时间内释放锁，那些等待竞争锁的线程就不需进入阻塞状态（<strong>无需线程上下文切换/无需用户态与内核态切换</strong>），它们只需要等一等（<strong>自旋</strong>），等到持有锁的线程释放锁之后即可获取，这样就避免了用户态和内核态的切换消耗。</p>
 <p>自旋锁坏处：线程在长时间内持有锁，等待竞争锁的线程一直自旋，即CPU一直空转，资源浪费在毫无意义的地方。</p>
 </blockquote>
 <p>ABA问题：</p>
@@ -1502,7 +1510,8 @@ public class MyThread extends Thread &#123;
 </ul>
 <p>要解决<code>ABA</code>问题只要追加版本号即可，每次改变时加<code>1</code>，即<code>A —&gt; B —&gt; A</code>，变成<code>1A —&gt; 2B —&gt; 3A</code>，在<code>Java</code>中提供了<code>AtomicStampedRdference</code>可以实现这个方案。</p>
 </blockquote>
-<h1 id="阻塞队列"><a href="#阻塞队列" class="headerlink" title="阻塞队列"></a>阻塞队列</h1><p>BlockingQueue 继承了 Queue 接口，是队列的一种。</p>
+<h1>阻塞队列</h1>
+<p>BlockingQueue 继承了 Queue 接口，是队列的一种。</p>
 <p>BlockingQueue 是线程安全的，在很多场景下都可以利用线程安全的队列来优雅地<strong>解决业务自身的线程安全问题。</strong></p>
 <p><strong>ArrayBlockingQueue</strong></p>
 <p>内部是用数组存储元素，利用 ReentrantLock 实现线程安全。</p>
@@ -1513,7 +1522,7 @@ public class MyThread extends Thread &#123;
 <p>3、队列满时，往队列中 put 数据会被阻塞，队列空时，往队列中拿数据也会被阻塞。</p>
 </blockquote>
 <p>新增数据：</p>
-<pre><code class="java">// 新增，如果队列满，无限阻塞
+<pre><code class="language-java">// 新增，如果队列满，无限阻塞
 public void put(E e) throws InterruptedException &#123;
     // 元素不能为空
     checkNotNull(e);
@@ -1550,7 +1559,7 @@ private void enqueue(E x) &#123;
 <p>每次拿数据的位置就是 takeIndex 的位置，在找到本次该拿的数据之后，会把 takeIndex 加 1，计算下次拿数据时的索引位置。</p>
 <p>有个特殊情况是，如果本次拿数据的位置已经是队尾了，那么下次拿数据的位置就要从头开始，就是从 0 开始了。</p>
 </blockquote>
-<pre><code class="java">public E take() throws InterruptedException &#123;
+<pre><code class="language-java">public E take() throws InterruptedException &#123;
     final ReentrantLock lock = this.lock;
     lock.lockInterruptibly();
     try &#123;
@@ -1593,7 +1602,7 @@ private E dequeue() &#123;
 <p>3、链表维护先入先出队列，新元素被放在队尾，获取元素从队头部拿。</p>
 </blockquote>
 <p>LinkedBlockingQueue 内部构成，分成三个部分：链表存储 + 锁 + 迭代器。</p>
-<pre><code class="java">// 链表结构 begin
+<pre><code class="language-java">// 链表结构 begin
 //链表的元素
 static class Node&lt;E&gt; &#123;
     E item;
@@ -1645,7 +1654,7 @@ private class Itr implements Iterator&lt;E&gt; &#123;
 </ul>
 </blockquote>
 <p>阻塞新增：</p>
-<pre><code class="java">// 把e新增到队列的尾部。
+<pre><code class="language-java">// 把e新增到队列的尾部。
 // 如果有可以新增的空间的话，直接新增成功，否则当前线程陷入等待
 public void put(E e) throws InterruptedException &#123;
     // e 为空，抛出异常
@@ -1718,7 +1727,8 @@ private void enqueue(Node&lt;E&gt; node) &#123;
 <p>2、未过期的元素不能够被 take。</p>
 <p>3、不允许空元素。</p>
 </blockquote>
-<h1 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h1><p><code>JMM</code>抽象结构划分为线程本地缓存与主存，每个线程均有自己的本地缓存，本地缓存是线程<strong>私有</strong>的，主存则是计算机内存，它是<strong>共享</strong>的。</p>
+<h1>内存模型</h1>
+<p><code>JMM</code>抽象结构划分为线程本地缓存与主存，每个线程均有自己的本地缓存，本地缓存是线程<strong>私有</strong>的，主存则是计算机内存，它是<strong>共享</strong>的。</p>
 <p><strong>为什么需要 JMM（Java Memory Model，Java 内存模型）</strong></p>
 <blockquote>
 <p>程序最终执行的效果会依赖于具体的处理器，而不同的处理器的规则又不一样，不同的处理器之间可能差异很大，因此同样的一段代码，可能在处理器 A 上运行正常，而在处理器 B 上运行的结果却不一致。</p>
@@ -1729,11 +1739,10 @@ private void enqueue(Node&lt;E&gt; node) &#123;
 </blockquote>
 <p><strong>主内存和工作内存的关系</strong></p>
 <img src="/images/image-20231017161900549.png" alt="image-20231017161900549" style="zoom:80%;" />
-
 <p>JMM 有以下规定：</p>
 <blockquote>
 <p>所有的变量都存储在主内存中，同时每个线程拥有自己独立的工作内存，而工作内存中的变量的内容是主内存中该变量的拷贝。</p>
-<p>线程不能直接读&#x2F;写主内存中的变量，但可以操作自己工作内存中的变量，然后再同步到主内存中，这样，其他线程就可以看到本次修改。</p>
+<p>线程不能直接读/写主内存中的变量，但可以操作自己工作内存中的变量，然后再同步到主内存中，这样，其他线程就可以看到本次修改。</p>
 <p>主内存是由多个线程所共享的，但线程间不共享各自的工作内存，如果线程间需要通信，则必须借助主内存中转来完成。</p>
 </blockquote>
 <p><strong>可见性</strong></p>
@@ -1773,7 +1782,7 @@ private void enqueue(Node&lt;E&gt; node) &#123;
 <blockquote>
 <p><strong>重排序的好处：提高处理速度。</strong></p>
 </blockquote>
-<pre><code class="java">int i = 10
+<pre><code class="language-java">int i = 10
 int j = 10
 //这就是数据依赖，int i 与 int j 不能排到 int c下面去
 int c = i + j
@@ -1787,7 +1796,7 @@ int c = i + j
 <blockquote>
 <p>如果有两个线程，分别执行 write 和 read 方法，那么由于这两个线程之间没有相互配合的机制，所以 write 和 read 方法内的代码不具备 happens-before 关系，其中的变量的可见性无法保证。</p>
 </blockquote>
-<pre><code class="java">public class Visibility &#123;
+<pre><code class="language-java">public class Visibility &#123;
     int x = 0;
     public void write() &#123;
         x = 1;
@@ -1811,7 +1820,8 @@ int c = i + j
 <li>Thread 对象的 start 方法 happen before 此线程 run 方法中的每一个操作。</li>
 </ul>
 </blockquote>
-<h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><p><strong>为什么要使用线程池</strong></p>
+<h1>线程池</h1>
+<p><strong>为什么要使用线程池</strong></p>
 <blockquote>
 <p>线程池可以解决线程生命周期的系统开销问题，同时还可以加快响应速度：</p>
 <ul>
@@ -1827,20 +1837,77 @@ int c = i + j
 </ul>
 </blockquote>
 <p><strong>线程池参数</strong></p>
-<img src="/images/image-20231017142611779.png" alt="image-20231017142611779" style="zoom:90%;" />
-
+<pre><code class="language-java">public ThreadPoolExecutor(int corePoolSize,
+                          int maximumPoolSize,
+                          long keepAliveTime,
+                          TimeUnit unit,
+                          BlockingQueue&lt;Runnable&gt; workQueue,
+                          ThreadFactory threadFactory,
+                          RejectedExecutionHandler handler)
+</code></pre>
 <blockquote>
-<p>当提交任务后，线程池首先会检查当前线程数，如果此时线程数小于核心线程数，比如最开始线程数量为 0，则新建线程并执行任务，随着任务的不断增加，线程数会逐渐增加并达到核心线程数，此时如果仍有任务被不断提交，就会被放入 workQueue 任务队列中，等待核心线程执行完当前任务后重新从 workQueue 中提取正在等待被执行的任务。</p>
-<p>假设任务特别的多，已经达到了 workQueue 的容量上限，线程池会在 corePoolSize 核心线程数的基础上继续创建线程来执行任务，线程池会持续创建线程直到线程数达到 maxPoolSize 最大线程数，如果依然有任务被提交，这个时候线程池就会拒绝这些任务。</p>
-</blockquote>
+<p>corePoolSize：</p>
+<ul>
+<li>线程池的核心线程数量，即线程池中可以保持活动状态的最小线程数。</li>
+<li>当提交的任务数超过核心线程数量时，线程池可以创建更多的线程来执行任务。</li>
+</ul>
+<p>maximumPoolSize：</p>
+<ul>
+<li>线程池中允许同时存在的最大线程数量，即当任务数超过核心线程数量时，线程池可以创建的最大线程数量。</li>
+<li>当线程池中的线程数量已经达到最大值且任务队列已满时，可以采取拒绝策略处理过多的任务。</li>
+<li>可以在创建线程池时指定最大线程数，也可以在运行时动态地修改。</li>
+</ul>
 <p>keepAliveTime：</p>
-<blockquote>
-<p>当线程池中线程数量多于核心线程数时，而此时又没有任务可做，线程池就会检测线程的 keepAliveTime，如果超过规定的时间，无事可做的线程就会被销毁，以便减少内存的占用和资源消耗。</p>
+<ul>
+<li>线程空闲后的存活时间。</li>
+<li>当线程池中的线程数量超过核心线程数时，空闲的线程会在等待新任务到来的过程中等待一段时间。</li>
+<li>如果等待时间超过了 <code>keepAliveTime</code>，则该线程会被销毁，以释放资源。</li>
+</ul>
+<p>unit：</p>
+<ul>
+<li>keepAliveTime 的单位，可以是毫秒、微秒、纳秒等等。</li>
+</ul>
+<p>workQueue：</p>
+<ul>
+<li>线程池中用于保存等待中任务的阻塞队列。</li>
+</ul>
+<p>threadFactory：</p>
+<ul>
+<li>线程工厂，用于创建线程的工厂，可以自定义实现。</li>
+<li>可以选择使用默认的线程工厂，创建的线程都会在同一个线程组，并拥有一样的优先级，且都不是守护线程。</li>
+<li>也可以选择自己定制线程工厂，以方便给线程自定义命名，不同的线程池内的线程通常会根据具体业务来定制不同的线程名。</li>
+</ul>
+<p>handler：</p>
+<ul>
+<li>当线程池已经关闭或已满时，新任务的处理策略。</li>
+</ul>
 </blockquote>
-<p>ThreadFactory:</p>
+<img src="/images/image-20231220132715694.png" alt="image-20231220132715694" style="zoom:50%;" />
 <blockquote>
-<p>ThreadFactory 实际上是一个线程工厂，它的作用是生产线程以便执行任务。</p>
-<p>可以选择使用默认的线程工厂，创建的线程都会在同一个线程组，并拥有一样的优先级，且都不是守护线程，也可以选择自己定制线程工厂，以方便给线程自定义命名，不同的线程池内的线程通常会根据具体业务来定制不同的线程名。</p>
+<p>在创建了线程池后，线程池中的线程数为零。</p>
+<p>当调用 <code>execute()</code> 方法添加一个请求任务时，线程池会做出如下判断：</p>
+<ul>
+<li>
+<p>如果正在运行的线程数量 小于 <code>corePoolSize</code>，那么马上创建线程运行这个任务。</p>
+</li>
+<li>
+<p>如果正在运行的线程数量 大于或等于 <code>corePoolSize</code>，那么将这个任务放入队列。</p>
+</li>
+<li>
+<p>如果这个时候队列满了且正在运行的线程数量还 小于 <code>maximumPoolSize</code>，那么还是要创建非核心线程立刻运行这个任务。</p>
+</li>
+<li>
+<p>如果队列满了且正在运行的线程数量 大于或等于 <code>maximumPoolSize</code>，那么线程池会启动饱和拒绝策略来执行。</p>
+</li>
+<li>
+<p>当一个线程完成任务时，它会从队列中取下一个任务来执行。</p>
+</li>
+</ul>
+<p>当一个线程无事可做超过一定的时间（<code>keepAliveTime</code>）时，线程会判断：</p>
+<ul>
+<li>如果当前运行的线程数大于 <code>corePoolSize</code>，那么这个线程就被停掉。</li>
+<li>所以线程池的所有任务完成后，它最终会收缩到<code>corePoolSize</code>的大小。</li>
+</ul>
 </blockquote>
 <p><strong>拒绝策略</strong></p>
 <p>线程池会在以下两种情况下会拒绝新提交的任务：</p>
@@ -1873,6 +1940,8 @@ int c = i + j
 <li>第一点：新提交的任务不会被丢弃，这样也就不会造成业务损失。</li>
 <li>第二点：由于谁提交任务谁就要负责执行任务，这样提交任务的线程就得负责执行任务，而执行任务又是比较耗时的，在这段期间，提交任务的线程被占用，也就不会再提交新的任务，减缓了任务提交的速度。</li>
 </ul>
+<p>以上内置的策略均<strong>实现了 RejectedExecutionHandler 接口</strong>。</p>
+<p>可以自己扩展 <code>RejectedExecutionHandler</code> 接口，定义自己的拒绝策略。</p>
 </blockquote>
 <p><strong>使用CallerRunsPolicy顺序问题：</strong></p>
 <blockquote>
@@ -1885,7 +1954,7 @@ int c = i + j
 <p><code>最佳线程数目 = （（线程等待时间+线程CPU时间）/ 线程CPU时间 ）* CPU数目</code>。</p>
 <p>举例：</p>
 <p>服务器CPU核数为4核，一个任务线程CPU耗时为20ms，线程等待（网络IO、磁盘IO）耗时80ms</p>
-<p><strong>最佳线程数目：( 80 + 20 )&#x2F;20 * 4 &#x3D; 20</strong></p>
+<p><strong>最佳线程数目：( 80 + 20 )/20 * 4 = 20</strong></p>
 <ul>
 <li>线程的等待时间越大，线程数就要设置越大。</li>
 </ul>
@@ -1951,14 +2020,16 @@ int c = i + j
 <blockquote>
 <p><strong>实现线程复用的逻辑主要在一个不停循环的 while 循环体中</strong></p>
 <ul>
-<li><p>通过取 Worker 的 <strong>firstTask</strong> 或者通过 <strong>getTask</strong> 方法从 <strong>workQueue</strong> 中获取待执行的任务。</p>
+<li>
+<p>通过取 Worker 的 <strong>firstTask</strong> 或者通过 <strong>getTask</strong> 方法从 <strong>workQueue</strong> 中获取待执行的任务。</p>
 </li>
-<li><p>直接调用 task 的 run 方法来执行具体的任务（而不是新建线程）。</p>
+<li>
+<p>直接调用 task 的 run 方法来执行具体的任务（而不是新建线程）。</p>
 </li>
 </ul>
 </blockquote>
 <p><strong>ThreadPoolExecutor重要属性</strong></p>
-<pre><code class="java">//ctl 线程池状态控制字段，由两部分组成：
+<pre><code class="language-java">//ctl 线程池状态控制字段，由两部分组成：
 //1:workerCount  wc 工作线程数，我们限制 workerCount 最大到(2^29)-1，大概 5 亿个线程
 //2:runState rs 线程池的状态，提供了生命周期的控制，源码中有很多关于状态的校验，状态枚举如下：
 //RUNNING（-536870912）：接受新任务或者处理队列里的任务。
@@ -2024,7 +2095,7 @@ private final Condition termination = mainLock.newCondition();
 private final HashSet&lt;Worker&gt; workers = new HashSet&lt;Worker&gt;();
 </code></pre>
 <p>Worker可以理解成线程池中任务运行的最小单元：</p>
-<pre><code class="java">// 线程池中任务执行的最小单元
+<pre><code class="language-java">// 线程池中任务执行的最小单元
 // Worker 继承 AQS，具有锁功能
 // Worker 实现 Runnable，本身是一个可执行的任务
 private final class Worker
@@ -2103,7 +2174,7 @@ private final class Worker
 <p>在 execute 方法中，多次调用 addWorker 方法把任务传入，Worker 内部有一个 Thread 对象，它正是最终真正执行任务的线程，所以一个 Worker 就对应线程池中的一个线程，addWorker 就代表增加线程。</p>
 <p>线程复用的逻辑实现主要在 Worker 类中的 run 方法里执行的 runWorker 方法中。</p>
 </blockquote>
-<pre><code class="java">public void execute(Runnable command) &#123;
+<pre><code class="language-java">public void execute(Runnable command) &#123;
     if (command == null)
         throw new NullPointerException();
     int c = ctl.get();
@@ -2133,7 +2204,7 @@ private final class Worker
         reject(command);
 &#125;
 </code></pre>
-<pre><code class="java">// 结合线程池的情况看是否可以添加新的 worker
+<pre><code class="language-java">// 结合线程池的情况看是否可以添加新的 worker
 // firstTask 不为空可以直接执行，为空执行不了，Thread.run()方法有判断，Runnable为空不执行
 // core 为 true 表示线程最大新增个数是 coresize，false 表示最大新增个数是 maxsize
 // 返回 true 代表成功，false 失败
@@ -2213,11 +2284,11 @@ private boolean addWorker(Runnable firstTask, boolean core) &#123;
     return workerStarted;
 &#125;
 </code></pre>
-<pre><code class="java">public void run() &#123;
+<pre><code class="language-java">public void run() &#123;
     runWorker(this);
 &#125;
 </code></pre>
-<pre><code class="java">final void runWorker(Worker w) &#123;
+<pre><code class="language-java">final void runWorker(Worker w) &#123;
     Thread wt = Thread.currentThread();
     Runnable task = w.firstTask;
     //帮助gc回收
@@ -2270,7 +2341,7 @@ private boolean addWorker(Runnable firstTask, boolean core) &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">/**
+<pre><code class="language-java">/**
  * run 方法可以直接被调用
  * 也可以由线程池进行调用
  */
@@ -2312,7 +2383,7 @@ public void run() &#123;
 &#125;
 </code></pre>
 <p><strong>线程执行完任务之后：</strong></p>
-<pre><code class="java">// 从阻塞队列中拿任务
+<pre><code class="language-java">// 从阻塞队列中拿任务
 private Runnable getTask() &#123;
     boolean timedOut = false; // Did the last poll() time out?
  
@@ -2360,13 +2431,14 @@ private Runnable getTask() &#123;
     &#125;
 &#125;
 </code></pre>
-<h1 id="并发工具类"><a href="#并发工具类" class="headerlink" title="并发工具类"></a>并发工具类</h1><p><strong>Semaphore信号量</strong></p>
+<h1>并发工具类</h1>
+<p><strong>Semaphore信号量</strong></p>
 <p>信号量来控制那些需要限制并发访问量的资源。</p>
 <blockquote>
 <p>信号量会维护 许可证 的计数，而线程去访问共享资源前，必须先拿到许可证。</p>
 <p>线程可以从信号量中去获取一个许可证，一旦线程获取之后，信号量持有的许可证就转移过去了，所以信号量手中剩余的许可证要减一。</p>
 </blockquote>
-<pre><code class="java">public class SemaphoreDemo &#123;
+<pre><code class="language-java">public class SemaphoreDemo &#123;
 
     static Semaphore semaphore = new Semaphore(3);
 
@@ -2416,7 +2488,7 @@ private Runnable getTask() &#123;
 <li>当所有人都跑到终点之后，这相当于裁判员等待 5 个运动员都跑到终点，宣布比赛结束。</li>
 </ul>
 </blockquote>
-<pre><code class="java">public class RunDemo &#123;
+<pre><code class="language-java">public class RunDemo &#123;
 
     public static void main(String[] args) throws InterruptedException &#123;
         CountDownLatch latch = new CountDownLatch(5);
@@ -2449,7 +2521,7 @@ private Runnable getTask() &#123;
 <blockquote>
 <p>比如在运动会上，在运动员起跑之前都会等待裁判员发号施令，一声令下运动员统一起跑。</p>
 </blockquote>
-<pre><code class="java">public class RunDemo &#123;
+<pre><code class="language-java">public class RunDemo &#123;
 
     public static void main(String[] args) throws InterruptedException &#123;
         System.out.println(&quot;运动员有5秒的准备时间&quot;);
@@ -2485,7 +2557,7 @@ private Runnable getTask() &#123;
 <blockquote>
 <p>假设班级春游去公园里玩，并且会租借三人自行车，每个人都可以骑，但由于这辆自行车是三人的，所以要凑齐三个人才能骑一辆。</p>
 </blockquote>
-<pre><code class="java">public class CyclicBarrierDemo &#123;
+<pre><code class="language-java">public class CyclicBarrierDemo &#123;
 
     public static void main(String[] args) &#123;
         CyclicBarrier cyclicBarrier = new CyclicBarrier(3);
@@ -2523,7 +2595,7 @@ private Runnable getTask() &#123;
 </code></pre>
 <p><strong>LockSupport</strong></p>
 <p><code>AQS</code>内部控制线程阻塞和唤醒是通过<code>LockSupport</code>来实现的。</p>
-<pre><code class="java">@IntrinsicCandidate
+<pre><code class="language-java">@IntrinsicCandidate
 public native void park(boolean isAbsolute, long time);
 
 @IntrinsicCandidate
@@ -2548,7 +2620,7 @@ public native void unpark(Object thread);
 <p>4、解锁。</p>
 </blockquote>
 <p>新增：</p>
-<pre><code class="java">// 添加元素到数组尾部
+<pre><code class="language-java">// 添加元素到数组尾部
 public boolean add(E e) &#123;
     final ReentrantLock lock = this.lock;
     // 加锁
@@ -2589,7 +2661,8 @@ public boolean add(E e) &#123;
 <li>CopyOnWrite 容器的修改是先修改副本，所以这次修改对于其他线程来说，并不是实时能看到的，只有在修改完后才能体现出来。</li>
 </ul>
 </blockquote>
-<h2 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h2><p><code>AQS</code>定义了一套多线程访问共享资源的同步模板，解决了实现同步器时涉及的大量细节问题，能够极大地减少实现工作。</p>
+<h2 id="AQS">AQS</h2>
+<p><code>AQS</code>定义了一套多线程访问共享资源的同步模板，解决了实现同步器时涉及的大量细节问题，能够极大地减少实现工作。</p>
 <blockquote>
 <p>三部分组成：</p>
 <ul>
@@ -2607,20 +2680,24 @@ public boolean add(E e) &#123;
 <li>如果是独占，则重写 tryAcquire 和 tryRelease 等方法。</li>
 <li>如果是非独占，则重写 tryAcquireShared 和 tryReleaseShared 等方法。</li>
 </ul>
-<p>3、在自己的线程协作工具类中，实现获取&#x2F;释放的相关方法，并在里面调用 AQS 对应的方法，如果是独占则调用 acquire 或 release 等方法，非独占则调用 acquireShared 或 <code>releaseShared</code> 或 <code>acquireSharedInterruptibly</code> 等方法。</p>
+<p>3、在自己的线程协作工具类中，实现获取/释放的相关方法，并在里面调用 AQS 对应的方法，如果是独占则调用 acquire 或 release 等方法，非独占则调用 acquireShared 或 <code>releaseShared</code> 或 <code>acquireSharedInterruptibly</code> 等方法。</p>
 </blockquote>
 <p><strong>同步状态</strong></p>
 <blockquote>
 <p>在<code>AQS</code>中维护了一个同步状态变量<code>state</code>，获取、释放资源是否成功都是由<code>state</code>决定的，比如<code>state&gt;0</code>代表可获取资源，否则无法获取。</p>
 <p><code>state</code>的具体语义由实现者去定义，<code>ReentrantLock、ReentrantReadWriteLock、Semaphore、CountDownLatch</code>定义的<code>state</code>语义都不一样。</p>
 <ul>
-<li><p><code>ReentrantLock</code>的<code>state</code>用来表示是否有锁资源。</p>
+<li>
+<p><code>ReentrantLock</code>的<code>state</code>用来表示是否有锁资源。</p>
 </li>
-<li><p><code>ReentrantReadWriteLock</code>的<code>state</code>高<code>16</code>位代表读锁状态，低<code>16</code>位代表写锁状态。</p>
+<li>
+<p><code>ReentrantReadWriteLock</code>的<code>state</code>高<code>16</code>位代表读锁状态，低<code>16</code>位代表写锁状态。</p>
 </li>
-<li><p><code>Semaphore</code>的<code>state</code>用来表示可用信号的个数。</p>
+<li>
+<p><code>Semaphore</code>的<code>state</code>用来表示可用信号的个数。</p>
 </li>
-<li><p><code>CountDownLatch</code>的<code>state</code>用来表示计数器的值。</p>
+<li>
+<p><code>CountDownLatch</code>的<code>state</code>用来表示计数器的值。</p>
 </li>
 </ul>
 </blockquote>
@@ -2642,7 +2719,7 @@ public boolean add(E e) &#123;
 <blockquote>
 <p>在<code>AQS</code>中提供<code>addWaiter</code>函数完成<code>Node</code>节点的创建与入队。</p>
 </blockquote>
-<pre><code class="java">private Node addWaiter(Node mode) &#123;
+<pre><code class="language-java">private Node addWaiter(Node mode) &#123;
         //根据当前线程创建节点，等待状态为0
         Node node = new Node(Thread.currentThread(), mode);
         // 获取尾节点
@@ -2668,7 +2745,7 @@ public boolean add(E e) &#123;
 <li>通过自旋<code>CAS</code>尝试往队列尾部插入节点，直到成功，自旋过程如果发现<code>CLH</code>队列不存在时会初始化<code>CLH</code>队列。</li>
 </ul>
 </blockquote>
-<pre><code class="java">    private Node enq(final Node node) &#123;
+<pre><code class="language-java">    private Node enq(final Node node) &#123;
         for (;;) &#123; //循环
             //获取尾节点
             Node t = tail;
@@ -2714,7 +2791,7 @@ public boolean add(E e) &#123;
 <p>如果<code>acquireQueued</code>函数中获取资源成功，根据线程是否被中断状态，来决定执行线程中断逻辑。</p>
 </blockquote>
 <p><img src="/images/image-20231018192408391.png" alt="image-20231018192408391"></p>
-<pre><code class="java">    final boolean acquireQueued(final Node node, int arg) &#123;
+<pre><code class="language-java">    final boolean acquireQueued(final Node node, int arg) &#123;
         //异常状态，默认是
         boolean failed = true;
         try &#123;
@@ -2757,7 +2834,7 @@ public boolean add(E e) &#123;
 <blockquote>
 <p><code>AQS</code>中提供了<code>release</code>模板函数来释放资源，模板流程就是线程释放资源成功，唤醒<code>CLH</code>队列的第二个线程节点（<strong>首节点的下个节点</strong>）。</p>
 </blockquote>
-<pre><code class="java">    public final boolean release(int arg) &#123;
+<pre><code class="language-java">    public final boolean release(int arg) &#123;
 
         if (tryRelease(arg)) &#123;//释放资源成功，tryRelease子类实现
             //获取头部线程节点
@@ -2796,7 +2873,7 @@ public boolean add(E e) &#123;
 <blockquote>
 <p><code>acquireShared</code>模板流程就是线程获取共享资源，如果获取到资源，线程直接返回，否则进入<code>CLH</code>队列，直到获取到资源为止，且整个过程忽略中断的影响。</p>
 </blockquote>
-<pre><code class="java">    public final void acquireShared(int arg) &#123;
+<pre><code class="language-java">    public final void acquireShared(int arg) &#123;
         /**
          * 1.负数表示失败
          * 2.0表示成功，但没有剩余可用资源
@@ -2811,7 +2888,7 @@ public boolean add(E e) &#123;
 <blockquote>
 <p><code>AQS</code>中提供了<code>releaseShared</code>模板函数来释放资源，模板流程就是线程释放资源成功，唤醒CHL队列的第二个线程节点（<strong>首节点的下个节点</strong>。</p>
 </blockquote>
-<pre><code class="java">    public final boolean releaseShared(int arg) &#123;
+<pre><code class="language-java">    public final boolean releaseShared(int arg) &#123;
         if (tryReleaseShared(arg)) &#123;//释放资源成功，tryReleaseShared子类实现
             //唤醒后继节点
             doReleaseShared();
@@ -2843,7 +2920,8 @@ public boolean add(E e) &#123;
         &#125;
     &#125;
 </code></pre>
-<h2 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h2><p><code>ReentrantLock</code>是可重入的互斥锁。</p>
+<h2 id="ReentrantLock">ReentrantLock</h2>
+<p><code>ReentrantLock</code>是可重入的互斥锁。</p>
 <p><code>ReentrantLock</code>底层基于<code>AbstractQueuedSynchronizer</code>实现。</p>
 <p><strong>整体结构</strong></p>
 <blockquote>
@@ -2858,7 +2936,7 @@ public boolean add(E e) &#123;
 <blockquote>
 <p><code>Sync</code>实现了<code>AQS</code>类的释放资源（<code>tryRelease</code>），然后抽象了一个获取锁的函数（lock）让子类自行实现。</p>
 </blockquote>
-<pre><code class="java">
+<pre><code class="language-java">
 abstract static class Sync extends AbstractQueuedSynchronizer &#123;
         private static final long serialVersionUID = -5179523762034025860L;
 
@@ -2922,7 +3000,6 @@ abstract static class Sync extends AbstractQueuedSynchronizer &#123;
 </code></pre>
 <p><code>tryRelease</code>流程：</p>
 <img src="/images/image-20231017181031803.png" alt="image-20231017181031803" style="zoom:100%;" />
-
 <p><strong>NonfairSync</strong></p>
 <blockquote>
 <p>在<code>ReentrantLock</code>中支持两种获取锁的策略，分别是非公平策略与公平策略，<code>NonfairSync</code>就是非公平策略。</p>
@@ -2931,7 +3008,7 @@ abstract static class Sync extends AbstractQueuedSynchronizer &#123;
 <p><code>NonfairSync</code>继承<code>Sync</code>实现了<code>lock</code>函数，<code>CAS</code>设置状态值<code>state</code>为<code>1</code>代表获取锁成功，否则执行<code>AQS</code>的<code>acquire</code>函数（<strong>获取锁模板</strong>）。</p>
 <p>另外<code>NonfairSync</code>还实现了<code>AQS</code>留给子类实现的<code>tryAcquire</code>函数（<strong>获取资源</strong>），直接使用<code>Sync</code>提供的<code>nonfairTryAcquire</code>函数来实现<code>tryAcquire</code>，最后子类实现的<code>tryAcquire</code>函数在<code>AQS</code>的<code>acquire</code>函数中被使用。</p>
 </blockquote>
-<pre><code class="java">    static final class NonfairSync extends Sync &#123;
+<pre><code class="language-java">    static final class NonfairSync extends Sync &#123;
         private static final long serialVersionUID = 7316153563782823691L;
 
         /**
@@ -2972,7 +3049,7 @@ abstract static class Sync extends AbstractQueuedSynchronizer &#123;
 <p>不可获取，判断当线程是不是持有锁的线程，如果是，<code>state</code>重入计数，获取资源成功，否则获取资源失败。</p>
 </blockquote>
 <p><img src="/images/image-20231017181634485.png" alt="image-20231017181634485"></p>
-<pre><code class="java">    /**
+<pre><code class="language-java">    /**
      * 非公平-获取资源
      */
     final boolean nonfairTryAcquire(int acquires) &#123;
@@ -3009,7 +3086,7 @@ abstract static class Sync extends AbstractQueuedSynchronizer &#123;
 <p><code>FairSync</code>流程与<code>NonfairSync</code>基本一致，唯一的区别就是在<code>CAS</code>执行前，多了一步<code>hasQueuedPredecessors</code>函数，这一步就是判断当前线程是不是<code>CLH</code>队列被唤醒的线程，如果是就执行<code>CAS</code>，否则获取资源失败。</p>
 </blockquote>
 <p><img src="/images/image-20231017181804586.png" alt="image-20231017181804586"></p>
-<pre><code class="java">
+<pre><code class="language-java">
 static final class FairSync extends Sync &#123;
         private static final long serialVersionUID = -3000897897090466540L;
         
@@ -3068,7 +3145,7 @@ static final class FairSync extends Sync &#123;
     &#125;
 </code></pre>
 <p><strong>Lock的实现</strong></p>
-<pre><code class="java">    //同步器
+<pre><code class="language-java">    //同步器
     private final Sync sync;
     
     //默认使用非公平策略
@@ -3081,7 +3158,7 @@ static final class FairSync extends Sync &#123;
         sync = fair ? new FairSync() : new NonfairSync();
     &#125;
 </code></pre>
-<pre><code class="java">public class ReentrantLock implements Lock, java.io.Serializable &#123;
+<pre><code class="language-java">public class ReentrantLock implements Lock, java.io.Serializable &#123;
     private static final long serialVersionUID = 7373984872572414699L;
     //同步器
     private final Sync sync;
@@ -3147,7 +3224,8 @@ static final class FairSync extends Sync &#123;
 
 &#125;
 </code></pre>
-<h2 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h2><p>ConcurrentHashMap 是一个存储 <code>key/value</code> 对的容器，并且是线程安全的。</p>
+<h2 id="ConcurrentHashMap">ConcurrentHashMap</h2>
+<p>ConcurrentHashMap 是一个存储 <code>key/value</code> 对的容器，并且是线程安全的。</p>
 <p><img src="/images/image-20231017182254278.png" alt="image-20231017182254278"></p>
 <p><strong>ConcurrentHashMap和HashMap：</strong></p>
 <p>相同之处：</p>
@@ -3161,7 +3239,7 @@ static final class FairSync extends Sync &#123;
 <p>新增 ForwardingNode （转移）节点，扩容的时候会使用到，通过使用该节点，来保证扩容时的线程安全。</p>
 </blockquote>
 <p><strong>重要属性</strong></p>
-<pre><code class="java">//这个Node数组就是ConcurrentHashMap用来存储数据的哈希表
+<pre><code class="language-java">//这个Node数组就是ConcurrentHashMap用来存储数据的哈希表
 transient volatile Node[] table
 //这是默认的初始化哈希表数组大小
 private static final int DEFAULT_CAPACITY = 16;
@@ -3187,7 +3265,7 @@ private transient volatile Node[] nextTable;
 </blockquote>
 <p>TreeBin</p>
 <blockquote>
-<p>当链表转为红黑树后，数组中保存的引用为 TreeBin，TreeBin 内部不保存 key&#x2F;value，他保存了 TreeNode的list以及红黑树 root。</p>
+<p>当链表转为红黑树后，数组中保存的引用为 TreeBin，TreeBin 内部不保存 key/value，他保存了 TreeNode的list以及红黑树 root。</p>
 </blockquote>
 <p>TreeNode</p>
 <blockquote>
@@ -3201,7 +3279,7 @@ private transient volatile Node[] nextTable;
 <p>4、槽点有值的，先锁定当前槽点，保证其余线程不能操作，如果是链表，新增值到链表的尾部，如果是红黑树，使用红黑树新增的方法新增；</p>
 <p>5、新增完成之后 check 需不需要扩容，需要的话去扩容。</p>
 </blockquote>
-<pre><code class="java">final V putVal(K key, V value, boolean onlyIfAbsent) &#123;
+<pre><code class="language-java">final V putVal(K key, V value, boolean onlyIfAbsent) &#123;
     if (key == null || value == null) throw new NullPointerException();
     //计算hash
     int hash = spread(key.hashCode());
@@ -3293,7 +3371,7 @@ private transient volatile Node[] nextTable;
 <blockquote>
 <p>先获取数组的下标，然后通过判断数组下标的 key 是否和我们的 key 相等，相等的话直接返回，如果下标的槽点是链表或红黑树的话，分别调用相应的查找数据的方法，整体思路和 HashMap 很像。</p>
 </blockquote>
-<pre><code class="java">public V get(Object key) &#123;
+<pre><code class="language-java">public V get(Object key) &#123;
     Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; e, p; int n, eh; K ek;
     //计算hashcode
     int h = spread(key.hashCode());
@@ -3323,20 +3401,25 @@ private transient volatile Node[] nextTable;
 <blockquote>
 <p>扩容的方法叫做 transfer，transfer 方法的主要思路是：</p>
 <ul>
-<li><p>首先需要把老数组的值全部拷贝到扩容之后的新数组上，先从数组的队尾开始拷贝。</p>
+<li>
+<p>首先需要把老数组的值全部拷贝到扩容之后的新数组上，先从数组的队尾开始拷贝。</p>
 </li>
-<li><p>拷贝数组的槽点时，先把原数组槽点锁住，保证原数组槽点不能操作，成功拷贝到新数组时，把原数组槽点赋值为转移节点。</p>
+<li>
+<p>拷贝数组的槽点时，先把原数组槽点锁住，保证原数组槽点不能操作，成功拷贝到新数组时，把原数组槽点赋值为转移节点。</p>
 </li>
-<li><p>这时如果有新数据正好需要 put 到此槽点时，发现槽点为转移节点，就会一直等待，所以在扩容完成之前，该槽点对应的数据是不会发生变化的。</p>
+<li>
+<p>这时如果有新数据正好需要 put 到此槽点时，发现槽点为转移节点，就会一直等待，所以在扩容完成之前，该槽点对应的数据是不会发生变化的。</p>
 </li>
-<li><p>从数组的尾部拷贝到头部，每拷贝成功一次，就把原数组中的节点设置成转移节点。</p>
+<li>
+<p>从数组的尾部拷贝到头部，每拷贝成功一次，就把原数组中的节点设置成转移节点。</p>
 </li>
-<li><p>直到所有数组数据都拷贝到新数组时，直接把新数组整个赋值给数组容器，拷贝完成。</p>
+<li>
+<p>直到所有数组数据都拷贝到新数组时，直接把新数组整个赋值给数组容器，拷贝完成。</p>
 </li>
 </ul>
 <p>扩容方法主要是通过在原数组上设置转移节点，put 时碰到转移节点时会等待扩容成功之后才能 put 的策略，来保证了整个扩容过程中肯定是线程安全的，因为数组的槽点一旦被设置成转移节点，在没有扩容完成之前，是无法进行操作的。</p>
 </blockquote>
-<pre><code class="java">// 扩容主要分 2 步，第一新建新的空数组，第二移动拷贝每个元素到新数组中去
+<pre><code class="language-java">// 扩容主要分 2 步，第一新建新的空数组，第二移动拷贝每个元素到新数组中去
 // tab：原数组，nextTab：新数组
 private final void transfer(Node&lt;K,V&gt;[] tab, Node&lt;K,V&gt;[] nextTab) &#123;
     // 老数组的长度
@@ -3467,7 +3550,7 @@ private final void transfer(Node&lt;K,V&gt;[] tab, Node&lt;K,V&gt;[] nextTab) &#
 <blockquote>
 <p>数组初始化时，首先通过自旋来保证一定可以初始化成功，然后通过 CAS 设置 SIZECTL 变量的值，来保证同一时刻只能有一个线程对数组进行初始化，CAS 成功之后，还会再次判断当前数组是否已经初始化完成，如果已经初始化完成，就不会再次初始化，通过自旋 + CAS + 双重 check 等手段保证了数组初始化时的线程安全。</p>
 </blockquote>
-<pre><code class="java">//初始化 table，通过对 sizeCtl 的变量赋值来保证数组只能被初始化一次
+<pre><code class="language-java">//初始化 table，通过对 sizeCtl 的变量赋值来保证数组只能被初始化一次
 private final Node&lt;K,V&gt;[] initTable() &#123;
     Node&lt;K,V&gt;[] tab; int sc;
     //通过自旋保证初始化成功
@@ -3525,21 +3608,26 @@ private final Node&lt;K,V&gt;[] initTable() &#123;
 </ul>
 <p>遇到 Hash 碰撞：</p>
 <ul>
-<li><p>Java 7：在 Hash 冲突时，会使用拉链法。</p>
+<li>
+<p>Java 7：在 Hash 冲突时，会使用拉链法。</p>
 </li>
-<li><p>Java 8：先使用拉链法，在链表长度超过一定阈值时，将链表转换为红黑树，来提高查找效率。</p>
+<li>
+<p>Java 8：先使用拉链法，在链表长度超过一定阈值时，将链表转换为红黑树，来提高查找效率。</p>
 </li>
 </ul>
 <p>查询时间复杂度：</p>
 <ul>
-<li><p>Java 7：遍历链表的时间复杂度是 <code>O(n)</code>，n 为链表长度。</p>
+<li>
+<p>Java 7：遍历链表的时间复杂度是 <code>O(n)</code>，n 为链表长度。</p>
 </li>
-<li><p>Java 8：如果变成遍历红黑树，那么时间复杂度降低为 <code>O(log(n))</code>，n 为树的节点个数。</p>
+<li>
+<p>Java 8：如果变成遍历红黑树，那么时间复杂度降低为 <code>O(log(n))</code>，n 为树的节点个数。</p>
 </li>
 </ul>
 </blockquote>
-<h1 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h1><p><strong>锁分类</strong></p>
-<p>偏向锁&#x2F;轻量级锁&#x2F;重量级锁：</p>
+<h1>锁机制</h1>
+<p><strong>锁分类</strong></p>
+<p>偏向锁/轻量级锁/重量级锁：</p>
 <blockquote>
 <p>偏向锁:</p>
 <ul>
@@ -3557,25 +3645,28 @@ private final Node&lt;K,V&gt;[] initTable() &#123;
 <p><strong>重量级锁会让其他申请却拿不到锁的线程进入阻塞状态。</strong></p>
 <p>性能对比：</p>
 <ul>
-<li><p>偏向锁性能最好，可以避免执行 CAS 操作。</p>
+<li>
+<p>偏向锁性能最好，可以避免执行 CAS 操作。</p>
 </li>
-<li><p>轻量级锁利用自旋和 CAS 避免了重量级锁带来的线程阻塞和唤醒，性能中等。</p>
+<li>
+<p>轻量级锁利用自旋和 CAS 避免了重量级锁带来的线程阻塞和唤醒，性能中等。</p>
 </li>
-<li><p>重量级锁则会把获取不到锁的线程阻塞，性能最差。</p>
+<li>
+<p>重量级锁则会把获取不到锁的线程阻塞，性能最差。</p>
 </li>
 </ul>
 </blockquote>
-<p>可重入锁&#x2F;非可重入锁：</p>
+<p>可重入锁/非可重入锁：</p>
 <blockquote>
 <p>可重入锁：线程当前已经持有这把锁了，能在不释放这把锁的情况下，再次获取这把锁。</p>
 <p>不可重入锁：虽然线程当前持有了这把锁，但是如果想再次获取这把锁，也必须要先释放锁后才能再次尝试获取。</p>
 </blockquote>
-<p>共享锁&#x2F;独占锁：</p>
+<p>共享锁/独占锁：</p>
 <blockquote>
 <p>共享锁：同一把锁可以被多个线程同时获得。</p>
 <p>独占锁：这把锁只能同时被一个线程获得。</p>
 </blockquote>
-<p>公平锁&#x2F;非公平锁：</p>
+<p>公平锁/非公平锁：</p>
 <blockquote>
 <p>公平锁：如果线程现在拿不到这把锁，那么线程就都会进入等待，开始排队，在等待队列里等待时间长的线程会优先拿到这把锁。</p>
 <p>非公平锁：它会在一定情况下，忽略掉已经在排队的线程，发生插队现象。</p>
@@ -3583,7 +3674,7 @@ private final Node&lt;K,V&gt;[] initTable() &#123;
 <li>整体执行速度更快，吞吐量更大，但同时也可能产生线程饥饿问题。</li>
 </ul>
 </blockquote>
-<p>悲观锁&#x2F;乐观锁:</p>
+<p>悲观锁/乐观锁:</p>
 <blockquote>
 <p>悲观锁：在获取资源之前，必须先拿到锁，以便达到 独占 的状态，当前线程在操作资源的时候，其他线程由于不能拿到锁。</p>
 <ul>
@@ -3595,7 +3686,7 @@ private final Node&lt;K,V&gt;[] initTable() &#123;
 <li>适用于<strong>大部分是读取，少部分是修改</strong>的场景，也适合<strong>虽然读写都很多，但是并发并不激烈</strong>的场景。</li>
 </ul>
 </blockquote>
-<p>自旋锁&#x2F;非自旋锁：</p>
+<p>自旋锁/非自旋锁：</p>
 <blockquote>
 <p>自旋锁：如果线程现在拿不到锁，并不直接陷入阻塞或者释放 CPU 资源，而是开始利用循环，不停地尝试获取锁。</p>
 <ul>
@@ -3603,7 +3694,7 @@ private final Node&lt;K,V&gt;[] initTable() &#123;
 </ul>
 <p>非自旋锁：如果拿不到锁就直接放弃，或者进行其他的处理逻辑，例如去排队、陷入阻塞等。</p>
 </blockquote>
-<p>可中断锁&#x2F;不可中断锁：</p>
+<p>可中断锁/不可中断锁：</p>
 <blockquote>
 <p>不可中断锁：一旦线程申请了锁，只能等到拿到锁以后才能进行其他的逻辑处理。</p>
 <p>可中断锁：在获取锁的过程中，突然不想获取了，那么也可以在中断之后去做其他的事情，不需要一直等到获取到锁才离开。</p>
@@ -3613,14 +3704,16 @@ private final Node&lt;K,V&gt;[] initTable() &#123;
 <blockquote>
 <p>自旋的时间不再固定，而是会根据最近自旋尝试的成功率、失败率，以及当前锁的拥有者的状态等多种因素来共同决定。</p>
 <ul>
-<li><p>如果最近尝试自旋获取某一把锁成功了，那么下一次可能还会继续使用自旋，并且允许自旋更长的时间。</p>
+<li>
+<p>如果最近尝试自旋获取某一把锁成功了，那么下一次可能还会继续使用自旋，并且允许自旋更长的时间。</p>
 </li>
-<li><p>但是如果最近自旋获取某一把锁失败了，那么可能会省略掉自旋的过程，以便减少无用的自旋，提高效率。</p>
+<li>
+<p>但是如果最近自旋获取某一把锁失败了，那么可能会省略掉自旋的过程，以便减少无用的自旋，提高效率。</p>
 </li>
 </ul>
 </blockquote>
 <p>锁消除：</p>
-<pre><code class="java">@Override
+<pre><code class="language-java">@Override
 public synchronized StringBuffer append(Object obj) &#123;
     toStringCache = null;
     super.append(String.valueOf(obj));
@@ -3631,7 +3724,7 @@ public synchronized StringBuffer append(Object obj) &#123;
 <p>如果编译器能确定这个 StringBuffer 对象只会在一个线程内被使用，就代表肯定是线程安全的，那么我们的编译器便会做出优化，把对应的 Synchronized 给消除，省去加锁和解锁的操作，以便增加整体的效率。</p>
 </blockquote>
 <p>锁粗化：</p>
-<pre><code class="java">public void lockCoarsening() &#123;
+<pre><code class="language-java">public void lockCoarsening() &#123;
     synchronized (this) &#123;
         //do something
     &#125;
@@ -3649,10 +3742,11 @@ public synchronized StringBuffer append(Object obj) &#123;
 <li>锁粗化不适用于循环的场景，仅适用于非循环的场景。</li>
 </ul>
 </blockquote>
-<h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><blockquote>
+<h2 id="死锁">死锁</h2>
+<blockquote>
 <p>死锁就是<strong>两个或多个线程（或进程）被无限期地阻塞，相互等待对方手中资源的一种状态。</strong></p>
 </blockquote>
-<pre><code class="java">/**
+<pre><code class="language-java">/**
  * 描述：     必定死锁的情况
  */
 public class MustDeadLock implements Runnable &#123;
@@ -3727,7 +3821,8 @@ public class MustDeadLock implements Runnable &#123;
 <li>当线程获取锁超时了则放弃。</li>
 </ul>
 </blockquote>
-<h2 id="Synchronized"><a href="#Synchronized" class="headerlink" title="Synchronized"></a>Synchronized</h2><p>Synchronized可以保证在同一个时刻，只有一个线程可以执行某个方法或者某个代码块。</p>
+<h2 id="Synchronized">Synchronized</h2>
+<p>Synchronized可以保证在同一个时刻，只有一个线程可以执行某个方法或者某个代码块。</p>
 <p><strong>两类锁：</strong></p>
 <blockquote>
 <p>对象锁：</p>
@@ -3752,7 +3847,7 @@ public class MustDeadLock implements Runnable &#123;
 </ul>
 </blockquote>
 <p>在Java虚拟机（HotSpot）中，Monitor是由ObjectMonitor实现的，其主要数据结构如下：</p>
-<pre><code class="c">ObjectMonitor() &#123;
+<pre><code class="language-c">ObjectMonitor() &#123;
     _header       = NULL; //markOop对象头
     _count        = 0; //记录个数
     _waiters      = 0, //等待线程数
@@ -3786,7 +3881,6 @@ public class MustDeadLock implements Runnable &#123;
 </ul>
 </blockquote>
 <img src="/images/image-20231017173210058.png" alt="image-20231017173210058" style="zoom:90%;" />
-
 <blockquote>
 <p>加锁时，即遇到Synchronized关键字时，线程会先进入monitor的<code>_EntryList</code>队列阻塞等待。</p>
 <p>如果monitor的<code>_owner</code>为空，则从队列中移出并赋值与<code>_owner</code>。</p>
@@ -3794,7 +3888,7 @@ public class MustDeadLock implements Runnable &#123;
 <ul>
 <li>这时其他在<code>_EntryList</code>中的线程就可以获取锁了。</li>
 </ul>
-<p>当程序里其他线程调用了notify&#x2F;notifyAll方法时，就会唤醒<code>_WaitSet</code>中的某个线程，这个线程就会再次尝试获取monitor锁。</p>
+<p>当程序里其他线程调用了notify/notifyAll方法时，就会唤醒<code>_WaitSet</code>中的某个线程，这个线程就会再次尝试获取monitor锁。</p>
 <ul>
 <li>如果成功，则就会成为monitor的owner。</li>
 </ul>
