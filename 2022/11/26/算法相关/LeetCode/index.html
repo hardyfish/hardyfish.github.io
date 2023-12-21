@@ -3583,6 +3583,73 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
+<h1 id="450删除二叉搜索树中的节点"><a href="#450删除二叉搜索树中的节点" class="headerlink" title="450删除二叉搜索树中的节点"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/delete-node-in-a-bst/">450删除二叉搜索树中的节点</a></h1><blockquote>
+<p>二叉搜索树的性质：</p>
+<ul>
+<li>左子树的节点的值小于根节点的值，右子树的节点大于根节点的值。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>当root的值和key相等时，有四种情况：</p>
+</blockquote>
+<img src="/images/1654133851-SDGdMH-image.png" alt="image.png" style="zoom:50%;" />
+
+<img src="/images/1654134726-dTMRNy-image.png" alt="image.png" style="zoom:50%;" />
+
+<img src="/images/1654134734-XmEyiC-image.png" alt="image.png" style="zoom:50%;" />
+
+<img src="/images/1654134742-qJVGmL-image.png" alt="image.png" style="zoom:50%;" />
+
+<img src="/images/1654135229-upYTDi-image.png" alt="image.png" style="zoom:50%;" />
+
+<pre><code class="java">/**
+ * Definition for a binary tree node.
+ * public class TreeNode &#123;
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() &#123;&#125;
+ *     TreeNode(int val) &#123; this.val = val; &#125;
+ *     TreeNode(int val, TreeNode left, TreeNode right) &#123;
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     &#125;
+ * &#125;
+ */
+    public TreeNode deleteNode(TreeNode root, int key) &#123;
+        if (root == null) &#123;
+            return null;
+        &#125;
+        if (root.val &gt; key) &#123;
+            //当前节点的值大于目标值 递归去左子树寻找
+            root.left = deleteNode(root.left, key);
+        &#125; else if (root.val &lt; key) &#123;
+            //当前节点的值小于目标值 递归去右子树寻找
+            root.right = deleteNode(root.right, key);
+        &#125; else &#123;
+            //情况一可以和二三合并处理
+            //情况二
+            if (root.left == null) &#123;
+                return root.right;
+            &#125;
+            //情况三
+            if (root.right == null) &#123;
+                return root.left;
+            &#125;
+            //情况四 
+            //找到右节点的左子树中为空的位置
+            TreeNode rightNode = root.right;
+            while (rightNode.left != null) &#123;
+                rightNode = rightNode.left;
+            &#125;
+            rightNode.left = root.left;
+            root = root.right;
+        &#125;
+        return root;
+    &#125;
+&#125;
+</code></pre>
 <h1 id="543二叉树的直径"><a href="#543二叉树的直径" class="headerlink" title="543二叉树的直径"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/diameter-of-binary-tree/">543二叉树的直径</a></h1><pre><code class="java">class Solution &#123;
     int result = 0;
     public int diameterOfBinaryTree(TreeNode root) &#123;
@@ -3922,7 +3989,7 @@ class Solution &#123;
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1703037924303-665',
+	        blogId: '22377-1703123907619-877',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -3974,7 +4041,7 @@ class Solution &#123;
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1703037924303-665',
+        blogId: '22377-1703123907619-877',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',
