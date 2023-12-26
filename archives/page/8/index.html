@@ -183,6 +183,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2023/12/25/%E4%B8%AD%E9%97%B4%E4%BB%B6/Solr/">
+										Solr
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2023/10/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/ZooKeeper/">
 										ZooKeeper
 									</a>
@@ -433,6 +442,15 @@
 								<li class="file">
 									<a href="/2023/11/09/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Arthas/">
 										Arthas
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/24/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/ChatGPT/">
+										ChatGPT
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1107,6 +1125,78 @@
 		<div id="index" oncontextmenu="return false;">
 	
 		<div class="index-li">
+			<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%88%86%E5%B8%83%E5%BC%8F/">
+				<h2 class="index-title">
+					分布式
+				</h2>
+				<div class="index-brief">
+					基本概念背压
+
+背压思想，被请求方不会直接将请求端的流量直接丢掉，而是不断的反馈自己的处理能力。
+请求端根据这些反馈，实时的调整自己的发送频率，比如：TCP&#x2F;IP中使用滑动窗口来进行流量控制。
+
+CAP原则
+Consistency（一致性）
+
+所有节点返回的数据是一致的。
+
+Availab
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-10-07</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/基础知识/">基础知识</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/KAFKA/">
+				<h2 class="index-title">
+					KAFKA
+				</h2>
+				<div class="index-brief">
+					消息队列对比
+
+Kafka：
+
+追求高吞吐量，一开始用于日志收集和传输，适合产生大量数据的互联网服务的数据收集业务，大型公司可以选用。
+如果有日志采集功能，肯定首选 Kafka。
+
+RocketMQ：
+
+天生为金融互联网领域而生，对于可靠性要求很高的场景。
+尤其是电商里面的订单扣款，以及业务削峰，在
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-10-07</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/消息队列/">消息队列</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RocketMQ/">
 				<h2 class="index-title">
 					RocketMQ
@@ -1372,73 +1462,10 @@ public
                 </div>
 		</div>	
 	
-		<div class="index-li">
-			<a href="/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
-				<h2 class="index-title">
-					面试算法
-				</h2>
-				<div class="index-brief">
-					面试题17.01不用加号的加法
-class Solution &#123;
-    public int add(int a, int b) &#123;
-        int m = a ^ b; //不进位加法
-        int n = (a &amp; b) &lt;&lt; 1; /
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2022-11-25</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/算法相关/">算法相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2022/11/21/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Java%E5%9F%BA%E7%A1%80/">
-				<h2 class="index-title">
-					Java基础
-				</h2>
-				<div class="index-brief">
-					不同版本JDK安装网站：https://adoptium.net/zh-CN/
-值传递还是引用传递
-
-Java中方法参数传递方式是按值传递。
-如果参数是基本类型，传递的是基本类型的数据拷贝。
-如果参数是引用类型，因为栈中存的是对象的地址值，所以传递的是该参量所引用的对象在堆中地址值的拷贝。
-
-编译期
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2022-11-21</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/基础知识/">基础知识</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
 	
 	<div id="index-paginator">
 		
-			<a class="extend prev" rel="prev" href="/archives/page/7/">&lt;</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/6/">6</a><a class="page-number" href="/archives/page/7/">7</a><span class="page-number current">8</span>
+			<a class="extend prev" rel="prev" href="/archives/page/7/">&lt;</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/6/">6</a><a class="page-number" href="/archives/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/archives/page/9/">9</a><a class="extend next" rel="next" href="/archives/page/9/">&gt;</a>
 		
 	</div>
 </div>
