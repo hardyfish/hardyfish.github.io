@@ -4112,6 +4112,46 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
+<h1 id="1539第K个缺失的正整数"><a href="#1539第K个缺失的正整数" class="headerlink" title="1539第K个缺失的正整数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/kth-missing-positive-number/">1539第K个缺失的正整数</a></h1><blockquote>
+<p>设：<code>arr = [2,3,4,5,7,11], k = 5</code></p>
+<p>可以利用数组下标来得到该位置之前缺失的元素数量，例如：</p>
+<p>i &#x3D; 0，此时数组元素<code>arr[i] = 2</code>，在0位置上，不缺失的情况下，对应的元素应该是1，所以缺失个数为<code>arr[i] - i - 1 = 1</code>,因为数组下标是从0开始的，而元素是从1开始的，所以计算个数的时候，除了减掉下标值之外，还需要再减1。</p>
+<p>按照这个方式，能计算出该数组的每个元素对应的缺失元素个数：</p>
+</blockquote>
+<img src="/images/1650875694-jksWdV-11fe2228066bccc48e43cdc3bd44f7c.jpg" style="zoom:50%;" />
+
+<blockquote>
+<p>在这个序列中，能够通过二分查找，找到k所对应的位置，有了这个位置，就能通过对应的元素找到缺失的第k个整数。</p>
+<p>举例来说，如果要找到k &#x3D; 5，第5个缺失的元素，那么需要从一个确定的数向后或向前推算：</p>
+<p>对于2,3,4来说，它们之前缺少1个元素，所以不考虑这些元素。</p>
+<p>对于7来说，它之前缺少3个元素，那么从它开始往后推2个元素，就有可能是缺失的第5个元素。</p>
+<p>前提是它后面的元素缺失数量要大于k &#x3D; 5。</p>
+<p>对于11来说，它之前缺少6个元素，要找的第5个元素，一定是在它之前缺失的，那从它开始往前推2个元素（第6个，第5个），就是要找的缺失的第5个元素。</p>
+<p>根据这种分析，就可以在这个缺失数量的序列上进行二分查找，确定一个区间<code>[i,j]</code>，满足<code>lack[i] &lt; k &lt;= lack[j]</code>，则第k个缺失的数为<code>k - (arr[i] - i - 1) + arr[i]</code>，<code>arr[i] - i - 1</code>表示<code>arr[i]</code>位置缺少的元素个数，<code>k - 缺失个数</code>表示从<code>arr[i]</code>开始还缺少几个元素，再加上<code>arr[i]</code>，就是第k个缺失的元素。</p>
+</blockquote>
+<pre><code class="java">class Solution &#123;
+    public int findKthPositive(int[] arr, int k) &#123;
+        // 第一个数比缺失的数要大的话，直接返回k
+        if(arr[0] &gt; k)&#123;
+            return k;
+        &#125;
+        // 找到缺失数量大于k的最小的位置
+        int left = 0, right = arr.length;
+        while(left &lt; right)&#123;
+            int mid = left + (right - left) / 2;
+            int x = mid &lt; arr.length ? arr[mid] : Integer.MAX_VALUE;
+            if(x - mid - 1 &gt;= k)&#123;
+                right = mid;
+            &#125;else&#123;
+                left = mid + 1;
+            &#125;
+        &#125;
+        // 第k个缺失的数 - （最小位置之前的那个数所缺失的个数） + 最小位置前面的那个数
+        // 5 - （7 - 3 - 1） + 7 = 第五个缺失的数 - 7前面有3个缺失的数 + 7
+        return k - (arr[left - 1] - (left - 1) - 1) + arr[left - 1];
+    &#125;
+&#125;
+</code></pre>
 <h1 id="1143最长公共子序列"><a href="#1143最长公共子序列" class="headerlink" title="1143最长公共子序列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-common-subsequence/">1143最长公共子序列</a></h1><blockquote>
 <p>定义一个二维数组 dp 用来存储最长公共子序列的长度，其中 <code>dp[i][j]</code> 表示 S1 的前 i 个字符与 S2 的前 j 个字符最长公共子序列的长度。</p>
 </blockquote>
@@ -4194,7 +4234,7 @@ class Solution &#123;
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1704246830822-589',
+	        blogId: '22377-1704333485530-548',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -4246,7 +4286,7 @@ class Solution &#123;
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1704246830822-589',
+        blogId: '22377-1704333485530-548',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',
