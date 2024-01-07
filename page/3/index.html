@@ -485,6 +485,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2024/01/07/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/">
+										读书计划
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2023/11/09/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/">
 										面试相关
 									</a>
@@ -1143,32 +1152,30 @@
 		<div id="index" oncontextmenu="return false;">
 	
 		<div class="index-li">
-			<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%9B%B4%E6%92%AD%E7%B3%BB%E7%BB%9F/">
+			<a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/Dubbo/">
 				<h2 class="index-title">
-					直播系统
+					Dubbo
 				</h2>
 				<div class="index-brief">
-					直播弹幕
+					官网：https://cn.dubbo.apache.org/zh-cn/
+配置总线URL
 
-为了不影响读写的性能，采用读写分离架构。
-写服务：
+Dubbo 中任意的一个实现都可以抽象为一个 URL，Dubbo 使用 URL 来统一描述了所有对象和配置信息。
 
-若不考虑历史弹幕可回放，可以直接使用 Redis 作为唯一存储。
+protocol：dubbo 协议。
+username/password：用户名和密码。
 
-若考虑支持弹幕的回放，数据还是需要持久化，可以考虑使用 MySQL 或者 TiDB，暂且认为写入不是较大的瓶颈。
-
-如果有更高性能的写需求，HBase、OpenTSD
 					...
 				</div>
 			</a>
                 <div class="article-meta">
-				    <span>2023-11-19</span>
+				    <span>2023-10-30</span>
                     
                             
                                 
                                     <span>
                                         <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/系统相关/">系统相关</a>
+                                        <a href="/categories/中间件/">中间件</a>
 										
                                     </span>
                                 
@@ -1178,32 +1185,195 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E4%BB%BB%E5%8A%A1%E7%B3%BB%E7%BB%9F/">
+			<a href="/2023/12/15/%E4%BB%A3%E7%A0%81%E6%80%9D%E6%83%B3/CodeReview/">
 				<h2 class="index-title">
-					任务系统
+					CodeReview
+				</h2>
+				<div class="index-brief">
+					CodeReview作用：
+
+改善代码质量：
+
+可以让团队其他同学帮忙协助把关代码质量，发现代码中潜在的质量问题，并给出改进建议，从而推动团队整体代码代码质量的提升。
+
+能够实现知识共享，统一认知：
+
+CodeReview过程是知识碰撞的过程，是学习别人的知识体系促进自我成长的过程。
+通过CR这样的
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-12-15</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/代码思想/">代码思想</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+				<h2 class="index-title">
+					操作系统
+				</h2>
+				<div class="index-brief">
+					基本结构冯诺依曼计算机模型
+现代计算机模型是基于冯诺依曼计算机模型。
+
+计算机在运行时，先从内存中取出第一条指令，通过控制器的译码，按指令的要求，从存储器中取出数据进行指定的运算和逻辑操作等加工，然后再按地址把结果送到内存中去。
+接下来，再取出第二条指令，在控制器的指挥下完成规定操作，依此进行下去。
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-10-10</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/计算机基础/">计算机基础</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+				<h2 class="index-title">
+					设计模式
+				</h2>
+				<div class="index-brief">
+					基本概念封装
+通过对类的封装，仅仅暴露少许必要的方法给调用方使用，调用方不需要了解太多背后的业务细节，大大降低了用错的概率，提高了代码的易用性。
+抽象
+通过抽象化只暴露出方法定义，而隐藏方法的具体实现，让调用者只需要关心方法提供了哪些功能，并不需要知道这些功能是如何实现的。
+
+作用：通过抽象化手段，
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-10-07</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/基础知识/">基础知识</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/11/09/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/">
+				<h2 class="index-title">
+					面试相关
+				</h2>
+				<div class="index-brief">
+					简历模版：https://www.polebrief.com/
+面试考察点
+
+考察点：技能、能力、价值观、匹配度。
+技能：
+
+Java基础，开源框架，中间件，代码设计，项目实战等。
+
+能力：
+
+工作年限和职级越高，对能力的要求越大，对技能的要求反而没那么大。
+
+学习能力：
+
+具备快速学习的能力，能够
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-09</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/成长相关/">成长相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/12/13/%E6%BA%90%E7%A0%81%E7%9B%B8%E5%85%B3/RocketMQ/">
+				<h2 class="index-title">
+					RocketMQ
+				</h2>
+				<div class="index-brief">
+					延迟消息
+RocketMQ定义了Topic：SCHEDULE_TOPIC_XXXX来实现延迟消息。
+
+它有18个队列，每个队列对应一个延迟级别。
+
+比如队列0就代表延迟1s的队列，队列1就代表延迟5s的队列。
+
+生产者把延迟消息发送到Broker之后，Broker会根据生产者定义的延迟级别放到对应的
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-12-13</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/源码相关/">源码相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RocketMQ/">
+				<h2 class="index-title">
+					RocketMQ
 				</h2>
 				<div class="index-brief">
 					
-任务模型的抽象具有广泛通用性的，例如饿了么骑手每笔骑单是任务，小法庭中交易纠纷的评审也可以被抽象为任务。
-
-任务堆积
-
-任务堆积根本原因是任务的流入速度大于任务的消费速度，导致任务失去时效性。
-
-一个稳定的系统，产生任务堆积的原因可能是流入速度的瞬时增大，例如业务准入规则的变化。
-
-也可能是任务消
+官网：https://rocketmq.apache.org/
+中文文档：https://github.com/apache/rocketmq/tree/master/docs/cn
+最佳实践：https://github.com/apache/rocketmq/blob/master/docs/
 					...
 				</div>
 			</a>
                 <div class="article-meta">
-				    <span>2023-11-19</span>
+				    <span>2023-10-07</span>
                     
                             
                                 
                                     <span>
                                         <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/系统相关/">系统相关</a>
+                                        <a href="/categories/消息队列/">消息队列</a>
 										
                                     </span>
                                 
@@ -1213,247 +1383,31 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%A4%BE%E5%8C%BA%E7%B3%BB%E7%BB%9F/">
+			<a href="/2023/10/21/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">
 				<h2 class="index-title">
-					社区系统
+					Redis
 				</h2>
 				<div class="index-brief">
-					Feed流
+					Redis为什么那么快？
+基于内存实现：
 
-Feed流将用户主动订阅的若干消息源组合在一起，形成内容聚合器，帮助用户持续的获取最新的订阅内容，Feed流即持续更新并呈现给用户内容的信息流。
-每个用户都有一个 收件箱inBox 和 发件箱outBox：
+Redis 将数据存储在内存中，读写操作不会受到磁盘的 IO 速度限制，所以Redis的读写速度会非常的快。
+CPU 不是 Redis 的瓶颈，Redis 的瓶颈是机器内存的大小或者网络带宽。
 
-用户刷微博时，查看自己的 收件箱inBox
-用户发微博时，将邮件插入到 发件
+使用I&#x2F;O多路复用模型：
+
+Redis 线程不会阻
 					...
 				</div>
 			</a>
                 <div class="article-meta">
-				    <span>2023-11-19</span>
+				    <span>2023-10-21</span>
                     
                             
                                 
                                     <span>
                                         <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/系统相关/">系统相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E6%89%93%E8%BD%A6%E7%B3%BB%E7%BB%9F/">
-				<h2 class="index-title">
-					打车系统
-				</h2>
-				<div class="index-brief">
-					
-网约车系统（比如滴滴）的核心功能是：
-
-把乘客的打车订单发送给附件的网约车司机，司机接单后，到上车点接送乘客，乘客下车后完成订单。
-
-乘客和司机都有注册登录功能，分属于乘客用户模块和司机用户模块。
-网约车系统的另外核心功能是乘客打车，订单分配，以及司机送单。
-
-
-
-概要设计
-
-需要开发两个 APP
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-19</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/系统相关/">系统相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">
-				<h2 class="index-title">
-					推荐系统
-				</h2>
-				<div class="index-brief">
-					
-推荐系统本质上就是一个信息过滤系统，通常分为：召回、排序、重排序这3个环节，每个环节逐层过滤，最终从海量的物料库中筛选出几十个用户可能感兴趣的物品推荐给用户。
-
-
-应用场景
-
-推荐系统的应用场景通常分为以下两类：
-
-基于用户维度的推荐：
-根据用户的历史行为和兴趣进行推荐，比如淘宝首页的猜你喜欢、抖
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-18</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/系统相关/">系统相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E5%B9%BF%E5%91%8A%E7%B3%BB%E7%BB%9F/">
-				<h2 class="index-title">
-					广告系统
-				</h2>
-				<div class="index-brief">
-					
-广告涉及到 广告主、平台、用户3个主体。
-
-广告主：关注ROI，花了钱是否能带来预期收益
-平台：拥有流量，关注收益能否最大化
-用户：关注体验，广告是否足够精准？是否影响到了正常功能的使用
-
-
-广告费用的结算方式
-
-CPT：
-
-按时间计费，独占性包时段包位置
-
-CPM：
-
-按照每千次曝光计费
-
-CP
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-18</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/系统相关/">系统相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E8%AE%A2%E5%8D%95%E7%B3%BB%E7%BB%9F/">
-				<h2 class="index-title">
-					订单系统
-				</h2>
-				<div class="index-brief">
-					掉单问题
-
-掉单，就是用户下单支付，在钱包里完成了支付，结果回到电商APP一看，订单还是未支付。
-
-定时轮询补偿方案：
-
-采用定时任务，批量查询掉单记录，从而驱动查询具体支付支付结果，然后更新内部订单。
-
-调用支付通道之后，如果支付通道端返回支付受理成功或者支付处理中，将这类订单插入掉单表。
-补单应
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-18</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/系统相关/">系统相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/16/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
-				<h2 class="index-title">
-					Java开发手册
-				</h2>
-				<div class="index-brief">
-					下载地址：https://github.com/alibaba/p3c/tree/master
-编程规约命名风格
-所有编程相关的命名均不能以下划线或美元符号开始，也不能以下划线或美元符号结束。 
-如:_name / __name / $Object / name_ / name$ / Object$
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-16</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/学习书籍/">学习书籍</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/15/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/JWT/">
-				<h2 class="index-title">
-					JWT
-				</h2>
-				<div class="index-brief">
-					
-JWT优点：可以不用在服务端存储认证信息（比如:Token），完全由客户端提供，服务端只要根据 JWT 自身提供的解密算法就可以验证用户合法性，而且这个过程是安全的。
-
-数据结构
-
-JWT 是个字符串，由头部、载荷与签名这三部分组成，中间以.分隔。
-
-
-
-头部:
-
-头部以 JSON 格式表示，用于
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-15</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/框架相关/">框架相关</a>
+                                        <a href="/categories/数据库/">数据库</a>
 										
                                     </span>
                                 
@@ -1485,6 +1439,43 @@ RPC远程过程调用（Remote Procedure Call Protocol），是从一台机器�
                                     <span>
                                         <i class="fa fa-folder" aria-hidden="true"></i>
                                         <a href="/categories/框架相关/">框架相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/">
+				<h2 class="index-title">
+					MongoDB
+				</h2>
+				<div class="index-brief">
+					
+官网：https://www.mongodb.com/
+MongoDB是一款开源、跨平台、分布式，具有大数据处理能力的文档存储数据库。
+
+MongoDB用于记录文档结构的数据，比如JSON、XML结构的数据。
+
+
+适用场景
+
+数据量大，读写操作频繁，数据价值较低，对事务要求不高。
+
+数据结构存储结
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-09</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/数据库/">数据库</a>
 										
                                     </span>
                                 

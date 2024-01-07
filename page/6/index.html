@@ -485,6 +485,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2024/01/07/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/">
+										读书计划
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2023/11/09/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/">
 										面试相关
 									</a>
@@ -1143,6 +1152,225 @@
 		<div id="index" oncontextmenu="return false;">
 	
 		<div class="index-li">
+			<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E4%BB%BB%E5%8A%A1%E7%B3%BB%E7%BB%9F/">
+				<h2 class="index-title">
+					任务系统
+				</h2>
+				<div class="index-brief">
+					
+任务模型的抽象具有广泛通用性的，例如饿了么骑手每笔骑单是任务，小法庭中交易纠纷的评审也可以被抽象为任务。
+
+任务堆积
+
+任务堆积根本原因是任务的流入速度大于任务的消费速度，导致任务失去时效性。
+
+一个稳定的系统，产生任务堆积的原因可能是流入速度的瞬时增大，例如业务准入规则的变化。
+
+也可能是任务消
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-19</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/系统相关/">系统相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%A4%BE%E5%8C%BA%E7%B3%BB%E7%BB%9F/">
+				<h2 class="index-title">
+					社区系统
+				</h2>
+				<div class="index-brief">
+					Feed流
+
+Feed流将用户主动订阅的若干消息源组合在一起，形成内容聚合器，帮助用户持续的获取最新的订阅内容，Feed流即持续更新并呈现给用户内容的信息流。
+每个用户都有一个 收件箱inBox 和 发件箱outBox：
+
+用户刷微博时，查看自己的 收件箱inBox
+用户发微博时，将邮件插入到 发件
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-19</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/系统相关/">系统相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E8%AE%A2%E5%8D%95%E7%B3%BB%E7%BB%9F/">
+				<h2 class="index-title">
+					订单系统
+				</h2>
+				<div class="index-brief">
+					掉单问题
+
+掉单，就是用户下单支付，在钱包里完成了支付，结果回到电商APP一看，订单还是未支付。
+
+定时轮询补偿方案：
+
+采用定时任务，批量查询掉单记录，从而驱动查询具体支付支付结果，然后更新内部订单。
+
+调用支付通道之后，如果支付通道端返回支付受理成功或者支付处理中，将这类订单插入掉单表。
+补单应
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-18</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/系统相关/">系统相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E6%89%93%E8%BD%A6%E7%B3%BB%E7%BB%9F/">
+				<h2 class="index-title">
+					打车系统
+				</h2>
+				<div class="index-brief">
+					
+网约车系统（比如滴滴）的核心功能是：
+
+把乘客的打车订单发送给附件的网约车司机，司机接单后，到上车点接送乘客，乘客下车后完成订单。
+
+乘客和司机都有注册登录功能，分属于乘客用户模块和司机用户模块。
+网约车系统的另外核心功能是乘客打车，订单分配，以及司机送单。
+
+
+
+概要设计
+
+需要开发两个 APP
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-19</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/系统相关/">系统相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">
+				<h2 class="index-title">
+					推荐系统
+				</h2>
+				<div class="index-brief">
+					
+推荐系统本质上就是一个信息过滤系统，通常分为：召回、排序、重排序这3个环节，每个环节逐层过滤，最终从海量的物料库中筛选出几十个用户可能感兴趣的物品推荐给用户。
+
+
+应用场景
+
+推荐系统的应用场景通常分为以下两类：
+
+基于用户维度的推荐：
+根据用户的历史行为和兴趣进行推荐，比如淘宝首页的猜你喜欢、抖
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-18</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/系统相关/">系统相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E5%B9%BF%E5%91%8A%E7%B3%BB%E7%BB%9F/">
+				<h2 class="index-title">
+					广告系统
+				</h2>
+				<div class="index-brief">
+					
+广告涉及到 广告主、平台、用户3个主体。
+
+广告主：关注ROI，花了钱是否能带来预期收益
+平台：拥有流量，关注收益能否最大化
+用户：关注体验，广告是否足够精准？是否影响到了正常功能的使用
+
+
+广告费用的结算方式
+
+CPT：
+
+按时间计费，独占性包时段包位置
+
+CPM：
+
+按照每千次曝光计费
+
+CP
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-18</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/系统相关/">系统相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2023/10/21/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/DDD/">
 				<h2 class="index-title">
 					DDD
@@ -1181,25 +1409,54 @@ https://github.com/feiniaojin/ddd-example-cms
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2023/10/21/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">
+			<a href="/2023/11/16/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
 				<h2 class="index-title">
-					Redis
+					Java开发手册
 				</h2>
 				<div class="index-brief">
-					Redis为什么那么快？
-基于内存实现：
-
-Redis 将数据存储在内存中，读写操作不会受到磁盘的 IO 速度限制，所以Redis的读写速度会非常的快。
-CPU 不是 Redis 的瓶颈，Redis 的瓶颈是机器内存的大小或者网络带宽。
-
-使用I&#x2F;O多路复用模型：
-
-Redis 线程不会阻
+					下载地址：https://github.com/alibaba/p3c/tree/master
+编程规约命名风格
+所有编程相关的命名均不能以下划线或美元符号开始，也不能以下划线或美元符号结束。 
+如:_name / __name / $Object / name_ / name$ / Object$
 					...
 				</div>
 			</a>
                 <div class="article-meta">
-				    <span>2023-10-21</span>
+				    <span>2023-11-16</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/学习书籍/">学习书籍</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/10/27/%E6%95%B0%E6%8D%AE%E5%BA%93/HBase/">
+				<h2 class="index-title">
+					HBase
+				</h2>
+				<div class="index-brief">
+					官网：https://hbase.apache.org/
+
+Apache HBase 是 Hadoop中一个支持分布式的、可扩展的大数据存储的数据库。
+当需要对大数据进行随机、实时读&#x2F;写访问时，可以用 Apache HBase。
+
+HBase特点
+列式存储:
+
+HBase是面向列族的非关系
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-10-27</span>
                     
                             
                                 
@@ -1215,278 +1472,34 @@ Redis 线程不会阻
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2023/10/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/ZooKeeper/">
+			<a href="/2023/11/15/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/JWT/">
 				<h2 class="index-title">
-					ZooKeeper
+					JWT
 				</h2>
 				<div class="index-brief">
-					基本结构数据模型
+					
+JWT优点：可以不用在服务端存储认证信息（比如:Token），完全由客户端提供，服务端只要根据 JWT 自身提供的解密算法就可以验证用户合法性，而且这个过程是安全的。
 
-ZooKeeper中的数据模型是一种树形结构。
-具有一个固定的根节点，我们可以在根节点下创建子节点，并在子节点下继续创建下一级节点。
-树中的每一层级用斜杠（&#x2F;）分隔开，只能用绝对路径（如get /work/task1）的方式查询节点，不能使用相对路径。
+数据结构
 
-为什么 Zoo
+JWT 是个字符串，由头部、载荷与签名这三部分组成，中间以.分隔。
+
+
+
+头部:
+
+头部以 JSON 格式表示，用于
 					...
 				</div>
 			</a>
                 <div class="article-meta">
-				    <span>2023-10-19</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/中间件/">中间件</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
-				<h2 class="index-title">
-					Spring
-				</h2>
-				<div class="index-brief">
-					启动初始化
-@PostConstruct：
-
-在Bean创建期间由 Spring 调用的初始化方法。
-
-使用：将 @PostConstruct 注解添加到方法上就行。
-
-
-InitializingBean：
-
-可以实现 InitializingBean 接口，让 Spring 调用某个初始化方法。
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-14</span>
+				    <span>2023-11-15</span>
                     
                             
                                 
                                     <span>
                                         <i class="fa fa-folder" aria-hidden="true"></i>
                                         <a href="/categories/框架相关/">框架相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/10/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%98/">
-				<h2 class="index-title">
-					剑桥雅思听力真题
-				</h2>
-				<div class="index-brief">
-					TEST1Section1
-        
-            
-        
-        
-          var ap = new APlayer({
-            element: document.getElementById("aplayer-YGQijwzR"
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-12</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/英语相关/">英语相关</a>
-										
-											>
-										
-                                    </span>
-                                
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/英语相关/雅思/">雅思</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/10/12/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
-				<h2 class="index-title">
-					小程序
-				</h2>
-				<div class="index-brief">
-					官网：https://mp.weixin.qq.com/
-开发准备：
-微信开发者工具：https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html
-项目目录
-
-以app开头的文件是应用程序级别的文件，更改一处全局生效。
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-12</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/前端相关/">前端相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/10/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/">
-				<h2 class="index-title">
-					算法知识
-				</h2>
-				<div class="index-brief">
-					排序算法排序算法的稳定性
-
-当输入元素中有两个元素的值相同时，排序后完成之后，这两个元素的前后位置是否发生了前后变化。
-
-内排序：
-
-所有排序操作都在内存中完成。
-
-外排序：
-
-由于数据太大，因此把数据放在磁盘中，而排序通过磁盘和内存的数据传输才能进行。
-
-
-
-冒泡排序核心思路：
-
-依次比较相邻的两
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-11</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/计算机基础/">计算机基础</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-				<h2 class="index-title">
-					数据结构
-				</h2>
-				<div class="index-brief">
-					树二叉树满足以下条件的树就是二叉树：
-
-树中包含的各个节点的度不能超过 2，即只能是 0、1 或者 2。
-
-
-满二叉树
-如果二叉树中除了叶子结点，每个结点的度都为2，则此二叉树称为满二叉树。
-完全二叉树
-如果二叉树中除去最后一层节点为满二叉树，且最后一层的结点依次从左到右分布，则此二叉树被称为完全二
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-10</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/计算机基础/">计算机基础</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
-				<h2 class="index-title">
-					操作系统
-				</h2>
-				<div class="index-brief">
-					基本结构冯诺依曼计算机模型
-现代计算机模型是基于冯诺依曼计算机模型。
-
-计算机在运行时，先从内存中取出第一条指令，通过控制器的译码，按指令的要求，从存储器中取出数据进行指定的运算和逻辑操作等加工，然后再按地址把结果送到内存中去。
-接下来，再取出第二条指令，在控制器的指挥下完成规定操作，依此进行下去。
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-10</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/计算机基础/">计算机基础</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/10/10/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">
-				<h2 class="index-title">
-					开源框架
-				</h2>
-				<div class="index-brief">
-					Guava
-
-https://github.com/rholder/guava-retrying
-
-AviatorScript
-
-https://github.com/killme2008/aviatorscript
-文档：https://www.yuque.com/boyan-avfmj/avia
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-10</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/中间件/">中间件</a>
 										
                                     </span>
                                 
