@@ -339,6 +339,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										大数据相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/07/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Hive/">
+										Hive
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										学习专栏
 									</a>
 									
@@ -1152,27 +1172,38 @@
 		<div id="index" oncontextmenu="return false;">
 	
 		<div class="index-li">
-			<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/Vue/">
+			<a href="/2022/12/02/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">
 				<h2 class="index-title">
-					Vue
+					MySQL
 				</h2>
 				<div class="index-brief">
-					数据绑定单项数据绑定（v-bind）：数据只能从data流向页面。
-双向数据绑定（v-model）：数据不仅能从data流向页面，还可以从页面流向data。
+					三大范式
+第一范式：
 
-双向绑定一般都应用在表单类元素上（如：input、select等）
-v-mode:value可以简写为v-model，因为v-model默认
+确保每列保持原子性：也就是列都是不可再分。
+如果每列都是不可再分的最小数据单元（也称为最小的原子单元），则满足第一范式（1NF）
+
+第二范式：
+
+首先满足第一范式，并且表中非主键列不存在对主键的部分依赖。
+
+第二范式要求每个表只描述一件事情。
+
+
+第三范式:
+
+确保每列都和主
 					...
 				</div>
 			</a>
                 <div class="article-meta">
-				    <span>2023-10-07</span>
+				    <span>2022-12-02</span>
                     
                             
                                 
                                     <span>
                                         <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/前端相关/">前端相关</a>
+                                        <a href="/categories/数据库/">数据库</a>
 										
                                     </span>
                                 
@@ -1182,28 +1213,34 @@ v-mode:value可以简写为v-model，因为v-model默认
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2023/10/12/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+			<a href="/2022/11/27/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/JVM/">
 				<h2 class="index-title">
-					小程序
+					JVM
 				</h2>
 				<div class="index-brief">
-					官网：https://mp.weixin.qq.com/
-开发准备：
-微信开发者工具：https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html
-项目目录
+					内存模型内存结构
 
-以app开头的文件是应用程序级别的文件，更改一处全局生效。
+堆：
+
+存放对象实例, 几乎所有的对象实例以及数组都在这里分配内存。
+
+虚拟机栈:
+
+栈帧:用于支持虚拟机进行方法执行的数据结构。
+存储了方法的局部变量表， 操作数栈，动态连接和返回地址等地址。
+每个方法从调用到执行完成的过程，都对应着一个栈帧在虚拟机栈里从入栈到出栈的过程。
+栈
 					...
 				</div>
 			</a>
                 <div class="article-meta">
-				    <span>2023-10-12</span>
+				    <span>2022-11-27</span>
                     
                             
                                 
                                     <span>
                                         <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/前端相关/">前端相关</a>
+                                        <a href="/categories/基础知识/">基础知识</a>
 										
                                     </span>
                                 
@@ -1213,31 +1250,27 @@ v-mode:value可以简写为v-model，因为v-model默认
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2023/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+			<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E5%89%91%E6%8C%87OFFER/">
 				<h2 class="index-title">
-					数据结构
+					剑指OFFER
 				</h2>
 				<div class="index-brief">
-					树二叉树满足以下条件的树就是二叉树：
-
-树中包含的各个节点的度不能超过 2，即只能是 0、1 或者 2。
-
-
-满二叉树
-如果二叉树中除了叶子结点，每个结点的度都为2，则此二叉树称为满二叉树。
-完全二叉树
-如果二叉树中除去最后一层节点为满二叉树，且最后一层的结点依次从左到右分布，则此二叉树被称为完全二
+					3数组中重复的数字class Solution &#123;
+    public int findRepeatNumber(int[] nums) &#123;
+        int i = 0;
+        while(i &lt; nums.length) &#123;
+        
 					...
 				</div>
 			</a>
                 <div class="article-meta">
-				    <span>2023-10-10</span>
+				    <span>2022-11-26</span>
                     
                             
                                 
                                     <span>
                                         <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/计算机基础/">计算机基础</a>
+                                        <a href="/categories/算法相关/">算法相关</a>
 										
                                     </span>
                                 
@@ -1247,27 +1280,25 @@ v-mode:value可以简写为v-model，因为v-model默认
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2023/10/07/%E6%9C%8D%E5%8A%A1%E5%99%A8/Docker/">
+			<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/LeetCode/">
 				<h2 class="index-title">
-					Docker
+					LeetCode
 				</h2>
 				<div class="index-brief">
-					基本概念虚拟化技术VM
-虚拟化技术通过 Hypervisor 实现虚拟机与底层硬件的解耦，虚拟机实现依赖 Hypervisor 层，Hypervisor 是整个虚拟机的核心所在。
-
-Hypervisor是一种运行在基础物理服务器和操作系统之间的中间软件层，可允许多个操作系统和应用共享硬件。
-Hype
+					1两数之和class Solution &#123;
+    public int[] twoSum(int[] nums, int target) &#123;
+        Map&lt;Integer, Integer&gt; map = new HashMap&lt;Integer, In
 					...
 				</div>
 			</a>
                 <div class="article-meta">
-				    <span>2023-10-07</span>
+				    <span>2022-11-26</span>
                     
                             
                                 
                                     <span>
                                         <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/服务器/">服务器</a>
+                                        <a href="/categories/算法相关/">算法相关</a>
 										
                                     </span>
                                 
@@ -1277,27 +1308,60 @@ Hype
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/%E8%BF%90%E7%BB%B4%E7%9F%A5%E8%AF%86/">
+			<a href="/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
 				<h2 class="index-title">
-					运维知识
+					面试算法
 				</h2>
 				<div class="index-brief">
-					发布方案蓝绿发布
-蓝绿部署，是指同时运行两个版本的应用。
-
-在蓝绿部署时，蓝绿部署的时候，并不停止掉老版本，而是直接部署一套新版本，等新版本运行起来后，再将流量切换到新版本上。
-例如发布前，在蓝色的系统上进行测试，测试完成后切换为蓝色系统，同时观察蓝色系统的运行状态，如果运行出现问题可以及时切回绿色
+					面试题17.01不用加号的加法
+class Solution &#123;
+    public int add(int a, int b) &#123;
+        int m = a ^ b; //不进位加法
+        int n = (a &amp; b) &lt;&lt; 1; /
 					...
 				</div>
 			</a>
                 <div class="article-meta">
-				    <span>2023-10-09</span>
+				    <span>2022-11-25</span>
                     
                             
                                 
                                     <span>
                                         <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/服务器/">服务器</a>
+                                        <a href="/categories/算法相关/">算法相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2022/11/21/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Java%E5%9F%BA%E7%A1%80/">
+				<h2 class="index-title">
+					Java基础
+				</h2>
+				<div class="index-brief">
+					不同版本JDK安装网站：https://adoptium.net/zh-CN/
+值传递还是引用传递
+
+Java中方法参数传递方式是按值传递。
+如果参数是基本类型，传递的是基本类型的数据拷贝。
+如果参数是引用类型，因为栈中存的是对象的地址值，所以传递的是该参量所引用的对象在堆中地址值的拷贝。
+
+编译期
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2022-11-21</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/基础知识/">基础知识</a>
 										
                                     </span>
                                 

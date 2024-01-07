@@ -339,6 +339,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										大数据相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/07/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Hive/">
+										Hive
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										学习专栏
 									</a>
 									
@@ -1152,170 +1172,28 @@
 		<div id="index" oncontextmenu="return false;">
 	
 		<div class="index-li">
-			<a href="/2023/10/26/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
+			<a href="/2023/11/15/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/JWT/">
 				<h2 class="index-title">
-					系统设计
-				</h2>
-				<div class="index-brief">
-					开源项目：https://github.com/ByteByteGoHq/system-design-101
-如何搭建一个新系统
-
-架构设计按照实施过程可分为工程架构，业务架构，部署架构等多个维度。
-一个好的系统架构标准应该具备可扩展、可维护、可靠性、安全性和高性能等特点。
-
-价值为先：
-
-技术容易
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-26</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/架构相关/">架构相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Hexo/">
-				<h2 class="index-title">
-					Hexo
-				</h2>
-				<div class="index-brief">
-					NPM安装:
-
-安装太慢的话，使用镜像解决。
-
-npm config set registry http://registry.npm.taobao.org
-
-下载Hexo：
-
-输入hexo g生成静态网页，然后输入hexo s打开本地服务器。
-
-npm install -g hexo-cli
-
-h
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-21</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/工具相关/">工具相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/01/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Maven/">
-				<h2 class="index-title">
-					Maven
-				</h2>
-				<div class="index-brief">
-					下载地址：http://maven.apache.org/download.cgi
-基本配置安装配置：
-
-配置系统的环境变量：
-
-open ~/.bash_profile
-
-export MAVEN_HOME=/Users/kun/Desktop/midongtools/apache-maven-3
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-01</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/工具相关/">工具相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/KAFKA/">
-				<h2 class="index-title">
-					KAFKA
-				</h2>
-				<div class="index-brief">
-					消息队列对比
-
-Kafka：
-
-追求高吞吐量，一开始用于日志收集和传输，适合产生大量数据的互联网服务的数据收集业务，大型公司可以选用。
-如果有日志采集功能，肯定首选 Kafka。
-
-RocketMQ：
-
-天生为金融互联网领域而生，对于可靠性要求很高的场景。
-尤其是电商里面的订单扣款，以及业务削峰，在
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-07</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/消息队列/">消息队列</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/29/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/XXLJOB/">
-				<h2 class="index-title">
-					XXLJOB
+					JWT
 				</h2>
 				<div class="index-brief">
 					
-XXL-JOB是一个分布式定时任务调度平台。
-分布式定时任务：
+JWT优点：可以不用在服务端存储认证信息（比如:Token），完全由客户端提供，服务端只要根据 JWT 自身提供的解密算法就可以验证用户合法性，而且这个过程是安全的。
 
-指的是运行在分布式集群环境下的调度任务，同一份定时任务部署多份，则同一时刻应当只允许一个定时任务执行。
+数据结构
 
-源码仓库地址：
+JWT 是个字符串，由头部、载荷与签名这三部分组成，中间以.分隔。
 
-https://github.com/xuxueli/xxl-job
 
-官方文档：
 
-https://www
+头部:
+
+头部以 JSON 格式表示，用于
 					...
 				</div>
 			</a>
                 <div class="article-meta">
-				    <span>2023-11-29</span>
+				    <span>2023-11-15</span>
                     
                             
                                 
@@ -1331,28 +1209,28 @@ https://www
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2022/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
+			<a href="/2023/11/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/RPC%E6%A1%86%E6%9E%B6/">
 				<h2 class="index-title">
-					网络基础
+					RPC框架
 				</h2>
 				<div class="index-brief">
-					网络模型OSI七层模型
-物理层：
+					
+RPC远程过程调用（Remote Procedure Call Protocol），是从一台机器通过网络调用到另一台机器的某个方法。
 
-解决两个硬件之间怎么通信的问题，常见的物理媒介有光纤、电缆、中继器等。
-它主要定义物理设备标准，如网线的接口类型、光纤的接口类型、各种传输介质的传输速率等。
-它的主要作用是传输比特流（就是由1、0转化为电流强弱来进行传输，到达目的地后在转化为1、0，也就是我们常说
+基本结构
+
+当调用本地的一个服务类的某个方法时，实际上这个服务类已经是一个代理类了，调用这个类的某个方法，实际上代理方法中可以加入很多额外的逻辑，比如构造 HTT
 					...
 				</div>
 			</a>
                 <div class="article-meta">
-				    <span>2022-12-19</span>
+				    <span>2023-11-14</span>
                     
                             
                                 
                                     <span>
                                         <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/计算机基础/">计算机基础</a>
+                                        <a href="/categories/框架相关/">框架相关</a>
 										
                                     </span>
                                 
@@ -1362,24 +1240,30 @@ https://www
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2022/11/21/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Java%E5%9F%BA%E7%A1%80/">
+			<a href="/2023/11/11/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Go%E5%9F%BA%E7%A1%80/">
 				<h2 class="index-title">
-					Java基础
+					Go基础
 				</h2>
 				<div class="index-brief">
-					不同版本JDK安装网站：https://adoptium.net/zh-CN/
-值传递还是引用传递
+					安装
 
-Java中方法参数传递方式是按值传递。
-如果参数是基本类型，传递的是基本类型的数据拷贝。
-如果参数是引用类型，因为栈中存的是对象的地址值，所以传递的是该参量所引用的对象在堆中地址值的拷贝。
+下载地址：https://go.dev/dl/
 
-编译期
+
+配置环境变量。
+
+$ vim ~/.bash_profile
+
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$GOROOT/bin:$PATH
+
+$ sour
 					...
 				</div>
 			</a>
                 <div class="article-meta">
-				    <span>2022-11-21</span>
+				    <span>2023-11-11</span>
                     
                             
                                 
@@ -1395,32 +1279,63 @@ Java中方法参数传递方式是按值传递。
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2022/12/02/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">
+			<a href="/2023/11/09/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Arthas/">
 				<h2 class="index-title">
-					MySQL
+					Arthas
 				</h2>
 				<div class="index-brief">
-					三大范式
-第一范式：
+					
+官方文档：https://arthas.aliyun.com/
+Arthas是一款由阿里巴巴开源的Java应用诊断利器，它可以帮助开发人员在运行时对Java应用进行调试和诊断，解决线上问题。
 
-确保每列保持原子性：也就是列都是不可再分。
-如果每列都是不可再分的最小数据单元（也称为最小的原子单元），则满足第一范式（1NF）
+连接应用
+默认连接:
 
-第二范式：
+指 Arthas 自动连接当前机器上正在运行的 Java 应用程序。
 
-首先满足第一范式，并且表中非主键列不存在对主键的部分依赖。
-
-第二范式要求每个表只描述一件事情。
-
-
-第三范式:
-
-确保每列都和主
+$ ja
 					...
 				</div>
 			</a>
                 <div class="article-meta">
-				    <span>2022-12-02</span>
+				    <span>2023-11-09</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/工具相关/">工具相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/">
+				<h2 class="index-title">
+					MongoDB
+				</h2>
+				<div class="index-brief">
+					
+官网：https://www.mongodb.com/
+MongoDB是一款开源、跨平台、分布式，具有大数据处理能力的文档存储数据库。
+
+MongoDB用于记录文档结构的数据，比如JSON、XML结构的数据。
+
+
+适用场景
+
+数据量大，读写操作频繁，数据价值较低，对事务要求不高。
+
+数据结构存储结
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-09</span>
                     
                             
                                 
@@ -1436,32 +1351,37 @@ Java中方法参数传递方式是按值传递。
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2022/12/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/">
+			<a href="/2023/11/09/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/">
 				<h2 class="index-title">
-					Elasticsearch
+					面试相关
 				</h2>
 				<div class="index-brief">
-					Elasticsearch 是一个开源的搜索引擎，建立在全文搜索引擎库 Apache Lucene 基础之上。
+					简历模版：https://www.polebrief.com/
+面试考察点
 
-ES用 Java 编写，内部使用 Lucene 做索引与搜索：
+考察点：技能、能力、价值观、匹配度。
+技能：
 
-使全文检索变得简单，隐藏 Lucene 的复杂性，提供一套简单的 RESTful API。
+Java基础，开源框架，中间件，代码设计，项目实战等。
 
+能力：
 
-学习资源
+工作年限和职级越高，对能力的要求越大，对技能的要求反而没那么大。
 
-官网文档：h
+学习能力：
+
+具备快速学习的能力，能够
 					...
 				</div>
 			</a>
                 <div class="article-meta">
-				    <span>2022-12-19</span>
+				    <span>2023-11-09</span>
                     
                             
                                 
                                     <span>
                                         <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/中间件/">中间件</a>
+                                        <a href="/categories/成长相关/">成长相关</a>
 										
                                     </span>
                                 
@@ -1471,33 +1391,142 @@ ES用 Java 编写，内部使用 Lucene 做索引与搜索：
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%88%86%E5%B8%83%E5%BC%8F/">
+			<a href="/2023/11/03/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
 				<h2 class="index-title">
-					分布式
+					Thrift
 				</h2>
 				<div class="index-brief">
-					基本概念背压
+					
+Thrift是Facebook的一款开源跨语言的RPC框架。
 
-背压思想，被请求方不会直接将请求端的流量直接丢掉，而是不断的反馈自己的处理能力。
-请求端根据这些反馈，实时的调整自己的发送频率，比如：TCP&#x2F;IP中使用滑动窗口来进行流量控制。
+跨语言特型
 
-CAP原则
-Consistency（一致性）
+Thrift通过一个中间语言IDL(接口定义语言)来定义RPC的数据类型和接口。
+这些内容写在以.thrift结尾的文件中，然后通过特殊的编译器来生成不同语言的代码，以满足不同需要的开发者。
 
-所有节点返回的数据是一致的。
-
-Availab
+生成的代码中不但包含目标语
 					...
 				</div>
 			</a>
                 <div class="article-meta">
-				    <span>2023-10-07</span>
+				    <span>2023-11-03</span>
                     
                             
                                 
                                     <span>
                                         <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/基础知识/">基础知识</a>
+                                        <a href="/categories/框架相关/">框架相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/11/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/Tomcat/">
+				<h2 class="index-title">
+					Tomcat
+				</h2>
+				<div class="index-brief">
+					基本架构总体架构
+
+最顶层是Server：指的是一个Tomcat实例。
+一个Server中有一个或者多个Service，一个Service中有多个连接器和一个容器。
+
+连接器与容器之间通过标准的ServletRequest和ServletResponse通信。
+
+
+
+
+容器结构
+
+Tomcat设计了
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-03</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/服务器/">服务器</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/11/02/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/">
+				<h2 class="index-title">
+					架构学习
+				</h2>
+				<div class="index-brief">
+					如何防止架构师PM化
+架构师PM化的特点：
+
+实质性工作越来越少:
+
+大量参加各种评审会议和汇报，在架构方案、系分、编码、测试上的产出却越来越少甚至没有。
+
+更喜欢拉会催进度:
+
+对于项目的把控在架构层面的减少，在管理层间的增多，喜欢：拉会过进度，收集进度向上汇报。
+
+越来越难直接回答问题：
+
+排查
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-02</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/架构相关/">架构相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/11/02/%E4%BB%A3%E7%A0%81%E6%80%9D%E6%83%B3/%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84/">
+				<h2 class="index-title">
+					代码重构
+				</h2>
+				<div class="index-brief">
+					代码重构的目的
+
+代码重构是指在不改变代码功能的前提下，通过修改代码的内部结构和外部表现形式，来提高代码的可读性、可维护性、性能和可扩展性。
+通常包括以下几个方面：
+
+改进代码的结构，使代码更加清晰简洁。
+消除代码中的重复部分，减少代码冗余。
+提高代码的可读性，使代码更加易于理解和维护。
+提高代码的
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-02</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/代码思想/">代码思想</a>
 										
                                     </span>
                                 
