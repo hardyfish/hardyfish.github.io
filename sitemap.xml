@@ -812,7 +812,7 @@
   </url>
   
   <url>
-    <loc>http://hardyfish.top/movie/index.html</loc>
+    <loc>http://hardyfish.top/graph/index.html</loc>
     
     <lastmod>2022-09-30</lastmod>
     
@@ -821,7 +821,7 @@
   </url>
   
   <url>
-    <loc>http://hardyfish.top/graph/index.html</loc>
+    <loc>http://hardyfish.top/movie/index.html</loc>
     
     <lastmod>2022-09-30</lastmod>
     
@@ -959,6 +959,20 @@
   </url>
   
   <url>
+    <loc>http://hardyfish.top/categories/%E6%BA%90%E7%A0%81%E7%9B%B8%E5%85%B3/</loc>
+    <lastmod>2024-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://hardyfish.top/categories/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/</loc>
+    <lastmod>2024-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://hardyfish.top/categories/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/</loc>
     <lastmod>2024-01-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -973,14 +987,14 @@
   </url>
   
   <url>
-    <loc>http://hardyfish.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</loc>
+    <loc>http://hardyfish.top/categories/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/</loc>
     <lastmod>2024-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://hardyfish.top/categories/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/</loc>
+    <loc>http://hardyfish.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2024-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -995,20 +1009,6 @@
   
   <url>
     <loc>http://hardyfish.top/categories/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/</loc>
-    <lastmod>2024-01-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://hardyfish.top/categories/%E6%BA%90%E7%A0%81%E7%9B%B8%E5%85%B3/</loc>
-    <lastmod>2024-01-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://hardyfish.top/categories/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/</loc>
     <lastmod>2024-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
