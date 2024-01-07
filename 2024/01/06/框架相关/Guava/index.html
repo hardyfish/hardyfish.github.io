@@ -1166,7 +1166,8 @@
       </div>
       <!--打赏-->
 	<div id="article-content">
-		<h1 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h1><blockquote>
+		<h1>Cache</h1>
+<blockquote>
 <p>Guava Cache是一款非常优秀的本地缓存框架。</p>
 <p>官方文档：<a target="_blank" rel="noopener" href="https://guava.dev/releases/21.0/api/docs/com/google/common/cache/Cache.html">https://guava.dev/releases/21.0/api/docs/com/google/common/cache/Cache.html</a></p>
 </blockquote>
@@ -1186,7 +1187,8 @@
 <th>简要概述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>优势</td>
 <td>基于<strong>空间换时间</strong>的策略，利用内存的高速处理效率，提升机器的处理性能，减少大量对外的IO请求交互，比如读取DB、请求外部网络、读取本地磁盘数据等等操作。</td>
 </tr>
@@ -1194,9 +1196,10 @@
 <td>弊端</td>
 <td>整体<strong>容量受限</strong>，可能对本机内存造成压力。此外，对于分布式多节点集群部署的场景，缓存更新场景会出现<strong>缓存漂移</strong>问题，导致各个节点之间的缓存<em>数据不一致</em>。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p><strong>初始化</strong></p>
-<pre><code class="java">final static Cache&lt;Integer, String&gt; cache = 
+<pre><code class="language-java">final static Cache&lt;Integer, String&gt; cache = 
     CacheBuilder.newBuilder()  
         //设置cache的初始大小为10，要合理设置该值  
         .initialCapacity(10)  
@@ -1219,7 +1222,8 @@
 <th>含义说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>newBuilder</td>
 <td>构造出一个Builder实例类</td>
 </tr>
@@ -1259,7 +1263,8 @@
 <td>recordStats</td>
 <td>设定开启此容器的数据加载与缓存命中情况统计</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p><strong>相关方法</strong></p>
 <table>
 <thead>
@@ -1268,7 +1273,8 @@
 <th>具体说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>get</td>
 <td>查询指定key对应的value值，如果缓存中没匹配，则基于给定的<code>Callable</code>逻辑去获取数据回填缓存中并返回</td>
 </tr>
@@ -1312,12 +1318,13 @@
 <td>cleanUp</td>
 <td>清理所有的已过期的数据</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p><strong>LoadingCache</strong></p>
 <blockquote>
 <p>LoadingCache，它能够通过CacheLoader自发的加载缓存：如果有缓存则返回，否则运算、缓存、然后返回。</p>
 </blockquote>
-<pre><code class="java">CacheBuilder.newBuilder()
+<pre><code class="language-java">CacheBuilder.newBuilder()
         .build(new CacheLoader&lt;String, String&gt;() &#123;
             @Override
             public String load(String key) throws Exception &#123;
@@ -1332,7 +1339,7 @@
 <p>通过 <code>expireAfterWrite()</code> 和 <code>expireAfterAccess()</code> 方法来设置缓存项的写入后过期时间和最后访问后过期时间。</p>
 <p><code>expireAfterWrite</code>：设置缓存项在写入后的过期时间，过期时间从写入操作发生后开始计算。</p>
 </blockquote>
-<pre><code class="java">Cache&lt;String, String&gt; cache = CacheBuilder.newBuilder()
+<pre><code class="language-java">Cache&lt;String, String&gt; cache = CacheBuilder.newBuilder()
         .expireAfterWrite(10, TimeUnit.MINUTES) // 缓存项在写入后10分钟过期
         .build();
 
@@ -1347,7 +1354,7 @@ value = cache.getIfPresent(&quot;key&quot;);
 <blockquote>
 <p><code>expireAfterAccess</code>：设置缓存项在最后访问后的过期时间，过期时间从最后一次访问操作发生后开始计算。</p>
 </blockquote>
-<pre><code class="java">Cache&lt;String, String&gt; cache = CacheBuilder.newBuilder()
+<pre><code class="language-java">Cache&lt;String, String&gt; cache = CacheBuilder.newBuilder()
         .expireAfterAccess(5, TimeUnit.MINUTES) // 缓存项在最后一次访问后5分钟过期
         .build();
 
@@ -1366,7 +1373,7 @@ value = cache.getIfPresent(&quot;key&quot;); // 返回null
 <blockquote>
 <p>通过 <code>maximumSize()</code> 方法设置缓存的最大大小限制，当缓存项数量达到最大值时，新的元素将会替换掉最旧的元素。</p>
 </blockquote>
-<pre><code class="java">Cache&lt;String, String&gt; cache = CacheBuilder.newBuilder()
+<pre><code class="language-java">Cache&lt;String, String&gt; cache = CacheBuilder.newBuilder()
         .maximumSize(100) // 缓存最大容量为100
         .build();
 
@@ -1384,7 +1391,7 @@ value = cache.getIfPresent(&quot;key100&quot;); // 返回&quot;value100&quot;，
 </ul>
 <p>这些弱引用策略可用于在内存受限的情况下，允许缓存项根据垃圾回收的需要进行回收。</p>
 </blockquote>
-<pre><code class="java">Cache&lt;String, Object&gt; cache = CacheBuilder.newBuilder()
+<pre><code class="language-java">Cache&lt;String, Object&gt; cache = CacheBuilder.newBuilder()
         .weakKeys() // 使用弱引用存储缓存的键
         .weakValues() // 使用弱引用存储缓存的值
         .build();
@@ -1405,7 +1412,7 @@ value = cache.getIfPresent(key); // 返回null，因为key已没有强引用
 </ul>
 <p>这样可以确保在缓存项过期时仍然能够返回旧值，同时异步加载新值，提高了缓存的命中率和性能。</p>
 </blockquote>
-<pre><code class="java">LoadingCache&lt;String, String&gt; cache = CacheBuilder.newBuilder()
+<pre><code class="language-java">LoadingCache&lt;String, String&gt; cache = CacheBuilder.newBuilder()
         .expireAfterWrite(10, TimeUnit.MINUTES) // 缓存项在写入后10分钟过期
         .refreshAfterWrite(1, TimeUnit.MINUTES) // 缓存项在写入后1分钟后异步刷新
         .build(new CacheLoader&lt;String, String&gt;() &#123;
@@ -1423,6 +1430,11 @@ value = cache.get(&quot;key&quot;);
 // 10分钟后，缓存项过期，获取缓存项将返回新的值
 value = cache.get(&quot;key&quot;);
 </code></pre>
+<blockquote>
+<p>在get执行逻辑中进行数据过期清理以及重新回源加载的执行判断。</p>
+<p>在执行get请求的时候，会先判断下当前查询的数据是否过期，如果已经过期，则会触发对当前操作的<code>Segment</code>的过期数据清理操作。</p>
+</blockquote>
+<img src="/images/image-20240107122241651.png" alt="image-20240107122241651" style="zoom:50%;" />
 <p><strong>淘汰策略</strong></p>
 <blockquote>
 <p>当容量触达阈值后，支持根据<code>FIFO + LRU</code>策略实施具体淘汰处理以腾出位置给新的记录使用。</p>
@@ -1434,7 +1446,8 @@ value = cache.get(&quot;key&quot;);
 <th>具体说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>FIFO</td>
 <td>根据缓存记录写入的顺序，先写入的先淘汰</td>
 </tr>
@@ -1442,11 +1455,12 @@ value = cache.get(&quot;key&quot;);
 <td>LRU</td>
 <td>根据访问顺序，淘汰最久没有访问的记录</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <blockquote>
 <p>限制缓存<strong>记录条数</strong></p>
 </blockquote>
-<pre><code class="java">public Cache&lt;String, User&gt; createUserCache() &#123;
+<pre><code class="language-java">public Cache&lt;String, User&gt; createUserCache() &#123;
     return CacheBuilder.newBuilder()
             .maximumSize(10000L)
             .build();
@@ -1458,8 +1472,9 @@ value = cache.get(&quot;key&quot;);
 <li>按照权重进行限制缓存容量的时候必须要指定<code>weighter</code>属性才可以生效。</li>
 </ul>
 <p>通过计算<code>value</code>对象的字节数（byte）来计算其权重信息，每1kb的字节数作为1个权重，整个缓存容器的总权重限制为1w，这样就可以实现将缓存内存占用控制在<code>10000*1k≈10M</code>左右。</p>
+<p>基于<code>weight</code>权重的控制方式，比较适用于这种对容器体量控制<strong>精度</strong>有<strong>严格诉求</strong>的场景，可以在创建容器的时候指定每条记录的权重计算策略（比如基于字符串长度或者基于<code>bytes</code>数组长度进行计算权重）。</p>
 </blockquote>
-<pre><code class="java">public Cache&lt;String, User&gt; createUserCache() &#123;
+<pre><code class="language-java">public Cache&lt;String, User&gt; createUserCache() &#123;
     return CacheBuilder.newBuilder()
             .maximumWeight(10000L)
             .weigher((key, value) -&gt; (int) Math.ceil(instrumentation.getObjectSize(value) / 1024L))
@@ -1472,6 +1487,43 @@ value = cache.get(&quot;key&quot;);
 <p>当缓存不可用时，仅<code>持锁的线程</code>负责从数据库中查询数据并写入缓存中，其余请求重试时先尝试从缓存中获取数据，避免所有的并发请求全部同时打到数据库上。</p>
 <p><code>Guava Cache</code>自带了<code>并发锁定</code>机制，同一时刻仅允许一个请求去回源获取数据并回填到缓存中，而其余请求则阻塞等待，不会造成数据源的压力过大。</p>
 </blockquote>
+<p><strong>不回源查询</strong></p>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getIfPresent</td>
+<td>从内存中查询，如果存在则返回对应值，不存在则返回null</td>
+</tr>
+<tr>
+<td>getAllPresent</td>
+<td>批量从内存中查询，如果存在则返回存在的键值对，不存在的key则不出现在结果集里</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>上述两种接口，执行的时候仅会从当前内存中已有的缓存数据里面进行查询，不会触发回源的操作。</p>
+</blockquote>
+<pre><code class="language-java">public static void main(String[] args) &#123;
+    try &#123;
+        GuavaCacheService cacheService = new GuavaCacheService();
+        Cache&lt;String, User&gt; cache = cacheService.createCache();
+        cache.put(&quot;123&quot;, new User(&quot;123&quot;, &quot;123&quot;));
+        cache.put(&quot;124&quot;, new User(&quot;124&quot;, &quot;124&quot;));
+        System.out.println(cache.getIfPresent(&quot;125&quot;));
+        ImmutableMap&lt;String, User&gt; allPresentUsers =
+                cache.getAllPresent(Stream.of(&quot;123&quot;, &quot;124&quot;, &quot;125&quot;).collect(Collectors.toList()));
+        System.out.println(allPresentUsers);
+    &#125; catch (Exception e) &#123;
+        e.printStackTrace();
+    &#125;
+&#125;
+</code></pre>
 <p><strong>监控统计</strong></p>
 <blockquote>
 <p>提供了<code>stat</code>统计日志，支持查看缓存数据的加载或者命中情况统计。</p>
@@ -1487,7 +1539,8 @@ value = cache.get(&quot;key&quot;);
 <th>含义说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>hitCount</td>
 <td>命中缓存次数</td>
 </tr>
@@ -1511,11 +1564,12 @@ value = cache.get(&quot;key&quot;);
 <td>evictionCount</td>
 <td>删除记录的次数</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <blockquote>
 <p>缓存容器创建的时候，可以通过<code>recordStats()</code>开启缓存行为的统计记录。</p>
 </blockquote>
-<pre><code class="java">    public static void main(String[] args) &#123;
+<pre><code class="language-java">    public static void main(String[] args) &#123;
         LoadingCache&lt;String, User&gt; cache = CacheBuilder.newBuilder()
                 .recordStats()
                 .build(new CacheLoader&lt;String, User&gt;() &#123;
@@ -1551,7 +1605,7 @@ value = cache.get(&quot;key&quot;);
 <blockquote>
 <p>例如构建个刷新频率为10分钟的缓存:</p>
 </blockquote>
-<pre><code class="java">CacheBuilder.newBuilder()
+<pre><code class="language-java">CacheBuilder.newBuilder()
         // 设置缓存在写入10分钟后，通过CacheLoader的load方法进行刷新
         .refreshAfterWrite(10, TimeUnit.SECONDS)
         // jdk8以后可以使用 Duration
@@ -1564,11 +1618,72 @@ value = cache.get(&quot;key&quot;);
             &#125;
         &#125;);
 </code></pre>
+<blockquote>
+<p>refresh操作采用一种<strong>被动触发</strong>的方式来实现。</p>
+<p>当get操作执行的时候会判断下如果创建时间已经超过了设定的刷新间隔，则会重新去执行一次数据的加载逻辑。</p>
+<p>鉴于缓存<strong>读多写少</strong>的特点，Guava Cache在数据refresh操作执行的时候，采用了一种<strong>非阻塞式</strong>的加载逻辑，尽可能的保证并发场景下对读取线程的性能影响。</p>
+</blockquote>
+<img src="/images/image-20240107122618462.png" alt="image-20240107122618462" style="zoom:50%;" />
+<blockquote>
+<p>同一时刻仅允许一个线程执行数据重新加载操作，并<strong>阻塞等待</strong>重新加载完成之后该线程的查询请求才会返回对应的新值作为结果。</p>
+<p>当一个线程正在阻塞执行<code>refresh</code>数据刷新操作的时候，其它线程此时来执行get请求的时候，会判断下数据需要refresh操作，但是因为没有获取到refresh执行锁，这些其它线程的请求<strong>不会被阻塞</strong>等待refresh完成，而是<strong>立刻返回</strong>当前refresh前的<strong>旧值</strong>。</p>
+<p>当执行refresh的线程操作完成后，此时另一个线程再去执行get请求的时候，会判断无需refresh，直接返回当前内存中的当前值即可。</p>
+</blockquote>
+<img src="/images/image-20240107122841708.png" alt="image-20240107122841708" style="zoom:50%;" />
+<blockquote>
+<p>数据expire与refresh关系：</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>优势</th>
+<th>弊端</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>expire</td>
+<td>有效防止缓存击穿问题，且阻塞等待的方式可以保证业务层面获取到的缓存数据的强一致性。</td>
+<td>高并发场景下，如果回源的耗时较长，会导致多个读线程被阻塞等待，影响整体的并发效率。</td>
+</tr>
+<tr>
+<td>refresh</td>
+<td>可以最大限度的保证查询操作的执行效率，避免过多的线程被阻塞等待。</td>
+<td>多个线程并发请求同一个key对应的缓存值拿到的结果可能不一致，在对于一致性要求特别严苛的业务场景下可能会引发问题。</td>
+</tr>
+</tbody>
+</table>
+<img src="/images/image-20240107123111255.png" alt="image-20240107123111255" style="zoom:50%;" />
+<blockquote>
+<p>在具体使用时，需要根据场景综合判断：</p>
+<ul>
+<li>数据需要<strong>永久存储</strong>，且<strong>不会变更</strong>，这种情况下<code>expire</code>和<code>refresh</code>都并不需要设定</li>
+<li>数据<strong>极少变更</strong>，或者对变更的感知诉求不强，且并发请求同一个key的竞争压力不大，直接使用<code>expire</code>即可</li>
+<li>数据<strong>无需过期</strong>，但是可能<strong>会被修改</strong>，需要及时感知并更新缓存数据，直接使用<code>refresh</code></li>
+<li>数据<strong>需要过期</strong>（避免不再使用的数据始终留在内存中）、也需要在有效期内尽可能保证数据的<strong>更新一致性</strong>，则采用<code>expire</code>与<code>refresh</code>两者<strong>结合</strong>。</li>
+</ul>
+<p>对于expire与refresh结合使用的场景，两者的时间间隔设置，需要注意：</p>
+<ul>
+<li>expire时间设定要<strong>大于</strong>refresh时间，否则的话refresh将永远没有机会执行</li>
+</ul>
+</blockquote>
 <p><strong>数据结构</strong></p>
 <blockquote>
 <p>跟 <code>JDK1.7</code> 的 <code>ConcurrentHashMap</code> 类似，提供了基于时间、容量、引用三种回收策略，以及自动加载、访问统计等功能。</p>
+<p>Guava Cache中采用的是这种<strong>分段锁</strong>策略来降低锁的粒度，可以在创建缓存容器的时候使用<code>concurrencyLevel</code>来指定允许的<strong>最大并发线程数</strong>，使得线程安全的前提下尽可能的减少锁争夺。</p>
 </blockquote>
 <p><img src="/images/640-4552588.png" alt="图片"></p>
+<blockquote>
+<p>Guava Cache在put写操作的时候，会首先计算出key对应的hash值，然后根据hash值来确定数据应该写入到哪个Segment中，进而对该Segment加锁执行写入操作。</p>
+</blockquote>
+<blockquote>
+<p><code>concurrencyLevel</code>只是一个<strong>理想状态</strong>下的最大同时并发数，也取决于同一时间的操作请求是否会平均的分散在各个不同的Segment中。</p>
+<p>极端情况下，如果多个线程操作的目标对象都在同一个分片中时，那么只有1个线程可以持锁执行，其余线程都会阻塞等待。</p>
+</blockquote>
+<blockquote>
+<p>实际使用中，比较推荐的是将concurrencyLevel设置为<strong>CPU核数的2倍</strong>，以获得较优的并发性能。</p>
+</blockquote>
 
 	</div>
 </div>
