@@ -153,6 +153,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										AI相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/14/AI%E7%9B%B8%E5%85%B3/AIGC/">
+										AIGC
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										中间件
 									</a>
 									
@@ -1231,7 +1251,18 @@
       </div>
       <!--打赏-->
 	<div id="article-content">
-		<p><strong>启动初始化</strong></p>
+		<p><strong>Bean作用域</strong></p>
+<img src="/images/image-20240114182133223.png" alt="image-20240114182133223" style="zoom:50%;" />
+
+<blockquote>
+<p>默认作用域是Singleton，多个线程访问同一个Bean时会存在线程不安全问题。</p>
+<p><strong>保障线程安全方法：</strong></p>
+<ul>
+<li>在Bean对象中尽量避免定义可变的成员变量（不太现实）</li>
+<li>在类中定义⼀个ThreadLocal成员变量，将需要的可变成员变量保存在 ThreadLocal 中。</li>
+</ul>
+</blockquote>
+<p><strong>启动初始化</strong></p>
 <p>@PostConstruct：</p>
 <blockquote>
 <p>在Bean创建期间由 Spring 调用的初始化方法。</p>
@@ -1287,6 +1318,8 @@
 <li>主要是容器关闭或停止服务，对bean进行销毁处理。</li>
 </ul>
 </blockquote>
+<img src="/images/image-20240114181239744.png" alt="image-20240114181239744" style="zoom:50%;" />
+
 <p><strong>循环依赖</strong></p>
 <p>循环依赖指的是<strong>一个实例或多个实例存在相互依赖的关系</strong>（类之间循环嵌套引用）。</p>
 <pre><code class="java">public class AService &#123;
@@ -1369,6 +1402,29 @@ private final Map&lt;String, Object&gt; earlySingletonObjects = new HashMap&lt;&
 <li>相当于 AOP 提前在属性注入前完成，这样就不会导致后面生成的代理对象与属性注入时的对象的不一致。</li>
 </ul>
 </blockquote>
+<p><strong>设计模式</strong></p>
+<blockquote>
+<p><strong>单例设计模式 :</strong> </p>
+<ul>
+<li>Spring 中的 Bean 默认都是单例的。</li>
+</ul>
+<p><strong>⼯⼚设计模式 :</strong> </p>
+<ul>
+<li>通过 BeanFactory、 ApplicationContext 创建 Bean 对象。</li>
+</ul>
+<p><strong>代理设计模式 :</strong> </p>
+<ul>
+<li>Spring AOP 功能的实现。</li>
+</ul>
+<p><strong>观察者模式：</strong> </p>
+<ul>
+<li>Spring 事件驱动模型。</li>
+</ul>
+<p><strong>适配器模式：</strong></p>
+<ul>
+<li>Spring AOP 的增强或通知(Advice)使⽤到了适配器模式、Spring MVC 中也是⽤到了适配器模式适配 Controller。</li>
+</ul>
+</blockquote>
 <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><strong>IOC（控制反转）</strong></p>
 <p>Spring中有一个容器，我们将Bean放到这个容器中，让这个容器为我们创建实例，当需要时我们直接从这个容器中进行获取即可。</p>
 <blockquote>
@@ -1383,6 +1439,10 @@ private final Map&lt;String, Object&gt; earlySingletonObjects = new HashMap&lt;&
 </blockquote>
 <img src="/images/dea7c5c6ad33e75f752366bd42e86fa6.png" alt="img" style="zoom:100%;" />
 
+<p><strong>DI依赖注入</strong></p>
+<blockquote>
+<p>站在容器的角度，将对象创建依赖的其他对象注入到对象中。</p>
+</blockquote>
 <p><strong>AOP</strong></p>
 <blockquote>
 <p>AOP 面向切面的编程：在不改变源代码的情况下，实现对逻辑功能的修改。</p>
@@ -1407,6 +1467,16 @@ private final Map&lt;String, Object&gt; earlySingletonObjects = new HashMap&lt;&
 </ul>
 </blockquote>
 <p><img src="/images/2529502-20220111124944310-1685586053.jpg" alt="Spring MVC结构图"></p>
+<blockquote>
+<p>客户端（浏览器）发送请求，直接请求到 DispatcherServlet。</p>
+<p>DispatcherServlet 根据请求信息调⽤ HandlerMapping，解析请求对应的 Handler。</p>
+<p>解析到对应的 Handler （也就是 Controller 控制器）后，开始由HandlerAdapter 适配器处理。</p>
+<p>HandlerAdapter 会根据 Handler 来调⽤真正的处理器开处理请求，并处理相应的业务逻辑。</p>
+<p>处理器处理完业务后，会返回⼀个 ModelAndView 对象， Model 是返回的数据对象。</p>
+<p>ViewResolver 会根据逻辑 View 查找实际的 View。</p>
+<p>DispaterServlet 把返回的 Model 传给 View（视图渲染）。</p>
+<p>把 View 返回给请求者（浏览器）。</p>
+</blockquote>
 <p><strong>核心组件DispatcherServlet</strong></p>
 <blockquote>
 <p>在Spring容器启动阶段读取映射规则，如RequestMapping。</p>

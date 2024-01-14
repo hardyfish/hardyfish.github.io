@@ -151,6 +151,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										AI相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/14/AI%E7%9B%B8%E5%85%B3/AIGC/">
+										AIGC
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										中间件
 									</a>
 									
@@ -1308,18 +1328,18 @@ ZooKeeper中的数据模型是一种树形结构。
 					Spring
 				</h2>
 				<div class="index-brief">
-					启动初始化
-@PostConstruct：
-
-在Bean创建期间由 Spring 调用的初始化方法。
-
-使用：将 @PostConstruct 注解添加到方法上就行。
+					Bean作用域
 
 
-InitializingBean：
 
-可以实现 InitializingBean 接口，让 Spring 调用某个初始化方法。
+默认作用域是Singleton，多个线程访问同一个Bean时会存在线程不安全问题。
+保障线程安全方法：
 
+在Bean对象中尽量避免定义可变的成员变量（不太现实）
+在类中定义⼀个ThreadLocal成员变量，将需要的可变成员变量保存在 ThreadLocal 中。
+
+
+启动初始
 					...
 				</div>
 			</a>
