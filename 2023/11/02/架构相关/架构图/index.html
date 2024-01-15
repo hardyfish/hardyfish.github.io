@@ -1258,6 +1258,112 @@
 <p><a target="_blank" rel="noopener" href="https://app.diagrams.net/">https://app.diagrams.net/</a></p>
 <p>OmniGraffle：<a target="_blank" rel="noopener" href="https://www.omnigroup.com/download/">https://www.omnigroup.com/download/</a></p>
 </blockquote>
+<h1 id="用例图"><a href="#用例图" class="headerlink" title="用例图"></a>用例图</h1><blockquote>
+<p>从用户的角度而不是从开发者的角度来描述需求，分析产品的功能和动态行为。</p>
+</blockquote>
+<p><strong>基本元素</strong></p>
+<img src="/images/image-20240115141354253.png" alt="image-20240115141354253" style="zoom:50%;" />
+
+<p><strong>用例</strong></p>
+<img src="/images/image-20240115141444959.png" alt="image-20240115141444959" style="zoom:50%;" />
+
+<p><strong>关联关系</strong></p>
+<p>参与者与参与者间的泛化关系:</p>
+<blockquote>
+<p>比如腾讯用户，包括微信用户和QQ用户两部分，但是使用腾讯业务时，只需要是腾讯用户即可。</p>
+<p>此时，可以采用泛化关系，采用三角空心箭头作为指向。</p>
+</blockquote>
+<img src="/images/image-20240115142131230.png" alt="image-20240115142131230" style="zoom:50%;" />
+
+<p>参与者与用例间的关联关系：</p>
+<blockquote>
+<p>参与者与用例间是简单的关联关系，一个参与者可以有着多个用例。</p>
+</blockquote>
+<img src="/images/image-20240115142218712.png" alt="image-20240115142218712" style="zoom:50%;" />
+
+<p>用例与用例间的泛化关系：</p>
+<blockquote>
+<p>用例之间可以存在泛化关系，比如常见的支付，可以选择微信支付、支付宝支付等等，但是这个操作就是支付。</p>
+<p>泛化关系采用三角空心箭头。</p>
+</blockquote>
+<img src="/images/image-20240115142307126.png" alt="image-20240115142307126" style="zoom:50%;" />
+
+<p>用例与用例间的包含关系:</p>
+<blockquote>
+<p>包含关系用来把一个较复杂用例所表示的功能分解成较小的步骤。</p>
+<ul>
+<li>通常可以这么理解，由基础用例向复杂用例转换的过程。</li>
+</ul>
+<p>但是最终被参与者直接操作的还是基础用例。</p>
+<p>包含关系的图形为虚线箭头加<code>&lt;&lt;include&gt;&gt;</code>，箭头指向复杂用例。</p>
+</blockquote>
+<img src="/images/image-20240115142523572.png" alt="image-20240115142523572" style="zoom:50%;" />
+
+<p>用例与用例间的扩展关系:</p>
+<blockquote>
+<p>扩展关系是指用例功能的延伸，相当于为基础用例提供一个附加功能。</p>
+<p>当<strong>特定条件出现</strong>时，该扩展用例的行为才会被执行。</p>
+<p>扩展关系的图形为虚线箭头加上<code>&lt;&lt;&lt;exclude&gt;&gt;&gt;</code>，箭头指向基础用例。</p>
+</blockquote>
+<img src="/images/image-20240115142602672.png" alt="image-20240115142602672" style="zoom:50%;" />
+
+<p><strong>简单案例</strong></p>
+<img src="/images/image-20240115142640075.png" alt="image-20240115142640075" style="zoom:50%;" />
+
+<h1 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h1><blockquote>
+<p>泛化关系：在代码中体现为<strong>继承关系</strong>，设计上用空心箭头实线表示。</p>
+</blockquote>
+<p><img src="/images/1133736-20200119132826659-777607808.png" alt="img"></p>
+<blockquote>
+<p>实现关系：在代码中体现在<strong>接口和实现关系</strong>，设计上用空心箭头虚线表示。</p>
+</blockquote>
+<p><img src="/images/1133736-20210109113006450-1920847704.png" alt="img"></p>
+<blockquote>
+<p>关联关系：在代码中体现为两个类之间存在语义上的关系，体现在类之间存在的隐约关系。</p>
+<ul>
+<li>关联关系常用于数据库表的设计，与数据库范式相对应。</li>
+</ul>
+<p>1、单向关联：</p>
+<ul>
+<li><p>学生可以拥有书籍，学生知道书籍的存在，但是书籍无需知道学生的存在，学生可以拥有多本书籍，因此从学生指向书籍关联。</p>
+</li>
+<li><p>设计上用箭头实线表示。</p>
+</li>
+</ul>
+</blockquote>
+<p><img src="/images/1133736-20200119141357797-932195356.png" alt="img"></p>
+<blockquote>
+<p>2、双向关联：</p>
+<ul>
+<li>学生知道老师的存在，老师知道学生的存在。</li>
+</ul>
+<p>设计上用实线表示。</p>
+</blockquote>
+<p><img src="/images/1133736-20200119134713089-76803900.png" alt="img"></p>
+<blockquote>
+<p>聚合关系：特殊的关联关系，体现整体和部分的关系，设计上用空心菱形实线箭头表示。</p>
+<p>部门不存在，员工仍然可以存在，员工离职，部门仍然存在。</p>
+<ul>
+<li>体现的是0和n，整体和部分，整体不存在，部分仍然可以存在。</li>
+</ul>
+</blockquote>
+<p><img src="/images/1133736-20200523211823015-490955441.png" alt="img"></p>
+<blockquote>
+<p>组合关系：特殊的关联关系，和聚合关系类似，体现整体与部分关系，设计上用实心菱形实现箭头表示。</p>
+<ul>
+<li>公司和部门关系体现在公司不存在，则部门也不存在了，前者掌握整体的生命周期。</li>
+</ul>
+<p>体现在0和0、1和n，整体不存在，则部分不存在，整体存在，则部分存在。</p>
+</blockquote>
+<p><img src="/images/1133736-20200523211957772-1101328415.png" alt="img"></p>
+<blockquote>
+<p>依赖关系：没有直接的关系，仅仅在代码运行期间，产生的依赖，如将A类中间的时间属性赋值到B类中的时间属性。</p>
+<ul>
+<li>A类中调用类中类型为B类的属性，A类中调用的方法，需要用到B类的信息等。</li>
+</ul>
+<p>设计上用箭头虚线表示。箭头指向方为被调用方。</p>
+</blockquote>
+<p><img src="/images/1133736-20210315141443080-1511063099.png" alt="img"></p>
 <h1 id="周期图"><a href="#周期图" class="headerlink" title="周期图"></a>周期图</h1><p><strong>时间轴</strong></p>
 <img src="/images/640-8905208.png" alt="img" style="zoom:80%;" />
 
