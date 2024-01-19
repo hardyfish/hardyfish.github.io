@@ -1972,7 +1972,80 @@ if data == NULL &#123;
 <p>设计不同的过期时间。</p>
 <p>对缓存增加多个副本。</p>
 </blockquote>
-<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p><strong>分布式锁</strong></p>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p><strong>常见应用场景</strong></p>
+<p>登录鉴权：</p>
+<blockquote>
+<p>用户登录鉴权，以及对应的登录验证码或Token到期失效。</p>
+<ul>
+<li>Redis Key的超时失效功能，非常适合于这种业务场景。</li>
+</ul>
+</blockquote>
+<p>计数器：</p>
+<blockquote>
+<p>类似于知乎的帖子点赞、收藏，电商的库存扣减等。</p>
+<p>在高并发场景下，用MySQL数据库去硬扛这种读写压力是比较吃力的。</p>
+<p>Redis的INCR、DECR、INCRBY、DECRBY相关命令，则解决了这个问题。</p>
+</blockquote>
+<p>粉丝关注:</p>
+<blockquote>
+<p>Set是一个无序的天然去重的集合，即：Key-Set。</p>
+<p>Set还提供了求交集、求并集等一系列直接操作集合的方法，非常适合于求共同或单方好友、粉丝、爱好之类的业务场景。</p>
+</blockquote>
+<pre><code>redis&gt; SADD Tony Mary    //Mary成为了Tony的粉丝
+(integer) 1
+redis&gt; SADD Tony Lynn    //Lynn成为了Tony的粉丝
+(integer) 1
+redis&gt; SMEMBERS Tony     //Tony的粉丝列表
+1) &quot;Mary&quot;
+2) &quot;Lynn&quot;
+redis&gt; SADD Tom Mary     //Mary成为了Tom的粉丝
+(integer) 1
+redis&gt; SADD Tom Eric     //Eric成为了Tom的粉丝
+(integer) 1
+redis&gt; SMEMBERS Tom      //Tom的粉丝列表
+1) &quot;Mary&quot;
+2) &quot;Eric&quot;
+redis&gt; SINTER Tony Tom   //Tony和Tom的共同粉丝
+1) &quot;Mary&quot;
+redis&gt; SUNION Tony Tom   //Tony和Tom的所有粉丝
+1) &quot;Mary&quot;
+2) &quot;Lynn&quot;
+3) &quot;Eric&quot;
+redis&gt; SDIFF Tony Tom   //Tony的粉丝，但不是Tom的粉丝
+1) &quot;Lynn&quot;
+redis&gt; SDIFF Tom Tony   //Tom的粉丝，但不是Tony的粉丝
+1) &quot;Eric&quot;
+</code></pre>
+<p>排行榜:</p>
+<blockquote>
+<p>Zset（SortedSet），是Set的可排序版。</p>
+<p>通过增加一个排序属性score来实现的，适用于排行榜和时间线之类的业务场景，且在高并发场景下具备非常优秀的性能。</p>
+</blockquote>
+<p>防刷:</p>
+<blockquote>
+<p>防刷：用户在极短时间内，频繁发起请求去调用系统中的某个接口，该情况下需要对其进行限制。</p>
+<p>举例：限制用户每秒钟只能下单一次，若用户在一秒钟内连续三次下单，这时只有第一个下单是成功的，其他两个会通过Redis的过期时间机制，对其进行限制。</p>
+</blockquote>
+<p>消息队列：</p>
+<blockquote>
+<p>Redis可以通过list数据结构实现消息队列的功能，这样可以在电商秒杀，或者在线教育集中约课等高并发写场景下，提供消峰功能。</p>
+</blockquote>
+<p>浏览器历史记录：</p>
+<blockquote>
+<p>每当访问一个新的网页，浏览器就会自动存储下来，当点击 后退 按钮时，最近一次访问的网页就会展示出来。</p>
+<p>可以通过Redis list来实现栈功能，进而实现浏览器历史记录场景。</p>
+</blockquote>
+<p>用户签到：</p>
+<blockquote>
+<p>用户签到、用户出勤、当天活跃用户等场景，用Redis Set数据结构也可以实现，但用户量级庞大的情况下，会极大占用内存空间。</p>
+<p>这种情况下，非常适合Redis BitMap数据结构，通过其bit位来进行状态存储。</p>
+</blockquote>
+<p>网站UV统计：</p>
+<blockquote>
+<p>如果通过Redis Set存储用户ID的方式进行解决，非常耗费内存空间，这时，可以使用HyperLogLog。</p>
+<p>Redis <code>HyperLogLog</code> 提供不精确的去重计数方案，标准误差是 0.81%，但仅仅占用12k的内存空间，非常适用于大型网站UV统计这种空间消耗巨大，但数据不需要特别精确的业务场景。</p>
+</blockquote>
+<p><strong>分布式锁</strong></p>
 <blockquote>
 <p>使用分布式锁的目的，是保证同一时间只有一个客户端可以对共享资源进行操作。</p>
 </blockquote>
