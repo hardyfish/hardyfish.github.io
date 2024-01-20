@@ -22,7 +22,7 @@
 	
 	<title>
 	
-		Vue | 
+		Flink | 
 	 
 	月伴飞鱼
 	</title>
@@ -271,15 +271,6 @@
 							</ul>
 			
 							<ul>
-								<li class="file active">
-									<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/Vue/">
-										Vue
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
 								<li class="file">
 									<a href="/2023/10/12/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
 										小程序
@@ -365,9 +356,27 @@
 									</a>
 									
 							<ul>
+								<li class="file active">
+									<a href="/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Flink/">
+										Flink
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
 								<li class="file">
 									<a href="/2024/01/07/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Hive/">
 										Hive
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Spark/">
+										Spark
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1220,18 +1229,18 @@
 	<div id="content">
 		<h1 id="article-title" oncontextmenu="return false;">
 
-	Vue
+	Flink
 </h1>
 <div class="article-meta" oncontextmenu="return false;">
 	<span>月伴飞鱼</span>
-	<span>2023-10-07 15:57:44</span>
+	<span>2024-01-20 12:27:42</span>
     
 		<div id="article-categories">
             
                 
                     <span>
                         <i class="fa fa-folder" aria-hidden="true"></i>
-                        <a href="/categories/前端相关/">前端相关</a>
+                        <a href="/categories/大数据相关/">大数据相关</a>
 						
                     </span>
                 
@@ -1251,23 +1260,37 @@
       </div>
       <!--打赏-->
 	<div id="article-content">
-		<h1 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h1><p>单项数据绑定（<code>v-bind</code>）：数据只能从data流向页面。</p>
-<p>双向数据绑定（<code>v-model</code>）：数据不仅能从data流向页面，还可以从页面流向data。</p>
-<blockquote>
-<p>双向绑定一般都应用在表单类元素上（如：input、select等）</p>
-<p><code>v-mode:value</code>可以简写为<code>v-model</code>，因为<code>v-model</code>默认收集的就是value值。</p>
-</blockquote>
-<h1 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h1><p>使用<code>v-on:xxx</code>或者<code>@xxx</code>绑定事件，其中xxx是事件名。通常使用<code>@xxx</code>，例如：<code>@click</code>；</p>
-<blockquote>
-<p>事件的回调需要配置在methods对象中，最终会在vm上；</p>
+		<blockquote>
+<p>Apache Flink作为一款高吞吐量、低延迟的针对流数据和批数据的分布式实时处理引擎。</p>
 <ul>
-<li><p>methods中配置的函数，不要用箭头函数！否则this就不是vm实例化对象了；</p>
+<li>和Storm&#x2F;Spark Streaming一样，定位于流式处理系统。</li>
+</ul>
+<p>官网地址：<a target="_blank" rel="noopener" href="https://flink.apache.org/">https://flink.apache.org/</a></p>
+</blockquote>
+<p><strong>主要特点</strong></p>
+<blockquote>
+<p>高吞吐和低延迟：</p>
+<ul>
+<li>每秒处理数百万个事件，毫秒级延迟。</li>
+</ul>
+<p>结果的准确性：</p>
+<ul>
+<li><p>Flink提供了事件时间（event-time）和处理时间（processing-time）语义。</p>
 </li>
-<li><p>methods中配置的函数，都是被Vue所管理的函数，this的指向是vm或组件实例对象；</p>
+<li><p>对于乱序事件流，事件时间语义仍然能提供一致且准确的结果。</p>
 </li>
 </ul>
+<p>精确一次（exactly-once）的状态一致性保证。</p>
+<p>可以连接到最常用的外部系统：如Kafka、Hive、JDBC、HDFS、Redis等。</p>
+<p>高可用：</p>
+<ul>
+<li>本身高可用的设置，加上与K8s，YARN和Mesos的紧密集成。</li>
+<li>再加上从故障中快速恢复和动态扩展任务的能力，Flink能做到以极少的停机时间7×24全天候运行。</li>
+</ul>
 </blockquote>
-<p><code>@click=&quot;demo&quot;</code> 和 <code>@click=&quot;demo($event)&quot;</code> 效果一致，但是后者可以传参数。</p>
+<p><strong>Flink和SparkStreaming</strong></p>
+<img src="/images/image-20240120123143251.png" alt="image-20240120123143251" style="zoom:50%;" />
+
 
 	</div>
 </div>
@@ -1276,16 +1299,11 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  实用工具
-              </a>
-            
         </div>
         <div class="item right">
             
-              <a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-                设计模式
+              <a href="/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Spark/">
+                Spark
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
@@ -1351,7 +1369,7 @@
 	            + '\n著作权归作者所有。'
 	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
 	            + '\n作者: 月伴飞鱼'
-	            + '\n原文地址: http://hardyfish.top/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/Vue/'
+	            + '\n原文地址: http://hardyfish.top/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Flink/'
 	    
 	            clipboardData.setData('text/plain', text + copyright);
 	    
