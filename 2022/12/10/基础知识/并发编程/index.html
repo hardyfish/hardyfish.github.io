@@ -2545,6 +2545,12 @@ private Runnable getTask() &#123;
     &#125;
 &#125;
 </code></pre>
+<p><strong>常见问题</strong></p>
+<p>父子任务使用一个线程池:</p>
+<blockquote>
+<p>向线程池中提交了一个任务，然后在这个任务的内部实现中又往同一个线程池中再次提交了一个任务，相当于父子任务在同一个线程池中执行，出现线程死锁也就是循环等待的情况。</p>
+<p>父任务全部处于执行状态，这时候子任务想要执行需要等父任务执行完成，但是父任务都执行不完，因为还有个子任务没完成，即父任务等待子任务执行完成，而子任务等待父任务释放线程池资源，这也就造成了死锁。</p>
+</blockquote>
 <h1 id="并发工具类"><a href="#并发工具类" class="headerlink" title="并发工具类"></a>并发工具类</h1><p><strong>Semaphore信号量</strong></p>
 <p>信号量来控制那些需要限制并发访问量的资源。</p>
 <blockquote>
@@ -4040,7 +4046,7 @@ public class MustDeadLock implements Runnable &#123;
 		const btw = new BTWPlugin();
 	    btw.init({
 	        id: 'container',
-	        blogId: '22377-1705285904245-404',
+	        blogId: '22377-1705888769271-269',
 	        name: '月伴飞鱼',
 	        qrcode: '/小程序码.jpg',
 	        keyword: '验证码',
@@ -4092,7 +4098,7 @@ public class MustDeadLock implements Runnable &#123;
     const btw = new BTWPlugin();
     btw.init({
         id: 'container',
-        blogId: '22377-1705285904245-404',
+        blogId: '22377-1705888769271-269',
         name: '月伴飞鱼',
         qrcode: '/小程序码.jpg',
         keyword: '验证码',
