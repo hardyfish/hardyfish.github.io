@@ -357,6 +357,15 @@
 									
 							<ul>
 								<li class="file">
+									<a href="/2024/01/25/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Doris/">
+										Doris
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Flink/">
 										Flink
 									</a>
@@ -1159,8 +1168,17 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2023/10/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%98/">
-										剑桥雅思听力真题
+									<a href="/2024/01/25/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%9815/">
+										剑桥雅思听力真题15
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%984/">
+										剑桥雅思听力真题4
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1371,12 +1389,17 @@
 <li>不推荐使用</li>
 </ul>
 <p>只适用于工厂类负责创建的对象较少的场景，且客户端只需要传入工厂类的参数，对于如何创建对象不需要关心。</p>
+<p>一旦有了新的实现类，就需要修改工厂实现，有可能造成工厂逻辑过于复杂，不利于系统的扩展和维护。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
 <p><img src="/images/584866-20230606151632827-1055606085.jpg" alt="img"></p>
 <h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><blockquote>
 <p>定义一个用于创建对象的接口，让子类决定将哪一个类实例化，此模式使一个类的<strong>实例化延迟到其子类</strong>。</p>
-<p>但是工厂方法会导致类的个数过多，增加复杂度，增加系统的抽象性和理解难度。</p>
+<ul>
+<li>但是工厂方法会导致类的个数过多，增加复杂度，增加系统的抽象性和理解难度。</li>
+</ul>
+<p>它可以创建一个工厂接口和多个工厂实现类，这样如果增加新的功能，只需要添加新的工厂类就可以，不需要修改之前的代码。</p>
+<p>另外，工厂方法模式还可以和模板方法模式结合一起，将他们共同的基础逻辑抽取到父类中，其它的交给子类去实现。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
 <p><img src="/images/584866-20230606151415021-312208668.jpg" alt="img"></p>
@@ -1433,11 +1456,18 @@
 </blockquote>
 <h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><blockquote>
 <p>提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类，用于创建一个产品族的产品。</p>
+<p>工厂方法模式和抽象工厂模式，它们之间最大的区别在于：</p>
+<ul>
+<li>工厂方法模式只有一个抽象产品类，具体工厂类只能创建一个具体产品类的实例。</li>
+<li>抽象工厂模式有多个抽象产品类，具体工厂类可以创建多个具体产品类的实例。</li>
+</ul>
 </blockquote>
 <p><strong>UML类图：</strong></p>
 <p><img src="/images/584866-20230606172710556-547590722.jpg" alt="img"></p>
 <h1 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h1><blockquote>
 <p>将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</p>
+<p>构造器模式使用多个简单的对象一步一步构建成一个复杂的对象。</p>
+<p>它提供了一种创建对象的最佳方式。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
 <p><img src="/images/584866-20230914140953582-1620306965.jpg" alt="img"></p>
@@ -1760,6 +1790,9 @@ public class SingletonObject &#123;
 <h1 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h1><blockquote>
 <p>定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。</p>
 <p>Template Method使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。</p>
+<p>在模板模式中，一个抽象类公开定义了执行它的方法的方式&#x2F;模板。</p>
+<p>它的子类可以按需要重写方法实现，但调用将以抽象类中定义的方式进行。</p>
+<p>简单来说，有多个子类共有的方法，且逻辑相同，可以考虑作为模板方法。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
 <p><img src="/images/584866-20230926085751892-1595713073.jpg" alt="img"></p>

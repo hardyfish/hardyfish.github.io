@@ -357,6 +357,15 @@
 									
 							<ul>
 								<li class="file">
+									<a href="/2024/01/25/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Doris/">
+										Doris
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Flink/">
 										Flink
 									</a>
@@ -1159,8 +1168,17 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2023/10/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%98/">
-										剑桥雅思听力真题
+									<a href="/2024/01/25/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%9815/">
+										剑桥雅思听力真题15
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%984/">
+										剑桥雅思听力真题4
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1714,14 +1732,22 @@ try &#123;
 <ul>
 <li>如果我在后面改了父线程，子线程不会更新它的本地变量map。</li>
 </ul>
+<p>Thread类中除了<code>threadLocals</code>还有个<code>inheritableThreadLocals</code>。</p>
+<p>这个ThreadLocalMap的局部变量，实际作用是在子线程创建的时候，父线程会把threadLocal拷贝到子线程中。</p>
 </blockquote>
 <p><strong>TransmittableThreadLocal</strong></p>
 <blockquote>
+<p>项目地址：<a target="_blank" rel="noopener" href="https://gitee.com/mirrors/transmittable-thread-local">https://gitee.com/mirrors/transmittable-thread-local</a></p>
+<p>对于使用线程池等会池化复用线程的执行组件的情况，线程由线程池创建好，并且线程是池化起来反复使用的。</p>
+<p>这时父子线程关系的<code>ThreadLocal</code>值传递已经没有意义，需要把 <strong>任务提交给线程池时</strong>的<code>ThreadLocal</code>值传递到 <strong>任务执行时</strong>。</p>
 <p>TransmittableThreadLocal解决线程池变量丢失问题。</p>
 <ul>
 <li>线程池会复用之前的线程，导致父线程的本地变量更新之后，之前创建的子线程拿不到这个值。</li>
 </ul>
-<p>TransmittableThreadLocal通过将线程封装成TtlRunnable，然后通过快照还有hold一个总收集变量来解决。</p>
+<p>get&#x2F;set 方法中完成了<code>TransmittableThreadLocal</code>的注册，然后在执行run方法的时候通过<code>TtlRunnable</code>进行了方法包装，在调用之前进行快照形成，并应用快照到当前线程中，最后在线程执行结束之后，run方法内部对线程局部变量做的修改则会被还原。</p>
+<ul>
+<li>通过将线程封装成TtlRunnable，然后通过快照还有hold一个总收集变量来解决。</li>
+</ul>
 </blockquote>
 <h1 id="集合类"><a href="#集合类" class="headerlink" title="集合类"></a>集合类</h1><h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><p>HashMap 底层的数据结构主要是：数组 + 链表 + 红黑树。</p>
 <blockquote>
@@ -2357,6 +2383,66 @@ private void linkNodeLast(LinkedHashMap.Entry&lt;K,V&gt; p) &#123;
 <li>异步非阻塞，引入了异步通道，采用的是Proactor模式。</li>
 <li>适用连接数目多且连接长的架构，如相册服务器。</li>
 </ul>
+</blockquote>
+<h1 id="SPI机制"><a href="#SPI机制" class="headerlink" title="SPI机制"></a>SPI机制</h1><blockquote>
+<p>SPI 全称为 Service Provider Interface，是一种服务发现机制。</p>
+<p>它通过在ClassPath路径下的<code>META-INF/services</code>文件夹查找文件，自动加载文件里所定义的类。</p>
+<p>这一机制为很多框架扩展提供了可能，比如在Dubbo、JDBC中都使用到了SPI机制。</p>
+</blockquote>
+<p><strong>具体使用</strong></p>
+<blockquote>
+<p>定义一个接口，SPIService</p>
+</blockquote>
+<pre><code class="java">public interface SPIService &#123;
+    void execute();
+&#125;
+</code></pre>
+<blockquote>
+<p>定义两个实现类</p>
+</blockquote>
+<pre><code class="java">public class SpiImpl1 implements SPIService&#123;
+    public void execute() &#123;
+        System.out.println(&quot;SpiImpl1.execute()&quot;);
+    &#125;
+&#125;
+
+public class SpiImpl2 implements SPIService&#123;
+    public void execute() &#123;
+        System.out.println(&quot;SpiImpl2.execute()&quot;);
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>在ClassPath路径下配置添加一个文件。</p>
+<p>文件名字是接口的全限定类名，内容是实现类的全限定类名，多个实现类用换行符分隔。</p>
+</blockquote>
+<pre><code>com.viewscenes.netsupervisor.spi.SpiImpl1
+com.viewscenes.netsupervisor.spi.SpiImpl2
+</code></pre>
+<blockquote>
+<p>通过<code>ServiceLoader.load或者Service.providers</code>方法拿到实现类的实例。</p>
+<p>其中，<code>Service.providers</code>包位于<code>sun.misc.Service</code>，而<code>ServiceLoader.load</code>包位于<code>java.util.ServiceLoader</code>。</p>
+</blockquote>
+<pre><code class="java">public class Test &#123;
+    public static void main(String[] args) &#123;    
+        Iterator&lt;SPIService&gt; providers = Service.providers(SPIService.class);
+        ServiceLoader&lt;SPIService&gt; load = ServiceLoader.load(SPIService.class);
+
+        while(providers.hasNext()) &#123;
+            SPIService ser = providers.next();
+            ser.execute();
+        &#125;
+        System.out.println(&quot;--------------------------------&quot;);
+        Iterator&lt;SPIService&gt; iterator = load.iterator();
+        while(iterator.hasNext()) &#123;
+            SPIService ser = iterator.next();
+            ser.execute();
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>基本原理：通过反射的方式，创建实现类的实例并返回。</p>
 </blockquote>
 <h1 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h1><p><strong>JDK 17</strong></p>
 <p>Sealed类：</p>

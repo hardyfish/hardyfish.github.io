@@ -357,6 +357,15 @@
 									
 							<ul>
 								<li class="file">
+									<a href="/2024/01/25/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Doris/">
+										Doris
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Flink/">
 										Flink
 									</a>
@@ -1159,8 +1168,17 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2023/10/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%98/">
-										剑桥雅思听力真题
+									<a href="/2024/01/25/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%9815/">
+										剑桥雅思听力真题15
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%984/">
+										剑桥雅思听力真题4
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1444,6 +1462,32 @@
 <li>即将一个文件或者其它对象映射到进程的地址空间，实现文件磁盘地址和进程虚拟地址空间中一段虚拟地址的一一对映关系。</li>
 </ul>
 <p>简单地说就是内核缓冲区和应用缓冲区共享，从而减少了从读缓冲区到用户缓冲区的一次CPU拷贝。</p>
+</blockquote>
+<p><strong>消息存储</strong></p>
+<p>CommitLog：</p>
+<blockquote>
+<p><code>CommitLog</code>，消息存储文件，所有主题的消息都存储在 <code>CommitLog</code> 文件中。</p>
+<p>业务系统向 <code>RocketMQ</code> 发送一条消息，最终这条消息会被持久化到<code>CommitLog</code>文件。</p>
+<p>一台<code>Broker服务器</code>只有一个<code>CommitLog</code>文件(组)，<code>RocketMQ</code>会将所有主题的消息存储在同一个文件中，这个文件中就存储着一条条Message，每条Message都会按照顺序写入。</p>
+</blockquote>
+<img src="/images/image-20240122170451767.png" alt="image-20240122170451767" style="zoom:50%;" />
+
+<p>ConsumeQueue:</p>
+<blockquote>
+<p>它是为了高效检索主题消息的。</p>
+<p>通过<code>ConsumerQueue</code>可以知道消息的长度和偏移量，那么查找消息就比较容易了。</p>
+<p>消息偏移量的差值等于 &#x3D; <code>消息长度 * 队列长度</code>。</p>
+</blockquote>
+<p>Index:</p>
+<blockquote>
+<p>除了通过消息偏移量来查找消息的方式，还提供了其他几种方式可以查询消息：</p>
+<ul>
+<li>通过Message Key查询</li>
+<li>通过Unique Key查询</li>
+<li>通过Message Id查询</li>
+</ul>
+<p><code>Message Key和Unique Key</code>都是在消息发送之前，由客户端生成的。</p>
+<p>可以自己设置，也可以由客户端自动生成，<code>Message Id</code>是在<code>Broker</code>端存储消息的时候生成。</p>
 </blockquote>
 <h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p><strong>消息重试（消费者）</strong></p>
 <blockquote>
