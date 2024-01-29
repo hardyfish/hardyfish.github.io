@@ -1278,24 +1278,58 @@
       </div>
       <!--打赏-->
 	<div id="article-content">
-		<p><strong>Go岗位</strong></p>
+		<p><strong>Google创造Go语言的目的：</strong></p>
+<blockquote>
+<p>计算机硬件技术更新频繁：</p>
+<ul>
+<li>性能提高很快，目前主流的编程语言发展落后于硬件，不能合理利用多核CPU的优势提升软件系统性能。</li>
+</ul>
+<p>软件系统复杂度越来越高，维护成本越来越高，目前缺乏一个足够简洁高效的编程语言。</p>
+<p>企业运行维护很多C/C++的项目，C/C++程序运行速度很快，但是编译速度很慢，同时还存在内存泄漏的一系列的困扰需要解决。</p>
+</blockquote>
+<p><strong>Go岗位</strong></p>
 <blockquote>
 <p>区块链研发工程师</p>
 <p>Go服务器/游戏软件工程师</p>
 <p>Go分布式/云计算软件工程师</p>
 </blockquote>
+<p><strong>Go语言特点</strong></p>
+<blockquote>
+<p>Go语言保证了既能够达到静态编译语言的安全和性能，又达到了动态语言开发类维护的高效率。</p>
+<ul>
+<li>GO = C + Python：说明Go语言既有C静态语言程序的运行速度，又能达到Python的动态语言的快速开发。</li>
+</ul>
+<p>天然并发：</p>
+<ul>
+<li>
+<p>从语言层面支持并发，实现简单。</p>
+</li>
+<li>
+<p>GoRoutine，轻量级线程，可实现大并发处理，高效利用多核。</p>
+</li>
+</ul>
+<p>管道通信机制：</p>
+<ul>
+<li>Go语言特有的管道Channel，通过Channel，可以实现不同的GoRoute之间的相互通信。</li>
+</ul>
+<p>函数返回多个值。</p>
+<p>新的创新内容：例如切片、延时执行Defer等。</p>
+</blockquote>
 <p><strong>安装</strong></p>
 <blockquote>
 <p>下载地址：<a target="_blank" rel="noopener" href="https://go.dev/dl/">https://go.dev/dl/</a></p>
+<ul>
+<li>默认安装路径是<code>/usr/local/go</code></li>
+</ul>
 </blockquote>
 <blockquote>
 <p>配置环境变量。</p>
 </blockquote>
 <pre><code>$ vim ~/.bash_profile
 </code></pre>
-<pre><code>export GOROOT=/usr/local/go
-export GOPATH=$HOME/go
-export PATH=$GOROOT/bin:$PATH
+<pre><code>export GOPATH=/usr/local/go
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN
 </code></pre>
 <pre><code>$ source ~/.bash_profile
 </code></pre>
@@ -1303,17 +1337,26 @@ export PATH=$GOROOT/bin:$PATH
 <p>验证安装。</p>
 </blockquote>
 <pre><code>go version
+go env
 </code></pre>
 <p><strong>第一个Go程序</strong></p>
 <blockquote>
 <p>一个简单的 Go 程序文件 <code>hello.go</code>。</p>
 </blockquote>
-<pre><code class="language-go">package main
-
-import &quot;fmt&quot;
-
-func main() &#123;
-    fmt.Println(&quot;Hello, Go!&quot;)
+<pre><code class="language-go">package main // package main 定义了包名。必须在源文件中非注释的第一行指明这个文件属于哪个包
+ 
+import (
+ 
+&quot;fmt&quot; 
+ 
+) /* import &quot;fmt&quot; 告诉 Go 编译器这个程序需要使用 fmt 包（的函数，或其他元素），fmt 包实现了格式化 IO（输入/输出）的函数。 */
+ 
+func main() &#123; // func main() 是程序开始执行的函数（函数的入口）。main 函数是每一个可执行程序所必须包含的，一般来说都是在启动后第一个执行的函数。
+ 
+   /* 这是hello world的程序 */  //  /*...*/ 是注释，在程序执行时将被忽略。单行注释是最常见的注释形式，你可以在任何地方使用以 // 开头的单行注释。多行注释也叫块注释，均已以 /* 开头，并以 */ 结尾，且不可以嵌套使用，多行注释一般用于包的文档描述或注释成块的代码片段。
+ 
+   fmt.Println(&quot;Hello,Go World!&quot;) //  fmt.Println(...) 可以将字符串输出到控制台，并在最后自动增加换行字符 \n。 Print 和 Println 这两个函数也支持使用变量
+ 
 &#125;
 </code></pre>
 <blockquote>
@@ -1339,6 +1382,35 @@ func main() &#123;
 </blockquote>
 <pre><code>go install hello.go
 </code></pre>
+<p><strong>执行流程分析</strong></p>
+<blockquote>
+<p>如果是对源码编译后，再执行，Go 的执行流程如下图：</p>
+</blockquote>
+<p><img src="/images/1359109-20210508185434715-572873813.png" alt="img"></p>
+<blockquote>
+<p>如果是对源码直接 执行 <code>go run</code> 源码，Go 的执行流程如下图：</p>
+</blockquote>
+<p><img src="/images/1359109-20210508185525991-84648974.png" alt="img"></p>
+<blockquote>
+<p>两种执行流程的方式区别：</p>
+<ul>
+<li>如果先编译生成了可执行文件，那么可以将该可执行文件拷贝到没有 go 开发环境的机器上，仍然可以运行。</li>
+<li>如果是直接 <code>go run go</code> 源代码，那么如果要在另外一个机器上这么运行，也需要 go 开发环境，否则无法执行。</li>
+<li>在编译时，编译器会将程序运行依赖的库文件包含在可执行文件中，所以，可执行文件变大了很多。</li>
+</ul>
+</blockquote>
+<p><strong>开发注意事项</strong></p>
+<blockquote>
+<p>Go 源文件以 <code>go</code> 为扩展名。</p>
+<p>Go 应用程序的执行入口是 <code>main()</code> 函数。</p>
+<p>Go 语言严格区分大小写。</p>
+<p>Go 方法由一条条语句构成，每个语句后不需要分号(Go 语言会在每行后自动加分号)。</p>
+<p>Go 编译器是一行行进行编译的，因此一行就写一条语句，不能把多条语句写在同一个，否则报错。</p>
+<p>Go 语言定义的变量或者 <code>import</code> 的包如果没有使用到，代码不能编译通过。</p>
+<p>大括号都是成对出现的，缺一不可。</p>
+<p>通过 <code>go run xxx.go</code>直接运行Go代码。</p>
+<p>编译后再运行 <code>go build xxx.go</code>, <code>./xxx</code>。</p>
+</blockquote>
 
 	</div>
 </div>
