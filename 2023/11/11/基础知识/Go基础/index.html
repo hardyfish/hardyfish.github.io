@@ -1278,34 +1278,36 @@
       </div>
       <!--打赏-->
 	<div id="article-content">
-		<p><strong>Google创造Go语言的目的：</strong></p>
+		<blockquote>
+<p>Golang官方网站：<a target="_blank" rel="noopener" href="https://golang.org/">https://golang.org</a></p>
+<p>Golang中文网在线标准库文档: <a target="_blank" rel="noopener" href="https://studygolang.com/pkgdoc">https://studygolang.com/pkgdoc</a></p>
+</blockquote>
+<p><strong>Google创造Go语言的目的：</strong></p>
 <blockquote>
 <p>计算机硬件技术更新频繁：</p>
 <ul>
 <li>性能提高很快，目前主流的编程语言发展落后于硬件，不能合理利用多核CPU的优势提升软件系统性能。</li>
 </ul>
 <p>软件系统复杂度越来越高，维护成本越来越高，目前缺乏一个足够简洁高效的编程语言。</p>
-<p>企业运行维护很多C/C++的项目，C/C++程序运行速度很快，但是编译速度很慢，同时还存在内存泄漏的一系列的困扰需要解决。</p>
+<p>企业运行维护很多C&#x2F;C++的项目，C&#x2F;C++程序运行速度很快，但是编译速度很慢，同时还存在内存泄漏的一系列的困扰需要解决。</p>
 </blockquote>
 <p><strong>Go岗位</strong></p>
 <blockquote>
 <p>区块链研发工程师</p>
-<p>Go服务器/游戏软件工程师</p>
-<p>Go分布式/云计算软件工程师</p>
+<p>Go服务器&#x2F;游戏软件工程师</p>
+<p>Go分布式&#x2F;云计算软件工程师</p>
 </blockquote>
 <p><strong>Go语言特点</strong></p>
 <blockquote>
 <p>Go语言保证了既能够达到静态编译语言的安全和性能，又达到了动态语言开发类维护的高效率。</p>
 <ul>
-<li>GO = C + Python：说明Go语言既有C静态语言程序的运行速度，又能达到Python的动态语言的快速开发。</li>
+<li>GO &#x3D; C + Python：说明Go语言既有C静态语言程序的运行速度，又能达到Python的动态语言的快速开发。</li>
 </ul>
 <p>天然并发：</p>
 <ul>
-<li>
-<p>从语言层面支持并发，实现简单。</p>
+<li><p>从语言层面支持并发，实现简单。</p>
 </li>
-<li>
-<p>GoRoutine，轻量级线程，可实现大并发处理，高效利用多核。</p>
+<li><p>GoRoutine，轻量级线程，可实现大并发处理，高效利用多核。</p>
 </li>
 </ul>
 <p>管道通信机制：</p>
@@ -1343,7 +1345,7 @@ go env
 <blockquote>
 <p>一个简单的 Go 程序文件 <code>hello.go</code>。</p>
 </blockquote>
-<pre><code class="language-go">package main // package main 定义了包名。必须在源文件中非注释的第一行指明这个文件属于哪个包
+<pre><code class="go">package main // package main 定义了包名。必须在源文件中非注释的第一行指明这个文件属于哪个包
  
 import (
  
@@ -1372,8 +1374,7 @@ func main() &#123; // func main() 是程序开始执行的函数（函数的入�
 <blockquote>
 <p>使用 <code>go install</code></p>
 <ul>
-<li>不仅构建程序，还将结果文件安装到 GOPATH 指定的目录中，以供全局使用。
-<ul>
+<li>不仅构建程序，还将结果文件安装到 GOPATH 指定的目录中，以供全局使用。<ul>
 <li>通常是在 <code>$GOPATH/bin</code> 目录下。</li>
 </ul>
 </li>
@@ -1410,6 +1411,36 @@ func main() &#123; // func main() 是程序开始执行的函数（函数的入�
 <p>大括号都是成对出现的，缺一不可。</p>
 <p>通过 <code>go run xxx.go</code>直接运行Go代码。</p>
 <p>编译后再运行 <code>go build xxx.go</code>, <code>./xxx</code>。</p>
+</blockquote>
+<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><p><strong>转义字符</strong></p>
+<blockquote>
+<p>常用的转义字符有如下:</p>
+<ul>
+<li><code>\t</code> : 表示一个制表符，通常使用它可以排版</li>
+<li><code>\n</code> ：换行符</li>
+<li><code>\\</code> ：一个\</li>
+<li><code>\&quot;</code> ：一个”</li>
+<li><code>\r</code> ：一个回车</li>
+</ul>
+</blockquote>
+<pre><code class="go">package main
+ 
+import &quot;fmt&quot; //fmt 包中提供格式化，输出，输入的函数
+func main() &#123;
+//要求：请使用一句输出语句，达到输入如下图形的效果
+    fmt.Println(&quot;姓名\t 年龄\t 籍贯\t 地址\njohn\t20\t 河北\t 北京&quot;)
+&#125;
+</code></pre>
+<p><strong>注释</strong></p>
+<blockquote>
+<p>行注释：</p>
+<ul>
+<li>&#x2F;&#x2F; 注释内容</li>
+</ul>
+<p>块注释（多行注释）：</p>
+<ul>
+<li><code>/*注释内容*/</code></li>
+</ul>
 </blockquote>
 
 	</div>
