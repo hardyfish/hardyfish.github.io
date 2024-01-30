@@ -1846,6 +1846,55 @@
 <p>没有在内存层面区拷贝数据，全过程都没有使用CPU搬运数据，所有数据都是通过DMA进行传输的。</p>
 <p>整个过程只需要两次上下文的切换和两次数据拷贝。</p>
 </blockquote>
+<h1 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h1><blockquote>
+<p>I&#x2F;O多路复用通过一种机制，可以监视多个描述符，一旦某个描述符就绪（一般是读就绪或者写就绪），能够通知程序进行相应的读写操作。</p>
+<p>select，poll，epoll都是IO多路复用的机制。</p>
+<p><strong>但select，poll，epoll本质上都是同步I&#x2F;O，因为他们都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是阻塞的</strong>，而异步I&#x2F;O则无需自己负责进行读写，异步I&#x2F;O的实现会负责把数据从内核拷贝到用户空间。</p>
+</blockquote>
+<p><strong>select</strong>:</p>
+<blockquote>
+<p>它仅仅知道了，<strong>有 I&#x2F;O 事件发生了，却并不知道是哪那几个流</strong>(可能有一个，多个，甚至全部)，只能无差别轮询所有流，找出能读出数据，或者写入数据的流，对他们进行操作。</p>
+<p>所以<strong>select 具有 O(n)的无差别轮询复杂度</strong>，同时处理的流越多，无差别轮询时间就越长。</p>
+<p><strong>它是基于数组来存储的，它有最大连接数的限制。</strong></p>
+</blockquote>
+<p><strong>poll</strong>:</p>
+<blockquote>
+<p>poll 本质上和 select 没有区别，它将用户传入的数组拷贝到内核空间，然后查询每个 fd 对应的设备状态，但是<strong>它没有最大连接数的限制</strong>，原因是<strong>它是基于链表来存储的</strong>。</p>
+</blockquote>
+<p><strong>epoll</strong>:</p>
+<blockquote>
+<p>epoll 在内核里使用红黑树来跟踪进程所有待检测的文件描述符，把需要监控的 socket 通过 <code>epoll_ct()</code>函数加入到内核中的红黑树里。</p>
+<ul>
+<li>红黑树是个高效的数据结构，增删查一般时间复杂度都是 <code>O(logn)</code>。</li>
+</ul>
+<p>通过对这颗红黑树进行操作，这样就不需要像 select&#x2F;poll 每次操作时都传入整个 socket 集合，只需要传入一个待检测的socket，减少了内核和用户空间大量的数据拷贝和内存分配。</p>
+<p>epoll 使用事件驱动的机制，内核里面维护了一个链表来记录就绪事件。</p>
+<ul>
+<li><p>当某个 socket 有事件发生时，通过回调函数内核会将其将入到这个就绪事件列表中。</p>
+</li>
+<li><p>当用户调用 <code>epoll_wait()</code> 时，只会返回有事件发生的文件描述符的个数。</p>
+<ul>
+<li>不需要像 select&#x2F;poll 那样轮询扫描整个 socket 集合，大大提高了检测的效率。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>epoll 相关接口的作用如下：</p>
+<ul>
+<li>epoll_create()，epoll_ctl()和 epoll_wait()系统调用。</li>
+</ul>
+</blockquote>
+<p><img src="/images/image-20240130145523446.png" alt="image-20240130145523446"></p>
+<blockquote>
+<p>epoll 的方式监听的 Socket 数量越多的时候，效率不会大幅度降低，能够同时监听的 Socket 的数目也非常多，上限就为系统定义的进程打开的最大文件描述符个数。</p>
+<p>epoll 支持两种事件触发模式，分别是边缘触发和水平触发：</p>
+<ul>
+<li>使用边缘触发时，当被监控的 Socket 描述符有可读事件发生时，服务器端只会从 <code>epoll_wait</code> 中苏醒一次，即时进程没有调用 read 函数从内核读取数据，也依然只苏醒一次，因此程序要保证一次性将内核缓冲区的数据读取完。</li>
+<li>使用水平触发模式时，当被监控的 Socket 上有可读事件发生时，服务端不断地从 <code>epoll_wait</code> 中苏醒，知道内核缓冲区数据被 read 函数读完才结束，目的是告诉有数据需要读取。</li>
+</ul>
+<p>select&#x2F;poll 只有水平触发模式，epoll 默认的触发模式是水平触发，但是可以根据应用场景设置为边缘触发模式。</p>
+</blockquote>
 <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><p>Linux命令文档：<a target="_blank" rel="noopener" href="https://wangchujiang.com/linux-command/">https://wangchujiang.com/linux-command/</a></p>
 <p><strong>快捷键</strong></p>
 <blockquote>
