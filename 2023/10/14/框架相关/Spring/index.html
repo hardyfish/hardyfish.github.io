@@ -1939,6 +1939,23 @@ public class FishService &#123;
 <li>使Spring启用factories机制导入各个starter模块的配置。</li>
 </ul>
 </blockquote>
+<p><strong>启动流程</strong></p>
+<blockquote>
+<p><code>构造SpringBootApplication对象</code>和执行<code>run方法</code>。</p>
+<p>核心注解<code>@SpringBootConfiguration</code>标识启动类为配置类。</p>
+<p><code>@EnableAutoConfiguration</code>通过内部<code>@Import</code>注解<code>AutoConfigurationImportSelector.class</code>实现自动装配。</p>
+<p><code>@ComponentScan</code>默认扫描当前目录及子目录下的Bean。</p>
+<p>SpringBootApplication的构造方法主要做了几件事:</p>
+<ul>
+<li>根据是否加载servlet类判断是否是web环境。</li>
+<li>获取所有初始化器，扫描所有<code>META-INF/spring.factories</code>下的<code>ApplicationContextInitializer</code>子类通过反射拿到实例，在spring实例启动前后做一些回调工作。</li>
+<li>获取所有监听器，同2，也是扫描配置加载对应的类实例。</li>
+</ul>
+<p>run方法主要创建了配置环境、事件监听、启动应用上下文，其中refresh方法贯穿<code>springbean</code>的生命周期。</p>
+<p>执行bean的生命周期的前后置钩子方法，并且处理spring的注解标注的类。</p>
+<p>在<code>onRefresh</code>中通过Java代码构建出tomcat容器并启动。</p>
+</blockquote>
+<p><img src="/images/1158841-20190707171658626-1389392187-20240201112148239.png" alt="img"></p>
 <h1 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h1><h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><blockquote>
 <p>Spring Cloud Eureka 是 Netflix 公司开发的注册发现组件，本身是一个基于 REST 的服务。</p>
 <ul>

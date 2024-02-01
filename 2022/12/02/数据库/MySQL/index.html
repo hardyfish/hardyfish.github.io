@@ -1694,6 +1694,11 @@ UPDATE student SET ... # 排他锁
 <blockquote>
 <p>要查询的列，在使用的索引中已经包含，这种情况称之为索引覆盖。</p>
 </blockquote>
+<p><strong>索引区分度</strong></p>
+<blockquote>
+<p>索引的区分度等于：<code>count(distinct 具体的列)/count(*)</code>，表示字段不重复的比例。</p>
+<p>唯一键的区分度是1，而对于一些状态值，性别等字段区分度往往比较低，在数据量比较大的情况下，甚至有无限接近0。</p>
+</blockquote>
 <p><strong>索引结构</strong></p>
 <blockquote>
 <p><code>InnoDB</code>中使用了<strong>B+树</strong>来实现索引。</p>
@@ -1793,6 +1798,58 @@ UPDATE student SET ... # 排他锁
 <blockquote>
 <p>在MySQL 5.1之后进行引入，它可以在多个索引上进行查询，并将结果合并返回。</p>
 </blockquote>
+<p><strong>索引失效</strong></p>
+<blockquote>
+<p>1、不满足最左匹配原则</p>
+</blockquote>
+<blockquote>
+<p>2、索引列上有计算</p>
+</blockquote>
+<pre><code class="sql">explain select * from 某表 where id+1=2;
+</code></pre>
+<blockquote>
+<p>3、索引列用了函数</p>
+</blockquote>
+<pre><code class="sql">explain select * from 某表 where SUBSTR(height,1,2)=17;
+</code></pre>
+<blockquote>
+<p>4、字段类型不同</p>
+<p>5、like左边包含%</p>
+</blockquote>
+<blockquote>
+<p>6、列对比</p>
+<ul>
+<li><p>id字段本身是有主键索引的，同时height字段也建了普通索引的，并且两个字段都是int类型，类型是一样的</p>
+</li>
+<li><p>如果把两个单独建了索引的列，用来做列对比时索引就会失效</p>
+</li>
+</ul>
+</blockquote>
+<pre><code class="sql">explain select * from user where id=height
+</code></pre>
+<blockquote>
+<p>7、使用or关键字</p>
+<p>因为最后加的address字段没有加索引，从而导致其他字段的索引都失效了</p>
+<p>如果使用了<code>or</code>关键字，那么它前面和后面的字段都要加索引，不然所有的索引都会失效</p>
+</blockquote>
+<pre><code class="sql">explain select * from user where id=1 or height=&#39;175&#39; or address=&#39;成都&#39;;
+</code></pre>
+<blockquote>
+<p>8、not in和not exists</p>
+<p>主键字段中使用<code>not in</code>关键字查询数据范围，可以走索引</p>
+<p>而普通索引字段使用了<code>not in</code>关键字查询数据范围，索引会失效</p>
+</blockquote>
+<blockquote>
+<p>9、order by 没加where或limit</p>
+<p>如果order by语句中没有加where或limit关键字，该sql语句将不会走索引</p>
+</blockquote>
+<pre><code class="sql">explain select * from user order by code, name;
+</code></pre>
+<blockquote>
+<p>10、对不同的索引做order by</p>
+</blockquote>
+<pre><code class="sql">explain select * from user order by code, height limit 100;
+</code></pre>
 <p><strong>CBO</strong></p>
 <p>CBO（Cost-Based Optimizer，基于成本的优化器）。</p>
 <blockquote>
@@ -2210,6 +2267,51 @@ SELECT ... FOR SHARE; # (8.0新增语法)
 </ul>
 <p>尽量少使用当前读<code>for update</code>，数据更新时尽量使用主键。</p>
 </blockquote>
+<p><strong>乐观锁</strong></p>
+<blockquote>
+<p>乐观锁假设认为数据一般情况下不会造成冲突，所以在数据进行提交更新的时候，才会正式对数据的冲突与否进行检测。</p>
+<p>如果发现冲突了，则让返回用户错误的信息，让用户决定如何去做。</p>
+</blockquote>
+<blockquote>
+<p><strong>使用版本号实现乐观锁</strong></p>
+<ul>
+<li>版本号的实现方式有两种，一个是数据版本机制，一个是时间戳机制。</li>
+</ul>
+<p>使用数据版本（Version）记录机制实现：</p>
+<ul>
+<li><p>为数据增加一个版本标识，一般是通过为数据库表增加一个数字类型的 <code>version</code> 字段来实现。</p>
+</li>
+<li><p>当读取数据时，将version字段的值一同读出，数据每更新一次，对此version值加一。</p>
+</li>
+<li><p>当提交更新的时候，判断数据库表对应记录的当前版本信息与第一次取出来的version值进行比对：</p>
+<ul>
+<li>如果数据库表当前版本号与第一次取出来的version值相等，则予以更新，否则认为是过期数据。</li>
+</ul>
+</li>
+</ul>
+<p><strong>这种版本号的方法并不是适用于所有的乐观锁场景。</strong></p>
+<p>当电商抢购活动时，大量并发进入，如果仅仅使用版本号或者时间戳，就会出现大量的用户查询出库存存在，但是却在扣减库存时失败了，而这个时候库存是确实存在的。</p>
+</blockquote>
+<p><img src="/images/1075594-20171224120703021-326642906.png" alt="img"></p>
+<pre><code class="sql">update t_goods 
+set status=2,version=version+1
+where id=#&#123;id&#125; and version=#&#123;version&#125;;
+</code></pre>
+<blockquote>
+<p><strong>使用条件限制实现乐观锁</strong></p>
+<p>这个适用于做数据安全校验，适合库存模型，扣份额和回滚份额，性能更高。</p>
+<p>更新库存操作如下：</p>
+<ul>
+<li><strong>注意：乐观锁的更新操作，最好用主键或者唯一索引来更新，这样是行锁，否则更新时会锁表</strong></li>
+</ul>
+</blockquote>
+<pre><code class="sql">UPDATE t_goods
+SET num = num - #&#123;buyNum&#125; 
+WHERE
+    id = #&#123;id&#125; 
+AND num - #&#123;buyNum&#125; &gt;= 0 
+AND STATUS = 1
+</code></pre>
 <h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><strong>服务器处理客户端请求:</strong></p>
 <blockquote>
 <p>不论客户端进程和服务器进程是采用哪种方式进行通信，最后实现的效果都是：</p>

@@ -1631,6 +1631,26 @@
 <li>Eden、Survivor Space0（From Space）区 向Survivor Space1（To Space）区复制时，对象大小大于To Space可用内存，则把该对象转存到老年代，且老年代的可用内存 小于 该对象大小。</li>
 </ul>
 </blockquote>
+<p><strong>Full GC问题排查</strong></p>
+<blockquote>
+<p>查看GC日志：</p>
+<ul>
+<li>通过<code>jstat -gcutil -t pid 1000 1000</code>查看GC日志。</li>
+</ul>
+<p>查看堆内存情况：</p>
+<ul>
+<li><code>jmap -heap pid</code>查看堆内存情况。</li>
+</ul>
+<p>查看哪些类占用的空间多：</p>
+<ul>
+<li>通过<code>jmap -hsito pid</code>查看哪些类占用的空间多。</li>
+</ul>
+<p>查看堆内存日志：</p>
+<ul>
+<li>通过<code>jmap -dump:format=b,file=xxxx.hprofDump</code>查看堆内存日志。</li>
+<li>通过MAT内存分析工具分析日志。</li>
+</ul>
+</blockquote>
 <p><strong>空间分配担保机制</strong></p>
 <blockquote>
 <p>在发生Minor GC之前，虚拟机会检查老年代最大可用的连续空间 是否大于 新生代所有对象的总空间。</p>
