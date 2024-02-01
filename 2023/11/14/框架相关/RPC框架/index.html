@@ -1294,20 +1294,19 @@
 <blockquote>
 <p>当调用本地的一个服务类的某个方法时，实际上这个服务类已经是一个代理类了，调用这个类的某个方法，实际上代理方法中可以加入很多额外的逻辑，比如构造 HTTP 请求、构造TCP 请求等等，最终穿过网络调用到真正的服务提供方的同名方法。</p>
 </blockquote>
-<img src="/images/image-20231114154837419.png" alt="image-20231114154837419" style="zoom:50%;" />
-
+<img src="/images/304.png" alt="image-20231114154837419" style="zoom:50%;" />
 <blockquote>
 <p>序列化和反序列化功能会在代理中进行（编解码）。</p>
 <p>封装的网络请求既有可能是 HTTP 请求，也有可能是 Sockets 请求，比如有很多 RPC 功能都使用 Netty 作为通讯层。</p>
 </blockquote>
-<img src="/images/image-20231114155711518.png" alt="image-20231114155711518" style="zoom:60%;" />
-
+<img src="/images/305.png" alt="image-20231114155711518" style="zoom:60%;" />
 <p><strong>网络通信协议协议</strong></p>
 <blockquote>
 <p>用来规范传输的数据的，它是一个应用层协议，比如 HTTP ，而不是传输层的协议，比如 TCP 、UDP。</p>
 <p>比如 GRPC 框架中用的协议是 HTTP2，Dubbo中可以选择多种协议，比如Hession、HTTP等。</p>
 </blockquote>
-<h1 id="序列化机制"><a href="#序列化机制" class="headerlink" title="序列化机制"></a>序列化机制</h1><blockquote>
+<h1>序列化机制</h1>
+<blockquote>
 <p>数据要想在网络中传输，必须是二进制的形式。</p>
 <p>在远程调用里，像调用本地方法那样调用，使用的参数都是和当前项目语言一致的参数类型，比如Java中的 <code>String</code>、<code>List</code>、<code>Map</code>等等，要把这些类型转换成二进制，需要序列化算法。</p>
 </blockquote>

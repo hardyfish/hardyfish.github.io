@@ -1293,7 +1293,8 @@
 <p>最佳实践：<a target="_blank" rel="noopener" href="https://github.com/apache/rocketmq/blob/master/docs/cn/best_practice.md">https://github.com/apache/rocketmq/blob/master/docs/cn/best_practice.md</a></p>
 <p>设计文档：<a target="_blank" rel="noopener" href="https://github.com/apache/rocketmq/blob/master/docs/cn/design.md">https://github.com/apache/rocketmq/blob/master/docs/cn/design.md</a></p>
 </blockquote>
-<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><strong>Topic：</strong></p>
+<h1>基本概念</h1>
+<p><strong>Topic：</strong></p>
 <blockquote>
 <p>一类消息的集合，消息发送者将一类消息发送到一个主题中，例如订单模块将订单发送到<code> order_topic</code> 中，而用户登录时，将登录事件发送到 <code>user_login_topic</code> 中。</p>
 </blockquote>
@@ -1340,7 +1341,7 @@
 <li>消息被负载均衡到了同一个消费组的多个消费者实例上。</li>
 </ul>
 </blockquote>
-<p><img src="/images/640-7642513.png" alt="图片"></p>
+<p><img src="/images/image5.png" alt="图片"></p>
 <p>广播消费：</p>
 <blockquote>
 <p>每条消息推送给集群内所有的消费者，保证消息至少被每个消费者消费一次。</p>
@@ -1348,13 +1349,13 @@
 <li>通常用于刷新内存缓存。</li>
 </ul>
 </blockquote>
-<p><img src="/images/640-20231018232300504.png" alt="图片"></p>
+<p><img src="/images/image6.png" alt="图片"></p>
 <p><strong>Confirm机制</strong></p>
 <blockquote>
 <p>消息生产者把消息发送给MQ，如果接收成功，MQ会返回一个ack消息给生产者。</p>
 <p>如果消息接收不成功，MQ会返回一个nack消息给生产者。</p>
 </blockquote>
-<p><img src="/images/5b6002787f1244ffac494eaaf4eaf855~tplv-tt-origin-asy2:5aS05p2hQOiAgemhvuiBiuaKgOacrw==.image?_iz=58558&from=article.png" alt="img"></p>
+<p><img src="/images/373.png" alt="img"></p>
 <p><strong>重试机制</strong></p>
 <blockquote>
 <p>集群消费下，<strong>重试机制</strong>的本质是 RocketMQ 的延迟消息功能。</p>
@@ -1365,14 +1366,118 @@
 <blockquote>
 <p>死信队列用于处理无法被正常消费的消息。</p>
 <ul>
-<li><p>当一条消息初次消费失败，消息队列会自动进行消息重试。</p>
+<li>
+<p>当一条消息初次消费失败，消息队列会自动进行消息重试。</p>
 </li>
-<li><p>达到最大重试次数后，若消费依然失败，则表明消费者在正常情况下无法正确地消费该消息，此时，消息队列不会立刻将消息丢弃，而是将其发送到该消费者对应的特殊队列中。</p>
+<li>
+<p>达到最大重试次数后，若消费依然失败，则表明消费者在正常情况下无法正确地消费该消息，此时，消息队列不会立刻将消息丢弃，而是将其发送到该消费者对应的特殊队列中。</p>
 </li>
 </ul>
 <p>RocketMQ将这种正常情况下无法被消费的消息称为死信消息，将存储死信消息的特殊队列称为死信队列。</p>
 </blockquote>
-<h1 id="基本组件"><a href="#基本组件" class="headerlink" title="基本组件"></a>基本组件</h1><p><img src="/images/9ac36ee1c9a590d7cb60daae4c4a3760-20231018235000669.webp" alt="image"></p>
+<p><strong>Queue分配算法</strong></p>
+<blockquote>
+<p>一个Topic中的Queue只能由Consumer Group中的一个Consumer进行消费，而一个Consumer可以同时消费多个Queue中的消息。</p>
+<p>那么Queue与Consumer间的配对关系是如何确定的，即Queue要分配给哪个Consumer进行消费?</p>
+<p>常见的有四种策略，分别是：</p>
+<ul>
+<li>
+<p>平均分配策略、环形平均策略、一致性hash策略、同机房策略。</p>
+</li>
+<li>
+<p>这些策略是通过在创建Consumer时的构造器传进去的。</p>
+</li>
+</ul>
+</blockquote>
+<p>平均分配策略（默认）：</p>
+<blockquote>
+<p>该算法是根据：<code>avg = QueueCount / ConsumerCount</code>的计算结果进行分配的。</p>
+<p>如果能够整除，则按顺序将avg个Queue逐个分配，如果不能整除，则将多余出的Queue按照Consumer顺序逐个分配。</p>
+</blockquote>
+<p><img src="/images/image4.png" alt="img"></p>
+<p>环形分配策略：</p>
+<blockquote>
+<p>环形平均算法是指，根据消费者的顺序，依次由Queue队列组成的环形图逐个分配，该方法不需要提前计算。</p>
+</blockquote>
+<p><img src="/images/image3.png" alt="img"></p>
+<p>一致性哈希分配策略：</p>
+<blockquote>
+<p>该算法会将consumer的hash值作为Node节点存放到hash环上，然后将queue的hash值也放到hash环上。</p>
+<p>通过顺时针方向，距离queue最近的那个consumer就是该queue要分配的consumer。</p>
+<p>一致性哈希算法可以有效减少由于消费者组扩容或缩容所带来的大量的Rebalance，所以它适合用在Consumer数量变化较频繁的场景。</p>
+<p>但是一致性哈希算法也存在不足，就是分配效率较低，容易导致分配不均的情况。</p>
+<p>即每个消费者消费的队列数，有可能相差很大，这样就会造成个别消费者压力过大。</p>
+<ul>
+<li>可以引入虚拟桶，让queue在hash环中尽可能分配均匀。</li>
+</ul>
+</blockquote>
+<p><img src="/images/image2.png" alt="img"></p>
+<p>机房分配策略：</p>
+<blockquote>
+<p>该算法会根据queue的部署机房位置和consumer的位置，过滤出当前consumer相同机房的queue。</p>
+<p>然后按照平均分配策略或环形平均策略对同机房queue进行分配。</p>
+<p>如果没有同机房queue，则按照平均配策略或环形平均策略对所有queue进行分配。</p>
+</blockquote>
+<p><img src="/images/image1.png" alt="img"></p>
+<p><strong>Rebalance机制</strong></p>
+<blockquote>
+<p>Rebalance即再均衡：</p>
+<ul>
+<li>指的是将⼀个Topic下的多个Queue在同⼀个Consumer Group中的多个Consumer间进行重新分配的过程。</li>
+</ul>
+<p>它能够提升消息的并行消费能力。</p>
+</blockquote>
+<p>哪些场景会触发Rebalance？</p>
+<blockquote>
+<p>消费者所订阅Topic的队列数量发生变化。</p>
+<p>比如动态调整了Topic对应的队列数量，那么此时肯定是要重新分配一下，也就是触发Rebalance再均衡。</p>
+<ul>
+<li>
+<p>例如⼀个Topic下5个队列，有2个消费者的情况下，那么就可以给其中⼀个消费者分配2个队列，给另⼀个分配3个队列。</p>
+</li>
+<li>
+<p>假设调整到Topic下有7个队列，还是2个消费者的情况下，那么就可以给其中⼀个消费者分配4个队列，给另⼀个分配3个队列。</p>
+</li>
+<li>
+<p>从而提升消息的并行消费能力。</p>
+</li>
+</ul>
+<p>像Broker扩容或缩容、Broker与NameServer间发生网络异常、Queue扩容或缩容等场景都可能导致消费者所订阅Topic的队列数量发生变化。</p>
+</blockquote>
+<p><img src="/images/image7.png" alt="img"></p>
+<blockquote>
+<p>消费者组中消费者的数量发生变化。</p>
+<p>比如动态添加了Consumer进行消费，那么此时肯定是要重新分配一下，也就是触发Rebalance再均衡。</p>
+<p>例如，⼀个Topic下5个队列，在只有1个消费者的情况下，这个消费者将负责消费这5个队列的消息。</p>
+<ul>
+<li>如果此时增加⼀个消费者，那么就可以给其中⼀个消费者分配2个队列，给另⼀个分配3个队列，从而提升消息的并行消费能力。</li>
+</ul>
+<p>像Consumer Group扩容或缩容、Consumer与NameServer间发生网络异常、Consumer发生宕机等都会导致消费者组中消费者的数量发生变化。</p>
+<p>由于⼀个队列最多分配给⼀个消费者，因此当某个消费者组下的消费者实例数量大于队列的数量时，多余的消费者实例将分配不到任何队列，等于是多余的消费者什么都不做，白白浪费。</p>
+</blockquote>
+<p><img src="/images/image8.png" alt="img"></p>
+<p>Rebalance的危害？</p>
+<blockquote>
+<p>消费暂停：</p>
+<ul>
+<li>在只有一个Consumer时，其负责消费所有队列。</li>
+<li>在新增了一个Consumer后会触发 Rebalance的发生。</li>
+<li>此时原Consumer就需要暂停部分队列的消费，等到这些队列分配给新的Consumer后，这些暂停消费的队列才能继续被消费。</li>
+</ul>
+<p>消费重复：</p>
+<ul>
+<li>Consumer在消费新分配给自己的队列时，必须接着之前Consumer 提交的消费进度的offset 继续消费。</li>
+<li>然而默认情况下，offset是异步提交的，这个异步性导致提交到Broker的offset与Consumer实际消费的消息并不一致。</li>
+<li>这个不一致的差值就是可能会重复消费的消息。</li>
+</ul>
+<p>消费突刺：</p>
+<ul>
+<li>由于Rebalance可能导致重复消费，如果需要重复消费的消息过多，或者因为Rebalance暂停时间过长从而导致积压了部分消息。</li>
+<li>那么有可能会导致在Rebalance结束之后瞬间需要消费很多消息。</li>
+</ul>
+</blockquote>
+<h1>基本组件</h1>
+<p><img src="/images/368.png" alt="image"></p>
 <p>Nameserver：</p>
 <blockquote>
 <p>Nameserver集群，Topic的路由注册中心，为客户端根据Topic提供路由服务，从而引导客户端向Broker发送消息。</p>
@@ -1402,15 +1507,16 @@
 </blockquote>
 <p><strong>异步复制</strong></p>
 <blockquote>
-<p>生产者发送消息后，Master 接收到存储消息请求，将消息存储后，直接将存储结果返回给生产者。 </p>
+<p>生产者发送消息后，Master 接收到存储消息请求，将消息存储后，直接将存储结果返回给生产者。</p>
 <p>Master 和 Slave 再通过异步的方式同步数据，这种复制模式具有较小的延迟，可以实现比较高的吞吐量。</p>
 <p>若 Master 出现故障，有些数据可能未写入 Slave，未同步的数据可能丢失。</p>
 </blockquote>
-<h1 id="消息类型"><a href="#消息类型" class="headerlink" title="消息类型"></a>消息类型</h1><p><strong>延迟消息</strong></p>
+<h1>消息类型</h1>
+<p><strong>延迟消息</strong></p>
 <blockquote>
 <p>RocketMQ支持18个等级，每个等级代表一个延迟时间。</p>
 </blockquote>
-<pre><code class="java">private String messageDelayLevel = &quot;1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h&quot;;
+<pre><code class="language-java">private String messageDelayLevel = &quot;1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h&quot;;
 </code></pre>
 <p>原理解析：</p>
 <blockquote>
@@ -1419,33 +1525,36 @@
 <li>RocketMQ是基于<code>java.util.Timer</code>的定时器。</li>
 </ul>
 </blockquote>
-<img src="/images/image-20231125220819038.png" alt="image-20231125220819038" style="zoom:50%;" />
-
+<img src="/images/369.png" alt="image-20231125220819038" style="zoom:50%;" />
 <p><strong>事务消息</strong></p>
 <p>支持在分布式场景下保障消息生产和本地事务的最终一致性。</p>
-<p><img src="/images/image-20231007114659517.png" alt="image-20231007114659517"></p>
+<p><img src="/images/370.png" alt="image-20231007114659517"></p>
 <blockquote>
 <p>1、生产者将消息发送至 Broker。</p>
-<p>2、Broker 将消息持久化成功之后，向生产者返回 Ack 确认消息已经发送成功，此时消息被标记为”暂不能投递”，这种状态下的消息即为半事务消息。</p>
+<p>2、Broker 将消息持久化成功之后，向生产者返回 Ack 确认消息已经发送成功，此时消息被标记为&quot;暂不能投递&quot;，这种状态下的消息即为半事务消息。</p>
 <p>3、生产者开始执行本地事务逻辑。</p>
 <p>4、生产者根据本地事务执行结果向服务端提交二次确认结果（Commit 或是 Rollback），Broker 收到确认结果后处理逻辑如下：</p>
 <ul>
-<li><p>二次确认结果为 Commit ：Broker 将半事务消息标记为可投递，并投递给消费者。</p>
+<li>
+<p>二次确认结果为 Commit ：Broker 将半事务消息标记为可投递，并投递给消费者。</p>
 </li>
-<li><p>二次确认结果为 Rollback ：Broker 将回滚事务，不会将半事务消息投递给消费者。</p>
+<li>
+<p>二次确认结果为 Rollback ：Broker 将回滚事务，不会将半事务消息投递给消费者。</p>
 </li>
 </ul>
 <p>5、在断网或者是生产者应用重启的特殊情况下，若 Broker 未收到发送者提交的二次确认结果，或 Broker 收到的二次确认结果为 Unknown 未知状态，经过固定时间后，服务端将对消息生产者即生产者集群中任一生产者实例发起消息回查。</p>
 <ul>
-<li><p>生产者收到消息回查后，需要检查对应消息的本地事务执行的最终结果。</p>
+<li>
+<p>生产者收到消息回查后，需要检查对应消息的本地事务执行的最终结果。</p>
 </li>
-<li><p>生产者根据检查到的本地事务的最终状态再次提交二次确认，服务端仍按照步骤4对半事务消息进行处理。</p>
+<li>
+<p>生产者根据检查到的本地事务的最终状态再次提交二次确认，服务端仍按照步骤4对半事务消息进行处理。</p>
 </li>
 </ul>
 </blockquote>
 <p>为什么要先发送Half Message(半消息)：</p>
 <blockquote>
-<p>可以先确认Broker服务器是否正常，如果半消息都发送失败了，那说明Broker挂了。 </p>
+<p>可以先确认Broker服务器是否正常，如果半消息都发送失败了，那说明Broker挂了。</p>
 </blockquote>
 <p>什么情况会回查：</p>
 <blockquote>
@@ -1455,8 +1564,9 @@
 <li>这个时候在Broker端，它还是个Half Message(半消息)，这也会回查。</li>
 </ul>
 </blockquote>
-<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><strong>总体架构图</strong></p>
-<p><img src="/images/584866-20210720170211789-338741620.jpg" alt="img"></p>
+<h1>基本原理</h1>
+<p><strong>总体架构图</strong></p>
+<p><img src="/images/371.png" alt="img"></p>
 <p><strong>零拷贝</strong></p>
 <blockquote>
 <p>零拷贝技术是一个思想，指的是指计算机执行操作时，CPU不需要先将数据从某处内存复制到另一个特定区域。</p>
@@ -1479,13 +1589,12 @@
 <p>业务系统向 <code>RocketMQ</code> 发送一条消息，最终这条消息会被持久化到<code>CommitLog</code>文件。</p>
 <p>一台<code>Broker服务器</code>只有一个<code>CommitLog</code>文件(组)，<code>RocketMQ</code>会将所有主题的消息存储在同一个文件中，这个文件中就存储着一条条Message，每条Message都会按照顺序写入。</p>
 </blockquote>
-<img src="/images/image-20240122170451767.png" alt="image-20240122170451767" style="zoom:50%;" />
-
+<img src="/images/372.png" alt="image-20240122170451767" style="zoom:50%;" />
 <p>ConsumeQueue:</p>
 <blockquote>
 <p>它是为了高效检索主题消息的。</p>
 <p>通过<code>ConsumerQueue</code>可以知道消息的长度和偏移量，那么查找消息就比较容易了。</p>
-<p>消息偏移量的差值等于 &#x3D; <code>消息长度 * 队列长度</code>。</p>
+<p>消息偏移量的差值等于 = <code>消息长度 * 队列长度</code>。</p>
 </blockquote>
 <p>Index:</p>
 <blockquote>
@@ -1498,14 +1607,17 @@
 <p><code>Message Key和Unique Key</code>都是在消息发送之前，由客户端生成的。</p>
 <p>可以自己设置，也可以由客户端自动生成，<code>Message Id</code>是在<code>Broker</code>端存储消息的时候生成。</p>
 </blockquote>
-<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p><strong>消息重试（消费者）</strong></p>
+<h1>应用场景</h1>
+<p><strong>消息重试（消费者）</strong></p>
 <blockquote>
 <p>Consumer消费消息失败后，要提供一种重试机制，令消息再消费一次。</p>
 <p>Consumer消费消息失败有以下几种情况：</p>
 <ul>
-<li><p>由于消息本身的原因，例如反序列化失败，消息数据本身无法处理。</p>
+<li>
+<p>由于消息本身的原因，例如反序列化失败，消息数据本身无法处理。</p>
 </li>
-<li><p>由于依赖的下游应用服务不可用，例如DB连接不可用，外系统网络不可达等。</p>
+<li>
+<p>由于依赖的下游应用服务不可用，例如DB连接不可用，外系统网络不可达等。</p>
 </li>
 </ul>
 <p>RocketMQ会为每个消费组都设置一个Topic名称为<code>%RETRY%+consumerGroup</code>的重试队列：</p>
@@ -1535,7 +1647,8 @@
 </ul>
 <p>如下方法可以设置消息重试策略：</p>
 <ul>
-<li><p>retryTimesWhenSendFailed:</p>
+<li>
+<p>retryTimesWhenSendFailed:</p>
 <ul>
 <li>同步发送失败重投次数，默认为2，因此生产者会最多尝试发送<code>retryTimesWhenSendFailed + 1</code>次。</li>
 <li>不会选择上次失败的broker，尝试向其他broker发送，最大程度保证消息不丢。</li>
@@ -1543,19 +1656,22 @@
 <li>当出现<code>RemotingException、MQClientException</code>和部分<code>MQBrokerException</code>时会重投。</li>
 </ul>
 </li>
-<li><p>retryTimesWhenSendAsyncFailed:</p>
+<li>
+<p>retryTimesWhenSendAsyncFailed:</p>
 <ul>
 <li>异步发送失败重试次数，异步重试不会选择其他broker，仅在同一个broker上做重试，不保证消息不丢。</li>
 </ul>
 </li>
-<li><p>retryAnotherBrokerWhenNotStoreOK:</p>
+<li>
+<p>retryAnotherBrokerWhenNotStoreOK:</p>
 <ul>
 <li>消息刷盘（主或备）超时或slave不可用（返回状态非<code>SEND_OK</code>），是否尝试发送到其他broker，默认false。</li>
 </ul>
 </li>
 </ul>
 </blockquote>
-<h2 id="顺序消费"><a href="#顺序消费" class="headerlink" title="顺序消费"></a>顺序消费</h2><p>顺序消息是指对于一个指定的 Topic ，消息严格按照先进先出（FIFO）的原则进行消息发布和消费，即先发布的消息先消费，后发布的消息后消费。</p>
+<h2 id="顺序消费">顺序消费</h2>
+<p>顺序消息是指对于一个指定的 Topic ，消息严格按照先进先出（FIFO）的原则进行消息发布和消费，即先发布的消息先消费，后发布的消息后消费。</p>
 <p><strong>分区顺序消息</strong></p>
 <blockquote>
 <p>对于指定的一个 Topic ，所有消息根据 Sharding Key 进行区块分区，同一个分区内的消息按照严格的先进先出（FIFO）原则进行发布和消费。</p>

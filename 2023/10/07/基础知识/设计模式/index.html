@@ -1287,7 +1287,8 @@
       </div>
       <!--打赏-->
 	<div id="article-content">
-		<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><strong>封装</strong></p>
+		<h1>基本概念</h1>
+<p><strong>封装</strong></p>
 <p>通过对类的封装，仅仅暴露少许必要的方法给调用方使用，调用方不需要了解太多背后的业务细节，大大降低了用错的概率，提高了代码的易用性。</p>
 <p><strong>抽象</strong></p>
 <p>通过抽象化只暴露出方法定义，而隐藏方法的具体实现，让调用者只需要关心方法提供了哪些功能，并不需要知道这些功能是如何实现的。</p>
@@ -1307,7 +1308,8 @@
 <p><strong>面向对象和面向过程</strong></p>
 <p>面向对象编程：以类为组织代码的基本单元，面向过程编程：以过程（或方法）作为组织代码的基本单元。</p>
 <p>面向过程编程：数据和方法相分离。不支持丰富的面向对象编程特性，比如继承、多态、封装。</p>
-<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><p><strong>单一职责原则（Single Responsibility Principle）</strong></p>
+<h2 id="设计原则">设计原则</h2>
+<p><strong>单一职责原则（Single Responsibility Principle）</strong></p>
 <blockquote>
 <p>一个类应该只负责一项职责。</p>
 <ul>
@@ -1356,9 +1358,10 @@
 </blockquote>
 <p><strong>合成复用原则（Composite Reuse principle）</strong></p>
 <blockquote>
-<p>尽量使用合成&#x2F;聚合的方式，而不是使用继承。</p>
+<p>尽量使用合成/聚合的方式，而不是使用继承。</p>
 </blockquote>
-<h1 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h1><p><strong>关联关系</strong></p>
+<h1>UML</h1>
+<p><strong>关联关系</strong></p>
 <blockquote>
 <p>泛化：</p>
 <ul>
@@ -1385,14 +1388,16 @@
 <li>使用的关系，即一个类的实现需要另一个类的协助，所以要尽量不使用双向的互相依赖，符号：带箭头的虚线，指向被依赖的类。</li>
 </ul>
 </blockquote>
-<p><img src="/images/584866-20230607115559582-1375349133.jpg" alt="img"></p>
+<p><img src="/images/231.png" alt="img"></p>
 <p><strong>类图表示方法</strong></p>
 <blockquote>
 <p>从上到下分为3部分：类名、属性、方法。</p>
 <p>符号含义：<code>+ public、- private、#protected</code></p>
 </blockquote>
-<p><img src="/images/584866-20230605165807681-627586503.jpg" alt="img"></p>
-<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><blockquote>
+<p><img src="/images/232.png" alt="img"></p>
+<h1>工厂模式</h1>
+<h2 id="简单工厂模式">简单工厂模式</h2>
+<blockquote>
 <p>定义一个工厂类，使用static方法创建对象，根据不同参数返回不同实例，每增加一个对象需要修改工厂类，违背了<strong>开闭原则</strong>。</p>
 <ul>
 <li>不推荐使用</li>
@@ -1401,8 +1406,9 @@
 <p>一旦有了新的实现类，就需要修改工厂实现，有可能造成工厂逻辑过于复杂，不利于系统的扩展和维护。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230606151632827-1055606085.jpg" alt="img"></p>
-<h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><blockquote>
+<p><img src="/images/233.png" alt="img"></p>
+<h2 id="工厂方法模式">工厂方法模式</h2>
+<blockquote>
 <p>定义一个用于创建对象的接口，让子类决定将哪一个类实例化，此模式使一个类的<strong>实例化延迟到其子类</strong>。</p>
 <ul>
 <li>但是工厂方法会导致类的个数过多，增加复杂度，增加系统的抽象性和理解难度。</li>
@@ -1411,47 +1417,47 @@
 <p>另外，工厂方法模式还可以和模板方法模式结合一起，将他们共同的基础逻辑抽取到父类中，其它的交给子类去实现。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230606151415021-312208668.jpg" alt="img"></p>
+<p><img src="/images/234.png" alt="img"></p>
 <p><strong>代码体现</strong></p>
 <blockquote>
 <p>某平台先拥有Java和Python学习视频，将来需要拓展业务开放FE(前端)视频学习。</p>
 </blockquote>
-<p><img src="/images/image-20231007150732447.png" alt="image-20231007150732447"></p>
-<pre><code class="java">public abstract class Video &#123;
+<p><img src="/images/235.png" alt="image-20231007150732447"></p>
+<pre><code class="language-java">public abstract class Video &#123;
     public abstract void produce();
 &#125;
 </code></pre>
-<pre><code class="java">public class JavaVideo extends Video &#123;
+<pre><code class="language-java">public class JavaVideo extends Video &#123;
     @Override
     public void produce() &#123;
         System.out.println(&quot;录制Java课程视频&quot;);
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class PythonVideo extends Video &#123;
+<pre><code class="language-java">public class PythonVideo extends Video &#123;
     @Override
     public void produce() &#123;
         System.out.println(&quot;录制Python课程视频&quot;);
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public abstract class VideoFactory &#123;
+<pre><code class="language-java">public abstract class VideoFactory &#123;
     public abstract Video getVideo();
 &#125;
 </code></pre>
-<pre><code class="java">public class JavaVideoFactory extends VideoFactory &#123;
+<pre><code class="language-java">public class JavaVideoFactory extends VideoFactory &#123;
     public Video getVideo() &#123;
         return new JavaVideo();
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class PythonVideoFactory extends VideoFactory &#123;
+<pre><code class="language-java">public class PythonVideoFactory extends VideoFactory &#123;
     public Video getVideo() &#123;
         return new PythonVideo();
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class Test &#123;
+<pre><code class="language-java">public class Test &#123;
     public static void main(String[] args) &#123;
         VideoFactory videoFactory = new JavaVideoFactory();
         Video video = videoFactory.getVideo();
@@ -1463,7 +1469,8 @@
 <blockquote>
 <p>当拓展业务时，可以仿照<code>Java</code>与<code>Python</code>，可以直接添加<code>FEVideo</code>与<code>FEVideoFactory</code>，可以体现出开放封闭原则。</p>
 </blockquote>
-<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><blockquote>
+<h2 id="抽象工厂模式">抽象工厂模式</h2>
+<blockquote>
 <p>提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类，用于创建一个产品族的产品。</p>
 <p>工厂方法模式和抽象工厂模式，它们之间最大的区别在于：</p>
 <ul>
@@ -1472,24 +1479,26 @@
 </ul>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230606172710556-547590722.jpg" alt="img"></p>
-<h1 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h1><blockquote>
+<p><img src="/images/236.png" alt="img"></p>
+<h1>建造者模式</h1>
+<blockquote>
 <p>将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</p>
 <p>构造器模式使用多个简单的对象一步一步构建成一个复杂的对象。</p>
 <p>它提供了一种创建对象的最佳方式。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230914140953582-1620306965.jpg" alt="img"></p>
-<h1 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h1><blockquote>
+<p><img src="/images/237.png" alt="img"></p>
+<h1>桥接模式</h1>
+<blockquote>
 <p>桥接模式就是把抽象和实现分离出来，然后中间通过<strong>组合</strong>来搭建他们之间的桥梁。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230831103224431-1474472057.jpg" alt="img"></p>
+<p><img src="/images/238.png" alt="img"></p>
 <p><strong>代码实现</strong></p>
 <blockquote>
 <p>中国有很多银行，有中国农业银行和中国工商银行，关于账号，有定期账号和活期账号，一个就是银行一个账号。</p>
 </blockquote>
-<pre><code class="java">public interface Account &#123;
+<pre><code class="language-java">public interface Account &#123;
     /** 打开我们的账号，打开账号，就要返回账号 */
     Account openAccount();
     
@@ -1498,7 +1507,7 @@
 
 &#125;
 </code></pre>
-<pre><code class="java">/** 定期的账号 */
+<pre><code class="language-java">/** 定期的账号 */
 public class DepositAccount implements Account &#123;
     @Override
     public Account openAccount() &#123;
@@ -1512,7 +1521,7 @@ public class DepositAccount implements Account &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">/** 活期账号 */
+<pre><code class="language-java">/** 活期账号 */
 public class SavingAccount implements Account &#123;
     @Override
     public Account openAccount() &#123;
@@ -1526,7 +1535,7 @@ public class SavingAccount implements Account &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public abstract class Bank &#123;
+<pre><code class="language-java">public abstract class Bank &#123;
     /** 只有子类能拿到这个Account的这个接口 */
     protected Account account;
 
@@ -1540,7 +1549,7 @@ public class SavingAccount implements Account &#123;
 
 &#125;
 </code></pre>
-<pre><code class="java">public class ABCBank extends Bank &#123;
+<pre><code class="language-java">public class ABCBank extends Bank &#123;
     /**
      * 组合的时候，可以通过构造器的方式来进行注入也可以通过set方法的方式来进行注入
      *
@@ -1557,7 +1566,7 @@ public class SavingAccount implements Account &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class ICBCBank extends Bank &#123;
+<pre><code class="language-java">public class ICBCBank extends Bank &#123;
     /**
      * 组合的时候，可以通过构造器的方式来进行注入也可以通过set方法的方式来进行注入
      *
@@ -1574,7 +1583,7 @@ public class SavingAccount implements Account &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class Test &#123;
+<pre><code class="language-java">public class Test &#123;
     public static void main(String[]args)&#123;
         Bank icbcBank = new ICBCBank(new DepositAccount());
         Account icbcAccount = icbcBank.openAccount();
@@ -1590,11 +1599,12 @@ public class SavingAccount implements Account &#123;
     &#125;
 &#125;
 </code></pre>
-<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><blockquote>
+<h1>单例模式</h1>
+<blockquote>
 <p>单例模式就是在程序运行中只实例化一次，创建一个全局唯一对象。</p>
 </blockquote>
 <p><strong>饿汉模式</strong></p>
-<pre><code class="java">//在类加载时就完成了初始化，所以类加载较慢，但获取对象的速度快
+<pre><code class="language-java">//在类加载时就完成了初始化，所以类加载较慢，但获取对象的速度快
 public class SingletonObject &#123;
     // 利用静态变量来存储唯一实例
     private static final SingletonObject instance = new SingletonObject();
@@ -1619,7 +1629,7 @@ public class SingletonObject &#123;
 </blockquote>
 <p><strong>懒汉模式</strong></p>
 <p>在程序初始化时不会创建实例，只有在使用实例的时候才会创建实例，所以懒汉模式解决了饿汉模式带来的空间浪费问题。</p>
-<pre><code class="java">public class SingletonObject &#123;
+<pre><code class="language-java">public class SingletonObject &#123;
     // 定义静态变量时，未初始化实例
     private static SingletonObject instance;
  
@@ -1637,7 +1647,7 @@ public class SingletonObject &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class SingletonObject &#123;
+<pre><code class="language-java">public class SingletonObject &#123;
     private static SingletonObject instance;
  
     private SingletonObject()&#123;
@@ -1668,7 +1678,7 @@ public class SingletonObject &#123;
 </ul>
 </blockquote>
 <p><strong>双重检查锁模式</strong></p>
-<pre><code class="java">public class SingletonObject &#123;
+<pre><code class="language-java">public class SingletonObject &#123;
     private static SingletonObject instance;
  
     private SingletonObject()&#123;
@@ -1691,20 +1701,20 @@ public class SingletonObject &#123;
 &#125;
 </code></pre>
 <p>在多线程的情况下，可能会出现<strong>空指针问题</strong>，出现问题的原因是JVM在实例化对象的时候会进行优化和指令重排序操作。</p>
-<pre><code class="java">    private SingletonObject()&#123;
+<pre><code class="language-java">    private SingletonObject()&#123;
      1   int x = 10;
      2   int y = 30;
      3  Object o = new Object();
                 
     &#125;
 </code></pre>
-<p>我们编写的顺序是1、2、3，JVM 会对它进行指令重排序，所以执行顺序可能是3、1、2，也可能是2、3、1，不管是那种执行顺序，JVM 最后都会保证所以实例都完成实例化。 </p>
+<p>我们编写的顺序是1、2、3，JVM 会对它进行指令重排序，所以执行顺序可能是3、1、2，也可能是2、3、1，不管是那种执行顺序，JVM 最后都会保证所以实例都完成实例化。</p>
 <blockquote>
 <p>如果构造函数中操作比较多时，为了提升效率，JVM 会在构造函数里面的属性未全部完成实例化时，就返回对象。</p>
 <p>双重检测锁出现空指针问题的原因就是出现在这里，当某个线程获取锁进行实例化时，其他线程就直接获取实例使用，由于JVM指令重排序的原因，其他线程获取的对象也许不是一个完整的对象，所以在使用实例的时候就会出现空指针异常问题。</p>
 </blockquote>
 <p>要解决双重检查锁模式带来空指针异常的问题，只需要使用<code>volatile</code>关键字。</p>
-<pre><code class="java">    // 添加volatile关键字
+<pre><code class="language-java">    // 添加volatile关键字
     private static volatile SingletonObject instance;
  
     private SingletonObject()&#123;
@@ -1725,9 +1735,9 @@ public class SingletonObject &#123;
 &#125;
 </code></pre>
 <p><strong>静态内部类单例模式</strong></p>
-<p>静态内部类单例模式实例由内部类创建，由于 JVM 在加载外部类的过程中, 是不会加载静态内部类的, 只有内部类的属性&#x2F;方法被调用时才会被加载, 并初始化其静态属性。</p>
+<p>静态内部类单例模式实例由内部类创建，由于 JVM 在加载外部类的过程中, 是不会加载静态内部类的, 只有内部类的属性/方法被调用时才会被加载, 并初始化其静态属性。</p>
 <p>静态属性由<code>static</code>修饰，保证只被实例化一次，并且严格保证实例化顺序。</p>
-<pre><code class="java">public class SingletonObject &#123;
+<pre><code class="language-java">public class SingletonObject &#123;
  
  
     private SingletonObject()&#123;
@@ -1748,7 +1758,7 @@ public class SingletonObject &#123;
 </code></pre>
 <p><strong>枚举类单例模式</strong></p>
 <p>枚举类型是线程安全的，并且只会装载一次，设计者充分的利用了枚举的这个特性来实现单例模式，枚举的写法非常简单，而且枚举类型是所用单例实现中唯一一种不会被破坏的单例实现模式。</p>
-<pre><code class="java">public class SingletonObject &#123;
+<pre><code class="language-java">public class SingletonObject &#123;
  
  
     private SingletonObject()&#123;
@@ -1780,38 +1790,42 @@ public class SingletonObject &#123;
 </code></pre>
 <p><strong>破坏单例模式的方法及解决办法</strong></p>
 <p>除枚举方式外，其他方法都会通过反射的方式破坏单例，反射是通过调用构造方法生成新的对象，所以如果我们想要阻止单例破坏，可以在构造方法中进行判断，若已有实例, 则阻止生成新的实例。</p>
-<pre><code class="java">private SingletonObject()&#123;
+<pre><code class="language-java">private SingletonObject()&#123;
     if (instance !=null)&#123;
         throw new RuntimeException(&quot;实例已经存在，请通过 getInstance()方法获取&quot;);
     &#125;
 &#125;
 </code></pre>
 <p>如果单例类实现了序列化接口Serializable, 就可以通过反序列化破坏单例，所以我们可以不实现序列化接口，如果非得实现序列化接口，可以重写反序列化方法readResolve(), 反序列化时直接返回相关单例对象。</p>
-<pre><code class="java">  public Object readResolve() throws ObjectStreamException &#123;
+<pre><code class="language-java">  public Object readResolve() throws ObjectStreamException &#123;
         return instance;
     &#125;
 </code></pre>
-<h1 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h1><blockquote>
+<h1>策略模式</h1>
+<blockquote>
 <p>定义了一系列算法，并将每个算法封装起来，使它们可以相互替换，且算法的变化不会影响使用算法的客户。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230920094436366-1512364592.jpg" alt="img"></p>
-<h1 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h1><blockquote>
+<p><img src="/images/239.png" alt="img"></p>
+<h1>模板方法模式</h1>
+<blockquote>
 <p>定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。</p>
 <p>Template Method使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。</p>
-<p>在模板模式中，一个抽象类公开定义了执行它的方法的方式&#x2F;模板。</p>
+<p>在模板模式中，一个抽象类公开定义了执行它的方法的方式/模板。</p>
 <p>它的子类可以按需要重写方法实现，但调用将以抽象类中定义的方式进行。</p>
 <p>简单来说，有多个子类共有的方法，且逻辑相同，可以考虑作为模板方法。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230926085751892-1595713073.jpg" alt="img"></p>
-<h1 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h1><blockquote>
+<p><img src="/images/240.png" alt="img"></p>
+<h1>访问者模式</h1>
+<blockquote>
 <p>表示一个作用于某对象结构中的各元素的操作。</p>
 <p>它使你可以在不改变各元素的类的前提下定义作用于这些元素的新操作。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230927100141283-705682739.jpg" alt="img"></p>
-<h1 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h1><blockquote>
+<p><img src="/images/241.png" alt="img"></p>
+<h1>适配器模式</h1>
+<blockquote>
 <p>适配器模式它将不兼容的接口转换为可兼容的接口，让原本由于接口不兼容而不能一起工作的类可以一起工作。</p>
 <p>适配器模式有两种实现方式：类适配器和对象适配器。</p>
 <ul>
@@ -1819,13 +1833,13 @@ public class SingletonObject &#123;
 </ul>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230831103205994-1079579250.jpg" alt="img"></p>
+<p><img src="/images/242.png" alt="img"></p>
 <p><strong>代码实现</strong></p>
 <blockquote>
 <p>ITarget 表示要转化成的接口定义。</p>
 <p>Adaptee 是一组不兼容 ITarget 接口定义的接口，Adaptor 将 Adaptee 转化成一组符合 ITarget 接口定义的接口。</p>
 </blockquote>
-<pre><code class="java">// 类适配器: 基于继承
+<pre><code class="language-java">// 类适配器: 基于继承
 public interface ITarget &#123;
   void f1();
   void f2();
@@ -1904,15 +1918,17 @@ public class Adaptor implements ITarget &#123;
 <p>但是，每个系统提供的过滤接口都是不同的，这就意味着没法复用一套逻辑来调用各个系统。</p>
 <p>这个时候，就可以使用适配器模式，将所有系统的接口适配为统一的接口定义，这样可以复用调用敏感词过滤的代码。</p>
 </blockquote>
-<h1 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h1><blockquote>
+<h1>代理模式</h1>
+<blockquote>
 <p>代理模式提供了对目标对象额外的访问方式，即通过代理对象访问目标对象。</p>
 <ul>
 <li>这样可以在不修改原目标对象的前提下，提供额外的功能操作，扩展目标对象的功能。</li>
 </ul>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230914153758501-824947124.jpg" alt="img"></p>
-<h2 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h2><blockquote>
+<p><img src="/images/243.png" alt="img"></p>
+<h2 id="静态代理">静态代理</h2>
+<blockquote>
 <p>在编译时就已经实现，编译完成后代理类是一个实际的class文件。</p>
 </blockquote>
 <p><strong>使用方式</strong></p>
@@ -1920,18 +1936,18 @@ public class Adaptor implements ITarget &#123;
 <p>创建一个接口，然后创建被代理的类实现该接口并且实现该接口中的抽象方法。</p>
 <p>之后再创建一个代理类，同时使其也实现这个接口，在代理类中持有一个被代理对象的引用，而后在代理类方法中调用该对象的方法。</p>
 </blockquote>
-<pre><code class="java">public interface UserDao &#123;    
+<pre><code class="language-java">public interface UserDao &#123;    
   void save();     
 &#125;
 </code></pre>
-<pre><code class="java">public class UserDaoImpl implements UserDao &#123;
+<pre><code class="language-java">public class UserDaoImpl implements UserDao &#123;
     @Override
     public void save() &#123;
         System.out.println(&quot;正在保存用户...&quot;);
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class TransactionHandler implements UserDao &#123;
+<pre><code class="language-java">public class TransactionHandler implements UserDao &#123;
     //目标代理对象
     private UserDao target;
     //构造代理对象时传入目标对象
@@ -1949,7 +1965,7 @@ public class Adaptor implements ITarget &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">public class Main &#123;
+<pre><code class="language-java">public class Main &#123;
     public static void main(String[] args) &#123;
         //新建目标对象
         UserDaoImpl target = new UserDaoImpl();
@@ -1967,7 +1983,8 @@ public class Adaptor implements ITarget &#123;
 <li>由于代理只能为一个类服务，如果需要代理的类很多，那么就需要编写大量的代理类，比较繁琐。</li>
 </ul>
 </blockquote>
-<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p><strong>JDK动态代理</strong></p>
+<h2 id="动态代理">动态代理</h2>
+<p><strong>JDK动态代理</strong></p>
 <blockquote>
 <p><strong>使用JDK动态代理的五大步骤：</strong></p>
 <ul>
@@ -1978,18 +1995,18 @@ public class Adaptor implements ITarget &#123;
 <li>通过代理对象调用目标方法</li>
 </ul>
 </blockquote>
-<pre><code class="java">public interface IHello &#123;
+<pre><code class="language-java">public interface IHello &#123;
     void sayHello();
 &#125;
 </code></pre>
-<pre><code class="java"> public class HelloImpl implements IHello &#123;
+<pre><code class="language-java"> public class HelloImpl implements IHello &#123;
     @Override
     public void sayHello() &#123;
         System.out.println(&quot;Hello world!&quot;);
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">import java.lang.reflect.InvocationHandler;
+<pre><code class="language-java">import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
  
 public class MyInvocationHandler implements InvocationHandler &#123;
@@ -2011,7 +2028,7 @@ public class MyInvocationHandler implements InvocationHandler &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">import java.lang.reflect.Constructor;
+<pre><code class="language-java">import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Proxy;
@@ -2044,7 +2061,7 @@ public class MyProxyTest &#123;
 &#125;
 </code></pre>
 <blockquote>
-<p><strong>JDK静态代理与JDK动态代理不同之处：</strong> </p>
+<p><strong>JDK静态代理与JDK动态代理不同之处：</strong></p>
 <p>在静态代理中我们需要对哪个接口和哪个被代理类创建代理类，所以在编译前就需要代理类实现与被代理类相同的接口，并且直接在实现的方法中调用被代理类相应的方法。</p>
 <p>但是动态代理不知道要针对哪个接口、哪个被代理类创建代理类，因为它是在运行时被创建的。</p>
 </blockquote>
@@ -2059,7 +2076,7 @@ public class MyProxyTest &#123;
 <li>然后在需要使用的时候，通过CGLIB动态代理获取代理对象。</li>
 </ul>
 </blockquote>
-<pre><code class="java"> public class HelloService &#123;
+<pre><code class="language-java"> public class HelloService &#123;
  
     public HelloService() &#123;
         System.out.println(&quot;HelloService构造&quot;);
@@ -2078,7 +2095,7 @@ public class MyProxyTest &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">import net.sf.cglib.proxy.MethodInterceptor;
+<pre><code class="language-java">import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
  
 import java.lang.reflect.Method;
@@ -2103,7 +2120,7 @@ public class MyMethodInterceptor implements MethodInterceptor&#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="java">import net.sf.cglib.core.DebuggingClassWriter;
+<pre><code class="language-java">import net.sf.cglib.core.DebuggingClassWriter;
 import net.sf.cglib.proxy.Enhancer;
  
 public class Client &#123;
@@ -2159,35 +2176,37 @@ public class Client &#123;
 <table>
 <thead>
 <tr>
-<th align="left">代理方式</th>
-<th align="left">实现</th>
-<th align="left">优点</th>
-<th align="left">缺点</th>
-<th align="left">特点</th>
+<th style="text-align:left">代理方式</th>
+<th style="text-align:left">实现</th>
+<th style="text-align:left">优点</th>
+<th style="text-align:left">缺点</th>
+<th style="text-align:left">特点</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">JDK静态代理</td>
-<td align="left">代理类与委托类实现同一接口，并且在代理类中需要硬编码接口</td>
-<td align="left">实现简单，容易理解</td>
-<td align="left">代理类需要硬编码接口，在实际应用中可能会导致重复编码，浪费存储空间并且效率很低</td>
-<td align="left">好像没啥特点</td>
+<tbody>
+<tr>
+<td style="text-align:left">JDK静态代理</td>
+<td style="text-align:left">代理类与委托类实现同一接口，并且在代理类中需要硬编码接口</td>
+<td style="text-align:left">实现简单，容易理解</td>
+<td style="text-align:left">代理类需要硬编码接口，在实际应用中可能会导致重复编码，浪费存储空间并且效率很低</td>
+<td style="text-align:left">好像没啥特点</td>
 </tr>
 <tr>
-<td align="left">JDK动态代理</td>
-<td align="left">代理类与委托类实现同一接口，主要是通过代理类实现InvocationHandler并重写<code>invoke</code>方法来进行动态代理的，在invoke方法中将对方法进行增强处理</td>
-<td align="left">不需要硬编码接口，代码复用率高</td>
-<td align="left">只能够代理实现了接口的委托类</td>
-<td align="left">底层使用反射机制进行方法的调用</td>
+<td style="text-align:left">JDK动态代理</td>
+<td style="text-align:left">代理类与委托类实现同一接口，主要是通过代理类实现InvocationHandler并重写<code>invoke</code>方法来进行动态代理的，在invoke方法中将对方法进行增强处理</td>
+<td style="text-align:left">不需要硬编码接口，代码复用率高</td>
+<td style="text-align:left">只能够代理实现了接口的委托类</td>
+<td style="text-align:left">底层使用反射机制进行方法的调用</td>
 </tr>
 <tr>
-<td align="left">CGLIB动态代理</td>
-<td align="left">代理类将委托类作为自己的父类并为其中的非final委托方法创建两个方法，一个是与委托方法签名相同的方法，它在方法中会通过<code>super</code>调用委托方法；另一个是代理类独有的方法。在代理方法中，它会判断是否存在实现了<code>MethodInterceptor</code>接口的对象，若存在则将调用intercept方法对委托方法进行代理</td>
-<td align="left">可以在运行时对类或者是接口进行增强操作，且委托类无需实现接口</td>
-<td align="left">不能对<code>final</code>类以及final方法进行代理</td>
-<td align="left">底层将方法全部存入一个数组中，通过数组索引直接进行方法调用</td>
+<td style="text-align:left">CGLIB动态代理</td>
+<td style="text-align:left">代理类将委托类作为自己的父类并为其中的非final委托方法创建两个方法，一个是与委托方法签名相同的方法，它在方法中会通过<code>super</code>调用委托方法；另一个是代理类独有的方法。在代理方法中，它会判断是否存在实现了<code>MethodInterceptor</code>接口的对象，若存在则将调用intercept方法对委托方法进行代理</td>
+<td style="text-align:left">可以在运行时对类或者是接口进行增强操作，且委托类无需实现接口</td>
+<td style="text-align:left">不能对<code>final</code>类以及final方法进行代理</td>
+<td style="text-align:left">底层将方法全部存入一个数组中，通过数组索引直接进行方法调用</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p><strong>CGlib比JDK快？</strong></p>
 <blockquote>
 <p>使用CGLiB实现动态代理，CGLib底层采用ASM字节码生成框架，使用字节码技术生成代理类，在JDK6之前比使用Java反射效率要高。</p>
@@ -2206,84 +2225,99 @@ public class Client &#123;
 <p>当Bean没有实现接口时，Spring使用CGlib实现。</p>
 <p>可以强制使用CGlib。</p>
 </blockquote>
-<h1 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h1><blockquote>
+<h1>原型模式</h1>
+<blockquote>
 <p>用原型实例指定创建对象的种类，并且通过拷贝这个原型来创建新的对象。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230606204804650-1464777117.jpg" alt="img"></p>
-<h1 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h1><blockquote>
+<p><img src="/images/244.png" alt="img"></p>
+<h1>组合模式</h1>
+<blockquote>
 <p>将对象组合成树形结构以表示<strong>部分-整体</strong>的层次结构，它使得客户对单个对象和复合对象的使用具有一致性。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230831103240117-205749072.jpg" alt="img"></p>
-<h1 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h1><blockquote>
+<p><img src="/images/245.png" alt="img"></p>
+<h1>装饰器模式</h1>
+<blockquote>
 <p>动态地给一个对象添加一些额外的职责，就扩展功能而言，它比生成子类方式更为灵活。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230831103257520-898087213.jpg" alt="img"></p>
-<h1 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h1><blockquote>
+<p><img src="/images/246.png" alt="img"></p>
+<h1>外观模式</h1>
+<blockquote>
 <p>为子系统中的一组接口提供一个一致的界面，Facade模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。</p>
 <p>外观模式Fcade不一定是接口，也可以是类，例如只有FacadeImpl这个类。</p>
 <ul>
-<li><p>Interface1、Interface2、Interface3都是子系统接口。</p>
+<li>
+<p>Interface1、Interface2、Interface3都是子系统接口。</p>
 </li>
-<li><p>使用Facade即可实现对3个子系统的调用。</p>
+<li>
+<p>使用Facade即可实现对3个子系统的调用。</p>
 </li>
 </ul>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230831103359436-904889205.jpg" alt="img"></p>
-<h1 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h1><blockquote>
+<p><img src="/images/247.png" alt="img"></p>
+<h1>享元模式</h1>
+<blockquote>
 <p>运用共享技术来有效地支持大量细粒度对象的复用。</p>
 <p>它通过共享已经存在的对象来大幅度减少需要创建的对象数量、避免大量相似类的开销，从而提高系统资源的利用率。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230830175441414-1363616129.jpg" alt="img"></p>
-<h1 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h1><blockquote>
+<p><img src="/images/248.png" alt="img"></p>
+<h1>责任链模式</h1>
+<blockquote>
 <p>解除请求的发送者和接收者之间耦合，而使多个对象都有机会处理这个请求。</p>
 <p>将这些对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理它。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230915092257430-437991004.jpg" alt="img"></p>
-<h1 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h1><blockquote>
+<p><img src="/images/249.png" alt="img"></p>
+<h1>命令模式</h1>
+<blockquote>
 <p>将一个请求封装为一个命令对象，使发出请求、执行请求解耦。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230919150517686-439770634.jpg" alt="img"></p>
-<h1 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h1><blockquote>
+<p><img src="/images/250.png" alt="img"></p>
+<h1>解释器模式</h1>
+<blockquote>
 <p>给定一个语言，定义它的文法的一种表示，并定义一个解释器，该解释器使用该表示来解释语言中的句子。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230919154710458-1297410100.jpg" alt="img"></p>
-<h1 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h1><blockquote>
+<p><img src="/images/251.png" alt="img"></p>
+<h1>迭代器模式</h1>
+<blockquote>
 <p>提供一种方法顺序访问一个聚合对象中各个元素，而又不需暴露该对象的内部表示。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230919163249776-2016165829.jpg" alt="img"></p>
-<h1 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h1><blockquote>
+<p><img src="/images/252.png" alt="img"></p>
+<h1>中介者模式</h1>
+<blockquote>
 <p>用一个中介对象来封装一系列的对象交互。</p>
 <p>中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230919170424855-294789495.jpg" alt="img"></p>
-<h1 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h1><blockquote>
+<p><img src="/images/253.png" alt="img"></p>
+<h1>备忘录模式</h1>
+<blockquote>
 <p>在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。</p>
 <ul>
 <li>这样以后就可将该对象恢复到保存的状态。</li>
 </ul>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230919174335017-2143959043.jpg" alt="img"></p>
-<h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><blockquote>
+<p><img src="/images/254.png" alt="img"></p>
+<h1>观察者模式</h1>
+<blockquote>
 <p>定义对象间的一种一对多的依赖关系，以便当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并自动刷新。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230919182438331-669861037.jpg" alt="img"></p>
-<h1 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h1><blockquote>
+<p><img src="/images/255.png" alt="img"></p>
+<h1>状态模式</h1>
+<blockquote>
 <p>允许一个对象在其内部状态改变时改变它的行为，对象看起来似乎修改了它所属的类。</p>
 </blockquote>
 <p><strong>UML类图：</strong></p>
-<p><img src="/images/584866-20230920094357489-1654905154.jpg" alt="img"></p>
+<p><img src="/images/256.png" alt="img"></p>
 
 	</div>
 </div>
