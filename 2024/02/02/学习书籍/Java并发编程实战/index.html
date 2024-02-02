@@ -451,6 +451,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2024/02/02/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/">
+										Java并发编程的艺术
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2023/11/16/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
 										Java开发手册
 									</a>
@@ -1486,6 +1495,61 @@ public class LazyInitRace&#123;
 <p>将对象的引用保存到某个正确构造对象的final类型域中</p>
 <p>将对象的引用保存到一个由锁保护的域中</p>
 </blockquote>
+<h1 id="对象的组合"><a href="#对象的组合" class="headerlink" title="对象的组合"></a>对象的组合</h1><p><strong>设计线程安全的类</strong></p>
+<blockquote>
+<p>设计线程安全类的三个基本要素：</p>
+<ul>
+<li><p>找出构成对象状态的所有变量</p>
+</li>
+<li><p>找出约束状态变量的不变性条件</p>
+</li>
+<li><p>建立对象状态的并发访问管理策略</p>
+</li>
+</ul>
+</blockquote>
+<p><strong>实例封闭</strong></p>
+<blockquote>
+<p>当一个对象被封装到另一个对象中，能够访问到被封装对象的所有代码路径都是已知的。</p>
+<p>通过将封闭机制和合适的加锁策略结合，可以确保以线程安全的方式来使用非线程安全的对象</p>
+</blockquote>
+<pre><code class="java">public class PersonSet&#123;  
+       private final Set&lt;Person&gt; mySet = new HashSet&lt;Person&gt;();  
+
+       public sychronized void addPersion(Person p) &#123;  
+              mySet.add(p)  
+         &#125;  
+
+       public sychronized boolean containsPerson(Person p) &#123;  
+              return mySet.contains(p);  
+         &#125;  
+    &#125;
+</code></pre>
+<blockquote>
+<p>虽然HashSet 并非线程安全的，但是mySet是私有的不会逸出。</p>
+<p>唯一能访问mySet的代码是<code>addPerson()</code>和<code>containsPerson()</code>。</p>
+<p>在执行上他们都要获的PersonSet上的锁。</p>
+<p>PersonSet的状态完全又它的内置锁保护。</p>
+<p>所以PersonSet是一个线程安全的类。</p>
+</blockquote>
+<blockquote>
+<p>java平台的类库有很多实例封闭的例子。</p>
+<p>比如一些基本的容器并非线程安全的，如ArrayList，HashMap。</p>
+<p>类库提供的包装器方法，<code>Collections.synchronizedList(list)、Collections.synchronizedMap(m)</code>只要这些包装器对象拥有对被包装容器对象的唯一引用（即把容器对象封装在包装器中），非线程安全的类就可以在多线程中使用。</p>
+</blockquote>
+<p><strong>线程安全性的委托</strong></p>
+<pre><code class="java">class Counter &#123;
+
+    private AtomicInteger count = new AtomicInteger(0);
+
+    private int inc()&#123;
+        return count.incrementAndGet();
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>对于Counter来说，由于Counter只有一个域就是AtomicInteger，而AtomicInteger又是线程安全的，所以很容易知道Counter是线程安全的。</p>
+<p>Counter把它的线程安全性交给了AtomicInteger来决定，也就说委托给了AtomicInteger来保证。</p>
+</blockquote>
 
 	</div>
 </div>
@@ -1493,6 +1557,11 @@ public class LazyInitRace&#123;
 
     <div class="post-guide">
         <div class="item left">
+            
+              <a href="/2024/02/02/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  Java并发编程的艺术
+              </a>
             
         </div>
         <div class="item right">
