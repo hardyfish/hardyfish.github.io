@@ -1315,7 +1315,12 @@
       <!--打赏-->
 	<div id="article-content">
 		<blockquote>
-<p>JWT优点：可以不用在服务端存储认证信息（比如:Token），完全由客户端提供，服务端只要根据 JWT 自身提供的解密算法就可以验证用户合法性，而且这个过程是安全的。</p>
+<p>JWT（Json Web Token）是一个<strong>经过加密的</strong>，<strong>包含用户信息</strong>的且<strong>具有时效性</strong>的固定格式字符串。</p>
+<p>JWT优点：</p>
+<ul>
+<li>可以不用在服务端存储认证信息（比如:Token）。</li>
+<li>完全由客户端提供，服务端只要根据 JWT 自身提供的解密算法就可以验证用户合法性，而且这个过程是安全的。</li>
+</ul>
 </blockquote>
 <p><strong>数据结构</strong></p>
 <blockquote>
@@ -1371,6 +1376,15 @@
 <li>所以，如果有人改了载荷部分的信息，那最后加密出的结果肯定就和改之前的不一样的，最后验证的结果就是不合法的请求。</li>
 </ul>
 </blockquote>
+<p><strong>JWT认证架构</strong></p>
+<blockquote>
+<p>方案一：网关统一校验:</p>
+</blockquote>
+<p><img src="/images/416.png" alt="image-20221114215326634"></p>
+<blockquote>
+<p>方案二：应用认证方案:</p>
+</blockquote>
+<p><img src="/images/417.png" alt="image-20221114221411497"></p>
 
 	</div>
 </div>

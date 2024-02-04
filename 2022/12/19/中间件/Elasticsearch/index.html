@@ -1567,35 +1567,47 @@
 <p>这样可以确保热数据在被预热之后，尽量都让他们留在 ES内存 里，别让冷数据给冲掉。</p>
 </blockquote>
 <h1>基本原理</h1>
-<p><strong>写数据</strong></p>
+<p><strong>文档写入流程</strong></p>
 <blockquote>
-<p>在文档写入时，会根据<code>_routing</code>来计算，得出文档要写入哪个分片。</p>
-<p>写入请求只会写主分片，当主分片写入成功后，会同时把写入请求发送给所有的副本分片。</p>
-<p>当副本分片写入成功后，会传回返回信息给主分片，主分片得到所有副本分片的返回信息后，再返回给客户端。</p>
+<p>客户端发送任何一个请求到任意一个节点，这个节点就成为协调节点 （coordinate node）。</p>
+<p>协调节点对新增document（可以手动设置<code>doc id</code>，也可以由系统分配）的id号进行哈希取值。</p>
+<p>再根据分片的数量进行取模，得到的数量就是具体的节点，然后将请求转发给对应node。</p>
+<p>node上的primary shard处理请求，然后将数据同步到replica node。</p>
+<p>协调节点如果发现primary shard所在的node和所有的replica shard所对应的 node 都搞定之后，就会将请求返回给客户端。</p>
 </blockquote>
-<p><strong>搜索数据</strong></p>
+<p><img src="/images/418.png" alt="image-20221019211600114"></p>
+<p><strong>文档提取流程</strong></p>
 <blockquote>
-<p>客户端发送请求到一个 coordinate node（调度节点）。</p>
-<p>协调节点将搜索请求转发到该索引所有的 shard 对应的 primary shard或 replica shard 上。</p>
+<p>客户端发送任何一个请求到任意一个node，这个节点就成为协调节点。</p>
+<p>协调节点对文档id进行哈希路由，此时会使用round-robin随机轮询算法，在主分片以及所有的副本分片中随机选择一个，让读请求负载均衡。</p>
+<p>数据提取完毕，返回document给协调节点。</p>
+<p>协调节点再将数据返回给客户端。</p>
+</blockquote>
+<p><img src="/images/419.png" alt="image-20221019211816105"></p>
+<p><strong>文档搜索过程</strong></p>
+<blockquote>
+<p>文档搜索和提取的区别：</p>
+<ul>
+<li>
+<p>文档提取：一次性获取一个文档。</p>
+</li>
+<li>
+<p>文档搜索：一次性获取多个文档。</p>
+</li>
+</ul>
+<p>客户端发送一个请求给协调节点（coordinate node）。</p>
+<p>协调节点将搜索的请求转发给所有shard对应的primary shard或replica shard。</p>
 <p>query phase：</p>
 <ul>
-<li>每个 shard 将自己的搜索结果（一些 doc id）返回给协调节点。</li>
-<li>由协调节点进行数据的<strong>合并、排序、分页</strong>等操作，产出最终结果。</li>
+<li>每一个shard将自己搜索的结果（其实也就是一些唯一标识），返回给协调节点，由协调节点进行数据的合并、排序、分页等操作，产出最后的结果。</li>
 </ul>
-<p>fetch phase（读数据过程）：</p>
+<p>fetch phase ：</p>
 <ul>
-<li>
-<p>接着由协调节点根据 <code>doc id</code> 去各个节点上拉取实际的 doc 数据，最终返回给客户端。</p>
-</li>
-<li>
-<p>写请求是写入 primary shard，然后同步给所有的 replica shard。</p>
-</li>
-<li>
-<p>读请求可以从 primary shard 或 replica shard 读取，采用的是随机轮询算法。</p>
-</li>
+<li>接着由协调节点，根据唯一标识去各个节点进行拉取数据，最后汇总返回给客户端。</li>
 </ul>
 </blockquote>
-<p><strong>写入过程</strong></p>
+<p><img src="/images/420.png" alt="image-20221019211933274"></p>
+<p><strong>文档写入的底层原理</strong></p>
 <blockquote>
 <p><strong>refresh</strong>：</p>
 <ul>
@@ -1634,23 +1646,6 @@
 </ul>
 <p>如果是更新操作，就是将旧的 doc 标识为 deleted 状态，然后创建一个新的 doc。</p>
 <p>每次segment merge 的时候，会将多个 segment 文件合并成一个，<strong>同时这里会将标识为 deleted 的 doc 给物理删除掉</strong>，不写入到新的 segment 中，然后将新的 segment 文件写入磁盘，这里会写一个 commit point ，标识所有新的 segment 文件，然后打开 segment 文件供搜索使用，同时删除旧的 segment 文件。</p>
-</blockquote>
-<p><strong>搜索过程</strong></p>
-<blockquote>
-<p>搜索分为两个阶段执行，Query、Fetch。</p>
-<p>Query：</p>
-<ul>
-<li>客户端发送请求到 coordinate node，协调节点将搜索请求广播到所有的 primary shard 或 replica shard。</li>
-<li>每个分片在本地执行搜索并构建一个匹配文档的大小为 from + size 的优先队列。</li>
-<li>每个分片返回各自优先队列中 所有文档的 ID 和排序值 给协调节点，由协调节点及逆行数据的合并、排序、分页等操作，产出最终结果。</li>
-</ul>
-<p>Fetch：</p>
-<ul>
-<li>协调节点根据 doc id 去各个节点上查询实际的 document 数据，由协调节点返回结果给客户端。</li>
-<li>coordinate node 对 doc id 进行哈希路由，将请求转发到对应的 node，此时会使用 round-robin 随机轮询算法，在 primary shard 以及其所有 replica 中随机选择一个，让读请求负载均衡。</li>
-<li>接收请求的 node 返回 document 给 coordinate node。</li>
-<li>coordinate node 返回 document 给客户端。</li>
-</ul>
 </blockquote>
 <h1>应用场景</h1>
 <p><strong>深度分页</strong></p>
