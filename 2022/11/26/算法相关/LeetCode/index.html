@@ -823,6 +823,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2024/02/03/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/ShardingSphere/">
+										ShardingSphere
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
 										Spring
 									</a>
@@ -2212,6 +2221,25 @@ class Solution &#123;
         int temp = nums[a];
         nums[a] = nums[b];
         nums[b] = temp;
+    &#125;
+&#125;
+</code></pre>
+<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/subsets/">78子集</a></h1>
+<pre><code class="language-java">class Solution &#123;
+    public List&lt;List&lt;Integer&gt;&gt; subsets(int[] nums) &#123;
+        List&lt;List&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();
+        backtrack(0, nums, res, new ArrayList&lt;Integer&gt;());
+        return res;
+
+    &#125;
+
+    private void backtrack(int i, int[] nums, List&lt;List&lt;Integer&gt;&gt; res, ArrayList&lt;Integer&gt; tmp) &#123;
+        res.add(new ArrayList&lt;&gt;(tmp));
+        for (int j = i; j &lt; nums.length; j++) &#123;
+            tmp.add(nums[j]);
+            backtrack(j + 1, nums, res, tmp);
+            tmp.remove(tmp.size() - 1);
+        &#125;
     &#125;
 &#125;
 </code></pre>
