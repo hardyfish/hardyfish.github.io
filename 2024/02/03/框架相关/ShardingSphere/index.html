@@ -1430,6 +1430,92 @@
 </blockquote>
 <pre><code>spring.shardingsphere.rules.sharding.binding-tables[0]= # 绑定表规则列表spring.shardingsphere.rules.sharding.binding-tables[1]= # 绑定表规则列表spring.shardingsphere.rules.sharding.binding-tables[x]= # 绑定表规则列表
 </code></pre>
+<p><strong>分片策略</strong></p>
+<blockquote>
+<p>Sharding-JDBC内置了很多常用的分片策略，这些算法主要针对两个维度:</p>
+<ul>
+<li>数据源分片</li>
+<li>数据表分片</li>
+</ul>
+<p>Sharding-JDBC的分片策略包含了分片键和分片算法:</p>
+<ul>
+<li>分片键:用于分片的数据库字段，是将数据库(表)水平拆分的关键字段。<ul>
+<li>例：将订单表中的订单主键的尾数取模分片，则订单主键为分片字段。 </li>
+<li>SQL中如果无分片字段，将执行全路由，性能较差。 <ul>
+<li>除了对单分片字段的支持，ShardingSphere也支持根据多个字段进行分片。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>分片算法：就是用来实现分片的计算规则。</li>
+</ul>
+<p>Sharding-JDBC提供内置了多种分片算法，包含四种类型分别是：</p>
+<ul>
+<li>自动分片算法</li>
+<li>标准分片算法</li>
+<li>复合分片算法</li>
+<li>Hinit分片算法</li>
+</ul>
+</blockquote>
+<p>自动分片算法：</p>
+<blockquote>
+<p>自动分片算法，就是根据配置的算法表达式完成数据的自动分发功能，在Sharding-JDBC中提供了五种自动分片算法:</p>
+<ul>
+<li>取模分片算法</li>
+<li>哈希取模分片算法</li>
+<li>基于分片容量的范围分片算法</li>
+<li>基于分片边界的范围分片算法</li>
+<li>自动时间段分片算法</li>
+</ul>
+</blockquote>
+<p>取模分片算法:</p>
+<blockquote>
+<p>它会根据分片字段的值和sharding-count进行取模运算，得到一个结果。</p>
+</blockquote>
+<pre><code># database-mod是自定义字符串名字spring.shardingsphere.rules.sharding.default-database-strategy.standard.sharding-algorithm-name=database-mod# MOD表示取模算法类型spring.shardingsphere.rules.sharding.sharding-algorithms.database-mod.type=MOD# 表示分片数量spring.shardingsphere.rules.sharding.sharding-algorithms.database-mod.props.sharding-count=2
+</code></pre>
+<p>哈希取模分片算法:</p>
+<blockquote>
+<p>和取模算法相同，唯一的区别是针对分片键得到哈希值之后再取模。</p>
+</blockquote>
+<pre><code># database-mod是自定义字符串名字spring.shardingsphere.rules.sharding.default-database-strategy.standard.sharding-algorithm-name=database-hash-modspring.shardingsphere.rules.sharding.sharding-algorithms.database-hash-mod.type=HASH_MODspring.shardingsphere.rules.sharding.sharding-algorithms.database-hash-mod.props.sharding-count=2
+</code></pre>
+<p>分片容量范围:</p>
+<blockquote>
+<p>分片容量范围，简单理解就是按照某个字段的数值范围进行分片。</p>
+<ul>
+<li><code>(0~199)保存到表0[200~399]保存到表1[400~599)保存到表2</code>。</li>
+</ul>
+</blockquote>
+<p>基于分片边界的范围分片算法：</p>
+<blockquote>
+<p>前面讲的分片容量范围分片，是一个均衡的分片方法，如果存在不均衡的场景。</p>
+<ul>
+<li><code>(0~1000)保存到表0[1000~20000]保存到表1[20000~300000)保存到表2[300000~无穷大)保存到表3</code>。</li>
+</ul>
+</blockquote>
+<pre><code># BOUNDARY_RANGE 表示分片算法类型spring.shardingsphere.rules.sharding.sharding-algorithms.t-order-boundary-range.type=BOUNDARY_RANGE# 分片的范围边界，多个范围边界以逗号分隔spring.shardingsphere.rules.sharding.sharding-algorithms.t-order-boundary-range.props.sharding-ranges=1000,20000,300000
+</code></pre>
+<p>自动时间段分片算法：</p>
+<blockquote>
+<p>根据时间段进行分片。</p>
+</blockquote>
+<pre><code>(1970-01-01 23:59:59 ~ 2020-01-01 23:59:59) 表0[2020-01-01 23:59:59 ~ 2021-01-01 23:59:59) 表1[2021-01-01 23:59:59 ~ 2021-02-01 23:59:59) 表2[2022-01-01 23:59:59 ~ 2024-01-01 23:59:59) 表3
+</code></pre>
+<p>标准分片算法:</p>
+<blockquote>
+<p>标准分片策略，它只支持对单个分片健（字段）为依据的分库分表。</p>
+</blockquote>
+<p>行表达式分片算法:</p>
+<blockquote>
+<p>使用 Groovy 的表达式，提供对 SQL 语句中的 <code>=</code> 和 <code>IN</code> 的分片操作支持，只支持单分片键。</p>
+<p>对于简单的分片算法，可以通过简单的配置使用，从而避免繁琐的 Java 代码开发：</p>
+<ul>
+<li>如: <code>t_user_$-&gt;&#123;u_id % 8&#125;</code> 表示 <code>t_user</code> 表根据 <code>u_id</code> 模 8，而分成 8 张表，表名称为 <code>t_user_0</code> 到 <code>t_user_7</code></li>
+</ul>
+</blockquote>
+<pre><code>spring.shardingsphere.rules.sharding.sharding-algorithms.database-inline.type=INLINEspring.shardingsphere.rules.sharding.sharding-algorithms.database-inline.props.algorithm-expression=ds-$-&gt;&#123;user_id % 2&#125;spring.shardingsphere.rules.sharding.sharding-algorithms.t-order-inline.type=INLINEspring.shardingsphere.rules.sharding.sharding-algorithms.t-order-inline.props.algorithm-expression=t_order_$-&gt;&#123;order_id % 2&#125;
+</code></pre>
 
 	</div>
 </div>
