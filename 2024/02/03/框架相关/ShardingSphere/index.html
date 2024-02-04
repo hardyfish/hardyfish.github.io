@@ -1328,12 +1328,14 @@
 <p>Sharding-JDBC 内部屏蔽了所有的分片规则和处理逻辑的复杂性。</p>
 </blockquote>
 <img src="/images/412.png" alt="image-20240204154454322" style="zoom:40%;" />
+
 <p>Sharding-Proxy：</p>
 <blockquote>
 <p>Sharding-Proxy 组件定位为一个透明化的数据库代理端，所以它是代理服务器分片方案的一种具体实现方式。</p>
 <p>Sharding-Proxy 专门对数据库二进制协议进行了封装，并提供了一个代理服务端组件。</p>
 </blockquote>
 <img src="/images/413.png" alt="image-20240204154814095" style="zoom:40%;" />
+
 <p>Sharding-Sidecar：</p>
 <blockquote>
 <p>以 Sidecar 的形式代理所有对数据库的访问。</p>
@@ -1345,13 +1347,11 @@
 <ul>
 <li>所谓客户端分片：相当于在数据库的客户端就实现了分片规则。</li>
 <li>客户端分片结构：重写JDBC协议。</li>
-<li>这种解决方案的优势在于：
-<ul>
+<li>这种解决方案的优势在于：<ul>
 <li>分片操作对于业务而言是完全透明的，从而一定程度上实现业务开发人员与数据库中间件团队在职责上的分离。</li>
 </ul>
 </li>
-<li>典型的中间件包括阿里巴巴的 TDDL 以及ShardingSphere。
-<ul>
+<li>典型的中间件包括阿里巴巴的 TDDL 以及ShardingSphere。<ul>
 <li>因为 TDDL 并没有开源，所以无法判断客户端分片的具体实现方案。</li>
 <li>而对于 ShardingSphere 而言，它是重写 JDBC 规范以实现客户端分片的典型实现框架。</li>
 </ul>
@@ -1359,28 +1359,23 @@
 </ul>
 <p><strong>代理服务器分片：</strong></p>
 <ul>
-<li>在应用层和数据库层之间添加一个代理层。
-<ul>
+<li>在应用层和数据库层之间添加一个代理层。<ul>
 <li>有了代理层之后，就可以把分片规则集中维护在这个代理层中，并对外提供与 JDBC 兼容的 API 给到应用层。</li>
 </ul>
 </li>
 <li>这样，应用层的业务开发人员就不用关心具体的分片规则，而只需要完成业务逻辑的实现。</li>
-<li>常见的开源框架有阿里的 Cobar 以及民间开源社区的 MyCat。
-<ul>
+<li>常见的开源框架有阿里的 Cobar 以及民间开源社区的 MyCat。<ul>
 <li>在 <code>ShardingSphere 3.X</code> 版本中，也添加了 <code>Sharding-Proxy</code> 模块来实现代理服务器分片。</li>
 </ul>
 </li>
 </ul>
 <p><strong>分布式数据库:</strong></p>
 <ul>
-<li>
-<p>关系型数据库的缺乏分布式环境下面对大数据量、高并发访问的有效数据处理机制。</p>
+<li><p>关系型数据库的缺乏分布式环境下面对大数据量、高并发访问的有效数据处理机制。</p>
 </li>
-<li>
-<p>在分布式环境下，如果想要基于 MySQL 等传统关系型数据库来实现事务将面临巨大的挑战。</p>
+<li><p>在分布式环境下，如果想要基于 MySQL 等传统关系型数据库来实现事务将面临巨大的挑战。</p>
 </li>
-<li>
-<p>以 TiDB 为代表的分布式数据库的兴起赋予了关系型数据库一定程度的分布式特性：</p>
+<li><p>以 TiDB 为代表的分布式数据库的兴起赋予了关系型数据库一定程度的分布式特性：</p>
 <ul>
 <li>在这些分布式数据库中，数据分片及分布式事务将是其内置的基础功能，对业务开发人员是透明的。</li>
 <li>业务开发人员只需要使用框架对外提供的 JDBC 接口，就像在使用 MySQL 等传统关系型数据库一样。</li>
@@ -1388,6 +1383,53 @@
 </li>
 </ul>
 </blockquote>
+<h1 id="ShardingJDBC"><a href="#ShardingJDBC" class="headerlink" title="ShardingJDBC"></a>ShardingJDBC</h1><p><strong>基本概念</strong></p>
+<p>逻辑表：</p>
+<blockquote>
+<p>逻辑表可以理解为数据库中的视图，是一张虚拟表。</p>
+<p>可以映射到一张物理表，也可以由多张物理表组成，这些物理表可以来自于不同的数据源。</p>
+</blockquote>
+<blockquote>
+<p>当针对<code>t_order</code>表操作时，会根据分片规则映射到实际的物理表进行相关事务操作。</p>
+<ul>
+<li>逻辑表会在SQL解析和路由时被替换成真实的表名。</li>
+</ul>
+</blockquote>
+<p><img src="/images/414.png" alt="img"></p>
+<pre><code>spring.shardingsphere.rules.sharding.tables.t_order.actual-data-nodes=ds-$-&gt;&#123;0..1&#125;.t_order_$-&gt;&#123;0..1&#125;
+</code></pre>
+<p>广播表:</p>
+<blockquote>
+<p>广播表也叫全局表，也就是它会存在于多个库中冗余，避免跨库查询问题。</p>
+<p>比如省份、字典等一些基础数据，为了避免分库分表后关联表查询这些基础数据存在跨库问题。</p>
+<ul>
+<li>所以可以把这些数据同步给每一个数据库节点，这个就叫广播表。</li>
+</ul>
+</blockquote>
+<p><img src="/images/415.png" alt="img"></p>
+<pre><code># 广播表, 其主节点是ds0spring.shardingsphere.sharding.broadcast-tables=t_configspring.shardingsphere.sharding.tables.t_config.actual-data-nodes=ds$-&gt;&#123;0&#125;.t_config
+</code></pre>
+<p>绑定表：</p>
+<blockquote>
+<p>有些表的数据是存在逻辑的主外键关系的，比如订单表<code>order_info</code>，存的是汇总的商品数，商品金额。</p>
+<p>订单明细表<code>order_detail</code>，是每个商品的价格，个数等等。</p>
+<p>或者叫做从属关系，父表和子表的关系。</p>
+<p>他们之间会经常有关联查询的操作，如果父表的数据和子表的数据分别存储在不同的数据库，跨库关联查询也比较麻烦。</p>
+<p><strong>所以能不能把父表和数据和从属于父表的数据落到一个节点上呢？</strong></p>
+<ul>
+<li><p>比如<code>order_id=1001</code>的数据在node1，它所有的明细数据也放到node1。</p>
+</li>
+<li><p><code>order_id=1002</code>的数据在node2，它所有的明细数据都放到node2，这样在关联查询的时候依然是在一个数据库。</p>
+</li>
+</ul>
+</blockquote>
+<pre><code># 绑定表规则，多组绑定规则使用数组形式配置spring.shardingsphere.rules.sharding.binding-tables=t_order,t_order_item
+</code></pre>
+<blockquote>
+<p>如果存在多个绑定表规则，可以用数组的方式声明：</p>
+</blockquote>
+<pre><code>spring.shardingsphere.rules.sharding.binding-tables[0]= # 绑定表规则列表spring.shardingsphere.rules.sharding.binding-tables[1]= # 绑定表规则列表spring.shardingsphere.rules.sharding.binding-tables[x]= # 绑定表规则列表
+</code></pre>
 
 	</div>
 </div>
