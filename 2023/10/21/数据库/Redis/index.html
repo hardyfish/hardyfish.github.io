@@ -1320,7 +1320,7 @@
 <p>Redis 将数据存储在内存中，读写操作不会受到磁盘的 IO 速度限制，所以Redis的读写速度会非常的快。</p>
 <p>CPU 不是 Redis 的瓶颈，Redis 的瓶颈是<strong>机器内存的大小或者网络带宽</strong>。</p>
 </blockquote>
-<p>使用I/O多路复用模型：</p>
+<p>使用I&#x2F;O多路复用模型：</p>
 <blockquote>
 <p>Redis 线程不会阻塞在某一个特定的客户端请求处理上。</p>
 <ul>
@@ -1329,7 +1329,7 @@
 </blockquote>
 <p>采用单线程模型：</p>
 <blockquote>
-<p>Redis 的网络 IO 以及键值对指令读写是由一个线程来执行的。</p>
+<p>Redis 的网络 IO 以及键值对指令读写是由一个线程来执行的。 </p>
 <ul>
 <li>对于 Redis 的持久化、集群数据同步、异步删除等都是其他线程执行。</li>
 </ul>
@@ -1339,8 +1339,7 @@
 <blockquote>
 <p>为了追求速度，不同数据类型使用不同的数据结构速度才得以提升。</p>
 </blockquote>
-<h1>数据结构</h1>
-<p>一个单机的 Redis 服务器默认情况下有 16 个数据库（0-15 号）。</p>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p>一个单机的 Redis 服务器默认情况下有 16 个数据库（0-15 号）。</p>
 <ul>
 <li>默认使用的是 0 号数据库，可以使用 <code>SELECT</code> 命令切换数据库。</li>
 </ul>
@@ -1360,7 +1359,7 @@
 <li>键为 dict 中的数据库键，值为这个数据库键的过期时间戳，这个值以 long long 类型表示。</li>
 </ul>
 </blockquote>
-<pre><code class="language-c">typedef struct redisDb &#123;
+<pre><code class="c">typedef struct redisDb &#123;
     // 数据库键空间，保存着数据库中的所有键值对
     dict *dict;
     // 键的过期时间，字典的键为键，字典的值为过期事件 UNIX 时间戳
@@ -1383,22 +1382,111 @@
 <p><code>string</code>（<strong>字符串</strong>）、<code>hash</code>（<strong>哈希</strong>）、<code>list</code>（<strong>列表</strong>）、<code>set</code>（<strong>集合</strong>）、<code>zset</code>（<strong>有序集合</strong>）</p>
 </blockquote>
 <img src="/images/149.png" alt="img" style="zoom:50%;" />
+
+<p><strong>String</strong></p>
+<blockquote>
+<p>它可以存储任意类型的数据，比如文本、数字、图片或者序列化的对象。</p>
+<p>一个 string 类型的键最大可以存储 512 MB 的数据。</p>
+<p>string 类型的底层实现是 SDS，它是一个动态字符串结构，由长度、空闲空间和字节数组三部分组成。</p>
+<p>SDS有3种编码类型：</p>
+<ul>
+<li>embstr：占用64Bytes的空间，存储44Bytes的数据</li>
+<li>raw：存储大于44Bytes的数据</li>
+<li>int：存储整数类型</li>
+</ul>
+<p>embstr和raw存储字符串数据，int存储整型数据。</p>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>缓存数据，提高访问速度和降低数据库压力。</li>
+<li>计数器，利用 incr 和 decr 命令实现原子性的加减操作。</li>
+<li>分布式锁，利用 setnx 命令实现互斥访问。</li>
+<li>限流，利用 expire 命令实现时间窗口内的访问控制。</li>
+</ul>
+</blockquote>
+<p><strong>List</strong></p>
+<blockquote>
+<p>一个有序的字符串列表，它按照插入顺序排序，并且支持在两端插入或删除元素。</p>
+<p>一个 list 类型的键最多可以存储 <code>2^32 - 1</code> 个元素。</p>
+<p><code>redis3.2</code>以后，list 类型的底层实现只有一种结构：quicklist。</p>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>消息队列，利用 lpush 和 rpop 命令实现生产者消费者模式。</li>
+<li>最新消息，利用 lpush 和 ltrim 命令实现固定长度的时间线。</li>
+<li>历史记录，利用 lpush 和 lrange 命令实现浏览记录或者搜索记录。</li>
+</ul>
+</blockquote>
+<p><strong>Hash</strong></p>
+<blockquote>
+<p>一个键值对集合，它可以存储多个字段和值，类似于编程语言中的 map 对象。</p>
+<p>一个 hash 类型的键最多可以存储 <code>2^32 - 1</code> 个字段。</p>
+<p>Hash类型的底层实现有三种：</p>
+<ul>
+<li><code>ziplist</code>：压缩列表，当<strong>hash</strong>达到一定的阈值时，会自动转换为<code>hashtable</code>结构。</li>
+<li><code>listpack</code>：紧凑列表，在Redis7.0之后，<code>listpack</code>正式取代<code>ziplist</code>。<ul>
+<li>同样的，当<strong>hash</strong>达到一定的阈值时，会自动转换为<code>hashtable</code>结构。</li>
+</ul>
+</li>
+<li><code>hashtable</code>：哈希表，类似map。</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<p>hash 类型的应用场景主要是存储对象，比如：</p>
+<ul>
+<li>用户信息，利用 hset 和 hget 命令实现对象属性的增删改查。</li>
+<li>购物车，利用 hincrby 命令实现商品数量的增减。</li>
+<li>配置信息，利用 hmset 和 hmget 命令实现批量设置和获取配置项。</li>
+</ul>
+</blockquote>
+<p><strong>Set</strong></p>
+<blockquote>
+<p><code>set </code>是一个无序的字符串集合，它不允许重复的元素。</p>
+<p>一个 <code>set </code>类型的键最多可以存储 <code>2^32 - 1</code> 个元素。</p>
+<p><code>set </code>类型的底层实现有两种：</p>
+<ul>
+<li><code>intset</code>，整数集合。</li>
+<li><code>hashtable</code>（哈希表）。<ul>
+<li>哈希表和 hash 类型的哈希表相同，它将元素存储在一个数组中，并通过哈希函数计算元素在数组中的索引。</li>
+</ul>
+</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>去重，利用 sadd 和 scard 命令实现元素的添加和计数。</li>
+<li>交集，并集，差集，利用 sinter，sunion 和 sdiff 命令实现集合间的运算。</li>
+<li>随机抽取，利用 srandmember 命令实现随机抽奖或者抽样。</li>
+</ul>
+</blockquote>
+<p><strong>ZSet</strong></p>
+<blockquote>
+<p><code>Redis </code>中的 <code>zset </code>是一种有序集合类型，它可以存储不重复的字符串元素，并且给每个元素赋予一个排序权重值（<code>score</code>）。</p>
+<ul>
+<li><code>Redis </code>通过权重值来为集合中的元素进行从小到大的排序。</li>
+</ul>
+<p><code>zset</code> 的成员是唯一的，但权重值可以重复。</p>
+<p>一个 <code>zset </code>类型的键最多可以存储 <code>2^32 - 1</code> 个元素。</p>
+<p><strong>应用场景:</strong></p>
+<ul>
+<li>排行榜，利用 zadd 和 zrange 命令实现分数的更新和排名的查询。</li>
+<li>延时队列，利用 zadd 和 zpopmin 命令实现任务的添加和执行，并且可以定期地获取已经到期的任务。</li>
+<li>访问统计，可以使用 zset 来存储网站或者文章的访问次数，并且可以按照访问量进行排序和筛选。</li>
+</ul>
+</blockquote>
+<p><strong>GEO</strong></p>
+<blockquote>
+<p><code>Redis</code> 的 <code>Geo</code> 在 <code>Redis 3.2</code> 版本推出，这个功能可以推算地理位置的信息: 两地之间的距离，方圆几里的人。</p>
+</blockquote>
 <p><strong>查询键的数据类型</strong></p>
 <blockquote>
 <p>type key:</p>
 <ul>
-<li>
-<p>例如键 <code>hello</code>  <strong>字符串类型</strong>，返回: <code>string</code>。</p>
+<li><p>例如键 <code>hello</code>  <strong>字符串类型</strong>，返回: <code>string</code>。</p>
 </li>
-<li>
-<p>键 <code>mylist</code>  <strong>列表类型</strong>，返回: <code>list</code>。</p>
+<li><p>键 <code>mylist</code>  <strong>列表类型</strong>，返回: <code>list</code>。</p>
 </li>
-<li>
-<p>如果键不存在，则返回 <code>none</code>。</p>
+<li><p>如果键不存在，则返回 <code>none</code>。</p>
 </li>
 </ul>
 </blockquote>
-<pre><code class="language-java">127.0.0.1:6379&gt; set a b
+<pre><code class="java">127.0.0.1:6379&gt; set a b
 OK
 127.0.0.1:6379&gt; type a
 string
@@ -1413,15 +1501,20 @@ list
 <p>这样 <code>Redis</code> 会在合适的 <strong>场景</strong> 选择合适的 <strong>内部编码</strong>。</p>
 </blockquote>
 <img src="/images/150.png" alt="img" style="zoom:50%;" />
+
 <p>通过 <code>object encoding</code> 命令查询 <strong>内部编码</strong>：</p>
-<pre><code class="language-java">127.0.0.1:6379&gt; object encoding hello
+<pre><code class="java">127.0.0.1:6379&gt; object encoding hello
 &quot;embstr&quot;
 127.0.0.1:6379&gt; object encoding mylist
 &quot;quicklist&quot;
 </code></pre>
-<p><strong>哈希</strong></p>
+<p><strong>Hash底层原理</strong></p>
 <blockquote>
-<p><strong>哈希类型</strong> 的 <strong>内部编码</strong> 有两种。</p>
+<p><strong>哈希类型</strong> 的 <strong>内部编码</strong>:</p>
+<ul>
+<li>ziplist（redis7.0之前使用）和listpack（redis7.0之后使用）</li>
+<li>hashTable</li>
+</ul>
 <p>ziplist（压缩列表）:</p>
 <ul>
 <li>当 <strong>哈希类型</strong> 元素个数 <strong>小于</strong> <code>hash-max-ziplist-entries</code> 配置，同时 <strong>所有值</strong> 都 <strong>小于</strong> <code>hash-max-ziplist-value</code> 配置时使用。</li>
@@ -1433,9 +1526,14 @@ list
 <li>因为此时 <code>ziplist</code> 的 <strong>读写效率</strong> 会下降，而 <code>hashtable</code> 的读写 <strong>时间复杂度</strong> 为 <code>O（1）</code>。</li>
 </ul>
 </blockquote>
-<p><strong>列表</strong></p>
+<p><strong>List底层原理</strong></p>
 <blockquote>
-<p>列表类型的 <strong>内部编码</strong> 有两种。</p>
+<p>列表类型的 <strong>内部编码</strong>：</p>
+<ul>
+<li>在<code>Redis3.2</code>之前，list使用的是<code>linkedlist</code>和<code>ziplist</code></li>
+<li>在<code>Redis3.2~Redis7.0</code>之间，list使用的是<code>quickList</code>，是<code>linkedlist</code>和<code>ziplist</code>的结合</li>
+<li>在<code>Redis7.0</code>之后，list使用的也是<code>quickList</code>，只不过将<code>ziplist</code>转为<code>listpack</code>，它是listpack、linkedlist结合版</li>
+</ul>
 <p>ziplist（压缩列表）:</p>
 <ul>
 <li>当列表的元素个数 <strong>小于</strong> <code>list-max-ziplist-entries</code> 配置，同时列表中 <strong>每个元素</strong> 的值都 <strong>小于</strong>  <code>list-max-ziplist-value</code> 配置时使用。</li>
@@ -1445,9 +1543,13 @@ list
 <li>当 <strong>列表类型</strong> 无法满足 <code>ziplist</code> 的条件时， <code>Redis</code>会使用<code>linkedlist</code>作为 <strong>列表</strong> 的 <strong>内部实现</strong>。</li>
 </ul>
 </blockquote>
-<p><strong>集合</strong></p>
+<p><strong>Set底层原理</strong></p>
 <blockquote>
-<p><strong>集合类型</strong> 的 <strong>内部编码</strong> 有两种。</p>
+<p><strong>集合类型</strong> 的 <strong>内部编码</strong>：</p>
+<ul>
+<li>在<code>Redis7.2</code>之前，set使用的是<code>intset</code>和<code>hashtable</code></li>
+<li>在<code>Redis7.2</code>之后，set使用的是<code>intset</code>、<code>listpack</code>、<code>hashtable</code></li>
+</ul>
 <p>intset（整数集合）：</p>
 <ul>
 <li>当集合中的元素都是 <strong>整数</strong> 且 <strong>元素个数</strong> 小于 <code>set-max-intset-entries</code> 配置时使用。</li>
@@ -1457,21 +1559,34 @@ list
 <li>当集合类型 <strong>无法满足</strong> <code>intset</code> 的条件时，<code>Redis</code>会使用<code>hashtable</code>作为集合的 <strong>内部实现</strong>。</li>
 </ul>
 </blockquote>
-<p><strong>有序集合</strong></p>
+<p>为什么加入了listpack?</p>
 <blockquote>
-<p>有序集合的内部实现有两种：压缩列表和跳跃表。</p>
-<p>当有序集合的元素个数小于<code>zset-max-ziplist-entries</code>（默认为128个），并且每个元素成员的长度小于<code>zset-max-ziplist-value</code>（默认为64字节）的时候，使用压缩列表作为有序集合的内部实现。</p>
+<p>在<code>redis7.2</code>之前，<code>sds</code>类型的数据会直接放入到编码结构式为<code>hashtable</code>的<code>set</code>中。</p>
+<ul>
+<li>其中，<code>sds</code>其实就是<code>redis</code>中的<code>string</code>类型。</li>
+</ul>
+<p>而在<code>redis7.2</code>之后，sds类型的数据，首先会使用<code>listpack</code>结构，当 <code>set </code>达到一定的阈值时，才会自动转换为<code>hashtable</code>。</p>
+<p>添加<code>listpack</code>结构是为了提高内存利用率和操作效率，因为 hashtable 的空间开销和碰撞概率都比较高。</p>
+</blockquote>
+<p><strong>ZSet底层原理</strong></p>
+<blockquote>
+<p>有序集合的内部实现：</p>
+<ul>
+<li><code>ziplist</code>（<code>redis7.0</code>之前使用）和listpack（<code>redis7.0</code>之后使用）</li>
+<li><code>skiplist</code></li>
+</ul>
+<p>当有序集合的元素个数小于<code>zset-max-ziplist-entries</code>（默认为128个），并且每个元素成员的长度小于<code>zset-max-ziplist-value</code>（默认为64字节）时，使用压缩列表作为有序集合的内部实现。</p>
 <ul>
 <li>每个集合元素由两个紧挨在一起的两个压缩列表结点组成，其中第一个结点保存元素的成员，第二个结点保存元素的分支。</li>
 <li>压缩列表中的元素按照分数从小到大依次紧挨着排列，有效减少了内存空间的使用。</li>
 </ul>
-<p>当有序集合的元素个数大于等于<code>zset-max-ziplist-entries</code>（默认为128个），或者每个元素成员的长度大于等于<code>zset-max-ziplist-value</code>（默认为64字节）的时候，使用跳跃表作为有序集合的内部实现。</p>
+<p>当有序集合的元素个数大于等于<code>zset-max-ziplist-entries</code>（默认为128个），或者每个元素成员的长度大于等于<code>zset-max-ziplist-value</code>（默认为64字节）时，使用跳跃表作为有序集合的内部实现。</p>
 <ul>
 <li>在跳跃表中，所有元素按照从小到大的顺序排列。</li>
 <li>跳跃表的结点中的<code>object</code>指针指向元素成员的字符串对象，<code>score</code>保存了元素的分数。</li>
 <li>通过跳跃表，Redis可以快速地对有序集合进行分数范围、排名等操作。</li>
 </ul>
-<p>在哈希表中，为有序集合创建了一个从元素成员到元素分数的映射。</p>
+<p><strong>在哈希表中，为有序集合创建了一个从元素成员到元素分数的映射。</strong></p>
 <p>键值对中的键指向元素成员的字符串对象，键值对中的值保存了元素的分数。</p>
 <ul>
 <li>通过哈希表，Redis可以快速查找指定元素的分数。</li>
@@ -1487,7 +1602,7 @@ list
 </blockquote>
 <p>Pipeline的优点：</p>
 <blockquote>
-<p>通过打包命令，一次性执行，可以节省连接-&gt;发送命令-&gt;返回结果这个过程所产生的往返时间，减少的I/O的调用（用户态到内核态之间的切换）次数。</p>
+<p>通过打包命令，一次性执行，可以节省连接-&gt;发送命令-&gt;返回结果这个过程所产生的往返时间，减少的I&#x2F;O的调用（用户态到内核态之间的切换）次数。</p>
 </blockquote>
 <p>Pipeline的缺点：</p>
 <blockquote>
@@ -1495,8 +1610,7 @@ list
 <p>不保证原子性，执行命令过程中，如果一个命令出现异常，也会继续执行其他命令。</p>
 <p>每次只能作用在一个Redis节点上。</p>
 </blockquote>
-<h1>内存机制</h1>
-<p><strong>内存回收策略</strong></p>
+<h1 id="内存机制"><a href="#内存机制" class="headerlink" title="内存机制"></a>内存机制</h1><p><strong>内存回收策略</strong></p>
 <p>Redis的内存回收机制主要体现在以下两个方面：</p>
 <blockquote>
 <p>删除到达过期时间的键对象。</p>
@@ -1504,12 +1618,12 @@ list
 </blockquote>
 <p>删除过期键对象：</p>
 <blockquote>
-<p>Redis所有的键都可以设置过期属性，内部保存在过期字典中。</p>
-<p>惰性删除：</p>
+<p>Redis所有的键都可以设置过期属性，内部保存在过期字典中。 </p>
+<p>惰性删除： </p>
 <ul>
 <li>当客户端读取带有超时属性的键时，如果已经超过键设置的过期时间，会执行删除操作并返回空。</li>
 </ul>
-<p>定时任务删除：</p>
+<p>定时任务删除： </p>
 <ul>
 <li>Redis内部维护一个定时任务，默认每秒运行10次。</li>
 </ul>
@@ -1521,24 +1635,24 @@ list
 <ul>
 <li>默认策略，不会删除任何数据，拒绝所有写入操作并返回客户端错误信息，此时Redis只响应读操作。</li>
 </ul>
-<p>volatile-lru：</p>
+<p>volatile-lru： </p>
 <ul>
-<li>根据LRU算法删除设置了超时属性的键。</li>
+<li>根据LRU算法删除设置了超时属性的键。 </li>
 <li>如果没有可删除的键对象，回退到noeviction策略。</li>
 </ul>
-<p>allkeys-lru：</p>
+<p>allkeys-lru： </p>
 <ul>
 <li>根据LRU算法删除键，不管数据有没有设置超时属性。</li>
 </ul>
-<p>allkeys-random：</p>
+<p>allkeys-random： </p>
 <ul>
 <li>随机删除所有键。</li>
 </ul>
-<p>volatile-random：</p>
+<p>volatile-random： </p>
 <ul>
 <li>随机删除过期键。</li>
 </ul>
-<p>volatile-ttl：</p>
+<p>volatile-ttl： </p>
 <ul>
 <li>根据键值对象的ttl属性，删除最近将要过期数据，如果没有 回退 到noeviction策略。</li>
 </ul>
@@ -1551,18 +1665,14 @@ list
 <p>业务应用中的数据访问频率相差不大，没有明显的冷热数据区分，建议使用 <code>allkeys-random</code> 策略。</p>
 <p>业务中有置顶的需求，比如置顶新闻、置顶视频，可以使用 <code>volatile-lru</code> 策略。</p>
 </blockquote>
-<h1>事务</h1>
-<blockquote>
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><blockquote>
 <p>Redis提供了MULTI，EXEC两个命令来完成事务。</p>
 <ul>
-<li>
-<p>客户端使用一个命令MULTI开启事务。</p>
+<li><p>客户端使用一个命令MULTI开启事务。</p>
 </li>
-<li>
-<p>客户端把事务中本身要执行的具体操作（例如增删改数据）发送给服务器端，这些命令暂存到一个命令队列中，并不会立即执行。</p>
+<li><p>客户端把事务中本身要执行的具体操作（例如增删改数据）发送给服务器端，这些命令暂存到一个命令队列中，并不会立即执行。</p>
 </li>
-<li>
-<p>客户端向服务器端发送提交事务的命令EXEC，让数据库实际执行第二步中发送的具体操作。</p>
+<li><p>客户端向服务器端发送提交事务的命令EXEC，让数据库实际执行第二步中发送的具体操作。</p>
 </li>
 </ul>
 </blockquote>
@@ -1591,8 +1701,7 @@ list
 <blockquote>
 <p>不管 Redis 采用什么持久化模式，<strong>事务的持久性属性是得不到保证的。</strong></p>
 </blockquote>
-<h1>哨兵模式</h1>
-<blockquote>
+<h1 id="哨兵模式"><a href="#哨兵模式" class="headerlink" title="哨兵模式"></a>哨兵模式</h1><blockquote>
 <p><code>Redis</code> 的 <strong>主从复制</strong> 模式下，一旦 <strong>主节点</strong> 由于故障不能提供服务，需要手动将 <strong>从节点</strong> 晋升为 <strong>主节点</strong>，同时还要通知 <strong>客户端</strong> 更新 <strong>主节点地址</strong>。</p>
 <ul>
 <li><code>Redis 2.8</code>以后提供了<code>Redis Sentinel</code><strong>哨兵机制</strong> 来解决这个问题。</li>
@@ -1642,8 +1751,7 @@ list
 <p>将剩余的 <strong>从节点</strong> 指向 <strong>新的主节点</strong> 进行 <strong>数据复制</strong>。</p>
 </blockquote>
 <p><img src="/images/151.png" alt="img"></p>
-<h1>集群</h1>
-<blockquote>
+<h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1><blockquote>
 <p><code>Redis 3.0</code>之前，使用 <strong>哨兵</strong>（<code>Sentinel</code>）机制来监控各个节点之间的状态。</p>
 <p>在<code>3.0</code>版本正式推出，解决了 <code>Redis</code>在 <strong>分布式</strong> 方面的需求。</p>
 </blockquote>
@@ -1659,11 +1767,9 @@ list
 <blockquote>
 <p><code>2^14^=16384、2^16^=65536</code>。</p>
 <ul>
-<li>
-<p>如果槽位是65536个，发送心跳信息的消息头是<code>65536/8/1024 = 8k</code>。</p>
+<li><p>如果槽位是65536个，发送心跳信息的消息头是<code>65536/8/1024 = 8k</code>。</p>
 </li>
-<li>
-<p>如果槽位是16384个，发送心跳信息的消息头是<code>16384/8/1024 = 2k</code>。</p>
+<li><p>如果槽位是16384个，发送心跳信息的消息头是<code>16384/8/1024 = 2k</code>。</p>
 </li>
 </ul>
 <p><strong>因为Redis每秒都会发送一定数量的心跳包，如果消息头是8k，有些太大了，浪费网络资源。</strong></p>
@@ -1689,14 +1795,12 @@ list
 <li><strong>单机</strong> 下的<code>Redis</code>可以支持<code>16</code>个数据库（<code>db0 ~ db15</code>），<strong>集群模式</strong> 下只能使用 <strong>一个</strong> 数据库空间，即<code>db0</code>。</li>
 </ul>
 </blockquote>
-<h1>持久化</h1>
-<p><strong>RDB持久化</strong></p>
+<h1 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h1><p><strong>RDB持久化</strong></p>
 <blockquote>
 <p>将内存中的数据生成快照保存到磁盘里面，保存的文件后缀是 <code>.rdb</code>。</p>
 <p>rdb 文件是一个经过压缩的二进制文件，当 Redis 重新启动时，可以读取 rdb 快照文件恢复数据。</p>
 <ul>
-<li>包括：rdbSave 和 rdbLoad 两个函数。
-<ul>
+<li>包括：rdbSave 和 rdbLoad 两个函数。<ul>
 <li>rdbSave用于生成 RDB 文件并保存到磁盘，rdbLoad用于将 RDB 文件中的数据重新载入到内存中。</li>
 </ul>
 </li>
@@ -1720,24 +1824,20 @@ list
 </ul>
 <p>基本过程：</p>
 <ul>
-<li>
-<p>客户端发起 BGSAVE 命令，Redis 主进程判断当前是否存在正在执行备份的子进程，如果存在则直接返回。</p>
+<li><p>客户端发起 BGSAVE 命令，Redis 主进程判断当前是否存在正在执行备份的子进程，如果存在则直接返回。</p>
 </li>
-<li>
-<p>父进程 fork 一个子进程 （fork 的过程中会造成阻塞的情况）。</p>
+<li><p>父进程 fork 一个子进程 （fork 的过程中会造成阻塞的情况）。</p>
 </li>
-<li>
-<p>fork 创建的子进程开始根据父进程的内存数据生成临时的快照文件，然后替换原文件。</p>
+<li><p>fork 创建的子进程开始根据父进程的内存数据生成临时的快照文件，然后替换原文件。</p>
 </li>
-<li>
-<p>子进程备份完毕后向父进程发送完成信息。</p>
+<li><p>子进程备份完毕后向父进程发送完成信息。</p>
 </li>
 </ul>
 </blockquote>
 <p><img src="/images/152.png" alt="image-20231023181622055"></p>
 <p>自动触发保存：</p>
 <blockquote>
-<p>通过 save 选项设置多个保存条件，只要其中任意一个条件被满足，服务器就会执行 BGSAVE 命令。</p>
+<p>通过 save 选项设置多个保存条件，只要其中任意一个条件被满足，服务器就会执行 BGSAVE 命令。 </p>
 <p>只要满足以下 3 个条件中的任意一个，BGSAVE 命令就会被自动执行：</p>
 <ul>
 <li>服务器在 900 秒之内，对数据库进行了至少 1 次修改。</li>
@@ -1756,14 +1856,11 @@ list
 <p>AOF 不需要设置任何触发条件，对 Redis 服务器的所有写命令都会自动记录到 AOF 文件中。</p>
 <p>AOF 文件的写入流程可以分为 3 个步骤：</p>
 <ul>
-<li>
-<p>命令追加（append）：将 Redis 执行的写命令追加到 AOF 的缓冲区 <code>aof_buf</code>。</p>
+<li><p>命令追加（append）：将 Redis 执行的写命令追加到 AOF 的缓冲区 <code>aof_buf</code>。</p>
 </li>
-<li>
-<p>文件写入（write）和文件同步（fsync）：AOF 根据对应的策略将 <code>aof_buf</code> 的数据同步到硬盘。</p>
+<li><p>文件写入（write）和文件同步（fsync）：AOF 根据对应的策略将 <code>aof_buf</code> 的数据同步到硬盘。</p>
 </li>
-<li>
-<p>文件重写（rewrite）：定期对 AOF 进行重写，从而实现对写命令的压缩。</p>
+<li><p>文件重写（rewrite）：定期对 AOF 进行重写，从而实现对写命令的压缩。</p>
 </li>
 </ul>
 </blockquote>
@@ -1775,8 +1872,7 @@ list
 </ul>
 <p><strong>appendfsync no</strong>：不保存</p>
 <ul>
-<li>命令写入 <code>aof_buf</code> 缓冲区后调用系统 write 操作，不对 AOF 文件做 fsync 同步。
-<ul>
+<li>命令写入 <code>aof_buf</code> 缓冲区后调用系统 write 操作，不对 AOF 文件做 fsync 同步。<ul>
 <li>同步由操作系统负责，通常同步周期为 30 秒。</li>
 </ul>
 </li>
@@ -1795,8 +1891,7 @@ list
 <th>宕机时的数据丢失量</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>always</td>
 <td>阻塞</td>
 <td>阻塞</td>
@@ -1814,8 +1909,7 @@ list
 <td>不阻塞</td>
 <td>一般不超过 1 秒钟的数据</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p><strong>文件重写</strong></p>
 <blockquote>
 <p>把对 AOF 文件中的写命令进行合并，压缩文件体积，同步到新的 AOF 文件中，然后使用新的 AOF 文件覆盖旧的 AOF 文件。</p>
@@ -1832,8 +1926,7 @@ list
 </ul>
 <ul>
 <li>auto-aof-rewrite-min-size：执行 AOF 重写时，文件的最小体积，默认值为 64MB</li>
-<li>auto-aof-rewrite-percentage：
-<ul>
+<li>auto-aof-rewrite-percentage：<ul>
 <li>执行 AOF 重写时，当前 AOF 大小（<code>aof_current_size</code>）和上一次重写时 AOF 大小（<code>aof_base_size</code>）的比值</li>
 </ul>
 </li>
@@ -1854,6 +1947,7 @@ list
 <p>主进程使用新的 AOF 文件替换旧的 AOF 文件，AOF 重写过程完成。</p>
 </blockquote>
 <img src="/images/153.png" alt="image-20231023183436329" style="zoom:90%;" />
+
 <p><strong>RDB的优缺点：</strong></p>
 <blockquote>
 <p>优点:</p>
@@ -1889,8 +1983,7 @@ list
 <li>然后再重放 AOF 文件尾部增量的 AOF 命令，从而大大减少了重启过程中数据还原的时间。</li>
 </ul>
 </blockquote>
-<h1>常见问题</h1>
-<p><strong>热Key</strong></p>
+<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><p><strong>热Key</strong></p>
 <p>京东开源工具：<a target="_blank" rel="noopener" href="https://gitee.com/jd-platform-opensource/hotkey">https://gitee.com/jd-platform-opensource/hotkey</a></p>
 <p>热 Key 带来问题：</p>
 <blockquote>
@@ -1920,10 +2013,10 @@ list
 </blockquote>
 <p>热 Key 备份：</p>
 <blockquote>
-<p>通过热<code>Key</code>备份的方式，给热<code>Key</code>加上前缀或者后缀，把一个热 <code>Key</code> 的数量变成 <code>Redis</code> 实例个数 <code>N</code> 的倍数 <code>M</code>，从而由访问一个 RedisKey 变成访问 <code>N*M</code> 个 RedisKey。</p>
+<p>通过热<code>Key</code>备份的方式，给热<code>Key</code>加上前缀或者后缀，把一个热 <code>Key</code> 的数量变成 <code>Redis</code> 实例个数 <code>N</code> 的倍数 <code>M</code>，从而由访问一个 RedisKey 变成访问 <code>N*M</code> 个 RedisKey。 </p>
 <p><code>N*M</code> 个 RedisKey 经过分片分布到不同的实例上，将访问量均摊到所有实例。</p>
 </blockquote>
-<pre><code class="language-java">// N 为 Redis 实例个数，M 为 N 的 2倍
+<pre><code class="java">// N 为 Redis 实例个数，M 为 N 的 2倍
 const M = N * 2
 //生成随机数
 random = GenRandom(0, M)
@@ -1971,39 +2064,37 @@ if data == NULL &#123;
 <table>
 <thead>
 <tr>
-<th style="text-align:left">方案</th>
-<th style="text-align:left">问题</th>
-<th style="text-align:left">问题出现概率</th>
-<th style="text-align:left">推荐程度</th>
+<th align="left">方案</th>
+<th align="left">问题</th>
+<th align="left">问题出现概率</th>
+<th align="left">推荐程度</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:left">更新缓存 -&gt; 更新数据库</td>
-<td style="text-align:left">为了保证数据准确性，数据必须以数据库更新结果为准，所以该方案绝不可行</td>
-<td style="text-align:left">大</td>
-<td style="text-align:left">不推荐</td>
+<tbody><tr>
+<td align="left">更新缓存 -&gt; 更新数据库</td>
+<td align="left">为了保证数据准确性，数据必须以数据库更新结果为准，所以该方案绝不可行</td>
+<td align="left">大</td>
+<td align="left">不推荐</td>
 </tr>
 <tr>
-<td style="text-align:left">更新数据库 -&gt; 更新缓存</td>
-<td style="text-align:left">并发更新数据库场景下，会将脏数据刷到缓存</td>
-<td style="text-align:left">并发写场景，概率一般</td>
-<td style="text-align:left">写请求较多时会出现不一致问题，不推荐使用。</td>
+<td align="left">更新数据库 -&gt; 更新缓存</td>
+<td align="left">并发更新数据库场景下，会将脏数据刷到缓存</td>
+<td align="left">并发写场景，概率一般</td>
+<td align="left">写请求较多时会出现不一致问题，不推荐使用。</td>
 </tr>
 <tr>
-<td style="text-align:left">删除缓存 -&gt; 更新数据库</td>
-<td style="text-align:left">更新数据库之前，若有查询请求，会将脏数据刷到缓存</td>
-<td style="text-align:left">并发读场景，概率较大</td>
-<td style="text-align:left">读请求较多时会出现不一致问题，不推荐使用</td>
+<td align="left">删除缓存 -&gt; 更新数据库</td>
+<td align="left">更新数据库之前，若有查询请求，会将脏数据刷到缓存</td>
+<td align="left">并发读场景，概率较大</td>
+<td align="left">读请求较多时会出现不一致问题，不推荐使用</td>
 </tr>
 <tr>
-<td style="text-align:left">更新数据库 -&gt; 删除缓存</td>
-<td style="text-align:left">在更新数据库之前有查询请求，并且缓存失效了，会查询数据库，然后更新缓存。如果在查询数据库和更新缓存之间进行了数据库更新的操作，那么就会把脏数据刷到缓存</td>
-<td style="text-align:left">并发读场景&amp;读操作慢于写操作，概率最小</td>
-<td style="text-align:left"><strong>读操作比写操作更慢的情况较少，相比于其他方式出错的概率小一些。勉强推荐。</strong></td>
+<td align="left">更新数据库 -&gt; 删除缓存</td>
+<td align="left">在更新数据库之前有查询请求，并且缓存失效了，会查询数据库，然后更新缓存。如果在查询数据库和更新缓存之间进行了数据库更新的操作，那么就会把脏数据刷到缓存</td>
+<td align="left">并发读场景&amp;读操作慢于写操作，概率最小</td>
+<td align="left"><strong>读操作比写操作更慢的情况较少，相比于其他方式出错的概率小一些。勉强推荐。</strong></td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>操作失败情况处理：</p>
 <blockquote>
 <p>对数据库和缓存的操作，在实际生产中，由于网络抖动、服务下线等等原因，操作是有可能失败的。</p>
@@ -2017,6 +2108,7 @@ if data == NULL &#123;
 </ul>
 </blockquote>
 <img src="/images/154.png" alt="图片" style="zoom:80%;" />
+
 <p>解决方法：</p>
 <blockquote>
 <p>重试机制。</p>
@@ -2027,6 +2119,7 @@ if data == NULL &#123;
 </blockquote>
 <p><strong>缓存击穿</strong></p>
 <img src="/images/155.png" alt="图片" style="zoom:50%;" />
+
 <p>解决方案：</p>
 <blockquote>
 <p>使用互斥锁。</p>
@@ -2044,6 +2137,7 @@ if data == NULL &#123;
 <p>在流量大时，要是DB无法承受瞬间流量冲击，DB可能就挂了。</p>
 </blockquote>
 <img src="/images/156.png" alt="图片" style="zoom:50%;" />
+
 <p>解决方案：</p>
 <blockquote>
 <p>缓存空数据。</p>
@@ -2059,8 +2153,7 @@ if data == NULL &#123;
 <p>设计不同的过期时间。</p>
 <p>对缓存增加多个副本。</p>
 </blockquote>
-<h1>应用场景</h1>
-<p><strong>常见应用场景</strong></p>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p><strong>常见应用场景</strong></p>
 <p>登录鉴权：</p>
 <blockquote>
 <p>用户登录鉴权，以及对应的登录验证码或Token到期失效。</p>
@@ -2141,7 +2234,7 @@ redis&gt; SDIFF Tom Tony   //Tom的粉丝，但不是Tony的粉丝
 <blockquote>
 <p><code>SETNX key value</code>，只在键key不存在的情况下，将键key的值设置为value，若键key存在，则SETNX不做任何动作。</p>
 </blockquote>
-<pre><code class="language-java">boolean result = jedis.setnx(&quot;lock-key&quot;,true)== 1L;
+<pre><code class="java">boolean result = jedis.setnx(&quot;lock-key&quot;,true)== 1L;
 if  (result) &#123;
     try &#123;
         // do something
@@ -2158,7 +2251,7 @@ if  (result) &#123;
 <p><code>SET key value EX seconds</code> 的效果等同于执行 <code>SETEX key seconds value</code></p>
 <p><code>SET key value PX milliseconds</code> 的效果等同于执行 <code>PSETEX key milliseconds value</code></p>
 </blockquote>
-<pre><code class="language-java">String result = jedis.set(&quot;lock-key&quot;,true, 5);
+<pre><code class="java">String result = jedis.set(&quot;lock-key&quot;,true, 5);
 if (&quot;OK&quot;.equals(result)) &#123;
     try &#123;
         // do something
@@ -2176,15 +2269,15 @@ if (&quot;OK&quot;.equals(result)) &#123;
 <p>所以在解锁时判断锁是否是自己的，可以在设置key的时候将value设置为一个唯一值uniqueValue。</p>
 <p>当解锁时，也就是删除key的时候先判断一下key对应的value是否等于先前设置的值，如果相等才能删除key。</p>
 </blockquote>
-<pre><code class="language-java">String velue= String.valueOf(System.currentTimeMillis())
+<pre><code class="java">String velue= String.valueOf(System.currentTimeMillis())
 String result = jedis.set(&quot;lock-key&quot;,velue, 5);
 if (&quot;OK&quot;.equals(result)) &#123;
     try &#123;
         // do something
     &#125; finally &#123;
-      	//非原子操作
-	      if(jedis.get(&quot;lock-key&quot;)==value)&#123;
-		        jedis.del(&quot;lock-key&quot;);
+          //非原子操作
+          if(jedis.get(&quot;lock-key&quot;)==value)&#123;
+                jedis.del(&quot;lock-key&quot;);
         &#125;    
     &#125;
 &#125;
@@ -2194,7 +2287,7 @@ if (&quot;OK&quot;.equals(result)) &#123;
 <p>只要保证解锁的代码是原子性的就能解决问题了。</p>
 <p>由于Lua脚本的原子性，在Redis执行该脚本的过程中，其他客户端的命令都需要等待该Lua脚本执行完才能执行。</p>
 </blockquote>
-<pre><code class="language-lua">if redis.call(&quot;get&quot;,KEYS[1]) == ARGV[1] then
+<pre><code class="lua">if redis.call(&quot;get&quot;,KEYS[1]) == ARGV[1] then
     return redis.call(&quot;del&quot;,KEYS[1])
 else
     return 0
@@ -2212,7 +2305,7 @@ end
 <blockquote>
 <p>获取锁成功就会开启一个定时任务，定时任务会定期检查去续期。</p>
 <p>该定时调度每次调用的时间差是<code>internalLockLeaseTime/3</code>，也就10秒。</p>
-<p>默认情况下，加锁的时间是30秒，如果加锁的业务没有执行完，那么到 30-10 = 20秒的时候，就会进行一次续期，把锁重置成30秒。</p>
+<p>默认情况下，加锁的时间是30秒，如果加锁的业务没有执行完，那么到 30-10 &#x3D; 20秒的时候，就会进行一次续期，把锁重置成30秒。</p>
 </blockquote>
 <p><strong>RedLock</strong></p>
 <blockquote>
@@ -2239,11 +2332,9 @@ end
 <p>也就是说，假设锁30秒过期，三个节点加锁花了31秒，自然是加锁失败了。</p>
 <p>在 Redis 官方推荐的 Java 客户端 Redisson 中，内置了对 RedLock 的实现。</p>
 <ul>
-<li>
-<p><a target="_blank" rel="noopener" href="https://redis.io/topics/distlock">https://redis.io/topics/distlock</a></p>
+<li><p><a target="_blank" rel="noopener" href="https://redis.io/topics/distlock">https://redis.io/topics/distlock</a></p>
 </li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://github.com/redisson/redisson/wiki">https://github.com/redisson/redisson/wiki</a></p>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/redisson/redisson/wiki">https://github.com/redisson/redisson/wiki</a></p>
 </li>
 </ul>
 </blockquote>
@@ -2260,7 +2351,7 @@ end
 <li>通过 <code>zrangebyscore key min max withscores limit 0 1</code> 查询最早的一条任务，来进行消费。</li>
 </ul>
 </blockquote>
-<pre><code class="language-java">private Jedis jedis;
+<pre><code class="java">private Jedis jedis;
 
 public void redisDelayQueueTest() &#123;
     String key = &quot;delay_queue&quot;;
@@ -2308,15 +2399,15 @@ public void handleMsg(T msg) &#123;
 <p>同一个任务可能会被多个进程取到之后再使用 zrem 进行争抢，那些没抢到 的进程都是白取了一次任务。</p>
 <p>可以考虑使用 <code>lua scripting</code> 来优化一下这个逻辑，将 <code>zrangebyscore</code> 和 <code>zrem</code> 一同挪到服务器端进行原子化操作，这样多个进程之间争抢任务时就不会出现这种浪费了。</p>
 </blockquote>
-<pre><code class="language-lua">String luaScript = &quot;local resultArray = redis.call('zrangebyscore', KEYS[1], 0, ARGV[1], 'limit' , 0, 1)\n&quot; +
+<pre><code class="lua">String luaScript = &quot;local resultArray = redis.call(&#39;zrangebyscore&#39;, KEYS[1], 0, ARGV[1], &#39;limit&#39; , 0, 1)\n&quot; +
         &quot;if #resultArray &gt; 0 then\n&quot; +
-        &quot;    if redis.call('zrem', KEYS[1], resultArray[1]) &gt; 0 then\n&quot; +
+        &quot;    if redis.call(&#39;zrem&#39;, KEYS[1], resultArray[1]) &gt; 0 then\n&quot; +
         &quot;        return resultArray[1]\n&quot; +
         &quot;    else\n&quot; +
-        &quot;        return ''\n&quot; +
+        &quot;        return &#39;&#39;\n&quot; +
         &quot;    end\n&quot; +
         &quot;else\n&quot; +
-        &quot;    return ''\n&quot; +
+        &quot;    return &#39;&#39;\n&quot; +
         &quot;end&quot;;
 jedis.eval(luaScript, ScriptOutputType.VALUE, new String[]&#123;key&#125;, String.valueOf(System.currentTimeMillis()));
 </code></pre>

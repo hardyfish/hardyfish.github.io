@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://hardyfish.top/2023/10/21/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/</loc>
+    <lastmod>2024-02-05</lastmod>
+  </url>
+  <url>
     <loc>http://hardyfish.top/2022/11/27/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/JVM/</loc>
     <lastmod>2024-02-04</lastmod>
   </url>
@@ -18,10 +22,6 @@
   </url>
   <url>
     <loc>http://hardyfish.top/2024/02/03/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/ShardingSphere/</loc>
-    <lastmod>2024-02-04</lastmod>
-  </url>
-  <url>
-    <loc>http://hardyfish.top/2023/10/21/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/</loc>
     <lastmod>2024-02-04</lastmod>
   </url>
   <url>
