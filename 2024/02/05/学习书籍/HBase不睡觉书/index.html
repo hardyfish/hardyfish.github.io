@@ -1583,6 +1583,379 @@ Took 0.0301 seconds
 </li>
 </ul>
 </blockquote>
+<p><strong>获取单条数据（get）</strong></p>
+<blockquote>
+<p>get 只能查询一个单元格的记录，在表的数据很大的时候，get 查询的速度远远高于 scan。</p>
+</blockquote>
+<pre><code>get &#39;test&#39;,&#39;row7&#39;,&#123;COLUMN=&gt;&#39;cf:name&#39;,VERSIONS=&gt;5&#125;
+
+COLUMN        CELL 
+cf:name       timestamp=3, value=wangwu 
+cf:name       timestamp=2, value=lisi 
+cf:name       timestamp=1, value=zhangsan
+</code></pre>
+<p><strong>查询多条数据（scan）</strong></p>
+<blockquote>
+<p>Scan 是最常用的查询表数据的命令，这个命令相当于传统数据库的 select。</p>
+<p>在 HBase 中我们用起始行（STARTROW）和结束行（ENDROW）来限制显示记录的条数。</p>
+<p>STARTROW 和 ENDROW 都是可选的参数，可以不输入。</p>
+<p>如果 ENDROW 不输入的话，就从 STARTROW 开始一直显示下去直到表的结尾。</p>
+<p>如果 STARTROW 不输入的话，就从表头一直显示到 ENDROW 为止。</p>
+</blockquote>
+<pre><code>scan &#39;test&#39;,&#123;STARTROW=&gt;&#39;row3&#39;&#125;
+ROW         COLUMN+CELL 
+row3        column=cf:name, timestamp=1471112677398, value=alex 
+row4        column=cf:name, timestamp=1471112686290, value=jim
+
+scan &#39;test&#39;,&#123;ENDROW=&gt;&#39;row4&#39;&#125;
+ROW         COLUMN+CELL 
+row2        column=cf:name, timestamp=2222222222222, value=billy 
+row3        column=cf:name, timestamp=1471112677398, value=alex
+</code></pre>
+<p><strong>删除单元格数据（delete）</strong></p>
+<blockquote>
+<p>HBase 删除记录并不是真的删除了数据，而是放置了一个墓碑标记（tombstone marker），把这个版本连同之前的版本都标记为不可见了。这是为了性能着想，这样 HBase 就可以定期去清理这些已经被删除的记录，而不用每次都进行删除操作。</p>
+<p>定期 的时间点是在 HBase 做自动合并（compaction，HBase整理存储文件时的一个操作，会把多个文件块合并成一个文件）的时候，这样删除操作对于 HBase 的性能影响被降到了最低，就算在很高的并发负载下大量删除记录也不怕了。</p>
+<p>在记录被真正删除之前还是可以查询到的，只需要在 scan 命令后跟上 <code>RAW=&gt;true</code> 参数和适当的 VERSIONS 参数就可以看到被打上墓碑标记（tombstone marker）的记录，跟上 RAW 就是查询到表的所有未经过过滤的原始记录。</p>
+</blockquote>
+<pre><code># 删除某一单元格数据
+delete &#39;test&#39;,&#39;row4&#39;,&#39;cf:name&#39;
+
+# 根据版本删除数据（删除这个版本之前的所有版本）
+delete&#39;t1&#39;,&#39;r1&#39;,&#39;c1&#39;,ts
+</code></pre>
+<p><strong>删除整行数据（deleteall）</strong></p>
+<blockquote>
+<p>如果一个行有很多列，用 delete 来删除记录会把人累死，可以 deleteall 命令来删除整行记录。</p>
+</blockquote>
+<pre><code># 只需要明确到 rowkey 即可
+deleteall &#39;test&#39;,&#39;row3&#39;
+</code></pre>
+<h1 id="内部探险"><a href="#内部探险" class="headerlink" title="内部探险"></a>内部探险</h1><p><strong>数据模型</strong></p>
+<blockquote>
+<p><strong>Namespace</strong>（表命名空间）：将多个表分到一个组进行统一管理。</p>
+<p>Table（表）：</p>
+<ul>
+<li>一个表由一个或者多个列族组成。</li>
+<li>数据属性比如：<ul>
+<li>超时时间（TTL），压缩算法（COMPRESSION）等，都在列族的定义中定义。</li>
+</ul>
+</li>
+<li>定义完列族后表是空的，只有添加了行，表才有数据。</li>
+</ul>
+<p><strong>Row</strong>（行）：</p>
+<ul>
+<li>一个行包含了多个列，这些列通过列族来分类。</li>
+<li>行中的数据所属列族只能从该表所定义的列族中选取。</li>
+<li>由于 HBase 是一个列式数据库，所以一个行中的数据可以分布在不同的服务器上。</li>
+</ul>
+<p><strong>Column Family</strong>（列族）：</p>
+<ul>
+<li><p>列族是多个列的集合，HBase 会尽量把同一个列族的列放到同一个服务器上，这样可以提高存取性能，并且可以批量管理有关联的一堆列。</p>
+</li>
+<li><p>所有的数据属性都是定义在列族上。</p>
+</li>
+<li><p>在 HBase 中，建表定义的不是列，而是列族。</p>
+</li>
+</ul>
+<p><strong>Column Qualifier</strong>（列）：</p>
+<ul>
+<li>多个列组成一个行，列族和列经常用 <code>Column Family: Column Qualifier</code> 来一起表示，列是可以随意定义的，一个行中的列不限名字、不限数量。</li>
+</ul>
+<p><strong>Cell</strong>（单元格）：</p>
+<ul>
+<li>一个列中可以存储多个版本的数据，而每个版本就称为一个单元格（Cell），所以在 HBase 中的单元格跟传统关系型数据库的单元格概念不一样。</li>
+<li>HBase 中的数据细粒度比传统数据结构更细一级，同一个位置的数据还细分成多个版本。</li>
+</ul>
+<p><strong>Timestamp</strong>（时间戳&#x2F;版本号）：</p>
+<ul>
+<li>既可以把它称为是时间戳，也可以称为是版本号，因为它是用来标定同一个列中多个单元格的版本号的。</li>
+<li>不指定版本号的时候，系统会自动采用当前的时间戳来作为版本号。</li>
+<li>当手动定义了一个数字来当作版本号的时候，这个 Timestamp 就真的是只有版本号的意义了。</li>
+</ul>
+</blockquote>
+<p><strong>HBase是否支持表关联？</strong></p>
+<blockquote>
+<p>官方给出的答案是干脆的，那就是不支持。</p>
+<p>如果想实现数据之间的关联，就必须自己去实现了，这是挑选 NoSQL 数据库必须付出的代价。</p>
+</blockquote>
+<p><strong>HBase 是否支持 ACID？</strong></p>
+<blockquote>
+<p>ACID 就是 Atomicity（原子性）、Consistency（一致性）、Isolation（隔离性）、Durability（持久性）的首字母缩写，ACID 是事务正确执行的保证，HBase 部分支持 了 ACID。</p>
+</blockquote>
+<p><strong>表命名空间有什么用？</strong></p>
+<blockquote>
+<p>表命名空间主要是用来对表分组，那么对表分组有什么用？</p>
+<p>命名空间可以填补 HBase 无法在一个实例上分库的缺憾，通过命名空间我们可以像关系型数据库一样将表分组，对于不同的组进行不同的环境设定，比如配额管理、安全管理等。</p>
+<p>HBase 中有两个保留表空间是预先定义好的：</p>
+<ul>
+<li>hbase：系统表空间，用于组织 HBase 内部表。</li>
+<li>default：那些没有定义表空间的表都被自动分配到这个表空间下。</li>
+</ul>
+</blockquote>
+<p><strong>架构回顾</strong></p>
+<blockquote>
+<p>一个 HBase 集群由一个 Master（也可以把两个 Master 做成 HighAvailable）和多个 RegionServer 组成：</p>
+<ul>
+<li><strong>Master</strong>：负责启动的时候分配 Region 到具体的 RegionServer，执行各种管理操作，比如 Region 的分割和合并。<ul>
+<li>HBase 中的 Master 的角色功能比其他类型集群弱很多，HBase 的 Master 很特别，因为数据的读取和写入都跟它没什么关系，它挂了业务系统照样运行。</li>
+<li>当然 Master 也不能宕机太久，有很多必要的操作，比如创建表、修改列族配置，以及更重要的分割和合并都需要它的操作。</li>
+</ul>
+</li>
+<li><strong>RegionServer</strong>：<ul>
+<li>RegionServer 上有一个或者多个 Region，我们读写的数据就存储在 Region 上。</li>
+<li>如果你的 HBase 是基于 HDFS 的（单机 HBase 可基于本地磁盘），那么 Region 所有数据存取操作都是调用了 HDFS 的客户端接口来实现的。</li>
+</ul>
+</li>
+<li><strong>Region</strong>：<ul>
+<li>表的一部分数据，HBase 是一个会自动分片的数据库，一个 Region 就相当于关系型数据库中分区表的一个分区，或者 MongoDB 的一个分片。</li>
+</ul>
+</li>
+<li><strong>HDFS</strong>：<ul>
+<li>HBase 并不直接跟服务器的硬盘交互，而是跟 HDFS 交互，所以 HDFS 是真正承载数据的载体。</li>
+</ul>
+</li>
+<li><strong>ZooKeeper</strong>：<ul>
+<li>ZooKeeper 在 HBase 中的比 Master 更重要，把 Master 关掉业务系统照样跑，能读能写。</li>
+<li>但是把 ZooKeeper 关掉，就不能读取数据了，因为读取数据所需要的元数据表 <code>hbase:meata</code> 的位置存储在 ZooKeeper 上。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><img src="/images/430.png" alt="HBase 的宏观架构"></p>
+<p><strong>RegionServer 内部架构</strong></p>
+<blockquote>
+<p>一个 RegionServer 包含有：</p>
+<ul>
+<li><strong>一个 WAL</strong>：预写日志，WAL 是 Write-Ahead Log 的缩写，就是：<ul>
+<li>预先写入：<ul>
+<li>当操作到达 Region 的时候，HBase 先把操作写到 WAL 里面去，HBase 会把数据放到基于内存实现的 Memstore 里，等数据达到一定的数量时才刷写（flush）到最终存储的 HFile 内，而如果在这个过程中服务器宕机或者断电了，那么数据就丢失了。</li>
+</ul>
+</li>
+<li>WAL 是一个保险机制，数据在写到 Memstore 之前，先被写到 WAL 了，这样当故障恢复的时候依旧可以从 WAL 中恢复数据。</li>
+</ul>
+</li>
+<li><strong>多个 Region</strong>：<ul>
+<li>Region 相当于一个数据分片，每一个 Region 都有起始 rowkey 和结束 rowkey，代表了它所存储的 row 范围。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><img src="/images/431.png" alt="RegionServer 内部架构"></p>
+<p><strong>Region 内部架构</strong></p>
+<blockquote>
+<p>每一个 Region 内都包含有多个 Store 实例，<strong>一个 Store 对应一个列族的数据</strong>，如果一个表有两个列族，那么在一个 Region 里面就有两个 Store，Store 内部有 MemStore 和 HFile 这两个组成部分。</p>
+</blockquote>
+<p><img src="/images/432.png" alt="Region 内部架构"></p>
+<p><strong>预写日志（WAL）</strong></p>
+<blockquote>
+<p>预写日志（Write-ahead log，WAL）就是设计来解决宕机之后的操作恢复问题的，数据到达 Region 的时候是先写入 WAL，然后再被加载到 Memstore，就算 Region 的机器宕掉了，由于 WAL 的数据是存储在 HDFS 上的，所以数据并不会丢失。</p>
+<p>如果你的系统对性能要求极高、对数据一致性要求不高，并且系统的性能瓶颈出现在 WAL 上的时候，你可以考虑使用异步写入 WAL，否则，使用默认的配置即可。</p>
+</blockquote>
+<p><strong>WAL 滚动</strong></p>
+<blockquote>
+<p>WAL 是一个环状的滚动日志结构，因为这种结构写入效果最高，而且可以保证空间不会持续变大。</p>
+</blockquote>
+<p><strong>Store 内部结构</strong></p>
+<blockquote>
+<p>在 Store 中有两个重要组成部分：</p>
+<ul>
+<li><strong>MemStore</strong>：每个 Store 中<strong>有一个 MemStore 实例</strong>，数据写入 WAL 之后就会被放入 MemStore。<ul>
+<li>MemStore 是内存的存储对象，只有当 MemStore 满了的时候才会将数据刷写（flush）到 HFile 中。</li>
+</ul>
+</li>
+<li><strong>HFile</strong>：在 Store 中<strong>有多个 HFile</strong>，当 MemStore 满了之后 HBase 就会在 HDFS 上生成一个新的 HFile，然后把 MemStore 中的内容写到这个 HFile 中。<ul>
+<li>HFile 直接跟 HDFS 打交道，它是数据的存储实体。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><img src="/images/433.png" alt="Store 内部结构"></p>
+<blockquote>
+<p>WAL 是存储在 HDFS 上的，Memstore 是存储在内存中的，HFile 又是存储在 HDFS 上的。</p>
+<p>数据是先写入 WAL，再被放入 Memstore，最后被持久化到 HFile 中。</p>
+<p>数据在进入 HFile 之前已经被存储到 HDFS 一次了，为什么还需要被放入 Memstore？</p>
+<ul>
+<li>这是因为 HDFS 上的文件只能创建、追加、删除，但是不能修改。</li>
+</ul>
+<p>对于一个数据库来说，按顺序地存放数据是非常重要的，这是性能的保障，所以我们不能按照数据到来的顺序来写入硬盘。</p>
+<p>可以使用内存先把数据整理成顺序存放，然后再一起写入硬盘，这就是 Memstore 存在的意义。</p>
+<p>虽然 Memstore 是存储在内存中的，HFile 和 WAL 是存储在 HDFS 上的，但由于数据在写入 Memstore 之前，要先被写入 WAL。</p>
+<ul>
+<li>所以增加 Memstore 的大小并不能加速写入速度。</li>
+</ul>
+<p><strong>Memstore 存在的意义是维持数据按照 rowkey 顺序排列，而不是做一个缓存。</strong></p>
+</blockquote>
+<p><strong>MemStore</strong></p>
+<blockquote>
+<p>设计 MemStore 的原因有以下几点：</p>
+<ul>
+<li>由于 HDFS 上的文件不可修改，为了让数据顺序存储从而提高读取效率，HBase 使用了 LSM 树结构来存储数据，数据会先在 Memstore 中<strong>整理成 LSM 树</strong>，最后再刷写到 HFile 上。</li>
+<li><strong>优化数据的存储</strong>，比如一个数据添加后就马上删除了，这样在刷写的时候就可以直接不把这个数据写到 HDFS 上。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>不过不要想当然地认为读取也是先读取 Memstore 再读取磁盘哟。</p>
+<p>读取的时候是有专门的缓存叫 BlockCache，这个 BlockCache 如果开启了，就是先读 BlockCache，读不到才是读 HFile+Memstore。</p>
+</blockquote>
+<p><strong>HFile（StoreFile）</strong></p>
+<blockquote>
+<p>HFile 是数据存储的实际载体，我们创建的所有表、列等数据都存储在 HFile 里面。</p>
+<p>HFile 是由一个一个的块组成的，在 HBase 中一个块的大小默认为 64KB，由列族上的 BLOCKSIZE 属性定义。</p>
+<p>这些块区分了不同的角色：</p>
+<ul>
+<li><strong>Data</strong>：数据块。<ul>
+<li>每个 HFile 有多个 Data 块，我们存储在 HBase 表中的数据就在这里，Data 块其实是<strong>可选的</strong>，但是几乎很难看到不包含 Data 块的 HFile；</li>
+</ul>
+</li>
+<li><strong>Meta</strong>：元数据块。<ul>
+<li>Meta 块是<strong>可选的</strong>，Meta 块只有在文件关闭的时候才会写入。</li>
+<li>Meta 块存储了该 HFile 文件的元数据信息，在 v2 之前布隆过滤器（Bloom Filter）的信息直接放在 Meta 里面存储，v2 之后分离出来单独存储。</li>
+</ul>
+</li>
+<li><strong>FileInfo</strong>：<ul>
+<li>文件信息，其实也是一种数据存储块。</li>
+<li>FileInfo 是 HFile 的必要组成部分，是<strong>必选的</strong>，它只有在文件关闭的时候写入，存储的是这个文件的信息，比如最后一个 Key（LastKey），平均的 Key 长度（AvgKeyLen）等。</li>
+</ul>
+</li>
+<li><strong>DataIndex</strong>：<ul>
+<li>存储 Data 块索引信息的块文件。</li>
+<li>索引的信息其实也就是 Data 块的偏移值（offset），DataIndex 也是<strong>可选的</strong>，有 Data 块才有 DataIndex。</li>
+</ul>
+</li>
+<li><strong>MetaIndex</strong>：<ul>
+<li>存储 Meta 块索引信息的块文件。</li>
+<li>MetaIndex 块也是<strong>可选的</strong>，有 Meta 块才有 MetaIndex。</li>
+</ul>
+</li>
+<li><strong>Trailer</strong>：<strong>必选的</strong>，它存储了 FileInfo、DataIndex、MetaIndex 块的偏移值。</li>
+</ul>
+</blockquote>
+<p><img src="/images/434.png" alt="HFile 组成结构"></p>
+<blockquote>
+<p>其实叫 HFile 或者 StoreFile 都没错，在物理存储上我们管 MemStore 刷写而成的文件叫 HFile，StoreFile 就是 HFile 的抽象类而已。</p>
+</blockquote>
+<p><strong>Data 数据块</strong></p>
+<blockquote>
+<p>Data 数据块的第一位存储的是块的类型，后面存储的是多个 KeyValue 键值对，也就是单元格（Cell）的实现类，Cell 是一个接口，KeyValue 是它的实现类。</p>
+</blockquote>
+<p><img src="/images/435.png" alt="Data 数据块结构"></p>
+<p><strong>KeyValue 类</strong></p>
+<blockquote>
+<p>一个 KeyValue 类里面最后一个部分是存储数据的 Value，而前面的部分都是存储跟该单元格相关的元数据信息。</p>
+<p>如果你存储的 value 很小，那么这个单元格的绝大部分空间就都是 rowkey、column family、column 等的元数据，所以大家的列族和列的名字如果很长，大部分的空间就都被拿来存储这些数据了。</p>
+<p>不过如果采用适当的压缩算法就可以极大地节省存储列族、列等信息的空间了，所以在实际的使用中，可以通过指定压缩算法来压缩这些元数据。</p>
+<p>不过压缩和解压必然带来性能损耗，所以使用压缩也需要根据实际情况来取舍。</p>
+<p>如果你的数据主要是归档数据，不太要求读写性能，那么压缩算法就比较适合你。</p>
+</blockquote>
+<p><img src="/images/436.png" alt="KeyValue 结构"></p>
+<p><strong>增删查改的真正面目</strong></p>
+<blockquote>
+<p>HBase 是一个可以随机读写的数据库，而它所基于的持久化层 HDFS 却是要么新增，要么整个删除，不能修改的系统。</p>
+<p>那 HBase 怎么实现我们的增删查改的？</p>
+<p>真实的情况是这样的：HBase 几乎总是在做新增操作。</p>
+<ul>
+<li>当你新增一个单元格的时候，HBase 在 HDFS 上新增一条数据</li>
+<li>当你修改一个单元格的时候，HBase 在 HDFS 又新增一条数据，只是版本号比之前那个大（或者你自己定义）</li>
+<li>当你删除一个单元格的时候，HBase 还是新增一条数据<ul>
+<li>只是这条数据没有 value，类型为 DELETE，这条数据叫墓碑标记（Tombstone）</li>
+</ul>
+</li>
+</ul>
+<p>由于数据库在使用过程中积累了很多增删查改操作，数据的连续性和顺序性必然会被破坏。</p>
+<p>为了提升性能，HBase 每间隔一段时间都会进行一次合并（Compaction），合并的对象为 HFile 文件。</p>
+<p>合并分为 minor compaction 和 major compaction，在 HBase 进行 major compaction 的时候，它会把多个 HFile 合并成 1 个 HFile，在这个过程中，一旦检测到有被打上墓碑标记的记录，在合并的过程中就忽略这条记录，这样在新产生的 HFile 中，就没有这条记录了，自然也就相当于被真正地删除了。</p>
+</blockquote>
+<p><strong>数据结构总结</strong></p>
+<blockquote>
+<p>HBase 数据的内部结构大体如下：</p>
+<ul>
+<li>一个 RegionServer 包含多个 Region，划分规则是：<ul>
+<li>一个表的一段键值在一个 RegionServer 上会产生一个 Region。</li>
+<li>不过当某一行的数据量太大了（要非常大），HBase 也会把这个 Region 根据列族切分到不同的机器上去。</li>
+</ul>
+</li>
+<li>一个 Region 包含多个 Store，划分规则是：<ul>
+<li>一个列族分为一个 Store，如果一个表只有一个列族，那么这个表在这个机器上的每一个 Region 里面都只有一个 Store。</li>
+</ul>
+</li>
+<li>一个 Store 里面只有一个 Memstore。</li>
+<li>一个 Store 里面有多个 HFile，每次 Memstore 的刷写（flush）就产生一个新的 HFile 出来。</li>
+</ul>
+</blockquote>
+<p><img src="/images/437.png" alt="数据单元层次图"></p>
+<p><strong>KeyValue 的写入和读出</strong></p>
+<blockquote>
+<p>一个 KeyValue 被持久化到 HDFS 的过程的如下：</p>
+</blockquote>
+<p><img src="/images/438.png" alt="KeyValue 写入过程"></p>
+<blockquote>
+<ul>
+<li><strong>WAL</strong>：数据被发出之后第一时间被写入 WAL，由于 WAL 是基于 HDFS 来实现的，所以也可以说现在单元格就已经被持久化了，但是 WAL 只是一个暂存的日志，它是不区分 Store 的，这些数据是不能被直接读取和使用。</li>
+<li><strong>Memstore</strong>：数据随后会立即被放入 Memstore 中进行整理，Memstore 会负责按照 LSM 树的结构来存放数据，这个过程就像我们在打牌的时候，抓牌之后在手上对牌进行整理的过程。</li>
+<li><strong>HFile</strong>：最后，当 Memstore 太大了达到尺寸上的阀值，或者达到了刷写时间间隔阀值的时候，HBaes 会把这个 Memstore 的内容刷写到 HDFS 系统上，称为一个存储在硬盘上的 HFile 文件。</li>
+<li>至此，我们可以称为数据真正地被持久化到硬盘上，就算宕机，断电，数据也不会丢失了。</li>
+</ul>
+</blockquote>
+<p><strong>读出</strong></p>
+<blockquote>
+<p>由于有 MemStore（基于内存）和 HFile（基于HDFS）这两个机制，你一定会立马想到先读取 MemStore，如果找不到，再去 HFile 中查询。这是显而易见的机制，可惜 HBase 在处理读取的时候并不是这样的。</p>
+<ul>
+<li>实际的读取顺序是先从 BlockCache 中找数据，找不到了再去 Memstore 和 HFile 中查询数据。</li>
+</ul>
+<p><strong>墓碑标记和数据不在一个地方，读取数据的时候怎么知道这个数据要删除呢？</strong></p>
+<p>如果这个数据比它的墓碑标记更早被读到，那在这个时间点真是不知道这个数据会被删除，只有当扫描器接着往下读，读到墓碑标记的时候才知道这个数据是被标记为删除的，不需要返回给用户。</p>
+<p>所以 HBase 的 Scan 操作在取到所需要的所有行键对应的信息之后还会继续扫描下去，直到被扫描的数据大于给出的限定条件为止，这样它才能知道哪些数据应该被返回给用户，而哪些应该被舍弃。</p>
+<p>所以<strong>你增加过滤条件也无法减少 Scan 遍历的行数，只有缩小 STARTROW 和 ENDROW 之间的行键范围才可以明显地加快扫描的速度</strong>。</p>
+<p>在 Scan 扫描的时候 store 会创建 StoreScanner 实例，StoreScanner 会把 MemStore 和 HFile 结合起来扫描，所以具体从 MemStore 还是 HFile 中读取数据，外部的调用者都不需要知道具体的细节。</p>
+<p>当 StoreScanner 打开的时候，会先定位到起始行键（STARTROW）上，然后开始往下扫描。</p>
+</blockquote>
+<p><img src="/images/439.png" alt="StoreScanne 扫描数据"></p>
+<blockquote>
+<p>其中红色块部分都是属于指定 row 的数据，Scan 要把所有符合条件的 StoreScanner 都扫描过一遍之后才会返回数据给用户。</p>
+</blockquote>
+<p><strong>Region的定位</strong></p>
+<blockquote>
+<p>Region 的查找，早期的设计（0.96.0）之前是被称为三层查询架构：</p>
+</blockquote>
+<p><img src="/images/440.png" alt="三层查询架构"></p>
+<blockquote>
+<p><strong>Region</strong>：查找的数据所在的 Region。</p>
+<p>.META.：</p>
+<ul>
+<li>是一张元数据表，它存储了所有 Region 的简要信息，<code>.META.</code> 表中的一行记录就是一个 Region，该行记录了该 Region 的起始行、结束行和该 Region 的连接信息，这样客户端就可以通过这个来判断需要的数据在哪个 Region 上。</li>
+</ul>
+<p>-ROOT-：</p>
+<ul>
+<li>是一张存储 <code>.META.</code> 表的表，<code>.META.</code> 可以有很多张，而 <code>-ROOT-</code> 就是存储了 <code>.META.</code> 表在什么 Region 上的信息（<code>.META.</code> 表也是一张普通的表，也在 Region 上）。</li>
+</ul>
+<p>通过两层的扩展最多可以支持约 171 亿个 Region。</p>
+</blockquote>
+<blockquote>
+<p><code>-ROOT-</code> 表记录在 ZooKeeper 上，路径为：<code>/hbase/root-region-server</code>。</p>
+<p>Client 查找数据的流程从宏观角度来看是这样的：</p>
+<ul>
+<li>用户通过查找 zk（ZooKeeper）的 <code>/hbase/root-regionserver</code> 节点来知道 <code>-ROOT-</code> 表在什么 RegionServer 上。</li>
+<li>访问 <code>-ROOT-</code> 表，看需要的数据在哪个 <code>.META.</code> 表上，这个 <code>.META.</code> 表在什么 RegionServer 上。</li>
+<li>访问 <code>.META.</code> 表来看要查询的行键在什么 Region 范围里面。</li>
+<li>连接具体的数据所在的 RegionServer，这回就真的开始用 Scan 来遍历 row 了。</li>
+</ul>
+</blockquote>
+<p><img src="/images/441.png" alt="早期版本 Region 查找过程"></p>
+<blockquote>
+<p>从 0.96 版本之后这个三层查询架构被改成了二层查询架构，<code>-ROOT-</code> 表被去掉了，同时 zk 中的 <code>/hbase/root-region-server</code> 也被去掉了，直接把 <code>.META.</code> 表所在的 RegionServer 信息存储到了 zk 中的 <code>/hbase/meta-region-server</code>。</p>
+<p>再后来引入了 namespace，<code>.META.</code> 表被修改成了 <code>hbase:meta</code>。</p>
+</blockquote>
+<blockquote>
+<p><strong>新版 Region 查找流程：</strong></p>
+<ul>
+<li>客户端先通过 ZooKeeper 的 <code>/hbase/meta-region-server</code> 节点查询到哪台 RegionServer 上有 <code>hbase:meta</code> 表。</li>
+<li>客户端连接含有 <code>hbase:meta</code> 表的 RegionServer，<code>hbase:meta</code> 表存储了所有 Region 的行键范围信息，通过这个表就可以查询出要存取的 rowkey 属于哪个 Region 的范围里面，以及这个 Region 又是属于哪个 RegionServer。</li>
+<li>获取这些信息后，客户端就可以直连其中一台拥有要存取的 rowkey 的 RegionServer，并直接对其操作。</li>
+<li>客户端会把 meta 信息缓存起来，下次操作就不需要进行以上加载 <code>hbase:meta</code> 的步骤了。</li>
+</ul>
+</blockquote>
+<p><img src="/images/442.png" alt="新版 Region 查找过程"></p>
 
 	</div>
 </div>
