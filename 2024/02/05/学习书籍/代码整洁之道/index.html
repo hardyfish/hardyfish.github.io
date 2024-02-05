@@ -21,6 +21,8 @@
 	<!-- title -->
 	
 	<title>
+	
+		代码整洁之道 | 
 	 
 	月伴飞鱼
 	</title>
@@ -466,7 +468,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2024/02/05/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93/">
 										代码整洁之道
 									</a>
@@ -1288,373 +1290,586 @@
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<div id="index" oncontextmenu="return false;">
-	
-		<div class="index-li">
-			<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E5%B9%BF%E5%91%8A%E7%B3%BB%E7%BB%9F/">
-				<h2 class="index-title">
-					广告系统
-				</h2>
-				<div class="index-brief">
-					
-广告涉及到 广告主、平台、用户3个主体。
+		<h1 id="article-title" oncontextmenu="return false;">
 
-广告主：关注ROI，花了钱是否能带来预期收益
-平台：拥有流量，关注收益能否最大化
-用户：关注体验，广告是否足够精准？是否影响到了正常功能的使用
+	代码整洁之道
+</h1>
+<div class="article-meta" oncontextmenu="return false;">
+	<span>月伴飞鱼</span>
+	<span>2024-02-05 11:37:18</span>
+    
+		<div id="article-categories">
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/学习书籍/">学习书籍</a>
+						
+                    </span>
+                
+            
+		</div>
+    
+</div>
+
+<div id="container" class = "content999" oncontextmenu="return false;">
+<!--打赏-->
+        <div class="reward">
+       <div class="reward-button">赏 <span class="reward-code">
+        <span class="alipay-code"> <img class="alipay-img wdp-appear" src="/alipay.png"><b>支付宝打赏</b> </span> 
+        <span class="wechat-code"> <img class="wechat-img wdp-appear" src="/weipay.jpeg"><b>微信打赏</b> </span> 
+       </div>
+      <p class="reward-notice">如果文章对你有帮助，欢迎点击上方按钮打赏作者！</p>
+      </div>
+      <!--打赏-->
+	<div id="article-content">
+		<p>书籍介绍：<a target="_blank" rel="noopener" href="https://book.douban.com/subject/4199741/">https://book.douban.com/subject/4199741/</a></p>
+<h1 id="整洁代码"><a href="#整洁代码" class="headerlink" title="整洁代码"></a>整洁代码</h1><p><strong>整洁不会拖慢你的进度</strong></p>
+<blockquote>
+<p>程序员遵从不了解混乱风险的经理的意愿，也是不专业的做法。</p>
+<p>混乱只会立刻拖慢你，叫你错过期限。</p>
+<p>赶上期限的唯一方法——做得快的唯一方法 ——就是始终尽可能保持代码整洁。</p>
+</blockquote>
+<p><strong>何为好代码</strong></p>
+<blockquote>
+<p>代码逻辑应当直截了当，叫缺陷难以隐藏：</p>
+<ul>
+<li>尽量减少依赖关系，使之便于维护</li>
+<li>依据某种分层战略完善错误处理代码</li>
+<li>性能调至最优，省得引诱别人做没规矩的优化，搞出一堆混乱来</li>
+</ul>
+<p>整洁的代码只做好一件事，力求集中：</p>
+<ul>
+<li>每个函数、每个类和每个模块都全神贯注于一事</li>
+<li>整洁的代码应当明确地展现出要解决问题的张力</li>
+<li>它应当将这种张力推至高潮，以某种显而易见的方案解决问题和张力</li>
+<li>代码应当讲述事实，不引人猜测</li>
+<li>它只该包含必需之物。读者应当感受到我们的果断决绝</li>
+<li>它应当有单元测试和验收测试。它使用有意义的命名</li>
+<li>它只提供一种而非多种做一件事的途径</li>
+<li>它只有尽量少的依赖关系，而且要明确地定义和提供清晰、尽量少的API</li>
+<li>代码应通过其字面表达含义，因为不同的语言导致并非所有必需信息均可通过代码自身清晰表达</li>
+</ul>
+<p>消除重复和提高表达力：</p>
+<ul>
+<li>如果同一段代码反复出现，就表示某种想法未在代码中得到良好的体现</li>
+<li>尽力去找出到底那是什么，然后再尽力更清晰地表达出来</li>
+<li>检查对象或方法是否想做的事太多。如果对象功能太多，最好是切分为两个或多个对象</li>
+<li>如果方法功能太多，我总是使用抽取手段（Extract Method）重构之，从而得到一个能较为清晰地说明自身功能的方法，以及另外数个说明如何实现这些功能的方法</li>
+<li>消除重复和提高表达力让我在整洁代码方面获益良多，只要铭记这两点，改进脏代码时就会大有不同</li>
+</ul>
+<p>你不会为整洁代码所震惊：</p>
+<ul>
+<li>你无需花太多力气：那代码就是深合你意</li>
+<li>它明确、简单、有力：每个模块都为下一个模块做好准备</li>
+<li>每个模块都告诉你下一个模块会是怎样的，整洁的程序好到你根本不会注意到它，设计者把它做得像一切其他设计般简单</li>
+</ul>
+<p>语言是冥顽不化的：</p>
+<ul>
+<li>是程序员让语言显得简单</li>
+</ul>
+<p>实际上，作者有责任与读者做良好沟通：</p>
+<ul>
+<li>下次你写代码的时候，记得自己是作者，要为评判你工作的读者写代码</li>
+</ul>
+</blockquote>
+<h1 id="有意义的命名"><a href="#有意义的命名" class="headerlink" title="有意义的命名"></a>有意义的命名</h1><p><strong>名副其实</strong></p>
+<blockquote>
+<p>一个好的变量、函数或类的名称应该已经几乎答复了所有的大问题。</p>
+<p>它应该告诉你，这个名称所代表的内容，为什么会存在，做了什么事情，应该如何用等。</p>
+<p>如果一个名称需要注释来补充才能让大家明白其真正含义，那其实就不算是名副其实。</p>
+<p><strong>举个栗子：</strong></p>
+<p>以下的这句代码里的d就不算是个好命名。</p>
+<ul>
+<li>名称d什么都没说，它没引起我们对时间消逝的感觉，更别说单位是天了。</li>
+</ul>
+</blockquote>
+<pre><code class="java">int d; // elapsed time in days||经过了几天时间
+// 我们应该选择这样的指明了计量对象和计量单位的名称：
+
+int elapsedTimeInDays;
+int daysSinceCreation;
+int daysSinceModification;
+int fileAgeInDays;
+</code></pre>
+<p><strong>避免造成误导</strong></p>
+<blockquote>
+<p>我们应该避免留下隐藏代码本意的错误线索，也应该避免使用与本意相悖的词。</p>
+<p>例如，别用accountList来指一组账号，除非它真的是List类型，用accountGroup、bunchOfAccounts，或者直接用accounts，都是更好的选择。</p>
+<p>尽量提防长得太像的名称：</p>
+<ul>
+<li><p>想区分XYZControllerForEfficientHandlingOfStrings和XYZControllerForEfficientStorageOfStrings，会花费我们太多的时间。</p>
+</li>
+<li><p>因为这两个词，实在太相似了。</p>
+</li>
+</ul>
+<p>以同样的方式拼写出同样的概念才是信息，拼写前后不一致就是误导。</p>
+</blockquote>
+<p><strong>尽量做有意义的区分</strong></p>
+<blockquote>
+<p>尽量避免使用数字系列命名（a1、a2…….aN）：</p>
+<ul>
+<li>这样的名称纯属误导，因为很多时候完全没有提供正确的信息，没有提供导向作者意图的线索。</li>
+</ul>
+<p>废话是另一种没有意义的区分：</p>
+<ul>
+<li>如果我们有一个Product类，还有一个ProductInfo或ProductData类，那么他们的名称虽然不同，但意思却无区别。</li>
+<li>这里的Info、Data就像a、an和the一样，是意义含混的废话。</li>
+</ul>
+<p>注意，只要体现出有意义的区分，使用a、the这样的前缀就没错。</p>
+<ul>
+<li>例如，将a用在域内变量，把the用于函数参数。</li>
+</ul>
+</blockquote>
+<p><strong>尽量使用读得出来的名称</strong></p>
+<blockquote>
+<p>我们要使用读得出来的名称。</p>
+<p>如果名称读不出来，讨论的时候就会不方便且很尴尬，甚至让旁人觉得很蠢。</p>
+<ul>
+<li>例如，变量名称是beeceearrthreecee，讨论的时候读起来简直像没吃药。</li>
+</ul>
+</blockquote>
+<p><strong>尽量使用可搜索的名称</strong></p>
+<blockquote>
+<p>单字母和数字常量有个问题，就是很难再一大篇文字中找出来。</p>
+<ul>
+<li>找<code>MAX_CLASSED_PER_STUDENT</code>很容易，但想找数字7，就很麻烦。</li>
+</ul>
+<p>同样，字母e也不是个便于搜索的好变量名。因为作为英文中最常用的字母，在每个程序、每段代码中都有可能出现。</p>
+<p>名称长短应与其作用域大小相对应，若变量或常量可能在代码中多处使用，应赋予其以便于搜索的名称。</p>
+</blockquote>
+<p>举个栗子，比较如下两段代码：</p>
+<pre><code class="java">for (int j=0; j&lt;34; j++)
+&#123;
+    s += (t[j]*4)/5;
+&#125;
+和
+
+const int WORK_DAYS_PER_WEEK = 5;
+int sum = 0;
+for (int j=0; j &lt; NUMBER_OF_TASKS; j++)
+&#123;
+    int realTaskDays = taskEstimate[j] * realDaysPerIdealDay;
+    int realTaskWeeks = (realdays / WORK_DAYS_PER_WEEK);
+    sum += realTaskWeeks;
+&#125;
+</code></pre>
+<blockquote>
+<p>按整洁代码的要求来评判，第一段代码会让读者不知所云，第二段代码比第一段好太多。</p>
+<p>第二段代码中，sum并非特别有用的名称，但至少他搜索得到。</p>
+<p>采用能表达意图的名称，貌似拉长了函数代码，但要想想看，<code>WORK_DAYS_PER_WEEK</code>要比数字5好找得多，而列表中也只剩下了体现我们意图的名称。</p>
+</blockquote>
+<p><strong>取名不要绕弯子</strong></p>
+<blockquote>
+<p>我们取名的时候要避免思维映射，不应当让读者在脑中把你的名称翻译为他们熟知的名称，也就是说取名不要绕弯子，而是要直白，直截了当。</p>
+<p>在多数情况下，单字母不是个好的命名选择，除非是在作用域小、没有名称冲突的地方，比如循环。</p>
+<ul>
+<li>循环计数器自然有可能被命名为i，j或k（最好别用字母l），这是因为传统上我们惯用单字母名称做循环计数器。</li>
+</ul>
+<p>程序员通常都是聪明人，聪明人有时会借助脑筋急转弯炫耀其聪明。</p>
+<p>而聪明程序员和专业程序员之间的区别在于，专业程序员了解，明确就是王道。</p>
+<p>专业的程序员善用其能，能编写出其他人能理解的代码。</p>
+</blockquote>
+<p><strong>类名尽量用名词</strong></p>
+<blockquote>
+<p>类名尽量用名词或名词短语，比如Customer，WikiPage，Account 或 AddressParser。</p>
+<p>类名<strong>最好不要是动词</strong>。</p>
+</blockquote>
+<p><strong>方法名尽量用动词</strong></p>
+<blockquote>
+<p>方法名尽量用动词或动词短语。</p>
+<ul>
+<li>比如postPayment，deletePage或者save。</li>
+</ul>
+<p>属性访问器、修改器和断言应该根据其value来命名，并根据标准加上get、set和is前缀。</p>
+<p>举个栗子，这里的getName、setName等命名都很OK。</p>
+</blockquote>
+<pre><code class="java">string name = employee.getName();
+customer.setName(&quot;mike&quot;);
+if (paycheck.isPosted())...
+</code></pre>
+<blockquote>
+<p>而重载构造器时，使用描述了参数的静态工厂方法名。</p>
+</blockquote>
+<pre><code class="java">Complex fulcrumPoint =Complex.FromRealNumber(666.0);
+</code></pre>
+<blockquote>
+<p>通常好于：</p>
+</blockquote>
+<pre><code class="java">Complex fulcrumPoint = new Complex(666.0);
+</code></pre>
+<blockquote>
+<p>我们也可以考虑将相应的构造器设置为private，强制使用这种命名手段。</p>
+</blockquote>
+<p><strong>每个概念对应一词，并一以贯之</strong></p>
+<blockquote>
+<p>我们需给每个概念选一个词，并且一以贯之。</p>
+<p>例如，使用fetch、retrieve和get来给在多个类中的同种方法命名，你怎么记得住哪个类中是哪个方法呢？</p>
+<p>同样，在同一堆代码中混用controller、manager，driver，就会令人困惑。</p>
+<p>DeviceManager和Protocol-Controller之间有何根本区别？</p>
+<p>为什么不全用controller或者manager？他们都是Driver吗？这就会让读者以为这两个对象是不同的类型，也分属不同的类。</p>
+<p>所以，对于那些会用到你代码的程序员，一以贯之的命名法简直就是天降福音。</p>
+</blockquote>
+<p><strong>通俗易懂</strong></p>
+<blockquote>
+<p>我们应尽力写出易于理解的变量名，把代码写得让别人能一目了然，而不必让人去非常费力地去揣摩其含义。</p>
+<p>我们想要那种大众化的作者尽责地写清楚的通俗易懂的畅销书风格，而不是那种学者学院风的晦涩论文写作风格。</p>
+</blockquote>
+<p><strong>尽情使用解决方案领域专业术语</strong></p>
+<blockquote>
+<p>记住，只有程序员才会读你写的代码。</p>
+<p>所以，尽管去用那些计算机科学（Computer Science,CS）领域的专业术语、算法名、模式名、数学术语。</p>
+<p>对于熟悉访问者（Visitor）模式的程序来说，名称AccountVisitor富有意义。</p>
+<p>给技术性的事物取个恰如其分的技术性名称，通常就是最靠谱的做法。</p>
+</blockquote>
+<p><strong>添加有意义的语境</strong></p>
+<blockquote>
+<p>很少有名称是可以自我说明的。</p>
+<p>所以，我们需要用有良好命名的类，函数或名称空间来放置名称，给读者提供语境。</p>
+<p>若没能提供放置的地方，还可以给名称添加前缀。</p>
+<p>举个栗子，假如我们有名为firstName、lastName、street、houseNumber、city、state和zipcode的变量。</p>
+<ul>
+<li><p>当他们搁一块儿的时候，的确是构成了一个地址。</p>
+</li>
+<li><p>不过，假如只是在某个方法中看到一个孤零零的state呢？</p>
+</li>
+<li><p>我们会推断这个变量是地址的一部分吗？</p>
+</li>
+</ul>
+<p>我们可以添加前缀addrFirstName、addrLastName、addrState等，以此提供语境。</p>
+<p>至少，读者可以知道这些变量是某个更大变量的一部分。</p>
+<p>当然，更好的方案是创建名为Address的类。</p>
+<p>这样，即便是编译器也会知道这些变量是隶属于某个更大的概念了。</p>
+<ul>
+<li>另外，只要短名称足够好，对含义的表达足够清除，就要比长名称更合适。</li>
+</ul>
+<p>添加有意义的语境甚好，别给名称添加不必要的语境。</p>
+</blockquote>
+<p><strong>避免使用编码</strong></p>
+<blockquote>
+<p>使用编码 是一个不好的选择，把类型或者作用域添加的变量名中，无疑给变量名添加了额外的信息，增加了解码的负担。</p>
+</blockquote>
+<pre><code class="java">string m_name;
+</code></pre>
+<blockquote>
+<p><strong>应该避免</strong>这样的命名方式，下面python语言为例：</p>
+</blockquote>
+<pre><code class="java">m_list;
+arr_list;
+</code></pre>
+<h1 id="函数书写准则"><a href="#函数书写准则" class="headerlink" title="函数书写准则"></a>函数书写准则</h1><p><strong>短小</strong></p>
+<blockquote>
+<p>短小函数的第一规则。</p>
+<p>第二条规则还是要更短小。</p>
+<ul>
+<li>每行都不应该有150个字符那么长，函数也不该有100行那么长。</li>
+</ul>
+<p>函数的缩进层级不该多于一层。</p>
+</blockquote>
+<p><strong>单一职责 只做一件事</strong></p>
+<blockquote>
+<p>只做一件事，如果函数只是做了该函数名下同一抽象层上的步骤，则函数还是只做了一件事。</p>
+<p>判断函数是否不止做了一件事，还有就是看是否能再拆出一个函数，该函数不仅只是单纯地重新诠释其实现。</p>
+<ul>
+<li>只做一件事的函数无法被合理地切分为多个区段。</li>
+</ul>
+<p>设计模式中有单一职责原则，我们可以把这条原则理解为代码整洁之道中的函数单一职责原则。</p>
+</blockquote>
+<p><strong>函数参数尽可能的少</strong></p>
+<blockquote>
+<p>每个函数一个且仅有抽象层级：</p>
+<ul>
+<li>我们想要让代码拥有自顶向下的阅读顺序。</li>
+<li>让代码读起来像是一系列自顶向下的 起头段落是保持抽象层级协调一致的有效技巧。</li>
+<li>把读代码想象成读报纸。 </li>
+<li>总分结构，或者总分总结构。</li>
+</ul>
+<p>switch语句：</p>
+<ul>
+<li>多态–将switch语句埋到抽象工厂底下，在系统的其他部分看不到，就还能容忍。<ul>
+<li>可以使用抽象工厂来进行改进</li>
+</ul>
+</li>
+</ul>
+<p>函数名称使用：描述性名称</p>
+<ul>
+<li><p>testableHtml 改为<code>SetupTeardownIncluder.render</code>，好的名称价值怎么好评都不为过。</p>
+</li>
+<li><p>如果每个例程都让你感动深合已意，那就是简洁代码。</p>
+</li>
+</ul>
+<p>函数参数：</p>
+<ul>
+<li>参数越少越好，参数越少越便于理解。</li>
+</ul>
+<p>一元函数的普遍形式：</p>
+<ul>
+<li>函数名称应能区分出来。</li>
+</ul>
+<p>问关于参数的问题，如 <code>boolean fileExist(&quot;myFile&quot;);</code></p>
+<p>将参数转换为其他什么东西，在输出之：如<code>InputStream fileOpen(&quot;myFile&quot;);</code></p>
+<p>事件：</p>
+<ul>
+<li>有输入参数而无输出参数，程序将函数看做一个事件，使用该参数修改系统状态。</li>
+</ul>
+<p>标识参数丑陋不堪，即如果标识为true将会这样做，标识为false将会这样做：</p>
+<ul>
+<li>向函数传入布尔值简直是骇人听闻的做法。</li>
+</ul>
+<p>如果出现了参数是Boolean 值，就要思考一下，函数是否只做了一件事情。</p>
+<p>反复问自己 ，这个函数是不是做了一件事，或者承担了一项职责。</p>
+<p>二元函数：</p>
+<ul>
+<li>可以把某个参数转换成当前类的成员变量，从而无需再传递它。当然有一些有两个参数更加合适<code>Point(x,y)</code> 这种就比较合理</li>
+</ul>
+<p>三元函数：</p>
+<ul>
+<li>排序，琢磨，忽略的问题都会加倍体现，写三元函数之前一定要想清楚。</li>
+</ul>
+<p>参数列表：</p>
+<ul>
+<li>一个数量可变的参数等同于一个参数。</li>
+</ul>
+<p>函数命名应与参数形成动词&#x2F;名词对，如<code>writeField(name)</code>。</p>
+<p>无副作用： </p>
+<ul>
+<li>函数承诺只做一件事，但还是会做其他被藏起来的事，例如时序性耦合。</li>
+</ul>
+<p>输出参数：</p>
+<ul>
+<li>面向对象语言中对输出参数的大部分需求已经消失了。</li>
+<li>应避免使用输出参数，如果函数必须要修改某种状态，就修改所属对象的状态吧。</li>
+</ul>
+</blockquote>
+<p>看下这个例子：</p>
+<pre><code>appendFooter(s)
+</code></pre>
+<blockquote>
+<p>看到这个 首先就会 想把 s 添加什么东西，或者它把什么东西加到s 后面？ </p>
+<ul>
+<li>s 是输入 还是输出参数呢？</li>
+</ul>
+</blockquote>
+<pre><code class="java">public void appendFooter(StringBuffer report);
+</code></pre>
+<blockquote>
+<p>看了函数的签名，我们大概明白了。 </p>
+<p>所以 在面向对象语言中，最好的做法。</p>
+</blockquote>
+<pre><code class="java">report.appendFooter() // 这样来调用。
+</code></pre>
+<p><strong>分隔指令与询问</strong></p>
+<blockquote>
+<p>函数要么做什么事(<code>do</code>)，要么回答什么事(<code>boolean</code>)，但二者不可兼得。</p>
+</blockquote>
+<pre><code class="java">public boolean set(String attributer, String value);
+</code></pre>
+<blockquote>
+<p>用户调用:</p>
+</blockquote>
+<pre><code class="java">if (set(&quot;username&quot;,&quot;frank&quot;)) &#123;//...
+&#125;
+</code></pre>
+<blockquote>
+<p>看到这个代码，首先想 是否能够成功设置username 为frank, 还是要问，username 是否已经之前被设置过为frank了呢？ </p>
+<p>对看代码的人会比较困惑。</p>
+<p>所以 解决方案 就是 把做什么和是否成功分开。 </p>
+<p>防止发生混淆。</p>
+</blockquote>
+<pre><code class="java">if (exists(&quot;username&quot;))&#123;
+    setAttribute(&quot;username&quot;,&quot;frank&quot;)
+&#125;
+</code></pre>
+<p><strong>使用异常替代返回错误码</strong></p>
+<blockquote>
+<p>使用异常替代错误码返回错误码，错误处理代码就能从主路径代码中分离出来，得到简化。</p>
+<p>抽离try&#x2F;catch代码块：</p>
+<ul>
+<li><p>try&#x2F;catch代码块丑陋不堪。</p>
+</li>
+<li><p>最好把try和catch代码块的主体部分抽离出来，另外形成函数。</p>
+</li>
+</ul>
+<p>错误处理就是一件事：</p>
+<ul>
+<li>如果try在某个函数中存在，它就该是这个函数的第一个单词，而且在catch&#x2F;finally代码块后面也不该有其他内容。</li>
+</ul>
+<p><code>Error.java</code>依赖磁铁：</p>
+<ul>
+<li><p>返回错误码通常暗示某处有个类或是枚举定义了所有错误码。</p>
+</li>
+<li><p>使用异常替代错误码，新异常就可以从异常类派生出来，无需重新编译或重新部署。</p>
+</li>
+</ul>
+<p>使用异常的好处，可以避免嵌套太深的层级。</p>
+<ul>
+<li>代码可以写起来更加简化。</li>
+</ul>
+<p>来看一个例子： </p>
+<ul>
+<li>这里使用了很多的 嵌套的 if语句 这种很难让人理解，嵌套层级特别多，看起来很复杂，对于这种代码 最好直接抛出异常就可以，直接 使用 try 语句 然后捕获具体的异常就可以了。</li>
+</ul>
+<p>而不是一层，一层的进行判断，嵌套起来，之后就很难维护这样的代码。</p>
+</blockquote>
+<blockquote>
+<p>对于try 代码块 丑陋不堪， 它们会搞乱代码结构，把错误处理和正常流程混为一谈。 </p>
+<p>最好把 try 和 except 的主体部分抽离出来 单独形成函数。 </p>
+<p>这样以后维护也会方便一点，看起来代码清晰，代码结构简单。</p>
+</blockquote>
+<pre><code class="java">public void delete(Page page)&#123;
+    try&#123;
+
+        deletePageAndAllReferences(page);
+    &#125;catch(Exception e)&#123;
+        logError(e);
+    &#125;
+
+&#125;
 
 
-广告费用的结算方式
-
-CPT：
-
-按时间计费，独占性包时段包位置
-
-CPM：
-
-按照每千次曝光计费
-
-CP
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-18</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/系统相关/">系统相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E8%AE%A2%E5%8D%95%E7%B3%BB%E7%BB%9F/">
-				<h2 class="index-title">
-					订单系统
-				</h2>
-				<div class="index-brief">
-					如何防止重复提交订单
-重复提交原因:
-
-由于用户在短时间内多次点击下单按钮，或浏览器刷新按钮导致。
-由于Nginx或类似于SpringCloud Gateway的网关层，进行超时重试造成的。
+private void deletePageAndAllReferences(Page page) throws Exception &#123;
+    deltePage(page);
+    registry.deleteReference(page.name);
+    configKeys.deleteKeys(page.name.makeKey());
+&#125;
 
 
-方案一：提交订单按钮置灰
-方案二：预生成全局唯一订单号
+public void logError(Exception e )&#123;
+    logger.log(e.getMessage)
+&#125;
+</code></pre>
+<p><strong>别重复自己</strong></p>
+<blockquote>
+<p>别重复自己：重复可能是软件中一邪恶的根源。</p>
+<p>其实可以这样说，重复可能是软件中一切邪恶的根源，许多原则与实践规则都是为控制与消除重复而创建的。</p>
+<p>仔细想一想，面向对象编程是如何将代码集中到基类，从而避免了冗余的。</p>
+<p>而面向方面编程（Aspect Oriented Programming）、面向组件编程（Component Oriented Programming）多少也是消除重复的一种策略。这样看来，自子程序发明以来，软件开发领域的所有创新都是在不断尝试从源代码中消灭重复。</p>
+<p>重复而啰嗦的代码，乃万恶之源，我们要尽力避免。</p>
+<p>结构化编程：</p>
+<ul>
+<li>每个函数、函数中的每个代码块都应该有一个入口，一个出口，遵循这些规则，意味着在每个函数中只该有一个return语句，循环中不能有break或continue语句，而且永永远远不能有任何goto语句。</li>
+<li>对于小函数，这些规则助益不大，只有在大函数中，这些规则才会有明显的好处。</li>
+</ul>
+</blockquote>
+<p><strong>如何写出这样的函数</strong></p>
+<blockquote>
+<p>先想什么就写什么，然后再打磨它。</p>
+<ul>
+<li>初稿也许粗陋无序，你就斟酌推敲，直到达到你心中的样子。</li>
+</ul>
+<p>最好的情况要配上一套单元测试，覆盖每一行丑陋的代码。 </p>
+<p>然后开始打磨这些代码，分解函数，修改名称，消除重复。最后要保持测试可以顺利通过。 </p>
+<p>我并不是一开始就按照规则写函数。 我想没有人做得到。</p>
+</blockquote>
 
-后端新增一个接口，用于预生成一个全局唯一订单号
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-18</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/系统相关/">系统相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/16/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
-				<h2 class="index-title">
-					Java开发手册
-				</h2>
-				<div class="index-brief">
-					下载地址：https://github.com/alibaba/p3c/tree/master
-编程规约命名风格
-所有编程相关的命名均不能以下划线或美元符号开始，也不能以下划线或美元符号结束。 
-如:_name / __name / $Object / name_ / name$ / Object$
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-16</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/学习书籍/">学习书籍</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/15/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/JWT/">
-				<h2 class="index-title">
-					JWT
-				</h2>
-				<div class="index-brief">
-					
-JWT（Json Web Token）是一个经过加密的，包含用户信息的且具有时效性的固定格式字符串。
-JWT优点：
-
-可以不用在服务端存储认证信息（比如:Token）。
-完全由客户端提供，服务端只要根据 JWT 自身提供的解密算法就可以验证用户合法性，而且这个过程是安全的。
-
-
-数据结构
-
-JWT
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-15</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/框架相关/">框架相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/RPC%E6%A1%86%E6%9E%B6/">
-				<h2 class="index-title">
-					RPC框架
-				</h2>
-				<div class="index-brief">
-					
-RPC远程过程调用（Remote Procedure Call Protocol），是从一台机器通过网络调用到另一台机器的某个方法。
-
-基本结构
-
-当调用本地的一个服务类的某个方法时，实际上这个服务类已经是一个代理类了，调用这个类的某个方法，实际上代理方法中可以加入很多额外的逻辑，比如构造 HTT
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-14</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/框架相关/">框架相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/11/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Go%E5%9F%BA%E7%A1%80/">
-				<h2 class="index-title">
-					Go基础
-				</h2>
-				<div class="index-brief">
-					
-Golang官方网站：https://golang.org
-Golang中文网在线标准库文档: https://studygolang.com/pkgdoc
-
-Google创造Go语言的目的：
-
-计算机硬件技术更新频繁：
-
-性能提高很快，目前主流的编程语言发展落后于硬件，不能合理利用多核CPU的优
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-11</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/基础知识/">基础知识</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/09/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Arthas/">
-				<h2 class="index-title">
-					Arthas
-				</h2>
-				<div class="index-brief">
-					
-官方文档：https://arthas.aliyun.com/
-Arthas是一款由阿里巴巴开源的Java应用诊断利器，它可以帮助开发人员在运行时对Java应用进行调试和诊断，解决线上问题。
-
-连接应用
-默认连接:
-
-指 Arthas 自动连接当前机器上正在运行的 Java 应用程序。
-
-$ ja
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-09</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/工具相关/">工具相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/">
-				<h2 class="index-title">
-					MongoDB
-				</h2>
-				<div class="index-brief">
-					
-官网：https://www.mongodb.com/
-MongoDB是一款开源、跨平台、分布式，具有大数据处理能力的文档存储数据库。
-
-MongoDB用于记录文档结构的数据，比如JSON、XML结构的数据。
-
-
-适用场景
-
-数据量大，读写操作频繁，数据价值较低，对事务要求不高。
-
-数据结构
-存储
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-09</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/数据库/">数据库</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/09/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/">
-				<h2 class="index-title">
-					面试相关
-				</h2>
-				<div class="index-brief">
-					简历模版：https://www.polebrief.com/
-面试考察点
-
-考察点：技能、能力、价值观、匹配度。
-技能：
-
-Java基础，开源框架，中间件，代码设计，项目实战等。
-
-能力：
-
-工作年限和职级越高，对能力的要求越大，对技能的要求反而没那么大。
-
-学习能力：
-
-具备快速学习的能力，能够
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-09</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/成长相关/">成长相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/03/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
-				<h2 class="index-title">
-					Thrift
-				</h2>
-				<div class="index-brief">
-					
-Thrift是Facebook的一款开源跨语言的RPC框架。
-
-跨语言特型
-
-Thrift通过一个中间语言IDL(接口定义语言)来定义RPC的数据类型和接口。
-这些内容写在以.thrift结尾的文件中，然后通过特殊的编译器来生成不同语言的代码，以满足不同需要的开发者。
-
-生成的代码中不但包含目标语
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-03</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/框架相关/">框架相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-	
-	<div id="index-paginator">
-		
-			<a class="extend prev" rel="prev" href="/archives/page/4/">&lt;</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/archives/page/6/">6</a><a class="page-number" href="/archives/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/10/">10</a><a class="extend next" rel="next" href="/archives/page/6/">&gt;</a>
-		
 	</div>
 </div>
 
+
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2024/02/03/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/ShardingSphere/">
+                ShardingSphere
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+
+<script>
+
+    //document.oncontextmenu=new Function("event.returnValue=false");
+	//document.onselectstart=new Function("event.returnValue=false");
+
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+
+	
+
+	$(function () {
+		const btw = new BTWPlugin();
+	    btw.init({
+	        id: 'container',
+	        blogId: '22377-1706525467336-300',
+	        name: '月伴飞鱼',
+	        qrcode: '/小程序码.jpg',
+	        keyword: '验证码',
+	        btnText: '为防止机器刷接口，需要完成人机检测',
+        	cookieAge: 1
+	    });
+
+	    var contents = document.getElementsByClassName("content999");
+	    //监听文章内容的copy事件
+	    contents[0].addEventListener('copy',function(e){
+	        setClipboardText(e);
+	    });
+
+	    function setClipboardText(event){
+	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+	        let clipboardData = event.clipboardData || window.clipboardData;
+
+	        // 如果未复制或者未剪切，则return出去
+	        if (!clipboardData) { return; }
+
+	        event.preventDefault();
+
+	        // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+	        // 声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+	        let text = window.getSelection().toString();
+	    
+	        if (text) {
+	            // 如果文本存在则先取消文本默认事件
+	            event.preventDefault();
+	            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+	            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+	            // data: 一个 DOMString表示要添加到 drag object的数据。
+	            var copyright = '\n\n'
+	            + '\n著作权归作者所有。'
+	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+	            + '\n作者: 月伴飞鱼'
+	            + '\n原文地址: http://hardyfish.top/2024/02/05/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93/'
+	    
+	            clipboardData.setData('text/plain', text + copyright);
+	    
+	        }
+	    };
+	});
+
+	
+</script>
+
+<script>
+    const btw = new BTWPlugin();
+    btw.init({
+        id: 'container',
+        blogId: '22377-1706525467336-300',
+        name: '月伴飞鱼',
+        qrcode: '/小程序码.jpg',
+        keyword: '验证码',
+        btnText: '为防止机器刷接口，需要完成人机检测',
+        cookieAge: 1
+    });
+
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
 	</div>
 	<div id="footer">
 	<p>
