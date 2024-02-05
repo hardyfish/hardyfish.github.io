@@ -1470,6 +1470,41 @@
 </blockquote>
 <p><img src="/images/426.png" alt="HBase 存储结构"></p>
 <h1 id="让HBase跑起来"><a href="#让HBase跑起来" class="headerlink" title="让HBase跑起来"></a>让HBase跑起来</h1><p><strong>基本架构</strong></p>
+<blockquote>
+<p>HBase 中有一个 Master 用来管理元数据，它就像 Hadoop 中的 namenode。</p>
+<p>RegionServer 是用来存储数据的，相当于 Hadoop 中的 datanode。</p>
+<p>ZooKeeper 负责维护 HBase 的所有节点，如果 ZooKeeper 宕掉了，你一个节点都连不上。</p>
+<p>生产环境下的完全部署模式是基于 HDFS 的，使用 HDFS 来存储数据，但是在单机模式下 HBase 可以直接使用普通文件系统来存储数据。</p>
+<p>在使用中就算把 Master 关掉了，依旧可以从 HBase 中读取数据和写入数据，只是不能建表或者修改表。</p>
+<p>这是因为客户端读取数据的时候只是跟 ZooKeeper 和 RegionServer 交互，所以，ZooKeeper 甚至比 Master 还重要。</p>
+</blockquote>
+<p><img src="/images/427.png" alt="HBase 的基本架构"></p>
+<p><strong>数据块编码</strong></p>
+<blockquote>
+<p>数据块编码主要是<strong>针对 Key&#x2F;Value 中的 Key 进行编码，减少 Key 存储所占用的空间</strong>，因为很多 Key 的前缀都是重复的。</p>
+</blockquote>
+<p><img src="/images/428.png" alt="原始编码下的数据存储格式"></p>
+<blockquote>
+<p>可以看到这么多行的 Key 其实有很大一部分的字符是重复的。</p>
+<p>如果我们只存储递进值，就可以避免存储重复的前缀，这就是前缀编码（Prefix）。</p>
+</blockquote>
+<p><strong>前缀编码（Prefix）</strong></p>
+<blockquote>
+<p>如果使用前缀编码作为数据块编码方式，那么它只会存储第一个 Key 的完整字符串。</p>
+<p>后面的 key 只存储跟第一个 key 的<strong>差异字符</strong></p>
+</blockquote>
+<p><img src="/images/429.png" alt="前缀编码后的数据存储格式"></p>
+<p><strong>快速差异编码（Fast Diff）</strong></p>
+<blockquote>
+<p>快速差异编码（Fast Diff）借鉴了 Diff 编码的思路，也考虑到了差异编码速度慢的致命缺陷。</p>
+<p>Fast Diff 的实现比 Diff 更快，也是比较推荐的算法。</p>
+<p>由于还是有很多计算过程存在，所以<strong>快速差异算法的速度依然属于比较慢的</strong>。</p>
+</blockquote>
+<p><strong>压缩器</strong></p>
+<blockquote>
+<p>压缩器的作用是可以把 HBase 的数据按压缩的格式存储，这样可以更节省磁盘空间。</p>
+<p>当然这完全是可选的，不过推荐大家还是安装 Snappy 压缩器，这是 HBase 官方目前排名比较高的压缩器。</p>
+</blockquote>
 
 	</div>
 </div>
