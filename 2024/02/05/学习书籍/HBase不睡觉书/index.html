@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en" oncontextmenu="return false;">
+
+<head oncontextmenu="return false;">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="baidu-site-verification" content="codeva-QodU0Nk5F7" />
+	<meta name="google-site-verification" content="DbSTw8OJwtH5Qei7n8Jnew0YyQ5naPzdLAPiscu7zQE" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+	
+	<!-- title -->
+	
+	<title>
+	
+		HBase不睡觉书 | 
+	 
+	月伴飞鱼
+	</title>
+	
+	<!-- keywords,description -->
+	 
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/%E5%A4%B4%E5%83%8F.jpg">
+	
+  
+  	
+<link rel="stylesheet" href="/css/main.css">
+
+  	
+<link rel="stylesheet" href="/css/reward.css">
+
+	
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="/lib/highlight/darcula.css">
+
+	
+<link rel="stylesheet" href="/css/clipboard-use.css">
+
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+	
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+
+	
+<script src="/lib/highlight/highlight.min.js"></script>
+
+
+	
+<script src="https://readmore.openwrite.cn/js/readmore-2.0.js"></script>
+
+	
+<script src="/lib/jquery-3.4.1.min.js"></script>
+
+	
+<script src="/lib/jquery.pjax.js"></script>
+
+
+	
+<script src="/js/main.js"></script>
+
+	
+<script src="/js/jquery.fancybox.min.js"></script>
+
+	
+		
+<script src="/lib/valine/av-3.0.4-min.js"></script>
+
+		
+<script src="/lib/valine/Valine-1.3.10-min.js"></script>
+
+	
+	
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body oncontextmenu="return false;">
+	<header id="header" oncontextmenu="return false;">
+    <a id="title" href="/" class="logo">公众号月伴飞鱼</a>
+
+	<ul id="menu">
+		<li class="menu-item">
+			<a href="/about" class="menu-item-link">关于我</a>
+		</li>
+
+		<li class="menu-item">
+			<a href="/个人微信.jpeg" class="menu-item-link">联系作者</a>
+		</li>
+
+	    <li class="menu-item">
+			<a href="/site" class="menu-item-link">关于网站</a>
+		</li>
+
+		<li class="menu-item">
+			<a href="/个人公众号.jpg" class="menu-item-link" target="_blank">我的公众号</a>
+		</li>
+		
+		<li class="menu-item">
+			<a href="https://tech.meituan.com/" class="menu-item-link" target="_blank">
+				美团技术团队
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="https://tech.youzan.com/" class="menu-item-link" target="_blank">
+				有赞技术团队
+			</a>
+		</li>
+		<!--<li class="menu-item">
+			<select class="menu-item-link menu-item-select">
+				<option class="menu-item-link"  value="volvo">Volvo</option>
+				<option class="menu-item-link"  value="saab">Saab</option>
+				<option class="menu-item-link"  value="fiat">Fiat</option>
+				<option class="menu-item-link"  value="audi">Audi</option>
+			</select>
+		</li>-->
+	</ul>
+</header>
+
+	<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="text" placeholder="按目录搜索一下">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										AI相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/14/AI%E7%9B%B8%E5%85%B3/AIGC/">
+										AIGC
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										中间件
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/Dubbo/">
+										Dubbo
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/">
+										Elasticsearch
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/Netty/">
+										Netty
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/25/%E4%B8%AD%E9%97%B4%E4%BB%B6/Solr/">
+										Solr
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/ZooKeeper/">
+										ZooKeeper
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										代码思想
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/12/15/%E4%BB%A3%E7%A0%81%E6%80%9D%E6%83%B3/CodeReview/">
+										CodeReview
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/02/%E4%BB%A3%E7%A0%81%E6%80%9D%E6%83%B3/%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84/">
+										代码重构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										前端相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/CSS/">
+										CSS
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/12/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+										小程序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										基础知识
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/11/11/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Go%E5%9F%BA%E7%A1%80/">
+										Go基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/27/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/JVM/">
+										JVM
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/21/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Java%E5%9F%BA%E7%A1%80/">
+										Java基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/29/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Python%E5%9F%BA%E7%A1%80/">
+										Python基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%88%86%E5%B8%83%E5%BC%8F/">
+										分布式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/10/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+										并发编程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+										设计模式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										大数据相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/25/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Doris/">
+										Doris
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Flink/">
+										Flink
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/07/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Hive/">
+										Hive
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Spark/">
+										Spark
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										学习专栏
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/31/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E4%BB%A3%E7%A0%81%E4%B9%8B%E4%B8%91/">
+										代码之丑
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/26/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E5%A4%A7%E5%8E%82%E6%99%8B%E5%8D%87%E6%8C%87%E5%8D%97/">
+										大厂晋升指南
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										学习书籍
+									</a>
+									
+							<ul>
+								<li class="file active">
+									<a href="/2024/02/05/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/HBase%E4%B8%8D%E7%9D%A1%E8%A7%89%E4%B9%A6/">
+										HBase不睡觉书
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/02/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98/">
+										Java并发编程实战
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/02/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/">
+										Java并发编程的艺术
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/16/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
+										Java开发手册
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/05/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93/">
+										代码整洁之道
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										工具相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/11/09/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Arthas/">
+										Arthas
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/24/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/ChatGPT/">
+										ChatGPT
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/GIT/">
+										GIT
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Hexo/">
+										Hexo
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/MAC/">
+										MAC
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/01/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Maven/">
+										Maven
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/09/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/PlantUML/">
+										PlantUML
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/22/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/UTools/">
+										UTools
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">
+										实用工具
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										成长相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/31/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">
+										技术学习
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/07/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/">
+										读书计划
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/09/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/">
+										面试相关
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										数据库
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/27/%E6%95%B0%E6%8D%AE%E5%BA%93/HBase/">
+										HBase
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/">
+										MongoDB
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/02/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">
+										MySQL
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">
+										Redis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										服务器
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%9C%8D%E5%8A%A1%E5%99%A8/Docker/">
+										Docker
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/">
+										Nginx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/Tomcat/">
+										Tomcat
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/%E8%BF%90%E7%BB%B4%E7%9F%A5%E8%AF%86/">
+										运维知识
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										架构相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/DDD/">
+										DDD
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/02/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E6%9E%B6%E6%9E%84%E5%9B%BE/">
+										架构图
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/02/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/">
+										架构学习
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/26/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E4%BF%9D%E9%9A%9C/">
+										系统保障
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/31/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E6%80%A7%E8%83%BD/">
+										系统性能
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/26/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
+										系统设计
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										框架相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/07/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Caffeine/">
+										Caffeine
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/06/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Guava/">
+										Guava
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/15/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/JWT/">
+										JWT
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/MyBatis/">
+										MyBatis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/RPC%E6%A1%86%E6%9E%B6/">
+										RPC框架
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/26/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Seata/">
+										Seata
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/03/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/ShardingSphere/">
+										ShardingSphere
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
+										Spring
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/03/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
+										Thrift
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/29/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/XXLJOB/">
+										XXLJOB
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">
+										开源框架
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										消息队列
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/KAFKA/">
+										KAFKA
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/20/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RabbitMQ/">
+										RabbitMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RocketMQ/">
+										RocketMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										源码相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/12/13/%E6%BA%90%E7%A0%81%E7%9B%B8%E5%85%B3/RocketMQ/">
+										RocketMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										生活相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/27/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E4%B9%A6%E7%B1%8D/">
+										书籍
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/17/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E5%81%9A%E8%8F%9C/">
+										做菜
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E7%94%B5%E5%BD%B1/">
+										电影
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/10/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E7%94%B5%E8%A7%86%E5%89%A7/">
+										电视剧
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/11/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E7%BA%AA%E5%BD%95%E7%89%87/">
+										纪录片
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E9%9F%B3%E4%B9%90/">
+										音乐
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										算法相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/LeetCode/">
+										LeetCode
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E5%89%91%E6%8C%87OFFER/">
+										剑指OFFER
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
+										面试算法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										系统相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E4%BB%BB%E5%8A%A1%E7%B3%BB%E7%BB%9F/">
+										任务系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E5%B9%BF%E5%91%8A%E7%B3%BB%E7%BB%9F/">
+										广告系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E6%89%93%E8%BD%A6%E7%B3%BB%E7%BB%9F/">
+										打车系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">
+										推荐系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%94%A8%E6%88%B7%E7%B3%BB%E7%BB%9F/">
+										用户系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%9B%B4%E6%92%AD%E7%B3%BB%E7%BB%9F/">
+										直播系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%9F%AD%E9%93%BE%E7%B3%BB%E7%BB%9F/">
+										短链系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%A4%BE%E5%8C%BA%E7%B3%BB%E7%BB%9F/">
+										社区系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F/">
+										秒杀系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%BA%A2%E5%8C%85%E7%B3%BB%E7%BB%9F/">
+										红包系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E8%AE%A2%E5%8D%95%E7%B3%BB%E7%BB%9F/">
+										订单系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										英语相关
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										老友记
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%80%E5%AD%A3/">
+										第一季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%89%E5%AD%A3/">
+										第三季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/23/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%BA%94%E5%AD%A3/">
+										第五季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/17/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95/">
+										英语语法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										雅思
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/25/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%9815/">
+										剑桥雅思听力真题15
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%984/">
+										剑桥雅思听力真题4
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										计算机基础
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+										操作系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+										数据结构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/">
+										算法知识
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
+										网络基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content">
+		<h1 id="article-title" oncontextmenu="return false;">
+
+	HBase不睡觉书
+</h1>
+<div class="article-meta" oncontextmenu="return false;">
+	<span>月伴飞鱼</span>
+	<span>2024-02-05 15:37:05</span>
+    
+		<div id="article-categories">
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/学习书籍/">学习书籍</a>
+						
+                    </span>
+                
+            
+		</div>
+    
+</div>
+
+<div id="container" class = "content999" oncontextmenu="return false;">
+<!--打赏-->
+        <div class="reward">
+       <div class="reward-button">赏 <span class="reward-code">
+        <span class="alipay-code"> <img class="alipay-img wdp-appear" src="/alipay.png"><b>支付宝打赏</b> </span> 
+        <span class="wechat-code"> <img class="wechat-img wdp-appear" src="/weipay.jpeg"><b>微信打赏</b> </span> 
+       </div>
+      <p class="reward-notice">如果文章对你有帮助，欢迎点击上方按钮打赏作者！</p>
+      </div>
+      <!--打赏-->
+	<div id="article-content">
+		<p>书籍介绍：<a target="_blank" rel="noopener" href="https://book.douban.com/subject/30115996/">https://book.douban.com/subject/30115996/</a></p>
+<h1 id="初识HBase"><a href="#初识HBase" class="headerlink" title="初识HBase"></a>初识HBase</h1><p><strong>列式存储与行式存储</strong></p>
+<blockquote>
+<p>列式存储（Column-Based）是相对于传统关系型数据库的行式存储（Row-Based）来说的。</p>
+<ul>
+<li>简单来说两者的区别就是如何组织表。</li>
+<li>行存储法是将各行放入连续的物理位置，这很像传统的记录和文件系统。</li>
+<li>列存储法是将数据按照列存储到数据库中，与行存储类似。</li>
+</ul>
+<p>列式存储的主要优点之一：就是可以大幅降低系统的I&#x2F;O，尤其是在海量数据查询时。</p>
+</blockquote>
+<p>下图是两种存储方法的图形化解释：</p>
+<p><img src="/images/423.png" alt="列式、行式存储模型"></p>
+<p><strong>什么时候使用HBase？</strong></p>
+<blockquote>
+<p>HBase 的存储是基于 Hadoop 的，Hadoop 实现了一个分布式文件系统（HDFS）。</p>
+<p>HDFS 有高容错性的特点，被设计用来部署在低廉的硬件上，而且它提供高吞吐量以访问应用程序的数据，适合那些有着超大数据集的应用程序。</p>
+<p><strong>基于 Hadoop 意味着 HBase 与生俱来的超强的扩展性和吞吐量</strong>。</p>
+<p>HBase 采用的是 Key&#x2F;Value 的存储方式，这意味着，即使随着数据量增大，也几乎不会导致查询的性能下降。</p>
+<p>HBase 又是一个列式数据库，当你的表字段很多的时候，你甚至可以把其中几个字段放在集群的一部分机器上，而另外几个字段放到另外一部分机器上，充分分散了负载压力。</p>
+<p>然而，如此复杂的存储结构和分布式的存储方式带来的代价就是：</p>
+<ul>
+<li>哪怕只是存储少量数据，它也不会很快。</li>
+<li>所以：<strong>HBase 并不快，只是当数据量很大的时候它慢的不明显</strong>。</li>
+</ul>
+<p><strong>不适合使用 HBase 的场景：</strong></p>
+<ul>
+<li>主要需求是数据分析，比如做报表。</li>
+<li>单表数据量不超过千万。</li>
+</ul>
+<p><strong>适合使用 HBase 的场景：</strong></p>
+<ul>
+<li>单表数据量超千万，而且并发还挺高。</li>
+<li>数据分析需求较弱，或者<strong>不需要那么灵活或者实时</strong>。</li>
+</ul>
+</blockquote>
+<p><strong>部署架构</strong></p>
+<blockquote>
+<p>HBase 有两种服务器：</p>
+<ul>
+<li>Master 服务器和 RegionServer 服务器，一般一个 HBase 集群有一个 Master 服务器和多个 RegionServer 服务器。</li>
+</ul>
+<p>Master 服务器负责维护表结构信息。</p>
+<p>实际的数据都存储在 RegionServer 服务器上：</p>
+<ul>
+<li>RegionServer 是直接负责存储数据的服务器，RegionServer 保存的表数据直接存储在 Hadoop 的 HDFS 上。</li>
+</ul>
+<p>HBase 有一点很特殊：</p>
+<ul>
+<li>客户端获取数据由客户端直连 RegionServer 的，所以当 Master 挂掉之后你依然可以查询数据，只是丧失了表管理相关的能力。</li>
+</ul>
+<p>RegionServer 非常依赖 ZooKeeper 服务，可以说没有 ZooKeeper 就没有 HBase。</p>
+<p>ZooKeeper 管理了 HBase 所有 RegionServer 的信息，包括具体的数据段存放在哪个 RegionServer 上。</p>
+<p>客户端每次与 HBase 连接，其实都是先与 ZooKeeper 通信，查询出哪个 RegionServer 需要连接，然后再连接 RegionServer。</p>
+</blockquote>
+<p><img src="/images/424.png" alt="HBase 整体架构"></p>
+<p><strong>Region</strong></p>
+<blockquote>
+<p>Region 就是一段数据的集合，HBase 中的表一般拥有一个到多个 Region，Region 有以下特性：</p>
+<ul>
+<li>Region 不能跨服务器，一个 RegionServer 上有一个或者多个 Region。</li>
+<li>数据量小的时候，一个 Region 足以存储所有数据，但是，当数据量大的时候，HBase 会拆分 Region。</li>
+<li>当 HBase 在进行负载均衡的时候，也有可能会从一台 RegionServer 上把 Region 移动到另一台 RegionServer 上。</li>
+<li>Region 是基于 HDFS 的，它的所有数据存取操作都是调用了 HDFS 的客户端接口来实现的。</li>
+</ul>
+</blockquote>
+<p><strong>RegionServer</strong></p>
+<blockquote>
+<p>RegionServer 就是存放 Region 的容器，直观上说就是服务器上的一个服务。</p>
+<p>一般来说，一个服务器只会安装一个 RegionServer 服务。</p>
+<p>当客户端从 ZooKeeper 获取 RegionServer 的地址后，它会直接从 RegionServer 获取数据。</p>
+</blockquote>
+<p><strong>Master</strong></p>
+<blockquote>
+<p>HBase 中 Master 的角色不像领导，更像是打杂的。</p>
+<p>客户端从 ZooKeeper 获取了 RegionServer 的地址后，会直接从 RegionServer 获取数据。</p>
+<ul>
+<li>其实<strong>不光是获取数据，包括插入、删除等所有的数据操作</strong>都是直接操作 RegionServer，而不需要经过 Master。</li>
+</ul>
+<p>Master 只负责各种<strong>协调工作</strong>，比如建表、删表、移动 Region、合并等操作。</p>
+<ul>
+<li>它们的共性就是<strong>需要跨 RegionServer</strong>，这些操作由哪个 RegionServer 来执行都不合适。</li>
+<li>所以 HBase 就将这些操作放到了Master上了。</li>
+</ul>
+<p>这种结构的好处是大大降低了集群对 Master 的依赖，而 Master 节点一般只有一个到两个，一旦宕机，如果集群对 Master 的依赖度很大，那么就会产生单点故障问题。</p>
+<p>在 HBase 中，即使 Master 宕机了，集群依然可以正常地运行，依然可以存储和删除数据。</p>
+</blockquote>
+<p><strong>存储架构</strong></p>
+<blockquote>
+<p>最基本的存储单位是列（column），一个列或者多个列形成一行（row）。</p>
+<p>传统数据库是严格的行列对齐，比如这行有三个列 a、b、c，下一行肯定也有三个列 a、b、c。</p>
+<ul>
+<li>而在 HBase 中，这一行有三个列 a、b、c，下一个行也许是有 4 个列 a、e、f、g。</li>
+</ul>
+<p>在 HBase 中，行跟行的列可以完全不一样，这个行的数据跟另外一个行的数据也可以存储在不同的机器上，甚至同一行内的列也可以存储在完全不同的机器上。</p>
+<p>每个行（row）都拥有唯一的<strong>行键</strong>（row key）来标定这个行的唯一性。</p>
+<ul>
+<li>每个列都有多个版本，多个版本的值存储在单元格（cell）中，若干个列又可以被归类为一个<strong>列族</strong>。</li>
+</ul>
+</blockquote>
+<p><img src="/images/425.png" alt="HBase 列存储"></p>
+<p><strong>行键（rowkey）</strong></p>
+<blockquote>
+<p>rowkey 是由用户指定的一串不重复的字符串，rowkey 会直接决定这个 row 的存储位置的。</p>
+<p>HBase 中无法根据某个 column 来排序，系统永远是根据 rowkey 来排序的（根据字典排序），rowkey 就是决定 row 存储顺序的唯一凭证。</p>
+<p>如果插入 HBase 的时候，不小心用了之前已经存在的 rowkey，这会把之前存在的那个 row 更新掉。</p>
+<p>之前已经存在的值会被放到这个单元格的历史记录里面，<strong>并不会丢掉</strong>，只是你需要带上版本参数才可以找到这个值。</p>
+<ul>
+<li>一个列上可以存储多个版本的单元格（cell），单元格就是数据存储的最小单元。</li>
+</ul>
+<p>一个 Region 就是多个行（Row）的集合，在 Region 中行的排序按照行键（rowkey）字典排序。</p>
+</blockquote>
+<p><strong>列族（column family）</strong></p>
+<blockquote>
+<p>若干列可以组成列族（column family），建表的时候有几个列族是一开始就定好的。</p>
+<ul>
+<li>表的很多属性，比如过期时间、数据块缓存以及是否压缩等都是定义在列族上，而不是定义在表上或者列上。</li>
+</ul>
+<p>同一个表里的不同列族可以有完全不同的属性配置，但是同一个列族内的所有列都会有相同的属性，因为他们都在一个列族里面，而属性都是定义在列族上的。</p>
+<ul>
+<li>一个没有列族的表是没有意义的，因为列必须依赖列族而存在。</li>
+</ul>
+<p>列名称的规范是<strong>列族:列名</strong>，比如 <code>brother:age、brother:name</code>。</p>
+<p>列族存在的意义是：</p>
+<ul>
+<li>HBase 会把相同列族的列尽量放在同一台机器上，如果想让某几个列被放到一起，你就给他们定义相同的列族。</li>
+</ul>
+<p><strong>一个表要设置多少个列族比较合适？</strong></p>
+<p>官方的建议是：<strong>越少越好</strong>（一般来说一个就够用了），因为 HBase 并不希望大家指定太多的列族。</p>
+<p>列族太多会极大程度地降低数据库性能，此外，列族定得太多，容易出 BUG。</p>
+</blockquote>
+<p><strong>单元格（cell）</strong></p>
+<blockquote>
+<p>一个列上可以存储多个版本的值，多个版本的值被存储在多个单元格里面，多个版本之间用版本号（Version）来区分，唯一确定一条结果的表达式应该是：<code>行键:列族:列:版本号（rowkey:column family:column:version）</code>。</p>
+<p>不过，版本号是可以省略的，如果你不写版本号，HBase 默认返回最后一个版本的数据。</p>
+</blockquote>
+<p><img src="/images/426.png" alt="HBase 存储结构"></p>
+<h1 id="让HBase跑起来"><a href="#让HBase跑起来" class="headerlink" title="让HBase跑起来"></a>让HBase跑起来</h1><p><strong>基本架构</strong></p>
+
+	</div>
+</div>
+
+
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2024/02/05/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93/">
+                代码整洁之道
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+
+<script>
+
+    //document.oncontextmenu=new Function("event.returnValue=false");
+	//document.onselectstart=new Function("event.returnValue=false");
+
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+
+	
+
+	$(function () {
+		const btw = new BTWPlugin();
+	    btw.init({
+	        id: 'container',
+	        blogId: '22377-1706525467336-300',
+	        name: '月伴飞鱼',
+	        qrcode: '/小程序码.jpg',
+	        keyword: '验证码',
+	        btnText: '为防止机器刷接口，需要完成人机检测',
+        	cookieAge: 1
+	    });
+
+	    var contents = document.getElementsByClassName("content999");
+	    //监听文章内容的copy事件
+	    contents[0].addEventListener('copy',function(e){
+	        setClipboardText(e);
+	    });
+
+	    function setClipboardText(event){
+	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+	        let clipboardData = event.clipboardData || window.clipboardData;
+
+	        // 如果未复制或者未剪切，则return出去
+	        if (!clipboardData) { return; }
+
+	        event.preventDefault();
+
+	        // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+	        // 声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+	        let text = window.getSelection().toString();
+	    
+	        if (text) {
+	            // 如果文本存在则先取消文本默认事件
+	            event.preventDefault();
+	            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+	            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+	            // data: 一个 DOMString表示要添加到 drag object的数据。
+	            var copyright = '\n\n'
+	            + '\n著作权归作者所有。'
+	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+	            + '\n作者: 月伴飞鱼'
+	            + '\n原文地址: http://hardyfish.top/2024/02/05/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/HBase%E4%B8%8D%E7%9D%A1%E8%A7%89%E4%B9%A6/'
+	    
+	            clipboardData.setData('text/plain', text + copyright);
+	    
+	        }
+	    };
+	});
+
+	
+</script>
+
+<script>
+    const btw = new BTWPlugin();
+    btw.init({
+        id: 'container',
+        blogId: '22377-1706525467336-300',
+        name: '月伴飞鱼',
+        qrcode: '/小程序码.jpg',
+        keyword: '验证码',
+        btnText: '为防止机器刷接口，需要完成人机检测',
+        cookieAge: 1
+    });
+
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+	</div>
+	<div id="footer">
+	<p>
+	©2019-<span id="footerYear"></span> 
+	<a href="/">月伴飞鱼</a> 
+	
+	
+		|
+		<span id="busuanzi_container_site_pv">
+			PV 180986
+		</span>
+		|
+		<span id="busuanzi_container_site_uv"> 
+			UV 10079
+		</span>
+	
+	<br>
+	微信搜索 <a href="https://xiaoflyfish.oss-cn-beijing.aliyuncs.com/image/个人公众号.jpg" target="_blank">月伴飞鱼</a> 关注我
+	</p>
+</div>
+<script type="text/javascript"> 
+	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+</script>
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>
