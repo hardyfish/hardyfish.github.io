@@ -1094,15 +1094,6 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E4%BB%BB%E5%8A%A1%E7%B3%BB%E7%BB%9F/">
-										任务系统
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
 									<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E5%B9%BF%E5%91%8A%E7%B3%BB%E7%BB%9F/">
 										广告系统
 									</a>
@@ -1112,26 +1103,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E6%89%93%E8%BD%A6%E7%B3%BB%E7%BB%9F/">
-										打车系统
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
 									<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">
 										推荐系统
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%94%A8%E6%88%B7%E7%B3%BB%E7%BB%9F/">
-										用户系统
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1168,15 +1141,6 @@
 								<li class="file">
 									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F/">
 										秒杀系统
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%BA%A2%E5%8C%85%E7%B3%BB%E7%BB%9F/">
-										红包系统
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1336,150 +1300,6 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index" oncontextmenu="return false;">
-	
-		<div class="index-li">
-			<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%9B%B4%E6%92%AD%E7%B3%BB%E7%BB%9F/">
-				<h2 class="index-title">
-					直播系统
-				</h2>
-				<div class="index-brief">
-					直播弹幕
-
-为了不影响读写的性能，采用读写分离架构。
-写服务：
-
-
-若不考虑历史弹幕可回放，可以直接使用 Redis 作为唯一存储。
-
-
-若考虑支持弹幕的回放，数据还是需要持久化，可以考虑使用 MySQL 或者 TiDB，暂且认为写入不是较大的瓶颈。
-
-
-如果有更高性能的写需求，HBase、Open
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-19</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/系统相关/">系统相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E4%BB%BB%E5%8A%A1%E7%B3%BB%E7%BB%9F/">
-				<h2 class="index-title">
-					任务系统
-				</h2>
-				<div class="index-brief">
-					
-任务模型的抽象具有广泛通用性的，例如饿了么骑手每笔骑单是任务，小法庭中交易纠纷的评审也可以被抽象为任务。
-
-任务堆积
-
-任务堆积根本原因是任务的流入速度大于任务的消费速度，导致任务失去时效性。
-
-
-一个稳定的系统，产生任务堆积的原因可能是流入速度的瞬时增大，例如业务准入规则的变化。
-
-
-也可能是任
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-19</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/系统相关/">系统相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E7%A4%BE%E5%8C%BA%E7%B3%BB%E7%BB%9F/">
-				<h2 class="index-title">
-					社区系统
-				</h2>
-				<div class="index-brief">
-					Feed流
-
-Feed流将用户主动订阅的若干消息源组合在一起，形成内容聚合器，帮助用户持续的获取最新的订阅内容，Feed流即持续更新并呈现给用户内容的信息流。
-每个用户都有一个 收件箱inBox 和 发件箱outBox：
-
-用户刷微博时，查看自己的 收件箱inBox
-用户发微博时，将邮件插入到 发件
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-19</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/系统相关/">系统相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/19/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E6%89%93%E8%BD%A6%E7%B3%BB%E7%BB%9F/">
-				<h2 class="index-title">
-					打车系统
-				</h2>
-				<div class="index-brief">
-					
-网约车系统（比如滴滴）的核心功能是：
-
-把乘客的打车订单发送给附件的网约车司机，司机接单后，到上车点接送乘客，乘客下车后完成订单。
-
-乘客和司机都有注册登录功能，分属于乘客用户模块和司机用户模块。
-网约车系统的另外核心功能是乘客打车，订单分配，以及司机送单。
-
-
-概要设计
-
-需要开发两个 APP 
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-19</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/系统相关/">系统相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
 	
 		<div class="index-li">
 			<a href="/2023/11/18/%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">
@@ -1685,6 +1505,153 @@ RPC远程过程调用（Remote Procedure Call Protocol），是从一台机器�
                                     <span>
                                         <i class="fa fa-folder" aria-hidden="true"></i>
                                         <a href="/categories/框架相关/">框架相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/11/11/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Go%E5%9F%BA%E7%A1%80/">
+				<h2 class="index-title">
+					Go基础
+				</h2>
+				<div class="index-brief">
+					
+Golang官方网站：https://golang.org
+Golang中文网在线标准库文档: https://studygolang.com/pkgdoc
+
+Google创造Go语言的目的：
+
+计算机硬件技术更新频繁：
+
+性能提高很快，目前主流的编程语言发展落后于硬件，不能合理利用多核CPU的优
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-11</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/基础知识/">基础知识</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/11/09/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Arthas/">
+				<h2 class="index-title">
+					Arthas
+				</h2>
+				<div class="index-brief">
+					
+官方文档：https://arthas.aliyun.com/
+Arthas是一款由阿里巴巴开源的Java应用诊断利器，它可以帮助开发人员在运行时对Java应用进行调试和诊断，解决线上问题。
+
+连接应用
+默认连接:
+
+指 Arthas 自动连接当前机器上正在运行的 Java 应用程序。
+
+$ ja
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-09</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/工具相关/">工具相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/">
+				<h2 class="index-title">
+					MongoDB
+				</h2>
+				<div class="index-brief">
+					
+官网：https://www.mongodb.com/
+MongoDB是一款开源、跨平台、分布式，具有大数据处理能力的文档存储数据库。
+
+MongoDB用于记录文档结构的数据，比如JSON、XML结构的数据。
+
+
+适用场景
+
+数据量大，读写操作频繁，数据价值较低，对事务要求不高。
+
+数据结构
+存储
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-09</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/数据库/">数据库</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/11/09/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/">
+				<h2 class="index-title">
+					面试相关
+				</h2>
+				<div class="index-brief">
+					简历模版：https://www.polebrief.com/
+面试考察点
+
+考察点：技能、能力、价值观、匹配度。
+技能：
+
+Java基础，开源框架，中间件，代码设计，项目实战等。
+
+能力：
+
+工作年限和职级越高，对能力的要求越大，对技能的要求反而没那么大。
+
+学习能力：
+
+具备快速学习的能力，能够
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-11-09</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/成长相关/">成长相关</a>
 										
                                     </span>
                                 
