@@ -485,6 +485,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/06/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA/">
+										深入理解Java虚拟机
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -1407,6 +1416,10 @@
 </ul>
 </blockquote>
 <p><img src="/images/334.png" alt="image-20231026171802543"></p>
+<p><strong>堆内存大小</strong></p>
+<blockquote>
+<p>初始内存默认为电脑物理内存大小的<code>1/64</code>，最大内存默认为电脑物理内存的<code>1/4</code>，但是堆空间的大小可以调节。</p>
+</blockquote>
 <p><strong>符号引用</strong></p>
 <blockquote>
 <p>在JVM中，一个类的方法名、类名、修饰符、返回值等等都是一系列的符号，而这些符号都是一个个的常量，存储在常量池中。</p>
@@ -1596,6 +1609,21 @@
 </li>
 </ul>
 <p><strong>设置虚引用的唯一目的，就是在这个对象被回收器回收的时候收到一个系统通知或者后续添加进一步的处理</strong></p>
+</blockquote>
+<p><strong>JVM常用参数</strong></p>
+<blockquote>
+<p>-Xms：</p>
+<ul>
+<li>最小堆大小，如-Xms256m</li>
+</ul>
+<p>-Xmx：</p>
+<ul>
+<li>最大堆大小，如-Xmx512m</li>
+</ul>
+<p>-Xmn：</p>
+<ul>
+<li>新生代大小，如-Xmn是64m</li>
+</ul>
 </blockquote>
 <h1 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h1><p><strong>GC类型</strong></p>
 <p>Minor GC(Young GC):</p>
@@ -2277,6 +2305,17 @@
 <p><a target="_blank" rel="noopener" href="https://fastthread.io/">https://fastthread.io/</a></p>
 <p><a target="_blank" rel="noopener" href="https://gceasy.io/">https://gceasy.io/</a></p>
 <p><a target="_blank" rel="noopener" href="https://heaphero.io/">https://heaphero.io/</a></p>
+<p><strong>服务器上查看堆栈信息工具</strong></p>
+<blockquote>
+<p>登陆上具体机器，执行命令:</p>
+<ul>
+<li><code>wget https://raw.github.com/oldratlee/useful-scripts/release-2.x/bin/show-busy-java-threads</code></li>
+</ul>
+<p>下载脚本:</p>
+<ul>
+<li>sh 脚本，即可得到最忙线程信息</li>
+</ul>
+</blockquote>
 <p><strong>内存泄漏</strong></p>
 <blockquote>
 <p>对象不会再被程序用到了，但是GC又不能回收他们的情况，叫内存泄漏。</p>
