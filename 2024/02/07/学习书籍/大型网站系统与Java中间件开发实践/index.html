@@ -22,7 +22,7 @@
 	
 	<title>
 	
-		HBase | 
+		大型网站系统与Java中间件开发实践 | 
 	 
 	月伴飞鱼
 	</title>
@@ -506,7 +506,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2024/02/07/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E5%A4%A7%E5%9E%8B%E7%BD%91%E7%AB%99%E7%B3%BB%E7%BB%9F%E4%B8%8EJava%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/">
 										大型网站系统与Java中间件开发实践
 									</a>
@@ -674,7 +674,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file active">
+								<li class="file">
 									<a href="/2023/10/27/%E6%95%B0%E6%8D%AE%E5%BA%93/HBase/">
 										HBase
 									</a>
@@ -1238,18 +1238,18 @@
 	<div id="content">
 		<h1 id="article-title" oncontextmenu="return false;">
 
-	HBase
+	大型网站系统与Java中间件开发实践
 </h1>
 <div class="article-meta" oncontextmenu="return false;">
 	<span>月伴飞鱼</span>
-	<span>2023-10-27 18:57:54</span>
+	<span>2024-02-07 11:27:49</span>
     
 		<div id="article-categories">
             
                 
                     <span>
                         <i class="fa fa-folder" aria-hidden="true"></i>
-                        <a href="/categories/数据库/">数据库</a>
+                        <a href="/categories/学习书籍/">学习书籍</a>
 						
                     </span>
                 
@@ -1269,633 +1269,112 @@
       </div>
       <!--打赏-->
 	<div id="article-content">
-		<p>官网：<a target="_blank" rel="noopener" href="https://hbase.apache.org/">https://hbase.apache.org/</a></p>
+		<p>书籍介绍：<a target="_blank" rel="noopener" href="https://book.douban.com/subject/25867042/">https://book.douban.com/subject/25867042/</a></p>
+<p><strong>为什么要分布式？</strong></p>
 <blockquote>
-<p>Apache HBase 是 Hadoop中一个支持分布式的、可扩展的大数据存储的数据库。</p>
-<p>当需要对大数据进行随机、实时读/写访问时，可以用 Apache HBase。</p>
+<p>升级单机的处理能力的性价比越来越低，单机的处理能力存在瓶颈。</p>
+<p>分布式系统<strong>更加稳定和可用</strong>（单机挂了就挂了，分布式挂了一般还有备用/不至于整个链路全挂）。</p>
 </blockquote>
-<p><strong>HBase特点</strong></p>
-<p>列式存储:</p>
+<p><strong>大型网站架构演进过程</strong></p>
 <blockquote>
-<p>HBase是面向列族的非关系型数据库，每行数据列都可以不同，并且列可以按照需求进行动态增加。</p>
-<p>因此在开始创建HBase表时，可以只创建列族，等需要时再创建相应的列。</p>
+<p>在我们最开始接触Java项目的时候，一般来说是单机的（数据库、Web服务器都是同一台机器）。</p>
+<p>网站对外开放以后，访问量增大，服务器的压力也随之提高。</p>
+<p>此时，我们最简单的做法就是可以将<strong>数据库和应用分开</strong>，这样可以缓解一下当前系统的压力。</p>
+<p>应用服务器的压力继续增大，我们可以把应用服务器做成集群（加机器）。</p>
 </blockquote>
-<p>数据压缩：</p>
+<p>加了台应用服务器以后，就出现<strong>新的</strong>问题了：</p>
 <blockquote>
-<p>列式存储意味着数据往往类型相同，可以采用某种压缩算法进行统一的压缩存储。</p>
+<p>用户请求的时候，走哪台服务器？</p>
+<p>Session是依赖单台服务器的，那Session怎么处理？</p>
 </blockquote>
-<p>海量存储:</p>
-<blockquote>
-<p>HDFS支持的海量存储，存储PB级数据仍能有百毫秒内的响应速度。</p>
-</blockquote>
-<h1>基本操作</h1>
-<p><strong>Shell操作</strong></p>
-<p>进入HBase客户端命令操作界面：</p>
-<pre><code>hbase shell
-</code></pre>
-<p>查看帮助命令:</p>
-<pre><code>hbase(main):001:0&gt; help
-</code></pre>
-<p>查看当前数据库中有哪些表:</p>
-<pre><code>hbase(main):006:0&gt; list
-</code></pre>
-<p>创建一张表:</p>
-<blockquote>
-<p>创建user表， 包含base_info、extra_info两个列族</p>
-</blockquote>
-<pre><code>hbase(main):007:0&gt; create 'user', 'base_info', 'extra_info'
-</code></pre>
-<pre><code>create 'user', &#123;NAME =&gt; 'base_info', VERSIONS =&gt; '3'&#125;，&#123;NAME =&gt; 'extra_info'&#125;
-</code></pre>
-<p>添加数据操作:</p>
-<blockquote>
-<p>向user表中插入信息，row key为 rk0001，列族base_info中添加name列标示符，值为zhangsan</p>
-</blockquote>
-<pre><code>hbase(main):008:0&gt; put 'user', 'rk0001', 'base_info:name', 'zhangsan'
-</code></pre>
-<blockquote>
-<p>向user表中插入信息，row key为rk0001，列族base_info中添加age列标示符，值为20</p>
-</blockquote>
-<pre><code>hbase(main):010:0&gt;  put 'user', 'rk0001', 'base_info:age', 20
-</code></pre>
-<p>查询数据:</p>
-<blockquote>
-<p>通过rowkey进行查询:</p>
-<ul>
-<li>获取user表中row key为rk0001的所有信息</li>
-</ul>
-</blockquote>
-<pre><code>hbase(main):006:0&gt; get 'user', 'rk0001'
-</code></pre>
-<blockquote>
-<p>查看rowkey下面的某个列族的信息:</p>
-<ul>
-<li>获取user表中row key为rk0001，base_info列族的所有信息</li>
-</ul>
-</blockquote>
-<pre><code>hbase(main):007:0&gt; get 'user', 'rk0001', 'base_info'
-</code></pre>
-<blockquote>
-<p>查看rowkey指定列族指定字段的值：</p>
-<ul>
-<li>获取user表中row key为rk0001，base_info列族的name、age列标示符的信息</li>
-</ul>
-</blockquote>
-<pre><code>hbase(main):008:0&gt; get 'user', 'rk0001', 'base_info:name', 'base_info:age'
-</code></pre>
-<blockquote>
-<p>查看rowkey指定多个列族的信息</p>
-<ul>
-<li>获取user表中row key为rk0001，base_info、extra_info列族的信息</li>
-</ul>
-</blockquote>
-<pre><code>hbase(main):010:0&gt; get 'user', 'rk0001', 'base_info', 'extra_info'
-</code></pre>
-<pre><code>hbase(main):011:0&gt; get 'user', 'rk0001', &#123;COLUMN =&gt; ['base_info', 'extra_info']&#125;
-</code></pre>
-<pre><code>hbase(main):012:0&gt; get 'user', 'rk0001', &#123;COLUMN =&gt; ['base_info:name', 'extra_info:address']&#125;
-</code></pre>
-<blockquote>
-<p>指定rowkey与列值查询：</p>
-<ul>
-<li>获取user表中row key为rk0001，cell的值为zhangsan的信息</li>
-</ul>
-</blockquote>
-<pre><code>hbase(main):013:0&gt; get 'user', 'rk0001', &#123;FILTER =&gt; &quot;ValueFilter(=, 'binary:zhangsan')&quot;&#125;
-</code></pre>
-<blockquote>
-<p>指定rowkey与列值模糊查询:</p>
-<ul>
-<li>获取user表中row key为rk0001，列标示符中含有a的信息</li>
-</ul>
-</blockquote>
-<pre><code>hbase(main):015:0&gt; get 'user', 'rk0001', &#123;FILTER =&gt; &quot;(QualifierFilter(=,'substring:a'))&quot;&#125;
-</code></pre>
-<blockquote>
-<p>插入一批数据:</p>
-</blockquote>
-<pre><code>hbase(main):016:0&gt; put 'user', 'rk0002', 'base_info:name', 'fanbingbing'
-
-hbase(main):017:0&gt; put 'user', 'rk0002', 'base_info:gender', 'female'
-
-hbase(main):018:0&gt; put 'user', 'rk0002', 'base_info:birthday', '2000-06-06'
-
-hbase(main):019:0&gt; put 'user', 'rk0002', 'extra_info:address', 'Shanghai'
-</code></pre>
-<blockquote>
-<p>查询所有数据:</p>
-<ul>
-<li>查询user表中的所有信息</li>
-</ul>
-</blockquote>
-<pre><code>hbase(main):020:0&gt; scan 'user'
-</code></pre>
-<blockquote>
-<p>列族查询:</p>
-<ul>
-<li>查询user表中列族为 base_info 的信息</li>
-</ul>
-<p>Scan：</p>
-<ul>
-<li>
-<p>设置是否开启Raw模式，开启Raw模式会返回包括已添加删除标记但是未实际删除的数据。</p>
-</li>
-<li>
-<p>VERSIONS指定查询的最大版本数。</p>
-</li>
-</ul>
-</blockquote>
-<pre><code>hbase(main):021:0&gt; scan 'user', &#123;COLUMNS =&gt; 'base_info'&#125;
-
-hbase(main):022:0&gt; scan 'user', &#123;COLUMNS =&gt; 'base_info', RAW =&gt; true, VERSIONS =&gt; 5&#125;
-</code></pre>
-<blockquote>
-<p>多列族查询：</p>
-<ul>
-<li>查询user表中列族为info和data的信息。</li>
-</ul>
-</blockquote>
-<pre><code>hbase(main):023:0&gt; scan 'user', &#123;COLUMNS =&gt; ['base_info', 'extra_info']&#125;
-hbase(main):024:0&gt; scan 'user', &#123;COLUMNS =&gt; ['base_info:name', 'extra_info:address']&#125;
-</code></pre>
-<blockquote>
-<p>指定列族与某个列名查询：</p>
-<ul>
-<li>查询user表中列族为base_info、列标示符为name的信息。</li>
-</ul>
-</blockquote>
-<pre><code>hbase(main):025:0&gt; scan 'user', &#123;COLUMNS =&gt; 'base_info:name'&#125;
-</code></pre>
-<blockquote>
-<p>指定列族与列名以及限定版本查询:</p>
-<ul>
-<li>查询user表中列族为base_info、列标示符为name的信息，并且版本最新的5个</li>
-</ul>
-</blockquote>
-<pre><code>hbase(main):026:0&gt; scan 'user', &#123;COLUMNS =&gt; 'base_info:name', VERSIONS =&gt; 5&#125;
-</code></pre>
-<blockquote>
-<p>指定多个列族与按照数据值模糊查询：</p>
-<ul>
-<li>查询<strong>user</strong>表中列族为 <strong>base_info</strong> 和 <strong>extra_info</strong>且列标示符中含有a字符的信息</li>
-</ul>
-</blockquote>
-<pre><code>hbase(main):027:0&gt; scan 'user', &#123;COLUMNS =&gt; ['base_info', 'extra_info'], FILTER =&gt; &quot;(QualifierFilter(=,'substring:a'))&quot;&#125;
-</code></pre>
-<blockquote>
-<p>rowkey的范围值查询:</p>
-<ul>
-<li>查询user表中列族为info，rk范围是[rk0001, rk0003)的数据</li>
-</ul>
-</blockquote>
-<pre><code>hbase(main):028:0&gt; scan 'user', &#123;COLUMNS =&gt; 'base_info', STARTROW =&gt; 'rk0001', ENDROW =&gt; 'rk0003'&#125;
-</code></pre>
-<blockquote>
-<p>指定rowkey模糊查询:</p>
-<ul>
-<li>查询user表中row key以rk字符开头的</li>
-</ul>
-</blockquote>
-<pre><code>hbase(main):029:0&gt; scan 'user',&#123;FILTER=&gt;&quot;PrefixFilter('rk')&quot;&#125;
-</code></pre>
-<blockquote>
-<p>更新数据值：</p>
-<ul>
-<li>把user表中rowkey为rk0001的base_info列族下的列name修改为zhangsansan</li>
-</ul>
-</blockquote>
-<pre><code>hbase(main):030:0&gt; put 'user', 'rk0001', 'base_info:name', 'zhangsansan'
-</code></pre>
-<blockquote>
-<p>指定rowkey以及列名进行删除:</p>
-<ul>
-<li>删除user表row key为rk0001，列标示符为 base_info:name 的数据</li>
-</ul>
-</blockquote>
-<pre><code>hbase(main):032:0&gt;  delete 'user', 'rk0001', 'base_info:name' 
-</code></pre>
-<blockquote>
-<p>指定rowkey，列名以及字段值进行删除：</p>
-<ul>
-<li>删除user表row key为rk0001，列标示符为base_info:name，timestamp为1392383705316的数据</li>
-</ul>
-</blockquote>
-<pre><code>hbase(main):033:0&gt; delete 'user', 'rk0001', 'base_info:age', 1564745324798
-</code></pre>
-<blockquote>
-<p>删除 base_info 列族</p>
-</blockquote>
-<pre><code class="language-:">hbase(main):034:0&gt; alter 'user', NAME =&gt; 'base_info', METHOD =&gt; 'delete'
-</code></pre>
-<pre><code>hbase(main):035:0&gt; alter 'user', 'delete' =&gt; 'base_info'
-</code></pre>
-<blockquote>
-<p>删除user表数据：</p>
-</blockquote>
-<pre><code>hbase(main):036:0&gt; truncate 'user'
-</code></pre>
-<blockquote>
-<p>删除user表：</p>
-</blockquote>
-<pre><code class="language-：">#先disable  再drop
-
-hbase(main):036:0&gt; disable 'user'
-hbase(main):037:0&gt; drop 'user'
-
-#如果不进行disable，直接drop会报错
-ERROR: Table user is enabled. Disable it first.
-</code></pre>
-<h1>数据模型</h1>
-<p><strong>逻辑结构:</strong></p>
-<img src="/images/121.png" alt="请添加图片描述" style="zoom:80%;" />
-<p><strong>物理架构：</strong></p>
-<img src="/images/122.png" alt="在这里插入图片描述" style="zoom:80%;" />
-<p><img src="/images/123.png" alt="img"></p>
-<blockquote>
-<p>Rowkey（行键）:</p>
-<ul>
-<li>Table 的主键，Table 中的记录按照 Rowkey 的字典序进行排序。</li>
-</ul>
-<p>Column Family（列族）：</p>
-<ul>
-<li>表中的每个列，都归属与某个列族。</li>
-<li>列族是表的 Schema 的一部分，必须在使用表之前定义。</li>
-</ul>
-<p>Timestamp（时间戳）：</p>
-<ul>
-<li>每次数据操作对应的时间戳，可以看作是数据的 Version 版本号。</li>
-</ul>
-<p>Column（列）：</p>
-<ul>
-<li>列族下面的具体列。</li>
-<li>属于某一个 ColumnFamily，类似于 MySQL 当中创建的具体的列。</li>
-</ul>
-<p>Cell（单元格）：</p>
-<ul>
-<li>
-<p>由<code>&#123;rowkey, column, version&#125;</code> 唯一确定的单元。</p>
-</li>
-<li>
-<p>Cell 中的数据没有类型，全部是以字节数组进行存储。</p>
-</li>
-</ul>
-</blockquote>
-<h1>基本原理</h1>
-<p><strong>如何支持海量数据的随机存取</strong></p>
-<blockquote>
-<p>1、利用了HDFS的分布式存储和Hadoop的分布式计算能力：</p>
-<ul>
-<li>将数据存储在HDFS上，并利用Hadoop的MapReduce框架进行分布式计算，从而实现了高可扩展性和高并发性。</li>
-</ul>
-<p>2、将数据按照行和列族的方式存储在HDFS上：</p>
-<ul>
-<li>这种数据存储方式使得HBase能够实现高速的随机读写功能。</li>
-</ul>
-<p>3、利用了LSM（Log-Structured Merge-Tree）算法：</p>
-<ul>
-<li>该算法通过内存和顺序写磁盘的方式，使得随机写入成为可能，同时还能保证读取效率。</li>
-</ul>
-<p>4、支持数据的自动分片和负载均衡：</p>
-<ul>
-<li>可以支持PB级别的数据存储和处理，从而满足大规模数据的实时处理需求。</li>
-</ul>
-</blockquote>
-<p><strong>整体结构</strong></p>
-<p><img src="/images/124.png" alt="image-20231029233145729"></p>
-<blockquote>
-<p>HMaster:</p>
-<ul>
-<li>HBase集群的主节点，负责监控RegionServer，处理Region分配和负载均衡。</li>
-</ul>
-<p>HRegionServer:</p>
-<ul>
-<li>管理 Region，处理对所分配Region的IO请求，Region是表的分片,由多个Store组成。</li>
-</ul>
-<p>Zookeeper:</p>
-<ul>
-<li>维护HBase的运行状态信息，如Region分布信息等。</li>
-<li>HMaster和RegionServer都依赖Zookeeper。</li>
-</ul>
-<p>HRegion:</p>
-<ul>
-<li>HBase表的分片，由一个或者多个Store组成，存储实际的表数据。</li>
-</ul>
-<p>Store:</p>
-<ul>
-<li>Store以Column Family为单位存储数据，主要组成是MemStore和StoreFile(HFile)。</li>
-<li>1个Column Family的数据存放在一个Store中，一个Region包含多个Store。</li>
-</ul>
-<p>MemStore:</p>
-<ul>
-<li>
-<p>内存存储，用于临时存放写数据，达到阈值后刷入StoreFile。</p>
-<ul>
-<li>数据会先写入到 MemStore 进行缓冲，然后再把数据刷到磁盘。</li>
-</ul>
-</li>
-<li>
-<p>通过内存，也加快了读写速度。</p>
-</li>
-</ul>
-<p>StoreFile(HFile):</p>
-<ul>
-<li>磁盘上面真正存放数据的文件。</li>
-</ul>
-<p>HDFS:</p>
-<ul>
-<li>用来持久化存储HFiles。</li>
-</ul>
-</blockquote>
-<hr>
-<blockquote>
-<p>一个列族就划分成一个 Store，如果一个表中只有 1 个列族，那么每一个 Region 中只有一个 Store。</p>
-<p>一个 Store 里面只有一个 MemStore。</p>
-<p>一个 Store 里面有很多个 StoreFile, 最后数据是以很多个 HFile 文件保存在 HDFS 上。</p>
-<ul>
-<li>StoreFile是HFile的抽象对象。</li>
-<li>每次 MemStore 刷写数据到磁盘，就生成对应的一个新的 HFile 文件出来。</li>
-</ul>
-</blockquote>
-<p><img src="/images/125.png" alt="image-20231029233549412"></p>
-<p><img src="/images/126.png" alt="image-20231029233748961"></p>
 <p><strong>负载均衡</strong></p>
 <blockquote>
-<p>HBase 官方目前支持两种负载均衡策略：</p>
+<p>解决用户走哪台服务器，我们就在用户请求到达应用服务器之前，加了一个负载均衡器（用户请求会到哪台应用服务器的逻辑）</p>
 <ul>
-<li>SimpleLoadBalancer 策略和 StochasticLoadBalancer 策略。</li>
-</ul>
-</blockquote>
-<p>SimpleLoadBalancer 策略：</p>
-<blockquote>
-<p>这种策略能够保证每个 RegionServer 的 Region 个数基本相等。</p>
-<p>假设集群中一共有 n 个 RegionServer，m 个 Region ，那么集群的平均负载就是 average = m/n。</p>
+<li>比如说，一个用户请求过来，负载均衡器指派这个请求到服务器A。</li>
+<li>另一个用户请求过来，负载均衡器指派这个请求到服务器B。
 <ul>
-<li>这种策略能够保证所有 RegionServer 上的 Region 个数都在 <code>[floor(average)，ceil(average)]</code>之间。</li>
-</ul>
-<p>因此， SimpleLoadBalancer 策略中负载就是 Region 个数，集群负载迁移计划就是 Region 从个数较多的 RegionServer 上迁移到个数较少的 RegionServer 上。</p>
-<p>虽然集群中每个 RegionServer 的 Region 个数都基本相同，但如果某台 RegionServer 上的 Region 全部都是热点数据，导致 90 %的读写请求还是落在了这台 RegionServer 上，这样没有达到负载均衡的目的。</p>
-</blockquote>
-<p>StochasticLoadBalancer 策略：</p>
-<blockquote>
-<p>它对于负载的定义不再是 Region 个数这么简单，而是由多种独立负载加权计算的复合值，这些独立负载包括：</p>
-<ul>
-<li>Region 个数，Region 负载，读请求数，写请求数，Storefile 大小，MemStore 大小，数据本地率，移动代价。</li>
-</ul>
-<p>这些独立负载经过加权计算会得到一个代价值，系统使用这个代价值来评估当前 Region 分布是否均衡，越均衡代价值越低。</p>
-<ul>
-<li>HBase 通过不断随机挑选迭代来找到一组 Region 迁移计划，使得代价值最小。</li>
-</ul>
-</blockquote>
-<p><strong>Flush机制</strong></p>
-<blockquote>
-<p>MemStore的大小超过某个值的时候，会Flush到磁盘，默认为128M。</p>
-<p>MemStore中的数据时间超过1小时，会Flush到磁盘。</p>
-<p>HRegionServer的全局MemStore的大小超过某大小会触发Flush到磁盘，默认是堆大小的40%。</p>
-</blockquote>
-<p><strong>Compact机制</strong></p>
-<blockquote>
-<p>HBase需要在必要的时候将小的Store File合并成相对较大的Store File，这个过程为Compaction。</p>
-<ul>
-<li>为了防止小文件过多，以保证查询效率。</li>
-</ul>
-<p>在HBase中主要存在两种类型的Compaction合并。</p>
-<p>Minor Compaction 小合并:</p>
-<ul>
-<li>在将Store中多个HFile合并为一个HFile。</li>
-<li>这个过程中，达到TTL（记录保留时间）会被移除，删除和更新的数据仅仅只是做了标记，并没有物理移除。
-<ul>
-<li>这种合并的触发频率很高。</li>
+<li>这样就<strong>平摊</strong>了请求：这种方式就叫做<strong>轮询</strong>。</li>
 </ul>
 </li>
 </ul>
-<p>Major Compaction 大合并：</p>
+<p>Session的问题，一般来说我们可以将Session保存在Redis上就行了。</p>
+</blockquote>
+<p><strong>读写分离</strong></p>
+<blockquote>
+<p>随着业务的发展，我们的数据量和访问量都在增长，现在有不少的业务都是<strong>读多写少</strong>的，对于这种业务也是会直接反应到<strong>数据库</strong>上。</p>
+<p>于是，我们可以增加一个<strong>读库</strong>，写入的操作走服务器的写MySQL，读取的操作走服务器的读MySQL。</p>
+<ul>
+<li>这样就实现了<strong>读写分离</strong>。</li>
+</ul>
+<p>一般来说，我们的写库也叫做主库，读库也叫做从库，在互联网架构中，这叫做<strong>主从架构</strong>，比如常见的架构：<strong>一主多从</strong></p>
+<p>针对读多写少的业务，我们还有优化策略，引入<strong>搜索引擎和缓存</strong>。</p>
+<ul>
+<li>搜索引擎也相当于一个读库，使用搜索引擎的<strong>倒排表</strong>方式，能够大大提升检索的速度。</li>
+<li>缓存则将<strong>热数据</strong>放入内存中，如果查询的数据在缓存中存在，则直接返回。</li>
+</ul>
+</blockquote>
+<p><strong>分库分表</strong></p>
+<blockquote>
+<p>读写分离之后，数据库还是遇到了瓶颈，此时我们就可以采用<strong>分库分表</strong>策略了：</p>
+<ul>
+<li>垂直拆分：不同的业务数据分到不同的数据库</li>
+<li>水平拆分：将同一张表的数据拆分到不同的数据库中（原因是这张表的数据量/更新量太大了）</li>
+</ul>
+</blockquote>
+<p><strong>分布式存储系统</strong></p>
+<blockquote>
+<p>在数据存储方面，除了关系型数据库之外，如果有别的业务场景，可能还需要引入<strong>分布式存储系统</strong></p>
+<ul>
+<li>分布式文件系统</li>
+<li>分布式Key-Value系统</li>
+<li>分布式数据库</li>
+</ul>
+<p>数据库问题解决之后，应用也面临着挑战（应用的功能会越做越多，应用也随之越做越大），为了不让应用持续变大，这就需要<strong>把应用拆开</strong>，从一个应用变为两个/多个应用。</p>
+</blockquote>
+<p><strong>远程的服务调用</strong></p>
+<blockquote>
+<p>不同功能/模块之间的调用不再单纯通过本机调用，引入了<strong>远程的服务调用</strong>。</p>
+<p>某个应用只有一台机器上运行着，如果这台机器上出现了问题，导致这个应用无法运行，这就叫<strong>单点故障</strong>。</p>
+</blockquote>
+<blockquote>
+<p>系统很多的情况下，我们在写远程调用代码的时候就可能要考虑到以下的问题：</p>
 <ul>
 <li>
-<p>合并Store中所有的HFile为一个HFile。</p>
+<p>我们肯定是不希望每次远程调用的时候都贴上<strong>重复</strong>的Socket代码，要是调用远程方法像调用本地方法一样简单就好了。</p>
 </li>
 <li>
-<p>这个过程有删除标记的数据会被真正移除，同时超过单元格maxVersion的版本记录也会被删除。</p>
+<p>某个服务应用为了实现高可用，集群了（多台机器部署同一套应用），那远程调用的时候<strong>选择</strong>哪一台机器进行调用？</p>
 </li>
 <li>
-<p>合并频率比较低，默认7天执行一次，并且性能消耗非常大，建议生产关闭(设置为0)，在应用空闲时间手动触发。</p>
-<ul>
-<li>一般可以是手动控制进行合并，防止出现在业务高峰期。</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<p><strong>Region拆分机制</strong></p>
-<blockquote>
-<p>Region 中存储的是大量的 Rowkey 数据，当 Region 中的数据条数过多的时候，直接影响查询效率。</p>
-<ul>
-<li>当 Region 过大的时候，HBase 会拆分 Region。</li>
-</ul>
-<p>HBase 的 Region Split 策略一共有以下几种。</p>
-</blockquote>
-<p>ConstantSizeRegionSplitPolicy：</p>
-<blockquote>
-<p>0.94版本前默认切分策略。</p>
-<p>当Region大小大于某个阈值之后就会触发切分，一个Region等分为2个Region。</p>
-<ul>
-<li>在生产线上这种切分策略有相当大的弊端：切分策略对于大表和小表没有明显的区分。</li>
-</ul>
-<p>阈值设置较大对大表比较友好，但是小表就有可能不会触发分裂，极端情况下可能就1个。</p>
-<p>如果设置较小则对小表友好，但一个大表就会在整个集群产生大量的Region，这对于集群的管理、资源使用、Failover不好。</p>
-</blockquote>
-<p>IncreasingToUpperBoundRegionSplitPolicy：</p>
-<blockquote>
-<p>0.94版本~2.0版本默认切分策略。</p>
-<p>总体看和ConstantSizeRegionSplitPolicy思路相同，一个Region大小大于设置阈值就会触发切分。</p>
-<ul>
-<li>但这个阈值并不是一个固定的值。</li>
-<li>而是会在一定条件下不断调整，调整规则和Region所属表在当前RegionServer上的Region个数有关系。</li>
-</ul>
-<p>Region Split的计算公式是：</p>
-<ul>
-<li><code>RegionCount^3 * 128M * 2</code>，当Region达到该size的时候进行split。</li>
-</ul>
-<p>例如：</p>
-<ul>
-<li>
-<p>第一次split：<code>1^3 * 256 = 256MB</code></p>
+<p>网络之间的传输协议用现成的HTTP呢？还是自定义一套通信协议呢？</p>
 </li>
 <li>
-<p>第二次split：<code>2^3 * 256 = 2048MB</code></p>
+<p>因为我们想调用远程方法像调用本地方法一样，那么在网络上就需要传输Java对象，要传输Java对象，就必须得对其进行<strong>序列化和反序列化的处理</strong>。</p>
+<ul>
+<li>能实现序列化的操作也有很多，选择哪一种方式呢？</li>
+</ul>
 </li>
 <li>
-<p>第三次split：<code>3^3 * 256 = 6912MB</code></p>
-</li>
-<li>
-<p>第四次split：<code>4^3 * 256 = 16384MB &gt; 10GB</code>，取较小的值10GB</p>
+<p>选择哪种网络之间的通讯模式（Bio、Nio、以及Aio模式）？</p>
 </li>
 </ul>
-<p>后面每次split的size都是10GB了。</p>
+<p>由于系统之间的调用会非常多，我们自然是不希望写重复的代码的，所以<strong>服务框架</strong>（也可以说是RPC框架）就应运而生了。</p>
+<p>有了服务框架，我们就可以实现多个系统之间以<strong>统一</strong>的方式来进行远程调用了。</p>
 </blockquote>
-<p>SteppingSplitPolicy：</p>
+<p><strong>服务框架</strong></p>
 <blockquote>
-<p>2.0版本默认切分策略。</p>
-<p>依然和待分裂Region所属表在当前RegionServer上的Region个数有关系。</p>
-<p>如果Region个数等于1，切分阈值为<code>flush size * 2</code>，否则为MaxRegionFileSize。</p>
-<p>这种切分策略对于大集群中的大表。</p>
-<p>小表会比 IncreasingToUpperBoundRegionSplitPolicy 更加友好，小表不会再产生大量的小Region，而是适可而止。</p>
-</blockquote>
-<p>KeyPrefixRegionSplitPolicy：</p>
-<blockquote>
-<p>根据RowKey的前缀对数据进行分组，这里是指定RowKey的前多少位作为前缀，比如RowKey都是16位的，指定前5位是前缀。</p>
-<p>那么前5位相同的RowKey在进行region split的时候会分到相同的Region中。</p>
-</blockquote>
-<p>DelimitedKeyPrefixRegionSplitPolicy：</p>
-<blockquote>
-<p>保证相同前缀的数据在同一个Region中，例如RowKey的格式为：<code>userid_eventtype_eventid</code>，指定的delimiter为_。</p>
-<p>则split的的时候会确保userid相同的数据在同一个Region中。</p>
-</blockquote>
-<p>DisabledRegionSplitPolicy:</p>
-<blockquote>
-<p>不启用自动拆分，需要指定手动拆分。</p>
-</blockquote>
-<p><strong>预分区</strong></p>
-<blockquote>
-<p>当一个table刚被创建的时候，HBase默认的分配一个Region给table。</p>
+<p>一个<strong>服务框架</strong>需要考虑的问题其实远不止上面那些，比如说：</p>
 <ul>
-<li>
-<p>这时所有的读写请求都会访问到同一个RegionServer的同一个Region中。</p>
-</li>
-<li>
-<p>这个时候就达不到负载均衡的效果了，集群中的其他RegionServer就可能会处于比较空闲的状态。</p>
-</li>
-</ul>
-<p>解决办法：</p>
+<li>服务框架与Web应用和Web容器的关系是什么？</li>
+<li>服务框架和应用是绑定在一起吗？
 <ul>
-<li>可以用预分区（<code>pre-splitting</code>），在创建table的时候就配置好，生成多个Region。</li>
-</ul>
-<p>如何预分区？</p>
-<ul>
-<li>每一个Region维护着startRow与endRowKey。</li>
-<li>如果加入的数据符合某个Region维护的RowKey范围，则该数据交给这个Region维护。</li>
-</ul>
-</blockquote>
-<p>手动指定预分区:</p>
-<pre><code class="language-sql">create 'person','info1','info2',SPLITS =&gt; ['1000','2000','3000','4000']
-</code></pre>
-<p><strong>Region定位</strong></p>
-<blockquote>
-<p>HBase 支持 put ， get ， delete 和 scan 等基础操作，所有这些操作的基础是 region 定位。</p>
-</blockquote>
-<p>region 定位基本步骤:</p>
-<blockquote>
-<p>客户端与 ZooKeeper 交互，查找 <code>hbase:meta</code> 系统表所在的 Regionserver。</p>
-<p><code>hbase:meta</code> 表维护了每个用户表中 rowkey 区间与 Region 存放位置的映射关系，具体如下:</p>
-<ul>
-<li>
-<p>rowkey : table name，start key，region id。</p>
-</li>
-<li>
-<p>value : RegionServer 对象(保存了 RegionServer 位置信息等)。</p>
-</li>
-</ul>
-<p>客户端与 <code>hbase:meta</code> 系统表所在 RegionServer 交互，获取 rowkey 所在的 RegionServer。</p>
-<p>客户端与 rowkey 所在的 RegionServer 交互，执行该 rowkey 相关操作。</p>
-<p>需要注意:</p>
-<ul>
-<li>
-<p>客户端首次执行读写操作时才需要定位 <code>hbase:meta</code> 表的位置。</p>
-</li>
-<li>
-<p>之后会将其缓存到本地，除非因 region 移动导致缓存失效，客户端才会重新读取 <code>hbase:meta</code> 表位置，并更新缓存。</p>
-</li>
-</ul>
-</blockquote>
-<img src="/images/127.png" alt="在这里插入图片描述" style="zoom:50%;" />
-<p><strong>读写流程</strong></p>
-<p>读操作：</p>
-<blockquote>
-<p>首先从 ZooKeeper 找到 meta 表的 region 位置，然后读取<code>hbase:meta</code> 表中的数据，<code>hbase:meta</code> 表中存储了用户表的 region 信息。</p>
-<p>根据要查询的 namespace 、表名和 rowkey 信息，找到写入数据对应的 Region 信息。</p>
-<p>找到这个 Region 对应的 RegionServer ，然后发送请求。</p>
-<p>查找对应的 Region。</p>
-<p>先从 MemStore 查找数据，如果没有，再从 BlockCache 上读取。</p>
-<ul>
-<li>HBase 上 RegionServer 的内存分为两个部分：
-<ul>
-<li>一部分作为 MemStore，主要用来写。</li>
-<li>另外一部分作为 BlockCache，主要用于读数据。</li>
+<li>服务框架作为Web应用的一个依赖包，还是说服务框架只是Web应用的一个扩展（没有和Web应用打包绑定在一起）</li>
 </ul>
 </li>
-</ul>
-<p>如果 BlockCache 中也没有找到，再到 StoreFile(HFile) 上进行读取。</p>
-<ul>
-<li>从 StoreFile 中读取到数据之后，不是直接把结果数据返回给客户端，而是把数据先写入到 BlockCache 中，目的是为了加快后续的查询，然后在返回结果给客户端。</li>
-</ul>
-</blockquote>
-<img src="/images/128.png" alt="在这里插入图片描述" style="zoom:50%;" />
-<p>写操作：</p>
-<blockquote>
-<p>首先从 ZooKeeper 找到 <code>hbase:meta</code> 表的 Region 位置，然后读取 <code>hbase:meta</code>表中的数据，<code>hbase:meta</code> 表中存储了用户表的 Region 信息。</p>
-<p>根据 namespace 、表名和 rowkey 信息找到写入数据对应的 Region 信息。</p>
-<p>找到这个 Region 对应的 RegionServer ，然后发送请求。</p>
-<p>把数据分别写到 HLog (WriteAheadLog)和 MemStore 各一份。</p>
-<p>MemStore 达到阈值后把数据刷到磁盘，生成 StoreFile 文件。</p>
-<p>删除 HLog 中的历史数据。</p>
-</blockquote>
-<img src="/images/129.png" alt="在这里插入图片描述" style="zoom:50%;" />
-<p><strong>BulkLoad机制</strong></p>
-<blockquote>
-<p>用户数据位于 HDFS 中，业务需要定期将这部分海量数据导入 HBase 系统，以执行随机查询更新操作。</p>
-<p>这种场景如果调用写入 API 进行处理，极有可能会给 RegionServer 带来较大的写人压力。</p>
-<ul>
-<li>
-<p>引起 RegionServer 频繁 flush，进而不断 compact、split，影响集群稳定性。</p>
-</li>
-<li>
-<p>引起 RegionServer 频繁GC,影响集群稳定性。</p>
-</li>
-<li>
-<p>消耗大量 CPU 资源、带宽资源、内存资源以及 IO 资源，与其他业务产生资源竞争。</p>
-</li>
-<li>
-<p>在某些场景下，比如平均 KV 大小比较大的场景，会耗尽 RegionServer 的处理线程， 导致集群阻塞。</p>
-</li>
-</ul>
-<p>所以HBase提供了另一种将数据写入HBase集群的方法：BulkLoad。</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>BulkLoad 首先使用 MapReduce 将待写入集群数据转换为 HFile 文件，再直接将这些 HFile 文件加载到在线集群中。</p>
-<p>BulkLoad 没有将写请求发送给 RegionServer 处理，可以有效避免上述一系列问题。</p>
-</blockquote>
-<h1>常见问题</h1>
-<p><strong>热点问题</strong></p>
-<p>什么是热点？</p>
-<blockquote>
-<p>检索 HBase 的记录首先要通过Row Key来定位数据行。</p>
-<p>当大量的 Client 访问 HBase 集群的一个或少数几个节点，造成少数 Region Server 的读/写请求过多、负载过大，而其他Region Server 负载却很小，就造成了 热点 现象。</p>
-</blockquote>
-<p>解决方案:</p>
-<blockquote>
-<p>预分区:</p>
-<ul>
-<li>目的让表的数据可以均衡的分散在集群中，而不是默认只有一个Region分布在集群的一个节点上。</li>
-</ul>
-<p>加盐:</p>
-<ul>
-<li>在Rowkey的前面增加随机数，具体就是给Rowkey分配一个随机前缀以使得它和之前的Rowkey的开头不同。</li>
-</ul>
-<p>哈希:</p>
-<ul>
-<li>哈希会使同一行永远用一个前缀加盐。
-<ul>
-<li>也可以使负载分散到整个集群，但是读是可以预测的。</li>
-</ul>
-</li>
-<li>使用确定的哈希可以让客户端重构完整的Rowkey，可以使用get操作准确获取某一个行数据。</li>
-</ul>
-<p>反转：</p>
-<ul>
-<li>反转固定长度或者数字格式的Rowkey。
-<ul>
-<li>这样可以使得Rowkey中经常改变的部分放在前面。</li>
-</ul>
-</li>
+<li>服务框架的jar包和Web应用的jar包冲突了怎么办？</li>
+<li>为了保证系统的稳定性，流量控制也应该要考虑到</li>
+<li>在远程调用的时候，需不需要以更细粒度的方式来进行选择</li>
 </ul>
 </blockquote>
 
@@ -1906,16 +1385,11 @@ ERROR: Table user is enabled. Disable it first.
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/Netty/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  Netty
-              </a>
-            
         </div>
         <div class="item right">
             
-              <a href="/2023/10/27/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E4%B9%A6%E7%B1%8D/">
-                书籍
+              <a href="/2024/02/06/%E4%BA%A7%E5%93%81%E7%9B%B8%E5%85%B3/%E7%94%A8%E6%88%B7%E5%A2%9E%E9%95%BF/">
+                用户增长
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
@@ -1981,7 +1455,7 @@ ERROR: Table user is enabled. Disable it first.
 	            + '\n著作权归作者所有。'
 	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
 	            + '\n作者: 月伴飞鱼'
-	            + '\n原文地址: http://hardyfish.top/2023/10/27/%E6%95%B0%E6%8D%AE%E5%BA%93/HBase/'
+	            + '\n原文地址: http://hardyfish.top/2024/02/07/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E5%A4%A7%E5%9E%8B%E7%BD%91%E7%AB%99%E7%B3%BB%E7%BB%9F%E4%B8%8EJava%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/'
 	    
 	            clipboardData.setData('text/plain', text + copyright);
 	    
