@@ -1175,6 +1175,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E9%9B%85%E6%80%9D%E9%98%85%E8%AF%BB538%E8%80%83%E7%82%B9%E8%AF%8D/">
+										雅思阅读538考点词
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2043,7 +2052,12 @@ public class SnowFlakeShortUrl &#123;
 <p>在常见的 <strong>分布式系统</strong> 中，总会发生 <strong>节点宕机</strong> 或 <strong>网络异常</strong> (包括消息的 <strong>重复</strong>、<strong>丢失</strong>、<strong>延迟</strong>、<strong>乱序</strong>、<strong>网络分区</strong>) 等情况。</p>
 <blockquote>
 <p><code>Paxos</code> 算法主要就是解决如何在一个 <strong>发生如上故障</strong> 的分布式系统中，快速正确的在集群内 <strong>对某个值达成一致</strong>，并且保证 <strong>整个系统的一致性</strong>。</p>
+<ul>
+<li>这里某个数据的值并不只是狭义上的某个数，它可以是一条日志，也可以是一条命令。</li>
+<li>根据应用场景不同，某个数据的值有不同的含义。</li>
+</ul>
 </blockquote>
+<img src="/images/454.png" alt="img" style="zoom:70%;" />
 <p>角色:</p>
 <blockquote>
 <p><strong>Proposer</strong> : <code>Proposer</code> 可以 <strong>提出提案</strong> (<code>Proposal</code>)。</p>
@@ -2066,7 +2080,11 @@ public class SnowFlakeShortUrl &#123;
 <p>如果 <code>Proposer</code> 收到 <strong>半数以上</strong> 的 <code>Acceptor</code> 响应，则 <strong>生成编号为</strong> <code>N</code>，<code>value</code> 为 <code>V</code> 的提案，<code>V</code> 为所有响应中 <strong>编号最大</strong> 的提案的 <code>value</code>。</p>
 <p>如果 <code>Proposer</code> 收到的响应中 <strong>没有提案</strong>，那么 <code>value</code> 由 <code>Proposer</code> <strong>自己生成</strong>，生成后将此提案发送，并期望 <code>Acceptor</code> 能接受此提案。</p>
 </blockquote>
+<img src="/images/455.png" alt="img" style="zoom:50%;" />
 <h2 id="Raft算法">Raft算法</h2>
+<blockquote>
+<p>Raft 是一种更为简单方便易于理解的分布式算法，主要解决了分布式中的一致性问题。</p>
+</blockquote>
 <p>三类角色：</p>
 <blockquote>
 <p>Leader（领袖），Follower（群众），Candidate（候选人）</p>
