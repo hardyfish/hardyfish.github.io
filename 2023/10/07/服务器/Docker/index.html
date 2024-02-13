@@ -1329,7 +1329,33 @@
 <p>联合文件系统非常轻快，Docker通过联合文件系统为容器提供构建层，使得容器可以实现写时复制以及镜像的分层构建和存储。</p>
 </blockquote>
 <h1>容器编排</h1>
+<blockquote>
 <p>Docker三种常用的编排工具：Docker Compose、Docker Swarm 和 Kubernetes。</p>
+</blockquote>
+<h2 id="K8S">K8S</h2>
+<p><strong>基本架构</strong></p>
+<blockquote>
+<p>有两种Node节点，一个是Master、一个是Work。</p>
+<p>Work Node是真正承担服务的机器节点：</p>
+<ul>
+<li>如服务A部署到K8S后，它的运行环境就在WorkNode节点。</li>
+</ul>
+<p>Master Node可以理解为大管家：</p>
+<ul>
+<li>它会知道现有Work Node的资源运行情况，决定服务安排到哪些Work Nodes上。</li>
+</ul>
+<p>在Work Node节点上面有2个重要的组件，一个是Pod、一个是Container：</p>
+<ul>
+<li>Pod是K8S的最小单元，它里面可以有多个Container。</li>
+<li>Container就是服务/组件运行的环境。</li>
+</ul>
+<p>一般情况下一个Pod只有一个业务服务Container。</p>
+<ul>
+<li>而其他的Container是系统所需要的容器（其实就是一些进程组件，如网络组件、Volume组件等）。</li>
+</ul>
+<p><strong>所以一般可以理解为我们的服务就在Pod里面。</strong></p>
+</blockquote>
+<p><img src="/images/478.png" alt="图片"></p>
 
 	</div>
 </div>
