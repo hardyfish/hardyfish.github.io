@@ -312,35 +312,8 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2023/11/11/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Go%E5%9F%BA%E7%A1%80/">
-										Go基础
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
 									<a href="/2022/11/27/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/JVM/">
 										JVM
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2022/11/21/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Java%E5%9F%BA%E7%A1%80/">
-										Java基础
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2024/01/29/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Python%E5%9F%BA%E7%A1%80/">
-										Python基础
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1096,6 +1069,44 @@
 								<li class="file">
 									<a href="/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
 										面试算法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										编程语言
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/11/11/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E5%9F%BA%E7%A1%80/">
+										Go基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/21/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java%E5%9F%BA%E7%A1%80/">
+										Java基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/29/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python%E5%9F%BA%E7%A1%80/">
+										Python基础
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -2439,6 +2450,7 @@ AND STATUS = 1
 <img src="/images/147.png" alt="image-20231021221734927" style="zoom:50%;" />
 
 <h1 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h1><p><img src="/images/148.png" alt="图片"></p>
+<p><img src="/images/481.png" alt="img"></p>
 <p><strong>三个线程：</strong></p>
 <blockquote>
 <p><strong>binlog dump线程：</strong> </p>
@@ -2490,6 +2502,54 @@ AND STATUS = 1
 <li>直接查询主库，这种情况会给主库太大压力，核心场景可以使用，比如订单支付。</li>
 </ul>
 </li>
+</ul>
+</blockquote>
+<p><strong>GTID复制</strong></p>
+<p>GTID是什么？</p>
+<blockquote>
+<p>从 MySQL 5.6.5 开始新增了一种基于 GTID 的复制方式。</p>
+<ul>
+<li><p>通过 GTID 保证了每个在主库上提交的事务在集群中有一个唯一的ID。</p>
+</li>
+<li><p>这种方式强化了数据库的主备一致性，故障恢复以及容错能力。</p>
+</li>
+</ul>
+<p>在原来基于二进制日志的复制中，从库需要告知主库要从哪个偏移量进行增量同步：</p>
+<ul>
+<li>如果指定<code>错误会造成数据的遗漏，从而造成数据的不一致。</code></li>
+</ul>
+<p>借助GTID，在发生主备切换的情况下，MySQL的其它从库可以自动在新主库上找到正确的复制位置，<code>这大大简化了复杂复制拓扑下集群的维护</code>，也减少了人为设置复制位置发生误操作的风险。</p>
+<p>另外，基于GTID的复制可以忽略已经执行过的事务，减少了数据发生不一致的风险。</p>
+</blockquote>
+<p>GTID复制原理流程：</p>
+<blockquote>
+<p>Master进行数据更新时、在事务前产生GTID号、一起记录到binlog日志</p>
+<p>Slave的I&#x2F;O线程将变更的binlog数据，写入到本地中继日志<code>relay_log</code></p>
+<p>Slave的SQL线程从中继日志中获取GTID号，和本地的binlog对比查看是否有记录</p>
+<ul>
+<li><p>有记录，说明该GTID事务已执行，Slave数据库会忽略</p>
+</li>
+<li><p>如果没有记录，Slave数据库从<code>relay_log中继日志</code>中获取数据，且执行该GTID的事务，记录到binlog中</p>
+</li>
+</ul>
+<p>根据GTID号就可以知道事务最初是在哪个数据库上提交的</p>
+<p>有了GTID号、可以方便主从复制的故障切换</p>
+</blockquote>
+<p>主从故障切换:</p>
+<blockquote>
+<p>同一个事务的GTID在所有节点上都是一致的，Slave机器根据GTID就可以知道数据的停止点在哪。</p>
+<p>并且，MySQL还提供了参数<code>master_auto_position</code>，能够自动的获取GTID值，让运维更加省心了。</p>
+</blockquote>
+<p>GTID优缺点:</p>
+<blockquote>
+<p>优点</p>
+<ul>
+<li>根据GTID可以明确知道事务最开始是在哪个数据库提交的</li>
+<li>GTID对于宕机切换，非常方便，明确数据起止点</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>开启了GTID的数据库，和未开启的数据库实例之间、是无法混用复制的</li>
 </ul>
 </blockquote>
 <h1 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h1><p><strong>查询：</strong></p>
