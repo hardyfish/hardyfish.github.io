@@ -1465,8 +1465,7 @@
 <li><a target="_blank" rel="noopener" href="https://docschina.org/">https://docschina.org/</a></li>
 </ul>
 </blockquote>
-<p><strong>MAT</strong></p>
-<blockquote>
+<h1 id="MAT"><a href="#MAT" class="headerlink" title="MAT"></a>MAT</h1><blockquote>
 <p>安装地址：<a target="_blank" rel="noopener" href="https://www.eclipse.org/mat/downloads.php">https://www.eclipse.org/mat/downloads.php</a></p>
 <ul>
 <li>下载太慢可以更改镜像地址。</li>
@@ -1485,6 +1484,40 @@
 </blockquote>
 <pre><code>-Xmx2048m
 </code></pre>
+<p><strong>菜单</strong></p>
+<p><img src="/images/499.png" alt="img"></p>
+<p><strong>Dominator Tree</strong></p>
+<blockquote>
+<p>使用 Dominator Tree了解各支配树起点对象所支配内存的大小，进而了解哪几个Root对象是 GC 无法释放大内存的原因。</p>
+<p>Shallow Heap 和 Retained Heap分别表示对象自身不包含引用的大小和对象自身并包含引用的大小。</p>
+<ul>
+<li><p>针对非数组类型的对象，Shallow Heap的大小就是对象与它所有的成员变量大小的总和。</p>
+</li>
+<li><p>针对数组类型的对象，Shallow Heap的大小是数组元素对象的大小总和。</p>
+</li>
+</ul>
+<p>当个别对象支配树的 Retained Heap 很大且存在明显倾斜时，可以重点分析它们的对象支配关系，展开RingBuffer的子树进一步定位到问题根因，如下图可看出最终是业务类的 <strong>LogData</strong> 对象持有的 String字符串过大。</p>
+</blockquote>
+<p><img src="/images/500.png" alt="img"></p>
+<p><strong>Histogram</strong></p>
+<blockquote>
+<p>它默认直接罗列每个类实例的数量和累计内存占比。</p>
+<p>包括自身内存占用量（Shallow Heap）及支配对象的内存占用量（Retained Heap）。</p>
+</blockquote>
+<p><img src="/images/501.png" alt="img"></p>
+<blockquote>
+<p>业务类LogData存在131072个对象，消耗的内存也比较靠前，SdkSpan和SpanData存在同样的问题，因此这三个类必定存在问题。</p>
+<p><strong>使用场景</strong>：</p>
+<ul>
+<li>有些情况下， <code>Dominator Tree</code> 无法展现出热点对象（如按 <code>Class</code> 聚合也无明显热点对象，此时 <code>Dominator Tree</code> 很难做关联分析判断哪类对象占比高）。</li>
+<li>这时可以使用 <code>Histogram</code> 查看所有对象所属类的分布，快速定位占据 <code>Retained Heap</code> 大头的类。</li>
+</ul>
+<p><strong>使用技巧</strong>：</p>
+<ul>
+<li><code>Integer，String</code> 和 <code>Object[]</code> 一般不直接导致内存问题。</li>
+<li>为更好的组织视图，可以通过 <code>Class Loader</code> 或 <code>Package</code> 分组进一步排查问题。</li>
+</ul>
+</blockquote>
 
 	</div>
 </div>
