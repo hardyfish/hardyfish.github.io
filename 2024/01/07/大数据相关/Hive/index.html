@@ -394,6 +394,15 @@
 							</ul>
 			
 							<ul>
+								<li class="file">
+									<a href="/2024/02/21/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Hadoop/">
+										Hadoop
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
 								<li class="file active">
 									<a href="/2024/01/07/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Hive/">
 										Hive
@@ -1330,7 +1339,7 @@
 <p>它可以将结构化的数据文件映射成表，并提供类 SQL 查询功能，用于查询的 SQL 语句会被转化为 <code>MapReduce</code> 作业，然后提交到 <code>Hadoop</code> 上运行。</p>
 </blockquote>
 <p><strong>数据类型</strong></p>
-<pre><code class="language-hive">CREATE TABLE students(
+<pre><code class="sql">CREATE TABLE students(
   name      STRING,   -- 姓名
   age       INT,      -- 年龄
   subject   ARRAY&lt;STRING&gt;,   --学科
@@ -1345,14 +1354,13 @@
 <th>类型</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>Integers（整型）</strong></td>
 <td>TINYINT—1 字节的有符号整数  SMALLINT—2 字节的有符号整数  INT—4 字节的有符号整数  BIGINT—8 字节的有符号整数</td>
 </tr>
 <tr>
 <td><strong>Boolean（布尔型）</strong></td>
-<td>BOOLEAN—TRUE/FALSE</td>
+<td>BOOLEAN—TRUE&#x2F;FALSE</td>
 </tr>
 <tr>
 <td><strong>Floating point numbers（浮点型）</strong></td>
@@ -1374,8 +1382,7 @@
 <td><strong>Binary types（二进制类型）</strong></td>
 <td>BINARY—字节序列</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <table>
 <thead>
 <tr>
@@ -1384,8 +1391,7 @@
 <th>示例</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>STRUCT</strong></td>
 <td>类似于对象，是字段的集合，字段的类型可以不同，可以使用 <code>名称.字段名</code> 方式进行访问</td>
 <td>STRUCT (‘xiaoming’, 12 , ‘2018-12-12’)</td>
@@ -1400,8 +1406,7 @@
 <td>数组是一组具有相同类型和名称的变量的集合，可以使用 <code>名称[index]</code> 访问对应的值</td>
 <td>ARRAY(‘a’, ‘b’, ‘c’, ‘d’)</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>隐式转换：</p>
 <blockquote>
 <p>Hive 中基本数据类型遵循以下的层次结构，按照这个层次结构，子类型到祖先类型允许隐式转换。</p>
@@ -1410,7 +1415,7 @@
 <li>注意：按照类型层次结构允许将 STRING 类型隐式转换为 DOUBLE 类型。</li>
 </ul>
 </blockquote>
-<p><img src="/images/347.png" alt=""></p>
+<p><img src="/images/347.png"></p>
 <p><strong>内容格式</strong></p>
 <blockquote>
 <p>当数据存储在文本文件中，必须按照一定格式区别行和列，如使用逗号作为分隔符的 CSV 文件或者使用制表符作为分隔值的 TSV 文件。</p>
@@ -1425,8 +1430,7 @@
 <th>描述</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>\n</strong></td>
 <td>对于文本文件来说，每行是一条记录，所以可以使用换行符来分割记录</td>
 </tr>
@@ -1442,8 +1446,7 @@
 <td><strong>^C</strong></td>
 <td>用于 MAP 中键和值之间的分割，在 CREATE TABLE 语句中也可以使用八进制编码 <code>\003</code> 表示</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p><strong>存储格式</strong></p>
 <blockquote>
 <p>Hive 会在 HDFS 为每个数据库上创建一个目录，数据库中的表是该目录的子目录，表中的数据会以文件的形式存储在对应的表目录下。</p>
@@ -1456,8 +1459,7 @@
 <th>说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>TextFile</strong></td>
 <td>存储为纯文本文件。 这是 Hive 默认的文件存储格式。这种存储方式数据不做压缩，磁盘开销大，数据解析开销大。</td>
 </tr>
@@ -1481,15 +1483,14 @@
 <td><strong>Parquet</strong></td>
 <td>Parquet 是基于 Dremel 的数据模型和算法实现的，面向分析型业务的列式存储格式。它通过按列进行高效压缩和特殊的编码技术，从而在降低存储空间的同时提高了 IO 效率。</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <blockquote>
 <p>以上压缩格式中 ORC 和 Parquet 的综合性能突出，使用较为广泛，推荐使用这两种格式。</p>
 </blockquote>
 <p><strong>内部表和外部表</strong></p>
 <blockquote>
 <p>内部表又叫做管理表，创建表时不做任何指定，默认创建的就是内部表。</p>
-<p>想要创建外部表，则需要使用 External 进行修饰。</p>
+<p>想要创建外部表，则需要使用 External 进行修饰。 </p>
 <p>内部表和外部表主要区别如下：</p>
 </blockquote>
 <table>
@@ -1500,8 +1501,7 @@
 <th>外部表</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>数据存储位置</td>
 <td>内部表数据存储的位置由 hive.metastore.warehouse.dir 参数指定，默认情况下表的数据存储在 HDFS 的 <code>/user/hive/warehouse/数据库名.db/表名/</code>  目录下</td>
 <td>外部表数据的存储位置创建表时由 <code>Location</code> 参数指定；</td>
@@ -1516,8 +1516,7 @@
 <td>删除元数据（metadata）和文件</td>
 <td>只删除元数据（metadata）</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p><strong>分区表</strong></p>
 <blockquote>
 <p>Hive 中的表对应为 HDFS 上的指定目录，在查询数据时候，默认会对全表进行扫描，这样时间和性能的消耗都非常大。</p>
@@ -1533,7 +1532,7 @@
 <p>在 Hive 中可以使用 <code>PARTITIONED BY</code> 子句创建分区表。</p>
 <p>表可以包含一个或多个分区列，程序会为分区列中的每个不同值组合创建单独的数据目录。</p>
 </blockquote>
-<pre><code class="language-hive"> CREATE EXTERNAL TABLE emp_partition(
+<pre><code class="sql"> CREATE EXTERNAL TABLE emp_partition(
     empno INT,
     ename STRING,
     job STRING,
@@ -1544,13 +1543,13 @@
     )
     PARTITIONED BY (deptno INT)   -- 按照部门编号进行分区
     ROW FORMAT DELIMITED FIELDS TERMINATED BY &quot;\t&quot;
-    LOCATION '/hive/emp_partition';
+    LOCATION &#39;/hive/emp_partition&#39;;
 </code></pre>
 <p>加载数据到分区表:</p>
 <blockquote>
 <p>加载数据到分区表时候必须要指定数据所处的分区。</p>
 </blockquote>
-<pre><code class="language-hive"># 加载部门编号为20的数据到表中
+<pre><code class="sql"># 加载部门编号为20的数据到表中
 LOAD DATA LOCAL INPATH &quot;/usr/file/emp20.txt&quot; OVERWRITE INTO TABLE emp_partition PARTITION (deptno=20)
 # 加载部门编号为30的数据到表中
 LOAD DATA LOCAL INPATH &quot;/usr/file/emp30.txt&quot; OVERWRITE INTO TABLE emp_partition PARTITION (deptno=30)
@@ -1566,7 +1565,7 @@ LOAD DATA LOCAL INPATH &quot;/usr/file/emp30.txt&quot; OVERWRITE INTO TABLE emp_
 <blockquote>
 <p>在 Hive 中，可以通过 <code>CLUSTERED BY</code> 指定分桶列，并通过 <code>SORTED BY</code> 指定桶中数据的排序参考列。</p>
 </blockquote>
-<pre><code class="language-hive">  CREATE EXTERNAL TABLE emp_bucket(
+<pre><code class="sql">  CREATE EXTERNAL TABLE emp_bucket(
     empno INT,
     ename STRING,
     job STRING,
@@ -1577,7 +1576,7 @@ LOAD DATA LOCAL INPATH &quot;/usr/file/emp30.txt&quot; OVERWRITE INTO TABLE emp_
     deptno INT)
     CLUSTERED BY(empno) SORTED BY(empno ASC) INTO 4 BUCKETS  --按照员工编号散列到四个 bucket 中
     ROW FORMAT DELIMITED FIELDS TERMINATED BY &quot;\t&quot;
-    LOCATION '/hive/emp_bucket';
+    LOCATION &#39;/hive/emp_bucket&#39;;
 </code></pre>
 <p>分区表和分桶表结合使用:</p>
 <blockquote>
@@ -1595,15 +1594,13 @@ LOAD DATA LOCAL INPATH &quot;/usr/file/emp30.txt&quot; OVERWRITE INTO TABLE emp_
 <blockquote>
 <p>在指定列上建立索引，会产生一张索引表（表结构如下），里面的字段包括：</p>
 <ul>
-<li>
-<p>索引列的值、该值对应的 HDFS 文件路径、该值在文件中的偏移量。</p>
+<li><p>索引列的值、该值对应的 HDFS 文件路径、该值在文件中的偏移量。</p>
 </li>
-<li>
-<p>在查询涉及到索引字段时，首先到索引表查找索引列值对应的 HDFS 文件路径及偏移量，这样就避免了全表扫描。</p>
+<li><p>在查询涉及到索引字段时，首先到索引表查找索引列值对应的 HDFS 文件路径及偏移量，这样就避免了全表扫描。</p>
 </li>
 </ul>
 </blockquote>
-<pre><code>+--------------+----------------+----------+--+
+<pre><code class="sql">+--------------+----------------+----------+--+
 |   col_name   |   data_type    | comment     |
 +--------------+----------------+----------+--+
 | empno        | int            |  建立索引的列  |   
@@ -1615,24 +1612,22 @@ LOAD DATA LOCAL INPATH &quot;/usr/file/emp30.txt&quot; OVERWRITE INTO TABLE emp_
 <blockquote>
 <p>索引表无法自动 rebuild，也就意味着如果表中有数据新增或删除，则必须手动 rebuild，重新执行 MapReduce 作业，生成索引表数据。</p>
 </blockquote>
-<h1>基本原理</h1>
-<p><strong>基本架构</strong></p>
+<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><strong>基本架构</strong></p>
 <blockquote>
 <p>可以用 <code>command-line shell</code> 和 <code>thrift／jdbc</code> 两种方式来操作数据：</p>
 <ul>
-<li><strong>command-line shell</strong>：
-<ul>
+<li><strong>command-line shell</strong>：<ul>
 <li>通过 hive 命令行的的方式来操作数据。</li>
 </ul>
 </li>
-<li><strong>thrift／jdbc</strong>：
-<ul>
+<li><strong>thrift／jdbc</strong>：<ul>
 <li>通过 <code>thrift</code> 协议按照标准的 JDBC 的方式操作数据。</li>
 </ul>
 </li>
 </ul>
 </blockquote>
 <img src="/images/348.png" style="zoom:75%;" />
+
 <p>Metastore:</p>
 <blockquote>
 <p>在 Hive 中，表名、表结构、字段名、字段类型、表的分隔符等统一被称为元数据。</p>
@@ -1644,40 +1639,33 @@ LOAD DATA LOCAL INPATH &quot;/usr/file/emp30.txt&quot; OVERWRITE INTO TABLE emp_
 <blockquote>
 <p>Hive 在执行一条 HQL 的时候，会经过以下步骤：</p>
 <ul>
-<li>
-<p>语法解析：<code>Antlr</code> 定义 SQL 的语法规则，完成 SQL 词法，语法解析，将 SQL 转化为抽象 语法树 AST Tree。</p>
+<li><p>语法解析：<code>Antlr</code> 定义 SQL 的语法规则，完成 SQL 词法，语法解析，将 SQL 转化为抽象 语法树 AST Tree。</p>
 </li>
-<li>
-<p>语义解析：遍历 AST Tree，抽象出查询的基本组成单元 QueryBlock。</p>
+<li><p>语义解析：遍历 AST Tree，抽象出查询的基本组成单元 QueryBlock。</p>
 </li>
-<li>
-<p>生成逻辑执行计划：</p>
+<li><p>生成逻辑执行计划：</p>
 <ul>
 <li>遍历 QueryBlock，翻译为执行操作树 OperatorTree。</li>
 </ul>
 </li>
-<li>
-<p>优化逻辑执行计划：</p>
+<li><p>优化逻辑执行计划：</p>
 <ul>
 <li>逻辑层优化器进行 OperatorTree 变换，合并不必要的 ReduceSinkOperator，减少 shuffle 数据量。</li>
 </ul>
 </li>
-<li>
-<p>生成物理执行计划：</p>
+<li><p>生成物理执行计划：</p>
 <ul>
 <li>遍历 OperatorTree，翻译为 MapReduce 任务。</li>
 </ul>
 </li>
-<li>
-<p>优化物理执行计划：</p>
+<li><p>优化物理执行计划：</p>
 <ul>
 <li>物理层优化器进行 MapReduce 任务的变换，生成最终的执行计划。</li>
 </ul>
 </li>
 </ul>
 </blockquote>
-<h1>常用操作</h1>
-<blockquote>
+<h1 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h1><blockquote>
 <p>查看数据列表:</p>
 </blockquote>
 <pre><code>show databases;
