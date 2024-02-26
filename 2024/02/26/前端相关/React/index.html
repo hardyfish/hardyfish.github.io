@@ -21,6 +21,8 @@
 	<!-- title -->
 	
 	<title>
+	
+		React | 
 	 
 	月伴飞鱼
 	</title>
@@ -307,7 +309,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2024/02/26/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/React/">
 										React
 									</a>
@@ -1344,228 +1346,277 @@
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<div id="index" oncontextmenu="return false;">
-	
-		<div class="index-li">
-			<a href="/2023/12/25/%E4%B8%AD%E9%97%B4%E4%BB%B6/Solr/">
-				<h2 class="index-title">
-					Solr
-				</h2>
-				<div class="index-brief">
-					基本查询
+		<h1 id="article-title" oncontextmenu="return false;">
 
-q：
+	React
+</h1>
+<div class="article-meta" oncontextmenu="return false;">
+	<span>月伴飞鱼</span>
+	<span>2024-02-26 17:48:59</span>
+    
+		<div id="article-categories">
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/前端相关/">前端相关</a>
+						
+                    </span>
+                
+            
+		</div>
+    
+</div>
 
-查询的关键字，例如：q=id:1，默认为q=:
+<div id="container" class = "content999" oncontextmenu="return false;">
+<!--打赏-->
+        <div class="reward">
+       <div class="reward-button">赏 <span class="reward-code">
+        <span class="alipay-code"> <img class="alipay-img wdp-appear" src="/alipay.png"><b>支付宝打赏</b> </span> 
+        <span class="wechat-code"> <img class="wechat-img wdp-appear" src="/weipay.jpeg"><b>微信打赏</b> </span> 
+       </div>
+      <p class="reward-notice">如果文章对你有帮助，欢迎点击上方按钮打赏作者！</p>
+      </div>
+      <!--打赏-->
+	<div id="article-content">
+		<blockquote>
+<p>React是用于构建用户界面的MVVM框架。</p>
+<p>React起源于Facebook的内部项目，它是一个用于构建用户界面的JavaScript库，Facebook用它来架设公司的Instagram网站。</p>
+<p>官网：<a target="_blank" rel="noopener" href="https://zh-hans.reactjs.org/">https://zh-hans.reactjs.org/</a></p>
+<p>源码：<a target="_blank" rel="noopener" href="https://github.com/facebook/react">https://github.com/facebook/react</a></p>
+<p>React新文档 ：<a target="_blank" rel="noopener" href="https://beta.reactjs.org/">https://beta.reactjs.org/</a></p>
+</blockquote>
+<p><strong>第一个React程序</strong></p>
+<blockquote>
+<p>CDN引入：<a target="_blank" rel="noopener" href="https://unpkg.com/">https://unpkg.com/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.staticfile.org/">https://www.staticfile.org/</a></p>
+</blockquote>
+<pre><code>&lt;script crossorigin src=&quot;https://unpkg.com/react@18/umd/react.development.js&quot;&gt;&lt;/script&gt;
+&lt;script crossorigin src=&quot;https://unpkg.com/react-dom@18/umd/react-dom.development.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<blockquote>
+<p>上述版本仅用于开发环境，不适合用于生产环境。</p>
+<p>压缩优化后可用于生产的 React 版本可通过如下方式引用。</p>
+</blockquote>
+<pre><code>&lt;script crossorigin src=&quot;https://unpkg.com/react@18/umd/react.production.min.js&quot;&gt;&lt;/script&gt;
+&lt;script crossorigin src=&quot;https://unpkg.com/react-dom@18/umd/react-dom.production.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<pre><code class="js">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;title&gt;Hello React!&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+    &lt;script src=&quot;https://cdn.staticfile.org/react/18.2.0/umd/react.development.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.staticfile.org/react-dom/18.2.0/umd/react-dom.development.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.staticfile.org/babel-standalone/7.20.6/babel.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+      // 1、创建虚拟dom
+      // React.createElement(标签名称,对象形式的DOM属性信息,DOM中的内容/子DOM)
+      // React.createElement(标签名称,对象形式的DOM属性信息,DOM中的内容/子DOM,DOM中的内容/子DOM,...)
+      // React.createElement(标签名称,对象形式的DOM属性信息,[DOM中的内容/子DOM,DOM中的内容/子DOM,...])
+      let vNode = React.createElement(&quot;h2&quot;, &#123;&#125;, &quot;Hello React!&quot;);
+      //2、获取app根元素
+      let app = document.querySelector(&quot;#app&quot;);
+      //3、创建根元素
+      let root = ReactDOM.createRoot(app);
+      //4、将虚拟节点渲染到根结点上
+      root.render(vNode);
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<blockquote>
+<p>启动项目:</p>
+<p><strong>只需要在项目根目录下使用 npm start 或者 yarn start 就可以启动项目。</strong></p>
+</blockquote>
+<p><strong>JSX</strong></p>
+<blockquote>
+<p>由于通过<code>React.createElement()</code>方法创建的React元素代码比较繁琐，结构不直观，无法一眼看出描述的结构，不优雅，开发时写代码很不友好。</p>
+<p>JSX 是 JavaScript XML 的简写，表示在 JavaScript 代码中写XML（HTML）格式的代码。</p>
+<p>优势：声明式语法更加直观，与HTML结构相同，降低了学习成本、提升开发效率。</p>
+</blockquote>
+<pre><code class="js">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;title&gt;Hello React JSX!&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+    &lt;script src=&quot;https://cdn.staticfile.org/react/18.2.0/umd/react.development.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.staticfile.org/react-dom/18.2.0/umd/react-dom.development.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.staticfile.org/babel-standalone/7.20.6/babel.min.js&quot;&gt;&lt;/script&gt;
+    &lt;!-- script标签上一定要写上 type=&quot;text/babel&quot; --&gt;
+    &lt;script type=&quot;text/babel&quot;&gt;
+      // 1、创建虚拟dom
+      let vNode = &lt;h2&gt;Hello React JSX!&lt;/h2&gt;;
+      //2、获取app根元素
+      let app = document.querySelector(&quot;#app&quot;);
+      //3、创建根元素
+      let root = ReactDOM.createRoot(app);
+      //4、将虚拟节点渲染到根结点上
+      root.render(vNode);
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong>脚手架</strong></p>
+<blockquote>
+<p>使用 create-react-app 脚手架创建项目</p>
+<p><strong>npx create-react-app 项目名 或者 yarn create react-app 项目名</strong>(npx 是一个临时使用第三方模块的命令，会临时下载这个包，使用完毕就删除了)</p>
+</blockquote>
+<p>npm和npx的区别:</p>
+<blockquote>
+<p>区别1：</p>
+<ul>
+<li>一个永久存在（npm），一个临时安装（npx），用完后删除。</li>
+</ul>
+<p>区别2：</p>
+<ul>
+<li>npx 会帮你执行依赖包里的二进制文件。</li>
+<li>也就是说 npx 会自动查找当前依赖包中的可执行文件，如果找不到，就会去环境变量里面的 PATH 里找。</li>
+<li>如果依然找不到，就会帮你安装。</li>
+</ul>
+<p>区别3：</p>
+<ul>
+<li>npx可以执行文件，但是npm不可以。</li>
+</ul>
+</blockquote>
+<pre><code>npx create-react-app my-app
+</code></pre>
+<blockquote>
+<p>在项目文件夹下执行 <code>npm start</code> 命令，然后在浏览器访问 <code>http://localhost:3000</code>。</p>
+</blockquote>
+<p><strong>项目结构</strong></p>
+<img src="/images/513.png" alt="img" style="zoom:70%;" />
 
-fl：
+<p><strong>安装VSCode插件</strong></p>
+<blockquote>
+<p>1、React&#x2F;Redux&#x2F;React-Native Snippets:</p>
+<ul>
+<li>代码模板&#x2F;代码片段</li>
+</ul>
+<p>2、Simple React Snippets:</p>
+<ul>
+<li>更加简洁的代码片段</li>
+</ul>
+</blockquote>
 
-指定返回哪些字段，用逗号或空格分隔，注意：字段区分大小写，例如：fl= id,title,sort
-
-start：
-
-返回结果的第几条记录开始，一般分页用，默认0开始
-
-rows：
-
-指定返回结果最多有多少条记录，默认值
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-12-25</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/中间件/">中间件</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/Dubbo/">
-				<h2 class="index-title">
-					Dubbo
-				</h2>
-				<div class="index-brief">
-					官网：https://cn.dubbo.apache.org/zh-cn/
-配置总线URL
-
-Dubbo 中任意的一个实现都可以抽象为一个 URL，Dubbo 使用 URL 来统一描述了所有对象和配置信息。
-
-protocol：dubbo 协议。
-username/password：用户名和密码。
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-30</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/中间件/">中间件</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/Netty/">
-				<h2 class="index-title">
-					Netty
-				</h2>
-				<div class="index-brief">
-					官网：https://netty.io/
-
-Netty 是一个基于 JAVA NIO 类库的异步通信框架。
-用于创建异步非阻塞、基于事件驱动、高性能、高可靠性和高可定制性的网络客户端和服务器端。
-
-Netty案例
-
-搭建 Server 端服务器:
-
-创建 ServerBootstrap 对象。
-
-
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-30</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/中间件/">中间件</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/10/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/ZooKeeper/">
-				<h2 class="index-title">
-					ZooKeeper
-				</h2>
-				<div class="index-brief">
-					基本结构
-数据模型
-
-ZooKeeper中的数据模型是一种树形结构。
-具有一个固定的根节点，我们可以在根节点下创建子节点，并在子节点下继续创建下一级节点。
-树中的每一层级用斜杠（/）分隔开，只能用绝对路径（如get /work/task1）的方式查询节点，不能使用相对路径。
-
-为什么 ZooKeep
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-19</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/中间件/">中间件</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/10/10/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">
-				<h2 class="index-title">
-					开源框架
-				</h2>
-				<div class="index-brief">
-					Guava
-
-https://github.com/rholder/guava-retrying
-
-AviatorScript
-
-https://github.com/killme2008/aviatorscript
-文档：https://www.yuque.com/boyan-avfmj/avia
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-10</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/中间件/">中间件</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2022/12/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/">
-				<h2 class="index-title">
-					Elasticsearch
-				</h2>
-				<div class="index-brief">
-					Elasticsearch 是一个开源的搜索引擎，建立在全文搜索引擎库 Apache Lucene 基础之上。
-
-ES用 Java 编写，内部使用 Lucene 做索引与搜索：
-
-使全文检索变得简单，隐藏 Lucene 的复杂性，提供一套简单的 RESTful API。
-
-
-学习资源
-
-官网文档：h
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2022-12-19</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/中间件/">中间件</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-	
-	<div id="index-paginator">
-		
 	</div>
 </div>
 
+
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2024/02/26/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/Vue/">
+                Vue
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+
+<script>
+
+    //document.oncontextmenu=new Function("event.returnValue=false");
+	//document.onselectstart=new Function("event.returnValue=false");
+
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+
+	
+
+	$(function () {
+		const btw = new BTWPlugin();
+	    btw.init({
+	        id: 'container',
+	        blogId: '22377-1706525467336-300',
+	        name: '月伴飞鱼',
+	        qrcode: '/小程序码.jpg',
+	        keyword: '验证码',
+	        btnText: '为防止机器刷接口，需要完成人机检测',
+        	cookieAge: 1
+	    });
+
+	    var contents = document.getElementsByClassName("content999");
+	    //监听文章内容的copy事件
+	    contents[0].addEventListener('copy',function(e){
+	        setClipboardText(e);
+	    });
+
+	    function setClipboardText(event){
+	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+	        let clipboardData = event.clipboardData || window.clipboardData;
+
+	        // 如果未复制或者未剪切，则return出去
+	        if (!clipboardData) { return; }
+
+	        event.preventDefault();
+
+	        // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+	        // 声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+	        let text = window.getSelection().toString();
+	    
+	        if (text) {
+	            // 如果文本存在则先取消文本默认事件
+	            event.preventDefault();
+	            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+	            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+	            // data: 一个 DOMString表示要添加到 drag object的数据。
+	            var copyright = '\n\n'
+	            + '\n著作权归作者所有。'
+	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+	            + '\n作者: 月伴飞鱼'
+	            + '\n原文地址: http://hardyfish.top/2024/02/26/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/React/'
+	    
+	            clipboardData.setData('text/plain', text + copyright);
+	    
+	        }
+	    };
+	});
+
+	
+</script>
+
+<script>
+    const btw = new BTWPlugin();
+    btw.init({
+        id: 'container',
+        blogId: '22377-1706525467336-300',
+        name: '月伴飞鱼',
+        qrcode: '/小程序码.jpg',
+        keyword: '验证码',
+        btnText: '为防止机器刷接口，需要完成人机检测',
+        cookieAge: 1
+    });
+
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
 	</div>
 	<div id="footer">
 	<p>
