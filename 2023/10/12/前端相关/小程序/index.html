@@ -309,6 +309,15 @@
 							</ul>
 			
 							<ul>
+								<li class="file">
+									<a href="/2024/02/26/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/Vue/">
+										Vue
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
 								<li class="file active">
 									<a href="/2023/10/12/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
 										小程序
@@ -1368,10 +1377,54 @@
 <blockquote>
 <p>以<code>app</code>开头的文件是应用程序级别的文件，更改一处全局生效。</p>
 <p>而页面<code>pages</code>的配置优先级高于全局配置(<code>就近原则</code>)</p>
+<p>.js文件</p>
+<ul>
+<li>页面的脚本文件，存放页面的数据、事件处理函数等</li>
+</ul>
+<p>.json文件</p>
+<ul>
+<li>当前页面的配置文件，配置窗口的外观、表现等</li>
+</ul>
+<p>.wxml文件</p>
+<ul>
+<li>页面的模板结构文件</li>
+</ul>
+<p>.wxss文件</p>
+<ul>
+<li>当前页面的样式表文件</li>
+</ul>
 </blockquote>
 <img src="/images/108.png" alt="image-20231012181103684" style="zoom:60%;" />
-<h1>配置文件</h1>
-<p><strong>全局配置<code>app.json</code></strong></p>
+
+<p><strong>响应式单位rpx</strong></p>
+<blockquote>
+<p>在使用 CSS 进行移动端的网页开发时，由于不同手机设备的屏幕比，在换算像素单位时会遇到很多麻烦</p>
+<p>为了方便开发人员适配各种屏幕 WxSS 中加入了新的尺寸单位 rpx 即（responsive pixel，响应式像素)</p>
+<p>rpx响应单位：</p>
+<ul>
+<li>rpx是微信小程序独有的，解决屏幕自适应的尺寸单位</li>
+<li>可以根据屏幕宽度进行自适应，不论大小屏幕，规定屏幕宽为750rpx</li>
+<li>通过 rpx 设置元素和字体的大小，小程序在不同尺寸的屏幕下，可以实现自动适配</li>
+</ul>
+<p>rpx 和 px 之间的换算：</p>
+<ul>
+<li>在普通网页开发中，最常见的像素单位是px</li>
+<li>在小程序开发中推荐使用 rpx 这种响应式的像素单位进行开发</li>
+<li>如在 iPhone6 上，屏幕宽度为375px，共有750个物理像素，则750rpx &#x3D; 375px &#x3D; 750物理像素，1rpx &#x3D; 0.5px</li>
+</ul>
+<p>规定不管屏幕为多少px，100%的屏幕宽度就是750rpx</p>
+<p>100% 屏幕的宽度 &#x3D; 750rpx</p>
+</blockquote>
+<p><strong>其它单位</strong></p>
+<blockquote>
+<p>px 绝对单位，页面按精确像素展示</p>
+<p>em 相对单位，相对于它的父节点字体进行计算</p>
+<p>rem 相对单位，相对根节点html的字体大小来计算</p>
+<p>% 一般来说就是相对于父元素</p>
+<p>vh 视窗高度，1vh等于视窗高度的1%</p>
+<p>vw 视窗宽度，1vw等于视窗宽度的1%</p>
+</blockquote>
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><p><strong>全局配置<code>app.json</code></strong></p>
 <blockquote>
 <p>全局配置，包括了⼩程序的所有⻚⾯路径、界⾯表现、⽹络超时时间、底部Tab等。</p>
 <p>pages字段:</p>
@@ -1384,7 +1437,7 @@
 </ul>
 <p>更多配置：<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html">详见文档</a></p>
 </blockquote>
-<pre><code class="language-json">&#123;
+<pre><code class="json">&#123;
   &quot;pages&quot;:[
     &quot;pages/index/index&quot;
  ],
@@ -1396,7 +1449,52 @@
 <p><code>sitemap.json</code></p>
 <blockquote>
 <p>⽤于配置⼩程序及其⻚⾯是否允许被微信索引。</p>
+<ul>
+<li>微信现已开放小程序内搜索，效果类似于PC网页的SEO。</li>
+</ul>
+<p>当开发者允许微信索引时，微信会通过爬虫的形式，为小程序的页面内容建立索引。</p>
+<p>当用户的搜索关键字和页面的索引匹配成功的时候，小程序的页面将可能展示在搜索结果中。</p>
 <p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.htmls">详见文档</a></p>
+</blockquote>
+<p><img src="/images/509.png" alt="img"></p>
+<blockquote>
+<p>默认是允许被索引的，page:*：表示所有的页面</p>
+<p>如果想不被微信索引到的话，在action中加上dis</p>
+</blockquote>
+<p><img src="/images/510.png" alt="img"></p>
+<h1 id="开发框架"><a href="#开发框架" class="headerlink" title="开发框架"></a>开发框架</h1><blockquote>
+<p>整个小程序框架系统分为两部分：逻辑层（App Service）和 视图层（View）。</p>
+<p>小程序提供了自己的视图层描述语言 <code>WXML</code> 和 <code>WXSS</code>，以及基于 <code>JavaScript</code> 的逻辑层框架，并在视图层与逻辑层间提供了数据传输和事件系统，让开发者能够专注于数据与逻辑。</p>
+</blockquote>
+<p><strong>响应的数据绑定</strong></p>
+<blockquote>
+<p>当做数据修改的时候，只需要在逻辑层修改数据，视图层就会做相应的更新。</p>
+</blockquote>
+<pre><code class="html">&lt;!-- This is our View --&gt;
+&lt;view&gt; Hello &#123;&#123;name&#125;&#125;! &lt;/view&gt;
+&lt;button bindtap=&quot;changeName&quot;&gt; Click me! &lt;/button&gt;
+</code></pre>
+<pre><code class="js">// This is our App Service.
+// This is our data.
+var helloData = &#123;
+  name: &#39;Weixin&#39;
+&#125;
+
+// Register a Page.
+Page(&#123;
+  data: helloData,
+  changeName: function(e) &#123;
+    // sent data change to view
+    this.setData(&#123;
+      name: &#39;MINA&#39;
+    &#125;)
+  &#125;
+&#125;)
+</code></pre>
+<blockquote>
+<p>开发者通过框架将逻辑层数据中的 <code>name</code> 与视图层的 <code>name</code> 进行了绑定，所以在页面一打开的时候会显示 <code>Hello Weixin!</code></p>
+<p>当点击按钮的时候，视图层会发送 <code>changeName</code> 的事件给逻辑层，逻辑层找到并执行对应的事件处理函数</p>
+<p>回调函数触发后，逻辑层执行 <code>setData</code> 的操作，将 <code>data</code> 中的 <code>name</code> 从 <code>Weixin</code> 变为 <code>MINA</code>，因为该数据和视图层已经绑定了，从而视图层会自动改变为 <code>Hello MINA!</code></p>
 </blockquote>
 
 	</div>
