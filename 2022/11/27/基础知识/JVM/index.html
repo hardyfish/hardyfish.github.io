@@ -1235,6 +1235,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										摩登家庭
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/03/05/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E6%91%A9%E7%99%BB%E5%AE%B6%E5%BA%AD/%E7%AC%AC%E4%B8%80%E5%AD%A3/">
+										第一季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										老友记
 									</a>
 									
@@ -1566,6 +1586,16 @@
 <p>init()</p>
 </blockquote>
 <p><img src="/images/336.png" alt="image-20231021164000947"></p>
+<p><strong>一个对象产生到灭亡的过程</strong></p>
+<blockquote>
+<p>新产生的对象优先分配在Eden区。</p>
+<p>当Eden区满了或放不下了进行GC，这时候其中存活的对象会复制到From区。</p>
+<p>如果From区放不下则会全部进入老年代，然后Eden内存全部清除。</p>
+<p>之后产生的对象继续分配在Eden区，当Eden区又满了或放不下了，这时候将会把Eden区和From区存活下来的对象复制到To区。</p>
+<p>同理，如果存活下来的对象To区都放不下，则这些存活下来的对象全部进入年老代，之后回收掉Eden区和From区的所有内存。</p>
+<p>如上这样，会有很多对象会被复制很多次（每复制一次，对象的年龄就+1），默认情况下，当对象被复制了15次（这个次数可以通过：<code>-XX:MaxTenuringThreshold</code>来配置），就会进入年老代了。</p>
+<p>当年老代满了或者存放不下将要进入年老代的存活对象的时候，就会发生一次Full GC（这个是最需要减少的，因为耗时很严重）。</p>
+</blockquote>
 <p><strong>对象的内存分配方式</strong></p>
 <p>指针碰撞:</p>
 <blockquote>
