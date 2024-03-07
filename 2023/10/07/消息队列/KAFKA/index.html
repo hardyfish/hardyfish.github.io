@@ -1725,11 +1725,20 @@ try &#123;
 &#125;
 </code></pre>
 <p>事务Producer虽然在多分区的数据处理上保证了幂等，但是处理性能上相应的是会有一些下降的。</p>
-<h1 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h1><p>从存储的角度上来说，分区的每个副本在逻辑上可以抽象为一个日志（Log）对象，即分区副本与日志对象是相对应的。</p>
-<blockquote>
-<p>在Kafka中，每个Log对象又可以划分为多个LogSegment文件，每个LogSegment文件包括一个日志数据文件和两个索引文件（偏移量索引文件和消息时间戳索引文件）。</p>
+<h1 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h1><blockquote>
+<p>Kafka 消息以 Partition 作为存储单元，每个 Topic 的消息被一个或者多个 Partition 进行管理。</p>
+<ul>
+<li>Partition 是一个有序的，不变的消息队列，消息总是被追加到尾部。</li>
+<li>一个 Partition 不能被切分成多个散落在多个 Broker 上或者多个磁盘上。</li>
+</ul>
+<p>Partition 又划分成多个 Segment 来组织数据。</p>
+<p>Segment 在它的下面还有两个组成部分：</p>
+<ul>
+<li>索引文件：以 <code>.index</code> 后缀结尾，存储当前数据文件的索引。</li>
+<li>数据文件：以 <code>.log</code> 后缀结尾，存储当前索引文件名对应的数据文件。</li>
+</ul>
 </blockquote>
-<p><img src="/images/116.png" alt="image-20231010174208313">	</p>
+<p><img src="/images/524.png" alt="img"></p>
 <h1 id="请求模型"><a href="#请求模型" class="headerlink" title="请求模型"></a>请求模型</h1><p><img src="/images/117.png" alt="image-20231010174533219"></p>
 <p>请求到Broker后，也会通过类似于请求转发的组件Acceptor转发到对应的工作线程上，Kafka中被称为网络线程池，一般默认每个Broker上为3个工作线程，可以通过参数 <code>num.network.threads</code> 进行配置。</p>
 <p>并且采用轮询的策略，可以很均匀的将请求分发到不同的网络线程中进行处理。</p>
