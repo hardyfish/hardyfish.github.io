@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html lang="en" oncontextmenu="return false;">
+
+<head oncontextmenu="return false;">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="baidu-site-verification" content="codeva-QodU0Nk5F7" />
+	<meta name="google-site-verification" content="DbSTw8OJwtH5Qei7n8Jnew0YyQ5naPzdLAPiscu7zQE" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+	
+	<!-- title -->
+	
+	<title>
+	
+		亿级流量网站架构核心技术 | 
+	 
+	月伴飞鱼
+	</title>
+	
+	<!-- keywords,description -->
+	 
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/%E5%A4%B4%E5%83%8F.jpg">
+	
+  
+  	
+<link rel="stylesheet" href="/css/main.css">
+
+  	
+<link rel="stylesheet" href="/css/reward.css">
+
+	
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="/lib/highlight/darcula.css">
+
+	
+<link rel="stylesheet" href="/css/clipboard-use.css">
+
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+	
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+
+	
+<script src="/lib/highlight/highlight.min.js"></script>
+
+
+	
+<script src="https://readmore.openwrite.cn/js/readmore-2.0.js"></script>
+
+	
+<script src="/lib/jquery-3.4.1.min.js"></script>
+
+	
+<script src="/lib/jquery.pjax.js"></script>
+
+
+	
+<script src="/js/main.js"></script>
+
+	
+<script src="/js/jquery.fancybox.min.js"></script>
+
+	
+		
+<script src="/lib/valine/av-3.0.4-min.js"></script>
+
+		
+<script src="/lib/valine/Valine-1.3.10-min.js"></script>
+
+	
+	
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body oncontextmenu="return false;">
+	<header id="header" oncontextmenu="return false;">
+    <a id="title" href="/" class="logo">公众号月伴飞鱼</a>
+
+	<ul id="menu">
+		<li class="menu-item">
+			<a href="/about" class="menu-item-link">关于我</a>
+		</li>
+
+		<li class="menu-item">
+			<a href="/个人微信.jpeg" class="menu-item-link">联系作者</a>
+		</li>
+
+	    <li class="menu-item">
+			<a href="/site" class="menu-item-link">关于网站</a>
+		</li>
+
+		<li class="menu-item">
+			<a href="/个人公众号.jpg" class="menu-item-link" target="_blank">我的公众号</a>
+		</li>
+		
+		<li class="menu-item">
+			<a href="https://tech.meituan.com/" class="menu-item-link" target="_blank">
+				美团技术团队
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="https://tech.youzan.com/" class="menu-item-link" target="_blank">
+				有赞技术团队
+			</a>
+		</li>
+		<!--<li class="menu-item">
+			<select class="menu-item-link menu-item-select">
+				<option class="menu-item-link"  value="volvo">Volvo</option>
+				<option class="menu-item-link"  value="saab">Saab</option>
+				<option class="menu-item-link"  value="fiat">Fiat</option>
+				<option class="menu-item-link"  value="audi">Audi</option>
+			</select>
+		</li>-->
+	</ul>
+</header>
+
+	<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="text" placeholder="按目录搜索一下">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										AI相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/14/AI%E7%9B%B8%E5%85%B3/AIGC/">
+										AIGC
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/07/AI%E7%9B%B8%E5%85%B3/Sora/">
+										Sora
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/01/AI%E7%9B%B8%E5%85%B3/%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/">
+										提示词工程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										中间件
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/Dubbo/">
+										Dubbo
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/">
+										Elasticsearch
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/Netty/">
+										Netty
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/25/%E4%B8%AD%E9%97%B4%E4%BB%B6/Solr/">
+										Solr
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/ZooKeeper/">
+										ZooKeeper
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										产品相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/18/%E4%BA%A7%E5%93%81%E7%9B%B8%E5%85%B3/%E5%B9%BF%E5%91%8A%E4%B8%9A%E5%8A%A1/">
+										广告业务
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/18/%E4%BA%A7%E5%93%81%E7%9B%B8%E5%85%B3/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">
+										推荐系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/06/%E4%BA%A7%E5%93%81%E7%9B%B8%E5%85%B3/%E7%94%A8%E6%88%B7%E5%A2%9E%E9%95%BF/">
+										用户增长
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										代码思想
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/12/15/%E4%BB%A3%E7%A0%81%E6%80%9D%E6%83%B3/CodeReview/">
+										CodeReview
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/02/%E4%BB%A3%E7%A0%81%E6%80%9D%E6%83%B3/%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84/">
+										代码重构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										前端相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/CSS/">
+										CSS
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/26/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/React/">
+										React
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/26/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/Vue/">
+										Vue
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/12/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+										小程序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										基础知识
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/11/27/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/JVM/">
+										JVM
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%88%86%E5%B8%83%E5%BC%8F/">
+										分布式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/10/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+										并发编程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+										设计模式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										大数据相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/21/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/DataX/">
+										DataX
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/25/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Doris/">
+										Doris
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Flink/">
+										Flink
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/21/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Hadoop/">
+										Hadoop
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/07/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Hive/">
+										Hive
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/23/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/SQOOP/">
+										SQOOP
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Spark/">
+										Spark
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										学习专栏
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/16/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">
+										从0开始学架构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/31/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E4%BB%A3%E7%A0%81%E4%B9%8B%E4%B8%91/">
+										代码之丑
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/26/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E5%A4%A7%E5%8E%82%E6%99%8B%E5%8D%87%E6%8C%87%E5%8D%97/">
+										大厂晋升指南
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/19/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E5%AD%A6%E4%B9%A0%E9%AB%98%E6%89%8B/">
+										如何成为学习高手
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										学习书籍
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/05/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/HBase%E4%B8%8D%E7%9D%A1%E8%A7%89%E4%B9%A6/">
+										HBase不睡觉书
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/02/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98/">
+										Java并发编程实战
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/02/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/">
+										Java并发编程的艺术
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/16/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
+										Java开发手册
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file active">
+									<a href="/2024/03/11/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E4%BA%BF%E7%BA%A7%E6%B5%81%E9%87%8F%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
+										亿级流量网站架构核心技术
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/05/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93/">
+										代码整洁之道
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/03/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E5%A4%A7%E5%9E%8B%E7%BD%91%E7%AB%99%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/">
+										大型网站技术架构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/07/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E5%A4%A7%E5%9E%8B%E7%BD%91%E7%AB%99%E7%B3%BB%E7%BB%9F/">
+										大型网站系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/06/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA/">
+										深入理解Java虚拟机
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/08/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E8%8B%B1%E8%AF%AD%E9%AD%94%E6%B3%95%E5%B8%88%E4%B9%8B%E8%AF%AD%E6%B3%95%E4%BF%B1%E4%B9%90%E9%83%A8/">
+										英语魔法师之语法俱乐部
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										工具相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/11/09/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Arthas/">
+										Arthas
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/24/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/ChatGPT/">
+										ChatGPT
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/GIT/">
+										GIT
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Hexo/">
+										Hexo
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/MAC/">
+										MAC
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/01/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Maven/">
+										Maven
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/09/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/PlantUML/">
+										PlantUML
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/22/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/UTools/">
+										UTools
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">
+										实用工具
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										成长相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/31/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">
+										技术学习
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/07/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/">
+										读书计划
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/09/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/">
+										面试相关
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										数据库
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/06/%E6%95%B0%E6%8D%AE%E5%BA%93/ClickHouse/">
+										ClickHouse
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/27/%E6%95%B0%E6%8D%AE%E5%BA%93/HBase/">
+										HBase
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/">
+										MongoDB
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/02/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">
+										MySQL
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">
+										Redis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										文章速读
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/03/11/%E6%96%87%E7%AB%A0%E9%80%9F%E8%AF%BB/%E5%AD%97%E8%8A%82/">
+										字节
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/10/%E6%96%87%E7%AB%A0%E9%80%9F%E8%AF%BB/%E8%85%BE%E8%AE%AF/">
+										腾讯
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/10/%E6%96%87%E7%AB%A0%E9%80%9F%E8%AF%BB/%E9%98%BF%E9%87%8C/">
+										阿里
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										服务器
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%9C%8D%E5%8A%A1%E5%99%A8/Docker/">
+										Docker
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/">
+										Nginx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/Tomcat/">
+										Tomcat
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/%E8%BF%90%E7%BB%B4%E7%9F%A5%E8%AF%86/">
+										运维知识
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										架构相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/DDD/">
+										DDD
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/02/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E6%9E%B6%E6%9E%84%E5%9B%BE/">
+										架构图
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/02/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/">
+										架构学习
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/26/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E4%BF%9D%E9%9A%9C/">
+										系统保障
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/31/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E6%80%A7%E8%83%BD/">
+										系统性能
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/26/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
+										系统设计
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										框架相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/07/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Caffeine/">
+										Caffeine
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/06/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Guava/">
+										Guava
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/15/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/JWT/">
+										JWT
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/MyBatis/">
+										MyBatis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/RPC%E6%A1%86%E6%9E%B6/">
+										RPC框架
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/26/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Seata/">
+										Seata
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/03/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/ShardingSphere/">
+										ShardingSphere
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
+										Spring
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/03/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
+										Thrift
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/29/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/XXLJOB/">
+										XXLJOB
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">
+										开源框架
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										消息队列
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/KAFKA/">
+										KAFKA
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/20/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RabbitMQ/">
+										RabbitMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RocketMQ/">
+										RocketMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										源码相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/12/13/%E6%BA%90%E7%A0%81%E7%9B%B8%E5%85%B3/RocketMQ/">
+										RocketMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										生活相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/27/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E4%B9%A6%E7%B1%8D/">
+										书籍
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/17/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E5%81%9A%E8%8F%9C/">
+										做菜
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/24/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E6%B3%95%E5%BE%8B/">
+										法律
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E7%94%B5%E5%BD%B1/">
+										电影
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/10/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E7%94%B5%E8%A7%86%E5%89%A7/">
+										电视剧
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/11/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E7%BA%AA%E5%BD%95%E7%89%87/">
+										纪录片
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E9%9F%B3%E4%B9%90/">
+										音乐
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										算法相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/LeetCode/">
+										LeetCode
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E5%89%91%E6%8C%87OFFER/">
+										剑指OFFER
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
+										面试算法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										编程语言
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/11/11/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E5%9F%BA%E7%A1%80/">
+										Go基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/21/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java%E5%9F%BA%E7%A1%80/">
+										Java基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/29/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python%E5%9F%BA%E7%A1%80/">
+										Python基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										英语相关
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										摩登家庭
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/03/05/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E6%91%A9%E7%99%BB%E5%AE%B6%E5%BA%AD/%E7%AC%AC%E4%B8%80%E5%AD%A3/">
+										第一季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										老友记
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%80%E5%AD%A3/">
+										第一季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%89%E5%AD%A3/">
+										第三季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/23/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%BA%94%E5%AD%A3/">
+										第五季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										雅思
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/25/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%9815/">
+										剑桥雅思听力真题15
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%984/">
+										剑桥雅思听力真题4
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E9%9B%85%E6%80%9D%E9%98%85%E8%AF%BB538%E8%80%83%E7%82%B9%E8%AF%8D/">
+										雅思阅读538考点词
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										计算机基础
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+										操作系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+										数据结构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/">
+										算法知识
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
+										网络基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content">
+		<h1 id="article-title" oncontextmenu="return false;">
+
+	亿级流量网站架构核心技术
+</h1>
+<div class="article-meta" oncontextmenu="return false;">
+	<span>月伴飞鱼</span>
+	<span>2024-03-11 17:50:49</span>
+    
+		<div id="article-categories">
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/学习书籍/">学习书籍</a>
+						
+                    </span>
+                
+            
+		</div>
+    
+</div>
+
+<div id="container" class = "content999" oncontextmenu="return false;">
+<!--打赏-->
+        <div class="reward">
+       <div class="reward-button">赏 <span class="reward-code">
+        <span class="alipay-code"> <img class="alipay-img wdp-appear" src="/alipay.png"><b>支付宝打赏</b> </span> 
+        <span class="wechat-code"> <img class="wechat-img wdp-appear" src="/weipay.jpeg"><b>微信打赏</b> </span> 
+       </div>
+      <p class="reward-notice">如果文章对你有帮助，欢迎点击上方按钮打赏作者！</p>
+      </div>
+      <!--打赏-->
+	<div id="article-content">
+		<p>书籍介绍：<a target="_blank" rel="noopener" href="https://book.douban.com/subject/26999243/">https://book.douban.com/subject/26999243/</a></p>
+<p><strong>第1章：交易型系统设计的一些原则</strong></p>
+<blockquote>
+<p>1、一个好的设计要做到，解决现有需求和问题，把控实现和进度风险，预测和规划未来，不要过度设计，从迭代中演进和完善。</p>
+<p>2、墨菲定律：</p>
+<ul>
+<li>任何事都没有表面看起来那么简单。</li>
+<li>所有的事都会比你预计的时间长。</li>
+<li>可能出错的事总和出错。</li>
+<li>如果你担心某种情况发生，那么它就更有可能发生。</li>
+</ul>
+<p>3、康威定律：</p>
+<ul>
+<li>系统架构是公司组织架构的反映。</li>
+<li>应该按照业务闭环进行系统拆分&#x2F;组织架构划分，实现闭环&#x2F;高内聚&#x2F;低耦合，减少沟通成本。</li>
+<li>如果沟通出现问题，那么久应该考虑进行系统好组织架构的调整。</li>
+<li>在合适时机进行系统拆分，不要一开始就把系统&#x2F;服务拆分得非常细，虽然闭环，但是每个人维护的系统多，维护成本高。</li>
+</ul>
+</blockquote>
+<p><strong>第2章：负载均衡与反向代理</strong></p>
+<p><strong>第3章：隔离术</strong></p>
+<blockquote>
+<p>目的：将系统或资源分隔开，在系统发生故障时，限定传播范围和影响范围，不会出现雪球效应。</p>
+<p>1、隔离方式：</p>
+<ul>
+<li>包含了线程隔离、进程隔离、集群隔离、机房隔离、读写隔离、动静隔离、爬虫隔离、热点隔离。</li>
+</ul>
+<p>2、Hystrix隔离</p>
+<p>3、基于Servlet3实现请求隔离</p>
+<ul>
+<li>将请求解析和业务处理线程池分离</li>
+<li>线程池隔离可以方便对整个系统的把控，如根据业务重要性对线程池分解、隔离、监控、运维、降级</li>
+<li>异步化可以带来更高的吞吐量，但响应时间也会变长。异步化并不会提升响应时间，但会增加吞吐量和我们需要的灵活性。</li>
+</ul>
+</blockquote>
+<p><strong>第4章：限流详解</strong></p>
+<blockquote>
+<p>目的：通过对并发访问&#x2F;请求进行限速或者一个时间窗口内的请求进行限速来保护系统，一旦达到限制速率则可用拒绝服务、排队或等待、降级。</p>
+<p>1、限流算法：</p>
+<p>令牌桶算法、漏桶算法</p>
+<p>2、不同层次限流：</p>
+<p>应用级限流、分布式限流、接入层限流</p>
+<p>3、节流：</p>
+<p>在特定时间窗口内对重复的相同事件最多只处理一次，或者想限制多个连续相同事件最小执行时间间隔，那么可使用节流实现，其能防止多个相同事件连续重复执行。</p>
+<p>节流主要有几种用法：throttleFirst、throttleLast、throttleWithTimeout。</p>
+</blockquote>
+<p><strong>第5章：降级特技</strong></p>
+<blockquote>
+<p>目的：降级的最终目的是保证核心服务可用，即使是有损的。</p>
+<p>1、降级预案：</p>
+<p>页面降级、页面片段降级、页面异步请求降级、服务功能降级、读降级、写降级、爬虫降级、风控降级</p>
+<p>2、关键字：</p>
+<p>自动开关降级、人工开关降级、读服务奖、写服务降级、多级降级、统一配置中心（参考有赞降级热熔断系统Tesla）</p>
+<p>3、Hystrix原理实现</p>
+</blockquote>
+<p><strong>第6章：超时与重试机制</strong></p>
+<blockquote>
+<p>1、使用超时与重试机制的原因</p>
+<p>实际开发过程中，有许多是因为没有设置超时或者设置得不对而造成的。</p>
+<p>如果应用不设置超时，则可能会导致请求响应慢，慢请求累积导致连锁反应，甚至造成应用雪崩。读服务天然适合重试，写服务需要根据实际情况（如是否做幂等）。</p>
+<p>重试次数太多会导致多倍请求流量，即模拟了DDos攻击（参考有赞的Token鉴权超时重试导致流量翻倍，击垮五倍容灾的机器，进而影响线上）。</p>
+<p>2、超时与重试机制的分类</p>
+<ul>
+<li>代理层超时与重试</li>
+<li>Web容器超时</li>
+<li>中间件客户端超时与重试</li>
+<li>数据库客户端超时</li>
+<li>NoSql客户端超时</li>
+<li>业务超时（如订单超时未支付取消任务、活动超时自动关闭等）</li>
+<li>前端Ajax超时</li>
+</ul>
+<p>3、超时策略处理</p>
+<ul>
+<li>重试（等一会再试、尝试其他分组服务、尝试其他机房服务，重试算法可考虑使用如指数退避算法）</li>
+<li>摘掉不存活节点（负载均衡&#x2F;分布式缓存场景下）</li>
+<li>托底数据（返回历史数据&#x2F;静态数据&#x2F;缓存数据&#x2F;）</li>
+<li>等待页或者错误页</li>
+</ul>
+</blockquote>
+<p><strong>第7章：回滚机制</strong></p>
+<blockquote>
+<p>1、回滚概念</p>
+<p>当程序或数据出错时，将程序或数据恢复到最近的一个正确版本的行为。</p>
+<p>最常见的如事务回滚、代码库回滚、部署版本回滚、数据版本回滚、静态资源版本回滚等。</p>
+<p>通过回滚机制可以保证系统在某些场景下的高可用。</p>
+<p>2、事务回滚</p>
+<p>单库事务回滚这里就不多说了</p>
+<p>分布式事务：最常见的如两阶段提交、三阶段提交协议，这种方式实现事务回滚难度较低，但是对性能影响较大，因为我们大多数场景中需要的是最终一致性，而不是强一致性。</p>
+<p>因此，可以考虑如事务表、消息队列、补偿机制（执行&#x2F;回滚）、TCC模式（预占&#x2F;确认&#x2F;取消）、Sagas模式（拆分事务+补偿机制）等实现最终一致性。</p>
+<p>3、部署版本回滚：</p>
+<p>部署版本化、小版本增量发布、大版本灰度发布、架构升级并发发布</p>
+</blockquote>
+<p><strong>第8章：压测与预案</strong></p>
+<blockquote>
+<p>在大促来临前，一般会对现有系统进行梳理，发现系统瓶颈和问题，然后进行系统调优来提升系统的健壮性和处理能力。</p>
+<p>一般通过系统压测来发现系统瓶颈和问题，然后进行系统优化和容灾（如系统参数调优、单机房容灾、多机房容灾等）。</p>
+<p>即使系统优化和容灾做的非常好，也存在一些不稳定因素，如网络、依赖服务的SLA不稳定等，这就需要我们制定应急预案，在出现这些因素后进行路由切换或降级处理。在大促前进行预案演戏，确定预案的有效性。</p>
+<p>1、系统压测流程</p>
+<p>压测前要有压测方案【如压测接口、并发量、压测策略（突发、逐步加压、并发量）、压测指标（机器负载、QPS&#x2F;TPS、响应时间）】，之后要产出压测报告【压测方案、机器负载、QPS&#x2F;TPS、响应时间（平均、最小、最大）、成功率、相关参数（JVM参数、压缩参数）等】，最后根据压测报告分析的结果进行系统优化和容灾。</p>
+<p>2、线下压测</p>
+<p>通过如JMeter、Apache ab压测系统的某个接口或者某个组件，然后进行调优，实现单个接口或组件的性能最优。</p>
+<p>3、线上压测</p>
+<p>按读写分为读压测、写压测和混合压测，按数据仿真度分为仿真压测和引流压测，按是否给用户提供服务分为隔离集群压测和线上集群压测。</p>
+<p>单机压测可以评估出单机极限处理能力，但单机压测结果不能反映集群整体处理能力。</p>
+<p>在压测时，需要选择离散压测，即选择的数据应该是分散的或者长尾的。为了保证压测的真实性，应该进行全链路压测。</p>
+<p>3、系统优化</p>
+<p>拿到压测报告后，接下来会分析报告，然后进行一些有针对性的优化，如硬件升级、系统扩容、参数调优、代码优化（如代码同步概异步）、配置调优、慢查询优化、架构优化（如加缓存、读写分离、历史数据归档）等。</p>
+<p>4、应用扩容</p>
+<p>可根据去年流量、与运营业务方沟通促销力度、最近一段时间的流量、预计GMV增长等来评估出是否需要进行扩容，需要扩容多少倍。扩容之后还要预留一些机器应对突发情况，在扩容上尽量支持快速扩容，从而在出现突发情况时可以几分钟内完成扩容。</p>
+<p>5、系统容灾</p>
+<p>在扩容时要考虑系统容灾，比如分组部署、跨机房部署。容灾是通过部署多组（单机房&#x2F;多机房）</p>
+<p>相同应用系统，当其中一组出现问题时，可以切换到另一个分组，保证系统可用。</p>
+<p>6、需要应急预案的原因</p>
+<p>在进行系统容灾后，仍然会存在一些风险，如网络抖动、某台机器负载过高、某个服务变慢、数据库oad值过高等，为了防止因为这些问题而出现系统雪崩，需要针对这些情况制定应急预案，从而出现突发情况时，有相应的措施来解决掉这些掉这些问题。</p>
+<p>7、应急预发步骤</p>
+<p>首先进行系统分级，然后进行全链路分析、配置监控报警，最后制定应急预案，预案演练等。</p>
+<p>8、系统分级</p>
+<p>针对交易型系统可以按照交易核心系统和交易支撑系统进行划分。实际系统分级要根据公司特色进行，目的是对不同级别的系统实施不同的质量保障，核心系统要投入更多资源保障系统高可用，外围系统要投入较少资源允许系统暂时不可用。</p>
+<p>9、全链路分析，制定应急预案</p>
+<p>对核心场景进行全链路分析，从用户入口到后端存储，梳理出各个关键路径，对相关路径进行评估并制定预案。即当出现问题时，该路径可以执行什么操作来保证用户可下单、可购物，并且也要防止问题的级联效应和雪崩效应。梳理系统关键路径，包括网络接入层、应用接入层、Web应用层、服务层、数据层等，并制定应急预案。</p>
+</blockquote>
+<p><strong>第9章：应用级缓存</strong></p>
+<blockquote>
+<p>1、缓存回收策略</p>
+<p>基于空间、基于容量、基于时间（TTL、TTI）、基于Java对象引用（软引用、弱引用）、基于会是算法（FIFO、LRU（Leas Recently Used）、LFU（Lease Frequently Used））</p>
+<p>2、Java缓存类型</p>
+<ul>
+<li>堆缓存（最快，没有序列化&#x2F;反序列化，但GC暂停时间会变长）（Guava Cache、Ehcache 3.x、MapDB）</li>
+<li>堆外缓存（比堆缓存慢，需要序列化&#x2F;反序列化，可以减少GC暂停时间）（Ehcache 3.x、MapDB）</li>
+<li>磁盘缓存（Ehcache 3.x、MapDB）</li>
+<li>分布式缓存（Redis、Memcached）</li>
+</ul>
+<p>3、缓存使用模式</p>
+<ul>
+<li>Cache-Aside，即业务代码围绕着Cache写，是由业务代码直接维护缓存。Cache-Aside适合使用AOP模式去实现。</li>
+<li>Cache-AS-SoR（system of record，或者可以叫数据源），所有的操作都是对Cache进行，然后再委托给SoR进行真实的读&#x2F;写。即业务代码中只看到Cache的操作，看不到关于SoR相关的代码。</li>
+</ul>
+<p>4、Cache-AS-SoR共有三种实现方式</p>
+<ul>
+<li>Read-Through，业务代码首先调用Cache，如果Cache不命中，由Cache回源到SoR，而不是业务代码（即由Cache读SoR）。Guava Cache和Ehcache 3.x都支持该模式。</li>
+<li>Write-Through，被称为穿透写模式&#x2F;直写模式。业务代码首先调用Cache写（新增&#x2F;修改）数据，然后由Cache负责写缓存和写SoR，而不是业务代码。Ehcache 3.x支持。</li>
+<li>Write-Behind，也叫Write-Back，我们称之为回写模式。不同于Write-Through是同步写SoR和Cache，Write-Behind是异步写。异步之后可以实现批量写、合并写、延时和限流。</li>
+</ul>
+</blockquote>
+<p><strong>第10章：HTTP缓存</strong></p>
+<blockquote>
+<p>1、HTTP缓存</p>
+<ul>
+<li>服务端响应的Last-Modified会在下次请求时，将If-Modified-Since请求头带到服务器端进行文档是否修改的验证，如果没有修改则返回304，浏览器可以直接使用缓存内容</li>
+<li>Cache-Control:max-age和Expires用于决定浏览器端内容缓存多久，即多久过期，过期后则删除缓存重新从服务器端获取最新的。另外，可以用于from cache场景。</li>
+<li>HTTP&#x2F;1.1规范定义ETag为“被请求变量的实体值”，可简单理解为文档内容摘要，ETag可用来判断页面内容是否已经被修改了。</li>
+</ul>
+<p>2、HttpClient客户端缓存、Nginx配置、Nginx代理层缓存</p>
+</blockquote>
+<p><strong>第11章：多级缓存</strong></p>
+<blockquote>
+<p>多级缓存，是指在整个系统架构的不同系统层级进行数据缓存，以提升访问效率，这是应用最广的方案之一。</p>
+<p>1、维度华缓存与增量缓存、大Value缓存处理、热点缓存处理</p>
+<p>2、缓存分布式及应用负责均衡算法选择</p>
+<ul>
+<li>负载较低时，使用一致性哈希。</li>
+<li>热点请求降级一致性哈希为轮询，或者如果请求数据有规律，则可考虑带权重的一致性哈希。</li>
+<li>将热点数据推送到接入层Nginx，直接响应给用户。</li>
+</ul>
+<p>3、热点数据</p>
+<p>热点数据会造成服务器压力过大，导致服务器性能、吞吐量、带宽达到极限，出现响应慢或者拒绝服务的情况，这肯定是不允许的。</p>
+<p>4、单机全量缓存+主从（热点数据解决方案1）</p>
+<p>一般不采用，针对缓存量比较大的应用不适用。</p>
+<p>5、分布式缓存+应用本地热点（热点数据解决方案2）</p>
+<p>①接入Nginx将请求转发给应用Nginx。（这种更适合应用层面的，对于服务内部的缓存，还可以采用Guava cache等本地的堆内缓存、堆外缓存等。）</p>
+<p>②应用Nginx首先读取本地缓存。如果命中，则直接返回，不命中会读取分布式缓存、回源到Tomcat进行处理。</p>
+<p>③应用Nginx会将请求上报给实时热点发现系统，上报给实时热点发现系统后，它将进行热点统计。</p>
+<p>④根据设置的阈值将热点数据推送到应用Nginx本地缓存。</p>
+<p>6、缓存数据一致性</p>
+<ul>
+<li>订阅数据变更消息</li>
+<li>如果无法订阅消息或者订阅消息成本比较高，并且对短暂的数据一致性要求不严格（比如，在商品详情页看到的库存，可以短暂的不一致，只要保证下单时一致即可），那么可以设置合理的过期时间，过期后再查询新的数据。</li>
+<li>如果是秒杀之类的（热点数据），可以订阅活动开启消息，将相关数据提前推送到前端应用，并将负载均衡机制降级为轮询。</li>
+<li>建立实时热点发现系统来对热点进行统一推送和更新</li>
+</ul>
+<p>7、缓存崩溃恢复</p>
+<ul>
+<li>主从机制，做好冗余，即其中一部分不可用，将对等的部分补上去。</li>
+<li>如果因为缓存导致应用可用性已经下降，可以考虑部分用户降级，然后慢慢减少降级量，后台通过Worker预热缓存数据。</li>
+</ul>
+</blockquote>
+<p><strong>第12章：连接池线程池详解</strong></p>
+<blockquote>
+<p>1、池化技术</p>
+<p>在应用系统开发中，我们经常会用到池化技术，如对象池、连接池、线程池等，通过池化来减少一些消耗，以提升性能。对象池通过复用对象从而减少创建对象、垃圾回收的开销，但是池不能太大，太大会影响GC时的扫描时间。连接池如数据库连接池、Redis连接池、HTTP连接池，通过复用TCP连接来减少创建和释放连接的时间来提升性能。线程池也是类似的，通过复用线程提升性能。也就是说池化的目的是通过复用技术提升性能。</p>
+<p>2、连接池使用的建议</p>
+<ul>
+<li>注意网络阻塞&#x2F;不稳定时的级联效应，连接池内部应该根据当前网络的状态（比如超时次数太多），对于一定时间内的（如100ms）全部timeout，根本不进行await（maxWait），即有熔断和快速失败机制。</li>
+<li>当前等待连接池的数目超过一定量时，接下来的等待是没有意义的，还会造成滚雪球效应</li>
+<li>等待超时应尽可能小点（除非很必要）。即使返回错误页，也比等待并阻塞强。</li>
+</ul>
+<p>3、线程池</p>
+<p>更多的Java TreadExecutors相关的内容。相关配置项如：核心线程池大小、线程池最大大小、线程的最大空闲时间（超过则回收，直到线程数减为核心线程大小）、线程池的任务缓冲队列、创建线程的工厂、缓冲队列满后的拒绝策略等。另外还有支持延时任务的线程池。</p>
+<p>4、线程池使用的建议</p>
+<ul>
+<li>根据任务类型是IO密集型还是CPU密集型、CPU核数，来设置合理的线程池大小、队列大小、拒绝策略，并进行压测和调优来决定适合场景的参数。</li>
+<li>使用线程池时务必设置池大小、队列大小并设置相应的拒绝策略。不如可能导致瞬间线程数过高、GC慢等问题，造成系统响应慢甚至OOM。</li>
+</ul>
+</blockquote>
+<p><strong>第13章：异步并发实战</strong></p>
+<blockquote>
+<p>1、异步与并发</p>
+<p>当一个线程在处理任务时，通过Fork多个线程来处理任务并等待这些线程的处理结果，这种并不是真正的异步，这只是并发。异步是针对CPU和IO的，当IO没有就绪时，要让出CPU来处理其他任务，这才是异步。</p>
+<p>2、异步Future</p>
+<p>线程池配合Future实现，但是阻塞主请求流程，高并发时依然会造成线程数过多、CPU上下文切换。</p>
+<p>3、异步Callback</p>
+<p>通过回调机制实现，即首先发出网络请求，当网络返回时回调相关方法，采用线程池分发事件通知，从而有效支撑大量并发连接。这种机制并不能提升性能，而是为了支撑大量并发连接或者提升吞吐量。</p>
+<p>4、异步编排CompletableFuture</p>
+<p>JDK 8 CompletableFuture提供了新的异步编程思路，可以对多个异步处理进行编排，实现更复杂的异步处理，其内部使用了ForkJoinPool实现异步处理。比如三个服务异步并发调用、两个服务并发调用、服务1执行完后再并发执行服务2服务3等场景。</p>
+<p>5、异步Web服务实现</p>
+<p>6、请求缓存</p>
+<p>7、请求合并</p>
+</blockquote>
+<p><strong>第14章：如何扩容</strong></p>
+<blockquote>
+<p>1、跨库事务</p>
+<p>当然分布式事务是一种方式，另一种方式可以考虑sharding-jdbc提供的柔性事务实现。目前支持最大努力送达，就是当事务失败后通过最大努力反复尝试，是在假定数据库操作一定可以成功的前提下进行的，保证数据最终的一致性。其使用场景是幂等性操作，如根据主键删除数据、带主键插入数据。</p>
+<p>2、柔性事务</p>
+<p>sharding-jdbc的最大努力送达型柔性事务分为同步送达和异步送达两种，同步送达不需要Zookeeper和elastic-job，内置在柔性事务模块中。异步送达比较复杂，是对柔性事务的最终补充，不能和应用程序部署在一起，需要额外地通过elastic-job实现。最大努力送达型事务也可能出现错误，即无论如何补充都不能正确提交。为了避免反复尝试带来的系统开销，同步送达和异步送达均可配置最大重试次数，超过最大重试次数的事务将进入失败列表。</p>
+<p>3、数据异构</p>
+<p>查询维度异构、聚合据异构</p>
+<p>4、分布式任务</p>
+<p>Quartz支持任务的集群调度，如果一个实例失效，则可以漂移到其他实例进行处理，但是其不支持任务分片。tbschedule和elastic-job除了支持集群调度特性，还不支持任务分片，从而可以进行动态扩容&#x2F;缩容</p>
+<p>5、Elastic-Job</p>
+<p>Elastic-Job是当当开源的一款分布式任务调度框架，目前提供了两个独立子项目：Elastic-Job-Lite和Elastic-Job-Cloud。Elastic-Job-Lite定位为轻量级无中心解决方案，可以动态暂停&#x2F;恢复任务实例，目前不支持动态扩容任务实例。Elastic-Job-Cloud使用Mesos+Docker解决方案，可以根据任务负载来动态实现启动&#x2F;停止任务实例，以及任务治理。</p>
+<p>6、Elastic-Job-Lite功能与架构</p>
+<p>Elastic-Job-Lite实现了分布式任务调度、动态扩容缩容、任务分片、失效转移、运维平台等功能。</p>
+<p>Elastic-Job-Lite采用去中心化的调度方案，由Elastic-Job-Lite的客户端定时自动触发任务调度，通过任务分片的概念实现服务器负载的动态扩容&#x2F;缩容，并且使用Zookeeper作为分布式任务调度的注册和协调中心，当某任务实例崩溃后，自动失效转移，实现高可用，并提供了运维控制台，实现任务参数的动态修改。</p>
+</blockquote>
+<p><strong>第15章：队列术</strong></p>
+<blockquote>
+<p>1、使用队列注意点</p>
+<p>我们要考虑是否需要保证消息处理的有序性及如何保证，是否能重复消费及如何保证重复消费的幂等性。</p>
+<p>2、队列应用场景</p>
+<p>异步处理、系统解耦、数据同步、流量削锋、扩展性、缓冲等。</p>
+<p>3、缓冲队列</p>
+<p>比如Log4j日志缓冲区就是使用的缓冲队列。使用缓冲队列应对突发流量时，并不能使处理速度变快，而是使处理速度平滑，从而不因瞬间压力太大而压垮应用。通过缓冲区队列可以实现批量处理、异步处理和平滑流量。</p>
+<p>4、任务队列</p>
+<p>使用任务队列可以将一些不需要与主线程同步执行的任务扔到任务队列进行异步处理。可以实现异步处理、任务分解&#x2F;聚合处理。</p>
+<p>5、消息队列</p>
+<p>通过消息队列可以实现异步处理、系统解耦和数据异构。</p>
+<p>6、请求队列</p>
+<p>类似在Web环境下对用户请求排队，从而进行一些特殊控制：流量控制、请求分级、请求隔离。例如将请求按照功能划分不同的队列，从而使得不同的队列出问题后相互不影响。还可以对请求分级，一些重要的请求可以优先处理（发展到一定程度应将功能物理分离）。</p>
+<p>7、数据总线队列</p>
+<p>8、混合队列</p>
+<p>如MQ与Redis的协同组合使用。Disruptor+Redis队列（P303）</p>
+<p>9、下单系统水平可扩展架构</p>
+<p>P311  缓冲表+缓存+同步worker+降级</p>
+<p>10、基于Canal实现数据异构</p>
+<p>背景：在大型网站架构中，一般会采用分库分表来解决容量和性能问题。但分库分表后，不同维度的查询或者聚合查询就会非常棘手，而且这种方式在大流量系统架构中肯定是不行的。一种解决方式就是数据异构，可以包含具体场景接口的异构、商家维度的异构、ES搜索异构、订单缓存异构等。</p>
+</blockquote>
+<p><strong>第16章：构建需求响应式亿级商品详情页</strong></p>
+<blockquote>
+<p>1、单品页流量特点</p>
+<p>单品页流量的特点是离散数据、热点少，可以使用各种爬虫、比价软件抓取。</p>
+<p>2、商品详情页架构设计原则</p>
+<ul>
+<li>数据闭环</li>
+<li>数据维度化</li>
+<li>拆分系统</li>
+<li>Worker无状态化+任务化</li>
+<li>异步化+并发化</li>
+<li>多级缓存化</li>
+<li>动态化（数据动态化、模板渲染实时化、重启应用秒级化、需求上线快速化）</li>
+<li>弹性化（软件打包成基础镜像，自动扩容）</li>
+<li>降级开关</li>
+<li>多机房多活</li>
+</ul>
+</blockquote>
+<p><strong>第17章：京东商品详情页服务闭环实践</strong></p>
+<blockquote>
+<p>1、设计一个高度灵活的系统时，要想着当出现问题时怎么办</p>
+<p>是否可降级？不可降级怎么处理？是否会发送滚雪球问题？如何快速响应异常？服务如何更好更有效或者在异常下工作？</p>
+<p>2、京东商品详情页整体流程</p>
+<p>①请求首先进入Nginx，Nginx调用Lua进行一些前置逻辑处理，如果前置逻辑不合法，那么直接返回，然后查询本地缓存，如果命中，则直接返回数据。</p>
+<p>②如果本地缓存未命中数据，则查询分布式Redis集群：如果命中数据，则直接返回。</p>
+<p>③如果分布式Redis集群未命中数据，则调用Tomcat进行回源处理。然后把结果异步写入Redis集群，并返回。</p>
+</blockquote>
+<p><strong>第18章：使用OpenRestry开发高性能Web应用</strong></p>
+<blockquote>
+<p>1、OpenResty简介</p>
+<p>OpenResty由Nginx、Lua、ngx_lua模块构成。ngx_lua是章亦春编写的Nginx的一个模块，将Lua嵌入到Nginx中，从而可以使用Lua来编写脚本，部署到Nginx中运行，即Nginx变成了一个Web容器。这样就可以使用Lua来开发高性能的Web应用了。</p>
+<p>2、OpenResty生态</p>
+<p>OpenResty提供了一些常用的ngx_lua开发模块，如lua-resty-memcached、lua-resty-mysql、lua-resty-redis、lua-resty-dns、lua-resty-dns、lua-resty-limit-traffic、lua-resty-template。这些模块涉及如Mysql数据库、Redis、限流、模块渲染等常用功能组件。另外，也有很多第三方的ngx_lua组件供我们使用。</p>
+<p>3、京东使用OpenResty场景</p>
+<ul>
+<li>Web应用：会进行一些业务逻辑处理，设置进行CPU的模板渲染，一般流程包括mysql&#x2F;Redis&#x2F;HTTP获取数据、业务处理、产生JSON&#x2F;XML&#x2F;模板渲染内容，比如，京东的列表页&#x2F;商品详情页。</li>
+<li>接入网关：实现如数据校验前置、缓存前置、数据过滤、API请求聚合、A&#x2F;B测试、灰度发布、降级、监控等功能，比如，京东的交易大Nginx节点、无线部门的无线网关、单品页统一服务、实时价格、动态服务。</li>
+<li>Web防火墙：可以进行IP&#x2F;URL&#x2F;UserAgent&#x2F;Referer黑名单、限流等功能。</li>
+<li>缓存服务器：可以对响应内容进行缓存，减少到底后端的请求，从而提升性能。</li>
+<li>其他：如静态资源服务器、消息推送服务、缩略图裁剪等。</li>
+</ul>
+<p>4、基于OpenResty的常用架构模式</p>
+<ul>
+<li>负载均衡</li>
+<li>单机闭环</li>
+<li>分布式闭环</li>
+<li>接入网关</li>
+</ul>
+<p>5、常见的一些问题</p>
+<ul>
+<li>在开放Nginx应用时，使用UTF-8编码可以减少很多麻烦。</li>
+<li>GBK转码解码时，应使用GB18030，否则一些特殊字符会出现乱码。</li>
+<li>cjson库对于像\uab1这种错误的Unicode转码会失败，可以使用纯Lua编写的dkjson。</li>
+<li>社区版Nginx不支持upstream的域名动态解析，可以考虑proxy_pass，然后配合resolver来实现。或者在Lua中进行HTTP调用。如果DNS遇到性能瓶颈，则可以考虑再本机部署如dnsmasq来缓存，或者考虑使用balancer_by_lua功能实现动态upstream。</li>
+<li>为响应添加处理服务器IP的响应头，方便定位问题</li>
+<li>根据业务设置合理的超时时间。</li>
+<li>运行CDN的业务，当发生错误时，不要给返回的500&#x2F;503&#x2F;302&#x2F;301等非正常响应设置缓存。</li>
+</ul>
+</blockquote>
+<p><strong>第19章：应用数据静态化架构高性能单页Web应用</strong></p>
+<blockquote>
+<p>1、传统静态化及页面构建需要考虑的问题</p>
+<ul>
+<li>页面模板部分变更类需要重新全部生成</li>
+<li>动态化模板渲染支持</li>
+<li>数据和模板的多版本化：生成版本、灰度版和预发布版本</li>
+<li>版本回滚问题，假设当前发布的生成版本出问题了，如何快速回滚到上一个版本。</li>
+<li>异常问题，假设渲染模板时，遇到了异常情况（比如Redis出问题了），该如何处理</li>
+<li>灰度发布问题，比如切20%量给灰度版本。</li>
+<li>预发布问题，目的是在正式环境测试数据和模板的正确</li>
+</ul>
+<p>2、常见异常问题</p>
+<ul>
+<li>本机从“发布数据存储Redis”和主“发布数据存储Redis”都不能用了，那么可以直接调用CMS系统暴露的HTTP服务，直接从元数据存储Mysql获取数据。</li>
+<li>数据和模板获取到了，但是渲染模板出错了，比如遇到500、503。解决方案是使用上一个版本的数据进行渲染。</li>
+<li>数据和模板都没问题，但是因为一些疏忽，渲染出来的页面错乱了，或者有些区域出现了空白。对于这种问题没有很好的解决方案。可以根据自己的场景定义异常扫描库，扫到当前版本有异常就发警告给相关人员，并自动降级到上一个版本。</li>
+</ul>
+</blockquote>
+
+	</div>
+</div>
+
+
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2024/03/11/%E6%96%87%E7%AB%A0%E9%80%9F%E8%AF%BB/%E5%AD%97%E8%8A%82/">
+                字节
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+
+<script>
+
+    //document.oncontextmenu=new Function("event.returnValue=false");
+	//document.onselectstart=new Function("event.returnValue=false");
+
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+
+	
+
+	$(function () {
+		const btw = new BTWPlugin();
+	    btw.init({
+	        id: 'container',
+	        blogId: '22377-1706525467336-300',
+	        name: '月伴飞鱼',
+	        qrcode: '/小程序码.jpg',
+	        keyword: '验证码',
+	        btnText: '为防止机器刷接口，需要完成人机检测',
+        	cookieAge: 1
+	    });
+
+	    var contents = document.getElementsByClassName("content999");
+	    //监听文章内容的copy事件
+	    contents[0].addEventListener('copy',function(e){
+	        setClipboardText(e);
+	    });
+
+	    function setClipboardText(event){
+	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+	        let clipboardData = event.clipboardData || window.clipboardData;
+
+	        // 如果未复制或者未剪切，则return出去
+	        if (!clipboardData) { return; }
+
+	        event.preventDefault();
+
+	        // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+	        // 声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+	        let text = window.getSelection().toString();
+	    
+	        if (text) {
+	            // 如果文本存在则先取消文本默认事件
+	            event.preventDefault();
+	            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+	            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+	            // data: 一个 DOMString表示要添加到 drag object的数据。
+	            var copyright = '\n\n'
+	            + '\n著作权归作者所有。'
+	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+	            + '\n作者: 月伴飞鱼'
+	            + '\n原文地址: http://hardyfish.top/2024/03/11/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E4%BA%BF%E7%BA%A7%E6%B5%81%E9%87%8F%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/'
+	    
+	            clipboardData.setData('text/plain', text + copyright);
+	    
+	        }
+	    };
+	});
+
+	
+</script>
+
+<script>
+    const btw = new BTWPlugin();
+    btw.init({
+        id: 'container',
+        blogId: '22377-1706525467336-300',
+        name: '月伴飞鱼',
+        qrcode: '/小程序码.jpg',
+        keyword: '验证码',
+        btnText: '为防止机器刷接口，需要完成人机检测',
+        cookieAge: 1
+    });
+
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+	</div>
+	<div id="footer">
+	<p>
+	©2019-<span id="footerYear"></span> 
+	<a href="/">月伴飞鱼</a> 
+	
+	
+		|
+		<span id="busuanzi_container_site_pv">
+			PV 180986
+		</span>
+		|
+		<span id="busuanzi_container_site_uv"> 
+			UV 10079
+		</span>
+	
+	<br>
+	微信搜索 <a href="https://xiaoflyfish.oss-cn-beijing.aliyuncs.com/image/个人公众号.jpg" target="_blank">月伴飞鱼</a> 关注我
+	</p>
+</div>
+<script type="text/javascript"> 
+	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+</script>
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>
