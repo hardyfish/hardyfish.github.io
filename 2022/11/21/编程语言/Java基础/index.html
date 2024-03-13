@@ -1723,6 +1723,25 @@
 <li>不作为函数返回类型，只作为函数入参，比如<code>List&lt;? super T&gt;</code>的<code>add</code>函数正常调用，<code>get</code>函数也没问题，但只会返回<code>Object</code>，所以意义不大。</li>
 </ul>
 </blockquote>
+<h1 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h1><p><strong>非阻塞模式</strong></p>
+<blockquote>
+<p>使一个线程从某通道发送请求或者读取数据，但是它仅能得到目前可用的数据，如果目前没有数据可用时，就什么都不会获取，而<strong>不是保持线程阻塞</strong>，所以直至数据变的可以读取之前，该线程可以继续做其他的事情。 </p>
+<p>非阻塞写也是如此，一个线程请求写入一些数据到某通道，但不需要等待它完全写入，这个线程同时可以去做别的事情。</p>
+<p><strong>通俗理解：</strong></p>
+<p>NIO 是可以做到用一个线程来处理多个操作的。</p>
+<p>假设有 10000 个请求过来，根据实际情况，可以分配 50 或者 100 个线程来处理，不像之前的阻塞 IO 那样，非得分配 10000 个。</p>
+</blockquote>
+<p><strong>同步模式</strong></p>
+<blockquote>
+<p>同步与异步是基于应用程序和操作系统处理IO事件所采用的方式：</p>
+<ul>
+<li><p><strong>同步</strong>：应用程序要直接参与IO读写的操作。</p>
+</li>
+<li><p><strong>异步</strong>：所有的IO操作交给操作系统去处理，应用程序只需要等待通知。</p>
+</li>
+</ul>
+<p>NIO需要线程来进行数据读写和事件处理，所以是同步模式。</p>
+</blockquote>
 <h1 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h1><p>ThreadLocal 提供了线程本地变量的实例，它与普通变量的区别在于，每个使用该变量的线程都会初始化一个完全独立的实例副本。</p>
 <p><strong>使用场景</strong></p>
 <blockquote>

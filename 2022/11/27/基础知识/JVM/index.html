@@ -1548,6 +1548,12 @@
 </ul>
 </blockquote>
 <p><img src="/images/334.png" alt="image-20231026171802543"></p>
+<p><strong>什么E:S0:S1默认是8:1:1</strong></p>
+<blockquote>
+<p>新生代中有98%的对象是朝生夕灭的，每次MionrGC后存活的对象应该小于等于2%。</p>
+<p>所以采用复制算法的新生代似乎可以不用将内存分成大小相等的两块了，但考虑到实验偏差以及实际情况的多样性。</p>
+<p>默认预留了10%的内存用于存放存活对象。</p>
+</blockquote>
 <p><strong>堆内存大小</strong></p>
 <blockquote>
 <p>初始内存默认为电脑物理内存大小的<code>1/64</code>，最大内存默认为电脑物理内存的<code>1/4</code>，但是堆空间的大小可以调节。</p>
@@ -2464,10 +2470,64 @@
 <li>一个Tomcat可能部署多个应用，不同的应用可能依赖的同一个第三方类库的不同版本（会造成很多大量的文件路径相同的类），这种情况下就不能通过双亲委派机制去加载，要保证每个应用的类库是独立的，相互隔离。</li>
 </ul>
 </blockquote>
+<h1 id="即时编译"><a href="#即时编译" class="headerlink" title="即时编译"></a>即时编译</h1><blockquote>
+<p>Java编译器经过解释执行，其执行速度必然会比直接执行可执行的二进制字节码慢很多。</p>
+<ul>
+<li>为了解决这种效率问题，引入了 JIT（Just In Time ，即时编译） 技术。</li>
+</ul>
+<p>当JVM发现某个方法或代码块运行特别频繁的时候，就会认为这是热点代码:</p>
+<ul>
+<li>JIT会把部分热点代码翻译成本地机器相关的机器码，并进行优化，然后再把翻译后的机器码缓存起来，以备下次使用。</li>
+</ul>
+</blockquote>
+<p><strong>热点检测</strong></p>
+<blockquote>
+<p>目前主要的热点代码识别方式是热点探测，HotSpot虚拟机中采用的主要是基于计数器的热点探测。</p>
+<ul>
+<li><p>采用这种方法的虚拟机会为每个方法，甚至是代码块建立计数器，统计方法的执行次数。</p>
+</li>
+<li><p>某个方法超过阀值就认为是热点方法，触发JIT编译。</p>
+</li>
+</ul>
+</blockquote>
+<p><strong>编译优化</strong></p>
+<blockquote>
+<p>JIT在做了热点检测识别出热点代码后，除了会对其字节码进行缓存，还会对代码做各种优化。</p>
+<ul>
+<li>逃逸分析，锁消除，锁膨胀，方法内联等。</li>
+</ul>
+</blockquote>
+<p><strong>逃逸分析</strong></p>
+<blockquote>
+<p>当一个对象在方法中被定义后，它可能被外部方法所引用，例如作为调用参数传递到其他地方中，称为方法逃逸。</p>
+<p>有了逃逸分析，可以判断出一个方法中的变量是否有可能被其他线程所访问或者改变，基于这个特性，JIT做了一些优化：</p>
+<ul>
+<li>标量替换，栈上分配</li>
+</ul>
+<p>通过逃逸分析，Hotspot编译器能够分析出一个新的对象的引用的使用范围从而决定是否要将这个对象分配到堆上。</p>
+</blockquote>
+<p><strong>标量替换</strong></p>
+<blockquote>
+<p>如果经过逃逸分析，发现一个对象不会被外界访问，经过JIT优化，就会把这个对象拆解成若干个其中包含的若干个成员变量来代替。</p>
+</blockquote>
+<p><strong>栈上分配</strong></p>
+<blockquote>
+<p>经过逃逸分析技术发现这个对象并没有被外部引用且仅在当前线程使用，那么它就会将该对象分配在栈上。</p>
+</blockquote>
+<p><strong>锁消除</strong></p>
+<blockquote>
+<p>逃逸分析某些没有被外部方法或者其他线程引用的情况下，会将某些锁消除。</p>
+</blockquote>
+<p><strong>方法内联</strong></p>
+<blockquote>
+<p>对于可以内联的方法，直接复制到调用者代码中，减少方法调用次数和性能消耗。</p>
+</blockquote>
 <h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><p><strong>问题排查工具</strong></p>
+<blockquote>
 <p><a target="_blank" rel="noopener" href="https://fastthread.io/">https://fastthread.io/</a></p>
 <p><a target="_blank" rel="noopener" href="https://gceasy.io/">https://gceasy.io/</a></p>
 <p><a target="_blank" rel="noopener" href="https://heaphero.io/">https://heaphero.io/</a></p>
+</blockquote>
 <p><strong>服务器上查看堆栈信息工具</strong></p>
 <blockquote>
 <p>登陆上具体机器，执行命令:</p>
