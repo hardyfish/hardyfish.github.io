@@ -1456,6 +1456,30 @@
       <!--打赏-->
 	<div id="article-content">
 		<p>官网：<a target="_blank" rel="noopener" href="https://cn.dubbo.apache.org/zh-cn/">https://cn.dubbo.apache.org/zh-cn/</a></p>
+<p><strong>搭建Dubbo源码环境</strong></p>
+<blockquote>
+<p>直接从官方仓库 <a target="_blank" rel="noopener" href="https://github.com/apache/dubbo">https://github.com/apache/dubbo</a> Fork 到自己的仓库。</p>
+</blockquote>
+<pre><code>git clone git@github.com:xxxxxxxx/dubbo.git 
+</code></pre>
+<blockquote>
+<p>然后切换分支，因为目前最新的是 Dubbo 3.2 版本。</p>
+</blockquote>
+<pre><code>git checkout -b dubbo-3.2 dubbo-3.2
+</code></pre>
+<blockquote>
+<p>执行 mvn 命令进行编译：</p>
+</blockquote>
+<pre><code>mvn clean install -Dmaven.test.skip=true 
+</code></pre>
+<blockquote>
+<p>执行下面的命令转换成 IDEA 项目：</p>
+</blockquote>
+<pre><code>mvn idea:idea // 要是执行报错，就执行这个 mvn idea:workspace 
+</code></pre>
+<blockquote>
+<p>在 IDEA 中导入源码，因为这个导入过程中会下载所需的依赖包，所以会耗费点时间。</p>
+</blockquote>
 <p><strong>配置总线URL</strong></p>
 <blockquote>
 <p>Dubbo 中任意的一个实现都可以抽象为一个 URL，Dubbo 使用 URL 来统一描述了所有对象和配置信息。</p>
