@@ -1241,6 +1241,44 @@
 							</ul>
 			
 							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Go语言
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E5%87%BD%E6%95%B0/">
+										函数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E5%B9%B6%E5%8F%91/">
+										并发
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E6%95%B0%E7%BB%84/">
+										数组
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
 								<li class="file">
 									<a href="/2022/11/21/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java%E5%9F%BA%E7%A1%80/">
 										Java基础
@@ -1468,10 +1506,12 @@
 </blockquote>
 <p>举例说明：</p>
 <img src="/images/527.png" alt="img" style="zoom:80%;" />
+
 <blockquote>
 <p>在上面表中 家庭信息和学历信息不满足原子性要求，不满足第一范式，进行调整如下：</p>
 </blockquote>
 <img src="/images/528.png" alt="img" style="zoom:80%;" />
+
 <p>第二范式：</p>
 <blockquote>
 <p>首先满足第一范式，并且表中非主键列<strong>不存在</strong>对主键的部分依赖。</p>
@@ -1482,12 +1522,14 @@
 </blockquote>
 <p>举例说明：</p>
 <img src="/images/529.png" alt="img" style="zoom:80%;" />
+
 <blockquote>
 <p>在上述表中，同一个订单号可以包括不同产品号，因此主键必须是订单号、产品号联合组成。</p>
 <p>产品号、产品数量、产品价格与订单号、产品号都相关，但是订单金额 订单时间、订单人仅与订单号相关，与产品号无关。</p>
 <p>因此不满足第二范式要求进行调整如下分成两张表。</p>
 </blockquote>
 <img src="/images/530.png" alt="img" style="zoom:80%;" />
+
 <p>第三范式:</p>
 <blockquote>
 <p>确保每列都和主键列直接相关,而不是间接相关。</p>
@@ -1497,11 +1539,13 @@
 </blockquote>
 <p>举例说明：</p>
 <img src="/images/531.png" alt="img" style="zoom:80%;" />
+
 <blockquote>
 <p>上表所有属性完全依赖于学号，满足第二范式，但是班主任性别、班主任年龄直接依赖于班主任姓名，并非主键学号。</p>
 <p>进行调整如下。</p>
 </blockquote>
 <img src="/images/532.png" alt="img" style="zoom:80%;" />
+
 <p><strong>MyISAM与InnoDB的区别</strong></p>
 <blockquote>
 <p>InnoDB支持事务，MyISAM不支持。</p>
@@ -1544,11 +1588,9 @@
 <blockquote>
 <p>Simple Nested-Loop:</p>
 <ul>
-<li>
-<p>驱动表中的每一条记录与被驱动表中的记录进行比较判断（就是个笛卡尔积）。</p>
+<li><p>驱动表中的每一条记录与被驱动表中的记录进行比较判断（就是个笛卡尔积）。</p>
 </li>
-<li>
-<p>对于两表联接来说，驱动表只会被访问一遍，但被驱动表却要被访问到好多遍。</p>
+<li><p>对于两表联接来说，驱动表只会被访问一遍，但被驱动表却要被访问到好多遍。</p>
 </li>
 </ul>
 <p>Index Nested-Loop：</p>
@@ -1568,8 +1610,9 @@
 <p>当不使用<code>Index Nested-Loop Join</code>的时候，默认使用<code>Block Nested-Loop Join</code>。</p>
 </blockquote>
 <img src="/images/133.png" alt="image-20231025215619612" style="zoom:50%;" />
+
 <p><strong>分页查询优化</strong></p>
-<pre><code class="language-sql">select * from table where type = 2 and level = 9 order by id asc limit 190289,10;
+<pre><code class="sql">select * from table where type = 2 and level = 9 order by id asc limit 190289,10;
 </code></pre>
 <blockquote>
 <p>延迟关联：</p>
@@ -1577,7 +1620,7 @@
 <li>先通过where条件提取出主键，在将该表与原数据表关联，通过主键id提取数据行，而不是通过原来的二级索引提取数据行</li>
 </ul>
 </blockquote>
-<pre><code class="language-sql">select a.* from table a, (select id from table where type = 2 and level = 9 order by id asc limit 190289,10 ) b where a.id = b.id
+<pre><code class="sql">select a.* from table a, (select id from table where type = 2 and level = 9 order by id asc limit 190289,10 ) b where a.id = b.id
 </code></pre>
 <blockquote>
 <p>书签方式:</p>
@@ -1585,10 +1628,9 @@
 <li>找到limit第一个参数对应的主键值，再根据这个主键值再去过滤并limit</li>
 </ul>
 </blockquote>
-<pre><code class="language-sql">select * from table where id &gt; (select * from table where type = 2 and level = 9 order by id asc limit 190289, 1) limit 10;
+<pre><code class="sql">select * from table where id &gt; (select * from table where type = 2 and level = 9 order by id asc limit 190289, 1) limit 10;
 </code></pre>
-<h1>事务</h1>
-<p><strong>ACID</strong></p>
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p><strong>ACID</strong></p>
 <blockquote>
 <p>原子性（atomicity）:</p>
 <ul>
@@ -1596,8 +1638,7 @@
 </ul>
 <p>一致性（consistency）：</p>
 <ul>
-<li>指事务执行前后，数据从一个合法性状态变换到另外一个合法性状态。
-<ul>
+<li>指事务执行前后，数据从一个合法性状态变换到另外一个合法性状态。<ul>
 <li>这种状态是语义上的而不是语法上的，跟具体的业务有关。</li>
 </ul>
 </li>
@@ -1620,24 +1661,21 @@
 </ul>
 <p>脏读（ Dirty Read ）：</p>
 <ul>
-<li>两个事务 Session A、Session B，Session A 读取了已经被 Session B 更新但还没有被提交的字段。
-<ul>
+<li>两个事务 Session A、Session B，Session A 读取了已经被 Session B 更新但还没有被提交的字段。<ul>
 <li>之后如果 Session B 回滚，那么Session A 读取的内容就是临时且无效的。</li>
 </ul>
 </li>
 </ul>
 <p>不可重复读（ Non-Repeatable Read ）：</p>
 <ul>
-<li>两个事务Session A、Session B，Session A 读取了一个字段，然后 Session B 更新了该字段。
-<ul>
+<li>两个事务Session A、Session B，Session A 读取了一个字段，然后 Session B 更新了该字段。<ul>
 <li>之后 Session A 再次读取同一个字段，该字段的值发生了变化。</li>
 </ul>
 </li>
 </ul>
 <p>幻读（ Phantom ）：</p>
 <ul>
-<li>两个事务Session A、Session B, Session A 从一个表中读取了一个字段, 然后 Session B 在该表中插入了一些新的行。
-<ul>
+<li>两个事务Session A、Session B, Session A 从一个表中读取了一个字段, 然后 Session B 在该表中插入了一些新的行。 <ul>
 <li>如果 Session A 再次读取同一个表, 就会多出几行。</li>
 </ul>
 </li>
@@ -1674,8 +1712,7 @@
 <th>幻读</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>Read uncommitted</td>
 <td>×</td>
 <td>√</td>
@@ -1703,15 +1740,56 @@
 <td>×</td>
 <td>×</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
+<p><strong>MySQL默认隔离级别为什么是可重复读</strong></p>
+<blockquote>
+<p>MySQL在5.0这个版本以前，binlog只支持STATEMENT这种格式，而这种格式在读已提交(Read Commited)这个隔离级别下主从复制是有bug的，因此MSQL将可重复读(Repeatable Read)作为默认的隔离级别。</p>
+<p>STATEMENT主从复制的Bug？</p>
+<ul>
+<li><p>在master上执行的顺序为先删后插，而此时binlog为STATEMENT格式，它记录的顺序为先插后删。</p>
+</li>
+<li><p>从(slave)同步的是binglog，如果从机执行的顺序和主机不一致，就会出现主从不一致。</p>
+</li>
+</ul>
+<p>隔离级别设为可重复读(Repeatable Read)，在该隔离级别下引入间隙锁。</p>
+<ul>
+<li><p>当<code>Session 1</code>执行delete语句时，会锁住间隙。</p>
+</li>
+<li><p>那么，<code>Ssession 2</code>执行插入语句就会阻塞住。</p>
+</li>
+</ul>
+<p>保证主从复制不出问题。</p>
+</blockquote>
+<p><strong>为什么大家将隔离级别设为读已提交(Read Commited)</strong></p>
+<blockquote>
+<p>在RR隔离级别下，存在间隙锁，导致出现死锁的几率比RC大的多。</p>
+<p>在RR隔离级别下，条件列未命中索引会锁表，而在RC隔离级别下，只锁行。</p>
+</blockquote>
+<blockquote>
+<p>在RC隔离级别下，半一致性读(semi-consistent)特性增加了update操作的并发性。</p>
+<p>半一致性读：一个update语句，如果读到一行已经加锁的记录，此时InnoDB返回记录最近提交的版本，由MySQL上层判断此版本是否满足update的where条件。</p>
+<ul>
+<li>若满足(需要更新)，则MySQL会重新发起一次读操作，此时会读取行的最新版本(并加锁)。</li>
+</ul>
+<p>有两个Session，Session1和Session2：</p>
+<p>Session1执行：</p>
+<pre><code class="sql">update test set color = &#39;blue&#39; where color = &#39;red&#39;; 
+</code></pre>
+<p>先不Commit事务。</p>
+<p>与此同时Ssession2执行：</p>
+<pre><code class="sql">update test set color = &#39;blue&#39; where color = &#39;white&#39;;
+</code></pre>
+<p>session 2尝试加锁的时候，发现行上已经存在锁，InnoDB会开启semi-consistent read，返回最新的committed版本(1,red),(2，white),(5,red),(7,white)。</p>
+<p>MySQL会重新发起一次读操作，此时会读取行的最新版本(并加锁)。</p>
+<p>而在RR隔离级别下，Session2只能等待。</p>
+<p><strong>互联网项目请用：读已提交(Read Commited)这个隔离级别。</strong></p>
+</blockquote>
 <p><strong>事务实现原理</strong></p>
 <blockquote>
 <p>事务的 隔离性 由 锁机制 实现。</p>
 <p>事务的原子性、一致性和持久性由redo 日志和undo 日志来保证。</p>
 </blockquote>
-<h2 id="MVCC">MVCC</h2>
-<blockquote>
+<h2 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h2><blockquote>
 <p>MVCC是为了解决 读-写 之间阻塞的问题（排他锁会阻塞读操作），写操作还是需要加锁（Next-Key Lock）。</p>
 <p>如果没有MVCC，那么修改数据的操作会加排它锁，其它的读写操作都会阻塞，这样的话效率会比较低。</p>
 <p>MVCC通过Undo Log + Read View进行数据读取。</p>
@@ -1733,14 +1811,14 @@
 </ul>
 <p>快照读的前提是隔离级别不是串行级别，串行级别下的快照读会退化成当前读。</p>
 </blockquote>
-<pre><code class="language-sql">SELECT * FROM player WHERE ...
+<pre><code class="sql">SELECT * FROM player WHERE ...
 </code></pre>
 <p>当前读:</p>
 <blockquote>
 <p>读取的是记录的 最新版本，读取时还要保证其他并发事务不能修改当前记录，会对读取的记录进行加锁。</p>
 <p><strong>加锁的 SELECT，或者对数据进行增删改都会进行当前读</strong>。</p>
 </blockquote>
-<pre><code class="language-sql">SELECT * FROM student LOCK IN SHARE MODE; # 共享锁
+<pre><code class="sql">SELECT * FROM student LOCK IN SHARE MODE; # 共享锁
 SELECT * FROM student FOR UPDATE; # 排他锁
 INSERT INTO student values ... # 排他锁
 DELETE FROM student WHERE ... # 排他锁
@@ -1814,11 +1892,9 @@ UPDATE student SET ... # 排他锁
 <p>如果被访问版本的 <code>trx_id</code> 属性值在 ReadView 的 <code>up_limit_id</code> 和 <code>low_limit_id</code> 之间。</p>
 <p>需要判断一下<code>trx_id</code>属性值是不是在<code>trx_ids</code> 列表中。</p>
 <ul>
-<li>
-<p>如果在，说明创建ReadView时生成该版本的事务还是活跃的，该版本不可以被访问。</p>
+<li><p>如果在，说明创建ReadView时生成该版本的事务还是活跃的，该版本不可以被访问。</p>
 </li>
-<li>
-<p>如果不在，说明创建ReadView时生成该版本的事务已经被提交，该版本可以被访问。</p>
+<li><p>如果不在，说明创建ReadView时生成该版本的事务已经被提交，该版本可以被访问。</p>
 </li>
 </ul>
 </blockquote>
@@ -1837,8 +1913,7 @@ UPDATE student SET ... # 排他锁
 <p><strong>READ COMMITTED事务，在每次查询开始时都会生成一个独立的ReadView。</strong></p>
 <p><strong>REPEATABLE READ事务，只会在第一次执行查询语句时生成一个ReadView，之后的查询就不会重复生成了。</strong></p>
 </blockquote>
-<h1>索引</h1>
-<p><strong>索引分类</strong></p>
+<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><p><strong>索引分类</strong></p>
 <p>单列索引：基于单个字段建立的索引。</p>
 <blockquote>
 <p>唯一索引：</p>
@@ -1889,7 +1964,7 @@ UPDATE student SET ... # 排他锁
 <p>分组字段可以建立索引。</p>
 <p>统计字段可以建立索引，如<code>count()，max()</code>。</p>
 </blockquote>
-<p><strong>哪些情况下不适合建索引</strong></p>
+<p><strong>哪些情况下不适合建索引</strong> 　</p>
 <blockquote>
 <p>频繁更新的字段不适合建立索引。</p>
 <p>where条件中用不到的字段不适合建立索引。</p>
@@ -1932,27 +2007,23 @@ UPDATE student SET ... # 排他锁
 <blockquote>
 <p>B+ 树与 B 树差异点：</p>
 <ul>
-<li>
-<p>叶子节点（最底部的节点）才会存放实际数据（索引+记录），非叶子节点只会存放索引。</p>
+<li><p>叶子节点（最底部的节点）才会存放实际数据（索引+记录），非叶子节点只会存放索引。</p>
 </li>
-<li>
-<p>所有索引都会在叶子节点出现，叶子节点之间构成一个有序链表。</p>
+<li><p>所有索引都会在叶子节点出现，叶子节点之间构成一个有序链表。</p>
 <ul>
 <li>Innodb 的 B+ 树的叶子节点之间是用 双向链表 进行连接，既能向右遍历，也能向左遍历。</li>
 </ul>
 </li>
-<li>
-<p>非叶子节点的索引也会同时存在在子节点中，并且是在子节点中所有索引的最大（或最小）。</p>
+<li><p>非叶子节点的索引也会同时存在在子节点中，并且是在子节点中所有索引的最大（或最小）。</p>
 </li>
-<li>
-<p>非叶子节点中有多少个子节点，就有多少个索引。</p>
+<li><p>非叶子节点中有多少个子节点，就有多少个索引。</p>
 </li>
 </ul>
 <p>B+ 树的非叶子节点不存放实际的记录数据，仅存放索引。</p>
 <ul>
 <li>因此数据量相同的情况下，相比存储即存索引又存记录的 B 树，B+树的非叶子节点可以存放更多的索引。</li>
 </ul>
-<p>因此 B+ 树可以比 B 树更 矮胖 ，查询底层节点的磁盘 I/O次数会更少。</p>
+<p>因此 B+ 树可以比 B 树更 矮胖 ，查询底层节点的磁盘 I&#x2F;O次数会更少。</p>
 <p>MyISAM 存储引擎：</p>
 <ul>
 <li>B+ 树索引的叶子节点保存数据的物理地址，即用户数据的指针。</li>
@@ -1996,7 +2067,7 @@ UPDATE student SET ... # 排他锁
 <p><strong>索引下推ICP(Index Condition Pushdown)</strong></p>
 <blockquote>
 <p>一张<code>user</code>表，有<code>age_name</code>的联合索引。</p>
-<p>执行查询<code>explain SELECT * from user where age &gt;10 and name = 'a'</code>。</p>
+<p>执行查询<code>explain SELECT * from user where age &gt;10 and name = &#39;a&#39;</code>。</p>
 <ul>
 <li>看见<code>Extra</code>中显示了<code>Using index condition</code>，表示出现了<strong>索引下推</strong>。</li>
 </ul>
@@ -2016,12 +2087,12 @@ UPDATE student SET ... # 排他锁
 <blockquote>
 <p>2、索引列上有计算</p>
 </blockquote>
-<pre><code class="language-sql">explain select * from 某表 where id+1=2;
+<pre><code class="sql">explain select * from 某表 where id+1=2;
 </code></pre>
 <blockquote>
 <p>3、索引列用了函数</p>
 </blockquote>
-<pre><code class="language-sql">explain select * from 某表 where SUBSTR(height,1,2)=17;
+<pre><code class="sql">explain select * from 某表 where SUBSTR(height,1,2)=17;
 </code></pre>
 <blockquote>
 <p>4、字段类型不同</p>
@@ -2030,22 +2101,20 @@ UPDATE student SET ... # 排他锁
 <blockquote>
 <p>6、列对比</p>
 <ul>
-<li>
-<p>id字段本身是有主键索引的，同时height字段也建了普通索引的，并且两个字段都是int类型，类型是一样的</p>
+<li><p>id字段本身是有主键索引的，同时height字段也建了普通索引的，并且两个字段都是int类型，类型是一样的</p>
 </li>
-<li>
-<p>如果把两个单独建了索引的列，用来做列对比时索引就会失效</p>
+<li><p>如果把两个单独建了索引的列，用来做列对比时索引就会失效</p>
 </li>
 </ul>
 </blockquote>
-<pre><code class="language-sql">explain select * from user where id=height
+<pre><code class="sql">explain select * from user where id=height
 </code></pre>
 <blockquote>
 <p>7、使用or关键字</p>
 <p>因为最后加的address字段没有加索引，从而导致其他字段的索引都失效了</p>
 <p>如果使用了<code>or</code>关键字，那么它前面和后面的字段都要加索引，不然所有的索引都会失效</p>
 </blockquote>
-<pre><code class="language-sql">explain select * from user where id=1 or height='175' or address='成都';
+<pre><code class="sql">explain select * from user where id=1 or height=&#39;175&#39; or address=&#39;成都&#39;;
 </code></pre>
 <blockquote>
 <p>8、not in和not exists</p>
@@ -2056,12 +2125,12 @@ UPDATE student SET ... # 排他锁
 <p>9、order by 没加where或limit</p>
 <p>如果order by语句中没有加where或limit关键字，该sql语句将不会走索引</p>
 </blockquote>
-<pre><code class="language-sql">explain select * from user order by code, name;
+<pre><code class="sql">explain select * from user order by code, name;
 </code></pre>
 <blockquote>
 <p>10、对不同的索引做order by</p>
 </blockquote>
-<pre><code class="language-sql">explain select * from user order by code, height limit 100;
+<pre><code class="sql">explain select * from user order by code, height limit 100;
 </code></pre>
 <p><strong>CBO</strong></p>
 <p>CBO（Cost-Based Optimizer，基于成本的优化器）。</p>
@@ -2069,7 +2138,7 @@ UPDATE student SET ... # 排他锁
 <p>优化器的选择是基于成本（cost），哪个索引的成本越低，优先使用哪个索引。</p>
 </blockquote>
 <p>一条 SQL 的计算成本计算如下：</p>
-<pre><code class="language-java">Cost  = Server Cost + Engine Cost
+<pre><code class="java">Cost  = Server Cost + Engine Cost
       = CPU Cost + IO Cost
 </code></pre>
 <blockquote>
@@ -2082,13 +2151,12 @@ UPDATE student SET ... # 排他锁
 <li>计算读取内存 IO 开销以及读取磁盘 IO 的开销。</li>
 </ul>
 </blockquote>
-<h2 id="Explain">Explain</h2>
-<p>table列:</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>table列:</p>
 <blockquote>
 <p>表示 explain 的一行正在访问哪个表。</p>
 <p>当 from 子句中有子查询时，table列是 <code>&lt;derivenN&gt;</code> 格式：</p>
 <ul>
-<li>表示当前查询依赖 id=N 的查询，先执行 id=N 的查询。</li>
+<li>表示当前查询依赖 id&#x3D;N 的查询，先执行 id&#x3D;N 的查询。</li>
 <li>当有 union 时，UNION RESULT 的 table 列的值为<code>&lt;union1,2&gt;</code>，1和2表示参与 union 的 select 行id。</li>
 </ul>
 </blockquote>
@@ -2164,6 +2232,7 @@ UPDATE student SET ... # 排他锁
 <ul>
 <li>tinyint：1字节，smallint：2字节，int：4字节，bigint：8字节</li>
 </ul>
+<p>　 </p>
 <p>时间类型：</p>
 <ul>
 <li>date：3字节，timestamp：4字节，datetime：8字节</li>
@@ -2173,11 +2242,9 @@ UPDATE student SET ... # 排他锁
 <blockquote>
 <p>读取并检测的行数，注意这个不是结果集里的行数。</p>
 <ul>
-<li>
-<p>如果使用全表扫描查询时，执行计划的rows列就代表预计需要扫描的行数。</p>
+<li><p>如果使用全表扫描查询时，执行计划的rows列就代表预计需要扫描的行数。</p>
 </li>
-<li>
-<p>如果使用索引查询时，执行计划的rows列就代表预计扫描的索引记录行数。</p>
+<li><p>如果使用索引查询时，执行计划的rows列就代表预计扫描的索引记录行数。</p>
 </li>
 </ul>
 </blockquote>
@@ -2201,8 +2268,7 @@ UPDATE student SET ... # 排他锁
 </ul>
 <p><strong>Using where Using index</strong></p>
 <ul>
-<li>查询的列被索引覆盖，并且where筛选条件是索引列之一但是不是索引的前导列。
-<ul>
+<li>查询的列被索引覆盖，并且where筛选条件是索引列之一但是不是索引的前导列。<ul>
 <li>意味着无法直接通过索引查找来查询到符合条件的数据。</li>
 </ul>
 </li>
@@ -2220,8 +2286,7 @@ UPDATE student SET ... # 排他锁
 <li>会对结果使用一个外部索引排序，而不是按索引次序从表里读取行。</li>
 </ul>
 </blockquote>
-<h1>日志文件</h1>
-<blockquote>
+<h1 id="日志文件"><a href="#日志文件" class="headerlink" title="日志文件"></a>日志文件</h1><blockquote>
 <p><code>MySQL</code>日志主要包括错误日志、查询日志、慢查询日志、事务日志、二进制日志。</p>
 </blockquote>
 <p><strong>binlog</strong></p>
@@ -2243,8 +2308,7 @@ UPDATE student SET ... # 排他锁
 <p>对于<code>InnoDB</code>存储引擎而言，只有在事务提交时才会记录<code>biglog</code>，此时记录还在内存中。</p>
 <p><code>biglog</code>什么时候刷到磁盘中？</p>
 <ul>
-<li><code>mysql</code>通过<code>sync_binlog</code>参数控制<code>biglog</code>的刷盘时机，取值范围是<code>0-N</code>：
-<ul>
+<li><code>mysql</code>通过<code>sync_binlog</code>参数控制<code>biglog</code>的刷盘时机，取值范围是<code>0-N</code>：<ul>
 <li>0：不去强制要求，由系统自行判断何时写入磁盘。</li>
 <li>1：每次<code>commit</code>的时候都要将<code>binlog</code>写入磁盘。</li>
 <li>N：每N个事务，才会将<code>binlog</code>写入磁盘。</li>
@@ -2256,23 +2320,18 @@ UPDATE student SET ... # 排他锁
 <blockquote>
 <p>STATMENT:</p>
 <ul>
-<li>
-<p>基于SQL语句的复制，每一条会修改数据的sql语句会记录到<code>binlog</code>中。</p>
+<li><p>基于SQL语句的复制，每一条会修改数据的sql语句会记录到<code>binlog</code>中。</p>
 </li>
-<li>
-<p>优点：不需要记录每一行的变化，减少了<code>binlog</code>日志量，节约了IO, 从而提高了性能；</p>
+<li><p>优点：不需要记录每一行的变化，减少了<code>binlog</code>日志量，节约了IO, 从而提高了性能；</p>
 </li>
-<li>
-<p>缺点：在某些情况下会导致主从数据不一致，比如执行<code>sysdate()、slepp()</code>等。</p>
+<li><p>缺点：在某些情况下会导致主从数据不一致，比如执行<code>sysdate()、slepp()</code>等。</p>
 </li>
 </ul>
 <p>ROW:</p>
 <ul>
-<li>
-<p>基于行的复制，记录哪条数据被修改了。</p>
+<li><p>基于行的复制，记录哪条数据被修改了。</p>
 </li>
-<li>
-<p>缺点：会产生大量的日志，<code>alter table</code>的时会让日志暴涨。</p>
+<li><p>缺点：会产生大量的日志，<code>alter table</code>的时会让日志暴涨。</p>
 </li>
 </ul>
 <p>MIXED：</p>
@@ -2296,6 +2355,7 @@ UPDATE student SET ... # 排他锁
 </ul>
 </blockquote>
 <img src="/images/139.png" alt="在这里插入图片描述" style="zoom:80%;" />
+
 <p><code>mysql</code>支持三种将<code>redo log buffer</code>写入<code>redo log file</code>的时机，通过<code>innodb_flush_log_at_trx_commit</code>参数配置。</p>
 <table>
 <thead>
@@ -2304,8 +2364,7 @@ UPDATE student SET ... # 排他锁
 <th>含义</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>0（延迟写）</td>
 <td>事务提交时不会将<code>redo log buffer</code>中日志写入到<code>os buffer</code>，而是每秒写入<code>os buffer</code>并调用<code>fsync()</code>写入到<code>redo log file</code>中，当系统崩溃，会丢失1秒钟的数据。</td>
 </tr>
@@ -2317,8 +2376,7 @@ UPDATE student SET ... # 排他锁
 <td>2（实时写，延迟刷）</td>
 <td>每次提交都仅写入到<code>os buffer</code>，然后是每秒调用<code>fsync()</code>将<code>os buffer</code>中的日志写入到<code>redo log file</code>。</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>redo log记录形式：</p>
 <blockquote>
 <p><code>redo log</code>采用了大小固定，循环写入的方式，当写到结尾时，会回到开头循环写日志。</p>
@@ -2332,8 +2390,7 @@ UPDATE student SET ... # 排他锁
 <th>binlog</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>文件大小</td>
 <td><code>redo log</code>的大小是固定的。</td>
 <td><code>binlog</code>可通过配置参数<code>max_binlog_size</code>设置每个<code>binlog</code>文件的大小。</td>
@@ -2353,15 +2410,13 @@ UPDATE student SET ... # 排他锁
 <td><code>redo log</code>适用于崩溃恢复(crash-safe)</td>
 <td><code>binlog</code>适用于主从复制和数据恢复</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p><strong>undo log</strong></p>
 <blockquote>
 <p><code>undo log</code>主要记录了数据的逻辑变化。</p>
 <p>比如一条<code>INSERT</code>语句，对应一条<code>DELETE</code>的<code>undo log</code>，对于每个<code>UPDATE</code>语句，对应一条相反的<code>UPDATE</code>的<code>undo log</code>，这样在发生错误时，就能回滚到事务之前的数据状态。</p>
 </blockquote>
-<h1>锁机制</h1>
-<p><strong>锁结构</strong></p>
+<h1 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h1><p><strong>锁结构</strong></p>
 <blockquote>
 <p>当一个事务想对这条记录做改动时，会看看内存中有没有与这条记录关联的锁结构。</p>
 <ul>
@@ -2374,21 +2429,20 @@ UPDATE student SET ... # 排他锁
 </ul>
 </blockquote>
 <img src="/images/140.png" alt="在这里插入图片描述" style="zoom:80%;" />
+
 <p><strong>锁分类</strong></p>
 <p>读锁、写锁：</p>
 <blockquote>
 <p><strong>读锁</strong>：</p>
 <ul>
-<li>共享锁，用S表示。
-<ul>
+<li>共享锁，用S表示。<ul>
 <li>针对同一份数据，多个事务的读操作可以同时进行而不会互相影响，相互不阻塞的。</li>
 </ul>
 </li>
 </ul>
 <p><strong>写锁</strong>：</p>
 <ul>
-<li>排他锁，用X表示。
-<ul>
+<li>排他锁，用X表示。<ul>
 <li>当前写操作没有完成前，它会阻断其他写锁和读锁。</li>
 <li>这样就能确保在给定的时间里，只有一个事务能执行写入，并防止其他用户读取正在写入的同一资源。</li>
 </ul>
@@ -2396,12 +2450,12 @@ UPDATE student SET ... # 排他锁
 </ul>
 </blockquote>
 <p>对读取的记录加S锁：</p>
-<pre><code class="language-sql">SELECT ... LOCK IN SHARE MODE;
+<pre><code class="sql">SELECT ... LOCK IN SHARE MODE;
 # 或
 SELECT ... FOR SHARE; # (8.0新增语法)
 </code></pre>
 <p>对读取的记录加X锁：</p>
-<pre><code class="language-sql">SELECT ... FOR UPFATE;
+<pre><code class="sql">SELECT ... FOR UPFATE;
 </code></pre>
 <p>表锁:</p>
 <blockquote>
@@ -2426,7 +2480,7 @@ SELECT ... FOR SHARE; # (8.0新增语法)
 <ul>
 <li>意向锁会告诉其他事务已经有人锁定了表中的某些记录。</li>
 </ul>
-<p><strong>在为数据行加共享/排他锁之前</strong>，<strong>InooDB会先获取该数据行所在数据表的对应意向锁</strong>。</p>
+<p><strong>在为数据行加共享&#x2F;排他锁之前</strong>，<strong>InooDB会先获取该数据行所在数据表的对应意向锁</strong>。</p>
 </blockquote>
 <p>元数据锁（MDL锁）：</p>
 <blockquote>
@@ -2465,17 +2519,17 @@ SELECT ... FOR SHARE; # (8.0新增语法)
 <blockquote>
 <p>1、update 命令会施加一个 X 型记录锁，X 型记录锁是写写互斥的。</p>
 <ul>
-<li>如果 A 事务对 goods 表中 id = 1 的记录行加了记录锁，B 事务想要对这行记录加记录锁就会被阻塞。</li>
+<li>如果 A 事务对 goods 表中 id &#x3D; 1 的记录行加了记录锁，B 事务想要对这行记录加记录锁就会被阻塞。</li>
 </ul>
 <p>2、insert 命令会施加一个插入意向锁，但插入意向锁是互相兼容的。</p>
 <ul>
 <li>如果 A 事务向 order 表 insert 一条记录，不会影响 B 事务 insert 一条记录。</li>
 </ul>
 </blockquote>
-<p><strong>select…for update锁表还是锁行</strong></p>
+<p><strong>select……for update锁表还是锁行</strong></p>
 <blockquote>
-<p>如果查询条件用了<strong>索引/主键</strong>，<code>select ..... for update</code> 会进行行锁。</p>
-<p>如果是普通字段（<strong>没有索引/主键</strong>）， <code>select ..... for update</code> 会进行锁表。</p>
+<p>如果查询条件用了<strong>索引&#x2F;主键</strong>，<code>select ..... for update</code> 会进行行锁。</p>
+<p>如果是普通字段（<strong>没有索引&#x2F;主键</strong>）， <code>select ..... for update</code> 会进行锁表。</p>
 </blockquote>
 <p><strong>如何有效的避免死锁的发生</strong></p>
 <blockquote>
@@ -2507,14 +2561,11 @@ SELECT ... FOR SHARE; # (8.0新增语法)
 </ul>
 <p>使用数据版本（Version）记录机制实现：</p>
 <ul>
-<li>
-<p>为数据增加一个版本标识，一般是通过为数据库表增加一个数字类型的 <code>version</code> 字段来实现。</p>
+<li><p>为数据增加一个版本标识，一般是通过为数据库表增加一个数字类型的 <code>version</code> 字段来实现。</p>
 </li>
-<li>
-<p>当读取数据时，将version字段的值一同读出，数据每更新一次，对此version值加一。</p>
+<li><p>当读取数据时，将version字段的值一同读出，数据每更新一次，对此version值加一。</p>
 </li>
-<li>
-<p>当提交更新的时候，判断数据库表对应记录的当前版本信息与第一次取出来的version值进行比对：</p>
+<li><p>当提交更新的时候，判断数据库表对应记录的当前版本信息与第一次取出来的version值进行比对：</p>
 <ul>
 <li>如果数据库表当前版本号与第一次取出来的version值相等，则予以更新，否则认为是过期数据。</li>
 </ul>
@@ -2524,7 +2575,7 @@ SELECT ... FOR SHARE; # (8.0新增语法)
 <p>当电商抢购活动时，大量并发进入，如果仅仅使用版本号或者时间戳，就会出现大量的用户查询出库存存在，但是却在扣减库存时失败了，而这个时候库存是确实存在的。</p>
 </blockquote>
 <p><img src="/images/142.png" alt="img"></p>
-<pre><code class="language-sql">update t_goods 
+<pre><code class="sql">update t_goods 
 set status=2,version=version+1
 where id=#&#123;id&#125; and version=#&#123;version&#125;;
 </code></pre>
@@ -2536,15 +2587,14 @@ where id=#&#123;id&#125; and version=#&#123;version&#125;;
 <li><strong>注意：乐观锁的更新操作，最好用主键或者唯一索引来更新，这样是行锁，否则更新时会锁表</strong></li>
 </ul>
 </blockquote>
-<pre><code class="language-sql">UPDATE t_goods
+<pre><code class="sql">UPDATE t_goods
 SET num = num - #&#123;buyNum&#125; 
 WHERE
     id = #&#123;id&#125; 
 AND num - #&#123;buyNum&#125; &gt;= 0 
 AND STATUS = 1
 </code></pre>
-<h1>基本原理</h1>
-<p><strong>服务器处理客户端请求:</strong></p>
+<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><strong>服务器处理客户端请求:</strong></p>
 <blockquote>
 <p>不论客户端进程和服务器进程是采用哪种方式进行通信，最后实现的效果都是：</p>
 <ul>
@@ -2600,14 +2650,11 @@ AND STATUS = 1
 <blockquote>
 <p>如何在<code>Buffer Pool</code>里快速定位到对应的缓存页？</p>
 <ul>
-<li>
-<p>使用哈希表来缓存它们间的映射关系，时间复杂度是<code>O(1)</code>。</p>
+<li><p>使用哈希表来缓存它们间的映射关系，时间复杂度是<code>O(1)</code>。</p>
 </li>
-<li>
-<p><strong>表空间号+数据页号</strong>，作为一个<code>key</code>，缓存页的地址作为<code>value</code>。</p>
+<li><p><strong>表空间号+数据页号</strong>，作为一个<code>key</code>，缓存页的地址作为<code>value</code>。</p>
 </li>
-<li>
-<p>每次加载数据页到空闲缓存页时，就写入一条映射关系到<strong>缓存页哈希表</strong>中。</p>
+<li><p>每次加载数据页到空闲缓存页时，就写入一条映射关系到<strong>缓存页哈希表</strong>中。</p>
 </li>
 </ul>
 <p>后续的查询，就可以通过<strong>缓存页哈希表</strong>路由定位了。</p>
@@ -2620,6 +2667,7 @@ AND STATUS = 1
 </ul>
 </blockquote>
 <img src="/images/144.png" alt="image-20231025101205613" style="zoom:90%;" />
+
 <p>Flush链表:</p>
 <blockquote>
 <p>缓存页被更新，就将它的<strong>描述数据</strong>加入<code>flush</code>链表。</p>
@@ -2641,7 +2689,7 @@ AND STATUS = 1
 </blockquote>
 <hr>
 <blockquote>
-<p>ChangeBuffer用于存储SQL变更操作，比如Insert/Update/Delete等SQL语句。</p>
+<p>ChangeBuffer用于存储SQL变更操作，比如Insert&#x2F;Update&#x2F;Delete等SQL语句。</p>
 <p>ChangeBuffer中的每个变更操作都有其对应的数据页，并且该数据页未加载到缓存中。</p>
 <p>当ChangeBufferd中变更操作对应的数据页加载到缓存中后，InnoDB会把变更操作Merge到数据页上。</p>
 <p>InnoDB会定期加载ChangeBuffer中操作对应的数据页到缓存中，并Merge变更操作。</p>
@@ -2677,23 +2725,24 @@ AND STATUS = 1
 <p>一条查询语句的执行过程一般是经过连接器、分析器、优化器、执行器等阶段后，最后到达存储引擎。</p>
 </blockquote>
 <img src="/images/146.png" alt="image-20231021221338694" style="zoom:40%;" />
+
 <p><strong>SQL更新</strong></p>
 <img src="/images/147.png" alt="image-20231021221734927" style="zoom:50%;" />
-<h1>主从复制</h1>
-<p><img src="/images/148.png" alt="图片"></p>
+
+<h1 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h1><p><img src="/images/148.png" alt="图片"></p>
 <p><img src="/images/481.png" alt="img"></p>
 <p><strong>三个线程：</strong></p>
 <blockquote>
-<p><strong>binlog dump线程：</strong></p>
+<p><strong>binlog dump线程：</strong> </p>
 <ul>
 <li>主库中有数据更新时，将更新的事件类型写入到主库的binlog文件中，并创建log dump线程通知slave有数据更新。</li>
-<li>将此时的binlog名称和当前更新的位置同时传给slave的I/O线程。</li>
+<li>将此时的binlog名称和当前更新的位置同时传给slave的I&#x2F;O线程。</li>
 </ul>
-<p><strong>I/O线程：</strong></p>
+<p><strong>I&#x2F;O线程：</strong> </p>
 <ul>
 <li>该线程会连接到master，向log dump线程请求一份指定binlog文件位置的副本，并将请求回来的binlog存到本地的relay log中。</li>
 </ul>
-<p><strong>SQL线程：</strong></p>
+<p><strong>SQL线程：</strong> </p>
 <ul>
 <li>该线程检测到relay log有更新后，会读取并在本地做redo操作，将发生在主库的事件在本地重新执行一遍，来保证主从数据同步。</li>
 </ul>
@@ -2724,14 +2773,12 @@ AND STATUS = 1
 </ul>
 <p>从业务场景考虑：</p>
 <ul>
-<li>使用缓存：
-<ul>
+<li>使用缓存：<ul>
 <li>在同步写数据库的同时，也把数据写到缓存，查询数据时，会先查询缓存。</li>
 <li>这种情况会带来 MySQL 和 Redis 数据一致性问题。</li>
 </ul>
 </li>
-<li>查询主库：
-<ul>
+<li>查询主库：<ul>
 <li>直接查询主库，这种情况会给主库太大压力，核心场景可以使用，比如订单支付。</li>
 </ul>
 </li>
@@ -2742,11 +2789,9 @@ AND STATUS = 1
 <blockquote>
 <p>从 MySQL 5.6.5 开始新增了一种基于 GTID 的复制方式。</p>
 <ul>
-<li>
-<p>通过 GTID 保证了每个在主库上提交的事务在集群中有一个唯一的ID。</p>
+<li><p>通过 GTID 保证了每个在主库上提交的事务在集群中有一个唯一的ID。</p>
 </li>
-<li>
-<p>这种方式强化了数据库的主备一致性，故障恢复以及容错能力。</p>
+<li><p>这种方式强化了数据库的主备一致性，故障恢复以及容错能力。</p>
 </li>
 </ul>
 <p>在原来基于二进制日志的复制中，从库需要告知主库要从哪个偏移量进行增量同步：</p>
@@ -2759,14 +2804,12 @@ AND STATUS = 1
 <p>GTID复制原理流程：</p>
 <blockquote>
 <p>Master进行数据更新时、在事务前产生GTID号、一起记录到binlog日志</p>
-<p>Slave的I/O线程将变更的binlog数据，写入到本地中继日志<code>relay_log</code></p>
+<p>Slave的I&#x2F;O线程将变更的binlog数据，写入到本地中继日志<code>relay_log</code></p>
 <p>Slave的SQL线程从中继日志中获取GTID号，和本地的binlog对比查看是否有记录</p>
 <ul>
-<li>
-<p>有记录，说明该GTID事务已执行，Slave数据库会忽略</p>
+<li><p>有记录，说明该GTID事务已执行，Slave数据库会忽略</p>
 </li>
-<li>
-<p>如果没有记录，Slave数据库从<code>relay_log中继日志</code>中获取数据，且执行该GTID的事务，记录到binlog中</p>
+<li><p>如果没有记录，Slave数据库从<code>relay_log中继日志</code>中获取数据，且执行该GTID的事务，记录到binlog中</p>
 </li>
 </ul>
 <p>根据GTID号就可以知道事务最初是在哪个数据库上提交的</p>
@@ -2789,53 +2832,52 @@ AND STATUS = 1
 <li>开启了GTID的数据库，和未开启的数据库实例之间、是无法混用复制的</li>
 </ul>
 </blockquote>
-<h1>常用操作</h1>
-<p><strong>查询：</strong></p>
+<h1 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h1><p><strong>查询：</strong></p>
 <blockquote>
 <p><code>owner_id</code>字段里面存的值是用逗号隔开的多个人的数据，想随便拿一个数据。</p>
 </blockquote>
-<pre><code class="language-sql">select * from appinfo where concat (',',owner_id,',') regexp ',123123,'
+<pre><code class="sql">select * from appinfo where concat (&#39;,&#39;,owner_id,&#39;,&#39;) regexp &#39;,123123,&#39;
 </code></pre>
 <blockquote>
 <p>分组：</p>
 </blockquote>
-<pre><code class="language-sql">select userBulkId, count(*) from topic_lesson_user_bulk_member group by userBulkId;
+<pre><code class="sql">select userBulkId, count(*) from topic_lesson_user_bulk_member group by userBulkId;
 </code></pre>
 <blockquote>
 <p>根据时间戳查询：</p>
 </blockquote>
-<pre><code class="language-sql">select count(distinct userId) from access_rule where unix_timestamp(dbctime) &lt; 1673031600 and unix_timestamp(dbctime) &gt; 1673020800;
+<pre><code class="sql">select count(distinct userId) from access_rule where unix_timestamp(dbctime) &lt; 1673031600 and unix_timestamp(dbctime) &gt; 1673020800;
 </code></pre>
 <p><strong>新增：</strong></p>
 <blockquote>
 <p><code>t_feed_user_black_list</code>表中的user_id值批量存入<code>t_recommend_black</code>表中。</p>
 </blockquote>
-<pre><code class="language-sql">insert into t_recommend_black(user_id) select user_id from t_feed_user_black_liston duplicate key update user_id =values(user_id);
+<pre><code class="sql">insert into t_recommend_black(user_id) select user_id from t_feed_user_black_liston duplicate key update user_id =values(user_id);
 </code></pre>
 <blockquote>
 <p><code>t_exposure</code>表中的<code>exposure_id，edition</code>值批量存入<code>t_exposure_edition</code>表中。</p>
 </blockquote>
-<pre><code class="language-sql">insert into t_exposure_edition(exposure_id, edition) select exposure_id,'full' from t_exposure;
+<pre><code class="sql">insert into t_exposure_edition(exposure_id, edition) select exposure_id,&#39;full&#39; from t_exposure;
 </code></pre>
 <p><strong>修改</strong></p>
-<pre><code class="language-sql">update live_video set transJobId = 1307569, jobStatus = 1 where id = 1;
+<pre><code class="sql">update live_video set transJobId = 1307569, jobStatus = 1 where id = 1;
 </code></pre>
 <p><strong>添加索引</strong></p>
-<pre><code class="language-sql">alter table qw_user_record add index idx_qwUserId(qwUserId);
+<pre><code class="sql">alter table qw_user_record add index idx_qwUserId(qwUserId);
 </code></pre>
 <p><strong>删除字段</strong></p>
-<pre><code class="language-sql">ALTER TABLE qw_activity DROP status;
+<pre><code class="sql">ALTER TABLE qw_activity DROP status;
 </code></pre>
 <p><strong>添加字段</strong></p>
-<pre><code class="language-sql">ALTER TABLE qw_activity ADD status TINYINT(1) DEFAULT 0 COMMENT '活动状态:1(未开始),2(进行中),3(已结束)';
+<pre><code class="sql">ALTER TABLE qw_activity ADD status TINYINT(1) DEFAULT 0 COMMENT &#39;活动状态:1(未开始),2(进行中),3(已结束)&#39;;
 </code></pre>
 <p><strong>修改字段</strong></p>
-<pre><code class="language-sql">ALTER TABLE operate_log MODIFY content JSON COMMENT '历史版本配置以及内容';
+<pre><code class="sql">ALTER TABLE operate_log MODIFY content JSON COMMENT &#39;历史版本配置以及内容&#39;;
 </code></pre>
 <blockquote>
 <p>修改字段名:</p>
 </blockquote>
-<pre><code class="language-sql">alter table anniversary_activity_user change user_id userId;
+<pre><code class="sql">alter table anniversary_activity_user change user_id userId;
 </code></pre>
 
 	</div>

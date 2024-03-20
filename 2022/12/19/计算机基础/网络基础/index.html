@@ -1241,6 +1241,44 @@
 							</ul>
 			
 							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Go语言
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E5%87%BD%E6%95%B0/">
+										函数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E5%B9%B6%E5%8F%91/">
+										并发
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E6%95%B0%E7%BB%84/">
+										数组
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
 								<li class="file">
 									<a href="/2022/11/21/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java%E5%9F%BA%E7%A1%80/">
 										Java基础
@@ -2071,6 +2109,18 @@ Password: 1234
 <p>启用防火墙的防DDOS的属性。</p>
 <p>严格限制对外开放的服务器的向外访问。</p>
 <p>运行端口映射程序祸端口扫描程序，要认真检查特权端口和非特权端口。</p>
+</blockquote>
+<p><strong>数字签名</strong></p>
+<blockquote>
+<p>用户认证，用来验证用户身份，用来确保信息发布人的身份和信息的完整性。</p>
+<p><strong>数字签名过程：</strong></p>
+<ul>
+<li>将报文按双方约定的HASH算法计算得到一个固定位数的报文摘要。</li>
+<li>将该报文摘要值用发送者的私人密钥加密即称数字签名，然后连同原报文和数字证书（包含公钥）一起发送给接收者。</li>
+<li>接收方收到数字签名后，用同样的HASH算法对报文计算摘要值，然后将数字签名用发送者的公钥进行解签，并与报文摘要值相比较，如相等则说明报文确实来自所称的发送者。</li>
+</ul>
+<p>为了防止公钥在传输过程中被调包，需要证书中心（简称CA）为公钥做认证。</p>
+<p>证书中心用自己的私钥，对公钥和一些相关信息一起加密，生成数字证书，客户端用CA的公钥解开数字证书，从而确定公钥的真实性。</p>
 </blockquote>
 <h1 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h1><p><strong>MD5算法</strong></p>
 <p><code>MD5</code> 用的是 <strong>哈希函数</strong>，它的典型应用是对一段信息产生 <strong>信息摘要</strong>，以 <strong>防止被篡改</strong>。</p>

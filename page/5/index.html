@@ -1239,6 +1239,44 @@
 							</ul>
 			
 							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Go语言
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E5%87%BD%E6%95%B0/">
+										函数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E5%B9%B6%E5%8F%91/">
+										并发
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E6%95%B0%E7%BB%84/">
+										数组
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
 								<li class="file">
 									<a href="/2022/11/21/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java%E5%9F%BA%E7%A1%80/">
 										Java基础
@@ -1421,6 +1459,102 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index" oncontextmenu="return false;">
+	
+		<div class="index-li">
+			<a href="/2024/01/07/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Hive/">
+				<h2 class="index-title">
+					Hive
+				</h2>
+				<div class="index-brief">
+					
+Hive 是一个构建在 Hadoop 之上的数据仓库。
+它可以将结构化的数据文件映射成表，并提供类 SQL 查询功能，用于查询的 SQL 语句会被转化为 MapReduce 作业，然后提交到 Hadoop 上运行。
+
+数据类型
+CREATE TABLE students(
+  name      
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2024-01-07</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/大数据相关/">大数据相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2024/01/07/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Caffeine/">
+				<h2 class="index-title">
+					Caffeine
+				</h2>
+				<div class="index-brief">
+					
+相较于Guava Cache，Caffeine在整体设计理念、实现策略以及接口定义等方面都基本继承了前辈的优秀特性。
+作为新时代背景下的后来者，Caffeine做了很多细节层面的优化，比如：
+
+基础数据结构层面优化 借助JAVA8对ConcurrentHashMap底层由链表切换为红黑树、以及废弃
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2024-01-07</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/框架相关/">框架相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2024/01/06/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Guava/">
+				<h2 class="index-title">
+					Guava
+				</h2>
+				<div class="index-brief">
+					Cache
+Guava Cache是一款非常优秀的本地缓存框架。
+官方文档：https://guava.dev/releases/21.0/api/docs/com/google/common/cache/Cache.html
+
+适用场景
+
+Guava Cache的实际适用场合：
+
+数据读多写少且对
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2024-01-06</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/框架相关/">框架相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2023/12/25/%E4%B8%AD%E9%97%B4%E4%BB%B6/Solr/">
@@ -1683,129 +1817,10 @@ RocketMQ定义了Topic：SCHEDULE_TOPIC_XXXX来实现延迟消息。
                 </div>
 		</div>	
 	
-		<div class="index-li">
-			<a href="/2023/11/29/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/XXLJOB/">
-				<h2 class="index-title">
-					XXLJOB
-				</h2>
-				<div class="index-brief">
-					
-XXL-JOB是一个分布式定时任务调度平台。
-分布式定时任务：
-
-指的是运行在分布式集群环境下的调度任务，同一份定时任务部署多份，则同一时刻应当只允许一个定时任务执行。
-
-源码仓库地址：
-
-https://github.com/xuxueli/xxl-job
-
-官方文档：
-
-https://www
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-29</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/框架相关/">框架相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/26/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Seata/">
-				<h2 class="index-title">
-					Seata
-				</h2>
-				<div class="index-brief">
-					
-Seata是一款开源的分布式事务解决方案，致力于提供高性能和简单易用的分布式事务服务。
-
-Seata提供了AT、TCC、SAGA和XA事务模式。
-
-
-其内部有关于分布式事务的定义如下：
-
-分布式事务是由多个分支事务组成的全局事务，其中每个分支事务都是本地事务的形式。
-
-
-Seata框架包含三部分内
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-26</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/框架相关/">框架相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/11/23/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%BA%94%E5%AD%A3/">
-				<h2 class="index-title">
-					第五季
-				</h2>
-				<div class="index-brief">
-					第22集上半部分
-
-        
-            
-        
-        
-          var ap = new APlayer({
-            element: document.getElementById("aplayer-ASLJoIrM"),
- 
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-11-23</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/英语相关/">英语相关</a>
-										
-											>
-										
-                                    </span>
-                                
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/英语相关/老友记/">老友记</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
 	
 	<div id="index-paginator">
 		
-			<a class="extend prev" rel="prev" href="/page/4/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/6/">&gt;</a>
+			<a class="extend prev" rel="prev" href="/page/4/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/6/">&gt;</a>
 		
 	</div>
 </div>

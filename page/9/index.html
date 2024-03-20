@@ -1239,6 +1239,44 @@
 							</ul>
 			
 							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Go语言
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E5%87%BD%E6%95%B0/">
+										函数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E5%B9%B6%E5%8F%91/">
+										并发
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E6%95%B0%E7%BB%84/">
+										数组
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
 								<li class="file">
 									<a href="/2022/11/21/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java%E5%9F%BA%E7%A1%80/">
 										Java基础
@@ -1421,6 +1459,109 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index" oncontextmenu="return false;">
+	
+		<div class="index-li">
+			<a href="/2023/10/21/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">
+				<h2 class="index-title">
+					Redis
+				</h2>
+				<div class="index-brief">
+					Redis为什么那么快？
+基于内存实现：
+
+Redis 将数据存储在内存中，读写操作不会受到磁盘的 IO 速度限制，所以Redis的读写速度会非常的快。
+CPU 不是 Redis 的瓶颈，Redis 的瓶颈是机器内存的大小或者网络带宽。
+
+使用I&#x2F;O多路复用模型：
+
+Redis 线程不会阻
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-10-21</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/数据库/">数据库</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/10/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/ZooKeeper/">
+				<h2 class="index-title">
+					ZooKeeper
+				</h2>
+				<div class="index-brief">
+					基本结构
+数据模型
+
+ZooKeeper中的数据模型是一种树形结构。
+具有一个固定的根节点，我们可以在根节点下创建子节点，并在子节点下继续创建下一级节点。
+树中的每一层级用斜杠（/）分隔开，只能用绝对路径（如get /work/task1）的方式查询节点，不能使用相对路径。
+
+为什么 ZooKeep
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-10-19</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/中间件/">中间件</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
+				<h2 class="index-title">
+					Spring
+				</h2>
+				<div class="index-brief">
+					Bean作用域
+
+
+默认作用域是Singleton，多个线程访问同一个Bean时会存在线程不安全问题。
+保障线程安全方法：
+
+在Bean对象中尽量避免定义可变的成员变量（不太现实）
+在类中定义⼀个ThreadLocal成员变量，将需要的可变成员变量保存在 ThreadLocal 中。
+
+
+启动初始化
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2023-10-14</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/框架相关/">框架相关</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2023/10/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%984/">
@@ -1673,125 +1814,10 @@ https://movie.douban.com/subject/13062
                 </div>
 		</div>	
 	
-		<div class="index-li">
-			<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/">
-				<h2 class="index-title">
-					Nginx
-				</h2>
-				<div class="index-brief">
-					配置文件
-
-
-
-配置块
-功能描述
-
-
-
-全局块
-与Nginx运行相关的全局设置
-
-
-events块
-与网络连接有关的设置
-
-
-http块
-代理、缓存、日志、虚拟主机等的配置
-
-
-server块
-虚拟主机的参数设置（一个http块可包含多个server块）
-
-
-location块
-定义请求路由及页面处
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-09</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/服务器/">服务器</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/10/09/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E9%9F%B3%E4%B9%90/">
-				<h2 class="index-title">
-					音乐
-				</h2>
-				<div class="index-brief">
-					纯音乐
-        
-            
-        
-        
-          var ap = new APlayer({
-            element: document.getElementById("aplayer-SXVPpNxF"),
-       
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-09</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/生活相关/">生活相关</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/%E8%BF%90%E7%BB%B4%E7%9F%A5%E8%AF%86/">
-				<h2 class="index-title">
-					运维知识
-				</h2>
-				<div class="index-brief">
-					发布方案蓝绿发布
-蓝绿部署，是指同时运行两个版本的应用。
-
-在蓝绿部署时，蓝绿部署的时候，并不停止掉老版本，而是直接部署一套新版本，等新版本运行起来后，再将流量切换到新版本上。
-例如发布前，在蓝色的系统上进行测试，测试完成后切换为蓝色系统，同时观察蓝色系统的运行状态，如果运行出现问题可以及时切回绿色
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-10-09</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/服务器/">服务器</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
 	
 	<div id="index-paginator">
 		
-			<a class="extend prev" rel="prev" href="/page/8/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/10/">&gt;</a>
+			<a class="extend prev" rel="prev" href="/page/8/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/10/">&gt;</a>
 		
 	</div>
 </div>
