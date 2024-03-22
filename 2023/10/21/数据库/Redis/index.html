@@ -570,6 +570,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2024/03/22/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/MySQL%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95/">
+										MySQL技术内幕
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2024/03/11/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E4%BA%BF%E7%BA%A7%E6%B5%81%E9%87%8F%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
 										亿级流量网站架构核心技术
 									</a>
@@ -2171,6 +2180,20 @@ list
 <li>然后再重放 AOF 文件尾部增量的 AOF 命令，从而大大减少了重启过程中数据还原的时间。</li>
 </ul>
 </blockquote>
+<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><strong>单线程模式</strong></p>
+<blockquote>
+<p>Redis的网络IO和键值对读写是由一个线程来完成的。</p>
+<p>Redis在处理客户端的请求时包括获取(读)、解析、执行、内容返回(写)等都由一个顺序串行的主线程处理。</p>
+<p>由于Redis在处理命令的时候是单线程作业的，所以会有一个Socket队列。</p>
+<ul>
+<li>每一个到达的服务端命令来了之后都不会马上被执行，而是进入队列，然后被线程的事件分发器逐个执行。</li>
+</ul>
+</blockquote>
+<p><img src="/images/535.png" alt="image"></p>
+<blockquote>
+<p>Redis的其他功能，比如持久化、异步删除、集群数据同步等等，其实是由额外的线程执行的。</p>
+<p>Redis工作线程是单线程的，但是在4.0之后，对于整个Redis服务来说，还是多线程运作的。</p>
+</blockquote>
 <h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><p><strong>热Key</strong></p>
 <p>京东开源工具：<a target="_blank" rel="noopener" href="https://gitee.com/jd-platform-opensource/hotkey">https://gitee.com/jd-platform-opensource/hotkey</a></p>
 <p>热 Key 带来问题：</p>
@@ -2605,6 +2628,33 @@ jedis.eval(luaScript, ScriptOutputType.VALUE, new String[]&#123;key&#125;, Strin
 <p>Redis提供了一个扩展类型HyperLogLog用于基数统计，计算<code>2^64</code>个元素大概只需要12KB的内存空间。</p>
 <p>但是<code>HyperLogLog</code>是存在误差的，大概是在<code>0.81%</code>，如果需要精准的统计，还是需要使用<code>Set</code>。</p>
 </blockquote>
+<h1 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h1><p><strong>Redis6.0多线程模型</strong></p>
+<blockquote>
+<p>Redis 的性能瓶颈逐渐体现在网络 I&#x2F;O 的读写上，单个线程处理网络 I&#x2F;O 读写的速度跟不上底层网络硬件执行的速度。</p>
+<p>Redis 在处理网络数据时，调用 <code>Epoll</code> 的过程是阻塞的，这个过程会阻塞线程。</p>
+<p>如果并发量很高，达到万级别的 QPS，就会形成瓶颈，影响整体吞吐能力。</p>
+<p>读写网络的 <code>read/write</code> 系统调用占用了 Redis 执行期间大部分 CPU 时间，要想真正做到提速，必须改善网络IO性能。</p>
+<p>Redis支持多线程两个原因：</p>
+<ul>
+<li>可以充分利用服务器CPU的多核资源，而主线程明显只能利用一个。</li>
+<li>多线程任务可以分摊 Redis 同步 IO 读写负荷，降低耗时。</li>
+</ul>
+</blockquote>
+<p><img src="/images/536.png" alt="image"></p>
+<blockquote>
+<p>6.0版本优化之后，主线程和多线程网络IO的执行流程如下：</p>
+<ul>
+<li>主线程建立连接，并接受数据，并将获取的 <code>socket</code> 数据放入等待队列。</li>
+<li>通过轮询的方式将 <code>socket</code> 读取出来并分配给 IO 线程。</li>
+<li>之后主线程保持阻塞，一直等到 IO 线程完成 <code>socket</code> 读取和解析。</li>
+<li>I&#x2F;O 线程读取和解析完成之后，返回给主线程，主线程开始执行 Redis 命令。</li>
+<li>执行完Redis命令后，主线程阻塞，直到IO 线程完成 结果回写到 <code>socket</code> 的工作。</li>
+<li>主线程清空已完成的队列，等待客户端新的请求。</li>
+</ul>
+<p>本质上是将主线程 IO 读写的这个操作独立出来，单独交给一个<strong>I&#x2F;O线程组</strong>处理。</p>
+<p>这样多个 <code>socket</code> 读写可以并行执行，整体效率也就提高了，同时注意 Redis 命令还是主线程串行执行。</p>
+</blockquote>
+<p><img src="/images/537.png" alt="image"></p>
 
 	</div>
 </div>

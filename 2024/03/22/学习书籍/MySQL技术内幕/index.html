@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en" oncontextmenu="return false;">
+
+<head oncontextmenu="return false;">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="baidu-site-verification" content="codeva-QodU0Nk5F7" />
+	<meta name="google-site-verification" content="DbSTw8OJwtH5Qei7n8Jnew0YyQ5naPzdLAPiscu7zQE" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+	
+	<!-- title -->
+	
+	<title>
+	
+		MySQL技术内幕 | 
+	 
+	月伴飞鱼
+	</title>
+	
+	<!-- keywords,description -->
+	 
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/%E5%A4%B4%E5%83%8F.jpg">
+	
+  
+  	
+<link rel="stylesheet" href="/css/main.css">
+
+  	
+<link rel="stylesheet" href="/css/reward.css">
+
+	
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="/lib/highlight/darcula.css">
+
+	
+<link rel="stylesheet" href="/css/clipboard-use.css">
+
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+	
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+
+	
+<script src="/lib/highlight/highlight.min.js"></script>
+
+
+	
+<script src="https://readmore.openwrite.cn/js/readmore-2.0.js"></script>
+
+	
+<script src="/lib/jquery-3.4.1.min.js"></script>
+
+	
+<script src="/lib/jquery.pjax.js"></script>
+
+
+	
+<script src="/js/main.js"></script>
+
+	
+<script src="/js/jquery.fancybox.min.js"></script>
+
+	
+		
+<script src="/lib/valine/av-3.0.4-min.js"></script>
+
+		
+<script src="/lib/valine/Valine-1.3.10-min.js"></script>
+
+	
+	
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body oncontextmenu="return false;">
+	<header id="header" oncontextmenu="return false;">
+    <a id="title" href="/" class="logo">公众号月伴飞鱼</a>
+
+	<ul id="menu">
+		<li class="menu-item">
+			<a href="/about" class="menu-item-link">关于我</a>
+		</li>
+
+		<li class="menu-item">
+			<a href="/个人微信.jpeg" class="menu-item-link">联系作者</a>
+		</li>
+
+	    <li class="menu-item">
+			<a href="/site" class="menu-item-link">关于网站</a>
+		</li>
+
+		<li class="menu-item">
+			<a href="/个人公众号.jpg" class="menu-item-link" target="_blank">我的公众号</a>
+		</li>
+		
+		<li class="menu-item">
+			<a href="https://tech.meituan.com/" class="menu-item-link" target="_blank">
+				美团技术团队
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="https://tech.youzan.com/" class="menu-item-link" target="_blank">
+				有赞技术团队
+			</a>
+		</li>
+		<!--<li class="menu-item">
+			<select class="menu-item-link menu-item-select">
+				<option class="menu-item-link"  value="volvo">Volvo</option>
+				<option class="menu-item-link"  value="saab">Saab</option>
+				<option class="menu-item-link"  value="fiat">Fiat</option>
+				<option class="menu-item-link"  value="audi">Audi</option>
+			</select>
+		</li>-->
+	</ul>
+</header>
+
+	<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="text" placeholder="按目录搜索一下">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										AI相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/14/AI%E7%9B%B8%E5%85%B3/AIGC/">
+										AIGC
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/07/AI%E7%9B%B8%E5%85%B3/Sora/">
+										Sora
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/01/AI%E7%9B%B8%E5%85%B3/%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/">
+										提示词工程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										中间件
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/Dubbo/">
+										Dubbo
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/">
+										Elasticsearch
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/Netty/">
+										Netty
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/25/%E4%B8%AD%E9%97%B4%E4%BB%B6/Solr/">
+										Solr
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/ZooKeeper/">
+										ZooKeeper
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										产品相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/18/%E4%BA%A7%E5%93%81%E7%9B%B8%E5%85%B3/%E5%B9%BF%E5%91%8A%E4%B8%9A%E5%8A%A1/">
+										广告业务
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/18/%E4%BA%A7%E5%93%81%E7%9B%B8%E5%85%B3/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">
+										推荐系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/06/%E4%BA%A7%E5%93%81%E7%9B%B8%E5%85%B3/%E7%94%A8%E6%88%B7%E5%A2%9E%E9%95%BF/">
+										用户增长
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										代码思想
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/12/15/%E4%BB%A3%E7%A0%81%E6%80%9D%E6%83%B3/CodeReview/">
+										CodeReview
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/02/%E4%BB%A3%E7%A0%81%E6%80%9D%E6%83%B3/%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84/">
+										代码重构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										前端相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/CSS/">
+										CSS
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/26/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/React/">
+										React
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/26/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/Vue/">
+										Vue
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/12/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+										小程序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										基础知识
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/11/27/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/JVM/">
+										JVM
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%88%86%E5%B8%83%E5%BC%8F/">
+										分布式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/10/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+										并发编程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+										设计模式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										大数据相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/21/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/DataX/">
+										DataX
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/25/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Doris/">
+										Doris
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Flink/">
+										Flink
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/21/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Hadoop/">
+										Hadoop
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/07/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Hive/">
+										Hive
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/23/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/SQOOP/">
+										SQOOP
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Spark/">
+										Spark
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										学习专栏
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/16/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">
+										从0开始学架构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/31/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E4%BB%A3%E7%A0%81%E4%B9%8B%E4%B8%91/">
+										代码之丑
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/26/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E5%A4%A7%E5%8E%82%E6%99%8B%E5%8D%87%E6%8C%87%E5%8D%97/">
+										大厂晋升指南
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/19/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E5%AD%A6%E4%B9%A0%E9%AB%98%E6%89%8B/">
+										如何成为学习高手
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										学习书籍
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/05/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/HBase%E4%B8%8D%E7%9D%A1%E8%A7%89%E4%B9%A6/">
+										HBase不睡觉书
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/02/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98/">
+										Java并发编程实战
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/02/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/">
+										Java并发编程的艺术
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/16/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
+										Java开发手册
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file active">
+									<a href="/2024/03/22/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/MySQL%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95/">
+										MySQL技术内幕
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/11/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E4%BA%BF%E7%BA%A7%E6%B5%81%E9%87%8F%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
+										亿级流量网站架构核心技术
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/05/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93/">
+										代码整洁之道
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/03/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E5%A4%A7%E5%9E%8B%E7%BD%91%E7%AB%99%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/">
+										大型网站技术架构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/07/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E5%A4%A7%E5%9E%8B%E7%BD%91%E7%AB%99%E7%B3%BB%E7%BB%9F/">
+										大型网站系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/06/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA/">
+										深入理解Java虚拟机
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/08/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E8%8B%B1%E8%AF%AD%E9%AD%94%E6%B3%95%E5%B8%88%E4%B9%8B%E8%AF%AD%E6%B3%95%E4%BF%B1%E4%B9%90%E9%83%A8/">
+										英语魔法师之语法俱乐部
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										工具相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/11/09/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Arthas/">
+										Arthas
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/24/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/ChatGPT/">
+										ChatGPT
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/GIT/">
+										GIT
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Hexo/">
+										Hexo
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/MAC/">
+										MAC
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/01/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Maven/">
+										Maven
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/09/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/PlantUML/">
+										PlantUML
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/22/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/UTools/">
+										UTools
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">
+										实用工具
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										成长相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/31/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">
+										技术学习
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/07/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/">
+										读书计划
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/09/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/">
+										面试相关
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										数据库
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/06/%E6%95%B0%E6%8D%AE%E5%BA%93/ClickHouse/">
+										ClickHouse
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/27/%E6%95%B0%E6%8D%AE%E5%BA%93/HBase/">
+										HBase
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/">
+										MongoDB
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/02/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">
+										MySQL
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">
+										Redis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										文章速读
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/03/18/%E6%96%87%E7%AB%A0%E9%80%9F%E8%AF%BB/%E5%A4%A7%E5%8E%82%E6%96%87%E7%AB%A0/">
+										大厂文章
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										服务器
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%9C%8D%E5%8A%A1%E5%99%A8/Docker/">
+										Docker
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/">
+										Nginx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/Tomcat/">
+										Tomcat
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/%E8%BF%90%E7%BB%B4%E7%9F%A5%E8%AF%86/">
+										运维知识
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										架构相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/DDD/">
+										DDD
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/02/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E6%9E%B6%E6%9E%84%E5%9B%BE/">
+										架构图
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/02/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/">
+										架构学习
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/26/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E4%BF%9D%E9%9A%9C/">
+										系统保障
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/31/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E6%80%A7%E8%83%BD/">
+										系统性能
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/26/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
+										系统设计
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										框架相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/07/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Caffeine/">
+										Caffeine
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/06/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Guava/">
+										Guava
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/15/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/JWT/">
+										JWT
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/MyBatis/">
+										MyBatis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/RPC%E6%A1%86%E6%9E%B6/">
+										RPC框架
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/26/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Seata/">
+										Seata
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/03/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/ShardingSphere/">
+										ShardingSphere
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
+										Spring
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/03/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
+										Thrift
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/29/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/XXLJOB/">
+										XXLJOB
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">
+										开源框架
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										消息队列
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/KAFKA/">
+										KAFKA
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/20/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RabbitMQ/">
+										RabbitMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RocketMQ/">
+										RocketMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										源码相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/12/13/%E6%BA%90%E7%A0%81%E7%9B%B8%E5%85%B3/RocketMQ/">
+										RocketMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										生活相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/27/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E4%B9%A6%E7%B1%8D/">
+										书籍
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/17/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E5%81%9A%E8%8F%9C/">
+										做菜
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/24/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E6%B3%95%E5%BE%8B/">
+										法律
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E7%94%B5%E5%BD%B1/">
+										电影
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/10/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E7%94%B5%E8%A7%86%E5%89%A7/">
+										电视剧
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/11/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E7%BA%AA%E5%BD%95%E7%89%87/">
+										纪录片
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E9%9F%B3%E4%B9%90/">
+										音乐
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										算法相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/LeetCode/">
+										LeetCode
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E5%89%91%E6%8C%87OFFER/">
+										剑指OFFER
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
+										面试算法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										编程语言
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/11/11/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E5%9F%BA%E7%A1%80/">
+										Go基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Go语言
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E5%87%BD%E6%95%B0/">
+										函数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E5%B9%B6%E5%8F%91/">
+										并发
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E6%95%B0%E7%BB%84/">
+										数组
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/21/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E7%BB%93%E6%9E%84%E4%BD%93/">
+										结构体
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/21/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java%E5%9F%BA%E7%A1%80/">
+										Java基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/29/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python%E5%9F%BA%E7%A1%80/">
+										Python基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										英语相关
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										摩登家庭
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/03/05/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E6%91%A9%E7%99%BB%E5%AE%B6%E5%BA%AD/%E7%AC%AC%E4%B8%80%E5%AD%A3/">
+										第一季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										老友记
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%80%E5%AD%A3/">
+										第一季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%89%E5%AD%A3/">
+										第三季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/23/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%BA%94%E5%AD%A3/">
+										第五季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										雅思
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/25/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%9815/">
+										剑桥雅思听力真题15
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%984/">
+										剑桥雅思听力真题4
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E9%9B%85%E6%80%9D%E9%98%85%E8%AF%BB538%E8%80%83%E7%82%B9%E8%AF%8D/">
+										雅思阅读538考点词
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										计算机基础
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+										操作系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+										数据结构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/">
+										算法知识
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
+										网络基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content">
+		<h1 id="article-title" oncontextmenu="return false;">
+
+	MySQL技术内幕
+</h1>
+<div class="article-meta" oncontextmenu="return false;">
+	<span>月伴飞鱼</span>
+	<span>2024-03-22 17:28:37</span>
+    
+		<div id="article-categories">
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/学习书籍/">学习书籍</a>
+						
+                    </span>
+                
+            
+		</div>
+    
+</div>
+
+<div id="container" class = "content999" oncontextmenu="return false;">
+<!--打赏-->
+        <div class="reward">
+       <div class="reward-button">赏 <span class="reward-code">
+        <span class="alipay-code"> <img class="alipay-img wdp-appear" src="/alipay.png"><b>支付宝打赏</b> </span> 
+        <span class="wechat-code"> <img class="wechat-img wdp-appear" src="/weipay.jpeg"><b>微信打赏</b> </span> 
+       </div>
+      <p class="reward-notice">如果文章对你有帮助，欢迎点击上方按钮打赏作者！</p>
+      </div>
+      <!--打赏-->
+	<div id="article-content">
+		<p>书籍介绍：<a target="_blank" rel="noopener" href="https://book.douban.com/subject/24708143/">https://book.douban.com/subject/24708143/</a></p>
+<h1 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h1><blockquote>
+<p>MySQL 被设计为一个可移植的数据库，几乎在当前所有系统上都能运行，如Linux, Solaris 、FreeBSD 、Mac 和Windows。 </p>
+<p>尽管各平台在底层（如线程）实现方面都各有不同，但是MySQL 基本上能保证在各平台上的物理体系结构的一致性。</p>
+<p>因此，用户应该能很好地理解MySQL 数据库在所有这些平台上是如何运作的。</p>
+</blockquote>
+<p><strong>定义数据库和实例</strong></p>
+<blockquote>
+<p>数据库：物理操作系统文件或其他形式文件类型的集合。</p>
+<ul>
+<li>注：当使用NDB 引擎时，数据库的文件可能不是操作系统上的文件，而是存放于内存之中的文件，但是定义仍然不变。</li>
+</ul>
+<p>数据库实例：MySQL 数据库由后台线程以及一个共享内存区组成。共享内存可以被运行的后台线程所共享。</p>
+<ul>
+<li>注：与数据库的关系通常是一一对应的，但是，在集群情况下可能存在一个数据库被多个数据实例使用的情况。</li>
+</ul>
+<p>MySQL 被设计为一个 单进程多线程 架构的数据库，MySQL 数据库实例在系统上的表现就是一个进程。</p>
+<ul>
+<li>类似于程序和进程的关系，当然这样类比也不太恰当。</li>
+</ul>
+<p>总结：数据库是文件的集合，是依照某种数据模型组织起来并存放于二级存储器中的数据集合。</p>
+<p>数据库实例是程序，是位于用户与操作系统之间的一层数据管理软件，用户对数据库数据的任何操作，包括数据库定义、数据查询、数据维护、数据库运行控制等都是在数据库实例下进行的，应用程序只有通过数据库实例才能和数据库打交道。</p>
+</blockquote>
+<p><strong>MySQL体系结构</strong></p>
+<p><img src="/images/538.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>MySQL 数据库区别于其他数据库的最重要的一个特点就是其插件式的表存储引擎。</p>
+<p>MySQL 插件式的存储引擎架构提供了一系列标准的管理和服务支持，这些标准与存储引擎本身无关，可能是每个数据库系统本身都必需的，如SQL 分析器和优化器等，而存储引擎是底层物理结构的实现，每个存储引擎开发者可以按照自己的意愿来进行开发。</p>
+<p>需要特别注意的是，存储引擎是基于表的，而不是数据库。</p>
+</blockquote>
+<p><strong>MySQL存储引擎</strong></p>
+<blockquote>
+<p>存储引擎的好处是，每个存储引擎都有各自的特点，能够根据具体的应用<strong>建立不同存储引擎表。</strong></p>
+<p>由于 MySQL 数据库开源特性，存储引擎可以分为 MySQL 官方存储引擎和第三方存储引擎（比如 <strong>InnoDB</strong> 存储引擎）。</p>
+</blockquote>
+<p><strong>InnoDB存储引擎</strong></p>
+<blockquote>
+<p>InnoDB 存储引擎 支持事务，其设计目标主要面向 在线事务处理( OLTP) 的应用。</p>
+<p>其特点是 行锁设计、支持外键，并支持类似于Oracle 的 非锁定读，即默认读取操作不会产生锁。</p>
+<ul>
+<li>MySQL 数据库5.5.8 版本开始，InnoDB 存储引擎是默认的存储引擎，之前默认的是 MyISAM 存储引擎。</li>
+</ul>
+<p>InnoDB 存储引擎将数据放在一个逻辑的表空间中，这个表空间就像黑盒一样由InnoDB 存储引擎自身进行管理。</p>
+<p>InnoDB 通过 使用多版本并发控制(MVCC) 来获得高并发性，并且实现了SQL标准的4 种隔离级别，默认为 REPEATABLE 级别。</p>
+<p>对于表中数据的存储，InnoDB 存储引擎采用了聚集(clustered) 的方式，因此每张表的存储都是按主键的顺序进行存放。</p>
+<p>如果没有显式地在表定义时指定主键， InnoDB 存储引擎会为每一行生成一个6 字节的ROWID, 并以此作为主键。</p>
+<p>InnoDB 存储引擎具备的高可用性、高性能以及高可扩展性。</p>
+</blockquote>
+<p><strong>MylSAM存储引擎</strong></p>
+<blockquote>
+<p>MyISAM 存储引擎 不支持事务、表锁设计，支待全文索引，主要面向一些 OLAP 数据库应用。</p>
+<p>数据库系统与文件系统很大的一个不同之处在于对事务的支持，然而MyISAM 存储引擎是不支持事务的。</p>
+<ul>
+<li>毕竟在数据仓库中不是所有的操作都需要事务支持。</li>
+</ul>
+<p>最大的不同点：MyISAM 存储引擎的缓冲池只缓存(cache) 索引文件，而不缓冲数据文件。</p>
+<p>MylSAM 存储引擎表由MYD 和MYI 组成， MYD 用来存放数据文件， MYI 用来存放索引文件。</p>
+<p>注：在MySQL 5.0 版本之前，MyISAM 默认支持的表大小为4GB, 如果需要支持大于4GB 的MyISAM 表时，则需要制定 MAX_ROWS 和 AVG_ROW_LENGTH 属性。</p>
+<p>从MySQL5.0 版本开始， MyISAM 默认支持 256TB 的单表数据。</p>
+<p>对于MyISAM 存储引擎表， MySQL 数据库只缓存其索引文件，数据文件的缓存交由操作系统本身来完成。</p>
+</blockquote>
+<h1 id="InnoDB存储引擎"><a href="#InnoDB存储引擎" class="headerlink" title="InnoDB存储引擎"></a>InnoDB存储引擎</h1><blockquote>
+<p>InnoDB 是 事务安全 的MySQL 存储引擎，设计上采用了类似于Oracle 数据库的架构。</p>
+<p>通常来说， InnoDB 存储引擎是OLTP应用中核心表的首选存储引擎。</p>
+<p>同时，也正是因为InnoDB 的存在，才使MySQL 数据库变得更有魅力。</p>
+<p>本章将详细介绍InnoDB 存储引擎的体系架构及其不同于其他存储引擎的特性。</p>
+</blockquote>
+<p><strong>InnoDB存储引擎概述</strong></p>
+<blockquote>
+<p>InnoDB 存储引擎是第一个完整支持 ACID 事务的MySQL 存储引擎。</p>
+<ul>
+<li>注：BDB 是第一个支持事务的MySQL 存储引擎。</li>
+</ul>
+<p>特点：行锁设计、支持MVCC 、支持外键、提供一致性非锁定读，同时被设计用来最有效地利用以及使用内存和CPU。</p>
+</blockquote>
+<p><strong>InnoDB存储引擎的版本</strong></p>
+<blockquote>
+<p>InnoDB 存储引擎被包含于所有MySQL 数据库的二进制发行版本中。</p>
+<p>早期其版本随着 <strong>MySQL</strong> 数据库的更新而更新。</p>
+<p>从 <strong>MySQL 5.1</strong> 版本时，MySQL 数据库允许存储引擎开发商 <strong>以动态方式加载引擎</strong>，这样存储引擎的更新可以不受MySQL 数据库版本的限制。</p>
+</blockquote>
+<p><img src="/images/539.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><strong>注：InnoDB 1.0.x以及老版本，由于不支持多回滚段，InnoDB Plugin 支持的最大支持并发事务数量也被限制在1023。</strong></p>
+</blockquote>
+<p><strong>InnoDB体系架构</strong></p>
+<p><img src="/images/540.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>InnoDB 存储引擎： 有多个内存块，可以认为这些内存块组成了一个大的内存池，负责如下工作：</p>
+<p>①、维护所有进程／线程需要访问的多个内部数据结构。</p>
+<p>②、缓存磁盘上的数据，方便快速地读取，同时在对磁盘文件的数据修改之前在这里缓存。</p>
+<p>③、重做日志(redo log) 缓冲等。</p>
+<p>后台线程：</p>
+<p>①、 主要作用是负责刷新内存池中的数据，保证缓冲池中的内存缓存的是最近的数据，此外将已修改的数据文件刷新到磁盘文件。</p>
+<p>②、同时保证在数据库发生异常的情况下InnoDB 能恢复到正常运行状态。</p>
+</blockquote>
+<p><strong>后台线程</strong></p>
+<blockquote>
+<p>InnoDB 存储引擎是多线程的模型，因此其后台有多个不同的后台线程，负责处理不同的任务。</p>
+<p>①、Master Thread： 是一个非常核心的后台线程，主要负责将缓冲池中的数据异步刷新到磁盘，保证数据的一致性（包括脏页的刷新、合并插入缓冲(INSERT BUFFER) 、UNDO 页的回收等）。</p>
+<p>②、I&#x2F;O Thread： 在 lnnoDB 存储引擎中大量使用了 AIO ( Async IO) 来处理写IO 请求，这样可以极大提高数据库的性能。</p>
+<p>而 IO Thread 的工作主要是负责这些IO 请求的回调(call back)处理。</p>
+<p>注：InnoDB 1.0 版本之前共有 4 个IO Thread, 分别是write 、read 、insert buffer 和log IO thread。</p>
+<p>在 Linux 平台下， IO Thread 的数量不能进行调整，但是在Windows 平台下可以通过参数 innodb_file_ io threads 来增大IO Thread。</p>
+<p>从InnoDB 1.0.x 版本开始， read thread 和write thread 分别增大到了4 个，并且不再使用 <code>innodb_ file _io_threads</code> 参数，而是分别使用 <code>innodb_read_ io threads</code> 和<code>innodb_write_ io _ threads</code> 参数进行设置，可以通过命令SHOW ENGINE INNODB STATUS 来观察InnoDB 中的IO Thread: (注意：读线程的ID 总是小于写线程)。</p>
+<p>③、Purge Thread： 事务被提交后，其所使用的 undo log 可能不再需要，因此需要 PurgeThread 来回收已经使用并分配的 undo 页。</p>
+<p>注：在 InnoDB 1.1 版本之前， purge 操作仅在InnoDB 存储引擎的 Master Thread 中完成。</p>
+<p>而从 InnoDB 1.1 版本开始， purge 操作可以独立到单独的线程中进行，以此来减轻 Master Thread 的工作，从而提高 CPU 的使用率以及提升存储引擎的性能。 </p>
+<p>在 InnoDB 1.1 版本中，即使将innodb_purge_ threads 设为大于1, InnoDB 存储引擎启动时也会将其设为1。</p>
+<p>从 InnoDB 1.2 版本开始， InnoDB 支持多个 Purge Thread, 这样做的目的是为了进一步加快undo 页的回收。</p>
+<p>同时由于 Purge Thread 需要离散地读取undo 页，这样也能更进一步利用磁盘的随机读取性能。</p>
+<p>④、Page Cleaner Thread： Page Cleaner Thread 是在InnoDB 1.2.x 版本中引入的。</p>
+<p>其作用是将之前版本中脏页的刷新操作都放入到单独的线程中来完成。 </p>
+<p>而其目的是为了减轻原Master Thread 的工作及对于用户查询线程的阻塞，进一步提高InnoDB 存储引擎的性能。</p>
+</blockquote>
+<p><strong>缓冲池</strong></p>
+<blockquote>
+<p>InnoDB 存储引擎是基于磁盘存储的，并将其中的记录按照页的方式进行管理。 </p>
+<p>因此可将其视为基于磁盘的数据库系统。在数据库系统中，由于CPU速度与磁盘速度之间的鸿沟，基于磁盘的数据库系统通常使用 缓冲池技术 来提高数据库的整体性能。</p>
+<p>缓冲池简单来说就是一块内存区域，通过内存的速度来 弥补 磁盘速度较慢对数据库性能的影响。</p>
+<p>①、在数据库中进行读取页的操作，首先将从磁盘读到的页存放在缓冲池中，这个过程称为将页”FIX” 在缓冲池中。</p>
+<p>下一次再读相同的页时，首先判断该页是否在缓冲池中。</p>
+<p>若在缓冲池中，称该页在缓冲池中被命中，直接读取该页。否则，读取磁盘上的页。</p>
+<p>②、对于数据库中页的修改操作，则首先修改在缓冲池中的页，然后再以一定的频率刷新到磁盘上。</p>
+<p>通过一种称为 Checkpoint 的机制刷新回磁盘。同样，这也是为了提高数据库的整体性能。</p>
+<p>注：缓冲池的大小直接影响着数据库的整体性能，对于InnoDB 存储引擎而言，其缓冲池的配置通过参数<code>innodb_buffer_pool_ size</code> 来设置。</p>
+</blockquote>
+<p><strong>InnoDB存储引擎中内存的结构</strong></p>
+<p><img src="/images/541.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>具体来看，缓冲池中缓存的数据页类型有：</p>
+<p>索引页、数据页、undo 页、插入缓冲 、自适应哈希索引 、InnoDB 存储的锁信息 、数据字典信息等。</p>
+<p>从 InnoDB 1.0.x 版本开始，允许有多个缓冲池实例。</p>
+<p>每个页根据哈希值平均分配到不同缓冲池实例中。</p>
+<p>这样做的好处是减少数据库内部的资源竞争，增加数据库的并发处理能力。</p>
+<p>可以通过参数 <code>innodb_ buffer _pool_instances</code> 来进行配置，该值默认为1。</p>
+<p>从MySQL 5.6 版本开始，还可以通过 <code>information_schema</code> 架构下的表 <code>INNODB_ BUFFER_POOL_STATS</code> 来观察缓冲的状态。</p>
+</blockquote>
+<p><strong>LRU List 、Free List 和Flush List</strong></p>
+<blockquote>
+<p>①、InnoDB 存储引擎是怎么对这么大的内存区域进行管理的呢？（优化的LRU算法）</p>
+<p>数据库中的缓冲池是通过LRU (Latest Recent Used, 最近最少使用）算法来进行管理的。</p>
+<p>即最频繁使用的页在LRU 列表的前端，而最少使用的页在LRU 列表的尾端。</p>
+<p>当缓冲池不能存放新读取到的页时，将首先释放LRU 列表中尾端的页。</p>
+<p>在InnoDB 存储引擎中， 缓冲池中页的大小默认为 16KB, 同样使用LRU 算法对缓冲池进行管理。</p>
+<p>稍有不同的是 InnoDB 存储引擎对传统的LRU 算法做了一些优化。</p>
+</blockquote>
+<blockquote>
+<p>优化： 在 InnoDB 的存储引擎中， LRU 列表中还加入了 midpoint 位置。</p>
+<p>新读取到的页，虽然是最新访问的页，但并不是直接放入到LRU 列表的首部，而是放入到LRU 列表的 midpoint 位置。</p>
+<p>这个算法在InnoDB 存储引擎下称为 <code>midpoint insertion strategy</code>。</p>
+<p>在默认配置下，该位置在LRU 列表长度的5&#x2F;8 处。midpoint 位置可由参数 <code>innodb_old_ blocks _pct</code> 控制。</p>
+</blockquote>
+<blockquote>
+<p>在 <strong>InnoDB</strong> 存储引擎中，把 <strong>midpoint</strong> 之后的列表称为 <strong>old</strong> 列表，之前的列表称为 <strong>new</strong> 列表。</p>
+<p><strong>可以简单地理解为new列表中的页都是最为活跃的热点数据。</strong></p>
+</blockquote>
+<p><img src="/images/542.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>②、为什么不采用朴素的 LRU 算法，直接将读取的页放入到LRU 列表的首部呢？？</p>
+<p>因为若直接将读取到的页放入到 LRU 的首部，那么某些 SQL 操作可能会使缓冲池中的页被刷新出，从而影响缓冲池的效率。</p>
+<p>而如果这些页通常来说又仅在这次操作中需要，并不是活跃的热点数据。</p>
+<p>如果页被放入LRU 列表的首部，那么非常可能将所需要的热点数据页从LRU 列表中移除，而在下一次需要读取该页时，InnoDB 存储引擎需要再次访问磁盘。</p>
+<p>为了解决这个问题，InnoDB 存储引擎引入了另一个参数来进一步管理LRU 列表，这个参数是 <code>innodb_old_blocks_time</code>, 用于表示页读取到mid 位置后需要等待多久才会被加入到LRU 列表的热端。</p>
+</blockquote>
+<blockquote>
+<p>LRU 列表用来管理已经读取的页，但当数据库刚启动时，LRU 列表是空的，即没有任何的页。 </p>
+<p>这时页都存放在 Free 列表中。</p>
+<p>当需要从缓冲池中分页时，首先从Free 列表中查找是否有可用的空闲页，若有则将该页从Free 列表中删除，放入到 LRU 列表中。</p>
+<p>否则，根据 LRU 算法，淘汰 LRU 列表末尾的页，将该内存空间分配给新的页。</p>
+<p>当页从 LRU 列表的 old 部分加入到 new 部分时，称此时发生的操作为 page made young, 而因为 <code>innodb_old_ blocks_ time</code> 的设置而导致页没有从 old 部分移动到new 部分的操作称为page not made young。</p>
+<p>注：可以通过命令 SHOW ENGINE INNODB STATUS 来观察 LRU 列表及Free 列表的使用情况和运行状态。</p>
+</blockquote>
+<blockquote>
+<p>通过命令 SHOW ENGINE INNODB STATUS 可以看到：当前 Buffer pool size 共有 327 679 个页，即 327679*16K, 总共 5GB 的缓冲池。</p>
+<p>Free buffers 表示当前 Free 列表中页的数量，Database pages 表示 LRU 列表中页的数量。</p>
+<p>可能的情况是 Free buffers 与 Database pages 的数量之和不等于 Buffer pool size （说明Free列表和LRU列表基本包好了缓冲池中所有的页）（因为缓冲池中的页还可能会被分配给自适应哈希索引、Lock 信息、Insert Buffer 等页，而这部分页不需要LRU 算法进行维护，因此不存在于 LRU 列表中）。</p>
+<p>pages made young 显示了LRU 列表中页移动到前端的次数，因为该服务器在运行阶段没有改变 innodb_old_blocks_time 的值，因此 not young 为0 。</p>
+<p>Buffer pool hit rate, 表示缓冲池的命中率，这个例子中为100%, 说明缓冲池运行状态非常良好。</p>
+<p>通常该值不应该小于95%。</p>
+<p>若发生Buffer pool hit rate 的值小于95% 这种情况 ，用户需要观察是否是由于全表扫描引起的LRU 列表被污染的问题。</p>
+<p>执行命令SHOW ENGINE INNODB STATUS 显示的不是当前的状态， 而是过去某个时间范围内InnoDB 存储引擎的状态。</p>
+<p>从上面的例子可以发现， Persecond averages calculated from the last 24 seconds 代表的信息为过去24 秒内的数据库状态。</p>
+<p>可以通过表 INNODB_BUFFER_PAGE_LRU 来观察每个LRU 列表中每个页的具体信息， 例如通过下面的语句可以看到缓冲池 LRU 列表中 SPACE 为 1 的表的页类型。</p>
+<p>InnoDB 存储引擎从1.0.x 版本开始支持压缩页的功能，即将原本16KB 的页压缩为1KB 、2KB 、4KB 和8KB 。</p>
+<p>而由于页的大小发生了变化， LRU 列表也有了些许的改变。对于非16KB 的页，是通过 unzip_LRU 列表进行管理的。</p>
+</blockquote>
+<blockquote>
+<p>可以看到 <strong>LRU</strong> 列表中一共有 <strong>1539</strong> 个页，而 <strong>unzip_LRU</strong> 列表中有 <strong>156</strong> 个页。这里需要注意的是， <strong>LRU</strong> 中的页包含了 <strong>unzip_LRU</strong> 列表中的页。</p>
+</blockquote>
+<blockquote>
+<p>③、unzip_LRU 是怎样从缓冲池中分配内存的呢？？</p>
+<p>首先，在 unzip_LRU 列表中对不同压缩页大小的页进行分别管理。其次，通过 伙伴算法 进行内存的分配。例如对需要从缓冲池中申请页为4KB 的大小，其过程如下：</p>
+<p>⒈、检查 4KB 的 unzip_LRU 列表，检查是否有可用的空闲页；</p>
+<p>⒉、若有，则直接使用；</p>
+<p>⒊、否则，检查 8KB 的 unzip_LRU 列表；</p>
+<p>⒋、若能够得到空闲页，将页分成 2 个 4KB 页，存放到 4KB 的unzip_LRU 列表；</p>
+<p>⒌ 、若不能得到空闲页，从 LRU 列表中申请一个 16KB 的页，将页分为1 个8KB 的页、2 个4KB 的页，分别存放到对应的 unzip_LRU 列表中。</p>
+</blockquote>
+<blockquote>
+<p>④、什么是脏页？？</p>
+<p>在 LRU 列表中的页被修改后，称该页为 脏页(dirty page), 即缓冲池中的页和磁盘上的页的数据产生了不一致。</p>
+<p>这时数据库会通过 CHECKPOINT 机制 将脏页刷新回磁盘，而 Flush 列表 中的页即为 脏页列表。</p>
+<p>需要注意的是，脏页既存在于LRU 列表中，也存在于Flush 列表中。LRU 列表用来管理缓冲池中页的可用性，Flush 列表用来管理将页刷新回磁盘， 二者互不影响。</p>
+<p>注：同 LRU 列表一样， Flush 列表也可以通过命令SHOW ENGINE INNODB STATUS 来查看。</p>
+<p>脏页同样存在于 LRU 列表中，故用户可以通过元数据表 INNODB_BUFFER_PAGE_LRU 来查看。</p>
+<p><strong>重做日志缓冲</strong></p>
+<p>InnoDB 存储引擎的内存区域除了有缓冲池外，还有 重做日志缓冲(redo log buffer) 。</p>
+<p>InoDB 存储引擎 首先将重做日志信息先放入到这个缓冲区，然后按一定频率将其刷新到重做日志文件。</p>
+<p>注：重做日志缓冲一般不需要设置得很大，因为一般情况下每一秒钟会将重做日志缓冲刷新到日志文件，因此用户只需要保证每秒产生的事务量在这个缓冲大小之内即可。 </p>
+<p>该值可由配置参数<code>innodb_log_ buffer_ size</code> 控制，默认为8MB。</p>
+</blockquote>
+<blockquote>
+<p>重做日志在下列三种情况下会将重做日志缓冲中的内容刷新到外部磁盘的重做日志文件中？</p>
+<p>⒈、Master Thread 每一秒将重做日志缓冲刷新到重做日志文件；</p>
+<p>⒉、每个事务提交时 会将重做日志缓冲刷新到重做日志文件；</p>
+<p>⒊、当重做日志缓冲池剩余空间小于1&#x2F;2 时， 重做日志缓冲刷新到重做日志文件。</p>
+</blockquote>
+<p><strong>额外的内存池</strong></p>
+<blockquote>
+<p>额外的内存池通常被DBA 忽略，他们认为该值并不十分重要，事实恰恰相反，该值同样十分重要。</p>
+<p>在InnoDB 存储引擎中，对内存的管理是通过一种称为 内存堆（heap）的方式 进行的。</p>
+<p>在对一些数据结构本身的内存进行分配时， 需要从额外的内存池中进行申请，当该区域的内存不够时，会从缓冲池中进行申请。</p>
+<p>例如，分配了缓冲池(<code>innodb_buffer_pool</code>), 但是每个缓冲池中的帧缓冲(frame buffer) 还有对应的缓冲控制对象(buffer control block), 这些对象记录了一些诸如LRU 、锁、等待等信息，而这个对象的内存需要从额外内存池中申请。</p>
+<p>因此，在申请了很大的InnoDB 缓冲池时，也应考虑相应地增加这个值。</p>
+</blockquote>
+
+	</div>
+</div>
+
+
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2024/03/21/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E7%BB%93%E6%9E%84%E4%BD%93/">
+                Go语言
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+
+<script>
+
+    //document.oncontextmenu=new Function("event.returnValue=false");
+	//document.onselectstart=new Function("event.returnValue=false");
+
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+
+	
+
+	$(function () {
+		const btw = new BTWPlugin();
+	    btw.init({
+	        id: 'container',
+	        blogId: '22377-1706525467336-300',
+	        name: '月伴飞鱼',
+	        qrcode: '/小程序码.jpg',
+	        keyword: '验证码',
+	        btnText: '为防止机器刷接口，需要完成人机检测',
+        	cookieAge: 1
+	    });
+
+	    var contents = document.getElementsByClassName("content999");
+	    //监听文章内容的copy事件
+	    contents[0].addEventListener('copy',function(e){
+	        setClipboardText(e);
+	    });
+
+	    function setClipboardText(event){
+	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+	        let clipboardData = event.clipboardData || window.clipboardData;
+
+	        // 如果未复制或者未剪切，则return出去
+	        if (!clipboardData) { return; }
+
+	        event.preventDefault();
+
+	        // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+	        // 声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+	        let text = window.getSelection().toString();
+	    
+	        if (text) {
+	            // 如果文本存在则先取消文本默认事件
+	            event.preventDefault();
+	            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+	            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+	            // data: 一个 DOMString表示要添加到 drag object的数据。
+	            var copyright = '\n\n'
+	            + '\n著作权归作者所有。'
+	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+	            + '\n作者: 月伴飞鱼'
+	            + '\n原文地址: http://hardyfish.top/2024/03/22/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/MySQL%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95/'
+	    
+	            clipboardData.setData('text/plain', text + copyright);
+	    
+	        }
+	    };
+	});
+
+	
+</script>
+
+<script>
+    const btw = new BTWPlugin();
+    btw.init({
+        id: 'container',
+        blogId: '22377-1706525467336-300',
+        name: '月伴飞鱼',
+        qrcode: '/小程序码.jpg',
+        keyword: '验证码',
+        btnText: '为防止机器刷接口，需要完成人机检测',
+        cookieAge: 1
+    });
+
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+	</div>
+	<div id="footer">
+	<p>
+	©2019-<span id="footerYear"></span> 
+	<a href="/">月伴飞鱼</a> 
+	
+	
+		|
+		<span id="busuanzi_container_site_pv">
+			PV 180986
+		</span>
+		|
+		<span id="busuanzi_container_site_uv"> 
+			UV 10079
+		</span>
+	
+	<br>
+	微信搜索 <a href="https://xiaoflyfish.oss-cn-beijing.aliyuncs.com/image/个人公众号.jpg" target="_blank">月伴飞鱼</a> 关注我
+	</p>
+</div>
+<script type="text/javascript"> 
+	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+</script>
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>
