@@ -1,0 +1,2429 @@
+<!DOCTYPE html>
+<html lang="en" oncontextmenu="return false;">
+
+<head oncontextmenu="return false;">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="baidu-site-verification" content="codeva-QodU0Nk5F7" />
+	<meta name="google-site-verification" content="DbSTw8OJwtH5Qei7n8Jnew0YyQ5naPzdLAPiscu7zQE" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+	
+	<!-- title -->
+	
+	<title>
+	
+		Redis设计与实现 | 
+	 
+	月伴飞鱼
+	</title>
+	
+	<!-- keywords,description -->
+	 
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/%E5%A4%B4%E5%83%8F.jpg">
+	
+  
+  	
+<link rel="stylesheet" href="/css/main.css">
+
+  	
+<link rel="stylesheet" href="/css/reward.css">
+
+	
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="/lib/highlight/darcula.css">
+
+	
+<link rel="stylesheet" href="/css/clipboard-use.css">
+
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+	
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+
+	
+<script src="/lib/highlight/highlight.min.js"></script>
+
+
+	
+<script src="https://readmore.openwrite.cn/js/readmore-2.0.js"></script>
+
+	
+<script src="/lib/jquery-3.4.1.min.js"></script>
+
+	
+<script src="/lib/jquery.pjax.js"></script>
+
+
+	
+<script src="/js/main.js"></script>
+
+	
+<script src="/js/jquery.fancybox.min.js"></script>
+
+	
+		
+<script src="/lib/valine/av-3.0.4-min.js"></script>
+
+		
+<script src="/lib/valine/Valine-1.3.10-min.js"></script>
+
+	
+	
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body oncontextmenu="return false;">
+	<header id="header" oncontextmenu="return false;">
+    <a id="title" href="/" class="logo">公众号月伴飞鱼</a>
+
+	<ul id="menu">
+		<li class="menu-item">
+			<a href="/about" class="menu-item-link">关于我</a>
+		</li>
+
+		<li class="menu-item">
+			<a href="/个人微信.jpeg" class="menu-item-link">联系作者</a>
+		</li>
+
+	    <li class="menu-item">
+			<a href="/site" class="menu-item-link">关于网站</a>
+		</li>
+
+		<li class="menu-item">
+			<a href="/个人公众号.jpg" class="menu-item-link" target="_blank">我的公众号</a>
+		</li>
+		
+		<li class="menu-item">
+			<a href="https://tech.meituan.com/" class="menu-item-link" target="_blank">
+				美团技术团队
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="https://tech.youzan.com/" class="menu-item-link" target="_blank">
+				有赞技术团队
+			</a>
+		</li>
+		<!--<li class="menu-item">
+			<select class="menu-item-link menu-item-select">
+				<option class="menu-item-link"  value="volvo">Volvo</option>
+				<option class="menu-item-link"  value="saab">Saab</option>
+				<option class="menu-item-link"  value="fiat">Fiat</option>
+				<option class="menu-item-link"  value="audi">Audi</option>
+			</select>
+		</li>-->
+	</ul>
+</header>
+
+	<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="text" placeholder="按目录搜索一下">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										AI相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/14/AI%E7%9B%B8%E5%85%B3/AIGC/">
+										AIGC
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/07/AI%E7%9B%B8%E5%85%B3/Sora/">
+										Sora
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/01/AI%E7%9B%B8%E5%85%B3/%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/">
+										提示词工程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										中间件
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/Dubbo/">
+										Dubbo
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/">
+										Elasticsearch
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/Netty/">
+										Netty
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/25/%E4%B8%AD%E9%97%B4%E4%BB%B6/Solr/">
+										Solr
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/ZooKeeper/">
+										ZooKeeper
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										产品相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/18/%E4%BA%A7%E5%93%81%E7%9B%B8%E5%85%B3/%E5%B9%BF%E5%91%8A%E4%B8%9A%E5%8A%A1/">
+										广告业务
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/18/%E4%BA%A7%E5%93%81%E7%9B%B8%E5%85%B3/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">
+										推荐系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/06/%E4%BA%A7%E5%93%81%E7%9B%B8%E5%85%B3/%E7%94%A8%E6%88%B7%E5%A2%9E%E9%95%BF/">
+										用户增长
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										代码思想
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/12/15/%E4%BB%A3%E7%A0%81%E6%80%9D%E6%83%B3/CodeReview/">
+										CodeReview
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/02/%E4%BB%A3%E7%A0%81%E6%80%9D%E6%83%B3/%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84/">
+										代码重构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										前端相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/CSS/">
+										CSS
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/26/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/React/">
+										React
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/26/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/Vue/">
+										Vue
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/12/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+										小程序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										基础知识
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/11/27/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/JVM/">
+										JVM
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%88%86%E5%B8%83%E5%BC%8F/">
+										分布式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/10/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+										并发编程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+										设计模式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										大数据相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/21/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/DataX/">
+										DataX
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/25/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Doris/">
+										Doris
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Flink/">
+										Flink
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/21/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Hadoop/">
+										Hadoop
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/07/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Hive/">
+										Hive
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/23/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/SQOOP/">
+										SQOOP
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Spark/">
+										Spark
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										学习专栏
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/16/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">
+										从0开始学架构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/31/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E4%BB%A3%E7%A0%81%E4%B9%8B%E4%B8%91/">
+										代码之丑
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/26/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E5%A4%A7%E5%8E%82%E6%99%8B%E5%8D%87%E6%8C%87%E5%8D%97/">
+										大厂晋升指南
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/19/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E5%AD%A6%E4%B9%A0%E9%AB%98%E6%89%8B/">
+										如何成为学习高手
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										学习书籍
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/05/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/HBase%E4%B8%8D%E7%9D%A1%E8%A7%89%E4%B9%A6/">
+										HBase不睡觉书
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/02/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98/">
+										Java并发编程实战
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/02/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/">
+										Java并发编程的艺术
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/16/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
+										Java开发手册
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/22/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/MySQL%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95/">
+										MySQL技术内幕
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file active">
+									<a href="/2024/03/23/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
+										Redis设计与实现
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/11/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E4%BA%BF%E7%BA%A7%E6%B5%81%E9%87%8F%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
+										亿级流量网站架构核心技术
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/05/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93/">
+										代码整洁之道
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/03/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E5%A4%A7%E5%9E%8B%E7%BD%91%E7%AB%99%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/">
+										大型网站技术架构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/07/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E5%A4%A7%E5%9E%8B%E7%BD%91%E7%AB%99%E7%B3%BB%E7%BB%9F/">
+										大型网站系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/06/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA/">
+										深入理解Java虚拟机
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/08/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E8%8B%B1%E8%AF%AD%E9%AD%94%E6%B3%95%E5%B8%88%E4%B9%8B%E8%AF%AD%E6%B3%95%E4%BF%B1%E4%B9%90%E9%83%A8/">
+										英语魔法师之语法俱乐部
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										工具相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/11/09/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Arthas/">
+										Arthas
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/24/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/ChatGPT/">
+										ChatGPT
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/GIT/">
+										GIT
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Hexo/">
+										Hexo
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/MAC/">
+										MAC
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/01/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Maven/">
+										Maven
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/09/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/PlantUML/">
+										PlantUML
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/22/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/UTools/">
+										UTools
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">
+										实用工具
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										成长相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/31/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">
+										技术学习
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/07/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/">
+										读书计划
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/09/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/">
+										面试相关
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										数据库
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/06/%E6%95%B0%E6%8D%AE%E5%BA%93/ClickHouse/">
+										ClickHouse
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/27/%E6%95%B0%E6%8D%AE%E5%BA%93/HBase/">
+										HBase
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/">
+										MongoDB
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/02/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">
+										MySQL
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">
+										Redis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										文章速读
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/03/18/%E6%96%87%E7%AB%A0%E9%80%9F%E8%AF%BB/%E5%A4%A7%E5%8E%82%E6%96%87%E7%AB%A0/">
+										大厂文章
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										服务器
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%9C%8D%E5%8A%A1%E5%99%A8/Docker/">
+										Docker
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/">
+										Nginx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/Tomcat/">
+										Tomcat
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/%E8%BF%90%E7%BB%B4%E7%9F%A5%E8%AF%86/">
+										运维知识
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										架构相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/DDD/">
+										DDD
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/02/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E6%9E%B6%E6%9E%84%E5%9B%BE/">
+										架构图
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/02/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/">
+										架构学习
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/26/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E4%BF%9D%E9%9A%9C/">
+										系统保障
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/31/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E6%80%A7%E8%83%BD/">
+										系统性能
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/26/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
+										系统设计
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										框架相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/07/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Caffeine/">
+										Caffeine
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/06/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Guava/">
+										Guava
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/15/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/JWT/">
+										JWT
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/MyBatis/">
+										MyBatis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/RPC%E6%A1%86%E6%9E%B6/">
+										RPC框架
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/26/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Seata/">
+										Seata
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/03/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/ShardingSphere/">
+										ShardingSphere
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
+										Spring
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/03/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
+										Thrift
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/29/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/XXLJOB/">
+										XXLJOB
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">
+										开源框架
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										消息队列
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/KAFKA/">
+										KAFKA
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/20/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RabbitMQ/">
+										RabbitMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RocketMQ/">
+										RocketMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										源码相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/12/13/%E6%BA%90%E7%A0%81%E7%9B%B8%E5%85%B3/RocketMQ/">
+										RocketMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										生活相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/27/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E4%B9%A6%E7%B1%8D/">
+										书籍
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/17/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E5%81%9A%E8%8F%9C/">
+										做菜
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/24/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E6%B3%95%E5%BE%8B/">
+										法律
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E7%94%B5%E5%BD%B1/">
+										电影
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/10/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E7%94%B5%E8%A7%86%E5%89%A7/">
+										电视剧
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/11/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E7%BA%AA%E5%BD%95%E7%89%87/">
+										纪录片
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E9%9F%B3%E4%B9%90/">
+										音乐
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										算法相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/LeetCode/">
+										LeetCode
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E5%89%91%E6%8C%87OFFER/">
+										剑指OFFER
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
+										面试算法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										编程语言
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/11/11/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E5%9F%BA%E7%A1%80/">
+										Go基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Go语言
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E5%87%BD%E6%95%B0/">
+										函数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E5%B9%B6%E5%8F%91/">
+										并发
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E6%95%B0%E7%BB%84/">
+										数组
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/21/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E7%BB%93%E6%9E%84%E4%BD%93/">
+										结构体
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/21/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java%E5%9F%BA%E7%A1%80/">
+										Java基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/29/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python%E5%9F%BA%E7%A1%80/">
+										Python基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										英语相关
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										摩登家庭
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/03/05/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E6%91%A9%E7%99%BB%E5%AE%B6%E5%BA%AD/%E7%AC%AC%E4%B8%80%E5%AD%A3/">
+										第一季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										老友记
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%80%E5%AD%A3/">
+										第一季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%89%E5%AD%A3/">
+										第三季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/23/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%BA%94%E5%AD%A3/">
+										第五季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										雅思
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/25/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%9815/">
+										剑桥雅思听力真题15
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%984/">
+										剑桥雅思听力真题4
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E9%9B%85%E6%80%9D%E9%98%85%E8%AF%BB538%E8%80%83%E7%82%B9%E8%AF%8D/">
+										雅思阅读538考点词
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										计算机基础
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+										操作系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+										数据结构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/">
+										算法知识
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
+										网络基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content">
+		<h1 id="article-title" oncontextmenu="return false;">
+
+	Redis设计与实现
+</h1>
+<div class="article-meta" oncontextmenu="return false;">
+	<span>月伴飞鱼</span>
+	<span>2024-03-23 10:34:16</span>
+    
+		<div id="article-categories">
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/学习书籍/">学习书籍</a>
+						
+                    </span>
+                
+            
+		</div>
+    
+</div>
+
+<div id="container" class = "content999" oncontextmenu="return false;">
+<!--打赏-->
+        <div class="reward">
+       <div class="reward-button">赏 <span class="reward-code">
+        <span class="alipay-code"> <img class="alipay-img wdp-appear" src="/alipay.png"><b>支付宝打赏</b> </span> 
+        <span class="wechat-code"> <img class="wechat-img wdp-appear" src="/weipay.jpeg"><b>微信打赏</b> </span> 
+       </div>
+      <p class="reward-notice">如果文章对你有帮助，欢迎点击上方按钮打赏作者！</p>
+      </div>
+      <!--打赏-->
+	<div id="article-content">
+		<p>书籍介绍：<a target="_blank" rel="noopener" href="https://book.douban.com/subject/25900156/">https://book.douban.com/subject/25900156/</a></p>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h2 id="SDS字符串"><a href="#SDS字符串" class="headerlink" title="SDS字符串"></a>SDS字符串</h2><blockquote>
+<p>Redis 没有直接使用<strong>C 语言传统的字符串</strong>表示（以空字符结尾的字符数组，以下简称C字符串） ，而是自己构建了一种名为简单动态字符串(simple dynamic string, <strong>SDS</strong> ) 的抽象类型，并将SDS 用作Redis 的 默认字符串表示。</p>
+</blockquote>
+<p><strong>Redis什么情况下使用SDS，而不是用C呢？</strong></p>
+<blockquote>
+<p>C：用在一些无须对字符串值进行修改的地方；</p>
+<p>SDS：需要的不仅仅是一个字符串字面量，而是一个可以被修改的字符串值时，用SDS；</p>
+</blockquote>
+<p><strong>SDS的应用？</strong></p>
+<blockquote>
+<p>①、用于键值对：在Redis 的数据库里面，包含字符串值的键值对在底层都是由SDS 实现。</p>
+<p>②、用于 缓冲区： AOF 模块中的AOF 缓冲区，以及客户端状态中的输入缓冲区，都是由SDS 实现的。</p>
+</blockquote>
+<p><strong>SDS的数据结构：</strong></p>
+<blockquote>
+<p>SDS 遵循C 字符串以空字符结尾的惯例，保存空字符的1 字节空间不计算在SDS 的 len 属性里面，并且为空字符分配额外的1 字节空间，以及添加空字符到字符串末尾等操作，都是由SDS 函数自动完成的：（sdshdr是字符串名字）</p>
+</blockquote>
+<p><img src="/images/551.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>SDS 遵循C 字符串以空字符结尾的好处：SDS 可以直接重用一部分C 字符串函数库里面的函数。</p>
+</blockquote>
+<p><strong>SDS为什么比C字符串更适合Redis（相比C字符串，SDS的优点）？</strong></p>
+<p><img src="/images/552.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>①、常数复杂度获取字符串长度： C 字符串并不记录自身的长度信息，所以如果遍历整个字符串，则复杂度为 0(N)，而SDS不同，因为SDS 在len 属性中记录了SDS 本身的长度，所以获取一个SDS 长度的复杂度仅为 0(1) 。</p>
+<p>②、杜绝缓冲区溢出： C 字符串 不记录自身长度 带来的另一个问题是容易造成 缓冲区溢出。</p>
+<p>与C 字符串不同， SDS 的空间分配策略完全杜绝了发生缓冲区溢出的可能性： 当SDS的API 需要对SDS 进行修改时， API 会先检查SDS 的空间是否满足修改所需的要求，如果不满足的话， API 会 自动将SDS 的空间扩展 至执行修改所需的大小，然后才执行实际的修改操作，所以使用SDS 既不需要手动修改SDS 的空间大小，也不会出现前面所说的缓冲区溢出问题。</p>
+<p>③、减少修改字符串长度时所需的内存重分配次数：</p>
+<p>对于C字符串：①、如果程序执行的是增长字符串的操作，操作前则需要先通过内存重分配来扩展底层数组的空间大，否则容易造成缓冲区溢出。</p>
+<p>②、如果程序执行的是缩短字符串的操作，操作前需要通过内存重分配来释放字符串不再使用的那部分空间，否则容易产生内存泄漏。</p>
+<p>内存重分配的缺陷：涉及复杂的算法，并且可能需要执行 系统调用，所以它通常是一个比较耗时的操作。</p>
+<p>而Redis 作为数据库，经常被用于速度要求严苛、数据被频繁修改的场合，对性能造成了影响。</p>
+<p>SDS的改善：为了避免C 字符串的这种缺陷， SDS 通过 未使用空间 free 解除了字符串长度和底层数组长度之间的关联：</p>
+<p>在SDS 中，buf 数组的长度不一定就是字符数量加一，数组里面可以包含未使用的字节．由SDS 的 free 属性记录。</p>
+<p>并实现了两种优化策略：</p>
+<p>空间预分配（用于优化SDS的字符串增长操作）：当需要对SDS 进行空间扩展的时候，程序不仅会为SDS 分配修改所必须要的空间，还会为SDS 分配额外的未使用空间。</p>
+<p>㈠、当SDS 的len&lt;1MB，分配和len 属性同样大小的未使用空间，即free&#x3D;len；</p>
+<p>㈡、当SDS 的len≥1MB，分配1MB 的未使用(free)空间；</p>
+<p>惰性空间释放（用于优化SDS的字符串缩短操作）：当SDS 的API 需要缩短SDS 保存的字符串时，程序并不立即使用内存重分配来回收缩短后多出来的字节， 而是使用free 属性将这些字节的数量记录起来，并等待将来使用。</p>
+<p>④、二进制安全：</p>
+<p>为了确保Redis 可以适用于各种不同的使用场景， SDS 的API 都是二进制安全的, 所有SDS的API 都会以处理二进制的方式来处理SDS 存放在buf数组（字节数组）里的数据，程序不会对其中的数据做任何限制、过滤、或者假设，数据在写入时是什么样的，它被读取时就是什么样。（因为SDS 使用len属性的值而不是空字符来判断字符串是否结束，而C就不可以）</p>
+<p>⑤、兼容部分C字符串函数：</p>
+<p>保存的数据的末尾设置为空字符，并且总会在为 buf 数组分配空间时多分配一个字节来容纳这个空字符，这是为了让那些保存文本数据的SDS 可以重用一部分<code>&lt; string.h &gt;</code> 库定义的函数。</p>
+<p>这样Redis 就不用自己专门去写一个函数来对比SDS值和C 字符串值了。通过遵循C 字符串以空字符结尾的惯例， SDS 可以在有需要时重用<code>&lt;string . h&gt;</code> 函数库， 从而避免了不必要的代码重复。</p>
+</blockquote>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><blockquote>
+<p>因为Redis 使用的C语言并没有内置这种数据结构，所以Redis 构建了自己的链表实现。</p>
+<p>链表在Redis中的应用：列表键、发布与订阅、慢查询、监视器等。</p>
+<p>链表（list）和链表节点（listNode）的实现：</p>
+</blockquote>
+<p><img src="/images/553.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>每个链表节点由一个listNode 结构来表示，每个节点都有一个指向前置节点和后置节点的指针，所以Redis 的链表实现是 <strong>双端链表</strong>。</p>
+</blockquote>
+<p><img src="/images/554.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>每个链表使用一个list 结构来表示，这个结构带有表头节点指针、表尾节点指针，以及链表长度等信息。</p>
+<p>因为链表表头节点的前置节点和表尾节点的后置节点都指向NULL, 所以Redis 的链表实现是 <strong>无环链表。</strong></p>
+</blockquote>
+<p><img src="/images/555.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>链表特性总结：</p>
+<p>①、无环。</p>
+<p>②、双端：获取某个节点的前置节点和后置节点的复杂度都是 0(1) 。</p>
+<p>③、带表头指针和表尾指针：程序获取链表的表头节点和表尾节点的复杂度为 0(1) 。</p>
+<p>④、带链表长度计数器：list 结构的len 属性，程序获取链表中&#x3D;&#x3D;节点的复杂度为 0(1) 。</p>
+<p>⑤、多态：链表节点使用 <code>void*</code> 中指针来保存节点值，并且可以通过list 结构的dup 、free 、match 三个属性为节点值设置类型特定函数，所以链表 可以用于保存各种不同类型的值。</p>
+</blockquote>
+<h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><blockquote>
+<p>字典，又称为符号表、关联数组或映射, 是一种用于 保存键值对 的抽象数据结构。字典中的每个键都是 独一无二的。</p>
+<p>Redis 所使用的C 语言并没有内置这种数据结构，因此Redis 构建了自己的字典实现。</p>
+<p>字典的应用：</p>
+<p>①、数据库：Redis 的数据库就是使用字典来作为底层实现的，对数据库的增、删、查、改操作也是构建在对字典的操作之上的。</p>
+<p>②、哈希键：字典还是哈希键的底层实现之一，当一个哈希键包含的键值对比较多，又或者键值对中的元素都是比较长的字符串时， Rectis 就会使用字典作为哈希键的底层实现。等等…</p>
+</blockquote>
+<p><strong>字典的底层是如何实现的？</strong></p>
+<blockquote>
+<p>Redis 的字典使用哈希表作为底层实现，一个哈希表里面可以有多个哈希表节点，而每个哈希表节点就保存了字典中的一个键值对。</p>
+</blockquote>
+<p><img src="/images/556.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/557.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>其中键值对的值可以是一个指针，或者是一个uint64_t 整数，又或者是一个int64_t 整数。</p>
+<p>next 属性是指向另一个哈希表节点的指针，这个指针可以将多个哈希值相同的键值对连接在一次，以此来解决 <strong>键冲突</strong> 的问题。</p>
+</blockquote>
+<blockquote>
+<p>Redis 中的字典由<code>dict.h/dict</code> 结构表示：</p>
+</blockquote>
+<pre><code class="c">typedef struct dict &#123;
+    dictType *type;   //类型特定函数
+    void     *privdata;   //私有数据
+    dictht   ht[2];		//哈希表
+    in trehashidx;  //当rehash 不在进行时，值为-1
+&#125; diet;
+</code></pre>
+<p><img src="/images/558.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>type 属性和 privdata 属性是针对不同类型的键值对，为创建多态字典而设置的：</p>
+<p>①、type 属性：指向dictType 结构的指针，每个dictType 结构保存了一簇用于操作特定类型键值对的函数， Redis 会为用途不同的字典设置不同的类型特定函数。</p>
+<p>②、typeprivdata 属性：保存了需要传给那些类型特定函数的可选参数。</p>
+<p>③、ht属性：是一个包含两个项的数组，数组中的每个项都是一个dictht 哈希表，一般情况下，字典只使用ht[0] 哈希表， ht[1]哈希表只会在对ht[0] 哈希表进行rehash 时使用。</p>
+<p>④、rehashidx 属性：记录了rehash目前的进度，如果目前没有在进行rehash, 那么它的值为-1 。</p>
+</blockquote>
+<p><strong>Redis 计算哈希值和索引值的方法：</strong></p>
+<p><img src="/images/559.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>优点：即使输入的键是有规律的，算法仍能给出一个很好的随机分布性，并且算法的计算速度也非常快。</p>
+<p>键冲突的解决：</p>
+<p>当有两个或以上数量的键被分配到了哈希表数组的同一个索引上面时，我们称这些键发生了冲突。</p>
+<p>Redis 的哈希表使用 链地址法 来解决键冲突。</p>
+<p>因为 dictEntry 节点组成的链表没有指向链表表尾的指针，所以为了速度考虑，程序总是将新节点添加到链表的表头位置（复杂度为 0(1)), 排在其他已有节点的前面。如图：</p>
+</blockquote>
+<p><img src="/images/560.png" alt="在这里插入图片描述"></p>
+<p><strong>rehash的相关操作：</strong></p>
+<blockquote>
+<p>随着操作的不断执行， 哈希表保存的键值对会逐渐地增多或者减少，为了让哈希表的负载因子维持在一个合理的范围之内，当哈希表保存的键值对数量太多或者太少时，程序需要对哈希表的大小进行相应的扩展或者收缩（rehash重新散列来完成）。</p>
+<p>步骤：</p>
+<p>①、为字典的ht[1] 哈希表分配空间，这个哈希表的空间大小取决于要执行的操作，以及 ht[0] 当前包含的键值对数量（也即是ht[0].used 属性的值）：</p>
+<p>扩展操作：ht[l] 的大小 ≥ ht[0].used * 2； 2dsda1 ⅱ收缩操作：ht[1]的大小 &#x3D;2n ≥ ht[0].used；</p>
+<p>②、将 ht[0] 中的所有键值对 rehash （重新计算键的哈希值和索引值）到ht[1] 上面；</p>
+<p>③、释放 ht[0]，将 ht[1] 设置为 ht[0]，并在 ht[1] 新创建一个空白哈希表，为下一次rehash作准备；</p>
+</blockquote>
+<p><img src="/images/561.png" alt="在这里插入图片描述"></p>
+<p><strong>什么条件下，程序会自动对哈希表进行扩展、收缩？</strong></p>
+<blockquote>
+<p>①、服务器目前没有在执行BGSAVE 命令或者BGREWRITEAOF 命令，并且哈希表的负载因子 ≥ 1 。</p>
+<p>②、服务器目前正在执行BGSAVE 命令或者BGREWRITEA OF 命令，并且哈希表的负载因子 ≥ 5 。</p>
+</blockquote>
+<p><img src="/images/562.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>为什么要根据 BGSAVE 命令或 BGREWRITEAOF 命令是否正在执行， 而服务器执行扩展操作所需的负载因子并不相同？</p>
+<p>这是因为在执行BGSAVE 命令或BGREWRITEAOF 命令的过程中，Redis 需要创建当前服务器进程的子进程，而大多数操作系统都采用写时复制技术来优化子进程的使用效率，所以在子进程存在期间，服务器会提高执行扩展操作所需的负载因子，从而尽可能地避免在子进程存在期间进行哈希表扩展操作，这可以避免不必要的内存写入操作，最大限度地节约内存。</p>
+<p>当哈希表的负载因子小于0.1 时，程序自动开始对哈希表执行收缩操作。</p>
+</blockquote>
+<p><strong>rehash的细节处理（渐进式rehash）：</strong></p>
+<blockquote>
+<p>rehash 动作并不是一次性、集中式地完成的，而是分多次、渐进式地完成的。 </p>
+<p>因为如果一次性将这些键值对全部rehash到 ht[1] 的话，庞大的计算量可能会导致服务器在一段时间内停止服务。</p>
+<p>哈希表 渐进式rehash 步骤如下：</p>
+<p>①、为 ht[1] 分配空间，让字典同时持有ht[0]、ht[1] 两个哈希表。</p>
+<p>②、在字典中维持一个索引计数器变量 rehashidx, 并将它的值设置为0, 表示rehash工作正式开始。</p>
+<p>③、在 rehash 进行期间， 每次对字典执行添加 、删除、查找或者更新操作时，程序除了执行指定的操作以外，还会顺带将 ht[0] 哈希表在rehashidx 索引上的所有键值对rehash 到 ht[1], 当rehash 工作完成之后，程序将rehashidx 属性的值增一。</p>
+<p>④、随着字典操作的不断执行，最终在某个时间点上， ht[0] 的所有键值对都会被 rehash 至 ht[1] , 这时程序将rehashidx 属性的值设为-1, 表示rehash 操作已完成。</p>
+</blockquote>
+<p><img src="/images/563.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>注意：在进行渐进式rehash 的过程中，字典会同时使用 ht[0] 和 ht[1] 两个哈希表，所以在渐进式rehash 进行期间，字典的删除、查找 、更新 等操作会在两个哈希表上进行。</p>
+<p>例如，要在字典里面查找一个键的话，程序会先在 ht[0] 里面进行查找，如果没找到的话，就会继续到 ht[1] 里面进行查找，诸如此类。</p>
+</blockquote>
+<h2 id="跳跃表"><a href="#跳跃表" class="headerlink" title="跳跃表"></a>跳跃表</h2><blockquote>
+<p>跳跃表是一种有序数据结构，它通过在每个节点中维持多个指向其他节点的指针， 从而达到快速访问节点的目的。跳跃表是有序集合的底层实现之一。</p>
+<p>跳跃表支持平均O( logN) 、最坏O(N) 复杂度的节点查找，还可以通过顺序性操作 来批量处理节点。</p>
+<p>在大部分情况下，跳跃表的效率可以和平衡树相媲美，并且因为跳跃表的实现比平衡树要来得更为简单，所以有不少程序都使用跳跃表来代替平衡树。</p>
+<p>跳跃表的实现 :</p>
+</blockquote>
+<p><img src="/images/564.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>层： 跳跃表节点的level 数组可以包含多个元素，每个元素都包含一个指向其他节点的指针，程序可以通过这些层来加快访问其他节点的速度， 一般来说，层的数量越多，访问其他节点的速度就越快。每个跳跃表节点的层高都是1 至32 之间的随机数（ 越大的数出现的概率越小）。</p>
+<p>前进指针： 查找节点以及遍历用的。</p>
+<p>跨度： 用于记录两个节点之间的距离。</p>
+<p>后退指针： 用于从表尾向表头方向访问节点：跟可以一次跳过多个节点的前进指针不同，因为每个节点只有一个后退指针，所以每次只能后退至前一个节点。</p>
+<p>分值和成员： 分值是一个double 类型的浮点数，跳跃表中的所有节点都按分值从小到大来排序。成员对象(obj 属性）是一个指针，它指向一个字符串对象（在同一个跳跃表中，各个节点保存的成员对象必须是唯一的，但是多个节点保存的分值却可以是相同的：分值相同的节点将按照成员对象在字典序中的大小来进行排序，成员对象较小的节点会排在前面（ 靠近表头的方向），而成员对象较大的节点则会排在后面（ 靠近表尾的方向））。</p>
+<p>[注]：header 和tail指针分别指向跳跃表的表头和表尾节点，通过这两个指针，程序定位表头节点和表尾节点的复杂度为0(1) 。</p>
+<p>通过使用length 属性来记录节点的数量，程序可以在0(1) 复杂度内返回跳跃表的长度。</p>
+<p>level 属性则用于在0(1) 复杂度内获取跳跃表中层高最大的那个节点的层数量，注意表头节点的层高并不计算在内。</p>
+</blockquote>
+<p><strong>总结：</strong></p>
+<blockquote>
+<p>①、Redis 的跳跃表实现由zskiplist 和zskiplistNode 两个结构组成，前者用于保存跳跃表信息（比如表头节点、表尾节点、长度），后者则用于表示跳跃表节点。</p>
+<p>②、每个跳跃表节点的层高都是1 至32 之间的随机数。</p>
+<p>③、在同一个跳跃表中，多个节点可以包含相同的分值，但每个节点的成员对象必须是唯一的。</p>
+<p>跳跃表中的节点按照分值大小进行排序，当分值相同时，节点按照成员对象的大小进行排序。</p>
+</blockquote>
+<h2 id="整数集合"><a href="#整数集合" class="headerlink" title="整数集合"></a>整数集合</h2><blockquote>
+<p>整数集合(intset) 是集合键的底层实现之一，当一个集合只包含整数值元素，并且这个集合的元素数量不多时，Redis就会使用整数集合作为集合键的底层实现。</p>
+<p>整数集合的实现 :</p>
+</blockquote>
+<p><img src="/images/565.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>contents 数组： 是整数集合的底层实现： 整数集合的每个元素都是contents 数组的一个数组项, 各个项在数组中按值的大小从小到大有序地排列，并且数组中不包含任何重复项。</p>
+<p>length 属性： contents数组的长度。</p>
+<p>encoding 属性： 虽然intset 结构将contents 属性声明为int8_t 类型的数组，但实际上contents 数组并不保存任何int 8_t 类型的值， contents 数组的真正类型取决于encoding属性的值。</p>
+<p>根据整数集合的升级规则，当向一个底层为int16_t 数组的整数集合添加一个int64_t 类型的整数值时，整数集合巳有的所有元素都会被转换成int64_t 类型，所以contents 数组保存的四个整数值都是int64_t 类型的。</p>
+</blockquote>
+<p><strong>整数集合的升级操作 :</strong></p>
+<blockquote>
+<p>整数集合的升级操作 :</p>
+<p>每当我们要将一个新元素添加到整数集合里面，并且新元素的类型比整数集合现有所有元素的类型都要长时，整数集合需要先进行升级, 然后才能将新元素添加到整数集合里面。</p>
+<p>步骤：</p>
+<p>①、根据新元素的类型，扩展整数集合底层数组的空间大小，并为新元素分配空间。</p>
+<p>②、将底层数组现有的所有元素都转换成与新元素相同的类型，并将类型转换后的元素放置到正确的位上（在放置元素的过程中，需要继续维持底层数组的有序性质不变）。</p>
+<p>③、将新元素添加到底层数组里面。</p>
+<p>总结：每次向整数集合添加新元素都可能会引起升级，而每次升级都需要对底层数组中已有的所有元素进行类型转换，所以向整数集合添加新元素的时间复杂度为O(N) 。</p>
+<p>升级之后新元素的摆放位置：</p>
+<p>①、当新元素（长度）＜现有元素，新元素会被放置在底层数组的最开头（索引0);</p>
+<p>②、当新元素（长度）＞现有元素，新元素会被放置在底层数组的最末尾（索引l ength -!)。</p>
+<p>升级带来的好处：</p>
+<p>①、提升整数集合的灵活性：因为C 语言是静态类型语言，为了避免类型错误，通常不会将两种不同类型的值放在同一个数据结构里面。</p>
+<p>但是，因为整数集合可以通过自动升级底层数组来适应新元素，所以我们可以随意地将int16_t 、int32_t 或者int64_七类型的整数添加到集合中，而不必担心出现类型错误。</p>
+<p>②、节约内存：整数集合现在的做法既可以让集合能同时保存三种不同类型的值，又可以确保升级操作只会在有需要的时候进行，这可以尽量节省内存。</p>
+<p>注： 整数集合只支持升级操作， 不支持降级操作。</p>
+</blockquote>
+<h2 id="压缩列表"><a href="#压缩列表" class="headerlink" title="压缩列表"></a>压缩列表</h2><blockquote>
+<p>压缩列表（ziplist）是列表键和哈希键的底层实现之一。</p>
+<p>注：①、哈希键只&#x3D;包含少量键值对 ②、每个键值对的键和值要么就是小整数值，要么就是长度比较短的字符串。</p>
+<p>满足以上两个条件，Redis 就会使用压缩列表来做哈希键的底层实现。</p>
+<p>压缩列表的目的：</p>
+<p>为了 节约内存 而开发的，是由一系列特殊编码的连续内存块组成的顺序型数据结构。</p>
+<p>压缩列表的构成：</p>
+<p>一个压缩列表可以包含任意多个节点, 每个节点可以保存一个字节数组或者一个整数值。如图：</p>
+</blockquote>
+<p><img src="/images/566.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>⒈压缩列表是一种为节约内存而开发的顺序型数据结构。</p>
+<p>⒉压缩列表被用作列表键和哈希键的底层实现之一。</p>
+<p>⒊压缩列表可以包含多个节点，每个节点可以保存一个字节数组或者整数值。</p>
+<p>⒋添加新节点到压缩列表，或者从压缩列表中删除节点，可能会引发连锁更新操作，但这种操作出现的几率并不高。</p>
+</blockquote>
+<h1 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h1><blockquote>
+<p>Redis 并没有直接使用这些数据结构来实现键值对数据库，而是 基于这些数据结构创建了一个对象系统， 这个系统包含字符串对象、列表对象、哈希对象、集合对象和有序集合对象这五种类型的对象。</p>
+</blockquote>
+<p><strong>对象带来的好处？</strong></p>
+<blockquote>
+<p>①、Redis 可以在执行命令之前，根据对象的类型来判断一个对象是否可以执行给定的命令。</p>
+<p>②、可以针对不同的使用场景，为对象设置多种不同的数据结构实现，从而优化对象在不同场景下的使用效率。</p>
+<p>对象带来的相关计数：</p>
+<p>①、Redis 的对象系统是基于 引用计数技术 的内存回收机制。</p>
+<p>②、 Redis 还通过 引用计数技术 实现了 对象共享机制，这一机制可以在适当的条件下，通过让多个数据库键共享同一个对象来节约内存。</p>
+<p>③、Redis 的对象带有 访问时间记录信息，该信息可以用于计算数据库键的空转时长。</p>
+</blockquote>
+<p><strong>对象的类型与编码</strong></p>
+<blockquote>
+<p>Redis 使用对象来表示数据库中的键和值：（键对象）（值对象）。</p>
+<p>每个对象都由一个 <code>redisObjet</code> 结构表示，该结构中和保存数据有关的三个属性分别是 <code>type</code> 属性、<code>encoding</code> 属性和 <code>ptr</code> 属性：</p>
+</blockquote>
+<p><img src="/images/567.png" alt="在这里插入图片描述"></p>
+<p><strong>字符串对象的编码：</strong></p>
+<blockquote>
+<p>字符串对象的编码一共有三种：①、int ②、raw ③、embsr</p>
+<p>①、如果一个字符串对象保存的是整数值，并且这个整数值可以用 long 类型来表示，那么字符串对象会将整数值保存在字符串对象结构的 ptr 属性里面：</p>
+<p>②、如果字符串对象保存的是一个字符串值，并且字符串值的长度 ＞ 32 字节，将使用一个 简单动态字符串( SDS ) 来保存这个字符串值，并将对象的编码设置为raw。</p>
+<p>③、如果字符串对象保存的是一个字符串值，并且字符串值的长度 ≤ 32 字节，将使用 embstr 编码的方式 来保存这个字符串值。</p>
+<p>[注]：</p>
+<p>①、embstr 编码是专门用于保存短字符串的一种优化编码方式。</p>
+<p>②、embstr 编码产生的效果和 raw 编码的产生的效果是相同的。我们进行比较：</p>
+<p>⒈embstr 编码将创建字符串对象所需的内存分配次数从raw 编码的 两次降低为一次。</p>
+<p>⒉释放embstr 编码的字符串对象只需要调用一次内存释放函数，而释放raw 编码的字符串对象需要调用两次内存释放函数。</p>
+<p>⒊因为embstr 编码的字符串对象的 所有数据都保存在一块连续的内存里面，所以这种编码的字符串对象比起raw 编码的字符串对象 能够更好地利用缓存带来的优势。</p>
+</blockquote>
+<blockquote>
+<p>一定条件下int、embstr 编码的字符串可以转换为 raw 编码的字符串对象：</p>
+<p>①、int –&gt; raw：向对象执行了一些命令，使得这个 对象保存的不再是整数值，而是一个字符串值。</p>
+<p>②、embstr –&gt; raw：因为Redis 没有为 embstr 编码的字符串对象编写任何相应的修改程序（只有 int 编码的字符串对象和raw 编码的字符串对象有这些程序），所以embstr 编码的字符串对象实际上是只读的。</p>
+<p>当我们对embstr 编码的字符串对象执行任何修改命令时，程序会先将对象的编码从embstr 转换成raw, 然后再执行修改命令。</p>
+<p>因为这个原因， embstr编码的字符串对象在执行修改命令之后，总会变成一个raw 编码的字符串对象。</p>
+</blockquote>
+<p><strong>列表对象的编码：</strong></p>
+<blockquote>
+<p>字符串对象的编码一共有两种：①、ziplist ②、linkedlist.</p>
+<p>①、如果ziplist 编码的列表对象使用压缩列表作为底层实现， 则每个压缩列表节点保存了一个列表元素。</p>
+<p>②、如果用 linkedlist 编码的列表对象使用双端链表作为底层实现，每个双端链表节点都保存了一个字符串对象，而每个字符串对象都保存了一个列表元素。</p>
+<p>【注】：linkedlist 编码的列表对象在底层的双端链表结构中包含了多个字符串对象，这种嵌套字符串对象的行为在稍后介绍的哈希对象、集合对象和有序集合对象中都会出现，字符串对象是Redis 五种类型的对象中唯一一种会被其他四种类型对象嵌套的对象.</p>
+</blockquote>
+<blockquote>
+<p>列表对象使用ziplist编码的条件：</p>
+<p> ①、列表对象保存的所有 字符串元素的长度都＜64 字节；</p>
+<p> ②、列表对象保存的 元素数量＜512 个；</p>
+<p>【注】：这两个值可以修改，具体看配置文件。</p>
+<p>当使用 ziplist 编码所需的两个条件的任意一个不能被满足时，对象的编码转换操作就会被执行，原本保存在压缩列表里的所有列表元素都会被转移并保存到双端链表里面，对象的编码也会从ziplist 变为linkedlist。</p>
+</blockquote>
+<p><strong>哈希对象的编码：</strong></p>
+<blockquote>
+<p>哈希对象的编码一共有两种：①、ziplist ②、hashtable.</p>
+<p> ①、ziplist 编码的哈希对象使用压缩列表作为底层实现，每当有新的键值对要加入到哈希对象时，程序会先将保存了键的压缩列表节点推入到压缩列表表尾，然后再将保存了值的压缩列表节点推入到压缩列表表尾。</p>
+<p>保存了同一键值对的两个节点总是紧挨在一起，保存键的节点在前，保存值的节点在后；</p>
+<p>先添加到哈希对象中的键值对会被放在压缩列表的表头方向，而后来添加到哈希对象中的键值对会被放在压缩列表的表尾方向。</p>
+<p> ②、hashtable 编码的哈希对象使用字典作为底层实现</p>
+</blockquote>
+<blockquote>
+<p>哈希对象使用ziplist编码的条件：</p>
+<p> ①、哈希对象保存的所有键值对的键和值的字符串元素的长度都＜64 字节；</p>
+<p> ②、键值对数量＜512 个；</p>
+<p>【注】：这两个值可以修改，具体看配置文件。除了键的长度太大会引起编码转换之外，值的长度太大也会引起编码转换。</p>
+</blockquote>
+<p><strong>集合对象的编码：</strong></p>
+<blockquote>
+<p>哈希对象的编码一共有两种：①、intset ②、hashtable.</p>
+<p> ①、intset 编码的集合对象使用整数集合作为底层实现</p>
+<p> ②、hashtable 编码的集合对象使用字典作为底层实现，字典的每个键都是一个字符串对象，每个字符串对象包含了一个集合元素，而字典的值则全部被设置为NULL 。</p>
+<p>集合对象使用intset编码的条件：</p>
+<p> ①、集合对象保存的所有元素都是整数值；</p>
+<p> ②、集合对象保存的元素数量 ≤ 512 个。</p>
+<p>【注】：第②个条件的值可以修改，具体请看配置文件。</p>
+</blockquote>
+<p><strong>有序集合对象的编码：</strong></p>
+<blockquote>
+<p>哈希对象的编码一共有两种：①、ziplist ②、skiplist.</p>
+<p> ①、ziplist 编码的压缩列表对象使用 压缩列表 作为底层实现，每个集合元素使用两个紧挨在一起的压缩列表节点来保存，第一个节点保存元素的成员(member), 而第二个元素则保存元素的分值(score)。</p>
+<p>压缩列表内的集合元素 按分值从小到大进行排序，分值较小的元素被放置在靠近表头的方向，而分值较大的元素则被放置在靠近表尾的方向。</p>
+<p>②、skiplist 编码的有序集合对象使用 zset 结构作为底层实现。 一个zset 结构同时包含一个字典和一个跳跃表。</p>
+</blockquote>
+<blockquote>
+<p>有序集合对象使用ziplist编码的条件：</p>
+<p> ①、有序集合保存的元素数量 ＜128 个；</p>
+<p> ②、有序集合保存的所有元素成员的长度都＜64 字节；</p>
+<p>【注】：第②个条件的值可以修改，具体请看配置文件。</p>
+<p>当使用ziplist 编码所需的两个条件中的任意一个不能被满足时，就会执行对象的编码转换操作，原本保存在压缩列表里的所有集合元素都会被转移并保存到zset 结构里面，对象的编码也会从ziplist 变为 skiplist。</p>
+</blockquote>
+<p><strong>类型检查的实现：</strong></p>
+<blockquote>
+<p>在执行一个类型特定的命令之前， Redis 会先检查输入键的类型是否正确，然后再决定是否执行给定的命令。</p>
+</blockquote>
+<p><strong>多态命令的实现：</strong></p>
+<blockquote>
+<p>Redis 除了会根据值对象的类型来判断键是否能够执行指定命令之外，还会根据值对象的编码方式，选择正确的命令实现代码来执行命令。</p>
+</blockquote>
+<p><strong>内存回收：</strong></p>
+<blockquote>
+<p>因为C 语言并不具备自动内存回收功能，所以Redis 在自己的对象系统中构建了一个引用计数技术实现的内存回收机制。</p>
+<p>每个对象的引用计数信息由<code>redisObject</code> 结构的<code>refcount</code> 属性记录.</p>
+<p><strong>对象共享：</strong> 对象的引用计数属性还带有对象共享的作用。</p>
+</blockquote>
+<p><strong>为什么Redis 不共享包含字符串的对象？</strong></p>
+<blockquote>
+<p>当服务器考虑将一个共享对象设置为键的值对象时，程序需要先检查给定的共享对象和键想创建的目标对象是否完全相同，只有在共享对象和目标对象完全相同的情况下，程序才会将共享对象用作键的值对象，而一个共享对象保存的值越复杂，验证共享对象和目标对象是否相同所需的复杂度就会越高，消耗的CPU 时间也会越多：</p>
+<p>①、如果共享对象是保存整数值的字符串对象，那么验证操作的复杂度为0(1);</p>
+<p>②、如果共享对象是保存宇符串值的字符串对象，那么验证操作的复杂度为O(N);</p>
+<p>③、如果共享对象是包含了多个值（或者对象的）对象，比如列表对象或者哈希对象，那么验证操作的复杂度将会是O(N2) 。</p>
+<p>因此，尽管共享更复杂的对象可以节约更多的内存，但受到CPU 时间的限制，Redis 只对包含整数值的字符串对象进行共享。</p>
+</blockquote>
+<p><strong>对象的空转时长：</strong></p>
+<blockquote>
+<p>redisObject 结构包含的最后一个属性为 lru 属性，该属性记录了对象最后一次被命令程序访问的时间。</p>
+<p>空转时长较高的那部分键会优先被服务器释放，从而回收内存。</p>
+<p>总结：</p>
+<p>①、Redis 数据库中的每个键值对的键和值都是一个对象。</p>
+<p>②、Redis 共有字符串、列表、哈希、集合、有序集合五种类型的对象，每种类型的对象至少都有两种或以上的编码方式，不同的编码可以在不同的使用场景上优化对象的使用效率。</p>
+<p>③、服务器在执行某些命令之前，会先检查给定键的类型能否执行指定的命令，而检查一个键的类型就是检查键的值对象的类型。</p>
+<p>④、Redis 的对象系统带有引用计数实现的内存回收机制，当一个对象不再被使用时，该对象所占用的内存就会被自动释放</p>
+<p>⑤、Redis 会共享值为 0 到9999 的字符串 对象（用来共享）。</p>
+<p>⑥、对象会记录自己的最后一次被访问的时间，这个时间可以用于计算对象的空转时间。</p>
+</blockquote>
+<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><blockquote>
+<p>Redis 服务器将所有数据库都保存在服务器状态 <code>redis.h/redisServer</code> 结构的 db数组 中 ， db 数组的每个项都是一个 redis.h &#x2F; redisDb 结构，每个redisDb 结构代表一个数据库。如图：</p>
+</blockquote>
+<p><img src="/images/568.png" alt="在这里插入图片描述"></p>
+<p><strong>客户端的数据库（和服务器中的数据库一样）：</strong></p>
+<blockquote>
+<p>默认情况下，Redis 客户端的目标数据库为 0 号数据库，但客户端可以通过执行 SELECT 命令来切换目标数据库。</p>
+<p>SELECT原理： 通过修改redisClient.db 指针，让它指向服务器中的不同数据库，从而实现切换目标数据库的功能。</p>
+<p>技巧： 到目前为止， Redis 仍然没有可以返回客户端目标数据库的命令，为了避免对数据库进行误操作，在执行 Redis 命令特别是像 FLUSHDB 这样的危险命令之前，最好先执行一个SELECT 命令，显式地切换到指定的数据库，然后再执行别的命令。</p>
+</blockquote>
+<p><strong>数据库键空间：</strong></p>
+<blockquote>
+<p>Redis 是一个键值对数据库服务器，服务器中的每个数据库都由一个redis.h&#x2F;redisDb 结构表示 。</p>
+<p>其中， redisDb 结构的diet 字典保存了数据库中的所有键值对，我们将这个字典称为 键空间 :</p>
+</blockquote>
+<p><img src="/images/569.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>因为数据库的键空间是一个字典，所以所有针对数据库的操作，比如添加一个键值对到数据库，或者从数据库中删除一个键值对，又或者在数据库中获取某个键值对等，实际上都是通过对键空间字典进行操作来实现的。</p>
+<p>除了 添加、删除、更新、取值 操作之外，还有很多针对数据库本身的Redis命令，也是通过对键空间进行处理来完成的。</p>
+<p>比如用于清空整个数据库的 FLUSHDB命令，就是通过删除键空间中的所有键值对来实现的。</p>
+</blockquote>
+<p><strong>读写键空间时的维护操作：</strong></p>
+<blockquote>
+<p>当使用 Redis 命令对数据库进行读写时，服务器不仅会对键空间执行指定的读写操作，还会执行一些 额外的维护操作，比如：</p>
+<p>①、在读取一个键之后（读操作和写操作都要对键进行读取），服务器会根据键是否存在来更新服务器的键空间命中(hit) 次数、键空间不命中(miss) 次数。</p>
+<p>②、在读取一个键之后，服务器会更新键的LRU (最后一次使用） 时间，这个值可以用于计算键的闲置时间。（使用OBJECT idletime &lt; key &gt; 命令可以查看 键 key 的闲置时间）</p>
+<p>③、如果服务器在读取一个键时发现该键已经过期，那么服务器会先删除这个过期键，然后才执行余下的其他操作。</p>
+<p>④、如果有客户端使用&#x3D;&#x3D; WATCH 命令监视了某个键&#x3D;&#x3D;，那么服务器在对被监视的键进行修改之后，会将这个键标记为脏。</p>
+<p>⑤、服务器每次修改一个键之后，都会 对脏( dirty ) 键计数器的值增1 ，这个计数器会触发服务器的持久化以及复制操作。</p>
+<p>⑤、如果服务器开启了数据库通知功能，那么在对键进行修改之后，服务器将按配置发送相应的数据库通知。</p>
+</blockquote>
+<p><strong>保存过期时间：</strong></p>
+<blockquote>
+<p>redisDb 结构的 expires 字典保存了数据库中所有键的过期时间，我们称这个字典为过期字典：过期字典的键是一个指针，这个指针指向键空间中的某个键对象，过期字典的值是一个 long long 类型的整数，表示过期时间。</p>
+</blockquote>
+<p><img src="/images/570.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>移除过期时间：aasPERSIST 命令就是PEXPIREAT 命令的反操作：可以移除一个键的过期时间。</p>
+<p>计算并返回剩余生存时间：</p>
+<p>TTL 命令以秒为单位返回键的剩余生存时间；PTTL 命令则以毫秒为单位返回键的剩。余生存时间：</p>
+<p>过期键的判定：</p>
+<p>检查给定键是否存在于过期字典：如果存在，那么取得键的过期时间。检查当前UNIX时间戳是否大于键的过期时间：如果是的话，那么键已经过期；否则的话，键未过期。</p>
+<p>优点：在实际中， Redis 检查键是否过期的方法如下，这样直接访问字典检查键是否过期比执行一个命令稍微快一些。</p>
+</blockquote>
+<p><strong>过期键删除策略（3种）：</strong></p>
+<blockquote>
+<p>①、定时删除： 在设置键的过期时间的同时，创建一个定时器, 让定时器在键的过期时间来临时，立即执行对键的删除操作。</p>
+<p> 优点：对内存友好；</p>
+<p> 缺点：对CPU 时间是最不友好的：在内存不紧张但是CPU 时间非常紧张的情况下，将CPU 时间用在删除和当前任务无关的过期键上，无疑会对服务器的响应时间和吞吐量造成影响。此外，创建一个定时器需要用到Redis 服务器中的时间事件，而当前时间事件的实现方式一无序链表，查找一个事件的时间复杂度为O(N)，并不能高效地处理大量时间事件。</p>
+<p>②、惰性删除： 放任键过期不管，但是每次从键空间中获取键时，都检查取得的键是否过期，如果过期的话，就删除该键；如果没有过期，就返回该键。</p>
+<p> 优点：对CPU 时间来说是最友好的；</p>
+<p> 缺点：对内存是最不友好的：如果数据库中有非常多的过期键，而这些过期键又恰好没有被访问到的话，那么它们也许永远也不会被删除（除非手动FLUSHDB），这种情况可看作是一种 内存泄漏——无用的垃圾数据占用了大量的内存。</p>
+<p>③、定期删除： 每隔一段时间，程序就对数据库进行一次检查，删除里面的过期键。至于要删除多少过期键，以及要检查多少个数据库，则由算法决定。</p>
+<p> 定期删除策略是前两种策略的一种整合和折中：</p>
+<p> 定期删除策略每隔一段时间执行一次删除过期键操作，并通过限制删除操作执行的时长和频率来减少删除操作对CPU 时间的影响。</p>
+<p>除此之外，通过定期删除过期键，定期删除策略有效地减少了因为过期键而带来的内存浪费。</p>
+<p> 难点（删除操作执行的时长和频率）:</p>
+<p> 如果删除操作执行得太频繁或执行的时间太长，定期删除策略就会退化成定时删除策略， 以至于将 CPU 时间过多地消耗在删除过期键上面。</p>
+<p> 如果删除操作执行得太少，或者执行的时间太短，定期删除策略又会和惰性删除策略一样，出现浪费内存的情况。</p>
+<p>【注】：第一种和第三种为主动删除策略，而第二种则为被动删除策略。</p>
+<p>Redis 服务器实际使用的是惰性删除和定期删除两种策略：通过配合使用这两种删除策略，服务器可以很好地在合理使用CPU 时间和避免浪费内存空间之间取得平衡。</p>
+</blockquote>
+<p><strong>AOF 、RDB 和复制功能对过期键的处理：</strong></p>
+<blockquote>
+<p>① RDB文件： 在执行 SAVE 命令或者 BGSAVE 命令创建一个新的 RDB 文件时，程序会对数据库中的键进行检查，已过期的键不会被保存到新创建的RDB 文件中。</p>
+<p>在启动Redis 服务器时，如果服务器开启了RDB 功能，那么服务器将对RDB 文件进行载入：</p>
+<p>如果服务器以主服务器模式运行，那么在载入RDB 文件时，程序会对文件中保存的键进行检查，未过期的键会被载入到数据库中，而过期键则会被忽略。</p>
+<p>如果服务器以从服务器模式运行，那么在载入RDB 文件时，文件中保存的所有键，不论是否过期，都会被载入到数据库中。不过，因为主从服务器在进行数据同步的时候， 从服务器的数据库就会被清空。</p>
+<p>综上两种情况，过期键都不会影响RDB文件。</p>
+<p>① AOF文件： 当服务器以AOF 持久化模式运行时，如果数据库中的某个键已经过期，但它还没有被惰性删除或者定期删除，那么AOF 文件不会因为这个过期键而产生任何影响。</p>
+<p>当过期键被惰性删除或者定期删除之后，程序会向AOF 文件追加一条DEL命令， 来显式地记录该键已被删除。(在执行AOF 重写的过程中，程序会对数据库中的键进行检查，已过期的键不会被保存到重写后的AOF 文件中。)</p>
+</blockquote>
+<p><strong>复制：</strong></p>
+<blockquote>
+<p>当服务器运行在复制模式下时，从服务器的过期键删除动作由主服务器控制：</p>
+<p>①、主服务器在删除一个过期键之后，会显式地向所有从服务器发送一个DEL 命令，告知从服务器删除这个过期键。</p>
+<p>②、从服务器在执行客户端发送的读命令时，即使碰到过期键也不会将过期键删除，而是继续像处理未过期的键一样来处理过期键。</p>
+<p>③、从服务器只有在接到主服务器发来的DEL 命令之后，才会删除过期键。</p>
+<p>通过由主服务器来控制从服务器统一地删除过期键，可以保证主从服务器数据的一致性。当一个过期键仍然存在于主服务器的数据库时， 这个过期键在从服务器里的复制品也会继续存在。</p>
+</blockquote>
+<p><strong>数据库通知：</strong></p>
+<blockquote>
+<p>数据库通知是Redis 2.8 版本新增加的功能，这个功能可以让客户端通过订阅给定的频道或者模式，来获知数据库中键的变化。</p>
+</blockquote>
+<blockquote>
+<p>⒈Redis 服务器的所有数据库都保存在redisServer.db 数组 中，而数据库的数量则由redisServer.dbnum 属性保存。</p>
+<p> ⒉客户端通过修改目标数据库指针，让它指向redisServer .db 数组中的不同元素来切换不同的数据库。</p>
+<p> ⒊数据库主要由diet 和expires 两个字典构成，其中diet 字典负责保存键值对，而expires 字典则负责保存键的过期时间。</p>
+<p> ⒋因为数据库由字典构成，所以对数据库的操作都是建立在字典操作之上的。</p>
+<p> ⒌数据库的 键总是一个字符串对象，而值则可以是任意一种Redis 对象类型，包括字符串对象、哈希表对象、集合对象、列表对象和有序集合对象，分别对应字符串键哈希表键、集合键、列表键和有序集合键。</p>
+<p> ⒍expires 字典的键指向数据库中的某个键，而值则记录了数据库键的过期时间，过期时间是一个以毫秒为单位的 UNIX 时间戳。</p>
+<p> ⒎Redis 使用惰性删除、定期删除两种策略来删除过期的键：惰性删除策略只在碰到过期键时才进行删除操作，定期删除策略则每隔一段时间主动查找并删除过期键。</p>
+<p> ⒏执行SAVE 命令或者BGSAVE 命令所产生的新RDB 文件不会包含已经过期的键。</p>
+<p> ⒐执行BGREWRITEAOF 命令所产生的重写AOF 文件不会包含已经过期的键。</p>
+<p> ⒑ 当一个过期键被删除之后，服务器会追加一条DEL 命令到现有AOF文件的末尾，显式地删除过期键。</p>
+<p> ⒒ 当主服务器删除一个过期键之后，它会向所有从服务器发送一条DEL 命令，显式地删除过期键。</p>
+<p> ⒓ 从服务器即使发现过期键也不会自作主张地删除它，而是等待主节点发来DEL 命令，这种统一、中心化的过期键删除策略可以保证主从服务器数据的一致性。</p>
+<p> ⒔ 当Redis 命令对数据库进行修改之后，服务器会根据配置向客户端发送数据库通知。</p>
+</blockquote>
+<h1 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h1><blockquote>
+<p>因为Redis 是内存数据库，它将自己的数据库状态储存在内存里面，所以如果不想办法将储存在内存中的数据库状态保存到磁盘里面，那么一旦服务器进程退出，服务器中的数据库状态也会消失不见。</p>
+<p>为了解决这个问题， Redis 提供了RDB 持久化功能，这个功能可以将Redis 在内存中的数据库状态保存到磁盘里面，避免数据意外丢失。</p>
+</blockquote>
+<p><strong>RDB持久化：</strong></p>
+<blockquote>
+<p>RDB 待久化既可以手动执行，也可以根据服务器配置选项定期执行。</p>
+<p> 功能：将某个时间点上的数据库状态保存到一个RDB 文件。</p>
+<p>RDB 持久化功能所生成的 RDB 文件是一个经过压缩的二进制文件，通过该文件可以还原生成RDB 文件时的数据库状态。</p>
+</blockquote>
+<p><strong>RDB 文件的创建与载入：</strong></p>
+<blockquote>
+<p>⒈有两个 Redis 命令可以用于生成 RDB文件：</p>
+<p> ① SAVE： SAVE 命令会阻塞 Redis 服务器进程， 直到RDB 文件创建完毕为止（在服务器进程阻塞期间，服务器不能处理任何命令请求，即客户端发送的所有命令请求都会被拒绝。）。</p>
+<p>② BGSAVE： BGSAVE 命令会派生出一个子进程，然后由子进程负责创建RDB 文件，服务器进程（父进程）继续处理命令请求。</p>
+<p>⒉RDB 文件的 载入工作是在 服务器启动时自动执行的。 只要Redis 服务器在启动时检测到RDB 文件存在，它就会自动载入RDB 文件。</p>
+<p>⒊启用流程：因为AOF文件的更新频率通常比RDB 文件的更新频率高，所以：</p>
+<p> ①、如果服务器开启了AOF 持久化功能，那么服务器会优先使用AOF 文件来还原数据库状态。</p>
+<p> ②、只有在AOF 持久化功能处于关闭状态时， 服务器才会使用RDB 文件来还原数据库状态。</p>
+</blockquote>
+<p><img src="/images/571.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>⒋BGSAVE 命令执行时的服务器状态：</p>
+<p>因为BGSA VE 命令的保存工作是由子进程执行的，所以在子进程创建RDB 文件的过程中，Redis 服务器仍然可以继续处理客户端的命令请求。但是要注意：SAVE 、BGSAVE 、BGREWRITEAOF 这三个命令。</p>
+<p>①、服务器禁止 SAVE 命令和 BGSAVE 命令同时执行是为了避免父进程（ 服务器进程）和子进程同时执行两个rdbSave 调用，防止产生竞争条件。</p>
+<p>②、在BGSAVE 命令执行期间，客户端发送的BGSAVE 命令会被服务器拒绝，因为同时执行两个BGSAVE 命令也会产生竞争条件。</p>
+<p>③、BGREWRITEAOF 和BGSAVE 两个命令不能同时执行：因为 BGREWRITEAOF 和 BGSAVE 两个命令的实际工作都由子进程执行，所以这两个命令在操作方面并没有什么冲突的地方，不能同时执行它们只是一个 性能方面的考虑 一并发出两个子进程，并且这两个子进程都同时执行 大量的磁盘写入操作，这怎么想都不会是一个好主意。</p>
+</blockquote>
+<blockquote>
+<p>⒌自动 间隔性 保存</p>
+<p>因为 BGSAVE 命令可以在不阻塞服务器进程的情况下执行，所以 Redis让服务器每隔一段时间自动执行一次BGSAVE 命令。</p>
+<p> （用户可以通过save 选项设置多个保存条件，但只要其中任意一个条件被满足， 服务器就会执行BGSAVE 命令）</p>
+<p>①、服务器在900 秒之内，对数据库进行了至少1 次修改。</p>
+<p>②、服务器在300 秒之内，对数据库进行了至少10 次修改。</p>
+<p>③、服务器在6 0 秒之内，对数据库进行了至少10000 次修改。</p>
+</blockquote>
+<p><strong>RDB持久化总结：</strong></p>
+<blockquote>
+<p>①、RDB 文件用于保存和还原Redis 服务器所有数据库中的所有键值对数据。</p>
+<p>②、SAVE 命令由服务器进程直接执行保存操作，所以该命令会阻塞服务器。</p>
+<p>BGSAVE 令由子进程执行保存操作，所以该命令不会阻塞服务器。</p>
+<p>③、服务器状态中会保存所有用save 选项设置的保存条件，当任意一个保存条件被满足时，服务器会自动执行BGSAVE 命令。</p>
+<p>④、RDB 文件是一个 经过压缩的二进制文件，由多个部分组成。</p>
+<p>⑤、对于不同类型的键值对， RDB 文件会使用不同的方式来保存它们。</p>
+</blockquote>
+<p><strong>AOF持久化：</strong></p>
+<blockquote>
+<p>除了RDB 持久化功能之外， Redis 还提供了AOF持久化功能。</p>
+<p>与RDB 持久化通过保存数据库中的键值对来记录数据库状态不同， AOF 持久化是通过保存Redis 服务器所执行的写命令来记录数据库状态的。</p>
+</blockquote>
+<blockquote>
+<p>被写入AOF 文件的所有命令都是以Redis 的命令请求协议格式保存的，因为Redis 的命令请求协议是纯文本格式，所以我们 可以直接查看AOF文件。</p>
+<p>⒈AOF 持久化的实现：</p>
+<p>AOF 持久化功能的实现可以分为 命令追加、文件写入、文件同步 三个步骤。</p>
+<p>①、命令追加： 当AOF 持久化功能处于打开状态时，服务器在执行完一个写命令之后， 会以协议格式将被执行的写命令追加到服务器状态的 aof_buf 缓冲区 的末尾：</p>
+<p>②、AOF 文件的写入与同步： 当AOF 持久化功能处于打开状态时，服务器在执行完一个写命令之后， 会以协议格式将被执行的写命令追加到服务器状态的 aof_buf 缓冲区 的末尾。Redis 的服务器进程就是一个事件循环，在服务器每次结束一个事件循环之前，它都会调用 flushAppendOnlyFile 函数，考虑是否需要将aof_buf 缓冲区中的内容写入和保存到AOF 文件里面。</p>
+<p>【注】：flushAppendOnlyFile 函数行为由服务器配置的appendfsync 选项的值来决定。</p>
+<p>如果用户没有主动为 appendfsync 选项设置值，那么appendfsync 选项的默认值为everysec。</p>
+</blockquote>
+<p><img src="/images/572.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>服务器配置 appendfsync 选项的值直接决定 AOF 持久化功能的 效率和安全性。</p>
+<p>always 的效率是 appendfsync 选项三个值当中最慢的一个， no 模式下的AOF 文件写入速度总是最快的，单次同步时长通常是三种模式中时间最长的。</p>
+<p>⑴ 文件写入： 为了提高文件的写入效率，在现代操作系统中，当用户调用 write 函数，将一些数据写入到文件的时候，操作系统通常会将写入数据暂时保存在一个内存缓冲区里面，等到缓冲区的空间被填满、或者超过了指定的时限之后，才真正地将缓冲区中的数据写入到磁盘里面。</p>
+<p>⑵ 文件写入带来的问题： 虽然 提高了效率，但也为写入数据带来了安全问题，因为如果计算机发生停机，那么保存在内存缓冲区里面的写入数据将会丢失。</p>
+<p>⑶ 解决方法： 系统提供了 fsync 和 fdatasync 两个 同步函数，它们可以强制让操作系统立即将缓冲区中的数据写入到硬盘里面，从而确保写入数据的安全性。</p>
+</blockquote>
+<p><strong>AOF 文件的载入与数据还原：</strong></p>
+<blockquote>
+<p> <strong>AOF</strong>文件 的载入过程：</p>
+</blockquote>
+<p><img src="/images/573.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>创建一个不带网络连接的伪客户端的理由： 因为Redis 的命令只能在客户端上下文中执行，而载入 <strong>AOF</strong> 文件时所使用的命令直接来源于 <strong>AOF</strong> 文件而不是网络连接，所以服务器使用了一个没有网络连接的伪客户端来执行 <strong>AOF</strong> 文件保存的写命令。</p>
+</blockquote>
+<p><strong>AOF 文件重写的实现：</strong></p>
+<blockquote>
+<p>虽然 Redis 将生成新AOF 文件替换旧AOF 文件的功能命名为”AOF 文件重写“，但实际上， AOF 文件重写并不需要对现有的AOF 文件进行任何读取、分析或者写入操作，这个功能是通过读取服务器当前的数据库状态来实现的。</p>
+<p>AOF文件重写的实现原理 ： 首先从数据库中读取键现在的值， 然后用一条命令去记录键值对，代替之前记录这个键值对的多条命令。</p>
+<p>因为 aof_rewrite 函数生成的 新 AOF 文件 只包含还原当前数据库状态所必须的命令，所以新AOF 文件不会浪费任何硬盘空间。</p>
+<p>在实际中，为了避免在执行命令时造成客户端输入缓冲区溢出，重写程序在处理列表、哈希表、集合、有序集合这四种可能会带有多个元素的键时，会先检查键所包含的元素数量，如果元素的数量 ＞redis.h&#x2F;REDIS_AOF_REWRITE_ITEMS_PER_CMD 常量的值，那么重写程序将使用多条命令来记录键的值，而不单单使用一条命令。</p>
+<p>在目前版本中， REDIS_AOF_REWRIT E_IT EMS _PER_CMD 常量的值为64，也就是说单条指令的元素数量最多64个。</p>
+</blockquote>
+<p><strong>AOF 后台重写：</strong></p>
+<blockquote>
+<p>因为 Redis 不希望 AOF 重写造成服务器无法处理请求，所以 Redis 决定将 AOF 重写程序放到 子进程（不是子线程） 里执行（因为Redis 服务器使用 单个线程 来处理命令请求，会造成阻塞）。</p>
+<p> AOF 重写程序放到 子进程 里执行的 目的：</p>
+<p>①、子进程进行 AOF 重写期间，服务器进程（父进程）可以继续处理命令请求。</p>
+<p>②、子进程带有服务器进程的数据副本，使用子进程而不是线程，可以在避免使用锁的情况下，保证数据的安全性。</p>
+<p> AOF 重写使用子进程带来的问题：</p>
+<p>因为子进程在进行 AOF 重写期间，服务器进程还需要继续处理命令请求，而新的命令可能会对现有的数据库状态进行修改，从而使得服务器当前的数据库状态和重写后的 AOF 文件所保存的 数据库状态不一致。</p>
+<p> 问题解决：</p>
+<p>为了解决这种数据不一致问题， Redis 服务器设置了一个 AOF 重写缓冲区，这个缓冲区在服务器创建子进程之后开始使用，当 Redis 服务器执行完一个写命令之后，它会同时将这个写命令发送给 AOF 缓冲区 和AOF 重写缓冲区。</p>
+</blockquote>
+<p><img src="/images/574.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p> AOF 重写缓冲区的作用：</p>
+<p>①、AOF 缓冲区的内容会 定期 被写入和同步到 AOF 文件，对现有 AOF 文件的处理工作会如常进行。</p>
+<p>②、从创建子进程开始，服务器执行的所有写命令都会被记录到 AOF 重写缓冲区里面。</p>
+<p> AOF 重写完成后 信号处理函数 的作用：</p>
+<p>当子进程完成 AOF 重写工作之后，它会向父进程发送一个信号，父进程在接到该信号之后，会调用一个 信号处理函数，并执行以下工作：</p>
+<p>①、写入：将 AOF 重写缓冲区中的所有内容写入到新 AOF 文件中，这时新 AOF 文件所保存的数据库状态将和服务器当前的数据库状态一致。</p>
+<p>②、改名：对新的 AOF 文件进行改名，原子地 覆盖现有的 AOF 文件，完成新旧两个 AOF 文件的替换。</p>
+<p>在整个 AOF 后台重写过程中，只有信号处理函数执行时会对服务器进程（父进程）造成阻塞，在其他时候， AOF 后台重写都不会阻塞父进程，这将AOF 重写对服务器性能造成的影响降到了最低。</p>
+</blockquote>
+<p><strong>AOF持久化总结：</strong></p>
+<blockquote>
+<p>①、AOF 文件 通过保存所有修改数据库的写命令 请求来记录服务器的数据库状态。</p>
+<p>②、AOF 文件中的所有命令都以 Redis 命令请求协议的格式保存。</p>
+<p>③、命令请求会先保存到 AOF 缓冲区里面，之后再定期写入并同步到 AOF 文件。</p>
+<p>④、appendfsync 选项的不同值对 AOF 持久化功能的安全性以及 Redis 服务器的性能有很大的影响。</p>
+<p>⑤、服务器只要载入并重新执行保存在 AOF 文件中的命令， 就可以还原数据库本来的状态。</p>
+<p>⑥、AOF 重写可以产生一个新的 AOF 文件，这个新的 AOF 文件和原有的 AOF 文件所保存的数据库状态一样，但体积更小。</p>
+<p>⑦、AOF 重写是一个有歧义的名字，该功能是通过读取数据库中的键值对来实现的， 程序无须对现有 AOF 文件进行任何读入、分析或者写入操作。</p>
+<p>⑧、在执行 BGREWRITEAOF 命令时， Redis 服务器会维护一个AOF 重写缓冲区，该缓冲区会在子进程创建新AOF 文件期间，记录服务器执行的所有写命令。当子进程完成创建新 AOF 文件的工作之后，服务器会将重写缓冲区中的所有内容追加到新AOF文件的末尾，使得新旧两个 AOF 文件所保存的数据库状态一致。最后，服务器用新的 AOF 文件替换旧的 AOF 文件，以此来完成 AOF 文件重写操作。</p>
+</blockquote>
+<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><blockquote>
+<p>Redis 服务器是一个 事件驱动程序，服务器需要处理以下两类事件：</p>
+<p>①、文件事件： Redis 服务器通过 套接字 与客户端（或者其他 Redis 服务器）进行连接，而 文件事件就是服务器对套接字操作的抽象。</p>
+<p>②、时间事件： Redis 服务器中的一些操作（比如 serverCron 函数）需要在给定的时间点执行，而时间事件就是服务器对这类定时操作的抽象。</p>
+</blockquote>
+<p><strong>文件事件：</strong></p>
+<blockquote>
+<p>Redis 基 Reactor 模式开发了自己的 网络事件处理器：这个处理器被称为 文件事件处理器。</p>
+<p>①、文件事件处理器使用 I&#x2F;O 多路复用 程序来同时监听多个 套接字 ，并根据套接字目前执行的任务来为套接字关联不同的事件处理器。</p>
+<p>②、当被监听的套接字准备好执行连接应答 、读取、写人 、关闭 等操作时，与操作相对应的文件事件就会产生，这时文件事件处理器就会调用套接字之前关联好的事件处理器来处理这些事件。</p>
+<p>虽然 文件事件处理器以 单线程 方式运行，但通过使用 I&#x2F;0 多路复用程序 来监听多个套接字。</p>
+<p>⒈文件事件处理器的意义：</p>
+<p>文件事件处理器既实现了高性能的网络通信模型，又可以很好地与 Redis 服务器中其他同样以单线程方式运行的模块进行对接，这保持了 Redis 内部单线程设计的简单性。</p>
+<p> ⒉文件事件处理器的构成：</p>
+<p>四部分：套接字、I&#x2F;O 多路复用程序、文件事件分派器、 以及事件处理器。</p>
+</blockquote>
+<p><img src="/images/575.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>文件事件：是对套接字操作的抽象，每当一个套接字准备好执行连接应答、写入、读取、关闭等操作时，就会产生一个文件事件。(因为一个服务器通常会连接多个套接字，所以多个文件事件有可能会 并发 地出现。)</p>
+<p>I&#x2F;O多路复用程序： I&#x2F;O 多路复用程序 负责监听多个套接字，并向文件事件分派器传送那些产生了事件的套接字。</p>
+<p>（尽管多个文件事件可能会并发地出现，但 I&#x2F;O 多路复用程序总是会将所有产生事件的套接字都放到一个队列里面， 然后通过这个队列， 以有序、同步、每次一个套接字的方式向文件事件分派器传送套接字）。如图：</p>
+</blockquote>
+<p><img src="/images/576.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>文件事件分派器： 接收 I&#x2F;O 多路复用程序传来的套接字，并根据套接字产生的事件的类型，调用相应的事件处理器。( 服务器会为执行不同任务的套接字关联不同的事件处理器，这些处理器是一个个函数，它们定义了某个事件发生时，服务器应该执行的动作。)</p>
+<p> ⒊I&#x2F;O 多路复用程序的实现：</p>
+<p> Redis 的 I&#x2F;O 多路复用程序的所有功能都是通过包装常见的select 、epoll 、evport 和 kqueue 这些 I&#x2F;0 多路复用函数库来实现的，每个I&#x2F;O 多路复用函数库在Redis 源码中都对应一个单独的文件。</p>
+</blockquote>
+<p><img src="/images/577.png" alt="在这里插入图片描述"></p>
+<p><strong>事件的类型：</strong></p>
+<blockquote>
+<p> I&#x2F;O 多路复用程序可以监听多个套接字的 ae.h&#x2F;AE_READABLE 事件和 ae.h&#x2F;AE_WRITABLE 事件，这两类事件和套接字操作之间的对应关系如下：</p>
+<p>①、当套接字变得 可读 时（客户端对套接字执行 write 操作，或者执行 close 操作），或者有新的可应答( acceptable) 套接字出现时（客户端对服务器的监听套接字执行 connect 操作），套接字产生 AE_READABLE 事件。</p>
+<p>②、当套接字变得 可写 时（客户端对套接字执行 read 操作），套接字产生 AEWRITABLE 事件。</p>
+<p>如果一个套接字又可读又可写的话，那么 服务器将 先读套接字，后写套接字。</p>
+</blockquote>
+<p><strong>文件事件的处理器：</strong></p>
+<blockquote>
+<p><strong>Redis</strong> 为文件事件编写了多个处理器，这些事件处理器分别用于 实现不同的网络通信需求，比如(用的最多的 <strong>3</strong> 个)：</p>
+<p> ①、连接 应答 处理器：用于初始化阶段。为了对连接服务器的各个客户端进行应答， 服务器要为监听套接字关联。</p>
+<p> ②、命令 请求 处理器：为了接收客户端传来的命令请求，服务器要为客户端套接字关联。</p>
+<p>③、命令 回复 处理器：为了向客户端返回命令的执行结果，服务器要为客户端套接字关联。</p>
+</blockquote>
+<p><strong>Redis</strong> 客户端与服务器进行连接并发送命令的整个过程：</p>
+<blockquote>
+<p>①、假设一个 Redis 服务器正在运作，那么这个服务器的监听套接字的 AE_READABLE 事件应该正处于监听状态之下，而该事件所对应的处理器为 连接应答处理器。</p>
+<p> ②、如果这时有一个Redis 客户端向服务器 发起连接，那么监听套接字将产生 AE _READABLE 事件，触发 连接应答处理器执行。处理器会对客户端的连接请求进行应答，然后创建客户端套接字，以及客户端状态，并将客户端套接字的 AE_READABLE 事件与命令请求处理器进行关联，使得客户端可以向主服务器发送命令请求。</p>
+<p> ③、假设客户端向主服务器发送一个命令请求，那么客户端套接字将产生AE_READABLE 事件，引发命令请求处理器执行，处理器读取客户端的命令内容，然后传给相关程序去执行。</p>
+<p> ④、执行命令将产生相应的命令回复，为了将这些命令回复传送回客户端，服务器会将客户端套接字的AE_WRITABLE 事件与命令回复处理器进行关联。当客户端尝试读取命令回复的时候，客户端套接字将产生 AE_WRITABLE 事件，触发命令回复处理器执行，当命令回复处理器将命令回复全部写入到套接字之后，服务器就会解除客户端套接字的 AE_WRITABLE 事件与命令回复处理器之间的关联。</p>
+</blockquote>
+<p><strong>时间事件：</strong></p>
+<blockquote>
+<p>Redis 的 时间事件 分为两类：</p>
+<p>①、 定时事件： 让一段程序在 指定的时间之后 执行一次。</p>
+<p>②、周期性事件： 让一段程序 每隔指定时间 就执行一次。</p>
+<p>一个 时间事件 主要由 3 个属性组成：</p>
+<p>①、 id： 服务器为时间事件创建的全局唯一ID （ID 号按从小到大的顺序递增）。</p>
+<p>②、when： 毫秒 精度的 UNIX 时间戳，记录了时间事件的 到达 时间。</p>
+<p>③、timeProc： 时间事件处理器（一个函数），当时间事件到达时， 服务器就会调用相应的处理器来处理事件。</p>
+<p>一个时间事件是定时事件还是周期性事件取决于时间事件处理器的返回值：</p>
+<p>①、如果事件处理器返回 ae.h&#x2F;AE_NOMORE, 那么这个事件为 定时事件：该事件在达到一次之后就会被删除，之后不再到达。</p>
+<p>②、如果事件处理器返回一个非 AE_NOMORE 的整数值, 那么这个事件为 周期性事件。</p>
+</blockquote>
+<blockquote>
+<p>目前版本的Redis 只使用周期性事件，而没有使用定时事件。</p>
+</blockquote>
+<p><strong>事件的调度与执行:</strong></p>
+<blockquote>
+<p>因为服务器中同时存在文件事件和时间事件两种事件类型，所以服务器必须对这两种事件进行调度。（不具体展开，以图的形式来简略说明其流程。）</p>
+</blockquote>
+<p><img src="/images/578.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>对文件事件和时间事件的处理都是 同步、有序、原子地执行的 ，服务器不会中途中断事件处理，也不会对事件进行抢占，因此，不管是文件事件的处理器，还是时间事件的处理器，它们都会尽可地减少程序的阻塞时间，并在有需要时主动让出执行权，从而降低造成事件饥饿的可能性。</p>
+<p>比如说，在命令回复处理器将一个命令回复写入到客户端套接字时，如果写入字节数超过了一个预设常量的话，命令回复处理器就会主动用break 跳出写入循环，将余下的数据留到下次再写；</p>
+<p>另外，时间事件也会 将非常耗时的持久化操作放到子线程或者子进程执行。</p>
+<p>因为时间事件在文件事件之后执行，并且事件之间不会出现抢占，所以时间事件的实际处理时间，通常会比时间事件设定的到达时间稍晚一些。</p>
+</blockquote>
+<blockquote>
+<p>①、Redis 服务器是一个事件驱动程序，服务器处理的事件分为时间事件和文件事件两类。</p>
+<p>②、文件事件处理器是基于 Reactor 模式实现的网络通信程序。</p>
+<p>③、文件事件是对套接字操作的抽象：每次套接字变为可应答、可写、可读 时，相应的文件事件就会产生。</p>
+<p>④、文件事件分为 AE_READABLE 事件（读事件）和 AE_WRITABLE 事件（写事件）两类。</p>
+<p>⑤、时间事件分为定时事件和周期性事件：定时事件只在指定的时间到达一次，而周期性事件则每隔一段时间到达一次。</p>
+<p>⑥、服务器在一般情况下只执行 serverCron 函数一个时间事件，并且这个事件是周期性事件。</p>
+<p>⑦、文件事件和时间事件之间是 合作关系，服务器会轮流处理这两种事件，并且处理事件的过程中也不会进行抢占。</p>
+<p>⑧、时间事件的实际处理时间通常会比设定的到达时间晚一些。</p>
+</blockquote>
+<h1 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h1><blockquote>
+<p><strong>Redis</strong> 服务器负责与多个客户端建立网络连接，处理客户端发送的命令请求，在数据库中保存客户端执行命令所产生的数据， 并通过资源管理来维持服务器自身的运转。</p>
+</blockquote>
+<p><strong>命令请求的执行过程</strong></p>
+<blockquote>
+<p>一个命令请求从发送到获得回复的过程中，客户端和服务器需要完成一系列操作。</p>
+</blockquote>
+<blockquote>
+<p>一个命令请求从发送到完成主要包括以下步骤： 1) 客户端将命令请求发送给服务器；2) 服务器读取命令请求，并分析出命令参数； 3) 命令执行器根据参数查找命令的实现函数，然后执行实现函数并得出命令回复； 4) 服务器将命令回复返回给客户端。</p>
+<p>②、serverCron 函数默认每隔 100 毫秒执行一次，它的工作主要包括更新服务器状态信息，处理服务器接收的 SIGTERM 信号，管理客户端资源和数据库状态，检查并执行持久化操作等等。</p>
+<p>③、服务器从启动到能够处理客户端的命令请求需要执行以下步骤： 1) 初始化服务器状态； 2) 载入服务器配置； 3) 初始化服务器数据结构； 4) 还原数据库状态； 5) 执行事件循环。</p>
+</blockquote>
+<h1 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h1><blockquote>
+<p>复制的目的：进行复制中的主从服务器双方的数据库将保存相同的数据，概念上将这种现象称作“ 数据库状态一致＂，或者简称“ 一致 ” 。</p>
+</blockquote>
+<p><strong>命令请求的执行过程</strong></p>
+<blockquote>
+<p>在 <strong>Redis</strong> 中，用户可以通过执行 <strong>SLAVEOF</strong> 命令，让一个服务器去 复制 另一个服务器。被复制的服务器为 主服务器， 而对主服务器进行复制的服务器为 从服务器。</p>
+</blockquote>
+<p><strong>旧版复制功能的实现</strong></p>
+<blockquote>
+<p>Redis 的复制功能分为 同步 和 命令传播 两个操作：</p>
+<p> ①、同步操作用于将从服务器的数据库状态更新至主服务器当前所处的数据库状态。</p>
+<p> ②、命令传播操作用于在主服务器的数据库状态被修改，导致主从服务器的数据库状态出现不一致时，让主从服务器的数据库重新回到一致状态。</p>
+<p>⒈同步</p>
+<p>当客户端向从服务器 发送 SLAVEOF 命令，要求从服务器复制主服务器时，从服务器 首先需要执行同步操作，也即是，将从服务器的数据库状态更新至主服务器当前所处的数据库状态。</p>
+</blockquote>
+<p><img src="/images/579.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>主从服务器在执行 SYNC 命令期间的通信过程：</p>
+<p> ①、从服务器向主服务器发送 SYNC 命令。</p>
+<p> ②、收到 SYNC 命令的主服务器执行 BGSAVE 命令，在后台生成一个 RDB 文件，并 使用一个缓冲区记录从现在开始执行的所有写命令。</p>
+<p> ③、当主服务器的 BGSAVE 命令执行完毕时，主服务器会将 BGSAVE 命令生成的 RDB 文件发送给从服务器， 从服务器接收并载入这个 RDB 文件，将自己的数据库状态更新至主服务器执行 BGSAVE 命令时的数据库状态。</p>
+<p> ④、主服务器将记录在缓冲区里面的所有写命令发送给从服务器，从服务器执行这些写命令，将自己的数据库状态更新至主服务器数据库当前所处的状态。</p>
+</blockquote>
+<p><strong>命令传播</strong></p>
+<blockquote>
+<p>在同步操作执行完毕之后，主从服务器两者的数据库将达到一致状态，但这种一致并不是一成不变的，每当主服务器执行客户端发送的写命令时，主服务器的数据库就有可能会被修改，并导致主从服务器状态不再一致。</p>
+<p>为了让主从服务器再次回到一致状态，主服务器需要对从服务器执行命令传播操作：主服务器会将自己执行的写命令，也即是造成主从服务器不一致的那条写命令，发送给从服务器执行，当从服务器执行了相同的写命令之后，主从服务器将再次回到一致状态。</p>
+</blockquote>
+<p><img src="/images/580.png" alt="在这里插入图片描述"></p>
+<p><strong>旧版复制功能的缺陷</strong></p>
+<blockquote>
+<p>在 Redis 中，从服务器对主服务器的复制可以分为 2 种情况：</p>
+<p> ①、初次复制：从服务器以前没有复制过任何主服务器，或者从服务器当前要复制的主服务器和上一次复制的主服务器不同。</p>
+<p> ②、断线后重复制： 处于命令传播阶段的主从服务器因为网络原因而中断了复制，但从服务器通过自动重连接重新连上了主服务器，并继续复制主服务器。</p>
+<p>为什么断线后重复制的效率低呢？</p>
+<p>因为在旧版复制功能中，断线后，从服务器会重新连接上主服务器并发送 SYNC 命令，然后将主服务器中数据库的所有状态发送给从服务器。在这种情况下，为了让从服务器补足一小部分缺失的数据，却要让主从服务器重新执行一次 SYNC 命令，这种做法无疑是非常低效的。</p>
+<p>SYNC 命令是一个非常耗费资源的操作：因为每次执行 SYNC 命令，主从服务器需要执行以下动作：</p>
+<p>①、主服务器需要执行 BGSAVE 命令来生成 RDB 文件，这个生成操作会耗费主服务器大量的 CPU 、内存和磁盘 I&#x2F;O 资源。</p>
+<p>②、主服务器需要将自己生成的 RDB 文件发送给从服务器，这个发送操作会耗费主从服务器大量的网络资源（带宽和流量），并对主服务器响应命令请求的时间产生影响。</p>
+<p>③、接收到 RDB 文件的从服务器需要载入主服务器发来的 RDB 文件，并且在载入期间，从服务器会因为阻塞而没办法处理命令请求。</p>
+<p>总之，因为 SYNC 命令是一个如此耗费资源的操作，所以 Redis 有必要保证在真正有需要时才执行SYNC 命令。</p>
+</blockquote>
+<p><strong>新版复制功能的实现</strong></p>
+<blockquote>
+<p>为了解决旧版复制功能在处理断线重复制情况时的低效问题， Redis 从 2.8 版本开始，使用 PSYNC 命令代替 SYNC 命令来执行复制时的同步操作。</p>
+<p>PSYNC 命令具有 完整重同步 和 部分重同步 两种模式：</p>
+<p> ①、完整重同步：用于处理初次复制情况，完整重同步的执行步骤和 SYNC 命令的执行步骤基本一样，它们都是通过让主服务器创建并发送 RDB 文件，以及向从服务器发送保存在缓冲区里面的写命令来进行同步。</p>
+<p> ②、部分重同步： 处于命令传播阶段的主从服务器因为网络原因而中断了复制，但从服务器通过自动重连接重新连上了主服务器，并继续复制主服务器。(但不是复制主服务器数据库的所有状态，而是 复制断线后主服务器数据库多出的状态)</p>
+</blockquote>
+<p><img src="/images/581.png" alt="在这里插入图片描述"></p>
+<p><strong>部分重同步的实现（细节处理）</strong></p>
+<blockquote>
+<p>部分重同步功能由以下三个部分构成：</p>
+<p> ①、主服务器的 复制偏移量 和 从服务器的复制偏移量。</p>
+<p> ②、主服务器的 复制积压缓冲区 。</p>
+<p> ③、服务器的 运行 ID。</p>
+<p>⒈复制偏移量</p>
+<p>执行复制的双方，主服务器和从服务器会 分别维护一个复制偏移量：</p>
+<p>①、主服务器每次向从服务器传播 N 个字节的数据时，就将自己的复制偏移量的值吧加上 N 。</p>
+<p>②、从服务器每次收到主服务器传播来的 N 个字节的数据时，就将自己的复制偏移量的值 加上 N 。</p>
+<p>通过对比主从服务器的复制偏移量，程序可以很容易地知道主从服务器 是否处于一致状态：</p>
+<p>①、如果主从服务器处于一致状态，那么主从服务器两者的偏移量总是相同的。</p>
+<p>②、如果主从服务器两者的偏移量并不相同，那么说明主从服务器并未处于一致状态。</p>
+<p>⒉ 复制积压缓冲区</p>
+<p>复制积压缓冲区是由主服务器维护的一个固定长度、先进先出 ( FIFO ) 队列，默认大小为1MB 。 （固定长度先进先出队列的入队和出队规则跟普通的先进先出队列一样：新元素从一边进入队列，而旧元素从另一边弹出队列。）</p>
+<p>当主服务器进行命令传播时，它不仅会将写命令发送给所有从服务器，还会将写命令入队到复制积压缓冲区里面。因此，主服务器的复制积压缓冲区里面会保存着一部分最近传播的写命令，并且复制积压缓冲区会为队列中的每个字节记录相应的复制偏移量。</p>
+</blockquote>
+<p><img src="/images/582.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>当从服务器重新连上主服务器时，从服务器会通过 PSYNC 命令将自己的复制偏移量 offset 发送给主服务器， 主服务器会根据这个复制偏移量来决定对从服务器执行部分何种同步操作：</p>
+<p> ①、如果 offset 偏移量之后的数据（也即是偏移量 offset+1 开始的数据） 仍然存在于复制积压缓冲区里面，那么主服务器将对从服务器执行部分重同步操作。</p>
+<p> ②、如果 offset 偏移最之后的数据 巳经不存在于复制积压缓冲区，那么主服务器将对从服务器执行完整重同步操作。</p>
+<p>Redis 为复制积压缓冲区设置的默认大小为 1 MB, 如果主服务器需要执行大量写命令，又或者主从服务器断线后重连接所需的时间比较长，那么这个大小也许并不合适。如果复制积压缓冲区的大小设置得不恰当，那么 PSYNC 命令的复制重同步模式就不能正常发挥作用，因此，正确估算和设置复制积压缓冲区的大小非常重要。</p>
+<p>⒊ 服务器运行ID</p>
+<p>除了复制偏移量和复制积压缓冲区之外，实现部分重同步还需要用到服务器运行ID：</p>
+<p>每个Redis 服务器，不论主服务器还是从服务，都会有自己的运行 ID。运行 ID 在服务器启动时自动生成，由 40 个随机的 十六进制字符 组成。</p>
+<p>当从服务器对主服务器进行初次复制时，主服务器会将自己的运行 ID 传送给从服务器，而从服务器则会将这个运行ID 保存起来。当从服务器断线并重新连上一个主服务器时，从服务器将向当前连接的主服务器发送之前保存的运行ID:</p>
+<p>①、如果从服务器保存的运行ID 和当前连接的主服务器的 运行ID相同，那么说明从服务器断线之前复制的就是当前连接的这个主服务器，主服务器可以继续尝试执行部分重同步操作。</p>
+<p>②、相反地，如果从服务器保存的运行 ID 和当前连接的主服务器的运行ID 并 不相同，那么说明从服务器断线之前复制的主服务器并不是当前连接的这个主服务器，主服务器将对从服务器执行完整重同步操作。</p>
+</blockquote>
+<p><strong>PSYNC 命令的实现</strong></p>
+<blockquote>
+<p>PSYNC 命令的调用方法有 2 种：</p>
+<p>①、如果从服务器以前没有复制过任何主服务器，或者之前执行过 SLAVEOF no one 命令，那么从服务器在开始一次新的复制时将向主服务器发送 PSYNC ? -1 命令，主动请求主服务器进行完整重同步（因为这时不可能执行部分重同步）。</p>
+<p>②、相反地，如果从服务器巳经复制过某个主服务器，那么从服务器在开始一次新的复制时将向主服务器发送 PSYNC &lt; runid&gt; &lt; offset&gt; 命令：其中 runid 是上一次复制的主服务器的运行 ID, 而 offset 则是从服务器当前的复制偏移量，接收到这个命令的主服务器会通过这两个参数来判断应该对从服务器执行哪种同步操作。</p>
+<p>接收到 PSYNC 命令的主服务器会向从服务器返回以下 3 种回复的其中一种：</p>
+<p>①、如果主服务器返回 +FULLRESYNC &lt; runid&gt; &lt; offset&gt; 回复， 那么表示主服务器将与从服务器 执行完整重同步操作： 其中 runid 是这个主服务器的运行 ID, 从服务器会将这个 ID 保存起来，在下一次发送 PSYNC 命令时使用；而 offset 则是主服务器当前的复制偏移量，从服务器会将这个值作为自己的初始化偏移量。</p>
+<p>②、如果主服务器返回 +CONTINUE 回复，那么表示主服务器将与从服务器 执行部分重同步操作，从服务器只要等着主服务器将自己缺少的那部分数据发送过来就可以了。</p>
+<p>③、如果主服务器返回 ERR 回复，那么表示主服务器的版本低于 Redis 2.8, 它识别不了 PSYNC 命令，从服务器将向主服务器发送 SYNC 命令，并与主服务器 执行完整同步操作。</p>
+</blockquote>
+<p><img src="/images/583.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p> ①、Redis 2.8 以前的复制功能不能高效地处理断线后重复制情况，但 Redis 2.8 新添加的部分重同步功能可以解决这个问题。</p>
+<p> ②、部分重同步 通过 复制偏移量、复制积压缓冲区、服务器运行ID 三个部分来实现。</p>
+<p> ③、在复制操作刚开始的时候，从服务器会成为主服务器的客户端，并通过向主服务器发送命令请求来执行复制步骤，而在复制操作的后期，主从服务器会互相成为对方的客户端。</p>
+<p> ④、主服务器通过向从服务器传播命令来更新从服务器的状态，保持主从服务器一致，而从服务器则通过向主服务器发送命令来进行心跳检测，以及命令丢失检测。</p>
+</blockquote>
+<h1 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h1><blockquote>
+<p>Sentinel (哨岗、哨兵）是Redis 的高可用性( high availability ) 解决方案： 由一个或多个Sentinel 实例( instance) 组成的Sentinel 系统(system ) 可以监视任意多个主服务器，以及这些主服务器属下的所有从服务器，并在被监视的主服务器进入下线状态时，自动将下线主服务器属下的某个从服务器升级为新的主服务器，然后由新的主服务器代替巳下线的主服务器继续处理命令请求。然后由新的主服务器代替巳下线的主服务器继续处理命令请求。</p>
+</blockquote>
+<p><strong>命令请求的执行过程</strong></p>
+<blockquote>
+<p>在 <strong>Redis</strong> 中，用户可以通过执行 <strong>SLAVEOF</strong> 命令，让一个服务器去 复制 另一个服务器。被复制的服务器为 主服务器， 而对主服务器进行复制的服务器为 从服务器。</p>
+</blockquote>
+<p><img src="/images/584.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>① Sentinel 只是一个运行在特殊模式下的Redis 服务器，它使用了和普通模式不同的命令表，所以Sentinel 模式能够使用的命令和普通Redis 服务器能够使用的命令不同。</p>
+<p>② Sentinel 会读入用户指定的配置文件，为每个要被监视的主服务器创建相应的实例结构，并创建连向主服务器的命令连接和订阅连接，其中命令连接用于向主服务器发送命令请求，而订阅连接则用于接收指定频道的消息。</p>
+<p>③ Sentinel 通过向主服务器发送 INFO 命令来 获得主服务器属下所有从服务器的地址信息，并为这些从服务器创建相应的实例结构，以及连向这些从服务器的命令连接和订阅连接。</p>
+<p>④、在一般情况下， Sentinel 以 每十秒一次 的频率向被监视的主服务器和从服务器发送INFO 命令， 当主服务器处于下线状态，或者Sentinel 正在对主服务器进行故障转移操作时， Sentinel 向从服务器发送INFO 命令的频率会改为每秒一次。</p>
+<p>⑤、对于监视同一个主服务器和从服务器的多个Sentinel 来说，它们会以每两秒一次的频率，通过向被监视服务器的 _ sentinel _ : hello 频道发送消息来向其他 Sentinel 宣告自己的存在。</p>
+<p>⑥、每个Sentinel 也会从 _sentinel _ :hello 频道中接收其他Sentinel 发来的信息，并根据这些信息为其他Sentinel 创建相应的实例结构，以及命令连接。</p>
+<p>⑦、Sentinel 以每秒一次的频率向实例（包括主服务器、从服务器、其他Sentinel ) 发送PING 命令，并根据实例对PING 命令的回复来判断实例是否在线，当一个实例在指定的时长中连续向Sentinel 发送无效回复时， Sentinel 会将这个实例判断为主观下线。</p>
+<p>⑧、当Sentinel 将一个主服务器判断为主观下线时， 它会向同样监视这个主服务器的其他Sentinel 进行询问， 看它们是否同意这个主服务器已经进入主观下线状态。</p>
+</blockquote>
+
+	</div>
+</div>
+
+
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2024/03/22/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/MySQL%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95/">
+                MySQL技术内幕
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+
+<script>
+
+    //document.oncontextmenu=new Function("event.returnValue=false");
+	//document.onselectstart=new Function("event.returnValue=false");
+
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+
+	
+
+	$(function () {
+		const btw = new BTWPlugin();
+	    btw.init({
+	        id: 'container',
+	        blogId: '22377-1706525467336-300',
+	        name: '月伴飞鱼',
+	        qrcode: '/小程序码.jpg',
+	        keyword: '验证码',
+	        btnText: '为防止机器刷接口，需要完成人机检测',
+        	cookieAge: 1
+	    });
+
+	    var contents = document.getElementsByClassName("content999");
+	    //监听文章内容的copy事件
+	    contents[0].addEventListener('copy',function(e){
+	        setClipboardText(e);
+	    });
+
+	    function setClipboardText(event){
+	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+	        let clipboardData = event.clipboardData || window.clipboardData;
+
+	        // 如果未复制或者未剪切，则return出去
+	        if (!clipboardData) { return; }
+
+	        event.preventDefault();
+
+	        // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+	        // 声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+	        let text = window.getSelection().toString();
+	    
+	        if (text) {
+	            // 如果文本存在则先取消文本默认事件
+	            event.preventDefault();
+	            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+	            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+	            // data: 一个 DOMString表示要添加到 drag object的数据。
+	            var copyright = '\n\n'
+	            + '\n著作权归作者所有。'
+	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+	            + '\n作者: 月伴飞鱼'
+	            + '\n原文地址: http://hardyfish.top/2024/03/23/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/'
+	    
+	            clipboardData.setData('text/plain', text + copyright);
+	    
+	        }
+	    };
+	});
+
+	
+</script>
+
+<script>
+    const btw = new BTWPlugin();
+    btw.init({
+        id: 'container',
+        blogId: '22377-1706525467336-300',
+        name: '月伴飞鱼',
+        qrcode: '/小程序码.jpg',
+        keyword: '验证码',
+        btnText: '为防止机器刷接口，需要完成人机检测',
+        cookieAge: 1
+    });
+
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+	</div>
+	<div id="footer">
+	<p>
+	©2019-<span id="footerYear"></span> 
+	<a href="/">月伴飞鱼</a> 
+	
+	
+		|
+		<span id="busuanzi_container_site_pv">
+			PV 180986
+		</span>
+		|
+		<span id="busuanzi_container_site_uv"> 
+			UV 10079
+		</span>
+	
+	<br>
+	微信搜索 <a href="https://xiaoflyfish.oss-cn-beijing.aliyuncs.com/image/个人公众号.jpg" target="_blank">月伴飞鱼</a> 关注我
+	</p>
+</div>
+<script type="text/javascript"> 
+	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+</script>
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>
