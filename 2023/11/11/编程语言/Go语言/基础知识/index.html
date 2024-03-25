@@ -22,7 +22,7 @@
 	
 	<title>
 	
-		Go基础 | 
+		基础知识 | 
 	 
 	月伴飞鱼
 	</title>
@@ -485,6 +485,15 @@
 										学习专栏
 									</a>
 									
+							<ul>
+								<li class="file">
+									<a href="/2024/03/25/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/23%E8%AE%B2%E6%90%9E%E5%AE%9A%E5%90%8E%E5%8F%B0%E6%9E%B6%E6%9E%84%E5%AE%9E%E6%88%98/">
+										23讲搞定后台架构实战
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 							<ul>
 								<li class="file">
 									<a href="/2024/02/16/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">
@@ -1250,15 +1259,6 @@
 									</a>
 									
 							<ul>
-								<li class="file active">
-									<a href="/2023/11/11/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E5%9F%BA%E7%A1%80/">
-										Go基础
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
@@ -1275,9 +1275,27 @@
 							</ul>
 			
 							<ul>
+								<li class="file active">
+									<a href="/2023/11/11/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+										基础知识
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
 								<li class="file">
 									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E5%B9%B6%E5%8F%91/">
 										并发
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/25/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E6%8C%87%E9%92%88/">
+										指针
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1489,7 +1507,7 @@
 	<div id="content">
 		<h1 id="article-title" oncontextmenu="return false;">
 
-	Go基础
+	基础知识
 </h1>
 <div class="article-meta" oncontextmenu="return false;">
 	<span>月伴飞鱼</span>
@@ -1501,6 +1519,16 @@
                     <span>
                         <i class="fa fa-folder" aria-hidden="true"></i>
                         <a href="/categories/编程语言/">编程语言</a>
+						
+							>
+						
+                    </span>
+                
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/编程语言/Go语言/">Go语言</a>
 						
                     </span>
                 
@@ -1521,7 +1549,7 @@
       <!--打赏-->
 	<div id="article-content">
 		<blockquote>
-<p>Golang官方网站：<a target="_blank" rel="noopener" href="https://golang.org">https://golang.org</a></p>
+<p>Golang官方网站：<a target="_blank" rel="noopener" href="https://golang.org/">https://golang.org</a></p>
 <p>Golang中文网在线标准库文档: <a target="_blank" rel="noopener" href="https://studygolang.com/pkgdoc">https://studygolang.com/pkgdoc</a></p>
 </blockquote>
 <p><strong>Google创造Go语言的目的：</strong></p>
@@ -1531,27 +1559,25 @@
 <li>性能提高很快，目前主流的编程语言发展落后于硬件，不能合理利用多核CPU的优势提升软件系统性能。</li>
 </ul>
 <p>软件系统复杂度越来越高，维护成本越来越高，目前缺乏一个足够简洁高效的编程语言。</p>
-<p>企业运行维护很多C/C++的项目，C/C++程序运行速度很快，但是编译速度很慢，同时还存在内存泄漏的一系列的困扰需要解决。</p>
+<p>企业运行维护很多C&#x2F;C++的项目，C&#x2F;C++程序运行速度很快，但是编译速度很慢，同时还存在内存泄漏的一系列的困扰需要解决。</p>
 </blockquote>
 <p><strong>Go岗位</strong></p>
 <blockquote>
 <p>区块链研发工程师</p>
-<p>Go服务器/游戏软件工程师</p>
-<p>Go分布式/云计算软件工程师</p>
+<p>Go服务器&#x2F;游戏软件工程师</p>
+<p>Go分布式&#x2F;云计算软件工程师</p>
 </blockquote>
 <p><strong>Go语言特点</strong></p>
 <blockquote>
 <p>Go语言保证了既能够达到静态编译语言的安全和性能，又达到了动态语言开发类维护的高效率。</p>
 <ul>
-<li>GO = C + Python：说明Go语言既有C静态语言程序的运行速度，又能达到Python的动态语言的快速开发。</li>
+<li>GO &#x3D; C + Python：说明Go语言既有C静态语言程序的运行速度，又能达到Python的动态语言的快速开发。</li>
 </ul>
 <p>天然并发：</p>
 <ul>
-<li>
-<p>从语言层面支持并发，实现简单。</p>
+<li><p>从语言层面支持并发，实现简单。</p>
 </li>
-<li>
-<p>GoRoutine，轻量级线程，可实现大并发处理，高效利用多核。</p>
+<li><p>GoRoutine，轻量级线程，可实现大并发处理，高效利用多核。</p>
 </li>
 </ul>
 <p>管道通信机制：</p>
@@ -1589,7 +1615,7 @@ go env
 <blockquote>
 <p>一个简单的 Go 程序文件 <code>hello.go</code>。</p>
 </blockquote>
-<pre><code class="language-go">package main // package main 定义了包名。必须在源文件中非注释的第一行指明这个文件属于哪个包
+<pre><code class="go">package main // package main 定义了包名。必须在源文件中非注释的第一行指明这个文件属于哪个包
  
 import (
  
@@ -1618,8 +1644,7 @@ func main() &#123; // func main() 是程序开始执行的函数（函数的入�
 <blockquote>
 <p>使用 <code>go install</code></p>
 <ul>
-<li>不仅构建程序，还将结果文件安装到 GOPATH 指定的目录中，以供全局使用。
-<ul>
+<li>不仅构建程序，还将结果文件安装到 GOPATH 指定的目录中，以供全局使用。<ul>
 <li>通常是在 <code>$GOPATH/bin</code> 目录下。</li>
 </ul>
 </li>
@@ -1662,7 +1687,7 @@ func main() &#123; // func main() 是程序开始执行的函数（函数的入�
 <p>命名规则:</p>
 <ul>
 <li>由26个英文字母大小写，0-9，_ 组成</li>
-<li>数字不可以开头：<code>var num int</code> //这样写是OK的  <code>vat 3num int</code> //这样是错误的</li>
+<li>数字不可以开头：<code>var num int</code> &#x2F;&#x2F;这样写是OK的  <code>vat 3num int</code> &#x2F;&#x2F;这样是错误的</li>
 <li>Golang中严格区分大小写</li>
 <li>标识符不能包含空格</li>
 <li>下划线<code>_</code> 本身在Go中是一个特殊的标识符，称为<strong>空标识符</strong>，可以代表任何其他的标识符，但是它对应的值会被忽略（比如：忽略某个返回值）：所以仅能被作为占位符使用，不能作为标识符使用</li>
@@ -1682,11 +1707,11 @@ func main() &#123; // func main() 是程序开始执行的函数（函数的入�
 <li><code>\t</code> : 表示一个制表符，通常使用它可以排版</li>
 <li><code>\n</code> ：换行符</li>
 <li><code>\\</code> ：一个\</li>
-<li><code>\&quot;</code> ：一个&quot;</li>
+<li><code>\&quot;</code> ：一个”</li>
 <li><code>\r</code> ：一个回车</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">package main
+<pre><code class="go">package main
  
 import &quot;fmt&quot; //fmt 包中提供格式化，输出，输入的函数
 func main() &#123;
@@ -1698,7 +1723,7 @@ func main() &#123;
 <blockquote>
 <p>行注释：</p>
 <ul>
-<li>// 注释内容</li>
+<li>&#x2F;&#x2F; 注释内容</li>
 </ul>
 <p>块注释（多行注释）：</p>
 <ul>
@@ -1721,20 +1746,20 @@ func main() &#123;
 <li>var 变量名 变量类型</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">var a int
+<pre><code class="go">var a int
 var s string
 </code></pre>
 <blockquote>
 <p>变量赋值：</p>
 <ul>
-<li>var 变量名 变量类型 = 值</li>
+<li>var 变量名 变量类型 &#x3D; 值</li>
 <li>根据值自行判定变量类型</li>
-<li>在函数内第一次赋值时可以使用:=替代var来定义赋值变量（在函数外不可以），编译器也可以自动决定类型</li>
+<li>在函数内第一次赋值时可以使用:&#x3D;替代var来定义赋值变量（在函数外不可以），编译器也可以自动决定类型</li>
 <li>在函数外定义变量是包内变量（不是全局变量）</li>
-<li>如果变量已经使用 var 声明过了，再使用 := 声明变量，就产生编译错误</li>
+<li>如果变量已经使用 var 声明过了，再使用 :&#x3D; 声明变量，就产生编译错误</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">var a int = 5
+<pre><code class="go">var a int = 5
 var b string = &quot;abbc&quot;
 var c,d,e,f = 3,5,true,&quot;def&quot; //不需要显示声明类型，自动推断
 </code></pre>
@@ -1745,7 +1770,7 @@ var c,d,e,f = 3,5,true,&quot;def&quot; //不需要显示声明类型，自动推
 <li>在一个赋值语句中可以对多个变量进行同时赋值</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">func TestExchange(t *testing.T) &#123;
+<pre><code class="go">func TestExchange(t *testing.T) &#123;
         a := 1
         b := 2
   //定义中间变量进行变量值的互换
@@ -1760,11 +1785,9 @@ var c,d,e,f = 3,5,true,&quot;def&quot; //不需要显示声明类型，自动推
 <blockquote>
 <p><strong>程序中+号的使用</strong></p>
 <ul>
-<li>
-<p>当左右两边都是数值型时，则做加法运算</p>
+<li><p>当左右两边都是数值型时，则做加法运算</p>
 </li>
-<li>
-<p>当左右两边有一方为字符串，则做拼接运算</p>
+<li><p>当左右两边有一方为字符串，则做拼接运算</p>
 </li>
 </ul>
 </blockquote>
@@ -1774,7 +1797,7 @@ var c,d,e,f = 3,5,true,&quot;def&quot; //不需要显示声明类型，自动推
 <li>全局变量是定义在函数外部的变量，它在程序整个运行周期内都有效，在函数中可以访问到全局变量。</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">package main
+<pre><code class="go">package main
 
 import &quot;fmt&quot;
 
@@ -1782,10 +1805,10 @@ import &quot;fmt&quot;
 var num int64 = 10
 
 func testGlobalVar() &#123;
-	fmt.Printf(&quot;num=%d\n&quot;, num) //函数中可以访问全局变量num
+    fmt.Printf(&quot;num=%d\n&quot;, num) //函数中可以访问全局变量num
 &#125;
 func main() &#123;
-	testGlobalVar() //num=10
+    testGlobalVar() //num=10
 &#125;
 </code></pre>
 <p><strong>常量</strong></p>
@@ -1795,7 +1818,7 @@ func main() &#123;
 <li>const可以作为各种类型进行使用</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">const a,b = 3,4
+<pre><code class="go">const a,b = 3,4
 var c int = int(math.Sqrt(a*a + b*b))
 </code></pre>
 <blockquote>
@@ -1804,7 +1827,7 @@ var c int = int(math.Sqrt(a*a + b*b))
 <li>Go语言可以快速设置连续值</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">const (
+<pre><code class="go">const (
    Monday = iota + 1
    Tuesday
    Wednesday
@@ -1851,8 +1874,7 @@ func TestConstant(t *testing.T) &#123;
 <p><strong>零值(初始值)</strong></p>
 <ul>
 <li>当一个变量或者新值被创建时，如果没有为其明确指定初始值。</li>
-<li>Go语言会自动初始化其值为此类型对应的零值，各类型零值如下：
-<ul>
+<li>Go语言会自动初始化其值为此类型对应的零值，各类型零值如下：<ul>
 <li>bool：false</li>
 <li>integer：0</li>
 <li>float：0.0</li>
@@ -1870,156 +1892,6 @@ func TestConstant(t *testing.T) &#123;
 <li>不支持指针运算</li>
 </ul>
 </blockquote>
-<h1>指针</h1>
-<blockquote>
-<p>指针是一个地址，指针类型是依托于某一个类型而存在的。</p>
-<p><code>Go</code> 里面的基本数据类型 <code>int</code>、<code>float64</code>、<code>string</code> 等，它们所对应的指针类型为 <code>*int</code>、<code>*float64</code>、<code>*string</code>等。</p>
-<p>指针的定义:</p>
-<ul>
-<li>语法格式：<code>var 指针变量名 *数据类型 = &amp;变量</code>。</li>
-<li><code>&amp;</code> 为取地址符号，通过 <code>&amp;</code> 符号获取某个变量的地址，然后赋值给指针变量。</li>
-</ul>
-</blockquote>
-<pre><code class="language-go">import (
-	&quot;fmt&quot;
-)
-
-func main() &#123;
-	var num int = 666
-	var numPtr *int = &amp;num
-	fmt.Println(numPtr)  // num 变量的地址值 0xc00001c098
-	fmt.Println(&amp;numPtr) // 指针变量本身的地址值 0xc00000a028
-&#125;
-</code></pre>
-<p><img src="/images/328.png" alt="img"></p>
-<blockquote>
-<p><code>npmPtr</code> 指针变量指向变量 <code>num</code>，<code>0xc00001c098</code> 为 <code>num</code> 变量的地址，<code>0xc00000a028</code> 为指针变量本身的地址值。</p>
-</blockquote>
-<blockquote>
-<p>使用 <code>new(T)</code> 函数创建指针变量：</p>
-<ul>
-<li><code>new(T)</code> 函数为每个类型分配一片内存，内存单元保存的是对应类型的零值，函数返回一个指针类型。</li>
-</ul>
-</blockquote>
-<pre><code class="language-go">import (
-	&quot;fmt&quot;
-)
-
-func main() &#123;
-	numPtr := new(int)
-	fmt.Println(numPtr)  // 0xc000122058
-	fmt.Println(*numPtr) // 0
-&#125;
-</code></pre>
-<blockquote>
-<p>错误的类型地址赋值:</p>
-<ul>
-<li>当指针所依托的类型与变量的类型不一致时，Go 编译器会报错，类型不匹配。</li>
-</ul>
-</blockquote>
-<pre><code class="language-go">func main() &#123;
-	var num float64 = 666
-	var numPtr *int = &amp;num // cannot use &amp;num (value of type *float64) as type *int in variable declaration
-&#125;
-</code></pre>
-<blockquote>
-<p>获取和修改指针所指向变量的值</p>
-<ul>
-<li>通过指针获取所指向变量的值</li>
-<li>对指针使用 <code>*</code> 操作符可以获取所指向变量的值。</li>
-</ul>
-</blockquote>
-<pre><code class="language-go">func main() &#123;
-	var num int = 666
-	var numPtr *int = &amp;num
-
-	// 获取 num 的值
-	fmt.Println(*numPtr) // 666
-&#125;
-</code></pre>
-<blockquote>
-<p>通过指针修改所指向变量的值</p>
-<ul>
-<li>同时也可以对指针使用 <code>*</code> 操作符修改所指向变量的值。</li>
-</ul>
-</blockquote>
-<pre><code class="language-go">import (
-	&quot;fmt&quot;
-)
-
-func main() &#123;
-	var num int = 666
-	var numPtr *int = &amp;num
-
-	// 修改 num 的值
-	*numPtr = 555
-	fmt.Println(num) // 555
-&#125;
-</code></pre>
-<p><strong>值类型和引用类型</strong></p>
-<blockquote>
-<p>值类型：</p>
-<ul>
-<li>基本数据类型int系列，float系列，bool，string，数组和结构体 struct</li>
-</ul>
-<p>引用类型：</p>
-<ul>
-<li>指针，slice切片，map，管道chan，interface等都是引用数据类型</li>
-</ul>
-</blockquote>
-<blockquote>
-<p>值类型：变量直接存储值，内存通常在栈中分配</p>
-</blockquote>
-<img src="/images/329.png" alt="img" style="zoom:80%;" />
-<blockquote>
-<p>引用类型：变量存储的是一个地址，这个地址对于的空间才是真正的存储数据（值），内存通常在堆上分配，当没有任何变量引用这个地址时，改地址对应的数据空间就成为了一个垃圾，由GC来回收</p>
-</blockquote>
-<img src="/images/330.png" alt="img" style="zoom:80%;" />
-<blockquote>
-<p>内存的栈区和堆区：</p>
-</blockquote>
-<img src="/images/331.png" alt="img" style="zoom:50%;" />
-<h1>Map</h1>
-<blockquote>
-<p>map是一种无序的基于<code>key-value</code>的数据结构，Go语言中的map是引用类型，必须初始化才能使用。</p>
-</blockquote>
-<p><strong>map定义</strong></p>
-<blockquote>
-<p>KeyType:表示键的类型。</p>
-<p>ValueType:表示键对应的值的类型。</p>
-<ul>
-<li>map类型的变量默认初始值为nil，需要使用<code>make()</code>函数来分配内存。</li>
-</ul>
-<p>其中cap表示map的容量，该参数虽然不是必须的，但是应该在初始化map的时候就为其指定一个合适的容量。</p>
-</blockquote>
-<pre><code class="language-go">map[KeyType]ValueType
-make(map[KeyType]ValueType, [cap])
-
-func main() &#123;
-    scoreMap := make(map[string]int, 8)
-    scoreMap[&quot;张三&quot;] = 90
-    scoreMap[&quot;小明&quot;] = 100
-    fmt.Println(scoreMap)
-    fmt.Println(scoreMap[&quot;小明&quot;])
-    fmt.Printf(&quot;type of a:%T\n&quot;, scoreMap)
-&#125;
-
-func main() &#123;
-    userInfo := map[string]string&#123;
-        &quot;username&quot;: &quot;小王子&quot;,
-        &quot;password&quot;: &quot;123456&quot;,
-    &#125;
-    fmt.Println(userInfo) //
-&#125;
-</code></pre>
-<h1>反射</h1>
-<blockquote>
-<p>反射是指在程序运行期对程序本身进行访问和修改的能力。</p>
-<p>程序在编译时，变量被转换为内存地址，变量名不会被编译器写入到可执行部分。</p>
-<p>在运行程序时，程序无法获取自身的信息。</p>
-<p>支持反射的语言可以在程序编译期将变量的反射信息，如字段名称、类型信息、结构体信息等整合到可执行文件中，并给程序提供接口访问反射信息，这样就可以在程序运行期获取类型的反射信息，并且有能力修改它们。</p>
-<p>Go程序在运行期使用<code>reflect</code>包访问程序的反射信息。</p>
-</blockquote>
 
 	</div>
 </div>
@@ -2030,14 +1902,14 @@ func main() &#123;
             
               <a href="/2023/11/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/RPC%E6%A1%86%E6%9E%B6/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  RPC框架
+                  
               </a>
             
         </div>
         <div class="item right">
             
               <a href="/2023/11/09/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Arthas/">
-                Arthas
+                
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
@@ -2103,7 +1975,7 @@ func main() &#123;
 	            + '\n著作权归作者所有。'
 	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
 	            + '\n作者: 月伴飞鱼'
-	            + '\n原文地址: http://hardyfish.top/2023/11/11/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E5%9F%BA%E7%A1%80/'
+	            + '\n原文地址: http://hardyfish.top/2023/11/11/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/'
 	    
 	            clipboardData.setData('text/plain', text + copyright);
 	    

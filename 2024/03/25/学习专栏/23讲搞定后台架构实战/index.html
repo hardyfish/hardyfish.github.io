@@ -1,0 +1,2257 @@
+<!DOCTYPE html>
+<html lang="en" oncontextmenu="return false;">
+
+<head oncontextmenu="return false;">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="baidu-site-verification" content="codeva-QodU0Nk5F7" />
+	<meta name="google-site-verification" content="DbSTw8OJwtH5Qei7n8Jnew0YyQ5naPzdLAPiscu7zQE" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+	
+	<!-- title -->
+	
+	<title>
+	
+		23讲搞定后台架构实战 | 
+	 
+	月伴飞鱼
+	</title>
+	
+	<!-- keywords,description -->
+	 
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/%E5%A4%B4%E5%83%8F.jpg">
+	
+  
+  	
+<link rel="stylesheet" href="/css/main.css">
+
+  	
+<link rel="stylesheet" href="/css/reward.css">
+
+	
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="/lib/highlight/darcula.css">
+
+	
+<link rel="stylesheet" href="/css/clipboard-use.css">
+
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+	
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+
+	
+<script src="/lib/highlight/highlight.min.js"></script>
+
+
+	
+<script src="https://readmore.openwrite.cn/js/readmore-2.0.js"></script>
+
+	
+<script src="/lib/jquery-3.4.1.min.js"></script>
+
+	
+<script src="/lib/jquery.pjax.js"></script>
+
+
+	
+<script src="/js/main.js"></script>
+
+	
+<script src="/js/jquery.fancybox.min.js"></script>
+
+	
+		
+<script src="/lib/valine/av-3.0.4-min.js"></script>
+
+		
+<script src="/lib/valine/Valine-1.3.10-min.js"></script>
+
+	
+	
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body oncontextmenu="return false;">
+	<header id="header" oncontextmenu="return false;">
+    <a id="title" href="/" class="logo">公众号月伴飞鱼</a>
+
+	<ul id="menu">
+		<li class="menu-item">
+			<a href="/about" class="menu-item-link">关于我</a>
+		</li>
+
+		<li class="menu-item">
+			<a href="/个人微信.jpeg" class="menu-item-link">联系作者</a>
+		</li>
+
+	    <li class="menu-item">
+			<a href="/site" class="menu-item-link">关于网站</a>
+		</li>
+
+		<li class="menu-item">
+			<a href="/个人公众号.jpg" class="menu-item-link" target="_blank">我的公众号</a>
+		</li>
+		
+		<li class="menu-item">
+			<a href="https://tech.meituan.com/" class="menu-item-link" target="_blank">
+				美团技术团队
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="https://tech.youzan.com/" class="menu-item-link" target="_blank">
+				有赞技术团队
+			</a>
+		</li>
+		<!--<li class="menu-item">
+			<select class="menu-item-link menu-item-select">
+				<option class="menu-item-link"  value="volvo">Volvo</option>
+				<option class="menu-item-link"  value="saab">Saab</option>
+				<option class="menu-item-link"  value="fiat">Fiat</option>
+				<option class="menu-item-link"  value="audi">Audi</option>
+			</select>
+		</li>-->
+	</ul>
+</header>
+
+	<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="text" placeholder="按目录搜索一下">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										AI相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/14/AI%E7%9B%B8%E5%85%B3/AIGC/">
+										AIGC
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/07/AI%E7%9B%B8%E5%85%B3/Sora/">
+										Sora
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/01/AI%E7%9B%B8%E5%85%B3/%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/">
+										提示词工程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										中间件
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/Dubbo/">
+										Dubbo
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/">
+										Elasticsearch
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/Netty/">
+										Netty
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/25/%E4%B8%AD%E9%97%B4%E4%BB%B6/Solr/">
+										Solr
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/19/%E4%B8%AD%E9%97%B4%E4%BB%B6/ZooKeeper/">
+										ZooKeeper
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										产品相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/18/%E4%BA%A7%E5%93%81%E7%9B%B8%E5%85%B3/%E5%B9%BF%E5%91%8A%E4%B8%9A%E5%8A%A1/">
+										广告业务
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/18/%E4%BA%A7%E5%93%81%E7%9B%B8%E5%85%B3/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">
+										推荐系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/06/%E4%BA%A7%E5%93%81%E7%9B%B8%E5%85%B3/%E7%94%A8%E6%88%B7%E5%A2%9E%E9%95%BF/">
+										用户增长
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										代码思想
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/12/15/%E4%BB%A3%E7%A0%81%E6%80%9D%E6%83%B3/CodeReview/">
+										CodeReview
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/02/%E4%BB%A3%E7%A0%81%E6%80%9D%E6%83%B3/%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84/">
+										代码重构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										前端相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/CSS/">
+										CSS
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/26/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/React/">
+										React
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/26/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/Vue/">
+										Vue
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/12/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+										小程序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										基础知识
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/11/27/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/JVM/">
+										JVM
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%88%86%E5%B8%83%E5%BC%8F/">
+										分布式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/10/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+										并发编程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+										设计模式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										大数据相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/21/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/DataX/">
+										DataX
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/25/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Doris/">
+										Doris
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Flink/">
+										Flink
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/21/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Hadoop/">
+										Hadoop
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/07/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Hive/">
+										Hive
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/23/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/SQOOP/">
+										SQOOP
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Spark/">
+										Spark
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										学习专栏
+									</a>
+									
+							<ul>
+								<li class="file active">
+									<a href="/2024/03/25/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/23%E8%AE%B2%E6%90%9E%E5%AE%9A%E5%90%8E%E5%8F%B0%E6%9E%B6%E6%9E%84%E5%AE%9E%E6%88%98/">
+										23讲搞定后台架构实战
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/16/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">
+										从0开始学架构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/31/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E4%BB%A3%E7%A0%81%E4%B9%8B%E4%B8%91/">
+										代码之丑
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/26/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E5%A4%A7%E5%8E%82%E6%99%8B%E5%8D%87%E6%8C%87%E5%8D%97/">
+										大厂晋升指南
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/19/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E5%AD%A6%E4%B9%A0%E9%AB%98%E6%89%8B/">
+										如何成为学习高手
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										学习书籍
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/05/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/HBase%E4%B8%8D%E7%9D%A1%E8%A7%89%E4%B9%A6/">
+										HBase不睡觉书
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/02/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98/">
+										Java并发编程实战
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/02/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/">
+										Java并发编程的艺术
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/16/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
+										Java开发手册
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/22/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/MySQL%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95/">
+										MySQL技术内幕
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/23/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
+										Redis设计与实现
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/11/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E4%BA%BF%E7%BA%A7%E6%B5%81%E9%87%8F%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
+										亿级流量网站架构核心技术
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/05/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93/">
+										代码整洁之道
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/03/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E5%A4%A7%E5%9E%8B%E7%BD%91%E7%AB%99%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/">
+										大型网站技术架构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/07/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E5%A4%A7%E5%9E%8B%E7%BD%91%E7%AB%99%E7%B3%BB%E7%BB%9F/">
+										大型网站系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/06/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA/">
+										深入理解Java虚拟机
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/08/%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D/%E8%8B%B1%E8%AF%AD%E9%AD%94%E6%B3%95%E5%B8%88%E4%B9%8B%E8%AF%AD%E6%B3%95%E4%BF%B1%E4%B9%90%E9%83%A8/">
+										英语魔法师之语法俱乐部
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										工具相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/11/09/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Arthas/">
+										Arthas
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/24/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/ChatGPT/">
+										ChatGPT
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/GIT/">
+										GIT
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Hexo/">
+										Hexo
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/21/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/MAC/">
+										MAC
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/01/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/Maven/">
+										Maven
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/09/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/PlantUML/">
+										PlantUML
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/22/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/UTools/">
+										UTools
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">
+										实用工具
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										成长相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/31/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">
+										技术学习
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/07/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/">
+										读书计划
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/09/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/">
+										面试相关
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										数据库
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/02/06/%E6%95%B0%E6%8D%AE%E5%BA%93/ClickHouse/">
+										ClickHouse
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/27/%E6%95%B0%E6%8D%AE%E5%BA%93/HBase/">
+										HBase
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/">
+										MongoDB
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/02/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">
+										MySQL
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/">
+										Redis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										文章速读
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/03/18/%E6%96%87%E7%AB%A0%E9%80%9F%E8%AF%BB/%E5%A4%A7%E5%8E%82%E6%96%87%E7%AB%A0/">
+										大厂文章
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										服务器
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%9C%8D%E5%8A%A1%E5%99%A8/Docker/">
+										Docker
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/Nginx/">
+										Nginx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/Tomcat/">
+										Tomcat
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E6%9C%8D%E5%8A%A1%E5%99%A8/%E8%BF%90%E7%BB%B4%E7%9F%A5%E8%AF%86/">
+										运维知识
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										架构相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/21/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/DDD/">
+										DDD
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/02/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E6%9E%B6%E6%9E%84%E5%9B%BE/">
+										架构图
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/02/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/">
+										架构学习
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/26/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E4%BF%9D%E9%9A%9C/">
+										系统保障
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/31/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E6%80%A7%E8%83%BD/">
+										系统性能
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/26/%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
+										系统设计
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										框架相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/07/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Caffeine/">
+										Caffeine
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/06/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Guava/">
+										Guava
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/15/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/JWT/">
+										JWT
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/MyBatis/">
+										MyBatis
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/RPC%E6%A1%86%E6%9E%B6/">
+										RPC框架
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/26/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Seata/">
+										Seata
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/03/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/ShardingSphere/">
+										ShardingSphere
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/14/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Spring/">
+										Spring
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/03/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/Thrift/">
+										Thrift
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/29/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/XXLJOB/">
+										XXLJOB
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">
+										开源框架
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										消息队列
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/KAFKA/">
+										KAFKA
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/20/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RabbitMQ/">
+										RabbitMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/07/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RocketMQ/">
+										RocketMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										源码相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/12/13/%E6%BA%90%E7%A0%81%E7%9B%B8%E5%85%B3/RocketMQ/">
+										RocketMQ
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										生活相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/27/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E4%B9%A6%E7%B1%8D/">
+										书籍
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/12/17/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E5%81%9A%E8%8F%9C/">
+										做菜
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/24/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E6%B3%95%E5%BE%8B/">
+										法律
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E7%94%B5%E5%BD%B1/">
+										电影
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/10/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E7%94%B5%E8%A7%86%E5%89%A7/">
+										电视剧
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/11/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E7%BA%AA%E5%BD%95%E7%89%87/">
+										纪录片
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/09/%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3/%E9%9F%B3%E4%B9%90/">
+										音乐
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										算法相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/LeetCode/">
+										LeetCode
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/26/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E5%89%91%E6%8C%87OFFER/">
+										剑指OFFER
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/25/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
+										面试算法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										编程语言
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Go语言
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E5%87%BD%E6%95%B0/">
+										函数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/11/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+										基础知识
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E5%B9%B6%E5%8F%91/">
+										并发
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/25/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E6%8C%87%E9%92%88/">
+										指针
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E6%95%B0%E7%BB%84/">
+										数组
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/03/21/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E7%BB%93%E6%9E%84%E4%BD%93/">
+										结构体
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/11/21/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java%E5%9F%BA%E7%A1%80/">
+										Java基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/01/29/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python%E5%9F%BA%E7%A1%80/">
+										Python基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										英语相关
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										摩登家庭
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/03/05/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E6%91%A9%E7%99%BB%E5%AE%B6%E5%BA%AD/%E7%AC%AC%E4%B8%80%E5%AD%A3/">
+										第一季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										老友记
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%80%E5%AD%A3/">
+										第一季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%B8%89%E5%AD%A3/">
+										第三季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/11/23/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E8%80%81%E5%8F%8B%E8%AE%B0/%E7%AC%AC%E4%BA%94%E5%AD%A3/">
+										第五季
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										雅思
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/01/25/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%9815/">
+										剑桥雅思听力真题15
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/12/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D%E5%90%AC%E5%8A%9B%E7%9C%9F%E9%A2%984/">
+										剑桥雅思听力真题4
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2024/02/08/%E8%8B%B1%E8%AF%AD%E7%9B%B8%E5%85%B3/%E9%9B%85%E6%80%9D/%E9%9B%85%E6%80%9D%E9%98%85%E8%AF%BB538%E8%80%83%E7%82%B9%E8%AF%8D/">
+										雅思阅读538考点词
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										计算机基础
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+										操作系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+										数据结构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2023/10/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/">
+										算法知识
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/12/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
+										网络基础
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content">
+		<h1 id="article-title" oncontextmenu="return false;">
+
+	23讲搞定后台架构实战
+</h1>
+<div class="article-meta" oncontextmenu="return false;">
+	<span>月伴飞鱼</span>
+	<span>2024-03-25 15:23:57</span>
+    
+		<div id="article-categories">
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/学习专栏/">学习专栏</a>
+						
+                    </span>
+                
+            
+		</div>
+    
+</div>
+
+<div id="container" class = "content999" oncontextmenu="return false;">
+<!--打赏-->
+        <div class="reward">
+       <div class="reward-button">赏 <span class="reward-code">
+        <span class="alipay-code"> <img class="alipay-img wdp-appear" src="/alipay.png"><b>支付宝打赏</b> </span> 
+        <span class="wechat-code"> <img class="wechat-img wdp-appear" src="/weipay.jpeg"><b>微信打赏</b> </span> 
+       </div>
+      <p class="reward-notice">如果文章对你有帮助，欢迎点击上方按钮打赏作者！</p>
+      </div>
+      <!--打赏-->
+	<div id="article-content">
+		<p>专栏链接：<a target="_blank" rel="noopener" href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=595">https://kaiwu.lagou.com/course/courseInfo.htm?courseId=595</a></p>
+<h1 id="高性能读服务"><a href="#高性能读服务" class="headerlink" title="高性能读服务"></a>高性能读服务</h1><p><strong>如何使用简洁的架构实现高性能的读服务？</strong></p>
+<blockquote>
+<p>读服务在实现流程上，基本上是纯粹的从存储中一次或多次获取原始数据，进行简单的逻辑加工，或直接返回给用户&#x2F;前端业务系统，它是无状态或者无副作用的，也就是说每一次执行都不会在存储中记录或修改数据，每一次请求都和上一次无关。</p>
+</blockquote>
+<p><strong>存储的选型和架构</strong></p>
+<blockquote>
+<p>读服务最主要依赖的中间件是存储，因此存储的性能很大程度上决定了读服务的性能。</p>
+<p>对于MySQL数据库，即使使用了分库分表，读写分离，索引优化等手段，在并发量大时，性能也很难达到200ms以内。</p>
+<p>为了提升性能，通常会选用基于内存的，性能更高的Redis作为主存储，MySQL作为兜底来构建。</p>
+</blockquote>
+<p><img src="/images/591.png" alt="img"></p>
+<blockquote>
+<p>此架构称为懒加载，在初始的时候，所有的数据都存储在数据库中，当读服务接受请求时，会先去缓存中查询数据，如果没有查询到数据，如果没有查询到数据，就会降级到数据库中查询，并将查询结构保存在Redis中。</p>
+<p>保存在Redis中的数据会设置一个<strong>过期时间</strong>，防止数据库的数据变更了，请求还一直读取缓存中的脏数据。</p>
+</blockquote>
+<p><strong>存在问题</strong></p>
+<blockquote>
+<p><strong>存在缓存穿透的风险:</strong></p>
+<p>如果恶意请求不断使用缓存中没有的数据发送请求，就会导致该请求每次都会降级到数据库。针对数据库中没有的数据，可以在缓存中设置一个占位符，在第二次请求处理时，读取缓存中的占位符就可以识别数据库中没有次数据，但是使用占位符虽然解决了穿透问题，但同时带来另一个问题，<strong>恶意请求</strong>不但变换请求条件，同时这些请求条件对应的数据在数据库中均没有，那么缓存中存储的表示无数据的占位符就会把整个缓存撑爆，导致有效数据被缓存清理策略清除。</p>
+</blockquote>
+<blockquote>
+<p><strong>缓存集中过期导致雪崩:</strong></p>
+<p>对存储在缓存中的数据设置过期时间是为了定期获取数据库中的变更，但是设置不合理，可能会导致缓存集体过期，进而所有的读请求都会因缓存未命中，而直接请求到数据库。</p>
+<p>对于缓存的过期时间，可以设置进行加盐操作。</p>
+<p>做到各个缓存的过期时间不一致，同时过期缓存的数量可控。</p>
+</blockquote>
+<blockquote>
+<p><strong>懒加载无法感知实时变更:</strong></p>
+<p>在缓存中设置过期时间，虽然可以让用户感知到数据的变更，但感知并不是实时的，会有一定延迟。</p>
+<p>如果想要做到实时看到数据的变更，可以将架构升级。</p>
+</blockquote>
+<p><img src="/images/592.png" alt="img"></p>
+<blockquote>
+<p>在每次修改完数据之后，主动将数据更新至缓存，此种方案下，缓存中的数据和数据库保持一致。</p>
+<p>但是在细节上还存在一些问题。</p>
+<p>如果修改完数据库再更新缓存，异常情况下，可能出现数据库更新成功了，但是缓存更新失败情况。</p>
+<p>数据库和缓存是两个存储，如果没有分布式事务的机制，缓存更新失败了，数据库的数据是不会回滚的。</p>
+<p>同样如果先更新缓存，在更新数据库，没有分布式事务的保障，出现缓存中存在脏数据的问题。</p>
+<ul>
+<li>懒加载无法摆脱的毛刺困扰。</li>
+<li>当缓存过期时，读服务的请求都会穿透到数据库，对于穿透请求的性能和使用缓存的性能差距非常大，时常是毫秒和秒级别的差异。</li>
+</ul>
+</blockquote>
+<p><strong>如何利用全量缓存打造毫秒级的读服务？</strong></p>
+<blockquote>
+<p>全量缓存是指将数据库中的所有数据都存储在缓存中，同时在缓存中不设置过期时间的一种实现方式。</p>
+<p>因为所有数据都存储在缓存里，读服务在查询时不会再降级到数据库，所有的请求都完全依赖于缓存，此时因降级到数据库导致的毛刺问题就解决了。</p>
+<p>但全量缓存并没有解决更新时的分布式事务问题，反而把问题放大了，全量缓存对数据更新要求更加严格，要求所有数据库已有的数据和实时更新的数据必须完全同步至缓存，不能有遗漏。</p>
+</blockquote>
+<p><strong>基于Binlog的全量缓存</strong></p>
+<blockquote>
+<p>Binlog是MySQL及大部分主流数据库的主从数据同步方案，主数据库会将所有的变更按一定格式写入塔本地的Binlog文件中，在主从同步时，从数据库会和主数据库建立连接，通过特定的协议串行地读取主数据库Binlog文件，并在从库进行Binlog的回放，进而完成主从复制。</p>
+<p>现在有很多开源工具（如阿里的 Canal、MySQL_Streamer、Maxwell、Linkedin 的 Databus 等）可以模拟主从复制的协议，通过模拟协议读取主数据库的Binlog文件，从而获取主库的所有变更。</p>
+<p>对于这些变更，它们开放了各种接口供业务服务获取数据。</p>
+<p>基于Binlog的全量缓存架构正是依赖此类中间件完成数据同步。</p>
+</blockquote>
+<p><img src="/images/593.png" alt="img"></p>
+<p><strong>Binlog全量缓存的优点</strong></p>
+<blockquote>
+<p>降低了延迟。</p>
+<p>缓存基本上是准实时的，数据库的主从同步保持在毫秒级别。</p>
+<p>解决了分布式事务问题。</p>
+<p>Binlog的主从复制基于ACK响应机制，如果同步缓存失败了，被消费的Binlog不会被确认，下一次会重复消费，数据最终会写入缓存中。</p>
+</blockquote>
+<p><strong>Binlog存在的问题</strong></p>
+<blockquote>
+<p>提升了系统的整体复杂度。</p>
+<p>缓存的容量会成本上升，相应的资源成本也大幅上升。</p>
+<p>优化：存储在缓存中的数据经过筛选，有业务含义且会被查询的才进行存储。</p>
+<p>存储在缓存中的数据可以进行压缩。</p>
+</blockquote>
+<p><strong>如何做到异构数据的同步一致性？</strong></p>
+<p><strong>基于Binlog的全量缓存架构问题分析</strong></p>
+<p><img src="/images/594.png" alt="img"></p>
+<p><strong>Binlog如何高效消费</strong></p>
+<blockquote>
+<p>全串行的方式进行消费:</p>
+<p>以MySQL为例，不管是表还是SQL维度的数据，都需要将整个实例的所有数据变更写入一个Binlog文件，在消费时，对此Binlog文件使用ACK机制进行串行消费，每消费一条确认一条，然后再消费一条，以此重复。</p>
+</blockquote>
+<p><img src="/images/595.png" alt="img"></p>
+<blockquote>
+<p>此模式消费存在两个问题：</p>
+<ul>
+<li>问题一：串行消费效率低，延迟大。</li>
+<li>单线程无法水平扩展，架构有缺陷。</li>
+<li>采用并行的方式提升吞吐量及扩展性。</li>
+<li>Binlog的单文件及ACK机制，导致我们必须去串行消费，但实际上可以通过一些技术手段能够对Binlog文件里的不同库，不同表的数据进行并行消费，因为不同库之间的数据是不相关的，为了在Binlog原有的串行机制下完成按库的并行消费，整体架构需要进行一定的升级。</li>
+</ul>
+</blockquote>
+<p><img src="/images/596.png" alt="img"></p>
+<blockquote>
+<p>上述架构里，借用了MQ进行拆分，在Binlog处仍然进行串行消费，但只是ACK数据。</p>
+<p>现在大部分的MQ中间件都支持数据并行消费，数据转换模块在消费数据时，开启并行乱序消费即可。</p>
+<p>此时虽然完成了从串行消费到并行消费的升级，提升了吞吐量和扩展性，但也带来了数据乱序的问题。</p>
+<p>此时我们可以依赖MQ中间件的串行通道特性进行支持，在Binlog订阅及转发Binlog数据前，按照业务规则判断转发的Binlog数据是否在并发后仍需要串行消费。</p>
+<p>在同步模块进行同步时，MQ中间件里的串行通道的数据均会串行执行，而多个串行通道间则可以并发执行。</p>
+</blockquote>
+<p><img src="/images/597.png" alt="img"></p>
+<p><strong>数据对比发现错误</strong></p>
+<blockquote>
+<p>数据对比以数据库的数据为基准，定期轮训对比缓存和数据库的数据，如果发现不一致后，可以增加<strong>延迟重试</strong>，再次对比，如果多次对比不一致后，可以增加报警并保留当时数据，之后以数据库的数据为准刷新缓存。</p>
+<p>延迟重试是为了防止因同步的视察，出现短暂的数据不一致但最终数据一致的情况。其次保留出现现场的数据是为了排查定位问题。</p>
+</blockquote>
+<p><img src="/images/598.png" alt="img"></p>
+<p><strong>如何应对热点数据的查询</strong></p>
+<p><strong>为什么扛不住相同用户百万的流量</strong></p>
+<blockquote>
+<p>当百万的QPS属于不同用户时，因缓存是集群化的，所有到达业务后台的请求会根据一定的路由规则，分散到请求缓存集群中的某一个节点。假设一个节点最大承受能力10万QPS，我们只需要在集群中部署10台节点即可支持百万流量。</p>
+<p>但当百万QPS都属于同一个用户时，即使缓存是集群化的，同一个用户的请求都会被路由至集群中某一个节点。</p>
+</blockquote>
+<p><strong>主从复制进行垂直扩容</strong></p>
+<blockquote>
+<p>虽然单机的机器配置和程序的性能是有上限的，但我们可以利用节点间的主从复制功能来进行节点间的扩容，主从复制开启后，一个节点可以挂一至多个从。</p>
+</blockquote>
+<p><img src="/images/599.png" alt="img"></p>
+<blockquote>
+<p>在查询时，将应用内的缓存客户端开启主从随机读，此时包含一个从的分片并发能力可以提升至原来的一倍，随着从节点的增加，但分片的并发心更会不断翻倍。</p>
+<p>这对于所有请求只会命中某一个固定单分片的热点查询能够很好地应对。</p>
+<p>但是此方案浪费资源。</p>
+<p>主从复制除了有应对热点的功能，另外一个重要作用是为了高可用。</p>
+<p>当集群中某一个主节点发生故障后，集群高可用模块会自动对该节点进行<strong>故障迁移</strong>，从该节点所属分片里选举一个从节点为主节点。</p>
+<p>为了高可用模块在故障转移时的逻辑能够简单清晰并做到统一，会将集群的从节点数量设置为相同数量。</p>
+</blockquote>
+<p><strong>利用应用内的前置缓存</strong></p>
+<blockquote>
+<p>热点查询时对相同的数据进行不断重复查询的一种场景，热点是次数多，但需要存储的数据少，因为数据都是相同的，针对此类业务特性，我们可以将热点数据前置缓存在应用程序内来应对热点查询。</p>
+</blockquote>
+<p><img src="/images/600.png" alt="img"></p>
+<blockquote>
+<p>应用 的缓存存储的均是热点数据，当应用扩容后，热点缓存的数量也随之增加，在采用了前置缓存后，在面对热查询时只需要扩容应用即可。因为所有应用内均存储了所有的热点数据，且前端负载均衡器（如Nginx）会将所有请求平均分发到各应用中去。</p>
+</blockquote>
+<p><strong>需要关注的问题</strong></p>
+<blockquote>
+<p>应用内缓存需要设置上限：</p>
+<p>应用所属宿主机的内存是有限的，且其内存还要支持业务应用的使用。所以在使用应用内的前置缓存时，必须设置容量的上限且设置容量满时逐出策略。</p>
+<p>此外前置缓存也需要设置<strong>过期时间</strong>，毕竟太久无访问的缓存也肯定是非热点数据。</p>
+</blockquote>
+<blockquote>
+<p>根据业务对待延迟问题：</p>
+<p>如果业务上可以容忍一定时间的延迟，可以在缓存数据上设置一个刷新时间即可。</p>
+<p>如果想要实时感知变化，可以采用Binlog方式，在变更时主动刷新。但前置缓存的主动感知不能在前置缓存的应用里实现，因为应用代码也运行在此机器上，通过MQ感知变更会消耗非常多的CPU和内存资源。</p>
+<p>另外，前置缓存里数据很少，很多变更消息都会因不在前置缓存中而被忽略，为了实现前置缓存的更新，可以将前置缓存的数据异构一份出来用作判断。</p>
+</blockquote>
+<blockquote>
+<p><strong>把控好瞬时的逃逸流量</strong></p>
+<p>应用初始化时，前置缓存是空的，假设在初始化时，瞬间出现热点查询，所有的热点请求都会逃逸到后端缓存里，可能这个瞬间热点就会把后端缓存打挂。</p>
+<p>其次，如果前置缓存采用定期过期，在过期时若将数据清理掉，那么所有请求都会逃逸值后端加载最新的缓存，也有可能把后端缓存打挂。</p>
+<p>对于这两种情况，可以对逃逸流量进行前置等待或使用历史数据的方案，不管是初始化还是数据过期，在从后端加载数据时，只允许一个请求逃逸。这样最大的逃逸流量为部署的应用总数，量级可控。</p>
+<p>对于数据初始化为空时，其他非逃逸的请求可以等待前置缓存的数据并设置一个超时时间，对于数据过期需要更新时，并不主动清理数据，其他非逃逸请求使用历史脏数据，而逃逸的哪一个请求负责把数据取回并刷新前置缓存。</p>
+</blockquote>
+<blockquote>
+<p><strong>如何发现热点缓存并前置</strong></p>
+<p>被动发现：</p>
+<p>被动发现是借助前置缓存有容量上限实现的，读服务接收到所有请求都会默认从前置缓存中取数据，如果不存在，则从缓存服务器进行加载，因为前置缓存的容量淘汰策略是LRU,如果数据是热点，它的访问次数一定非常高，因此它一定在前置缓存中。借助前置缓存的容量上限和淘汰策略，即可实现热点发现。</p>
+<p>所有的请求都会优先从前置缓存获取数据，并在未查询到数据时加载服务端数据到本地的前置缓存里，此方式也会把非热点数据存储至前置缓存里，导致非热点数据产生非必要的延迟性。</p>
+<p>主动发现：</p>
+<p>主动发现则需要借助一些外部计数工具来实现热点的发现，在一个集中的位置对于请求进行计数，并根据配置的阈值判断某请求是否会命中数据，对于判定为热点的数据，主动推送至应用内的前置缓存即可。</p>
+<p>读服务接受到请求后仍然会默认的从前置缓存获取数据，如获取到直接返回。如为获取到，会穿透去查询后端缓存的数据并直接返回，但穿透获取到的数据并不会直接写入本地的前置缓存，数据是否为热点切是否要写入前置缓存，均由计数工具来决定。</p>
+</blockquote>
+<h1 id="高可用写服务"><a href="#高可用写服务" class="headerlink" title="高可用写服务"></a>高可用写服务</h1><p><strong>如何使用分库分表支持海量数据的写入？</strong></p>
+<p><strong>是否真的要分库？（分表也是不错的选择）</strong></p>
+<blockquote>
+<p>分库当然能够解决存储的问题，假设原先单库只能最多存储2千万的数据量，采用分库之后，存储架构变成分库架构，每个分库都可以存储2千万数据量，容量的上限一下就提升了。</p>
+</blockquote>
+<blockquote>
+<p>容量提升了，但也带来了很多其他问题：</p>
+<ul>
+<li>分库数据间的数据无法再通过数据库直接查询了，比如跨多个分库的数据需要多次查询或者借助其他存储进行聚合在查询。</li>
+<li>分库越多，出现的问题可能性就越大，维护成本越好。</li>
+<li>无法保障跨库间的事务，只能借助其他中间件实现最终一致性。</li>
+</ul>
+<p>所以在解决容量问题上，可以根据业务场景选择，不要一上来就要考虑分库，分表也是一种选择。</p>
+<p>分表是指所有的数据均存在同一个数据库实例中，只是将原先的一张大表按一定规则，划分成多张行数较少的表，它与分库的区别是，分表后的子表仍在原有库中，而分库则是子表移动到新的数据库实例里并在物理上单独部署。</p>
+</blockquote>
+<p><strong>那么何时使用分库，何时使用分表呢？</strong></p>
+<blockquote>
+<p>假设订单只是单量多而每一单的数据量较小，就适合采用分表，单条数据量小但行数多，会导致写入(因为要构建索引)和查询非常慢，但整体对容量的占用是可控的。</p>
+<p>采用分表后，大表变小表，写入时构建索引的性能消耗会变小，其次小表的查询性能也更好。</p>
+<p>如果采用分库，虽然解决了写入和查询的问题，但是每张表所占有的磁盘空间很少，也会产生资源浪费。</p>
+</blockquote>
+<blockquote>
+<p>同时，分表除了能解决容量问题，还能在一定程度上解决分库所带来的的三个问题。</p>
+<ul>
+<li>分表后可以通过join等完成一些富查询，相比分库简单。</li>
+<li>分表的数据仍存储在一个数据库里，不会出现很多分库，无须引入一些分库中间件，因此维护成本和开发成本均较低。</li>
+<li>因为在同一个数据库里，也可以很好解决事务问题。</li>
+</ul>
+</blockquote>
+<p><strong>如何打造无状态的存储实现随时切库的写入服务？</strong></p>
+<blockquote>
+<p>分库分表只解决了<strong>容量问题</strong>，并没有解决写服务的高可用问题，或者说分库分表在一定程度上增加了系统故障的概率。</p>
+<p>在读服务里，可以采用数据<strong>冗余</strong>来保障架构的高可用，但在写服务里则无法使用此方案，因为写入服务的数据是用户提交产生的，无法在写入时使用冗余来提高高可用性。</p>
+<p><strong>写冗余</strong>需要满足CAP原则的存储支持，CAP原则最多只能同时满足两个特性，要么CP，要么AP，因此写冗余无法直接满足。</p>
+</blockquote>
+<p><strong>写入业务的目标是成功写入</strong></p>
+<blockquote>
+<p>写业务是指需要将用户传入的数据进行全部存储的一种场景：</p>
+<ul>
+<li>在各大网站提交的申请表单，比如落户申请、身份证办理申请、护照办理申请等；</li>
+<li>在电商、外派平台里的购物订单，其中会包含商品、价格、收货人等信息。</li>
+</ul>
+<p>对于写入业务，当出现各种故障时，最重要的是保证系统可写入。</p>
+</blockquote>
+<p><strong>如何保证随时可写入？</strong></p>
+<blockquote>
+<p>在分库分表的架构里，假设当前只有两个分库，并且这两个分库分别部署在不同机房，当其中一个分库所处的机房出现网络故障，导致该分库不可达时，理论上系统就出现故障了，分库分表后，数据在写入时是按固定规则（比如用户账号）路由到具体分库，当某个分库不可达时，对应规则的数据就无法写入了。</p>
+<p>但是写服务最重要的是保障数据写入，为了保障可写入，能不能在某一个分库故障后，将原有的数据全部写入当前可用的数据库？</p>
+<p>从保障数据可随时写入的角度看，此方式是可行的。</p>
+<p>存储依然使用分库分表，但写入规则发生了变化，它不再按固定路由进行写入，而是根据当前当时可用的数据库列表进行随机写入，如果某一台数据库出现故障不可用后，则把它从当前可用数据库列表中移除，如果数据库大面积不可用，可用列表中的数据库变少时，可以适当地扩容一些数据库资源，并将它添加到当前可用的数据列中。</p>
+<p>因此此架构可以实现随时切换问题数据库、随时低成本扩容数据库，故又称它为<strong>无状态存储架构设计</strong>。</p>
+</blockquote>
+<p><img src="/images/601.png" alt="img"></p>
+<p><strong>如何维护可用列表？</strong></p>
+<blockquote>
+<p>在写服务运行过程中，可以通过自动感知或人工确认的方式维护可用的数据库列表。</p>
+<p>在写服务调用数据库写入时，可以设置一个阈值，如果写入某一台数据库，在连续几分钟内，失败多少次，则可以判断此数据库故障，并将此判定进行上报。</p>
+<p>判定某一台数据库故障并将其下线是一个挺耗费成本的事情，为了防止误剔除某一台只是发生网络抖动的数据库，可以在真正下线某一个机器前，增加一个报警，给人工确认一个机会，可以设置多少时间内，人工未响应，即可自动下线。</p>
+<p>对于新扩容的数据库资源，通过系统功能自动加入即可，建议将顺序写入升级为按<strong>权重</strong>写入，比如对新加入的机器设置更高的写入权重，因为新扩容的机器容量时空的，更高的写入权重，可以让数据更快地在全部数据库里变得均衡。</p>
+</blockquote>
+<p><strong>写入后如何处理</strong></p>
+<blockquote>
+<p>通过数据库写入的<strong>随机化</strong>，实现了写服务高可用，但想要达成一个完整的架构方案，此设计还有几个重要的技术点需要解决。</p>
+<ul>
+<li>如果某一个分库故障后便将其从列表中移除，应该如何处理其中已写入的数据呢？</li>
+<li>因为数据库是随机写入，应该如何查询写入的数据呢？</li>
+</ul>
+</blockquote>
+<p><img src="/images/602.png" alt="image-20240325164728108"></p>
+<blockquote>
+<p>在数据写入后，用户需要立即查看写入内容的场景并不太多，比如上传完论文后，你只要立刻确定论文上传成功且查看系统里论文内容和你上传的一致即可。</p>
+<p>当数据写入随机存储成功后，可以在请求返回前，主动将数据写入缓存中，同时将此次写入的数据全部返回给前台，但此处并不强制缓存一定要写成功，缓存写入失败也可以返回成功，对时延敏感的场景，可以直接查询此缓存。</p>
+<p>对于无状态存储中的数据，可以在写入请求中主动触发同步模块进行迁移，同步模块在接收到请求后，立即将数据同步至分库分表及缓存中。</p>
+</blockquote>
+<p><strong>如何利用依赖管控来提升写服务的性能和可用性？</strong></p>
+<blockquote>
+<p>在写业务的系统架构里，除了需要关注存储上的高可用，写链路上各项外部依赖的管控同样十分重要，因为即使存储的高可用做好了，也可能因为外部依赖的不可用进而导致系统故障。</p>
+<p>比如写链路上依赖的某一个接口性能抖动或者接口故障，都会导致你的系统不可用。</p>
+</blockquote>
+<p><strong>链路依赖的全貌</strong></p>
+<blockquote>
+<p>完成一个写请求时，不仅需要依赖存储，大部分场景还需要依赖各种外部第三方提供的接口。</p>
+<p>比如在创建订单时，先要校验用户有效性、再校验用户的收货地址合法性，以及获取最新价格、扣减库存、扣减支付金额等。</p>
+<p>完成上述的校验和数据获取，最后一步才是写存储。</p>
+</blockquote>
+<p><strong>依赖并行化</strong></p>
+<blockquote>
+<p>假设一次写请求要依赖二十个外部接口，可以将这些依赖全部并行化，如果一个依赖接口的性能为10ms,以串行执行的方式，请求完所有外部依赖就需要200ms,但是改为并行执行后，只需要10ms即可完成。</p>
+<p>实际场景中并没有这么精确的数字，有的外部依赖可能快一点，有的可能慢一点，实际并行执行的耗时，等于最慢的那个接口性能。</p>
+<p>全部外部依赖的接口都可以并行是一种理想情况，接口能否并行执行的一个前置条件，就是两个接口间没有任何依赖关系，如果A接口执行的前置条件是需要B接口返回的数据才能执行，那么这两个接口则不能并行执行，对于并行中存在相互依赖的场景，并行化后的性能等于最长字串的性能总和。</p>
+</blockquote>
+<p><strong>依赖后置化</strong></p>
+<blockquote>
+<p>虽然整个链路上会有较多外部接口，但大部分场景中，很多接口是可以后置化的，后置化是指当接口里的业务流程处理完成并返回给用户后，后置去处理一些非重要且对实时性无要求的场景，比如在提交订单后，用户只需要查看订单是否下单成功，以及对应价格、商品和数量是否正确，而对于商品的详细描述信息，所归属的商家名称等信息并不会特别关心，如果在提单的同时还需要获取这些用户不太关系的信息，会给整个提单的性能和可用率带来非常大的影响，鉴于这种情况，可以在提单后异步补齐这些仅供展示的信息。</p>
+<p>对于一些可以后置补齐的数据，可以在写请求完成时将原始数据写入一张任务表，然后启动一个异步Worker,异步Worker再调用后置化的接口去补齐数据，以及执行相应的后置流程（比如发送MQ等）</p>
+</blockquote>
+<p><img src="/images/603.png" alt="img"></p>
+<p><strong>显式设置超时和重试</strong></p>
+<blockquote>
+<p>即便是使用了后置化的方案，仍然会有一些外部接口需要同步调用，如果这些同步调用的接口出现性能抖动或者可用率下降，就需要通过显式设置超时和重试来规避上述问题。</p>
+</blockquote>
+<p><strong>超时设置</strong></p>
+<blockquote>
+<p>设置超时是为了防止依赖的外部接口性能突然变差，比如从几十毫秒飙升至十几秒及以上，进而导致你的请求被阻塞，此请求线程得不到释放，还会导致你的微服务的RPC线程池被占满，此时又会带来新的问题，进程的RPC线程池被占满后，就无法再接受任何新的请求了，你的系统基本上也就宕机了。</p>
+</blockquote>
+<p><strong>重试设置</strong></p>
+<blockquote>
+<p>除了超时之外，还可以对依赖的读接口设置调用失败自动重试，重试次数设置为一次，自动重试只能设置读接口，读接口是无副作用的，重试对被依赖方无数据上的影响，而写接口是有状态的，如果依赖方没有做好幂等，设置自动重试可能会导致脏数据产生。</p>
+<p>设置自动重试是为了提高接口的可用性，因为依赖的外部接口的某一台机器可能会因为<strong>网络波动、机器重启</strong>等导致当次调用超时进而失败。</p>
+<p>如果设置了自动重试，就可能重试到另外一台正常机器，保障服务的可用性。</p>
+</blockquote>
+<p><strong>降级方式</strong></p>
+<blockquote>
+<p>当依赖的读服务接口，同时该接口返回的数据只用来补齐本次请求的数据时，可以对其返回的数据采用前置缓存，当出现故障时，可以使用前置缓存顶一段时间，给依赖提供方提供一定时间去修复缓存。</p>
+<p>对产生故障的依赖进行后置处理，比如发布微博前需要判断是否为非法内容，可能要依赖风控的接口进行合规性判断，当风控接口故障后，可以直接降级，先将微博数据写入存储并标记未校验，但此数据可能是不合规的，可以在业务上进行适当降级，未校验的数据只允许用户自己看，待风控故障恢复后再进行数据校验，校验通过后允许所有人可见。</p>
+<p>对于需要写下游的场景，比如提单时扣减库存，当库存不够边不能下单的场景，当库存故障时，可降级直接跳过库存扣减，但需要提示用户后续可能无货，修复故障后进行异步校验库存，如果校验不通过，系统取消订单或发送消息通知客户进行人工判断是否需要等待商家补货。</p>
+<p>此方式是一种预承载，但最终有可能失败的<strong>有损降级</strong>方案。</p>
+</blockquote>
+<h1 id="高并发扣减服务"><a href="#高并发扣减服务" class="headerlink" title="高并发扣减服务"></a>高并发扣减服务</h1><p><strong>扣减类业务的技术关注点</strong></p>
+<blockquote>
+<p>发生扣减必然就会存在归还，比如用户购买了商品之后因为一些原因想要退货，这个时候就需要将商品的库存、商品设置的购买次数以及订单金额等进行归还。</p>
+<p>基于扣减类业务的定义，关于扣减的实现，需要关注的技术点总结如下：</p>
+<ul>
+<li>当前剩余的数量需要大于等于当次扣减的数量，即不允许超卖；</li>
+<li>对同一个数据的数量存在用户并发扣减，需要保证并发一致性；</li>
+<li>需要保证可用性和性能，性能至少是秒级；</li>
+<li>一次的扣减会包含多个目标数量；</li>
+<li>当次扣减有多个数量时，其中一个扣减不成功即不成功，需要回滚。</li>
+</ul>
+<p>对于返还的实现需要关注的技术点：</p>
+<ul>
+<li>必须有扣减才能返还；</li>
+<li>返还的数量必须要加回，不能丢失；</li>
+<li>返还的数据总量不能大于扣减的总量；</li>
+<li>一次扣减可以有多次返还；</li>
+<li>返还需要保证幂等。</li>
+</ul>
+</blockquote>
+<p><strong>纯数据库式扣减实现</strong></p>
+<blockquote>
+<p>纯数据库实现之所以能够满足扣减业务的各项功能要求，主要依赖各类主流数据库提供的两个特性：</p>
+<ul>
+<li>第一是基于<strong>数据库乐观锁</strong>的方式保证数据并发扣减的强一致性；</li>
+<li>第二是基于数据库的事务实现批量扣减部分失败时的数据回滚。</li>
+</ul>
+<p>数据库存储扣减中所有数据，主要包含两张表：扣减剩余数量表和流水表，扣减剩余数量表是最主要的表，包含实时的剩余数量。</p>
+</blockquote>
+<p><img src="/images/604.png" alt="img"></p>
+<blockquote>
+<p>如上表所示，对于当前剩余可购买的数量，当用户进行取消订单、售后等场景时，都需要把数量加回到此字段。</p>
+<p>同时，当商家补齐库存时，也需要把数量加回。</p>
+<p>从完成业务功能的角度来看，只要扣减剩余数量表即可，但是在实际场景中，会需要查看明细进行对账、盘货、排查问题等需求。</p>
+<p>其次，在扣减后需要进行返还时是非常依赖流水的。</p>
+<p>因为只能返还有扣减记录的库存数量。最后，在技术上的幂等性，也非常依赖<strong>流水表</strong>。</p>
+</blockquote>
+<p><img src="/images/605.png" alt="img"></p>
+<p><strong>扣减接口实现</strong></p>
+<blockquote>
+<p>扣减接口接受用户提交的扣减请求，包含用户账号、一批商品及对应的购买数量，大致实现逻辑如下图所示：</p>
+</blockquote>
+<p><img src="/images/606.png" alt="img"></p>
+<blockquote>
+<p>流程开始时，首先进行的是数据校验，在其中可以做一些常规的参数格式校验，其次它还可以进行库存扣减的前置校验，比如当前数据库存库只有8个时，而用户需要10个，此时在数据校验中即可前置拦截，减少对于数据库的写操作。</p>
+<p>当用户只购买某商品2个时，如果在校验时剩余库存有8个，此时校验会通过，但在后续的实际扣减时，因为其他用户也在并发的扣减，可能会出现幻读，即此用户实际去扣减时不足2个，导致失败。</p>
+<p>这种场景就会导致多一次数据库查询，降低了整体的扣减性能。</p>
+<p>其次，即使将校验放置在事务内，先查询数据库数量校验通过后再扣减，也会增加性能。</p>
+<p>扣减完成之后，需要记录流水数据，每一次扣减时，都需要外部用户传入一个uuid作为流水编号，此编号是全局唯一的，用户在扣减时传入唯一的编号有两个作用。</p>
+<p> 1、当用户归还数量时，需要带回此编号，用来表示此次返还属于历史上的具体那次扣减。</p>
+<p> 2、进行幂等控制，当用户调用扣减接口出现超时时，因为不知道是否成功，用户可以采用此编号进行重试或反查，在重试时，使用此编号进行标示防重。</p>
+<p>存在的问题：多一次查询，就会增加数据库的压力，同时对整体服务性能也有一定影响，对外提供的查询库存数量的接口也会对数据库产生压力，同时读的请求量远大于写，由此带来的压力会更大。</p>
+</blockquote>
+<p><strong>扣减接口实现升级</strong></p>
+<blockquote>
+<p>根据业务场景分析，读库存的请求一般是顾客浏览商品时产生的，而调用扣减库存基本是用户购买时才会触发，用户购买请求的业务价值相比读请求会更大，因此对于写需要重点保障，转换到技术上，价值相对低的读来说是可以降级的，有损的。</p>
+<p>对于写要尽可能性能好、尽量减少不必要的读与写请求等。</p>
+<p>针对上述问题，可以对整体架构进行升级。</p>
+</blockquote>
+<p><img src="/images/607.png" alt="img"></p>
+<blockquote>
+<p>整体的升级策略采用了读写分离的方式，另外主从复制直接使用了MySQL等数据库已有的功能，改动上非常小，只要在扣减服务里配置两个数据源，当客户查询剩余库存数量、扣减服务中的前置校验时，读取从数据库即可。而真正数据扣减使用主库。</p>
+</blockquote>
+<p><strong>扣减接口实现再升级</strong></p>
+<blockquote>
+<p>在基于数据库的主从复制降低了主库流量压力之后，还需要升级的就是读取的性能了，这里我们使用Binlog实现简单，可靠的异构数据同步的技能。</p>
+</blockquote>
+<p><img src="/images/608-1358285.png" alt="img"></p>
+<p><strong>纯数据库扣减方案适用性</strong></p>
+<blockquote>
+<p>纯数据库方案有以下几个优点：</p>
+<ul>
+<li>实现简单，即使读使用了前置缓存，整体代码工程就两个，即扣减服务与数据映射服务，在需求交付周期非常短、人力紧张的场景是非常适用的；</li>
+<li>使用了数据库的ACID特性进行扣减，在业务上，库存数据库不会出现超卖和少卖的问题。</li>
+</ul>
+<p>存在的不足：</p>
+<ul>
+<li>当扣减SKU数据增多时，性能非常差，因为对每一个SKU都要单独扣减，导致事务非常大，极端情况下，可能出现几十秒的情况。</li>
+</ul>
+</blockquote>
+<p><strong>如何利用缓存实现万级并发扣减？</strong></p>
+<p><strong>纯缓存方案浅析</strong></p>
+<blockquote>
+<p>纯数据库的方案虽然避免了超卖与少卖的问题，但因采用了事务的方式保证一致性和原子性，所以在SKU数量较多时性能下降较明显。</p>
+<p>因为扣减有一个要求即当一个SKU购买的数量不够时，整个批量扣减就要回滚，因此我们需要使用类似for循环的方式对每一个扣减的SQL的返回值进行检查，另一个原因是，当多个用户买一个SKU时，它的性能也不客观。</p>
+<p>因为当出现高并发扣减或并发扣减同一个SKU时，事务的隔离性会导致加锁等待以及死锁的情况发生。</p>
+<p>下面我们对问题再次梳理一遍，进而寻找可升级演化方案。</p>
+<p>首先，扣减只需要保证原子性即可，并不需要数据库提供的ACID。</p>
+<p>在扣减库存时，重点保证商品不超卖不少卖。而持久化这个功能，只有在数据库故障切换及恢复时才有需要，因为被中断的事务需要持久化的日志进行重演，也就是说持久化是主功能之外的后置功能，附加功能。</p>
+<p>那么，在不改变机器配置情况下，把传统的SQL类数据库替换为性能更好的NoSQL类数据存储试试？</p>
+<p>是不是有一个性能又好同时又能满足扣减多个SKU具有原子性的NoSQL数据库呢？</p>
+<p>Redis 采用了单线程的事件模型，保障了我们对于原子性的要求。对于单线程的事件模型，简单的比喻就是说当我们多个客户端给 Redis 同时发送命令后，Redis 会按接收到的顺序进行串行的执行，对于已经接收而未能执行的命令，只能排队等待。</p>
+<p>基于此特性，当我们的扣减请求在 Redis 执行时，也即是原子性的。此特性刚好符合我们对于扣减原子性的要求。</p>
+</blockquote>
+<p><strong>方案实现剖析</strong></p>
+<p><img src="/images/609.png" alt="img"></p>
+<blockquote>
+<p>缓存中存储的信息和数据库表结构基本类似，包含当前商品和剩余的库存数量和当次的扣减流水，这里需要注意两点。</p>
+<ul>
+<li>首先，因为扣减全部依赖于缓存，不依赖数据库，所有存储于Redis的数据均不设置过期并全量存储。</li>
+<li>其次，Redis是以k-v结构为主，伴随hash、set等结构，与MySQL以表+行为主的结构有一定差异。</li>
+<li>Redis中库存数量结构大致如下：</li>
+</ul>
+</blockquote>
+<pre><code>key为：sku_stock_&#123;sku&#125;。前缀sku_stock是固定不变，所有以此为前缀的均表示是库存。&#123;sku&#125;是占位符，在实际存储时被具体的skuid替代。
+value:库存数量。当前此key表示的sku剩余可购买的数量。
+</code></pre>
+<blockquote>
+<p>对于Redis中存储的流水表采用hash结构，即key+hashField+hashValue的形式，结构大致如下：</p>
+</blockquote>
+<pre><code>key：sx_&#123;sku&#125;。前缀sx_是按上述缩短的形式设计的，只起到了区分的作用。&#123;sku&#125;为占位符
+hashField：此次扣减流水编号。
+hashValue: 此次扣减的数量
+</code></pre>
+<blockquote>
+<p>在一次扣减时，会按SKU在Redis中先扣减完库存数量在记录流水信息。</p>
+<p>扣减接口支持一次扣减多个SKU+数量，查询Redis的命令文档会发现：</p>
+<ul>
+<li>首先，Redis对于hash结构不支持多个key的批量操作；</li>
+<li>其次，Redis对于不同数据结构键不支持<strong>批量操作</strong>，如KV与Hash间。</li>
+</ul>
+<p>如果对于多个SKU不支持批量操作，我们就需要按单个SKU发起Redis调用，在上文中提到过，Redis不对命令间保证单线程执行。</p>
+<p>如果采用上述Redis的数据结构，一次扣减必须要发起多次对Redis的命令才可完成。</p>
+<p>这样上文提到的利用Redis单线程来保证扣减的原子性此时则满足不了了。</p>
+</blockquote>
+<blockquote>
+<p>针对上述问题，我们可以采用Redis的<strong>lua脚本</strong>来实现批量扣减的单线程诉求。</p>
+<p>Redis中的lua脚本执行时，首先会使用get命令查阅uuid是否存在，如已存在则直接返回，并提示用户请求重复，当防重通过后，会按SKU批量获取对应的剩余库存状态并进行判断，如果其中一个SKU此次扣减的数量大于剩余数量，则直接给扣减服务返回错误并提示数量不足。通过Redis的单线程模型，确保当所有SKU的扣减数量在判断均满足后，在实际扣减时，数量不够的情况是不会出现的，同时单线程保证判断数量的步骤和后续扣减步骤之间，没有其他任何线程出现<strong>并发</strong>的执行。</p>
+<p>判断数量满足之后，lua脚本后续就可以按SKU进行循环的扣减数量并记录流水。</p>
+<p>当Redis扣减成功后，扣减接口会异步的将此次扣减内容保存至数据库，异步保存数据库的目的是防止出现极端情况，Redis当即后数据未持久化到磁盘，此时我们可以使用数据库恢复或校准数据。</p>
+<p>最后，在纯缓存架构图中还有一个运营后台，它直接连接了数据库，是运营和商家修改库存的入口。当商品补齐了新的货物时，商家在运营后台将此SKU库存数量加回。同时运营后台的实现需要将此数量同步的增加至Redis。因为当前方案的所有实际扣减都在Redis中。</p>
+</blockquote>
+<p><strong>异常情况分析</strong></p>
+<blockquote>
+<p>因为Redis不支持ACID特性，导致在使用Redis进行可偶见时相比纯数据库方案有较多异常场景需要处理。</p>
+</blockquote>
+<blockquote>
+<p><strong>Redis突然宕机:</strong></p>
+<p>如果Redis宕机，请求在Redis中只进行了前置的防重和数量验证，此时则没有任何影响，直接返回给客户扣减失败即可。</p>
+<p>但如果此时Redis中的lua脚本执行到了扣减逻辑并做了实际的扣减，则会出现数据丢失的情况，因为Redis没有事务的保证，宕机时已经扣减的数量不会回滚，宕机导致扣减服务给客户返回扣减失败，但实际上Redis已经扣减了部分数据并刷新了磁盘，当此Redis故障处理完成再次启动后或者failover之后，部分库存数量已经丢失。</p>
+<p>为了解决这种问题，可以使用数据库中的数据进行校准。常见的方式是开发<strong>对账程序</strong>，通过对比Redis与数据库中的数据是否一致，并结合扣减服务的日志。当发现数据不一致同时日志记录扣减失败时，可以将数据库比Redis多的库存数据在Redis中进行加回。</p>
+</blockquote>
+<blockquote>
+<p>扣减Redis完成并成功返回客户后，异步刷新数据库失败:</p>
+<p>此时，Redis中的数据库是准的，但数据库中的库存数量时多的，在结合扣减服务的日志确定是Redis扣减成功但异步记录数据失败后，可以将数据库比Redis多的库存数据在数据库中进行扣减。</p>
+</blockquote>
+<p><strong>升级纯缓存实现方案</strong></p>
+<blockquote>
+<p>扣减服务不仅包含扣减接口还包含数量查询接口，查询接口的量级相比写接口至少是十倍以上，即使是使用了缓存进行抗量，但读写都请求了同一个Redis,就会导致扣减请求被读影响。</p>
+<p>其次，运营在后台进行操作增加或者修改库存时，是在修改完数据库之后在代码中异步修改刷新Redis,因为数据库和Redis不支持分布式事务，为了保证在修改时它们的数据一致性，在实际开发中，需要增加很多手段来保证一致性，成本较高。</p>
+<p>我们可以增加一个Redis节点，在扣减服务里根据请求类型路由到不同的Redis节点。使用主从分离的好处是，不用太多的数据库同步开发，直接使用Redis主从同步方案，成本低开发量小。</p>
+<p>运营后台修改数据库数量后同步至Redis的逻辑使用binlog进行处理，当商家修改了数据库中的数量之后，MySQL的binlog会自动发出，在数据转换模块接受binlog并转换格式插入Redis即可。</p>
+<p>因为binlog消费是采用ack机制，如果在转换和插入Redis时出错，ack不确定即可。</p>
+<p>下一次数据转换代码运行时，会继续上一次未消费的binlog继续执行。最终binlog机制不需要太多逻辑处理即可达到最终一致性。</p>
+</blockquote>
+<p><img src="/images/610.png" alt="img"><br><strong>纯缓存方案适用性分析</strong></p>
+<blockquote>
+<p>纯缓存方案的主要优点是性能提升明显。使用缓存的扣减方案在保证了扣减的原子性和一致性等功能性要求之外，相比纯数据库的扣减方案至少提升十倍以上。</p>
+<p>除了优点之外，纯缓存的方案同样存在一些缺点。</p>
+<p>Redis 及其他一些缓存实现，为了高性能，并没有实现数据库的 ACID 特性。导致在极端情况下可能会出现丢数据，进而产生少卖。</p>
+<p>另外，为了保证不出现少卖，纯缓存的方案需要做很多的<strong>对账、异常处理</strong>等的设计，系统复杂度会大幅增加。</p>
+</blockquote>
+<p><strong>如何利用缓存+数据库构建高可靠的扣减方案？</strong></p>
+<p><strong>顺序写的性能更好</strong></p>
+<blockquote>
+<p>在向磁盘进行数据操作时，向文件末尾不断追加写入的性能要远大于随机修改的性能，数据库同样是插入要比更新的性能好，对于数据库的更新，为了保证对同一条数据并发更新的一致性，会在更新时增加锁，但加锁是十分消耗性能的，此外对于没有索引的更新条件，要想找到需要更新的那条数据，需要遍历整张表，时间复杂度为O(N),而插入只在末尾进行追加，性能非常好。</p>
+</blockquote>
+<p><img src="/images/617.png" alt="img"></p>
+<blockquote>
+<p>上述的架构和纯缓存的架构区别在于，写数据库不是异步写入，而是在扣减的时候同步写入。</p>
+<p>同步写入数据库使用的是insert操作，也就是顺序写，而不是update做数据库数据量的扣减。</p>
+<p>insert的数据库称为任务库，它只存储每次扣减的原始数据，而不做真实的扣减（即不进行update）,它的表结构大致如下：</p>
+</blockquote>
+<pre><code class="sql">create table task&#123;
+    id bigint not null comment &quot;任务顺序编号&quot;，
+    task_id bigint not null
+&#125;
+</code></pre>
+<blockquote>
+<p>任务表里存储内容格式可以是json、xml等结构化的数据，以json为例，数据内容大致可以如下：</p>
+</blockquote>
+<pre><code class="json">&#123;
+  &quot;扣减号&quot;:uuid,
+  &quot;skuid1&quot;:&quot;数量&quot;,
+  &quot;skuid2&quot;:&quot;数量&quot;,
+  &quot;xxxx&quot;:&quot;xxxx&quot;
+&#125;
+</code></pre>
+<blockquote>
+<p>在上述的架构中，还有一个正式业务库，这里存储的存储的才是真正的扣减明细和SKU的汇总数据，对于正式库的数据，通过任务表的任务进行同步即可，此种方式保证了数据的最终一致性。</p>
+</blockquote>
+<p><strong>扣减流程</strong></p>
+<blockquote>
+<p>在引入了任务表之后，整体的扣减流程如下图所示：</p>
+</blockquote>
+<p><img src="/images/612.png" alt="img"></p>
+<blockquote>
+<p>1、首先是前置业务参数校验（包括基础参数，数量检验等）</p>
+<p>2、开启事务</p>
+<p>3、当开启事务后，首先将此次序列化后的扣减明细写入到扣减数据库的任务表里面。</p>
+<p>4、假设数据库插入扣减明细失败，则事务回滚，任务表中无新增数据，数据一致，无任何影响。</p>
+<p>5、当数据库插入扣减明细成功后，便针对缓存进行扣减，使用lua等功能扣减就行。</p>
+<p>6、如果缓存扣减成功，也就是流程正常结束，提交数据库事务，给客户返回扣减成功。</p>
+<p>7、如果缓存扣减失败，可能有两大类原因。</p>
+<p> 1、此次扣减数量不够</p>
+<p> 2、缓存出现故障，导致扣减失败，缓存失败的可能性有很多，比如网络不通、调用缓存扣减超时，在扣减到一半时缓存宕机。</p>
+</blockquote>
+<blockquote>
+<p>完成上面步骤，便可以进行任务库里的数据处理了，任务库里存储的是纯文本的JSON数据，无法被直接使用，需要将其中的数据转储至实际的业务库里，业务库里会存储两类数据，一类每次扣减的流水数据，他与任务表里的数据区别在于它是结构化的，而不是json文本大字段内容，另一类是汇总数据，即每一个sku当前总共有多少量，当前还剩多少量（即从任务库同步时需要进行扣减的），表结构大致如下：</p>
+</blockquote>
+<pre><code class="sql">create table 流水表&#123;
+  id bigint not null,
+  uuid bigint not null comment &#39;扣减编号&#39;,
+  sku_id bigint not null comment &#39;商品编号&#39;,
+  num int not null comment &#39;当次扣减的数量&#39; 
+&#125;comment &#39;扣减流水表&#39;
+</code></pre>
+<blockquote>
+<p>商品的实时数据汇总表，结构如下：</p>
+</blockquote>
+<pre><code class="sql">create table 汇总表&#123;
+  id bitint not null,
+  sku_id unsigned bigint not null comment &#39;商品编号&#39;,
+  total_num unsigned int not null comment &#39;总数量&#39;,
+  leaved_num unsigned int not null comment &#39;当前剩余的商品数量&#39;
+&#125;comment &#39;记录表&#39;
+</code></pre>
+<p><strong>原理分析</strong></p>
+<blockquote>
+<p>数据库+缓存的架构主要利用了数据库<strong>顺序写入</strong>要比更新性能快的这一特性，在写入的基础上，又利用了数据库事务特性来保证数据的最终一致性，当异常出现后，通过事务进行回滚，来保证数据库的数据不会丢失。</p>
+<p>在整体流程上，还是复用了纯缓存的架构流程，当新加入一个商品，或者对已有商品进行补货时，对应的新增商品数量都会通过Binlog同步至缓存里，在扣减时，依然以缓存中的数量为准。</p>
+</blockquote>
+<p><img src="/images/613.png" alt="image-20240325174132694"></p>
+<p><strong>性能提升</strong></p>
+<blockquote>
+<p>进行方案升级后，我们便完成了一个更加可靠的扣减架构，且使用任务数据库的顺序插入也保证了一定的性能，但是即使是基于数据库的顺序插入，缓存操作的性能和数据库的顺序插入也不是一个量级。</p>
+<p>任务库主要提供两个作用，一个是事务支持 ，其次是随机的扣减流水任务的存取，这两个功能均不依赖具体的路由规则，也是随机的，无状态的。</p>
+</blockquote>
+<p><img src="/images/614.png" alt="image-20240325174232916"></p>
+<p><strong>如何设计和实现扣减中的返还</strong></p>
+<p><strong>什么是扣减的返还</strong></p>
+<blockquote>
+<p>扣减的返还指的是在扣减完成之后，业务上发生了一些逆向行为，导致原先已扣减的数据需要恢复以便供后续的扣减请求使用的场景。</p>
+<p>以在购买商品时的扣减库存举例，其中常见的逆向行为有：</p>
+<p>1、当客户下单之后，发现某个商品买错了（商品品类买错或数量填错），客户便会取消订单，此时该订单对应的所有商品的库存数量需要返还；</p>
+<p>2、其次，假设客户在收到订单后，发现其中某一个商品质量有问题或者商品的功能和预期有差异，便会发起订单售后流程，比如退、换货。此时该订单下被退货的商品，也需要单独进行库存返还。</p>
+</blockquote>
+<p><strong>返还实现原则</strong></p>
+<blockquote>
+<p>相比扣减，返还的并发量比较低，因为下单完成后繁盛整单取消或者个别商品售后概率较低。</p>
+<p>因此，返还实现上，可以参考商家对已有商品补货的实现，直接基于数据库进行落地，但返还自身也具备以下实现原则：</p>
+<ul>
+<li><p>原则一：扣减完成才能返还</p>
+<p>返还接口设计时，必须要有扣减号这个字段。因为所有的返还都是依赖于扣减的，如果某一个商品的返还没有带上当时的扣减号，后续很难对当时的情况作出准确判断。</p>
+<ul>
+<li>当前商品是否能够返还。 因为没有扣减号，无法找到当时的扣减明细，无法判断此商品当时是否做了扣减，没有做扣减的商品是无法进行返还的。</li>
+<li>当前返还的商品数量是否超过扣减值。假设外部系统因为异常，传入了一个超过当时扣减值的数量，如果不通过扣减号获取当时的扣减明细，你无法判断此类异常。</li>
+</ul>
+</li>
+<li><p>原则二：一次扣减可以多次返还</p>
+</li>
+<li><p>原则三：返还的总数量要小于等于原始扣减的数量</p>
+</li>
+<li><p>原则四：返还要保证幂等</p>
+</li>
+</ul>
+</blockquote>
+<p><strong>秒杀场景：热点扣减如何保证命中的存储分片不挂？</strong></p>
+<p><strong>如何应对秒杀流量？</strong></p>
+<blockquote>
+<p>从秒杀的业务上进行分析，虽然秒杀带来的热点扣减请求非常大，但每次参与秒杀的商品数量有限，可能就几百个或者上千个，而热点扣减的流量可能达到上百万，通过简单的计算可以得出，秒杀到商品的概率只有0.1%，其中99%的扣减请求都是”陪跑”。</p>
+<p>这些“陪跑”的请求对于使用这来说可能只是一次简单的点击，但很可能会把正在运行的扣减服务打挂，此时我们可以对这些瞬间量非常大的“陪跑”请求进行一些前置处理，降低“陪跑”请求的瞬间请求量，或者降低他们对于系统的冲击，此方式叫作流量消峰。</p>
+</blockquote>
+<p><strong>如何实现流量消峰</strong></p>
+<blockquote>
+<ul>
+<li><p>基于用户维护设置限制。</p>
+<p>比如同一个账号在5秒内最多可以请求扣减多少次，超过多少次便进行拦截，直接返回失败信息给商品页面。</p>
+</li>
+<li><p>基于来源IP设置限制。</p>
+<p>有些黄牛会提前预申请很多账号，因此使用上述账户限制方式并不能完全拦截住，在账户基础上，可以对用户来源IP设置限制。</p>
+</li>
+<li><p>通过设备的唯一编码等设置限制。</p>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>上述提到的拦截在实现上，可以采用比较成熟的漏桶算法，令牌桶算法。</p>
+<p>限流在实现上有两种方式，一种是集中式，一种是单机式。集中式是指设置一个总的限流阈值，并将此值存储在一个单独的限流应用中，所有的扣减应用在接收到请求后，均采用远程请求此限流应用的方式，来判断当前是否达到限流值。单机式限流是指将限流阈值在管理端配置后，主动下发到每一台扣减应用中去。</p>
+<p>第二步进行消峰的是，业务层面需要设置权重登记。秒杀是一种营销活动，营销是有目的的，比如激活许久未下单用户，或者优先让会员抢到商品，增加会员的续费意愿等。</p>
+<p>第三步进行的削峰是，增加一定的过滤比例。 如果上述两个方式过滤后，热点扣减的并发量仍然较大。可以设置一个固定比例，如 10% 的请求前置过滤并直接返回失败消息，告知用户“抢购火爆，请稍后再试”，也可以降低一部分无效请求。</p>
+<p>第四步进行的削峰是，兜底降级不可少。</p>
+<p>最后进行的削峰是，售完的商品需前置拦截。 秒杀商品会在瞬间售完，后续所有的请求都会返回无货。对于已经无货的商品，将商品已经无货的标记记录在本地缓存里。在秒杀扣减前，先在本地缓存进行判断，如果无货直接返回即可。</p>
+</blockquote>
+<p><img src="/images/615.png" alt="image-20240325174657585"></p>
+<p><strong>水平扩展架构升级</strong></p>
+<blockquote>
+<p>通过上述几种限流的组合，便可以应对秒杀的热点流量了。但上述的方式会牺牲一定的用户体验，比如按一定比例过滤用户请求、按缓存分片维度过滤用户请求等。</p>
+<p>我们可以在上述方案的基础上，做一定的升级来减少有损体验。在设置秒杀库存时，将秒杀库存按缓存分片的数量进行平均等分，每一个缓存里均存储一等份即可。比如某一个商品（记为 SKU1）的秒杀库存为 10，当前部署的缓存分片共计 10 个，那么每一个分片里存储该 SKU 的库存数可以为 1，存储在各个缓存里的 key 可以为：SKU1_1、SKU1_2、…、SKU1_10。</p>
+<p>在处理秒杀请求时，不只是固定地命中某一个缓存分片，而是在每次请求时轮询命中缓存集群中的每一个<strong>缓存分片</strong>。</p>
+<p>将秒杀商品的库存前置散列到各个缓存分片，可以将原先热点扣减只能使用一个缓存分片升级至多个，提升吞吐量。</p>
+<p>但此方式有一个弊端，就是更加的定制化。</p>
+</blockquote>
+<p><img src="/images/616.png" alt="image-20240325174853781"></p>
+
+	</div>
+</div>
+
+
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2024/03/25/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go%E8%AF%AD%E8%A8%80/%E6%8C%87%E9%92%88/">
+                Go语言
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+
+<script>
+
+    //document.oncontextmenu=new Function("event.returnValue=false");
+	//document.onselectstart=new Function("event.returnValue=false");
+
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+
+	
+
+	$(function () {
+		const btw = new BTWPlugin();
+	    btw.init({
+	        id: 'container',
+	        blogId: '22377-1706525467336-300',
+	        name: '月伴飞鱼',
+	        qrcode: '/小程序码.jpg',
+	        keyword: '验证码',
+	        btnText: '为防止机器刷接口，需要完成人机检测',
+        	cookieAge: 1
+	    });
+
+	    var contents = document.getElementsByClassName("content999");
+	    //监听文章内容的copy事件
+	    contents[0].addEventListener('copy',function(e){
+	        setClipboardText(e);
+	    });
+
+	    function setClipboardText(event){
+	        // clipboardData 对象是为通过编辑菜单、快捷菜单和快捷键执行的编辑操作所保留的，也就是你复制或者剪切内容
+	        let clipboardData = event.clipboardData || window.clipboardData;
+
+	        // 如果未复制或者未剪切，则return出去
+	        if (!clipboardData) { return; }
+
+	        event.preventDefault();
+
+	        // Selection 对象，表示用户选择的文本范围或光标的当前位置。
+	        // 声明一个变量接收 -- 用户输入的剪切或者复制的文本转化为字符串
+	        let text = window.getSelection().toString();
+	    
+	        if (text) {
+	            // 如果文本存在则先取消文本默认事件
+	            event.preventDefault();
+	            // 通过调用常clipboardData对象的 setData(format, data) 方法；来设置相关文本
+	            // format: 一个DOMString 表示要添加到 drag object的拖动数据的类型。
+	            // data: 一个 DOMString表示要添加到 drag object的数据。
+	            var copyright = '\n\n'
+	            + '\n著作权归作者所有。'
+	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
+	            + '\n作者: 月伴飞鱼'
+	            + '\n原文地址: http://hardyfish.top/2024/03/25/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/23%E8%AE%B2%E6%90%9E%E5%AE%9A%E5%90%8E%E5%8F%B0%E6%9E%B6%E6%9E%84%E5%AE%9E%E6%88%98/'
+	    
+	            clipboardData.setData('text/plain', text + copyright);
+	    
+	        }
+	    };
+	});
+
+	
+</script>
+
+<script>
+    const btw = new BTWPlugin();
+    btw.init({
+        id: 'container',
+        blogId: '22377-1706525467336-300',
+        name: '月伴飞鱼',
+        qrcode: '/小程序码.jpg',
+        keyword: '验证码',
+        btnText: '为防止机器刷接口，需要完成人机检测',
+        cookieAge: 1
+    });
+
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7eeb54583579fabc0878be210d6ad60a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+	</div>
+	<div id="footer">
+	<p>
+	©2019-<span id="footerYear"></span> 
+	<a href="/">月伴飞鱼</a> 
+	
+	
+		|
+		<span id="busuanzi_container_site_pv">
+			PV 180986
+		</span>
+		|
+		<span id="busuanzi_container_site_uv"> 
+			UV 10079
+		</span>
+	
+	<br>
+	微信搜索 <a href="https://xiaoflyfish.oss-cn-beijing.aliyuncs.com/image/个人公众号.jpg" target="_blank">月伴飞鱼</a> 关注我
+	</p>
+</div>
+<script type="text/javascript"> 
+	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+</script>
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>
