@@ -22,7 +22,7 @@
 	
 	<title>
 	
-		Spark | 
+		技能相关 | 
 	 
 	月伴飞鱼
 	</title>
@@ -466,7 +466,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file active">
+								<li class="file">
 									<a href="/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Spark/">
 										Spark
 									</a>
@@ -762,7 +762,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2024/03/26/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E8%83%BD%E7%9B%B8%E5%85%B3/">
 										技能相关
 									</a>
@@ -1507,18 +1507,18 @@
 	<div id="content">
 		<h1 id="article-title" oncontextmenu="return false;">
 
-	Spark
+	技能相关
 </h1>
 <div class="article-meta" oncontextmenu="return false;">
 	<span>月伴飞鱼</span>
-	<span>2024-01-20 12:03:42</span>
+	<span>2024-03-26 19:08:29</span>
     
 		<div id="article-categories">
             
                 
                     <span>
                         <i class="fa fa-folder" aria-hidden="true"></i>
-                        <a href="/categories/大数据相关/">大数据相关</a>
+                        <a href="/categories/成长相关/">成长相关</a>
 						
                     </span>
                 
@@ -1538,81 +1538,123 @@
       </div>
       <!--打赏-->
 	<div id="article-content">
-		<blockquote>
-<p>Spark是一个基于内存的快速、通用、可扩展的大数据分析计算引擎。</p>
-<p>官网地址：<a target="_blank" rel="noopener" href="http://spark.apache.org/">http://spark.apache.org/</a></p>
-<p>文档查看地址：<a target="_blank" rel="noopener" href="https://spark.apache.org/docs/3.3.0/">https://spark.apache.org/docs/3.3.0/</a></p>
-<p>下载地址：</p>
+		<h1 id="技术主R"><a href="#技术主R" class="headerlink" title="技术主R"></a>技术主R</h1><p><strong>技术主R职责</strong></p>
+<p>需求把控:</p>
+<blockquote>
+<p>明确背景：</p>
 <ul>
-<li>
-<p><a target="_blank" rel="noopener" href="https://spark.apache.org/downloads.html">https://spark.apache.org/downloads.html</a></p>
+<li>明确需求产生场景、使用场景</li>
+</ul>
+<p>明确目标：</p>
+<ul>
+<li>为什么要做、解决什么问题</li>
+</ul>
+<p>不做行不行，有什么影响</p>
+<p>是否有其他办法来解决这个问题</p>
+<p>核心目标：确保需求能达到的业务目标，找到合适的评价指标</p>
+</blockquote>
+<p>方案把控：</p>
+<blockquote>
+<p>确保各端对需求及方案的理解一致</p>
+<p>确保技术方案的合理性，投入最小化，收益最大化</p>
+<p>明确各端排期、主R和沟通协作机制（沟通的成本，决定项目的进度，参与人员越多，沟通成本越高）</p>
+<p>核心目标：方案清晰、透明、周知各端</p>
+</blockquote>
+<p>项目把控：</p>
+<blockquote>
+<p>明确项目关键节点</p>
+<p>及时沟通、推进及周知</p>
+<p>项目风险（延期、质量、协作）识别与管理</p>
+<p>项目结果与质量保证</p>
+<p>核心目标：保证项目进度和质量</p>
+</blockquote>
+<p><strong>项目流程把控</strong></p>
+<p>项目周期的参与：</p>
+<blockquote>
+<p>需求分析:</p>
+<ul>
+<li>明确业务目标，价值收益</li>
+<li>明确业务流程，业务数据结构</li>
+<li>梳理数据处理流程</li>
+<li>梳理内部和外部系统交互</li>
+</ul>
+<p>技术方案:</p>
+<ul>
+<li>包括方案设计、任务拆解、各端主R、各端排期</li>
+</ul>
+<p>模块设计:</p>
+<ul>
+<li>复杂模块可以单独建立Doc来进行方案设计和对比</li>
+</ul>
+<p>接口文档:</p>
+<ul>
+<li>后端接口，可以使用YAPI记录</li>
+</ul>
+<p>测试用例:</p>
+<ul>
+<li>明确和推动测试用例的评审</li>
+</ul>
+<p>上线检查:</p>
+<ul>
+<li>梳理上线流程，形成CheckList，协调各端按流程上线</li>
+<li>梳理代码用到的配置项、开关</li>
+<li>梳理系统需要的权限配置</li>
+<li>准备好降级预案，防止突发状况</li>
+</ul>
+</blockquote>
+<p>项目组织与执行:</p>
+<blockquote>
+<p>参与需求评审:</p>
+<ul>
+<li><p>PM组织需求评审，参与方包括PM、后端RD、前端RD、测试QA</p>
 </li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://archive.apache.org/dist/spark/">https://archive.apache.org/dist/spark/</a></p>
+<li><p>明确业务背景和业务目标，明确项目优先级，是否存在工期倒排情况等</p>
+</li>
+</ul>
+<p>明确项目组成员:</p>
+<ul>
+<li><p>技术方案阶段，确定项目组成员，明确各端主R：业务主R、QA主R、后端主R、PM主R</p>
+</li>
+<li><p>担任主R的同学，需要对本次项目业务比较熟悉</p>
+</li>
+<li><p>各端一般只有一个主R+n个S</p>
+</li>
+</ul>
+<p>需求分析及方案设计评审:</p>
+<ul>
+<li><p>后端主R完成整体需求分析，任务拆解及工时预估</p>
+</li>
+<li><p>后端主R完成整体方案设计，组织技术方案评审，确保需求理解一致、方案设计合理</p>
+</li>
+<li><p>推动各端确定项目排期，包括：开发时间、接口提供时间、联调时间、提测时间、上线时间等关键时间节点</p>
+</li>
+<li><p>确定项目沟通协作机制，比如：建立项目进度Doc、建立沟通群、项目站会、项目周会、项目周报及邮件</p>
+</li>
+</ul>
+<p>项目推进与沟通:</p>
+<ul>
+<li><p>项目进度及时周知各端，并得到明确反馈，可以依次通过沟通群、电话、站会、会议、Leader等方法和渠道，确保项目沟通机制的落地</p>
+</li>
+<li><p>项目变更及时周知各端，包括需求变更、方案变更、工期延长等，并进行影响范围评估，影响工期超过2~3天（视情况而定），需周知Leader和相关负责人</p>
+</li>
+<li><p>关注延期和质量风险，及时周知PM、Leader，确定影响范围大小，组织会议讨论解决方案</p>
+</li>
+<li><p>推动PM组织协调各端，进行需求变更、项目阻塞等问题的处理，会议进度和结论在群里周知</p>
+</li>
+</ul>
+<p>项目上线与线上故障处理：</p>
+<ul>
+<li><p>后端主R组织整体上线流程、上线方案，梳理上线Checklist，并组织会议评审</p>
+</li>
+<li><p>协调各端上线时间，严格按照上线CheckList执行上线</p>
+</li>
+<li><p>上线后功能验证、线上故障跟踪并及时周知和处理</p>
 </li>
 </ul>
 </blockquote>
-<p><strong>Spark和Hadoop</strong></p>
+<p><strong>项目总结与复盘</strong></p>
 <blockquote>
-<p>Spark 并不能完全替代 Hadoop，Spark 主要用于替代Hadoop中的 <code>MapReduce</code> 计算模型。</p>
-<p>存储依然可以使用 <code>HDFS</code>，但是中间结果可以存放在内存中。</p>
-<p>调度可以使用 Spark 内置的，也可以使用更成熟的调度系统 <code>YARN</code> 等。</p>
-<p>Spark 已经很好地融入了 Hadoop 生态圈，它可以借助于 <code>YARN</code> 实现资源调度管理，借助于 <code>HDFS</code> 实现分布式存储。</p>
-<p>Hadoop 可以使用廉价的、异构的机器来做分布式存储与计算，但 Spark 对硬件的要求稍高一些，对内存与 CPU 有一定的要求。</p>
-</blockquote>
-<p><strong>生态圈</strong></p>
-<img src="/images/350.png" alt="image-20240120121212580" style="zoom:50%;" />
-<blockquote>
-<p>Spark Core：</p>
-<ul>
-<li>实现了 Spark 的基本功能，包含 RDD、任务调度、内存管理、错误恢复、与存储系统交互等模块。</li>
-</ul>
-<p>Spark SQL：</p>
-<ul>
-<li>Spark 用来操作结构化数据的程序包。</li>
-<li>通过 Spark SQL，我们可以使用 SQL 操作数据。</li>
-</ul>
-<p>Spark Streaming：</p>
-<ul>
-<li>Spark 提供的对实时数据进行流式计算的组件，提供了用来操作数据流的 API。</li>
-</ul>
-<p>Spark MLlib：</p>
-<ul>
-<li>提供常见的机器学习(ML)功能的程序库。</li>
-<li>包括分类、回归、聚类、协同过滤等，还提供了模型评估、数据导入等额外的支持功能。</li>
-</ul>
-<p>GraphX(图计算)：</p>
-<ul>
-<li>Spark 中用于图计算的 API，性能良好，拥有丰富的功能和运算符，能在海量数据上自如地运行复杂的图算法。</li>
-</ul>
-<p>集群管理器：</p>
-<ul>
-<li>Spark 设计为可以高效地在一个计算节点到数千个计算节点之间伸缩计算。</li>
-</ul>
-<p>Structured Streaming：</p>
-<ul>
-<li>处理结构化流，统一了离线和实时的 API。</li>
-</ul>
-</blockquote>
-<p><strong>运行模式</strong></p>
-<blockquote>
-<p>Spark集群分为两种模式：单机模式与集群模式</p>
-<p>Local模式：</p>
-<ul>
-<li>在本地部署单个Spark服务</li>
-</ul>
-<p>Standalone模式：</p>
-<ul>
-<li>Spark自带的任务调度模式（国内常用）</li>
-</ul>
-<p>YARN模式：</p>
-<ul>
-<li>Spark使用Hadoop的YARN组件进行资源与任务调度（国内最常用）</li>
-</ul>
-<p>Mesos模式：</p>
-<ul>
-<li>Spark使用Mesos平台进行资源与任务的调度（国内很少用）</li>
-</ul>
+<p>后端主R对项目进行总结，从研发角度对项目进行复盘</p>
 </blockquote>
 
 	</div>
@@ -1631,16 +1673,11 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Flink/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  Flink
-              </a>
-            
         </div>
         <div class="item right">
             
-              <a href="/2024/01/14/AI%E7%9B%B8%E5%85%B3/AIGC/">
-                AIGC
+              <a href="/2024/03/25/%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/23%E8%AE%B2%E6%90%9E%E5%AE%9A%E5%90%8E%E5%8F%B0%E6%9E%B6%E6%9E%84%E5%AE%9E%E6%88%98/">
+                23讲搞定后台架构实战
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
@@ -1708,7 +1745,7 @@
 	            + '\n著作权归作者所有。'
 	            + '\n商业转载请联系作者获得授权，非商业转载请注明出处。'
 	            + '\n作者: 月伴飞鱼'
-	            + '\n原文地址: http://hardyfish.top/2024/01/20/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Spark/'
+	            + '\n原文地址: http://hardyfish.top/2024/03/26/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E8%83%BD%E7%9B%B8%E5%85%B3/'
 	    
 	            clipboardData.setData('text/plain', text + copyright);
 	    
