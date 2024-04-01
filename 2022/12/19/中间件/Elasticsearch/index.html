@@ -1715,6 +1715,34 @@
 <p>布尔类型</p>
 <p>二进制</p>
 </blockquote>
+<p><strong>query和filter</strong></p>
+<blockquote>
+<p><strong>query:</strong></p>
+<p>即某条文档是否匹配一个查询语句，这种查询模式下做两件事：</p>
+<ul>
+<li><p>搜索出匹配查询语句的文档</p>
+</li>
+<li><p>计算每条文档的匹配度，并放在 <code>_score metadata</code> filed 中</p>
+</li>
+</ul>
+<p>使用场景：</p>
+<ul>
+<li>使用相关性评分的全文搜索场景，注重匹配度而不是精准度</li>
+</ul>
+<p>如何使用：</p>
+<ul>
+<li>通过 es <code>search_api</code> 执行，参数里包含 query 部分</li>
+</ul>
+<p><strong>filter</strong></p>
+<p>即某条文档是否匹配，只做一件事：</p>
+<ul>
+<li>搜索出符合 filter 条件语句的文档，不会打分</li>
+</ul>
+<p>使用场景：</p>
+<ul>
+<li>注重精准匹配，常见的如在某一段时间的记录、按照某个 <code>key:value</code> 搜索</li>
+</ul>
+</blockquote>
 <h1 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h1><blockquote>
 <p>分词是指将文本转换成一系列单词的过程，也叫做文本分析。</p>
 </blockquote>
@@ -1759,7 +1787,29 @@
 <td align="left">自定义分词器</td>
 </tr>
 </tbody></table>
-<h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1><p><strong>分片</strong></p>
+<h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1><p><strong>节点</strong></p>
+<blockquote>
+<p><strong>Master</strong></p>
+<ul>
+<li>节点负责管理集群状态信息，包括处理创建、删除索引等请求，决定分片被分配到哪个节点，维护和更新集群状态。</li>
+<li>值得注意的是，只有Master节点才能修改集群的状态信息，并负责同步给其他节点。</li>
+</ul>
+<p><strong>Coordinator</strong>：</p>
+<ul>
+<li>协调节点负责接收客户端的请求，将请求路由到到合适的节点，并将结果汇集到一起。</li>
+</ul>
+<p><strong>Data</strong>：</p>
+<p>数据节点是保存数据的节点，增加数据节点可以解决水平扩展和解决数据单点的问题。</p>
+<p>按照冷热区分具体的还有：</p>
+<ul>
+<li><code>data_content</code></li>
+<li><code>data_hot</code></li>
+<li><code>data_warm</code></li>
+<li><code>data_cold</code></li>
+</ul>
+<p><strong>Ingest</strong>：预处理节点是数据前置处理转换的节点，支持Pipeline管道设置，可以对数据进行过滤、转换等操作。</p>
+</blockquote>
+<p><strong>分片</strong></p>
 <blockquote>
 <p>分片是数据的容器，文档保存在分片内，分片又被分配到集群内的各个节点里。</p>
 <p>单台机器无法存储大量数据，es可以将一个索引中的数据切分称多个shard，分布在多台机器上存储。</p>
@@ -2092,6 +2142,107 @@ POST ip:port/index/type/_search?scroll=1m
 indices.memory.min_shard_index_buffer_size: 8mb
 indices.memory.min_index_buffer_size: 48mb
 </code></pre>
+<blockquote>
+<p>这些参数都是node级别的，每个节点默认拿出10%的heap做为buffer加速写入，可以上当调大配置，在内存中尽量cache数据并build index，提高吞吐量。</p>
+<p>另外要重新设置refresh&#x2F;flush的时间，对于日志型集群，吞吐量的优先级更高，而业务集群更需要近似实时的查询能力，场景差异性较大。</p>
+</blockquote>
+<pre><code>index.translog.flush_threshold_ops: 800000
+index.translog.flush_threshold_size: 512mb
+index.translog.flush_threshold_period: 30m
+index.translog.interval: 30s
+index.translog.sync_interval: 5s
+index.refresh_interval: 20s
+</code></pre>
+<blockquote>
+<p>高写入集群一定要重新设置translog相关的配置，默认的translog策略容易导致恢复时间过长的问题，建议根据监控指标设置<code>index.translog.flush_threshold_ops</code>，尽快将已经存储到磁盘上的数据从translog中移除，负面效果就是磁盘的IO会提高（与索引不同，translog是必须fsync到磁盘上的）。</p>
+<p>同时，<code>index.refresh_interval</code>也是关注的重点，增加<code>index.refresh_interval</code>时间可以降低IO&#x2F;提高吞吐量，但是负面影响就是数据写入后在refresh之前没有办法查询。</p>
+<p>refresh&#x2F;flush时间:</p>
+<ul>
+<li>假设<code>index.refresh_interval=A，则index.translog.interval=[A, 2A]</code></li>
+</ul>
+</blockquote>
+<p>批处理集群：</p>
+<blockquote>
+<p>定时导数&#x2F;补数的集群，都属于这一类，大部分时间用于查询，仅仅在某个时间段进行写入操作，短时间内写入大量数据。</p>
+<p>这一类集群需要遵循以下几步操作：</p>
+<ul>
+<li>更新待写入索引的settings，<code>index.refresh_interval</code>设置为-1。</li>
+</ul>
+</blockquote>
+<pre><code class="json">curl -XPUT &quot;http://es.example.com:9200/your_index/_settings&quot; -d &#39;
+&#123;
+    &quot;index&quot; : &#123;
+        &quot;refresh_interval&quot; : -1
+    &#125;
+&#125;&#39;
+</code></pre>
+<blockquote>
+<p>导入数据，推荐用bulk API。</p>
+<p>调用<code>_refresh API</code>刷新buffer。</p>
+</blockquote>
+<pre><code>curl -XPOST &quot;http://es.example.com:9200/your_index/_refresh&quot;
+</code></pre>
+<blockquote>
+<p>调用<code>_flush API</code>同步到磁盘。</p>
+</blockquote>
+<pre><code>curl -XPOST &quot;http://es.example.com:9200/your_index/_flush&quot;
+</code></pre>
+<blockquote>
+<p>默认情况下Elasticsearch会通过定时refresh去build倒排索引，但是在执行批量导数任务的场景中并不需要这种近似实时的能力。</p>
+<p>强制关闭refresh会提高吞吐量，待全部数据导入完毕后，手工refresh，然后再利用flush将数据刷新到磁盘上，并清空translog（会加快恢复）。</p>
+</blockquote>
+<p><strong>索引配置评估准则</strong></p>
+<blockquote>
+<p>单个分片大小控制在 <strong>30-50GB</strong></p>
+<p>集群总分片数量控制在 <strong>3w 以内</strong></p>
+<p>1GB 的内存空间支持 20-30 个分片为佳</p>
+<p>一个节点建议不超过 1000 个分片</p>
+<p>索引分片数量建议和节点数量保持一致</p>
+<p>集群规模较大时建议设置专用主节点</p>
+<p>专用主节点配置建议在 8C16G 以上</p>
+<p>如果是时序数据，建议结合冷热分离+<strong>ILM 索引生命周期管理</strong></p>
+</blockquote>
+<p><strong>合理的Index Mapping</strong></p>
+<blockquote>
+<p>特殊字段：如Boolean、IP、时间等</p>
+<p>字符串：尽量使用keyword，默认的text会被analyze。</p>
+<ul>
+<li>keyword最大32766字节。</li>
+<li>在仅查询的情况下，如果有 range 查询需求，使用 numeric，否则使用 keyword。</li>
+</ul>
+<p>调整refresh间隔：</p>
+<ul>
+<li><code>refresh_interval</code>: 30s，默认的1秒会导致大量segment产生，影响性能。</li>
+</ul>
+<p>调整translog刷新机制为异步</p>
+<p>创建新索引时，可以配置每个分片中的Segment的排序方式，index sorting是优化检索性能的非常重要的方式之一</p>
+</blockquote>
+<p><strong>查询</strong></p>
+<blockquote>
+<p>尽量使用filter而不是query。</p>
+<ul>
+<li>使用filter不会计算评分score，只计算匹配。</li>
+</ul>
+<p>如果不关心文档返回的顺序，则按<code>_doc</code>排序。</p>
+<p>避免<strong>通配符</strong>查询。</p>
+<p>不要获取太大的结果数据集，如果需要大量数据使用Scroll API。</p>
+<p>关于数据聚合去重:</p>
+<ul>
+<li>Terms 指定字段聚合 + TopN：合理设置聚合的TopN，聚合结果是不精确的，是取每个分片的Top Size元素后综合排序后的值。</li>
+<li>ES5以后的新特性Collapse：按某个字段进行折叠，这个Collapse只针对query出来的结果，只能用在keyword或者numeric类型。</li>
+<li>ES6以后支持分页的聚合：Composite Aggregation，可以获取全量的聚合数据，只能用于Terms、Histogram、Date histogram、GeoTile grid。</li>
+</ul>
+</blockquote>
+<p><strong>field data cache</strong></p>
+<blockquote>
+<p><code>indices.fielddata.cache.size</code>（node级别）：</p>
+<p>节点用于 fielddata 的最大内存，如果 fielddata 达到该阈值，就会把旧数据交换出去。</p>
+<p>该参数可以设置百分比或者绝对值。默认设置是不限制。</p>
+<ul>
+<li>所以强烈建议设置该值，比如 30%。</li>
+</ul>
+<p>之前遇到的问题是fielddata内存占满导致node oom 崩溃。</p>
+</blockquote>
 
 	</div>
 	<!--打赏-->
