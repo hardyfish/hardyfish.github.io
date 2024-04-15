@@ -2031,6 +2031,10 @@ class Solution &#123;
 &#125;
 </code></pre>
 <h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/search-in-rotated-sorted-array/description/">33搜索旋转排序数组</a></h1>
+<blockquote>
+<p>如果用二分法去分割这个数组，则肯定是一个区间为有序，另一个区间为无序。</p>
+<p>target可以通过对左右两边界的对比，得知这个数是否在有序区间里，如果在，则对这个有序区间进行二分，如果不是，则target肯定是在无序区间，在无序区间中二分也是一个道理，肯定回出现一个有序一个无序，然后继续判断即可，最终得出结果。</p>
+</blockquote>
 <pre><code class="language-java">class Solution &#123;
     public int search(int[] nums, int target) &#123;
         if (nums == null || nums.length == 0) &#123;
