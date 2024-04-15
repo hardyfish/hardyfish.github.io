@@ -2460,6 +2460,8 @@ if (&quot;OK&quot;.equals(result)) &#123;
     &#125;
 &#125;
 </code></pre>
+<img src="/images/630.png" alt="图片" style="zoom:50%;" />
+
 <blockquote>
 <p>某线程A获取了锁设置了过期时间为10s，在执行业务逻辑时耗费了15s，此时线程A获取的锁被Redis的过期机制自动释放了。</p>
 <p>在线程A获取锁并经过10s之后，改锁可能已经被其它线程获取到了。</p>
@@ -2503,10 +2505,13 @@ end
 </blockquote>
 <p>Redisson实现：</p>
 <blockquote>
+<p><strong>WatchdDog机制</strong></p>
 <p>获取锁成功就会开启一个定时任务，定时任务会定期检查去续期。</p>
 <p>该定时调度每次调用的时间差是<code>internalLockLeaseTime/3</code>，也就10秒。</p>
 <p>默认情况下，加锁的时间是30秒，如果加锁的业务没有执行完，那么到 30-10 &#x3D; 20秒的时候，就会进行一次续期，把锁重置成30秒。</p>
 </blockquote>
+<img src="/images/631.png" alt="图片" style="zoom:80%;" />
+
 <p><strong>RedLock</strong></p>
 <blockquote>
 <p>在集群中，主节点挂掉时，从节点会取而代之，客户端上却并没有明显感知。</p>
@@ -2520,6 +2525,8 @@ end
 <p>释放锁时，需要向所有节点发送 del 指令。</p>
 <p>不过 Redlock 算法还需要考虑出错重试、时钟漂移等很多细节问题，同时因为 Redlock 需要向多个节点进行读写，意味着相比单实例 Redis 性能会下降一些。</p>
 </blockquote>
+<img src="/images/632.png" alt="图片" style="zoom:80%;" />
+
 <p>假设当前集群有 5 个节点，运行 Redlock 算法的客户端依次执行下面各个步骤，来完成获取锁的操作:</p>
 <blockquote>
 <p>客户端记录当前系统时间，以毫秒为单位。</p>
