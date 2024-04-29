@@ -1509,8 +1509,7 @@
       </div>
       <!--打赏-->
 	<div id="article-content">
-		<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/">1两数之和</a></h1>
-<pre><code class="language-java">class Solution &#123;
+		<h1 id="1两数之和"><a href="#1两数之和" class="headerlink" title="1两数之和"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/">1两数之和</a></h1><pre><code class="java">class Solution &#123;
     public int[] twoSum(int[] nums, int target) &#123;
         Map&lt;Integer, Integer&gt; map = new HashMap&lt;Integer, Integer&gt;();
         for (int i = 0; i &lt; nums.length; ++i) &#123;
@@ -1523,8 +1522,7 @@
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/add-two-numbers/description/">2两数相加</a></h1>
-<pre><code class="language-java">/**
+<h1 id="2两数相加"><a href="#2两数相加" class="headerlink" title="2两数相加"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/add-two-numbers/description/">2两数相加</a></h1><pre><code class="java">/**
  * Definition for singly-linked list.
  * public class ListNode &#123;
  *     int val;
@@ -1561,15 +1559,14 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/description/">3无重复字符的最长子串</a></h1>
-<blockquote>
+<h1 id="3无重复字符的最长子串"><a href="#3无重复字符的最长子串" class="headerlink" title="3无重复字符的最长子串"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/description/">3无重复字符的最长子串</a></h1><blockquote>
 <p>定义一个 map 数据结构存储 (k, v)，其中 key 值为字符，value 值为字符位置 +1，加 1 表示从字符位置后一个才开始不重复。</p>
 <ul>
 <li>定义不重复子串的开始位置为 start，结束位置为 end。</li>
 </ul>
 <p>随着 end 不断遍历向后，会遇到与 [start, end] 区间内字符相同的情况，此时将字符作为 key 值，获取其 value 值，并更新 start，此时 [start, end] 区间内不存在重复字符。</p>
 </blockquote>
-<pre><code class="language-java">class Solution &#123;
+<pre><code class="java">class Solution &#123;
     public int lengthOfLongestSubstring(String s) &#123;
         int n = s.length(), result = 0;
         Map&lt;Character, Integer&gt; map = new HashMap&lt;&gt;();
@@ -1585,8 +1582,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-palindromic-substring/description/">5最长回文子串</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="5最长回文子串"><a href="#5最长回文子串" class="headerlink" title="5最长回文子串"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-palindromic-substring/description/">5最长回文子串</a></h1><pre><code class="java">class Solution &#123;
     public String longestPalindrome(String s) &#123;
         if (s == null || s.length() &lt; 1) &#123;
             return &quot;&quot;;
@@ -1635,8 +1631,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/palindrome-number/description/">9回文数</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="9回文数"><a href="#9回文数" class="headerlink" title="9回文数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/palindrome-number/description/">9回文数</a></h1><pre><code class="java">class Solution &#123;
     public boolean isPalindrome(int x) &#123;
         // 特殊情况：
         // 当 x &lt; 0 时，x 不是回文数
@@ -1660,8 +1655,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-common-prefix/description/">14最长公共前缀</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="14最长公共前缀"><a href="#14最长公共前缀" class="headerlink" title="14最长公共前缀"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-common-prefix/description/">14最长公共前缀</a></h1><pre><code class="java">class Solution &#123;
     public String longestCommonPrefix(String[] strs) &#123;
         if(strs.length == 0) &#123;
             return &quot;&quot;;
@@ -1683,8 +1677,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum/description/">15三数之和</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="15三数之和"><a href="#15三数之和" class="headerlink" title="15三数之和"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum/description/">15三数之和</a></h1><pre><code class="java">class Solution &#123;
     public static List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) &#123;
         List&lt;List&lt;Integer&gt;&gt; result = new ArrayList();
         int len = nums.length;
@@ -1729,8 +1722,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum-closest/description/">16最接近的三数之和</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="16最接近的三数之和"><a href="#16最接近的三数之和" class="headerlink" title="16最接近的三数之和"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum-closest/description/">16最接近的三数之和</a></h1><pre><code class="java">class Solution &#123;
     public int threeSumClosest(int[] nums, int target) &#123;
         Arrays.sort(nums);
         int result = nums[0] + nums[1] + nums[2];
@@ -1755,8 +1747,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum/description/">18四数之和</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="18四数之和"><a href="#18四数之和" class="headerlink" title="18四数之和"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum/description/">18四数之和</a></h1><pre><code class="java">class Solution &#123;
     public List&lt;List&lt;Integer&gt;&gt; fourSum(int[] nums, int target) &#123;
         Arrays.sort(nums);
         List&lt;List&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();
@@ -1816,8 +1807,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/">19删除链表的倒数第N个节点</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="19删除链表的倒数第N个节点"><a href="#19删除链表的倒数第N个节点" class="headerlink" title="19删除链表的倒数第N个节点"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/">19删除链表的倒数第N个节点</a></h1><pre><code class="java">class Solution &#123;
     public ListNode removeNthFromEnd(ListNode head, int n) &#123;
         ListNode pre = new ListNode(-1);
         pre.next = head;
@@ -1835,20 +1825,19 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/valid-parentheses/">20有效的括号</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="20有效的括号"><a href="#20有效的括号" class="headerlink" title="20有效的括号"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/valid-parentheses/">20有效的括号</a></h1><pre><code class="java">class Solution &#123;
     public boolean isValid(String s) &#123;
         if (s == null || s.length() == 0) &#123;
             return true;
         &#125;
         Stack&lt;Character&gt; stack = new Stack&lt;&gt;();
         for (char c : s.toCharArray()) &#123;
-            if (c == '(') &#123;
-                stack.push(')');
-            &#125; else if (c == '&#123;') &#123;
-                stack.push('&#125;');
-            &#125; else if (c == '[') &#123;
-                stack.push(']');
+            if (c == &#39;(&#39;) &#123;
+                stack.push(&#39;)&#39;);
+            &#125; else if (c == &#39;&#123;&#39;) &#123;
+                stack.push(&#39;&#125;&#39;);
+            &#125; else if (c == &#39;[&#39;) &#123;
+                stack.push(&#39;]&#39;);
             &#125; else if (stack.isEmpty() || stack.pop() != c) &#123;
                 return false;
             &#125;
@@ -1857,9 +1846,8 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-sorted-lists/">21合并两个有序链表</a></h1>
-<p><strong>迭代</strong></p>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="21合并两个有序链表"><a href="#21合并两个有序链表" class="headerlink" title="21合并两个有序链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-sorted-lists/">21合并两个有序链表</a></h1><p><strong>迭代</strong></p>
+<pre><code class="java">class Solution &#123;
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) &#123;
         ListNode pre = new ListNode(-1);
         ListNode cur = pre;
@@ -1880,7 +1868,7 @@ class Solution &#123;
 &#125;
 </code></pre>
 <p><strong>递归</strong></p>
-<pre><code class="language-java">class Solution &#123;
+<pre><code class="java">class Solution &#123;
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) &#123;
         if (l1 == null) &#123;
             return l2;
@@ -1896,38 +1884,31 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/swap-nodes-in-pairs/">24两两交换链表中的节点</a></h1>
-<blockquote>
-<p>令 cur 表示当前到达的节点，初始时 cur = pre。</p>
+<h1 id="24两两交换链表中的节点"><a href="#24两两交换链表中的节点" class="headerlink" title="24两两交换链表中的节点"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/swap-nodes-in-pairs/">24两两交换链表中的节点</a></h1><blockquote>
+<p>令 cur 表示当前到达的节点，初始时 cur &#x3D; pre。</p>
 <ul>
-<li>
-<p>每次需要交换 cur 后面的两个节点。</p>
+<li><p>每次需要交换 cur 后面的两个节点。</p>
 </li>
-<li>
-<p>如果 cur 的后面没有节点或者只有一个节点，则没有更多的节点需要交换，结束交换。</p>
+<li><p>如果 cur 的后面没有节点或者只有一个节点，则没有更多的节点需要交换，结束交换。</p>
 </li>
-<li>
-<p>否则，获得 cur 后面的两个节点 node1 和 node2，通过更新节点的指针关系实现两两交换节点。</p>
+<li><p>否则，获得 cur 后面的两个节点 node1 和 node2，通过更新节点的指针关系实现两两交换节点。</p>
 </li>
 </ul>
 <p>交换之前的节点关系是 <code>cur -&gt; node1 -&gt; node2</code>，交换之后的节点关系要变成 <code>cur -&gt; node2 -&gt; node1</code>。</p>
 <ul>
-<li>
-<p>完成上述操作之后，节点关系即变成 <code>cur -&gt; node2 -&gt; node1</code>。</p>
+<li><p>完成上述操作之后，节点关系即变成 <code>cur -&gt; node2 -&gt; node1</code>。</p>
 </li>
-<li>
-<p>再令 <code>cur = node1</code>，对链表中的其余节点进行两两交换，直到全部节点都被两两交换。</p>
+<li><p>再令 <code>cur = node1</code>，对链表中的其余节点进行两两交换，直到全部节点都被两两交换。</p>
 </li>
-<li>
-<p>两两交换链表中的节点之后，新的链表的头节点是 <code>pre.next</code>，返回新的链表的头节点即可。</p>
+<li><p>两两交换链表中的节点之后，新的链表的头节点是 <code>pre.next</code>，返回新的链表的头节点即可。</p>
 </li>
 </ul>
 </blockquote>
-<pre><code class="language-java">node1.next = node2.next
+<pre><code class="java">node1.next = node2.next
 cur.next = node2
 node2.next = node1
 </code></pre>
-<pre><code class="language-java">/**
+<pre><code class="java">/**
  * Definition for singly-linked list.
  * public class ListNode &#123;
  *     int val;
@@ -1959,8 +1940,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-nodes-in-k-group/">25K个一组翻转链表</a></h1>
-<pre><code class="language-java">/**
+<h1 id="25K个一组翻转链表"><a href="#25K个一组翻转链表" class="headerlink" title="25K个一组翻转链表"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-nodes-in-k-group/">25K个一组翻转链表</a></h1><pre><code class="java">/**
  * Definition for singly-linked list.
  * public class ListNode &#123;
  *     int val;
@@ -1992,7 +1972,7 @@ class Solution &#123;
     &#125;
 
     /*
-    	左闭又开区间
+        左闭又开区间
      */
     private ListNode reverse(ListNode head, ListNode tail) &#123;
         ListNode pre = null;
@@ -2008,8 +1988,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/">26删除排序数组中的重复项</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="26删除排序数组中的重复项"><a href="#26删除排序数组中的重复项" class="headerlink" title="26删除排序数组中的重复项"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/">26删除排序数组中的重复项</a></h1><pre><code class="java">class Solution &#123;
     public int removeDuplicates(int[] nums) &#123;
         if (nums.length == 0) &#123;
             return 0;
@@ -2025,8 +2004,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-element/">27移除元素</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="27移除元素"><a href="#27移除元素" class="headerlink" title="27移除元素"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-element/">27移除元素</a></h1><pre><code class="java">class Solution &#123;
     public int removeElement(int[] nums, int val) &#123;
         int i = 0;
         for (int j = 0; j &lt; nums.length; j++) &#123;
@@ -2039,12 +2017,11 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/search-in-rotated-sorted-array/description/">33搜索旋转排序数组</a></h1>
-<blockquote>
+<h1 id="33搜索旋转排序数组"><a href="#33搜索旋转排序数组" class="headerlink" title="33搜索旋转排序数组"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/search-in-rotated-sorted-array/description/">33搜索旋转排序数组</a></h1><blockquote>
 <p>如果用二分法去分割这个数组，则肯定是一个区间为有序，另一个区间为无序。</p>
 <p>target可以通过对左右两边界的对比，得知这个数是否在有序区间里，如果在，则对这个有序区间进行二分，如果不是，则target肯定是在无序区间，在无序区间中二分也是一个道理，肯定回出现一个有序一个无序，然后继续判断即可，最终得出结果。</p>
 </blockquote>
-<pre><code class="language-java">class Solution &#123;
+<pre><code class="java">class Solution &#123;
     public int search(int[] nums, int target) &#123;
         if (nums == null || nums.length == 0) &#123;
             return -1;
@@ -2081,8 +2058,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/">34在排序数组中查找元素的第一个和最后一个位置</a></h1>
-<pre><code class="language-java">public class Solution &#123;
+<h1 id="34在排序数组中查找元素的第一个和最后一个位置"><a href="#34在排序数组中查找元素的第一个和最后一个位置" class="headerlink" title="34在排序数组中查找元素的第一个和最后一个位置"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/">34在排序数组中查找元素的第一个和最后一个位置</a></h1><pre><code class="java">public class Solution &#123;
     public int[] searchRange(int[] nums, int target) &#123;
         int len = nums.length;
         if (len == 0) &#123;
@@ -2138,8 +2114,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/permutations/description/">46全排列</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="46全排列"><a href="#46全排列" class="headerlink" title="46全排列"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/permutations/description/">46全排列</a></h1><pre><code class="java">class Solution &#123;
     private List&lt;List&lt;Integer&gt;&gt; resList = new ArrayList&lt;&gt;();
     private List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
     private boolean[] flag;
@@ -2172,8 +2147,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-subarray/description/">53最大子数组和</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="53最大子数组和"><a href="#53最大子数组和" class="headerlink" title="53最大子数组和"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-subarray/description/">53最大子数组和</a></h1><pre><code class="java">class Solution &#123;
     public int maxSubArray(int[] nums) &#123;
         int pre = 0, maxAns = nums[0];
         for (int x : nums) &#123;
@@ -2184,8 +2158,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/spiral-matrix/">54螺旋矩阵</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="54螺旋矩阵"><a href="#54螺旋矩阵" class="headerlink" title="54螺旋矩阵"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/spiral-matrix/">54螺旋矩阵</a></h1><pre><code class="java">class Solution &#123;
     public List&lt;Integer&gt; spiralOrder(int[][] matrix) &#123;
         int col = 0, cols = matrix[0].length - 1, row = 0, rows = matrix.length - 1;
         List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
@@ -2217,8 +2190,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/insert-interval/">57插入区间</a></h1>
-<pre><code class="language-java">class Main &#123;
+<h1 id="57插入区间"><a href="#57插入区间" class="headerlink" title="57插入区间"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/insert-interval/">57插入区间</a></h1><pre><code class="java">class Main &#123;
     public int[][] merge(int[][] s, int[] k) &#123;
         int[][] result = new int[s.length + 1][2];
         int index = 0,int i = 0;
@@ -2247,8 +2219,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/rotate-list/">61旋转链表</a></h1>
-<pre><code class="language-java">/**
+<h1 id="61旋转链表"><a href="#61旋转链表" class="headerlink" title="61旋转链表"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/rotate-list/">61旋转链表</a></h1><pre><code class="java">/**
  * Definition for singly-linked list.
  * public class ListNode &#123;
  *     int val;
@@ -2307,8 +2278,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-path-sum/description/">64最小路径和</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="64最小路径和"><a href="#64最小路径和" class="headerlink" title="64最小路径和"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-path-sum/description/">64最小路径和</a></h1><pre><code class="java">class Solution &#123;
     public int minPathSum(int[][] grid) &#123;
         for(int i = 0; i &lt; grid.length; i++) &#123;
             for(int j = 0; j &lt; grid[0].length; j++) &#123;
@@ -2327,8 +2297,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/plus-one/">66加一</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="66加一"><a href="#66加一" class="headerlink" title="66加一"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/plus-one/">66加一</a></h1><pre><code class="java">class Solution &#123;
     public int[] plusOne(int[] digits) &#123;
         int n = digits.length;
         for (int i = n - 1; i &gt;= 0; --i) &#123;
@@ -2348,8 +2317,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/">68I二叉搜索树的最近公共祖先</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="68I二叉搜索树的最近公共祖先"><a href="#68I二叉搜索树的最近公共祖先" class="headerlink" title="68I二叉搜索树的最近公共祖先"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/">68I二叉搜索树的最近公共祖先</a></h1><pre><code class="java">class Solution &#123;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) &#123;
         if (root == null || p == null || q == null) &#123;
             return null;
@@ -2364,7 +2332,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<pre><code class="language-java">class Solution &#123;
+<pre><code class="java">class Solution &#123;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) &#123;
         while(root != null) &#123;
             if(root.val &lt; p.val &amp;&amp; root.val &lt; q.val) &#123;// p,q 都在 root 的右子树中
@@ -2379,8 +2347,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/">68II二叉树的最近公共祖先</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="68II二叉树的最近公共祖先"><a href="#68II二叉树的最近公共祖先" class="headerlink" title="68II二叉树的最近公共祖先"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/">68II二叉树的最近公共祖先</a></h1><pre><code class="java">class Solution &#123;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) &#123;
         if (root == null || root == p || root == q) &#123;
             return root;
@@ -2397,8 +2364,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sort-colors/">75颜色分类</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="75颜色分类"><a href="#75颜色分类" class="headerlink" title="75颜色分类"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sort-colors/">75颜色分类</a></h1><pre><code class="java">class Solution &#123;
     public void sortColors(int[] nums) &#123;
         if (nums == null || nums.length == 0) &#123;
             return;
@@ -2423,8 +2389,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/subsets/">78子集</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="78子集"><a href="#78子集" class="headerlink" title="78子集"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/subsets/">78子集</a></h1><pre><code class="java">class Solution &#123;
     public List&lt;List&lt;Integer&gt;&gt; subsets(int[] nums) &#123;
         List&lt;List&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();
         backtrack(0, nums, res, new ArrayList&lt;Integer&gt;());
@@ -2442,8 +2407,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-duplicates-from-sorted-list-ii/">82删除排序链表中的重复元素II</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="82删除排序链表中的重复元素II"><a href="#82删除排序链表中的重复元素II" class="headerlink" title="82删除排序链表中的重复元素II"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-duplicates-from-sorted-list-ii/">82删除排序链表中的重复元素II</a></h1><pre><code class="java">class Solution &#123;
     public ListNode deleteDuplicates(ListNode head) &#123;
         if (head == null) &#123;
             return head;
@@ -2467,8 +2431,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/">83删除排序链表中的重复元素</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="83删除排序链表中的重复元素"><a href="#83删除排序链表中的重复元素" class="headerlink" title="83删除排序链表中的重复元素"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/">83删除排序链表中的重复元素</a></h1><pre><code class="java">class Solution &#123;
     public ListNode deleteDuplicates(ListNode head) &#123;
         ListNode cur = head;
         while (cur != null &amp;&amp; cur.next != null) &#123;
@@ -2482,8 +2445,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-sorted-array/">88合并两个有序数组</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="88合并两个有序数组"><a href="#88合并两个有序数组" class="headerlink" title="88合并两个有序数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-sorted-array/">88合并两个有序数组</a></h1><pre><code class="java">class Solution &#123;
     public void merge(int[] nums1, int m, int[] nums2, int n) &#123;
         int p1 = m - 1;
         int p2 = n - 1;
@@ -2497,8 +2459,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-linked-list-ii/description/">92反转链表II</a></h1>
-<blockquote>
+<h1 id="92反转链表II"><a href="#92反转链表II" class="headerlink" title="92反转链表II"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-linked-list-ii/description/">92反转链表II</a></h1><blockquote>
 <p>第一步：</p>
 <ul>
 <li>找到待反转节点的前一个节点。</li>
@@ -2517,7 +2478,7 @@ class Solution &#123;
 </ul>
 </blockquote>
 <p><img src="/images/362.png" alt="img"></p>
-<pre><code class="language-java">/**
+<pre><code class="java">/**
  * Definition for singly-linked list.
  * public class ListNode &#123;
  *     int val;
@@ -2559,9 +2520,8 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">94二叉树的中序遍历</a></h1>
-<p><strong>递归</strong></p>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="94二叉树的中序遍历"><a href="#94二叉树的中序遍历" class="headerlink" title="94二叉树的中序遍历"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">94二叉树的中序遍历</a></h1><p><strong>递归</strong></p>
+<pre><code class="java">class Solution &#123;
     public List&lt;Integer&gt; inorderTraversal(TreeNode root) &#123;
         List&lt;Integer&gt; result = new ArrayList&lt;&gt;();
         inorder(root, result);
@@ -2582,7 +2542,7 @@ class Solution &#123;
 <p>空间复杂度：<code>O(n)</code>，空间复杂度取决于递归的栈深度，而栈深度在二叉树为一条链的情况下会达到 <code>O(n)</code> 的级别。</p>
 </blockquote>
 <p><strong>栈</strong></p>
-<pre><code class="language-java">class Solution &#123;
+<pre><code class="java">class Solution &#123;
     public List&lt;Integer&gt; inorderTraversal(TreeNode root) &#123;
         List&lt;Integer&gt; result = new ArrayList&lt;&gt;();
         Stack&lt;TreeNode&gt; stack = new Stack&lt;&gt;();
@@ -2599,8 +2559,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/validate-binary-search-tree/description/">98验证二叉搜索树</a></h1>
-<pre><code class="language-java">/**
+<h1 id="98验证二叉搜索树"><a href="#98验证二叉搜索树" class="headerlink" title="98验证二叉搜索树"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/validate-binary-search-tree/description/">98验证二叉搜索树</a></h1><pre><code class="java">/**
  * Definition for a binary tree node.
  * public class TreeNode &#123;
  *     int val;
@@ -2635,8 +2594,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/same-tree/">100相同的树</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="100相同的树"><a href="#100相同的树" class="headerlink" title="100相同的树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/same-tree/">100相同的树</a></h1><pre><code class="java">class Solution &#123;
     public boolean isSameTree(TreeNode p, TreeNode q) &#123;
         if(p == null &amp;&amp; q == null) &#123;
             return true;
@@ -2661,8 +2619,7 @@ class Solution &#123;
 <li>空间复杂度取决于递归调用的层数，递归调用的层数不会超过较小的二叉树的最大高度，最坏情况下，二叉树的高度等于节点数。</li>
 </ul>
 </blockquote>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/symmetric-tree/">101对称二叉树</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="101对称二叉树"><a href="#101对称二叉树" class="headerlink" title="101对称二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/symmetric-tree/">101对称二叉树</a></h1><pre><code class="java">class Solution &#123;
     public boolean isSymmetric(TreeNode root) &#123;
         return check(root, root);
     &#125;
@@ -2688,8 +2645,7 @@ class Solution &#123;
 <li>空间复杂度和递归使用的栈空间有关，这里递归层数不超过 n，故渐进空间复杂度为<code>O(n)</code>。</li>
 </ul>
 </blockquote>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/">102二叉树的层序遍历</a></h1>
-<pre><code class="language-java">import java.util.*;
+<h1 id="102二叉树的层序遍历"><a href="#102二叉树的层序遍历" class="headerlink" title="102二叉树的层序遍历"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/">102二叉树的层序遍历</a></h1><pre><code class="java">import java.util.*;
 class Solution &#123;
 
     public List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123;
@@ -2720,8 +2676,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-zigzag-level-order-traversal/">103二叉树的锯齿形层序遍历</a></h1>
-<pre><code class="language-java">/**
+<h1 id="103二叉树的锯齿形层序遍历"><a href="#103二叉树的锯齿形层序遍历" class="headerlink" title="103二叉树的锯齿形层序遍历"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-zigzag-level-order-traversal/">103二叉树的锯齿形层序遍历</a></h1><pre><code class="java">/**
  * Definition for a binary tree node.
  * public class TreeNode &#123;
  *     int val;
@@ -2788,8 +2743,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/">104二叉树的最大深度</a></h1>
-<pre><code class="language-java">/**
+<h1 id="104二叉树的最大深度"><a href="#104二叉树的最大深度" class="headerlink" title="104二叉树的最大深度"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/">104二叉树的最大深度</a></h1><pre><code class="java">/**
  * Definition for a binary tree node.
  * public class TreeNode &#123;
  *     int val;
@@ -2826,8 +2780,7 @@ class Solution &#123;
 <li>递归函数需要栈空间，而栈空间取决于递归的深度，因此空间复杂度等价于二叉树的高度。</li>
 </ul>
 </blockquote>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/">108将有序数组转换为二叉搜索树</a></h1>
-<pre><code class="language-java">/**
+<h1 id="108将有序数组转换为二叉搜索树"><a href="#108将有序数组转换为二叉搜索树" class="headerlink" title="108将有序数组转换为二叉搜索树"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/">108将有序数组转换为二叉搜索树</a></h1><pre><code class="java">/**
  * Definition for a binary tree node.
  * public class TreeNode &#123;
  *     int val;
@@ -2861,8 +2814,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/balanced-binary-tree/">110平衡二叉树</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="110平衡二叉树"><a href="#110平衡二叉树" class="headerlink" title="110平衡二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/balanced-binary-tree/">110平衡二叉树</a></h1><pre><code class="java">class Solution &#123;
     public boolean isBalanced(TreeNode root) &#123;
         return height(root) != -1;
     &#125;
@@ -2891,8 +2843,7 @@ class Solution &#123;
 <li>O(n)，其中 n 是二叉树中的节点个数，空间复杂度主要取决于递归调用的层数，递归调用的层数不会超过 n。</li>
 </ul>
 </blockquote>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/path-sum/">112路径总和</a></h1>
-<pre><code class="language-java">/**
+<h1 id="112路径总和"><a href="#112路径总和" class="headerlink" title="112路径总和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/path-sum/">112路径总和</a></h1><pre><code class="java">/**
  * Definition for a binary tree node.
  * public class TreeNode &#123;
  *     int val;
@@ -2916,12 +2867,11 @@ class Solution &#123;
 <blockquote>
 <p>时间复杂度：O(N)，其中 N 是树的节点数，对每个节点访问一次。</p>
 </blockquote>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/path-sum-ii/">113路径总和II</a></h1>
-<blockquote>
+<h1 id="113路径总和II"><a href="#113路径总和II" class="headerlink" title="113路径总和II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/path-sum-ii/">113路径总和II</a></h1><blockquote>
 <p>采用深度优先搜索的方式，遍历每一条从根节点到叶子节点的路径。</p>
 <p>当我们遍历到叶子节点，且此时路径和恰为目标和时，就找到了一条满足条件的路径。</p>
 </blockquote>
-<pre><code class="language-java">/**
+<pre><code class="java">/**
  * Definition for a binary tree node.
  * public class TreeNode &#123;
  *     int val;
@@ -2960,8 +2910,7 @@ class Solution &#123;
 <p>时间复杂度：<code>O(N^2)</code>，其中 N 是树的节点数。</p>
 <p>空间复杂度：<code>O(N)</code>，其中 N 是树的节点数，空间复杂度主要取决于栈空间的开销，栈中的元素个数不会超过树的节点数。</p>
 </blockquote>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/">121买卖股票的最佳时机</a></h1>
-<pre><code class="language-java">public class Solution &#123;
+<h1 id="121买卖股票的最佳时机"><a href="#121买卖股票的最佳时机" class="headerlink" title="121买卖股票的最佳时机"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/">121买卖股票的最佳时机</a></h1><pre><code class="java">public class Solution &#123;
     public int maxProfit(int prices[]) &#123;
         int minPrice = Integer.MAX_VALUE;
         int maxProfit = 0;
@@ -2976,8 +2925,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/">122买卖股票的最佳时机II</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="122买卖股票的最佳时机II"><a href="#122买卖股票的最佳时机II" class="headerlink" title="122买卖股票的最佳时机II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/">122买卖股票的最佳时机II</a></h1><pre><code class="java">class Solution &#123;
     public int maxProfit(int[] prices) &#123;
         int profit = 0;
         for (int i = 1; i &lt; prices.length; i++) &#123;
@@ -2990,8 +2938,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/valid-palindrome/">125验证回文串</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="125验证回文串"><a href="#125验证回文串" class="headerlink" title="125验证回文串"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/valid-palindrome/">125验证回文串</a></h1><pre><code class="java">class Solution &#123;
     public boolean isPalindrome(String s) &#123;
         int left = 0, right = s.length() -1;
         while(left&lt;right) &#123;
@@ -3011,8 +2958,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-root-to-leaf-numbers/">129求根节点到叶节点数字之和</a></h1>
-<pre><code class="language-java">/**
+<h1 id="129求根节点到叶节点数字之和"><a href="#129求根节点到叶节点数字之和" class="headerlink" title="129求根节点到叶节点数字之和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-root-to-leaf-numbers/">129求根节点到叶节点数字之和</a></h1><pre><code class="java">/**
  * Definition for a binary tree node.
  * public class TreeNode &#123;
  *     int val;
@@ -3055,8 +3001,7 @@ class Solution &#123;
 <li>O(n)，其中 n 是二叉树的节点个数。空间复杂度主要取决于递归调用的栈空间，递归栈的深度等于二叉树的高度，最坏情况下，二叉树的高度等于节点个数，空间复杂度为 <code>O(n)</code>。</li>
 </ul>
 </blockquote>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/single-number/">136只出现一次的数字</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="136只出现一次的数字"><a href="#136只出现一次的数字" class="headerlink" title="136只出现一次的数字"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/single-number/">136只出现一次的数字</a></h1><pre><code class="java">class Solution &#123;
     public int singleNumber(int[] nums) &#123;
         int result = 0;
         for(int num : nums) &#123;
@@ -3066,8 +3011,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-cycle/">141环形链表</a></h1>
-<pre><code class="language-java">public class Solution &#123;
+<h1 id="141环形链表"><a href="#141环形链表" class="headerlink" title="141环形链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-cycle/">141环形链表</a></h1><pre><code class="java">public class Solution &#123;
     public boolean hasCycle(ListNode head) &#123;
         if (head == null || head.next == null) &#123;
             return false;
@@ -3085,8 +3029,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-cycle-ii/">142环形链表II</a></h1>
-<pre><code class="language-java">public class Solution &#123;
+<h1 id="142环形链表II"><a href="#142环形链表II" class="headerlink" title="142环形链表II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-cycle-ii/">142环形链表II</a></h1><pre><code class="java">public class Solution &#123;
     public ListNode detectCycle(ListNode head) &#123;
         if (head == null || head.next == null) &#123;
             return null;
@@ -3111,25 +3054,20 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reorder-list/">143重排链表</a></h1>
-<blockquote>
+<h1 id="143重排链表"><a href="#143重排链表" class="headerlink" title="143重排链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reorder-list/">143重排链表</a></h1><blockquote>
 <p>目标链表即为：将原链表的左半端和反转后的右半端合并后的结果。</p>
 <ul>
-<li>
-<p>找到原链表的中点</p>
+<li><p>找到原链表的中点</p>
 </li>
-<li>
-<p>我们可以使用快慢指针来 <code>O(N)</code>找到链表的中间节点</p>
+<li><p>我们可以使用快慢指针来 <code>O(N)</code>找到链表的中间节点</p>
 </li>
-<li>
-<p>将原链表的右半端反转</p>
+<li><p>将原链表的右半端反转</p>
 </li>
-<li>
-<p>将原链表的两端合并</p>
+<li><p>将原链表的两端合并</p>
 </li>
 </ul>
 </blockquote>
-<pre><code class="language-java">/**
+<pre><code class="java">/**
  * Definition for singly-linked list.
  * public class ListNode &#123;
  *     int val;
@@ -3193,9 +3131,8 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-preorder-traversal/">144二叉树的前序遍历</a></h1>
-<p><strong>递归</strong></p>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="144二叉树的前序遍历"><a href="#144二叉树的前序遍历" class="headerlink" title="144二叉树的前序遍历"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-preorder-traversal/">144二叉树的前序遍历</a></h1><p><strong>递归</strong></p>
+<pre><code class="java">class Solution &#123;
     public List&lt;Integer&gt; preorderTraversal(TreeNode root) &#123;
         List&lt;Integer&gt; result = new ArrayList&lt;Integer&gt;();
         preorder(root, result);
@@ -3213,7 +3150,7 @@ class Solution &#123;
 &#125;
 </code></pre>
 <p><strong>栈</strong></p>
-<pre><code class="language-java">class Solution &#123;
+<pre><code class="java">class Solution &#123;
     public List&lt;Integer&gt; preorderTraversal(TreeNode root) &#123;
         List&lt;Integer&gt; result = new ArrayList&lt;Integer&gt;();
         Stack&lt;TreeNode&gt; stack = new Stack&lt;&gt;();
@@ -3230,9 +3167,8 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-postorder-traversal/">145二叉树的后序遍历</a></h1>
-<p><strong>递归</strong></p>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="145二叉树的后序遍历"><a href="#145二叉树的后序遍历" class="headerlink" title="145二叉树的后序遍历"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-postorder-traversal/">145二叉树的后序遍历</a></h1><p><strong>递归</strong></p>
+<pre><code class="java">class Solution &#123;
     public List&lt;Integer&gt; postorderTraversal(TreeNode root) &#123;
         List&lt;Integer&gt; result = new ArrayList&lt;Integer&gt;();
         postorder(root, result);
@@ -3250,7 +3186,7 @@ class Solution &#123;
 &#125;
 </code></pre>
 <p><strong>栈</strong></p>
-<pre><code class="language-java">class Solution &#123;
+<pre><code class="java">class Solution &#123;
     public List&lt;Integer&gt; postorderTraversal(TreeNode root) &#123;
         //左，右，根
         List&lt;Integer&gt; result = new ArrayList&lt;Integer&gt;();
@@ -3269,8 +3205,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lru-cache/">146LRU缓存机制</a></h1>
-<pre><code class="language-java">class DLinkedNode &#123;
+<h1 id="146LRU缓存机制"><a href="#146LRU缓存机制" class="headerlink" title="146LRU缓存机制"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lru-cache/">146LRU缓存机制</a></h1><pre><code class="java">class DLinkedNode &#123;
     int key;
     int value;
     DLinkedNode prev;
@@ -3357,8 +3292,7 @@ public class LRUCache &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sort-list/">148排序链表</a></h1>
-<pre><code class="language-java">import java.util.*;
+<h1 id="148排序链表"><a href="#148排序链表" class="headerlink" title="148排序链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sort-list/">148排序链表</a></h1><pre><code class="java">import java.util.*;
 public class Solution &#123;
     public ListNode sortList (ListNode head) &#123;
         if(head == null || head.next == null) &#123;
@@ -3404,15 +3338,14 @@ public class Solution &#123;
 <blockquote>
 <p>时间复杂度：<code>O(nlogn)</code>，其中 n 是链表的长度。</p>
 </blockquote>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-product-subarray/">152乘积最大子数组</a></h1>
-<blockquote>
+<h1 id="152乘积最大子数组"><a href="#152乘积最大子数组" class="headerlink" title="152乘积最大子数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-product-subarray/">152乘积最大子数组</a></h1><blockquote>
 <p>遍历数组时计算当前最大值，不断更新。</p>
 <p>令imax为当前最大值，则当前最大值为<code> imax = max(imax * nums[i], nums[i])。</code></p>
 <p>由于存在负数，那么会导致最大的变最小的，最小的变最大的。</p>
 <p>因此还需要维护当前最小值imin，<code>imin = min(imin * nums[i], nums[i])。</code></p>
 <p>当负数出现时则imax与imin进行交换再进行下一步计算。</p>
 </blockquote>
-<pre><code class="language-java">class Solution &#123;
+<pre><code class="java">class Solution &#123;
     public int maxProduct(int[] nums) &#123;
         int max = Integer.MIN_VALUE, imax = 1, imin = 1;
         for(int i=0; i&lt;nums.length; i++)&#123;
@@ -3430,8 +3363,7 @@ public class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/min-stack/">155最小栈</a></h1>
-<pre><code class="language-java">class MinStack &#123;
+<h1 id="155最小栈"><a href="#155最小栈" class="headerlink" title="155最小栈"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/min-stack/">155最小栈</a></h1><pre><code class="java">class MinStack &#123;
     private Stack&lt;Integer&gt; stack;
     private Stack&lt;Integer&gt; minStack;
     public MinStack() &#123;
@@ -3457,26 +3389,96 @@ public class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/">160相交链表</a></h1>
-<p><strong>双指针</strong></p>
+<h1 id="155将二叉搜索树转化为排序的双向链表"><a href="#155将二叉搜索树转化为排序的双向链表" class="headerlink" title="155将二叉搜索树转化为排序的双向链表"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/description/">155将二叉搜索树转化为排序的双向链表</a></h1><blockquote>
+<p><strong>dfs(cur): 递归法中序遍历</strong></p>
+<ul>
+<li><p>终止条件： 当节点 cur 为空，代表越过叶节点，直接返回</p>
+</li>
+<li><p>递归左子树，即 dfs(cur.left)</p>
+</li>
+</ul>
+<p>构建链表：</p>
+<ul>
+<li><p>当 pre 为空时： 代表正在访问链表头节点，记为 head</p>
+</li>
+<li><p>当 pre 不为空时： 修改双向节点引用，即 pre.right &#x3D; cur ，cur.left &#x3D; pre</p>
+</li>
+<li><p>保存 cur ： 更新 pre &#x3D; cur ，即节点 cur 是后继节点的 pre</p>
+</li>
+</ul>
+<p>递归右子树，即 dfs(cur.right)</p>
+<p><strong>treeToDoublyList(root)：</strong></p>
+<p>特例处理： 若节点 root 为空，则直接返回</p>
+<p>初始化： 空节点 pre</p>
+<p>转化为双向链表： 调用 dfs(root)</p>
+<p>构建循环链表： 中序遍历完成后，head 指向头节点，pre 指向尾节点，因此修改 head 和 pre 的双向节点引用即可</p>
+<p>返回值： 返回链表的头节点 head 即可</p>
+</blockquote>
+<pre><code class="java">/*
+// Definition for a Node.
+class Node &#123;
+    public int val;
+    public Node left;
+    public Node right;
+
+    public Node() &#123;&#125;
+
+    public Node(int _val) &#123;
+        val = _val;
+    &#125;
+
+    public Node(int _val,Node _left,Node _right) &#123;
+        val = _val;
+        left = _left;
+        right = _right;
+    &#125;
+&#125;;
+*/
+class Solution &#123;
+    Node head, pre;
+    public Node treeToDoublyList(Node root) &#123;
+        if(root==null) return null;
+        dfs(root);
+
+        pre.right = head;
+        head.left =pre;//进行头节点和尾节点的相互指向，这两句的顺序也是可以颠倒的
+
+        return head;
+
+    &#125;
+
+    public void dfs(Node cur)&#123;
+        if(cur==null) return;
+        dfs(cur.left);
+
+        //pre用于记录双向链表中位于cur左侧的节点，即上一次迭代中的cur,当pre==null时，cur左侧没有节点,即此时cur为双向链表中的头节点
+        if(pre==null) head = cur;
+        //反之，pre!=null时，cur左侧存在节点pre，需要进行pre.right=cur的操作。
+        else pre.right = cur;
+       
+        cur.left = pre;//pre是否为null对这句没有影响,且这句放在上面两句if else之前也是可以的。
+
+        pre = cur;//pre指向当前的cur
+        dfs(cur.right);//全部迭代完成后，pre指向双向链表中的尾节点
+    &#125;
+&#125;
+</code></pre>
+<h1 id="160相交链表"><a href="#160相交链表" class="headerlink" title="160相交链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/">160相交链表</a></h1><p><strong>双指针</strong></p>
 <blockquote>
 <p>创建两个指针 pA 和 pB，分别初始化为链表 A 和 B 的头结点。然后让它们向后逐结点遍历。</p>
 <p>当 pA到达链表的尾部时，将它重定位到链表 B 的头结点，类似的，当 pB到达链表的尾部时，将它重定位到链表 A 的头结点。</p>
-<p>若在某一时刻 pA和 pB 相遇，则 pA/pB为相交结点。</p>
-<p>考虑以下两个链表: A={1,3,5,7,9,11} 和 B={2,4,9,11}，相交于结点 9。</p>
+<p>若在某一时刻 pA和 pB 相遇，则 pA&#x2F;pB为相交结点。</p>
+<p>考虑以下两个链表: A&#x3D;{1,3,5,7,9,11} 和 B&#x3D;{2,4,9,11}，相交于结点 9。 </p>
 <ul>
-<li>
-<p>由于 <code>B.length (=4) &lt; A.length (=6</code>)，pB比 pA少经过 2个结点，会先到达尾部。</p>
+<li><p>由于 <code>B.length (=4) &lt; A.length (=6</code>)，pB比 pA少经过 2个结点，会先到达尾部。</p>
 </li>
-<li>
-<p>将 pB重定向到 A 的头结点，pA重定向到 B 的头结点后，pB要比 pA多走 2 个结点。</p>
+<li><p>将 pB重定向到 A 的头结点，pA重定向到 B 的头结点后，pB要比 pA多走 2 个结点。</p>
 </li>
-<li>
-<p>因此，它们会同时到达交点。</p>
+<li><p>因此，它们会同时到达交点。</p>
 </li>
 </ul>
 </blockquote>
-<pre><code class="language-java">/**
+<pre><code class="java">/**
  * Definition for singly-linked list.
  * public class ListNode &#123;
  *     int val;
@@ -3518,14 +3520,13 @@ public class Solution &#123;
 <p>时间复杂度 : O(m+n)。</p>
 <p>空间复杂度 : O(1)。</p>
 </blockquote>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-peak-element/">162寻找峰值</a></h1>
-<p><strong>二分查找</strong></p>
+<h1 id="162寻找峰值"><a href="#162寻找峰值" class="headerlink" title="162寻找峰值"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-peak-element/">162寻找峰值</a></h1><p><strong>二分查找</strong></p>
 <blockquote>
 <p>查找时，左指针 l，右指针 r，以其保持左右顺序为循环条件。</p>
-<p>根据左右指针计算中间位置 m，并比较 m 与 m+1 的值，如果 m 较大，则左侧存在峰值，r = m。</p>
-<p>如果 m + 1 较大，则右侧存在峰值，l = m + 1。</p>
+<p>根据左右指针计算中间位置 m，并比较 m 与 m+1 的值，如果 m 较大，则左侧存在峰值，r &#x3D; m。</p>
+<p>如果 m + 1 较大，则右侧存在峰值，l &#x3D; m + 1。</p>
 </blockquote>
-<pre><code class="language-java">public class Solution &#123;
+<pre><code class="java">public class Solution &#123;
     public int findPeakElement(int[] nums) &#123;
         int l = 0, r = nums.length - 1;
         while (l &lt; r) &#123;
@@ -3540,16 +3541,15 @@ public class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/majority-element/">169多数元素</a></h1>
-<p><strong>摩尔投票法</strong></p>
+<h1 id="169多数元素"><a href="#169多数元素" class="headerlink" title="169多数元素"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/majority-element/">169多数元素</a></h1><p><strong>摩尔投票法</strong></p>
 <blockquote>
 <p>投票法是遇到相同的则票数 + 1，遇到不同的则票数 - 1。</p>
 <p>且 多数元素 的个数<code>&gt; n/2</code>，其余元素的个数总和<code>&lt; n/2 </code>。</p>
-<p>因此<code>多数元素的个数 - 其余元素的个数总和</code> 的结果 肯定 &gt;= 1。</p>
+<p>因此<code>多数元素的个数 - 其余元素的个数总和</code> 的结果 肯定 &gt;&#x3D; 1。</p>
 <p>这就相当于每个多数元素和其他元素 两两相互抵消，抵消到最后肯定还剩余至少1个多数元素。</p>
 <p>无论数组是1 2 1 2 1，亦或是1 2 2 1 1，总能得到正确的候选人。</p>
 </blockquote>
-<pre><code class="language-java">class Solution &#123;
+<pre><code class="java">class Solution &#123;
     public int majorityElement(int[] nums) &#123;
         int result = nums[0], count = 1;
         for (int i = 1;i&lt;nums.length;i++) &#123;
@@ -3567,9 +3567,8 @@ public class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-right-side-view/">199二叉树的右视图</a></h1>
-<p><strong>DFS</strong></p>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="199二叉树的右视图"><a href="#199二叉树的右视图" class="headerlink" title="199二叉树的右视图"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-right-side-view/">199二叉树的右视图</a></h1><p><strong>DFS</strong></p>
+<pre><code class="java">class Solution &#123;
     List&lt;Integer&gt; result = new ArrayList&lt;&gt;();
     public List&lt;Integer&gt; rightSideView(TreeNode root) &#123;
         dfs(root, 0);
@@ -3594,7 +3593,7 @@ public class Solution &#123;
 <p>空间复杂度： O(N)，因为这不是一棵平衡二叉树，二叉树的深度最少是 logN, 最坏的情况下会退化成一条链表，深度就是 N。</p>
 </blockquote>
 <p><strong>BFS</strong></p>
-<pre><code class="language-java">class Solution &#123;
+<pre><code class="java">class Solution &#123;
     public List&lt;Integer&gt; rightSideView(TreeNode root) &#123;
         List&lt;Integer&gt; result = new ArrayList&lt;&gt;();
         if (root == null) &#123;
@@ -3625,9 +3624,8 @@ public class Solution &#123;
 <p>时间复杂度： O(N)，每个节点都入队出队了 1 次。</p>
 <p>空间复杂度： O(N)，使用了额外的队列空间。</p>
 </blockquote>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list/">206反转链表</a></h1>
-<p><strong>迭代</strong></p>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="206反转链表"><a href="#206反转链表" class="headerlink" title="206反转链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list/">206反转链表</a></h1><p><strong>迭代</strong></p>
+<pre><code class="java">class Solution &#123;
     public ListNode reverseList(ListNode head) &#123;
         //申请节点，pre和 cur，pre指向null
         ListNode pre = null;
@@ -3647,7 +3645,7 @@ public class Solution &#123;
 &#125;
 </code></pre>
 <p><strong>递归</strong></p>
-<pre><code class="language-java">class Solution &#123;
+<pre><code class="java">class Solution &#123;
     public ListNode reverseList(ListNode head) &#123;
         //递归终止条件是当前为空，或者下一个节点为空
         if(head==null || head.next==null) &#123;
@@ -3666,11 +3664,10 @@ public class Solution &#123;
 &#125;
 </code></pre>
 <blockquote>
-<p>时间复杂度：O(n)，假设 n 是列表的长度。</p>
+<p>时间复杂度：O(n)，假设 n 是列表的长度。 </p>
 <p>空间复杂度：O(n)，由于使用递归，将会使用隐式栈空间，递归深度可能会达到 n 层。</p>
 </blockquote>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/">215数组中的第K个最大元素</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="215数组中的第K个最大元素"><a href="#215数组中的第K个最大元素" class="headerlink" title="215数组中的第K个最大元素"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/">215数组中的第K个最大元素</a></h1><pre><code class="java">class Solution &#123;
     public int findKthLargest(int[] nums, int k) &#123;
         return quickSort(nums, 0, nums.length - 1, nums.length - k);
     &#125;
@@ -3709,8 +3706,7 @@ public class Solution &#123;
 <blockquote>
 <p>时间复杂度 O(N)，空间复杂度 O(1)。</p>
 </blockquote>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-complete-tree-nodes/">222完全二叉树的节点个数</a></h1>
-<pre><code class="language-java">/**
+<h1 id="222完全二叉树的节点个数"><a href="#222完全二叉树的节点个数" class="headerlink" title="222完全二叉树的节点个数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-complete-tree-nodes/">222完全二叉树的节点个数</a></h1><pre><code class="java">/**
  * Definition for a binary tree node.
  * public class TreeNode &#123;
  *     int val;
@@ -3749,9 +3745,8 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/invert-binary-tree/">226翻转二叉树</a></h1>
-<p><strong>递归</strong></p>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="226翻转二叉树"><a href="#226翻转二叉树" class="headerlink" title="226翻转二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/invert-binary-tree/">226翻转二叉树</a></h1><p><strong>递归</strong></p>
+<pre><code class="java">class Solution &#123;
     public TreeNode invertTree(TreeNode root) &#123;
         if(root==null) &#123;
             return null;
@@ -3768,34 +3763,33 @@ class Solution &#123;
 &#125;
 </code></pre>
 <p><strong>迭代</strong></p>
-<pre><code class="language-java">class Solution &#123;
-	public TreeNode invertTree(TreeNode root) &#123;
-		if(root==null) &#123;
-			return null;
-		&#125;
-		LinkedList&lt;TreeNode&gt; queue = new LinkedList&lt;TreeNode&gt;();
-		queue.add(root);
-		while(!queue.isEmpty()) &#123;
-			//每次都从队列中拿一个节点，并交换这个节点的左右子树
-			TreeNode tmp = queue.poll();
-			TreeNode left = tmp.left;
-			tmp.left = tmp.right;
-			tmp.right = left;
-			//如果当前节点的左子树不为空，则放入队列等待后续处理
-			if(tmp.left!=null) &#123;
-				queue.add(tmp.left);
-			&#125;
-			//如果当前节点的右子树不为空，则放入队列等待后续处理
-			if(tmp.right!=null) &#123;
-				queue.add(tmp.right);
-			&#125;
-		&#125;
-		return root;
-	&#125;
+<pre><code class="java">class Solution &#123;
+    public TreeNode invertTree(TreeNode root) &#123;
+        if(root==null) &#123;
+            return null;
+        &#125;
+        LinkedList&lt;TreeNode&gt; queue = new LinkedList&lt;TreeNode&gt;();
+        queue.add(root);
+        while(!queue.isEmpty()) &#123;
+            //每次都从队列中拿一个节点，并交换这个节点的左右子树
+            TreeNode tmp = queue.poll();
+            TreeNode left = tmp.left;
+            tmp.left = tmp.right;
+            tmp.right = left;
+            //如果当前节点的左子树不为空，则放入队列等待后续处理
+            if(tmp.left!=null) &#123;
+                queue.add(tmp.left);
+            &#125;
+            //如果当前节点的右子树不为空，则放入队列等待后续处理
+            if(tmp.right!=null) &#123;
+                queue.add(tmp.right);
+            &#125;
+        &#125;
+        return root;
+    &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/majority-element-ii/">229求众数II</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="229求众数II"><a href="#229求众数II" class="headerlink" title="229求众数II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/majority-element-ii/">229求众数II</a></h1><pre><code class="java">class Solution &#123;
     public List&lt;Integer&gt; majorityElement(int[] nums) &#123;
         List&lt;Integer&gt; res = new ArrayList&lt;&gt;();
         if (nums == null || nums.length == 0) &#123;
@@ -3858,12 +3852,11 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/kth-smallest-element-in-a-bst/">230二叉搜索树中第K小的元素</a></h1>
-<p><strong>中序遍历</strong></p>
+<h1 id="230二叉搜索树中第K小的元素"><a href="#230二叉搜索树中第K小的元素" class="headerlink" title="230二叉搜索树中第K小的元素"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/kth-smallest-element-in-a-bst/">230二叉搜索树中第K小的元素</a></h1><p><strong>中序遍历</strong></p>
 <blockquote>
 <p>二叉搜索树的中序遍历是有序的，因此只需要对二叉搜索树执行中序遍历，并返回第 k 小的值即可。</p>
 </blockquote>
-<pre><code class="language-java">class Solution &#123;
+<pre><code class="java">class Solution &#123;
     public int kthSmallest(TreeNode root, int k) &#123;
         Deque&lt;TreeNode&gt; d = new ArrayDeque&lt;&gt;();
         while (root != null || !d.isEmpty()) &#123;
@@ -3884,11 +3877,9 @@ class Solution &#123;
 <blockquote>
 <p>时间复杂度：</p>
 <ul>
-<li>
-<p>令 h 为树高，先到达叶子位置（最小节点位置），复杂度为 O(h)，然后找到第 k 小的元素，复杂度为 O(k)。</p>
+<li><p>令 h 为树高，先到达叶子位置（最小节点位置），复杂度为 O(h)，然后找到第 k 小的元素，复杂度为 O(k)。</p>
 </li>
-<li>
-<p>整体复杂度为 O(h + k)。</p>
+<li><p>整体复杂度为 O(h + k)。</p>
 </li>
 </ul>
 <p>空间复杂度：</p>
@@ -3896,8 +3887,7 @@ class Solution &#123;
 <li>令 h 为树高，复杂度为 O(h)。</li>
 </ul>
 </blockquote>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/palindrome-linked-list/">234回文链表</a></h1>
-<p><strong>整个流程可以分为以下步骤：</strong></p>
+<h1 id="234回文链表"><a href="#234回文链表" class="headerlink" title="234回文链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/palindrome-linked-list/">234回文链表</a></h1><p><strong>整个流程可以分为以下步骤：</strong></p>
 <blockquote>
 <p>找到前半部分链表的尾节点。</p>
 <p>反转后半部分链表。</p>
@@ -3905,7 +3895,7 @@ class Solution &#123;
 <p>恢复链表。</p>
 <p>返回结果。</p>
 </blockquote>
-<pre><code class="language-java">class Solution &#123;
+<pre><code class="java">class Solution &#123;
     public boolean isPalindrome(ListNode head) &#123;
         if (head == null) &#123;
             return true;
@@ -3955,21 +3945,19 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/delete-node-in-a-linked-list/">237删除链表中的节点</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="237删除链表中的节点"><a href="#237删除链表中的节点" class="headerlink" title="237删除链表中的节点"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/delete-node-in-a-linked-list/">237删除链表中的节点</a></h1><pre><code class="java">class Solution &#123;
     public void deleteNode(ListNode node) &#123;
         node.val = node.next.val;
         node.next = node.next.next;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-a-2d-matrix-ii/">240搜索二维矩阵II</a></h1>
-<blockquote>
+<h1 id="240搜索二维矩阵II"><a href="#240搜索二维矩阵II" class="headerlink" title="240搜索二维矩阵II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-a-2d-matrix-ii/">240搜索二维矩阵II</a></h1><blockquote>
 <p>因为每一行递增，每一列递增。</p>
 <p>从右上角往左下角找或者从左下角往右上角找。</p>
 <p>每次比较可以排除一行或者一列，时间复杂度为O(m+n)。</p>
 </blockquote>
-<pre><code class="language-java">class Solution &#123;
+<pre><code class="java">class Solution &#123;
     public boolean searchMatrix(int[][] matrix, int target) &#123;
         if (matrix == null || matrix.length == 0) &#123;
             return false;
@@ -3990,8 +3978,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-paths/">257二叉树的所有路径</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="257二叉树的所有路径"><a href="#257二叉树的所有路径" class="headerlink" title="257二叉树的所有路径"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-paths/">257二叉树的所有路径</a></h1><pre><code class="java">class Solution &#123;
     public List&lt;String&gt; binaryTreePaths(TreeNode root) &#123;
         List&lt;String&gt; paths = new ArrayList&lt;String&gt;();
         constructPaths(root, &quot;&quot;, paths);
@@ -4018,8 +4005,7 @@ class Solution &#123;
 <p>时间复杂度：<code>O(N^2)</code>，其中 N表示节点数目。</p>
 <p>空间复杂度：<code>O(N^2)</code>，其中 N表示节点数目。</p>
 </blockquote>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-increasing-subsequence/">300最长上升子序列</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="300最长上升子序列"><a href="#300最长上升子序列" class="headerlink" title="300最长上升子序列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-increasing-subsequence/">300最长上升子序列</a></h1><pre><code class="java">class Solution &#123;
     public int lengthOfLIS(int[] nums) &#123;
         if (nums == null || nums.length == 0) &#123;
             return 0;
@@ -4039,8 +4025,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-string/description/">344反转字符串</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="344反转字符串"><a href="#344反转字符串" class="headerlink" title="344反转字符串"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-string/description/">344反转字符串</a></h1><pre><code class="java">class Solution &#123;
     public void reverseString(char[] s) &#123;
         int left = 0, right = s.length - 1;
         while (left &lt; right) &#123;
@@ -4053,8 +4038,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-of-two-integers/">371两整数之和</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="371两整数之和"><a href="#371两整数之和" class="headerlink" title="371两整数之和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-of-two-integers/">371两整数之和</a></h1><pre><code class="java">class Solution &#123;
     public int getSum(int a, int b) &#123;
         while (b != 0) &#123;
             int carry = (a &amp; b) &lt;&lt; 1;
@@ -4065,8 +4049,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/">378有序矩阵中第K小的元素</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="378有序矩阵中第K小的元素"><a href="#378有序矩阵中第K小的元素" class="headerlink" title="378有序矩阵中第K小的元素"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/">378有序矩阵中第K小的元素</a></h1><pre><code class="java">class Solution &#123;
     public int kthSmallest(int[][] matrix, int k) &#123;
         int row = matrix.length;
         int col = matrix[0].length;
@@ -4112,14 +4095,13 @@ class Solution &#123;
 <p>时间复杂度：<code>O(nlog(r−l))</code>，二分查找进行次数为 <code>O(log⁡(r−l))</code>，每次操作时间复杂度为<code>O(n)</code>。</p>
 <p>空间复杂度：<code>O(1)</code>。</p>
 </blockquote>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/add-strings/description/">415字符串相加</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="415字符串相加"><a href="#415字符串相加" class="headerlink" title="415字符串相加"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/add-strings/description/">415字符串相加</a></h1><pre><code class="java">class Solution &#123;
     public String addStrings(String num1, String num2) &#123;
         StringBuilder res = new StringBuilder(&quot;&quot;);
         int i = num1.length() - 1, j = num2.length() - 1, carry = 0;
         while(i &gt;= 0 || j &gt;= 0)&#123;
-            int n1 = i &gt;= 0 ? num1.charAt(i) - '0' : 0;
-            int n2 = j &gt;= 0 ? num2.charAt(j) - '0' : 0;
+            int n1 = i &gt;= 0 ? num1.charAt(i) - &#39;0&#39; : 0;
+            int n2 = j &gt;= 0 ? num2.charAt(j) - &#39;0&#39; : 0;
             int tmp = n1 + n2 + carry;
             carry = tmp / 10;
             res.append(tmp % 10);
@@ -4133,8 +4115,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/path-sum-iii/description/">437路径总和III</a></h1>
-<pre><code class="language-java">/**
+<h1 id="437路径总和III"><a href="#437路径总和III" class="headerlink" title="437路径总和III"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/path-sum-iii/description/">437路径总和III</a></h1><pre><code class="java">/**
  * Definition for a binary tree node.
  * public class TreeNode &#123;
  *     int val;
@@ -4175,8 +4156,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-all-numbers-disappeared-in-an-array/description/">448找到所有数组中消失的数字</a></h1>
-<blockquote>
+<h1 id="448找到所有数组中消失的数字"><a href="#448找到所有数组中消失的数字" class="headerlink" title="448找到所有数组中消失的数字"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-all-numbers-disappeared-in-an-array/description/">448找到所有数组中消失的数字</a></h1><blockquote>
 <p>遍历每个元素，对索引进行标记</p>
 <ul>
 <li>将对应索引位置的值变为负数</li>
@@ -4186,7 +4166,7 @@ class Solution &#123;
 <li>位置上不是负数的索引，对应的元素就是不存在的</li>
 </ul>
 </blockquote>
-<pre><code class="language-java">class Solution &#123;
+<pre><code class="java">class Solution &#123;
     public List&lt;Integer&gt; findDisappearedNumbers(int[] nums) &#123;
         //用来存放结果
         List&lt;Integer&gt; res = new ArrayList&lt;&gt;(); 
@@ -4210,8 +4190,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/delete-node-in-a-bst/">450删除二叉搜索树中的节点</a></h1>
-<blockquote>
+<h1 id="450删除二叉搜索树中的节点"><a href="#450删除二叉搜索树中的节点" class="headerlink" title="450删除二叉搜索树中的节点"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/delete-node-in-a-bst/">450删除二叉搜索树中的节点</a></h1><blockquote>
 <p>二叉搜索树的性质：</p>
 <ul>
 <li>左子树的节点的值小于根节点的值，右子树的节点大于根节点的值。</li>
@@ -4221,11 +4200,16 @@ class Solution &#123;
 <p>当root的值和key相等时，有四种情况：</p>
 </blockquote>
 <img src="/images/363.png" alt="image.png" style="zoom:50%;" />
+
 <img src="/images/364.png" alt="image.png" style="zoom:50%;" />
+
 <img src="/images/365.png" alt="image.png" style="zoom:50%;" />
+
 <img src="/images/1654134742-qJVGmL-image.png" alt="image.png" style="zoom:50%;" />
+
 <img src="/images/366.png" alt="image.png" style="zoom:50%;" />
-<pre><code class="language-java">/**
+
+<pre><code class="java">/**
  * Definition for a binary tree node.
  * public class TreeNode &#123;
  *     int val;
@@ -4273,8 +4257,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/diameter-of-binary-tree/">543二叉树的直径</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="543二叉树的直径"><a href="#543二叉树的直径" class="headerlink" title="543二叉树的直径"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/diameter-of-binary-tree/">543二叉树的直径</a></h1><pre><code class="java">class Solution &#123;
     int result = 0;
     public int diameterOfBinaryTree(TreeNode root) &#123;
         depth(root);
@@ -4291,8 +4274,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/subtree-of-another-tree/description/">572另一棵树的子树</a></h1>
-<pre><code class="language-java">/**
+<h1 id="572另一棵树的子树"><a href="#572另一棵树的子树" class="headerlink" title="572另一棵树的子树"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/subtree-of-another-tree/description/">572另一棵树的子树</a></h1><pre><code class="java">/**
  * Definition for a binary tree node.
  * public class TreeNode &#123;
  *     int val;
@@ -4330,8 +4312,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/merge-two-binary-trees/description/">617合并二叉树</a></h1>
-<pre><code class="language-java">/**
+<h1 id="617合并二叉树"><a href="#617合并二叉树" class="headerlink" title="617合并二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/merge-two-binary-trees/description/">617合并二叉树</a></h1><pre><code class="java">/**
  * Definition for a binary tree node.
  * public class TreeNode &#123;
  *     int val;
@@ -4361,8 +4342,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-product-of-three-numbers/">628三个数的最大乘积</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="628三个数的最大乘积"><a href="#628三个数的最大乘积" class="headerlink" title="628三个数的最大乘积"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-product-of-three-numbers/">628三个数的最大乘积</a></h1><pre><code class="java">class Solution &#123;
     public int maximumProduct(int[] nums) &#123;
         // 最小的和第二小的
         int min1 = Integer.MAX_VALUE, min2 = Integer.MAX_VALUE;
@@ -4397,14 +4377,13 @@ class Solution &#123;
 <p>时间复杂度：O(N)，其中 N 为数组长度，我们仅需遍历数组一次。</p>
 <p>空间复杂度：O(1)。</p>
 </blockquote>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-width-of-binary-tree/description/">662二叉树最大宽度</a></h1>
-<blockquote>
+<h1 id="662二叉树最大宽度"><a href="#662二叉树最大宽度" class="headerlink" title="662二叉树最大宽度"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-width-of-binary-tree/description/">662二叉树最大宽度</a></h1><blockquote>
 <p>此题求二叉树所有层的最大宽度，比较直观的方法是求出每一层的宽度，然后求出最大值。</p>
 <p>求每一层的宽度时，因为两端点间的 <code>null</code> 节点也需要计入宽度，因此可以对节点进行编号。</p>
 <p>一个编号为 <code>index</code> 的左子节点的编号记为 <code>2×index</code>，右子节点的编号记为 <code>2×index+1</code>，计算每层宽度时，用每层节点的最大编号减去最小编号再加 1 即为宽度。</p>
 <p>遍历节点时，可以用广度优先搜索来遍历每一层的节点，并求出最大值。</p>
 </blockquote>
-<pre><code class="language-java">/**
+<pre><code class="java">/**
  * Definition for a binary tree node.
  * public class TreeNode &#123;
  *     int val;
@@ -4456,8 +4435,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/">674最长连续递增序列</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="674最长连续递增序列"><a href="#674最长连续递增序列" class="headerlink" title="674最长连续递增序列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/">674最长连续递增序列</a></h1><pre><code class="java">class Solution &#123;
     public int findLengthOfLCIS(int[] nums) &#123;
         if (nums == null || nums.length == 0) &#123;
             return 0;
@@ -4475,8 +4453,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-search/">704二分查找</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="704二分查找"><a href="#704二分查找" class="headerlink" title="704二分查找"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-search/">704二分查找</a></h1><pre><code class="java">class Solution &#123;
     public int search(int[] nums, int target) &#123;
         if (nums==null || nums.length == 0) &#123;
             return -1;
@@ -4496,14 +4473,13 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/middle-of-the-linked-list/description/">876链表的中间结点</a></h1>
-<p><strong>快慢指针法</strong></p>
+<h1 id="876链表的中间结点"><a href="#876链表的中间结点" class="headerlink" title="876链表的中间结点"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/middle-of-the-linked-list/description/">876链表的中间结点</a></h1><p><strong>快慢指针法</strong></p>
 <blockquote>
 <p>用两个指针 <code>slow</code> 与 <code>fast</code> 一起遍历链表。</p>
 <p><code>slow</code> 一次走一步，<code>fast</code> 一次走两步。</p>
 <p>那么当 <code>fast</code> 到达链表的末尾时，<code>slow</code> 必然位于中间。</p>
 </blockquote>
-<pre><code class="language-java">/**
+<pre><code class="java">/**
  * Definition for singly-linked list.
  * public class ListNode &#123;
  *     int val;
@@ -4524,8 +4500,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/check-completeness-of-a-binary-tree/description/">958二叉树的完全性检验</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="958二叉树的完全性检验"><a href="#958二叉树的完全性检验" class="headerlink" title="958二叉树的完全性检验"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/check-completeness-of-a-binary-tree/description/">958二叉树的完全性检验</a></h1><pre><code class="java">class Solution &#123;
     public boolean isCompleteTree(TreeNode root) &#123;
         Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();
         TreeNode prev = root;
@@ -4545,12 +4520,11 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum-bsts/">1214查找两颗二分搜索树之和</a></h1>
-<blockquote>
+<h1 id="1214查找两颗二分搜索树之和"><a href="#1214查找两颗二分搜索树之和" class="headerlink" title="1214查找两颗二分搜索树之和"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum-bsts/">1214查找两颗二分搜索树之和</a></h1><blockquote>
 <p>给出两棵二叉搜索树，请你从两棵树中各找出一个节点，使得这两个节点的值之和等于目标值 Target。</p>
 <p>如果可以找到返回 True，否则返回 False。</p>
 <p><strong>示例 1：</strong></p>
-<p>输入：root1 = [2,1,4], root2 = [1,0,3], target = 5 输出：true 解释：2 加 3 和为 5。</p>
+<p>输入：root1 &#x3D; [2,1,4], root2 &#x3D; [1,0,3], target &#x3D; 5 输出：true 解释：2 加 3 和为 5。</p>
 </blockquote>
 <p><strong>二分法解决:</strong></p>
 <blockquote>
@@ -4561,7 +4535,7 @@ class Solution &#123;
 <p>固定一棵树的一个节点，查找另一棵树的节点的时间复杂度是<code>O(logn)</code>。</p>
 <p>因为一棵树需要遍历，时间复杂度是<code>O(nlogn)</code>。</p>
 </blockquote>
-<pre><code class="language-java">/**
+<pre><code class="java">/**
  * Definition for a binary tree node.
  * public class TreeNode &#123;
  *     int val;
@@ -4586,24 +4560,24 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/kth-missing-positive-number/">1539第K个缺失的正整数</a></h1>
-<blockquote>
+<h1 id="1539第K个缺失的正整数"><a href="#1539第K个缺失的正整数" class="headerlink" title="1539第K个缺失的正整数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/kth-missing-positive-number/">1539第K个缺失的正整数</a></h1><blockquote>
 <p>设：<code>arr = [2,3,4,5,7,11], k = 5</code></p>
 <p>可以利用数组下标来得到该位置之前缺失的元素数量，例如：</p>
-<p>i = 0，此时数组元素<code>arr[i] = 2</code>，在0位置上，不缺失的情况下，对应的元素应该是1，所以缺失个数为<code>arr[i] - i - 1 = 1</code>,因为数组下标是从0开始的，而元素是从1开始的，所以计算个数的时候，除了减掉下标值之外，还需要再减1。</p>
+<p>i &#x3D; 0，此时数组元素<code>arr[i] = 2</code>，在0位置上，不缺失的情况下，对应的元素应该是1，所以缺失个数为<code>arr[i] - i - 1 = 1</code>,因为数组下标是从0开始的，而元素是从1开始的，所以计算个数的时候，除了减掉下标值之外，还需要再减1。</p>
 <p>按照这个方式，能计算出该数组的每个元素对应的缺失元素个数：</p>
 </blockquote>
 <img src="/images/367.png" style="zoom:50%;" />
+
 <blockquote>
 <p>在这个序列中，能够通过二分查找，找到k所对应的位置，有了这个位置，就能通过对应的元素找到缺失的第k个整数。</p>
-<p>举例来说，如果要找到k = 5，第5个缺失的元素，那么需要从一个确定的数向后或向前推算：</p>
+<p>举例来说，如果要找到k &#x3D; 5，第5个缺失的元素，那么需要从一个确定的数向后或向前推算：</p>
 <p>对于2,3,4来说，它们之前缺少1个元素，所以不考虑这些元素。</p>
 <p>对于7来说，它之前缺少3个元素，那么从它开始往后推2个元素，就有可能是缺失的第5个元素。</p>
-<p>前提是它后面的元素缺失数量要大于k = 5。</p>
+<p>前提是它后面的元素缺失数量要大于k &#x3D; 5。</p>
 <p>对于11来说，它之前缺少6个元素，要找的第5个元素，一定是在它之前缺失的，那从它开始往前推2个元素（第6个，第5个），就是要找的缺失的第5个元素。</p>
 <p>根据这种分析，就可以在这个缺失数量的序列上进行二分查找，确定一个区间<code>[i,j]</code>，满足<code>lack[i] &lt; k &lt;= lack[j]</code>，则第k个缺失的数为<code>k - (arr[i] - i - 1) + arr[i]</code>，<code>arr[i] - i - 1</code>表示<code>arr[i]</code>位置缺少的元素个数，<code>k - 缺失个数</code>表示从<code>arr[i]</code>开始还缺少几个元素，再加上<code>arr[i]</code>，就是第k个缺失的元素。</p>
 </blockquote>
-<pre><code class="language-java">class Solution &#123;
+<pre><code class="java">class Solution &#123;
     public int findKthPositive(int[] arr, int k) &#123;
         // 第一个数比缺失的数要大的话，直接返回k
         if(arr[0] &gt; k)&#123;
@@ -4626,11 +4600,10 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-common-subsequence/">1143最长公共子序列</a></h1>
-<blockquote>
+<h1 id="1143最长公共子序列"><a href="#1143最长公共子序列" class="headerlink" title="1143最长公共子序列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-common-subsequence/">1143最长公共子序列</a></h1><blockquote>
 <p>定义一个二维数组 dp 用来存储最长公共子序列的长度，其中 <code>dp[i][j]</code> 表示 S1 的前 i 个字符与 S2 的前 j 个字符最长公共子序列的长度。</p>
 </blockquote>
-<pre><code class="language-java">class Solution &#123;
+<pre><code class="java">class Solution &#123;
     public int longestCommonSubsequence(String text1, String text2) &#123;
         int n1 = text1.length(), n2 = text2.length();
         int[][] dp = new int[n1+1][n2+1];
@@ -4647,16 +4620,15 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-nesting-depth-of-the-parentheses/">1614括号的最大嵌套深度</a></h1>
-<pre><code class="language-java">class Solution &#123;
+<h1 id="1614括号的最大嵌套深度"><a href="#1614括号的最大嵌套深度" class="headerlink" title="1614括号的最大嵌套深度"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-nesting-depth-of-the-parentheses/">1614括号的最大嵌套深度</a></h1><pre><code class="java">class Solution &#123;
     public int maxDepth(String s) &#123;
         int ans = 0, size = 0;
         for (int i = 0; i &lt; s.length(); ++i) &#123;
             char ch = s.charAt(i);
-            if (ch == '(') &#123;
+            if (ch == &#39;(&#39;) &#123;
                 ++size;
                 ans = Math.max(ans, size);
-            &#125; else if (ch == ')') &#123;
+            &#125; else if (ch == &#39;)&#39;) &#123;
                 --size;
             &#125;
         &#125;
