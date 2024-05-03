@@ -167,6 +167,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2024/05/03/AI%E7%9B%B8%E5%85%B3/ChatGPT/">
+										ChatGPT
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2024/03/07/AI%E7%9B%B8%E5%85%B3/Sora/">
 										Sora
 									</a>
@@ -2178,7 +2187,14 @@ list
 <li>然后再重放 AOF 文件尾部增量的 AOF 命令，从而大大减少了重启过程中数据还原的时间。</li>
 </ul>
 </blockquote>
-<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><strong>单线程模式</strong></p>
+<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><strong>Redis协议</strong></p>
+<blockquote>
+<p>RESP，它是一种简单的文本协议，用于在客户端和服务器之间操作和传输数据。</p>
+<p>RESP协议描述了不同类型的数据结构，并且定义了请求和响应之间如何以这些数据结构进行交互。</p>
+<p>RESP 非常简单且人类可读，这使得 Redis 能够易于使用和调试。</p>
+<p>同时，RESP 也允许客户端和服务器以高效和低延迟的方式发送和接收数据。</p>
+</blockquote>
+<p><strong>单线程模式</strong></p>
 <blockquote>
 <p>Redis的网络IO和键值对读写是由一个线程来完成的。</p>
 <p>Redis在处理客户端的请求时包括获取(读)、解析、执行、内容返回(写)等都由一个顺序串行的主线程处理。</p>
