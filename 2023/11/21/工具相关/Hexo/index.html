@@ -1948,6 +1948,16 @@ npm install hexo-generator-baidu-sitemap --save
 <p>进入：<a target="_blank" rel="noopener" href="https://search.google.com/search-console/">https://search.google.com/search-console/</a></p>
 <p>选择站点地图，将生成的 sitemap 提交就行了。</p>
 </blockquote>
+<p><strong>跳过指定文件的渲染</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration.html">https://hexo.io/zh-cn/docs/configuration.html</a></p>
+</blockquote>
+<pre><code>skip_render: &quot;mypage/**/*&quot;
+# 将会直接将 `source/mypage/index.html` 和 `source/mypage/code.js` 不做改动地输出到 'public' 目录
+# 你也可以用这种方法来跳过对指定文章文件的渲染
+skip_render: &quot;_posts/test-post.md&quot;
+# 这将会忽略对 'test-post.md' 的渲染
+</code></pre>
 
 	</div>
 	<!--打赏-->
