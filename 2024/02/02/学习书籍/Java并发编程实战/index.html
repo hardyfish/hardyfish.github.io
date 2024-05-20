@@ -781,8 +781,8 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2023/10/31/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">
-										技术学习
+									<a href="/2024/03/26/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/">
+										工作相关
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -790,8 +790,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2024/03/26/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E8%83%BD%E7%9B%B8%E5%85%B3/">
-										技能相关
+									<a href="/2023/10/31/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">
+										技术学习
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1519,7 +1519,8 @@
       <!--打赏-->
 	<div id="article-content">
 		<p>书籍介绍：<a target="_blank" rel="noopener" href="https://book.douban.com/subject/10484692/">https://book.douban.com/subject/10484692/</a></p>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><strong>并发简史</strong></p>
+<h1>简介</h1>
+<p><strong>并发简史</strong></p>
 <p>在早期的计算机中不包含操作系统，它们从头到尾只执行一个程序，并且这个程序能访问计算机中的所有资源。</p>
 <p>在这种裸机环境中，不仅很难编写和运行程序，而且每次只能运行一个程序，这对于昂贵并且稀有的计算机资源来说也是一种浪费。</p>
 <blockquote>
@@ -1551,7 +1552,7 @@
 <p>这些促使进程出现的因素（资源利用率、公平性以及便利性等）同样也促使着线程的出现。</p>
 <p>线程允许在同一个进程中同时存在多个程序控制流。</p>
 <p>线程会共享进程范围内的资源，例如内存句柄和文件句柄，但每个线程都有各自的程序计数器（Program Counter）、栈以及局部变量等。</p>
-<p>线程还提供了一种直观的分解模式来充分利用多处理器系统中的硬件并行性，而在同一个程序中的多个线程也可以被同时调度到多个CPU上运行。线程也被称为轻量级进程。在大多数现代操作系统中，都是以线程为基本的调度单位，而不是进程。 </p>
+<p>线程还提供了一种直观的分解模式来充分利用多处理器系统中的硬件并行性，而在同一个程序中的多个线程也可以被同时调度到多个CPU上运行。线程也被称为轻量级进程。在大多数现代操作系统中，都是以线程为基本的调度单位，而不是进程。</p>
 </blockquote>
 <p><strong>线程的优势</strong></p>
 <blockquote>
@@ -1580,7 +1581,8 @@
 <p>AWT（Abstract Window Toolkit，抽象窗口工具库）和Swing的用户界面框架将创建线程来管理用户界面事件。</p>
 <p>Timer将创建线程来执行延迟任务。一些组件框架，例如Servlet和RMI，都会创建线程池并调用这些线程中的方法。</p>
 </blockquote>
-<h1 id="线程安全性"><a href="#线程安全性" class="headerlink" title="线程安全性"></a>线程安全性</h1><p><strong>什么是线程安全性</strong></p>
+<h1>线程安全性</h1>
+<p><strong>什么是线程安全性</strong></p>
 <blockquote>
 <p>要编写线程安全的代码，其核心在于要对状态访问操作进行管理，特别是对共享的（Shared）和可变的（Mutable）状态的访问。</p>
 <p>共享意味着变量可以由多个线程同时访问，而可变则意味着变量的值在其生命周期内可以发生变化。</p>
@@ -1603,7 +1605,7 @@
 <p>使用先检查后执行的一种常见情况就是延迟初始化。</p>
 <p>延迟初始化的目的是将对象的初始化操作推迟到实际被使用时才进行，同时要确保只被初始化一次。</p>
 </blockquote>
-<pre><code class="java">@NotThreadSafe
+<pre><code class="language-java">@NotThreadSafe
 public class LazyInitRace&#123;
  
    private ExpensiveObject instance=null；
@@ -1664,7 +1666,8 @@ public class LazyInitRace&#123;
 <blockquote>
 <p>简单和性能互相制约，不要为了性能牺牲简单性</p>
 </blockquote>
-<h1 id="对象的共享"><a href="#对象的共享" class="headerlink" title="对象的共享"></a>对象的共享</h1><p><strong>可见性</strong></p>
+<h1>对象的共享</h1>
+<p><strong>可见性</strong></p>
 <blockquote>
 <p>失效数据。</p>
 <p>非原子的64位操作：</p>
@@ -1693,11 +1696,14 @@ public class LazyInitRace&#123;
 <p>不可变对象一定是线程安全的</p>
 <p>满足以下条件对象才是不可变的：</p>
 <ul>
-<li><p>对象创建以后其状态就不能修改</p>
+<li>
+<p>对象创建以后其状态就不能修改</p>
 </li>
-<li><p>对象所有域都是final类型</p>
+<li>
+<p>对象所有域都是final类型</p>
 </li>
-<li><p>对象是正确创建的（在对象创建期间，this引用没有逸出）</p>
+<li>
+<p>对象是正确创建的（在对象创建期间，this引用没有逸出）</p>
 </li>
 </ul>
 </blockquote>
@@ -1708,15 +1714,19 @@ public class LazyInitRace&#123;
 <p>将对象的引用保存到某个正确构造对象的final类型域中</p>
 <p>将对象的引用保存到一个由锁保护的域中</p>
 </blockquote>
-<h1 id="对象的组合"><a href="#对象的组合" class="headerlink" title="对象的组合"></a>对象的组合</h1><p><strong>设计线程安全的类</strong></p>
+<h1>对象的组合</h1>
+<p><strong>设计线程安全的类</strong></p>
 <blockquote>
 <p>设计线程安全类的三个基本要素：</p>
 <ul>
-<li><p>找出构成对象状态的所有变量</p>
+<li>
+<p>找出构成对象状态的所有变量</p>
 </li>
-<li><p>找出约束状态变量的不变性条件</p>
+<li>
+<p>找出约束状态变量的不变性条件</p>
 </li>
-<li><p>建立对象状态的并发访问管理策略</p>
+<li>
+<p>建立对象状态的并发访问管理策略</p>
 </li>
 </ul>
 </blockquote>
@@ -1725,7 +1735,7 @@ public class LazyInitRace&#123;
 <p>当一个对象被封装到另一个对象中，能够访问到被封装对象的所有代码路径都是已知的。</p>
 <p>通过将封闭机制和合适的加锁策略结合，可以确保以线程安全的方式来使用非线程安全的对象</p>
 </blockquote>
-<pre><code class="java">public class PersonSet&#123;  
+<pre><code class="language-java">public class PersonSet&#123;  
        private final Set&lt;Person&gt; mySet = new HashSet&lt;Person&gt;();  
 
        public sychronized void addPersion(Person p) &#123;  
@@ -1750,7 +1760,7 @@ public class LazyInitRace&#123;
 <p>类库提供的包装器方法，<code>Collections.synchronizedList(list)、Collections.synchronizedMap(m)</code>只要这些包装器对象拥有对被包装容器对象的唯一引用（即把容器对象封装在包装器中），非线程安全的类就可以在多线程中使用。</p>
 </blockquote>
 <p><strong>线程安全性的委托</strong></p>
-<pre><code class="java">class Counter &#123;
+<pre><code class="language-java">class Counter &#123;
 
     private AtomicInteger count = new AtomicInteger(0);
 

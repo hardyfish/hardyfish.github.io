@@ -781,8 +781,8 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2023/10/31/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">
-										技术学习
+									<a href="/2024/03/26/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/">
+										工作相关
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -790,8 +790,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2024/03/26/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E8%83%BD%E7%9B%B8%E5%85%B3/">
-										技能相关
+									<a href="/2023/10/31/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">
+										技术学习
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1543,7 +1543,6 @@
 </ul>
 </blockquote>
 <img src="/images/108.png" alt="image-20231012181103684" style="zoom:60%;" />
-
 <p><strong>响应式单位rpx</strong></p>
 <blockquote>
 <p>在使用 CSS 进行移动端的网页开发时，由于不同手机设备的屏幕比，在换算像素单位时会遇到很多麻烦</p>
@@ -1558,10 +1557,10 @@
 <ul>
 <li>在普通网页开发中，最常见的像素单位是px</li>
 <li>在小程序开发中推荐使用 rpx 这种响应式的像素单位进行开发</li>
-<li>如在 iPhone6 上，屏幕宽度为375px，共有750个物理像素，则750rpx &#x3D; 375px &#x3D; 750物理像素，1rpx &#x3D; 0.5px</li>
+<li>如在 iPhone6 上，屏幕宽度为375px，共有750个物理像素，则750rpx = 375px = 750物理像素，1rpx = 0.5px</li>
 </ul>
 <p>规定不管屏幕为多少px，100%的屏幕宽度就是750rpx</p>
-<p>100% 屏幕的宽度 &#x3D; 750rpx</p>
+<p>100% 屏幕的宽度 = 750rpx</p>
 </blockquote>
 <p><strong>其它单位</strong></p>
 <blockquote>
@@ -1572,7 +1571,8 @@
 <p>vh 视窗高度，1vh等于视窗高度的1%</p>
 <p>vw 视窗宽度，1vw等于视窗宽度的1%</p>
 </blockquote>
-<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><p><strong>全局配置<code>app.json</code></strong></p>
+<h1>配置文件</h1>
+<p><strong>全局配置<code>app.json</code></strong></p>
 <blockquote>
 <p>全局配置，包括了⼩程序的所有⻚⾯路径、界⾯表现、⽹络超时时间、底部Tab等。</p>
 <p>pages字段:</p>
@@ -1585,7 +1585,7 @@
 </ul>
 <p>更多配置：<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html">详见文档</a></p>
 </blockquote>
-<pre><code class="json">&#123;
+<pre><code class="language-json">&#123;
   &quot;pages&quot;:[
     &quot;pages/index/index&quot;
  ],
@@ -1610,7 +1610,8 @@
 <p>如果想不被微信索引到的话，在action中加上dis</p>
 </blockquote>
 <p><img src="/images/510.png" alt="img"></p>
-<h1 id="开发框架"><a href="#开发框架" class="headerlink" title="开发框架"></a>开发框架</h1><blockquote>
+<h1>开发框架</h1>
+<blockquote>
 <p>整个小程序框架系统分为两部分：逻辑层（App Service）和 视图层（View）。</p>
 <p>小程序提供了自己的视图层描述语言 <code>WXML</code> 和 <code>WXSS</code>，以及基于 <code>JavaScript</code> 的逻辑层框架，并在视图层与逻辑层间提供了数据传输和事件系统，让开发者能够专注于数据与逻辑。</p>
 </blockquote>
@@ -1618,14 +1619,14 @@
 <blockquote>
 <p>当做数据修改的时候，只需要在逻辑层修改数据，视图层就会做相应的更新。</p>
 </blockquote>
-<pre><code class="html">&lt;!-- This is our View --&gt;
+<pre><code class="language-html">&lt;!-- This is our View --&gt;
 &lt;view&gt; Hello &#123;&#123;name&#125;&#125;! &lt;/view&gt;
 &lt;button bindtap=&quot;changeName&quot;&gt; Click me! &lt;/button&gt;
 </code></pre>
-<pre><code class="js">// This is our App Service.
+<pre><code class="language-js">// This is our App Service.
 // This is our data.
 var helloData = &#123;
-  name: &#39;Weixin&#39;
+  name: 'Weixin'
 &#125;
 
 // Register a Page.
@@ -1634,7 +1635,7 @@ Page(&#123;
   changeName: function(e) &#123;
     // sent data change to view
     this.setData(&#123;
-      name: &#39;MINA&#39;
+      name: 'MINA'
     &#125;)
   &#125;
 &#125;)

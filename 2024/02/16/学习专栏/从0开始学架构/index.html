@@ -781,8 +781,8 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2023/10/31/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">
-										技术学习
+									<a href="/2024/03/26/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/">
+										工作相关
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -790,8 +790,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2024/03/26/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E8%83%BD%E7%9B%B8%E5%85%B3/">
-										技能相关
+									<a href="/2023/10/31/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">
+										技术学习
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1528,9 +1528,11 @@
 <blockquote>
 <p>软件系统中高性能带来的复杂度主要体现在两方面:</p>
 <ul>
-<li><p>一方面是单台计算机内部为了高性能带来的复杂度</p>
+<li>
+<p>一方面是单台计算机内部为了高性能带来的复杂度</p>
 </li>
-<li><p>另一方面是多台计算机集群为了高性能带来的复杂度</p>
+<li>
+<p>另一方面是多台计算机集群为了高性能带来的复杂度</p>
 </li>
 </ul>
 </blockquote>
@@ -1538,12 +1540,14 @@
 <blockquote>
 <p>通过大量机器来提升性能，并不仅仅是增加机器这么简单，让多台机器配合起来达到高性能的目的，是一个复杂的任务：</p>
 <ul>
-<li>任务分配：<ul>
+<li>任务分配：
+<ul>
 <li>指每台机器都可以处理完整的业务任务，不同的任务分配到不同的机器上执行。</li>
 <li>能够突破单台机器处理性能的瓶颈，通过增加更多的机器来满足业务的性能需求。</li>
 </ul>
 </li>
-<li>任务分解：<ul>
+<li>任务分解：
+<ul>
 <li>业务越来越复杂，单台机器处理的性能会越来越低。</li>
 <li>为了能够继续提升性能，需要采取第二种方式：任务分解。</li>
 <li>简单的系统更加容易做到高性能。</li>
@@ -1557,7 +1561,8 @@
 <p>定义：系统无中断地执行其功能的能力，代表系统的可用性程度，是进行系统设计的准则之一。</p>
 <p>本质上都是通过冗余来实现高可用。</p>
 </blockquote>
-<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><strong>系统与子系统</strong></p>
+<h1>基本概念</h1>
+<p><strong>系统与子系统</strong></p>
 <blockquote>
 <p><strong>系统：</strong></p>
 <ul>
@@ -1602,12 +1607,10 @@
 <p>如一个图书管理系统，功能架构图示意如下：</p>
 </blockquote>
 <img src="/images/482.png" alt="img" style="zoom:30%;" />
-
 <blockquote>
-<p> 技术架构图示意如下：</p>
+<p>技术架构图示意如下：</p>
 </blockquote>
 <img src="/images/483.png" alt="img" style="zoom:33%;" />
-
 <p><strong>模块和组件</strong></p>
 <blockquote>
 <p><strong>软件模块：</strong></p>
@@ -1635,7 +1638,6 @@
 <p>软件架构指软件系统的顶层（Rank）结构，它定义了系统由哪些角色（Role）组成，角色之间的关系（Relation）和运作规则（Rule）。</p>
 </blockquote>
 <img src="/images/484.png" alt="图片" style="zoom:40%;" />
-
 <blockquote>
 <p><strong>第一个R，Rank：</strong></p>
 <ul>
@@ -1657,7 +1659,8 @@
 <ul>
 <li>它是指软件系统角色之间如何协作来完成系统功能。</li>
 <li>系统能力不是个体能力之和，而是产生了新的能力。</li>
-<li>那么这个新能力具体如何完成的呢？具体哪些角色参与了这个新能力呢？<ul>
+<li>那么这个新能力具体如何完成的呢？具体哪些角色参与了这个新能力呢？
+<ul>
 <li>这就是Rule所要表达的内容。</li>
 <li>在架构设计的时候，核心的业务场景都需要设计Rule。</li>
 </ul>
@@ -1670,44 +1673,47 @@
 <p>以微信为例，Rank的含义如下所示：</p>
 </blockquote>
 <img src="/images/485.png" alt="图片" style="zoom:40%;" />
-
 <blockquote>
 <p>以一个简化的支付系统为例，支付系统架构图如下所示：</p>
 </blockquote>
 <img src="/images/486.png" alt="图片" style="zoom:43%;" />
-
 <blockquote>
 <p>扫码支付这个核心场景的系统序列图如下所示：</p>
 </blockquote>
 <img src="/images/487.png" alt="图片" style="zoom:43%;" />
-
-<h1 id="架构设计"><a href="#架构设计" class="headerlink" title="架构设计"></a>架构设计</h1><h2 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h2><img src="/images/488.png" alt="图片" style="zoom:33%;" />
-
+<h1>架构设计</h1>
+<h2 id="架构图">架构图</h2>
+<img src="/images/488.png" alt="图片" style="zoom:33%;" />
 <p><strong>4+1视图</strong></p>
 <blockquote>
 <p>4+1视图的核心理念是从不同的角度去剖析系统，看看系统的结构是什么样的，具体每个视图的含义是：</p>
 <ul>
-<li><p><strong>逻辑视图</strong>：</p>
+<li>
+<p><strong>逻辑视图</strong>：</p>
 <ul>
 <li>从终端用户角度看系统提供给用户的<strong>功能</strong>，对应 UML的 class 和 state diagrams。</li>
 </ul>
 </li>
-<li><p><strong>处理视图</strong>：</p>
+<li>
+<p><strong>处理视图</strong>：</p>
 <ul>
 <li>从动态的角度看系统的<strong>处理过程</strong>，对应 UML 的 sequence 和 activity diagrams。</li>
 </ul>
 </li>
-<li><p><strong>开发视图</strong>：</p>
+<li>
+<p><strong>开发视图</strong>：</p>
 <ul>
 <li>从程序员角度看系统的<strong>逻辑组成</strong>，对应 UML 的 package diagrams。</li>
 </ul>
 </li>
-<li><p><strong>物理视图</strong>：</p>
+<li>
+<p><strong>物理视图</strong>：</p>
 <ul>
 <li>从系统工程师角度看系统的<strong>物理组成</strong>，对应 UML 的 deployment diagrams。</li>
 </ul>
 </li>
-<li><p><strong>场景视图</strong>：</p>
+<li>
+<p><strong>场景视图</strong>：</p>
 <ul>
 <li>从用户角度看系统需要实现的<strong>需求</strong>，对应 UML 的 use case diagrams。</li>
 </ul>
@@ -1716,13 +1722,10 @@
 </blockquote>
 <p><strong>系统序列图</strong></p>
 <img src="/images/487.png" alt="图片" style="zoom:43%;" />
-
 <p><strong>部署架构图</strong></p>
 <img src="/images/489.png" alt="图片" style="zoom:43%;" />
-
 <p><strong>系统架构图</strong></p>
 <img src="/images/490.png" alt="图片" style="zoom:43%;" />
-
 <p><strong>业务架构图</strong></p>
 <img src="/images/491.png" alt="图片" style="zoom:43%;" />
 	</div>

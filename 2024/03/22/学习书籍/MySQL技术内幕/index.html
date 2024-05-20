@@ -781,8 +781,8 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2023/10/31/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">
-										技术学习
+									<a href="/2024/03/26/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/">
+										工作相关
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -790,8 +790,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2024/03/26/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E8%83%BD%E7%9B%B8%E5%85%B3/">
-										技能相关
+									<a href="/2023/10/31/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">
+										技术学习
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1519,8 +1519,9 @@
       <!--打赏-->
 	<div id="article-content">
 		<p>书籍介绍：<a target="_blank" rel="noopener" href="https://book.douban.com/subject/24708143/">https://book.douban.com/subject/24708143/</a></p>
-<h1 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h1><blockquote>
-<p>MySQL 被设计为一个可移植的数据库，几乎在当前所有系统上都能运行，如Linux, Solaris 、FreeBSD 、Mac 和Windows。 </p>
+<h1>体系结构</h1>
+<blockquote>
+<p>MySQL 被设计为一个可移植的数据库，几乎在当前所有系统上都能运行，如Linux, Solaris 、FreeBSD 、Mac 和Windows。</p>
 <p>尽管各平台在底层（如线程）实现方面都各有不同，但是MySQL 基本上能保证在各平台上的物理体系结构的一致性。</p>
 <p>因此，用户应该能很好地理解MySQL 数据库在所有这些平台上是如何运作的。</p>
 </blockquote>
@@ -1579,7 +1580,8 @@
 <p>从MySQL5.0 版本开始， MyISAM 默认支持 256TB 的单表数据。</p>
 <p>对于MyISAM 存储引擎表， MySQL 数据库只缓存其索引文件，数据文件的缓存交由操作系统本身来完成。</p>
 </blockquote>
-<h1 id="InnoDB存储引擎"><a href="#InnoDB存储引擎" class="headerlink" title="InnoDB存储引擎"></a>InnoDB存储引擎</h1><blockquote>
+<h1>InnoDB存储引擎</h1>
+<blockquote>
 <p>InnoDB 是 事务安全 的MySQL 存储引擎，设计上采用了类似于Oracle 数据库的架构。</p>
 <p>通常来说， InnoDB 存储引擎是OLTP应用中核心表的首选存储引擎。</p>
 <p>同时，也正是因为InnoDB 的存在，才使MySQL 数据库变得更有魅力。</p>
@@ -1618,27 +1620,27 @@
 <blockquote>
 <p>InnoDB 存储引擎是多线程的模型，因此其后台有多个不同的后台线程，负责处理不同的任务。</p>
 <p>①、Master Thread： 是一个非常核心的后台线程，主要负责将缓冲池中的数据异步刷新到磁盘，保证数据的一致性（包括脏页的刷新、合并插入缓冲(INSERT BUFFER) 、UNDO 页的回收等）。</p>
-<p>②、I&#x2F;O Thread： 在 lnnoDB 存储引擎中大量使用了 AIO ( Async IO) 来处理写IO 请求，这样可以极大提高数据库的性能。</p>
+<p>②、I/O Thread： 在 lnnoDB 存储引擎中大量使用了 AIO ( Async IO) 来处理写IO 请求，这样可以极大提高数据库的性能。</p>
 <p>而 IO Thread 的工作主要是负责这些IO 请求的回调(call back)处理。</p>
 <p>注：InnoDB 1.0 版本之前共有 4 个IO Thread, 分别是write 、read 、insert buffer 和log IO thread。</p>
 <p>在 Linux 平台下， IO Thread 的数量不能进行调整，但是在Windows 平台下可以通过参数 innodb_file_ io threads 来增大IO Thread。</p>
 <p>从InnoDB 1.0.x 版本开始， read thread 和write thread 分别增大到了4 个，并且不再使用 <code>innodb_ file _io_threads</code> 参数，而是分别使用 <code>innodb_read_ io threads</code> 和<code>innodb_write_ io _ threads</code> 参数进行设置，可以通过命令SHOW ENGINE INNODB STATUS 来观察InnoDB 中的IO Thread: (注意：读线程的ID 总是小于写线程)。</p>
 <p>③、Purge Thread： 事务被提交后，其所使用的 undo log 可能不再需要，因此需要 PurgeThread 来回收已经使用并分配的 undo 页。</p>
 <p>注：在 InnoDB 1.1 版本之前， purge 操作仅在InnoDB 存储引擎的 Master Thread 中完成。</p>
-<p>而从 InnoDB 1.1 版本开始， purge 操作可以独立到单独的线程中进行，以此来减轻 Master Thread 的工作，从而提高 CPU 的使用率以及提升存储引擎的性能。 </p>
+<p>而从 InnoDB 1.1 版本开始， purge 操作可以独立到单独的线程中进行，以此来减轻 Master Thread 的工作，从而提高 CPU 的使用率以及提升存储引擎的性能。</p>
 <p>在 InnoDB 1.1 版本中，即使将innodb_purge_ threads 设为大于1, InnoDB 存储引擎启动时也会将其设为1。</p>
 <p>从 InnoDB 1.2 版本开始， InnoDB 支持多个 Purge Thread, 这样做的目的是为了进一步加快undo 页的回收。</p>
 <p>同时由于 Purge Thread 需要离散地读取undo 页，这样也能更进一步利用磁盘的随机读取性能。</p>
 <p>④、Page Cleaner Thread： Page Cleaner Thread 是在InnoDB 1.2.x 版本中引入的。</p>
-<p>其作用是将之前版本中脏页的刷新操作都放入到单独的线程中来完成。 </p>
+<p>其作用是将之前版本中脏页的刷新操作都放入到单独的线程中来完成。</p>
 <p>而其目的是为了减轻原Master Thread 的工作及对于用户查询线程的阻塞，进一步提高InnoDB 存储引擎的性能。</p>
 </blockquote>
 <p><strong>缓冲池</strong></p>
 <blockquote>
-<p>InnoDB 存储引擎是基于磁盘存储的，并将其中的记录按照页的方式进行管理。 </p>
+<p>InnoDB 存储引擎是基于磁盘存储的，并将其中的记录按照页的方式进行管理。</p>
 <p>因此可将其视为基于磁盘的数据库系统。在数据库系统中，由于CPU速度与磁盘速度之间的鸿沟，基于磁盘的数据库系统通常使用 缓冲池技术 来提高数据库的整体性能。</p>
 <p>缓冲池简单来说就是一块内存区域，通过内存的速度来 弥补 磁盘速度较慢对数据库性能的影响。</p>
-<p>①、在数据库中进行读取页的操作，首先将从磁盘读到的页存放在缓冲池中，这个过程称为将页”FIX” 在缓冲池中。</p>
+<p>①、在数据库中进行读取页的操作，首先将从磁盘读到的页存放在缓冲池中，这个过程称为将页&quot;FIX&quot; 在缓冲池中。</p>
 <p>下一次再读相同的页时，首先判断该页是否在缓冲池中。</p>
 <p>若在缓冲池中，称该页在缓冲池中被命中，直接读取该页。否则，读取磁盘上的页。</p>
 <p>②、对于数据库中页的修改操作，则首先修改在缓冲池中的页，然后再以一定的频率刷新到磁盘上。</p>
@@ -1669,7 +1671,7 @@
 <p>优化： 在 InnoDB 的存储引擎中， LRU 列表中还加入了 midpoint 位置。</p>
 <p>新读取到的页，虽然是最新访问的页，但并不是直接放入到LRU 列表的首部，而是放入到LRU 列表的 midpoint 位置。</p>
 <p>这个算法在InnoDB 存储引擎下称为 <code>midpoint insertion strategy</code>。</p>
-<p>在默认配置下，该位置在LRU 列表长度的5&#x2F;8 处。midpoint 位置可由参数 <code>innodb_old_ blocks _pct</code> 控制。</p>
+<p>在默认配置下，该位置在LRU 列表长度的5/8 处。midpoint 位置可由参数 <code>innodb_old_ blocks _pct</code> 控制。</p>
 </blockquote>
 <blockquote>
 <p>在 <strong>InnoDB</strong> 存储引擎中，把 <strong>midpoint</strong> 之后的列表称为 <strong>old</strong> 列表，之前的列表称为 <strong>new</strong> 列表。</p>
@@ -1684,7 +1686,7 @@
 <p>为了解决这个问题，InnoDB 存储引擎引入了另一个参数来进一步管理LRU 列表，这个参数是 <code>innodb_old_blocks_time</code>, 用于表示页读取到mid 位置后需要等待多久才会被加入到LRU 列表的热端。</p>
 </blockquote>
 <blockquote>
-<p>LRU 列表用来管理已经读取的页，但当数据库刚启动时，LRU 列表是空的，即没有任何的页。 </p>
+<p>LRU 列表用来管理已经读取的页，但当数据库刚启动时，LRU 列表是空的，即没有任何的页。</p>
 <p>这时页都存放在 Free 列表中。</p>
 <p>当需要从缓冲池中分页时，首先从Free 列表中查找是否有可用的空闲页，若有则将该页从Free 列表中删除，放入到 LRU 列表中。</p>
 <p>否则，根据 LRU 算法，淘汰 LRU 列表末尾的页，将该内存空间分配给新的页。</p>
@@ -1727,14 +1729,14 @@
 <p><strong>重做日志缓冲</strong></p>
 <p>InnoDB 存储引擎的内存区域除了有缓冲池外，还有 重做日志缓冲(redo log buffer) 。</p>
 <p>InoDB 存储引擎 首先将重做日志信息先放入到这个缓冲区，然后按一定频率将其刷新到重做日志文件。</p>
-<p>注：重做日志缓冲一般不需要设置得很大，因为一般情况下每一秒钟会将重做日志缓冲刷新到日志文件，因此用户只需要保证每秒产生的事务量在这个缓冲大小之内即可。 </p>
+<p>注：重做日志缓冲一般不需要设置得很大，因为一般情况下每一秒钟会将重做日志缓冲刷新到日志文件，因此用户只需要保证每秒产生的事务量在这个缓冲大小之内即可。</p>
 <p>该值可由配置参数<code>innodb_log_ buffer_ size</code> 控制，默认为8MB。</p>
 </blockquote>
 <blockquote>
 <p>重做日志在下列三种情况下会将重做日志缓冲中的内容刷新到外部磁盘的重做日志文件中？</p>
 <p>⒈、Master Thread 每一秒将重做日志缓冲刷新到重做日志文件；</p>
 <p>⒉、每个事务提交时 会将重做日志缓冲刷新到重做日志文件；</p>
-<p>⒊、当重做日志缓冲池剩余空间小于1&#x2F;2 时， 重做日志缓冲刷新到重做日志文件。</p>
+<p>⒊、当重做日志缓冲池剩余空间小于1/2 时， 重做日志缓冲刷新到重做日志文件。</p>
 </blockquote>
 <p><strong>额外的内存池</strong></p>
 <blockquote>
@@ -1744,7 +1746,8 @@
 <p>例如，分配了缓冲池(<code>innodb_buffer_pool</code>), 但是每个缓冲池中的帧缓冲(frame buffer) 还有对应的缓冲控制对象(buffer control block), 这些对象记录了一些诸如LRU 、锁、等待等信息，而这个对象的内存需要从额外内存池中申请。</p>
 <p>因此，在申请了很大的InnoDB 缓冲池时，也应考虑相应地增加这个值。</p>
 </blockquote>
-<h1 id="Checkpoint技术"><a href="#Checkpoint技术" class="headerlink" title="Checkpoint技术"></a>Checkpoint技术</h1><blockquote>
+<h1>Checkpoint技术</h1>
+<blockquote>
 <p>InnoDB 是事务安全的MySQL 存储引擎，设计上采用了类似于Oracle 数据库的架构。</p>
 <p>通常来说， InnoDB 存储引擎是OLTP应用中核心表的首选存储引擎。</p>
 <p>同时，也正是因为InnoDB 的存在，才使MySQL 数据库变得更有魅力。</p>
@@ -1756,7 +1759,7 @@
 <p>如果一条DML 语句改变了页中的记录，那么此时页是脏的，即缓冲池中的页的版本要比磁盘的新。数据库需要将新版本的页从缓冲池刷新到磁盘。</p>
 <p>注：倘若每次一个页发生变化，就将新页的版本刷新到磁盘，那么这个开销是非常大的。</p>
 <p>同时，如果在从缓冲池将页的新版本刷新到磁盘时发生了 宕机，那么数据就不能恢复了。</p>
-<p>为了避免发生数据丢失的问题，当前事务数据库系统普遍都采用了 Write Ahead Log 策略，即当事务提交时，先写重做日志，再修改页。 </p>
+<p>为了避免发生数据丢失的问题，当前事务数据库系统普遍都采用了 Write Ahead Log 策略，即当事务提交时，先写重做日志，再修改页。</p>
 <p>当由于发生宕机而导致数据丢失时，通过重做日志来完成数据的恢复。</p>
 <p>这也是事务ACID 中D (Durability 持久性）的要求。</p>
 </blockquote>
@@ -1783,7 +1786,7 @@
 <p>故数据库只需对Checkpoint 后的重做日志进行恢复。这样就大大缩短了恢复的时间。</p>
 </blockquote>
 <blockquote>
-<p>注：重做日志出现不可用的情况是因为当前事务数据库系统对重做日志的设计都是循环使用的，并不是让其无限增大的，这从成本及管理上都是比较困难的。 </p>
+<p>注：重做日志出现不可用的情况是因为当前事务数据库系统对重做日志的设计都是循环使用的，并不是让其无限增大的，这从成本及管理上都是比较困难的。</p>
 <p>重做日志可以被重用的部分是指这些重做日志已经不再需要，即当数据库发生宕机时，数据库恢复操作不需要这部分的重做日志，因此这部分就可以被覆盖重用。</p>
 <p>若此时重做日志还需要使用，那么必须强制产生 Checkpoint, 将缓冲池中的页至少刷新到当前重做日志的位置。</p>
 <p>对于 InnoDB 存储引擎而言，其是通过 LSN (Log Sequence Number) 来标记版本的。</p>
@@ -1796,14 +1799,14 @@
 <p>在 InnoDB 存储引擎内部，有两种 Checkpoint, 分别为：</p>
 <p>①、Sharp Checkpoint ssssa</p>
 <p>②、Fuzzy Checkpoint</p>
-<p>Sharp Checkpoint 发生在数据库关闭时将所有的脏页都刷新回磁盘，这是默认的工作方式，即参数innodb_fast_shutdown&#x3D; 1 。</p>
+<p>Sharp Checkpoint 发生在数据库关闭时将所有的脏页都刷新回磁盘，这是默认的工作方式，即参数innodb_fast_shutdown= 1 。</p>
 <p>但是若数据库在运行时也使用 Sharp Checkpoint, 那么数据库的可用性就会受到很大的影响。</p>
 <p>故在InnoDB 存储引擎内部使用 Fuzzy Checkpoint 进行页的刷新，即只刷新一部分脏页，而不是刷新所有的脏页回磁盘。</p>
 </blockquote>
 <blockquote>
 <p>在 InnoDB 存储引擎中可能发生如下 几种情况的 Fuzzy Checkpoint：</p>
 <p>①、Master Thread Checkpointsdsssa②、FLUSH_LRU_LIST Checkpoint</p>
-<p>③、Async&#x2F;Sync Flush Checkpointssa④、Dirty Page too much Checkpoint</p>
+<p>③、Async/Sync Flush Checkpointssa④、Dirty Page too much Checkpoint</p>
 <p>①、对于 Master Thread 中发生的 Checkpoint, 差不多 以每秒或每十秒的速度 从缓冲池的脏页列表中刷新一定比例的页回磁盘。</p>
 <p>这个过程是异步的，即此时 InnoDB 存储引擎可以进行其他的操作，用户查询线程不会阻塞。</p>
 <p>②、对于 FLUSH_ LRU_LIST Checkpoint 是因为 InnoDB 存储引擎需要保证 LRU 列表中需要有差不多 100 个空闲页可供使用。</p>
@@ -1811,25 +1814,26 @@
 <p>倘若没有100 个可用空闲页，那么InnoDB 存储引擎会将LRU 列表尾端的页移除。</p>
 <p>如果这些页中有脏页，那么需要进行Checkpoint, 而这些页是来自LRU 列表的，因此称为FLUSH_LRU_LIST Checkpoint 。</p>
 <p>而从MySQL 5.6 版本，也就是InnoDB 1.2.x 版本开始，这个检查被放在了一个单独的Page Cleaner 线程中进行，并且用户可以通过参数<code>innodb_lru scan_ depth</code> 控制LRU 列表中可用页的数量，该值默认为1024）。</p>
-<p>③、Async&#x2F;Sync Flush Checkpoint 指的是重做日志文件不可用的情况，这时需要强制将一些页刷新回磁盘，而此时脏页是从脏页列表中选取的。</p>
+<p>③、Async/Sync Flush Checkpoint 指的是重做日志文件不可用的情况，这时需要强制将一些页刷新回磁盘，而此时脏页是从脏页列表中选取的。</p>
 </blockquote>
 <blockquote>
 <p>若将巳经写入到重做日志的 LSN 记为 redo_lsn, 将已经刷新回磁盘最新页的LSN 记为 checkpoint_lsn, 则可定义：</p>
-<p>checkpoint_age &#x3D; redo_lsn - checkpoint_lsn</p>
-<p><code>sync_water_mark = 75% * total_ redo_log_file_size</code> （重做日志的大文件的总大小的 3&#x2F;4）</p>
-<p><code>sync_water_mark = 90% * total_ redo_ log_ file_ size</code> （重做日志的大文件的总大小的 9&#x2F;10）</p>
+<p>checkpoint_age = redo_lsn - checkpoint_lsn</p>
+<p><code>sync_water_mark = 75% * total_ redo_log_file_size</code> （重做日志的大文件的总大小的 3/4）</p>
+<p><code>sync_water_mark = 90% * total_ redo_ log_ file_ size</code> （重做日志的大文件的总大小的 9/10）</p>
 <p>⑴、checkpoint_age&lt;async water_ mark，不需要刷新任何脏页到磁盘；</p>
 <p>⑵、<code>async_water_ mark&lt;checkpoint_ age&lt;sync_water_mark</code>，触发Async Flush, 从Flush列表中刷新足够的脏页回磁盘，使得刷新后满足<code>checkpoint_age&lt;async water_mark</code>:</p>
 <p>⑶、<code>checkpoint_ age&gt;sync water—mark</code> 这种情况一般很少发生，除非设置的重做日志文件太小，并且在进行类似LOAD DATA 的BULK INSERT 操作。</p>
 <p>此时触发Sync Flush 操作，从Flush 列表中刷新足够的脏页回磁盘，使得刷新后满足checkpoint_ age&lt;async water_ mark 。</p>
-<p>Async&#x2F;Sync Flush Checkpoint 是为了保证重做日志的循环使用的可用性。</p>
+<p>Async/Sync Flush Checkpoint 是为了保证重做日志的循环使用的可用性。</p>
 <p>在 InnoDB 1.2.x 版本之前， Async Flush Checkpoint 会阻塞发现问题的用户查询线程，而 Sync Flush Checkpoint 会阻塞所有的用户查询线程，并且等待脏页刷新完成。</p>
 <p>从InnoDB 1.2.x 版本开始一一也就是MySQL 5.6 版本，这部分的刷新操作同样放入到了单独的 Page Cleaner Thread 中，故不会阻塞用户查询线程。</p>
-<p>MySQL 官方版本并不能查看刷新页是从Flush 列表中还是从LRU 列表中进行 Checkpoint 的，也不知道因为重做日志而产生的Async&#x2F;Sync Flush 的次数。</p>
+<p>MySQL 官方版本并不能查看刷新页是从Flush 列表中还是从LRU 列表中进行 Checkpoint 的，也不知道因为重做日志而产生的Async/Sync Flush 的次数。</p>
 <p>但是InnoSQL版本提供了方法，可以通过命令SHOW ENGINE INNODB STATUS 来观察。</p>
 <p>④、Dirty Page too much 即脏页的数量太多，导致 InnoDB 存储引擎强制进行 Checkpoint 。</p>
 </blockquote>
-<h1 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h1><blockquote>
+<h1>锁机制</h1>
+<blockquote>
 <p>开发多用户、数据库驱动的应用时，最大的一个难点是：一方面要最大程度地利用数据库的并发访问，另外一方面还要确保每个用户能以一致的方式读取和修改数据。为此就有了锁Clocking) 的机制，同时这也是数据库系统区别于文件系统的一个关键特性。</p>
 <p>InnoDB 存储引擎较之MySQL 数据库的其他存储引擎在这方面技高一筹，其实现方式非常类似于Oracle 数据库。</p>
 </blockquote>
@@ -1841,8 +1845,8 @@
 <p>注 1：数据库系统使用锁是为了支持对共享资源进行并发访问，提供数据的完整性和一致性。</p>
 <p>对于锁，用户可能对某个特定的关系数据库系统的锁定模型有一定的经验，但这并不意味着知道其他数据库。</p>
 <p>也就是说，它们各自对于锁的实现完全不同。</p>
-<p>注 2：对于MyISAM 引擎，其锁是表锁设计。并发情况下的读没有问题，但是并发插入时的性能就要差一些了，若插入是在“底部”, MyISAM 存储引擎还是可以有一定的并发写入操作。</p>
-<p>注 3：对于 &#x3D;&#x3D;&#x3D;Microsoft SQL Server &#x3D;&#x3D; 数据库，在Microsoft SQL Server 2005 版本之前其是 页锁 的，相对表锁的MyISAM 引擎来说并发性能有所提高。</p>
+<p>注 2：对于MyISAM 引擎，其锁是表锁设计。并发情况下的读没有问题，但是并发插入时的性能就要差一些了，若插入是在“底部&quot;, MyISAM 存储引擎还是可以有一定的并发写入操作。</p>
+<p>注 3：对于 ===Microsoft SQL Server == 数据库，在Microsoft SQL Server 2005 版本之前其是 页锁 的，相对表锁的MyISAM 引擎来说并发性能有所提高。</p>
 <p>页锁容易实现，然而对于热点数据页的并发问题依然无能为力。</p>
 <p>到2005 版本， Microsoft SQL Server 开始支持乐观并发和悲观并发，在乐观并发下开始支持行级锁，但是其实现方式与InnoDB 存储引擎的实现方式完全不同。用户会发现在Microsoft SQL Server 下，锁是一种稀有的资源，锁越多开销就越大，因此它会有锁升级。在这种情况下，行 锁会升级到表锁，这时并发的性能又回到了以前。</p>
 <p>注 4：InnoDB 存储引擎锁的实现和Oracle 数据库非常类似，提供一致性的非锁定读、行级锁支持。行级锁没有相关额外的开销，并可以同时得到并发性和一致性。</p>
@@ -1907,11 +1911,12 @@
 <blockquote>
 <p>外键主要用于引用完整性的约束检查。</p>
 <p>在InnoDB 存储引擎中，对于一个外键列，如果没有显式地对这个列加索引，InnoDB 存储引擎自动对其加一个索引，因为这样可以避免表锁——这比Oracle 数据库做得好， Oracle 数据库不会自动添加索引，用户必须自己手动添加，这也导致了Oracle 数据库中可能产生死锁。</p>
-<p>对于外键值的插入或更新，首先需要查询父表中的记录，即SELECT 父表。 </p>
+<p>对于外键值的插入或更新，首先需要查询父表中的记录，即SELECT 父表。</p>
 <p>但是对于父表的SELECT 操作，不是使用一致性非锁定读的方式，因为这样会发生数据不一致的问题，因此这时使用的是SELECT … LOCK IN SHARE MODE 方式，即主动对父表加一个S 锁。</p>
 <p>如果这时父表上已经这样加X 锁，子表上的操作会被阻塞。</p>
 </blockquote>
-<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><blockquote>
+<h1>事务</h1>
+<blockquote>
 <p>事务(Transaction) 是数据库区别于文件系统的重要特性之一。</p>
 <p>在文件系统中，如果正在写文件，但是操作系统突然崩溃了，这个文件就很有可能被破坏。</p>
 <p>当然，有一些机制可以把文件恢复到某个时间点。</p>
@@ -1923,9 +1928,9 @@
 <blockquote>
 <p>InnoDB 存储引擎中的事务完全符合ACID 的特性。</p>
 <p>ACID 是以下4 个词的缩写：</p>
-<p>①、原子性(atomicity) </p>
-<p>②、一致性(consistency) </p>
-<p>③、隔离性(isolation) </p>
+<p>①、原子性(atomicity)</p>
+<p>②、一致性(consistency)</p>
+<p>③、隔离性(isolation)</p>
 <p>④、持久性 (durability)</p>
 </blockquote>
 <p><strong>概述</strong></p>
@@ -1956,12 +1961,12 @@
 <p><strong>分类</strong></p>
 <blockquote>
 <p>从事务理论的角度来说，可以把 事务分为以下几种类型：</p>
-<p>①、扁平事务( Flat Transactions) </p>
+<p>①、扁平事务( Flat Transactions)</p>
 <p>②、带有保存点的扁平事务(Flat Transactions with Savepoints)</p>
-<p>③、链事务(Chained Transactions) </p>
+<p>③、链事务(Chained Transactions)</p>
 <p>④、嵌套事务(Nested Transactions)</p>
 <p>⑤、分布式事务(Distributed Transactions)</p>
-<p>扁平事务：是事务类型中最简单的一种，但在实际生产环境中，这可能是使用最为频繁的事务。 </p>
+<p>扁平事务：是事务类型中最简单的一种，但在实际生产环境中，这可能是使用最为频繁的事务。</p>
 <p>在扁平事务中，所有操作都处于同一层次，其由BEGIN WORK 开始，由COMMIT WORK 或ROLLBACK WORK 结束，其间的操作是原子的，要么都执行，要么都回滚。</p>
 <p>因此扁平事务是应用程序成为原子操作的基本组成模块。</p>
 <p>注：扁平事务虽然简单，但在实际生产环境中使用最为频繁。</p>
@@ -2015,7 +2020,8 @@
 <p>注：对于InnoDB 存储引擎来说，其支持扁平事务、带有保存点的事务、链事务、分布式事务。对于嵌套事务，其并不原生支持，因此，对有并行事务需求的用户来说，MySQL 数据库或InnoDB 存储引擎就显得无能为力了。</p>
 <p>然而用户仍可以通过带有保存点的事务来模拟串行的嵌套事务。</p>
 </blockquote>
-<h1 id="日志文件"><a href="#日志文件" class="headerlink" title="日志文件"></a>日志文件</h1><blockquote>
+<h1>日志文件</h1>
+<blockquote>
 <p>事务(Transaction) 是数据库区别于文件系统的重要特性之一。</p>
 <p>在文件系统中，如果正在写文件，但是操作系统突然崩溃了，这个文件就很有可能被破坏。</p>
 <p>当然，有一些机制可以把文件恢复到某个时间点。不过，如果需要保证两个文件同步，这些文件系统可能就显得无能为力了。</p>
@@ -2023,9 +2029,9 @@
 <p>在数据库提交工作时，可以确保要么所有修改都已经保存了，要么所有修改都不保存。</p>
 <p>InnoDB 存储引擎中的事务完全符合ACID 的特性。</p>
 <p>ACID 是以下4 个词的缩写：</p>
-<p>①、原子性(atomicity) </p>
-<p>②、一致性(consistency) </p>
-<p>③、隔离性(isolation) </p>
+<p>①、原子性(atomicity)</p>
+<p>②、一致性(consistency)</p>
+<p>③、隔离性(isolation)</p>
 <p>④、持久性 (durability)</p>
 </blockquote>
 <p><strong>事务的实现</strong></p>
@@ -2047,16 +2053,16 @@
 <p>redo log 用来保证事务的持久性， undo log 用来帮助事务回滚及MVCC 的功能。redo log 基本上都是顺序写的，在数据库运行时不需要对redo log 的文件进行读取操作。</p>
 <p>而undo log 是需要进行 随机读写 的。</p>
 <p>注 1 ：为了确保每次日志都写入重做日志文件，在每次将重做日志缓冲写入重做日志文件后， InnoDB 存储引擎都需要调用一次 fsync 操作。</p>
-<p>由于重做日志文件打开并没有使用O_DIRECT 选项，因此重做日志缓冲先写入文件系统缓存。 </p>
+<p>由于重做日志文件打开并没有使用O_DIRECT 选项，因此重做日志缓冲先写入文件系统缓存。</p>
 <p>为了确保重做日志写入磁盘，必须进行一次fsync 操作。</p>
 <p>由于fsync 的效率取决于磁盘的性能，因此磁盘的性能决定了事务提交的性能，也就是数据库的性能。</p>
 <p>注 2 ：InnoDB 存储引擎允许用户手工设置非持久性的情况发生，以此提高数据库的性能。</p>
-<p>即当事务提交时，日志不写入重做日志文件，而是等待一个时间周期后再执行fsync 操作。 </p>
+<p>即当事务提交时，日志不写入重做日志文件，而是等待一个时间周期后再执行fsync 操作。</p>
 <p>由于并非强制在事务提交时进行一次fsync 操作，显然这可以显著提高数据库的性能。</p>
 <p>但是当数据库发生宥机时，由于部分日志未刷新到磁盘，因此会丢失最后一段时间的事务。</p>
 <p>注 3 ：参数innodb_ flush_log_at_trx_commit 用来控制重做日志刷新到磁盘的策略。</p>
 <p>该参数的默认值为 1 , 表示事务提交时必须调用一次fsync 操作。还可以设置该参数的值为0 和 2 。</p>
-<p>0 表示事务提交时不进行写入重做日志操作，这个操作仅在master thread 中完成，而在master thread 中每1 秒会进行一次重做日志文件的fsync 操作。2表示事务提交时将重做日志写入重做日志文件， 但仅写入文件系统的缓存中，不进行fsync 操作。 </p>
+<p>0 表示事务提交时不进行写入重做日志操作，这个操作仅在master thread 中完成，而在master thread 中每1 秒会进行一次重做日志文件的fsync 操作。2表示事务提交时将重做日志写入重做日志文件， 但仅写入文件系统的缓存中，不进行fsync 操作。</p>
 <p>在这个设置下，当MySQL 数据库发生宕机而操作系统不发生宥机时，并不会导致事务的丢失。而当操作系统宥机时， 重启数据库后会丢失未从文件系统缓存刷新到重做日志文件那部分事务。</p>
 <p>(虽然用户可以通过设置参数innodb_flush_log_at_trx_commit 为0 或2 来提高事务提交的性能，但是需要牢记的是，这种设置方法丧失了事务的ACID 特性。而针对上述存储过程，为了提高事务的提交性能，应该在将多条记录插入表后进行一次的COMMIT 操作，而不是在每插入一条记录后进行一次COMMIT 操作。这样做的好处是还可以使事务方法在回滚时回滚到事务最开始的确定状态。)</p>
 <p>在 MySQL 数据库中还有 二进制日志(binlog) , 其用来进行 POINT-IN-TIME(PIT) 的恢复及 主从复制 (Replication) 环境的建立。从表面上看其和重做日志非常相似，都是记录了对于数据库操作的日志。然而也有很大的区别：</p>
@@ -2092,7 +2098,8 @@
 <p>④、LOG_BLOCK_CHECKPOINT_NO 占用4 字节，表示该 log block 最后被写入时的检查点第4 字节的值。</p>
 <p>⑤、log block tailer 只由1 个部分组成，其值和LOG_BLOCK_HDR_NO 相同，并在函数log_block_init 中被初始化。</p>
 </blockquote>
-<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><blockquote>
+<h1>索引</h1>
+<blockquote>
 <p>索引是应用程序设计和开发的一个重要方面。</p>
 <p>若索引太多，应用 程序的性能 可能会受到影响。而索引太少，对 查询性能 又会产生影响。</p>
 <p>要找到一个合适的平衡点，这对应用程序的性能至关重要。</p>
@@ -2102,11 +2109,11 @@
 <p>①、B+ 树索引</p>
 <p>②、全文索引</p>
 <p>③、哈希索引</p>
-<p>InnoDB 存储引擎支持的 哈希索引是自适应的， InnoDB 存储引擎会根据表的使用情况自动为表生成哈希索引，不能人为干预是否在一张表中生成哈希索引。 </p>
-<p>B + 树索引就是传统意义上的索引，这是目前关系型数据库系统中查找最为常用和最为有效的索引。 </p>
+<p>InnoDB 存储引擎支持的 哈希索引是自适应的， InnoDB 存储引擎会根据表的使用情况自动为表生成哈希索引，不能人为干预是否在一张表中生成哈希索引。</p>
+<p>B + 树索引就是传统意义上的索引，这是目前关系型数据库系统中查找最为常用和最为有效的索引。</p>
 <p>B+ 树索引的构造类似于 二叉树，根据键值( Key Value ) 快速找到数据。</p>
 <p>注1：B+ 树中的B 不是代表二叉, 而是代表 平衡, 因为 B + 树是从最早的平衡二叉树演化而未，但是 B + 树不是一个二叉树。</p>
-<p>注2：B + 树索引并不能找到一个给定键值的具体行。 </p>
+<p>注2：B + 树索引并不能找到一个给定键值的具体行。</p>
 <p>B+ 树索引能找到的只是被查找数据行所在的页。</p>
 <p>然后数据库通过把页读入到内存，再在内存中进行查找， 最后得到要查找的数据。</p>
 </blockquote>
@@ -2123,16 +2130,16 @@
 </blockquote>
 <p><strong>聚集索引</strong></p>
 <blockquote>
-<p>InnoDB 存储引擎表是索引组织表，即表中数据按照主键顺序存放。 </p>
+<p>InnoDB 存储引擎表是索引组织表，即表中数据按照主键顺序存放。</p>
 <p>而聚集索引就是按照每张表的主键构造一棵B+ 树，同时叶子节点中存放的即为整张表的行记录数据，也将聚集索引的叶子节点称为 数据页。</p>
 <p>聚集索引的这个特性决定了索引组织表中数据也是索引的一部分。</p>
 <p>同B+ 树数据结构一样，每个数据页都通过一个 双向链表 来进行链接。</p>
 <p>注 1：由于实际的数据页只能按照一棵B+ 树进行排序，因此每张表只能拥有一个聚集索引(可以理解为主键)。</p>
 <p>在多数情况下，查询优化器倾向于采用聚集索引。</p>
-<p>因为聚集索引能够在B+ 树索引的叶子节点上直接找到数据。 </p>
+<p>因为聚集索引能够在B+ 树索引的叶子节点上直接找到数据。</p>
 <p>此外，由于定义了数据的逻辑顺序，聚集索引能够特别快地访问针对范围值的查询。</p>
 <p>查询优化揣能够快速发现某一段范围的数据页需要扫描。</p>
-<p>数据库中的B+ 树索引可以分为&#x3D;&#x3D; 聚集索引 和 辅助索引, 但是不管是聚集还是辅助的索引，其内部都是B+ 树，即 高度平衡 的，叶子节点存放着所有的数据。</p>
+<p>数据库中的B+ 树索引可以分为== 聚集索引 和 辅助索引, 但是不管是聚集还是辅助的索引，其内部都是B+ 树，即 高度平衡 的，叶子节点存放着所有的数据。</p>
 </blockquote>
 <blockquote>
 <p>聚集索引的优点：它对于主键的排序查找和范围查找速度非常快。叶子节点的数据就是用户所要查询的数据。</p>
@@ -2141,7 +2148,7 @@
 </blockquote>
 <p><strong>辅助索引</strong></p>
 <blockquote>
-<p>对于辅助索引(Secondary Index, 也称非聚集索引），叶子节点并不包含行记录的全部数据。 </p>
+<p>对于辅助索引(Secondary Index, 也称非聚集索引），叶子节点并不包含行记录的全部数据。</p>
 <p>叶子节点除了包含键值以外， 每个叶子节点中的索引行中还包含了一个 书签(bookmark) 。</p>
 <p>该书签用来告诉InnoDB 存储引擎哪里可以找到与索引相对应的行数据。由于InnoDB 存储引擎表是索引组织表。</p>
 <p>如何通过辅助索引寻找数据？</p>
@@ -2155,20 +2162,21 @@
 <p>注1：覆盖索引技术最早是在InnoDB Plugin 中完成并实现。</p>
 <p>这意味着对于InnoDB 版本小于1.0 的，或者MySQL 数据库版本为5.0 或以下的， InnoDB 存储引擎不支持覆盖索引特性。</p>
 </blockquote>
-<h1 id="性能调优"><a href="#性能调优" class="headerlink" title="性能调优"></a>性能调优</h1><p><strong>InnoDB 存储引擎的性能问题：</strong></p>
+<h1>性能调优</h1>
+<p><strong>InnoDB 存储引擎的性能问题：</strong></p>
 <blockquote>
-<p>①、选择合适的CPU </p>
-<p>②、内存的重要性 </p>
-<p>③、硬盘对数据库性能的影响 </p>
-<p>④、合理地设置RAID </p>
-<p>⑤、操作系统的选择也很重要 </p>
-<p>⑥、不同文件系统对数据库的影响 </p>
+<p>①、选择合适的CPU</p>
+<p>②、内存的重要性</p>
+<p>③、硬盘对数据库性能的影响</p>
+<p>④、合理地设置RAID</p>
+<p>⑤、操作系统的选择也很重要</p>
+<p>⑥、不同文件系统对数据库的影响</p>
 <p>⑦、选择合适的基准测试工具</p>
 </blockquote>
 <p><strong>选择合适的CPU</strong></p>
 <blockquote>
 <p>当前数据库的应用类型一般分为两大类：OLTP、OLAP。</p>
-<p>OLAP 多用在数据仓库或数据集市中，一般需要执行复杂的SQL 语旬来进行查询； </p>
+<p>OLAP 多用在数据仓库或数据集市中，一般需要执行复杂的SQL 语旬来进行查询；</p>
 <p>OLTP 多用在日常的事物处理应用中，如银行交易、在线商品交易、Blog 、网络游戏等应用。</p>
 <p>相对于OLAP,数据库的容量较小。</p>
 <p>InnoDB 存储引擎一般都应用于OLTP 的数据库应用：</p>
@@ -2208,7 +2216,7 @@
 <p>服务器机械硬盘开始向小型化转型，目前大部分使用2.5 寸的SAS 机械硬盘。</p>
 <p>机械硬盘有两个重要的指标： 一个是寻道时间，另一个是转速。当前服务器机械硬盘的寻道时间已经能够达到3ms, 转速为15 000RPM (rotate per minute) 。</p>
 <p>传统机械硬盘最大的问题在于读写磁头，读写磁头的设计使硬盘可以不再像磁带一样，只能进行顺序访问，而是可以随机访问。</p>
-<p>但是，机械硬盘的访问需要耗费长时间的磁头旋转和定位来查找，因此顺序访问的速度要远高于随机访问。 </p>
+<p>但是，机械硬盘的访问需要耗费长时间的磁头旋转和定位来查找，因此顺序访问的速度要远高于随机访问。</p>
 <p>传统关系数据库的很多设计也都是在尽量充分地利用顺序访问的特性。</p>
 <p><strong>固态硬盘</strong></p>
 <p>固态硬盘，更准确地说是基于闪存的固态硬盘，是近几年出现的一种新的存储设备，其内部由闪存(Flash Memory) 组成。</p>

@@ -781,8 +781,8 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2023/10/31/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">
-										技术学习
+									<a href="/2024/03/26/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/">
+										工作相关
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -790,8 +790,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2024/03/26/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E8%83%BD%E7%9B%B8%E5%85%B3/">
-										技能相关
+									<a href="/2023/10/31/%E6%88%90%E9%95%BF%E7%9B%B8%E5%85%B3/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">
+										技术学习
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1519,7 +1519,8 @@
       <!--打赏-->
 	<div id="article-content">
 		<p>书籍介绍：<a target="_blank" rel="noopener" href="https://book.douban.com/subject/30115996/">https://book.douban.com/subject/30115996/</a></p>
-<h1 id="初识HBase"><a href="#初识HBase" class="headerlink" title="初识HBase"></a>初识HBase</h1><p><strong>列式存储与行式存储</strong></p>
+<h1>初识HBase</h1>
+<p><strong>列式存储与行式存储</strong></p>
 <blockquote>
 <p>列式存储（Column-Based）是相对于传统关系型数据库的行式存储（Row-Based）来说的。</p>
 <ul>
@@ -1527,7 +1528,7 @@
 <li>行存储法是将各行放入连续的物理位置，这很像传统的记录和文件系统。</li>
 <li>列存储法是将数据按照列存储到数据库中，与行存储类似。</li>
 </ul>
-<p>列式存储的主要优点之一：就是可以大幅降低系统的I&#x2F;O，尤其是在海量数据查询时。</p>
+<p>列式存储的主要优点之一：就是可以大幅降低系统的I/O，尤其是在海量数据查询时。</p>
 </blockquote>
 <p>下图是两种存储方法的图形化解释：</p>
 <p><img src="/images/423.png" alt="列式、行式存储模型"></p>
@@ -1536,7 +1537,7 @@
 <p>HBase 的存储是基于 Hadoop 的，Hadoop 实现了一个分布式文件系统（HDFS）。</p>
 <p>HDFS 有高容错性的特点，被设计用来部署在低廉的硬件上，而且它提供高吞吐量以访问应用程序的数据，适合那些有着超大数据集的应用程序。</p>
 <p><strong>基于 Hadoop 意味着 HBase 与生俱来的超强的扩展性和吞吐量</strong>。</p>
-<p>HBase 采用的是 Key&#x2F;Value 的存储方式，这意味着，即使随着数据量增大，也几乎不会导致查询的性能下降。</p>
+<p>HBase 采用的是 Key/Value 的存储方式，这意味着，即使随着数据量增大，也几乎不会导致查询的性能下降。</p>
 <p>HBase 又是一个列式数据库，当你的表字段很多的时候，你甚至可以把其中几个字段放在集群的一部分机器上，而另外几个字段放到另外一部分机器上，充分分散了负载压力。</p>
 <p>然而，如此复杂的存储结构和分布式的存储方式带来的代价就是：</p>
 <ul>
@@ -1655,7 +1656,8 @@
 <p>不过，版本号是可以省略的，如果你不写版本号，HBase 默认返回最后一个版本的数据。</p>
 </blockquote>
 <p><img src="/images/426.png" alt="HBase 存储结构"></p>
-<h1 id="让HBase跑起来"><a href="#让HBase跑起来" class="headerlink" title="让HBase跑起来"></a>让HBase跑起来</h1><p><strong>基本架构</strong></p>
+<h1>让HBase跑起来</h1>
+<p><strong>基本架构</strong></p>
 <blockquote>
 <p>HBase 中有一个 Master 用来管理元数据，它就像 Hadoop 中的 namenode。</p>
 <p>RegionServer 是用来存储数据的，相当于 Hadoop 中的 datanode。</p>
@@ -1667,7 +1669,7 @@
 <p><img src="/images/427.png" alt="HBase 的基本架构"></p>
 <p><strong>数据块编码</strong></p>
 <blockquote>
-<p>数据块编码主要是<strong>针对 Key&#x2F;Value 中的 Key 进行编码，减少 Key 存储所占用的空间</strong>，因为很多 Key 的前缀都是重复的。</p>
+<p>数据块编码主要是<strong>针对 Key/Value 中的 Key 进行编码，减少 Key 存储所占用的空间</strong>，因为很多 Key 的前缀都是重复的。</p>
 </blockquote>
 <p><img src="/images/428.png" alt="原始编码下的数据存储格式"></p>
 <blockquote>
@@ -1691,7 +1693,8 @@
 <p>压缩器的作用是可以把 HBase 的数据按压缩的格式存储，这样可以更节省磁盘空间。</p>
 <p>当然这完全是可选的，不过推荐大家还是安装 Snappy 压缩器，这是 HBase 官方目前排名比较高的压缩器。</p>
 </blockquote>
-<h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><p><strong>新建表（create）</strong></p>
+<h1>基本操作</h1>
+<p><strong>新建表（create）</strong></p>
 <blockquote>
 <p>新建表需要注意的几点：</p>
 <ul>
@@ -1700,9 +1703,9 @@
 <li>列并不是依附于表上，而是依附于列族上</li>
 </ul>
 </blockquote>
-<pre><code># 新建一个表 &#39;test&#39;，包含了一个列族 &#39;cf&#39;
+<pre><code># 新建一个表 'test'，包含了一个列族 'cf'
 # HBase 新建表时，至少需要一个列族
-create &#39;test&#39;, &#39;cf&#39;
+create 'test', 'cf'
 </code></pre>
 <p><strong>查看数据库表（list）</strong></p>
 <pre><code>hbase(main):010:0&gt; list
@@ -1734,20 +1737,20 @@ hbase(main):021:0&gt;
 <p>因为对列族的所有操作都会同步到 所有拥有这个表的 RegionServer 上，当有很多客户端都在连着的时候，直接新增一个列族对性能的影响较大（还有可能出现意外的问题）。</p>
 </blockquote>
 <pre><code># 修改多个属性
-alter &#39;t1&#39;, &#39;f1&#39;, &#123;NAME =&gt; &#39;f2&#39;, IN_MEMORY =&gt; true&#125;, &#123;NAME =&gt; &#39;f3&#39;, VERSIONS =&gt; 5&#125;
+alter 't1', 'f1', &#123;NAME =&gt; 'f2', IN_MEMORY =&gt; true&#125;, &#123;NAME =&gt; 'f3', VERSIONS =&gt; 5&#125;
 # 新增列族
-alter &#39;t1&#39;, &#39;cf2&#39;
+alter 't1', 'cf2'
 # 删除列族
-alter &#39;t1&#39;, NAME =&gt; &#39;f1&#39;, METHOD =&gt; &#39;delete&#39;
+alter 't1', NAME =&gt; 'f1', METHOD =&gt; 'delete'
 </code></pre>
 <p><strong>插入（put）</strong></p>
 <blockquote>
 <p>HBase 中行的每一个列都存储在不同的位置，插入数据时必须指定要存储在哪个单元格。</p>
 <p>而单元格需要根据表、行、列这几个维度来定位，因此插入数据的时候必须指定把数据插入到哪个表的哪个列族的哪个行的哪个列。</p>
 </blockquote>
-<pre><code>hbase(main):024:0&gt; put &#39;test1&#39;,&#39;row1&#39;,&#39;cf:name&#39;,&#39;jack&#39;
+<pre><code>hbase(main):024:0&gt; put 'test1','row1','cf:name','jack'
 Took 0.0838 seconds                                                             
-hbase(main):025:0&gt; scan &#39;test1&#39;
+hbase(main):025:0&gt; scan 'test1'
 ROW                   COLUMN+CELL                                               
  row1                 column=cf:name, timestamp=1543161899520, value=jack       
 1 row(s)
@@ -1762,7 +1765,8 @@ Took 0.0301 seconds
 <ul>
 <li>时间戳：每一个单元格都可以存储多个版本（version）的值，HBase 的单元格并没有 version 这个属性，它用 timestamp 来存储该条记录的时间戳，这个时间戳就用来当版本号使用。</li>
 <li>这个 timestamp 虽然说是时间的标定，其实你可以输入任意的数字，比如 1、2、3 都可以存储进去。</li>
-<li>列族和列的标识：<ul>
+<li>列族和列的标识：
+<ul>
 <li>HBase 并没有专门的一个列族的栏来显示列族这个属性，它总是把列族和列用 列族:列 的组合方式来一起显示。</li>
 <li>无论是 put存储还是 scan 的查询使用的列定义，都是 列族:列 的格式。</li>
 </ul>
@@ -1773,7 +1777,7 @@ Took 0.0301 seconds
 <blockquote>
 <p>get 只能查询一个单元格的记录，在表的数据很大的时候，get 查询的速度远远高于 scan。</p>
 </blockquote>
-<pre><code>get &#39;test&#39;,&#39;row7&#39;,&#123;COLUMN=&gt;&#39;cf:name&#39;,VERSIONS=&gt;5&#125;
+<pre><code>get 'test','row7',&#123;COLUMN=&gt;'cf:name',VERSIONS=&gt;5&#125;
 
 COLUMN        CELL 
 cf:name       timestamp=3, value=wangwu 
@@ -1788,12 +1792,12 @@ cf:name       timestamp=1, value=zhangsan
 <p>如果 ENDROW 不输入的话，就从 STARTROW 开始一直显示下去直到表的结尾。</p>
 <p>如果 STARTROW 不输入的话，就从表头一直显示到 ENDROW 为止。</p>
 </blockquote>
-<pre><code>scan &#39;test&#39;,&#123;STARTROW=&gt;&#39;row3&#39;&#125;
+<pre><code>scan 'test',&#123;STARTROW=&gt;'row3'&#125;
 ROW         COLUMN+CELL 
 row3        column=cf:name, timestamp=1471112677398, value=alex 
 row4        column=cf:name, timestamp=1471112686290, value=jim
 
-scan &#39;test&#39;,&#123;ENDROW=&gt;&#39;row4&#39;&#125;
+scan 'test',&#123;ENDROW=&gt;'row4'&#125;
 ROW         COLUMN+CELL 
 row2        column=cf:name, timestamp=2222222222222, value=billy 
 row3        column=cf:name, timestamp=1471112677398, value=alex
@@ -1805,25 +1809,27 @@ row3        column=cf:name, timestamp=1471112677398, value=alex
 <p>在记录被真正删除之前还是可以查询到的，只需要在 scan 命令后跟上 <code>RAW=&gt;true</code> 参数和适当的 VERSIONS 参数就可以看到被打上墓碑标记（tombstone marker）的记录，跟上 RAW 就是查询到表的所有未经过过滤的原始记录。</p>
 </blockquote>
 <pre><code># 删除某一单元格数据
-delete &#39;test&#39;,&#39;row4&#39;,&#39;cf:name&#39;
+delete 'test','row4','cf:name'
 
 # 根据版本删除数据（删除这个版本之前的所有版本）
-delete&#39;t1&#39;,&#39;r1&#39;,&#39;c1&#39;,ts
+delete't1','r1','c1',ts
 </code></pre>
 <p><strong>删除整行数据（deleteall）</strong></p>
 <blockquote>
 <p>如果一个行有很多列，用 delete 来删除记录会把人累死，可以 deleteall 命令来删除整行记录。</p>
 </blockquote>
 <pre><code># 只需要明确到 rowkey 即可
-deleteall &#39;test&#39;,&#39;row3&#39;
+deleteall 'test','row3'
 </code></pre>
-<h1 id="内部探险"><a href="#内部探险" class="headerlink" title="内部探险"></a>内部探险</h1><p><strong>数据模型</strong></p>
+<h1>内部探险</h1>
+<p><strong>数据模型</strong></p>
 <blockquote>
 <p><strong>Namespace</strong>（表命名空间）：将多个表分到一个组进行统一管理。</p>
 <p>Table（表）：</p>
 <ul>
 <li>一个表由一个或者多个列族组成。</li>
-<li>数据属性比如：<ul>
+<li>数据属性比如：
+<ul>
 <li>超时时间（TTL），压缩算法（COMPRESSION）等，都在列族的定义中定义。</li>
 </ul>
 </li>
@@ -1837,11 +1843,14 @@ deleteall &#39;test&#39;,&#39;row3&#39;
 </ul>
 <p><strong>Column Family</strong>（列族）：</p>
 <ul>
-<li><p>列族是多个列的集合，HBase 会尽量把同一个列族的列放到同一个服务器上，这样可以提高存取性能，并且可以批量管理有关联的一堆列。</p>
+<li>
+<p>列族是多个列的集合，HBase 会尽量把同一个列族的列放到同一个服务器上，这样可以提高存取性能，并且可以批量管理有关联的一堆列。</p>
 </li>
-<li><p>所有的数据属性都是定义在列族上。</p>
+<li>
+<p>所有的数据属性都是定义在列族上。</p>
 </li>
-<li><p>在 HBase 中，建表定义的不是列，而是列族。</p>
+<li>
+<p>在 HBase 中，建表定义的不是列，而是列族。</p>
 </li>
 </ul>
 <p><strong>Column Qualifier</strong>（列）：</p>
@@ -1853,7 +1862,7 @@ deleteall &#39;test&#39;,&#39;row3&#39;
 <li>一个列中可以存储多个版本的数据，而每个版本就称为一个单元格（Cell），所以在 HBase 中的单元格跟传统关系型数据库的单元格概念不一样。</li>
 <li>HBase 中的数据细粒度比传统数据结构更细一级，同一个位置的数据还细分成多个版本。</li>
 </ul>
-<p><strong>Timestamp</strong>（时间戳&#x2F;版本号）：</p>
+<p><strong>Timestamp</strong>（时间戳/版本号）：</p>
 <ul>
 <li>既可以把它称为是时间戳，也可以称为是版本号，因为它是用来标定同一个列中多个单元格的版本号的。</li>
 <li>不指定版本号的时候，系统会自动采用当前的时间戳来作为版本号。</li>
@@ -1883,25 +1892,30 @@ deleteall &#39;test&#39;,&#39;row3&#39;
 <blockquote>
 <p>一个 HBase 集群由一个 Master（也可以把两个 Master 做成 HighAvailable）和多个 RegionServer 组成：</p>
 <ul>
-<li><strong>Master</strong>：负责启动的时候分配 Region 到具体的 RegionServer，执行各种管理操作，比如 Region 的分割和合并。<ul>
+<li><strong>Master</strong>：负责启动的时候分配 Region 到具体的 RegionServer，执行各种管理操作，比如 Region 的分割和合并。
+<ul>
 <li>HBase 中的 Master 的角色功能比其他类型集群弱很多，HBase 的 Master 很特别，因为数据的读取和写入都跟它没什么关系，它挂了业务系统照样运行。</li>
 <li>当然 Master 也不能宕机太久，有很多必要的操作，比如创建表、修改列族配置，以及更重要的分割和合并都需要它的操作。</li>
 </ul>
 </li>
-<li><strong>RegionServer</strong>：<ul>
+<li><strong>RegionServer</strong>：
+<ul>
 <li>RegionServer 上有一个或者多个 Region，我们读写的数据就存储在 Region 上。</li>
 <li>如果你的 HBase 是基于 HDFS 的（单机 HBase 可基于本地磁盘），那么 Region 所有数据存取操作都是调用了 HDFS 的客户端接口来实现的。</li>
 </ul>
 </li>
-<li><strong>Region</strong>：<ul>
+<li><strong>Region</strong>：
+<ul>
 <li>表的一部分数据，HBase 是一个会自动分片的数据库，一个 Region 就相当于关系型数据库中分区表的一个分区，或者 MongoDB 的一个分片。</li>
 </ul>
 </li>
-<li><strong>HDFS</strong>：<ul>
+<li><strong>HDFS</strong>：
+<ul>
 <li>HBase 并不直接跟服务器的硬盘交互，而是跟 HDFS 交互，所以 HDFS 是真正承载数据的载体。</li>
 </ul>
 </li>
-<li><strong>ZooKeeper</strong>：<ul>
+<li><strong>ZooKeeper</strong>：
+<ul>
 <li>ZooKeeper 在 HBase 中的比 Master 更重要，把 Master 关掉业务系统照样跑，能读能写。</li>
 <li>但是把 ZooKeeper 关掉，就不能读取数据了，因为读取数据所需要的元数据表 <code>hbase:meata</code> 的位置存储在 ZooKeeper 上。</li>
 </ul>
@@ -1913,15 +1927,18 @@ deleteall &#39;test&#39;,&#39;row3&#39;
 <blockquote>
 <p>一个 RegionServer 包含有：</p>
 <ul>
-<li><strong>一个 WAL</strong>：预写日志，WAL 是 Write-Ahead Log 的缩写，就是：<ul>
-<li>预先写入：<ul>
+<li><strong>一个 WAL</strong>：预写日志，WAL 是 Write-Ahead Log 的缩写，就是：
+<ul>
+<li>预先写入：
+<ul>
 <li>当操作到达 Region 的时候，HBase 先把操作写到 WAL 里面去，HBase 会把数据放到基于内存实现的 Memstore 里，等数据达到一定的数量时才刷写（flush）到最终存储的 HFile 内，而如果在这个过程中服务器宕机或者断电了，那么数据就丢失了。</li>
 </ul>
 </li>
 <li>WAL 是一个保险机制，数据在写到 Memstore 之前，先被写到 WAL 了，这样当故障恢复的时候依旧可以从 WAL 中恢复数据。</li>
 </ul>
 </li>
-<li><strong>多个 Region</strong>：<ul>
+<li><strong>多个 Region</strong>：
+<ul>
 <li>Region 相当于一个数据分片，每一个 Region 都有起始 rowkey 和结束 rowkey，代表了它所存储的 row 范围。</li>
 </ul>
 </li>
@@ -1946,11 +1963,13 @@ deleteall &#39;test&#39;,&#39;row3&#39;
 <blockquote>
 <p>在 Store 中有两个重要组成部分：</p>
 <ul>
-<li><strong>MemStore</strong>：每个 Store 中<strong>有一个 MemStore 实例</strong>，数据写入 WAL 之后就会被放入 MemStore。<ul>
+<li><strong>MemStore</strong>：每个 Store 中<strong>有一个 MemStore 实例</strong>，数据写入 WAL 之后就会被放入 MemStore。
+<ul>
 <li>MemStore 是内存的存储对象，只有当 MemStore 满了的时候才会将数据刷写（flush）到 HFile 中。</li>
 </ul>
 </li>
-<li><strong>HFile</strong>：在 Store 中<strong>有多个 HFile</strong>，当 MemStore 满了之后 HBase 就会在 HDFS 上生成一个新的 HFile，然后把 MemStore 中的内容写到这个 HFile 中。<ul>
+<li><strong>HFile</strong>：在 Store 中<strong>有多个 HFile</strong>，当 MemStore 满了之后 HBase 就会在 HDFS 上生成一个新的 HFile，然后把 MemStore 中的内容写到这个 HFile 中。
+<ul>
 <li>HFile 直接跟 HDFS 打交道，它是数据的存储实体。</li>
 </ul>
 </li>
@@ -1990,26 +2009,31 @@ deleteall &#39;test&#39;,&#39;row3&#39;
 <p>HFile 是由一个一个的块组成的，在 HBase 中一个块的大小默认为 64KB，由列族上的 BLOCKSIZE 属性定义。</p>
 <p>这些块区分了不同的角色：</p>
 <ul>
-<li><strong>Data</strong>：数据块。<ul>
+<li><strong>Data</strong>：数据块。
+<ul>
 <li>每个 HFile 有多个 Data 块，我们存储在 HBase 表中的数据就在这里，Data 块其实是<strong>可选的</strong>，但是几乎很难看到不包含 Data 块的 HFile；</li>
 </ul>
 </li>
-<li><strong>Meta</strong>：元数据块。<ul>
+<li><strong>Meta</strong>：元数据块。
+<ul>
 <li>Meta 块是<strong>可选的</strong>，Meta 块只有在文件关闭的时候才会写入。</li>
 <li>Meta 块存储了该 HFile 文件的元数据信息，在 v2 之前布隆过滤器（Bloom Filter）的信息直接放在 Meta 里面存储，v2 之后分离出来单独存储。</li>
 </ul>
 </li>
-<li><strong>FileInfo</strong>：<ul>
+<li><strong>FileInfo</strong>：
+<ul>
 <li>文件信息，其实也是一种数据存储块。</li>
 <li>FileInfo 是 HFile 的必要组成部分，是<strong>必选的</strong>，它只有在文件关闭的时候写入，存储的是这个文件的信息，比如最后一个 Key（LastKey），平均的 Key 长度（AvgKeyLen）等。</li>
 </ul>
 </li>
-<li><strong>DataIndex</strong>：<ul>
+<li><strong>DataIndex</strong>：
+<ul>
 <li>存储 Data 块索引信息的块文件。</li>
 <li>索引的信息其实也就是 Data 块的偏移值（offset），DataIndex 也是<strong>可选的</strong>，有 Data 块才有 DataIndex。</li>
 </ul>
 </li>
-<li><strong>MetaIndex</strong>：<ul>
+<li><strong>MetaIndex</strong>：
+<ul>
 <li>存储 Meta 块索引信息的块文件。</li>
 <li>MetaIndex 块也是<strong>可选的</strong>，有 Meta 块才有 MetaIndex。</li>
 </ul>
@@ -2043,7 +2067,8 @@ deleteall &#39;test&#39;,&#39;row3&#39;
 <ul>
 <li>当你新增一个单元格的时候，HBase 在 HDFS 上新增一条数据</li>
 <li>当你修改一个单元格的时候，HBase 在 HDFS 又新增一条数据，只是版本号比之前那个大（或者你自己定义）</li>
-<li>当你删除一个单元格的时候，HBase 还是新增一条数据<ul>
+<li>当你删除一个单元格的时候，HBase 还是新增一条数据
+<ul>
 <li>只是这条数据没有 value，类型为 DELETE，这条数据叫墓碑标记（Tombstone）</li>
 </ul>
 </li>
@@ -2056,12 +2081,14 @@ deleteall &#39;test&#39;,&#39;row3&#39;
 <blockquote>
 <p>HBase 数据的内部结构大体如下：</p>
 <ul>
-<li>一个 RegionServer 包含多个 Region，划分规则是：<ul>
+<li>一个 RegionServer 包含多个 Region，划分规则是：
+<ul>
 <li>一个表的一段键值在一个 RegionServer 上会产生一个 Region。</li>
 <li>不过当某一行的数据量太大了（要非常大），HBase 也会把这个 Region 根据列族切分到不同的机器上去。</li>
 </ul>
 </li>
-<li>一个 Region 包含多个 Store，划分规则是：<ul>
+<li>一个 Region 包含多个 Store，划分规则是：
+<ul>
 <li>一个列族分为一个 Store，如果一个表只有一个列族，那么这个表在这个机器上的每一个 Region 里面都只有一个 Store。</li>
 </ul>
 </li>
