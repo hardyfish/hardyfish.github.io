@@ -1528,7 +1528,7 @@
 </ul>
 </blockquote>
 <p><strong>容器创建</strong></p>
-<pre><code class="language-java">Cache&lt;Integer, String&gt; cache = Caffeine.newBuilder().build();
+<pre><code class="java">Cache&lt;Integer, String&gt; cache = Caffeine.newBuilder().build();
 </code></pre>
 <table>
 <thead>
@@ -1537,8 +1537,7 @@
 <th>含义说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>build()</td>
 <td>构建一个手动回源的Cache对象</td>
 </tr>
@@ -1558,12 +1557,11 @@
 <td>buildAsync(AsyncCacheLoader)</td>
 <td>与buildAsync(CacheLoader)相似，区别点仅在于传入的参数类型不一样。</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <blockquote>
 <p>为了便于<strong>异步场景</strong>中处理，可以通过<code>buildAsync()</code>构建一个手动回源数据加载的缓存对象：</p>
 </blockquote>
-<pre><code class="language-java">public static void main(String[] args) &#123;
+<pre><code class="java">public static void main(String[] args) &#123;
     AsyncCache&lt;String, User&gt; asyncCache = Caffeine.newBuilder()
     .buildAsync();
     User user = asyncCache.get(&quot;123&quot;, s -&gt; &#123;
@@ -1575,7 +1573,7 @@
 <blockquote>
 <p>为了支持异步场景中的自动异步回源，可以通过<code>buildAsync(CacheLoader)</code>或者<code>buildAsync(AsyncCacheLoader)</code>来实现：</p>
 </blockquote>
-<pre><code class="language-java">public static void main(String[] args) throws Exception&#123;
+<pre><code class="java">public static void main(String[] args) throws Exception&#123;
     AsyncLoadingCache&lt;String, User&gt; asyncLoadingCache =
             Caffeine.newBuilder().maximumSize(1000L).buildAsync(key -&gt; userDao.getUser(key));
     User user = asyncLoadingCache.get(&quot;123&quot;).join();
@@ -1591,8 +1589,7 @@
 <th>含义说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>initialCapacity</td>
 <td>待创建的缓存容器的初始容量大小（记录<strong>条数</strong>）</td>
 </tr>
@@ -1628,9 +1625,8 @@
 <td>recordStats</td>
 <td>设定开启此容器的数据加载与缓存命中情况统计</td>
 </tr>
-</tbody>
-</table>
-<pre><code class="language-java">public static void main(String[] args) &#123;
+</tbody></table>
+<pre><code class="java">public static void main(String[] args) &#123;
     AsyncLoadingCache&lt;String, User&gt; asyncLoadingCache = CaffeinenewBuilder()
             .initialCapacity(1000) // 指定初始容量
             .maximumSize(10000L) // 指定最大容量
@@ -1650,8 +1646,7 @@
 <th>含义说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>get</td>
 <td>根据key获取指定的缓存值，如果没有则执行<strong>回源</strong>操作获取</td>
 </tr>
@@ -1679,12 +1674,11 @@
 <td>asMap</td>
 <td>将缓存中的数据转换为map格式返回</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <blockquote>
 <p><strong>同步</strong>缓存:</p>
 </blockquote>
-<pre><code class="language-java">public static void main(String[] args) throws Exception &#123;
+<pre><code class="java">public static void main(String[] args) throws Exception &#123;
     LoadingCache&lt;String, String&gt; loadingCache = buildLoadingCache();
     loadingCache.put(&quot;key1&quot;, &quot;value1&quot;);
     String value = loadingCache.get(&quot;key1&quot;);
@@ -1694,7 +1688,7 @@
 <blockquote>
 <p><strong>异步</strong>缓存：</p>
 </blockquote>
-<pre><code class="language-java">public static void main(String[] args) throws Exception &#123;
+<pre><code class="java">public static void main(String[] args) throws Exception &#123;
     AsyncLoadingCache&lt;String, String&gt; asyncLoadingCache = buildAsyncLoadingCache();
     // 写入缓存记录（value值为异步获取）
     asyncLoadingCache.put(&quot;key1&quot;, CompletableFuture.supplyAsync(() -&gt; &quot;value1&quot;));
@@ -1712,7 +1706,7 @@
 <p><code>CompletableFuture</code>并行流水线能力，是<code>JAVA8</code>在<strong>异步编程</strong>领域的一个重大改进。</p>
 <p>可以将一系列耗时且无依赖的操作改为并行同步处理，并等待各自处理结果完成后继续进行后续环节的处理，由此来降低阻塞等待时间，进而达到降低请求链路时长的效果。</p>
 </blockquote>
-<pre><code class="language-java">public static void main(String[] args) throws Exception &#123;
+<pre><code class="java">public static void main(String[] args) throws Exception &#123;
     AsyncLoadingCache&lt;String, String&gt; asyncLoadingCache = buildAsyncLoadingCache();
     // 写入缓存记录（value值为异步获取）
     asyncLoadingCache.put(&quot;key1&quot;, CompletableFuture.supplyAsync(() -&gt; &quot;value1&quot;));
@@ -1730,8 +1724,7 @@
 <th>弊端说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>FIFO</td>
 <td><code>先进先出</code>策略，属于一种最为简单与原始的策略。如果缓存使用频率较高，会导致缓存数据<strong>始终在不停的进进出出</strong>，影响性能，且命中率表现也一般。</td>
 </tr>
@@ -1743,8 +1736,7 @@
 <td>LFU</td>
 <td><code>最近少频率</code>策略，这种根据访问次数进行淘汰，相比而言内存中存储的热点数据命中率会更高些，缺点就是<strong>需要维护独立字段</strong>用来记录每个元素的访问次数，占用内存空间。</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <blockquote>
 <p>为了保证命中率，一般缓存框架都会选择使用LRU或者LFU策略，很少会有使用FIFO策略进行数据淘汰的。</p>
 <p>Caffeine缓存的LFU采用了<code>Count-Min Sketch</code>频率统计算法，由于该LFU的计数器只有<code>4bit</code>大小，所以称为<strong>TinyLFU</strong>。</p>
@@ -1770,8 +1762,7 @@
 <th>具体说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>expireAfterWrite</td>
 <td>基于创建时间进行过期处理</td>
 </tr>
@@ -1783,13 +1774,12 @@
 <td>expireAfter</td>
 <td>基于<strong>个性化定制</strong>的逻辑来实现过期处理（可以定制基于<code>新增</code>、<code>读取</code>、<code>更新</code>等场景的过期策略，甚至支持为不同记录指定不同过期时间）</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <blockquote>
 <p>expireAfterWrite:<code>expireAfterWrite</code>用于指定数据创建之后多久会过期。</p>
 <p>当记录被写入缓存之后达到指定的时间之后，就会被过期淘汰（<strong>惰性删除</strong>，并不会立即从内存中移除，而是在下一次操作的时候触发清理操作）。</p>
 </blockquote>
-<pre><code class="language-java">Cache&lt;String, User&gt; userCache = 
+<pre><code class="java">Cache&lt;String, User&gt; userCache = 
     Caffeine.newBuilder()
         .expireAfterWrite(1, TimeUnit.SECONDS)
         .build();
@@ -1803,7 +1793,7 @@ userCache.put(&quot;123&quot;, new User(&quot;123&quot;, &quot;张三&quot;))；
 </ul>
 <p>同样地，数据过期时也不会被立即从内存中移除，而是基于<strong>惰性删除</strong>机制进行处理。</p>
 </blockquote>
-<pre><code class="language-java">Cache&lt;String, User&gt; userCache = 
+<pre><code class="java">Cache&lt;String, User&gt; userCache = 
     Caffeine.newBuilder()
         .expireAfterAccess(1, TimeUnit.SECONDS)
         .build();
@@ -1820,8 +1810,7 @@ userCache.put(&quot;123&quot;, new User(&quot;123&quot;, &quot;张三&quot;))；
 <th>含义说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>expireAfterCreate</td>
 <td>指定一个过期时间，从记录创建的时候开始计时，超过指定的时间之后就过期淘汰，效果类似<code>expireAfterWrite</code>，但是支持<strong>更灵活</strong>的定制逻辑。</td>
 </tr>
@@ -1833,12 +1822,11 @@ userCache.put(&quot;123&quot;, new User(&quot;123&quot;, &quot;张三&quot;))；
 <td>expireAfterRead</td>
 <td>指定一个过期时间，从记录最后一次被访问的时候开始计时，超过指定时间之后就过期。效果类似<code>expireAfterAccess</code>，但是支持<strong>更高级</strong>的定制逻辑。</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <blockquote>
 <p>比如下面的代码中，定制了<code>expireAfterCreate</code>方法的逻辑，根据缓存key来决定过期时间，如果key以字母A开头则设定1s过期，否则设定2s过期：</p>
 </blockquote>
-<pre><code class="language-java">public static void main(String[] args) &#123;
+<pre><code class="java">public static void main(String[] args) &#123;
     try &#123;
         LoadingCache&lt;String, User&gt; userCache = Caffeine.newBuilder()
                 .removalListener((key, value, cause) -&gt; &#123;
@@ -1888,7 +1876,7 @@ userCache.put(&quot;123&quot;, new User(&quot;123&quot;, &quot;张三&quot;))；
 <blockquote>
 <p>maximumSize：在创建Caffeine缓存对象的时候，可以通过<code>maximumSize</code>来指定允许缓存的最大条数。</p>
 </blockquote>
-<pre><code class="language-java">Cache&lt;Integer, String&gt; cache = Caffeine.newBuilder()
+<pre><code class="java">Cache&lt;Integer, String&gt; cache = Caffeine.newBuilder()
         .maximumSize(1000L) // 限制最大缓存条数
         .build();
 </code></pre>
@@ -1896,7 +1884,7 @@ userCache.put(&quot;123&quot;, new User(&quot;123&quot;, &quot;张三&quot;))；
 <p>maximumWeight：在创建Caffeine缓存对象的时候，可以通过<code>maximumWeight</code>与<code>weighter</code>组合的方式，指定按照权重进行限制缓存总容量。</p>
 <p>比如一个字符串value值的缓存场景下，可以根据字符串的长度来计算权重值，最后根据总权重大小来限制容量。</p>
 </blockquote>
-<pre><code class="language-java">Cache&lt;Integer, String&gt; cache = Caffeine.newBuilder()
+<pre><code class="java">Cache&lt;Integer, String&gt; cache = Caffeine.newBuilder()
         .maximumWeight(1000L) // 限制最大权重值
         .weigher((key, value) -&gt; (String.valueOf(value).length() / 1000) + 1)
         .build();
@@ -1918,8 +1906,7 @@ userCache.put(&quot;123&quot;, new User(&quot;123&quot;, &quot;张三&quot;))；
 <th>具体说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>weakKeys</td>
 <td>采用<code>弱引用</code>方式存储key值内容，当key对象不再被引用的时候，由<strong>GC</strong>进行回收</td>
 </tr>
@@ -1931,13 +1918,12 @@ userCache.put(&quot;123&quot;, new User(&quot;123&quot;, &quot;张三&quot;))；
 <td>softValues</td>
 <td>采用<code>软引用</code>方式存储value值内容，当内存容量满时基于<strong>LRU</strong>策略进行回收</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <blockquote>
 <p>weakKeys：默认情况下，创建出一个Caffeine缓存对象并写入<code>key-value</code>映射数据时，key和value都是以<strong>强引用</strong>的方式存储的。</p>
 <p>而使用<code>weakKeys</code>可以指定将缓存中的key值以<strong>弱引用</strong>（WeakReference）的方式进行存储，这样一来，如果程序运行时没有其它地方使用或者依赖此缓存值的时候，该条记录就可能会被<code>GC回收</code>掉。</p>
 </blockquote>
-<pre><code class="language-java"> LoadingCache&lt;String,  User&gt; loadingCache = Caffeine.newBuilder()
+<pre><code class="java"> LoadingCache&lt;String,  User&gt; loadingCache = Caffeine.newBuilder()
                 .weakKeys()
                 .build(key -&gt; userDao.getUser(key));
 </code></pre>
@@ -1945,7 +1931,7 @@ userCache.put(&quot;123&quot;, new User(&quot;123&quot;, &quot;张三&quot;))；
 <p>weakValues:与weakKeys类似，可以在创建缓存对象的时候使用<code>weakValues</code>指定将value值以<strong>弱引用</strong>的方式存储到缓存中。</p>
 <p>这样当这条缓存记录的对象不再被引用依赖的时候，就会被JVM在适当的时候回收释放掉。</p>
 </blockquote>
-<pre><code class="language-java"> LoadingCache&lt;String,  User&gt; loadingCache = Caffeine.newBuilder()
+<pre><code class="java"> LoadingCache&lt;String,  User&gt; loadingCache = Caffeine.newBuilder()
                 .weakValues()
                 .build(key -&gt; userDao.getUser(key));
 </code></pre>
@@ -1959,8 +1945,7 @@ userCache.put(&quot;123&quot;, new User(&quot;123&quot;, &quot;张三&quot;))；
 <th>具体描述</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>weakValues</td>
 <td><strong>弱引用</strong>方式存储，一旦不再被引用，则会被GC回收</td>
 </tr>
@@ -1968,12 +1953,11 @@ userCache.put(&quot;123&quot;, new User(&quot;123&quot;, &quot;张三&quot;))；
 <td>softValues</td>
 <td><strong>软引用</strong>方式存储，不会被GC回收，但是在内存容量满的时候，会基于<strong>LRU策略</strong>数据回收</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <blockquote>
 <p>具体使用的时候，可以在创建缓存对象的时候进行指定基于软引用方式数据淘汰。</p>
 </blockquote>
-<pre><code class="language-java"> LoadingCache&lt;String,  User&gt; loadingCache = Caffeine.newBuilder()
+<pre><code class="java"> LoadingCache&lt;String,  User&gt; loadingCache = Caffeine.newBuilder()
                 .softValues()
                 .build(key -&gt; userDao.getUser(key));
 </code></pre>
@@ -1987,7 +1971,7 @@ userCache.put(&quot;123&quot;, new User(&quot;123&quot;, &quot;张三&quot;))；
 <p><strong><code>Callable</code>方式的回源填充：</strong></p>
 <p>会带来一个<strong>问题</strong>，就是如果需要获取缓存的地方太多，会导致每个调用的地方都得指定下对应Callable回源方法，调用起来比较<strong>麻烦</strong>，且对于需要保证回源逻辑统一的场景管控能力不够强势，无法约束所有的调用方使用相同的回源逻辑。</p>
 </blockquote>
-<pre><code class="language-java">public static void main(String[] args) &#123;
+<pre><code class="java">public static void main(String[] args) &#123;
     Cache&lt;String, User&gt; cache = Caffeine.newBuilder().build();
     User user = cache.get(&quot;123&quot;, s -&gt; userDao.getUser(s));
     System.out.println(user);
@@ -2000,7 +1984,7 @@ userCache.put(&quot;123&quot;, new User(&quot;123&quot;, &quot;张三&quot;))；
 <blockquote>
 <p>比如下面的代码中，便在创建缓存对象时指定了当缓存未命中时通过<code>userDao.getUser()</code>方法去DB中执行数据查询操作：</p>
 </blockquote>
-<pre><code class="language-java">public LoadingCache&lt;String, User&gt; createUserCache() &#123;
+<pre><code class="java">public LoadingCache&lt;String, User&gt; createUserCache() &#123;
     return Caffeine.newBuilder()
             .maximumSize(10000L)
             .build(key -&gt; userDao.getUser(key));
@@ -2018,8 +2002,7 @@ userCache.put(&quot;123&quot;, new User(&quot;123&quot;, &quot;张三&quot;))；
 <th>功能说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>getIfPresent</td>
 <td>从内存中查询，如果存在则返回对应值，不存在则返回null</td>
 </tr>
@@ -2027,9 +2010,8 @@ userCache.put(&quot;123&quot;, new User(&quot;123&quot;, &quot;张三&quot;))；
 <td>getAllPresent</td>
 <td>批量从内存中查询，如果存在则返回存在的键值对，不存在的key则不出现在结果集里</td>
 </tr>
-</tbody>
-</table>
-<pre><code class="language-java">public static void main(String[] args) &#123;
+</tbody></table>
+<pre><code class="java">public static void main(String[] args) &#123;
     LoadingCache&lt;String, User&gt; cache = Caffeine.newBuilder().build(userId -&gt; userDao.getUser(userId));
     cache.put(&quot;124&quot;, new User(&quot;124&quot;, &quot;张三&quot;));
     User userInfo = cache.getIfPresent(&quot;123&quot;);
@@ -2043,7 +2025,7 @@ userCache.put(&quot;123&quot;, new User(&quot;123&quot;, &quot;张三&quot;))；
 <blockquote>
 <p>要想支持异步场景下使用缓存，则创建的时候必须要创建一个异步缓存类型，可以通过<code>buildAsync()</code>方法来构建一个<strong>AsyncCache</strong>类型缓存对象，进而可以在异步场景下进行使用。</p>
 </blockquote>
-<pre><code class="language-java">public static void main(String[] args) &#123;
+<pre><code class="java">public static void main(String[] args) &#123;
     AsyncCache&lt;String, User&gt; asyncCache = Caffeine.newBuilder().buildAsyn();
     CompletableFuture&lt;User&gt; userCompletableFuture = asyncCache.get(&quot;123&quot;, s -&gt; userDao.getUser(s));
     System.out.println(userCompletableFuture.join());
@@ -2056,7 +2038,7 @@ userCache.put(&quot;123&quot;, new User(&quot;123&quot;, &quot;张三&quot;))；
 <blockquote>
 <p>异步处理的时候，Caffeine也支持直接在创建的时候指定CacheLoader对象，然后生成支持异步回源操作的<code>AsyncLoadingCache</code>缓存对象，然后在使用<code>get</code>方法获取结果的时候，也是返回的<code>CompletableFuture</code>异步封装类型，满足在异步编程场景下的使用。</p>
 </blockquote>
-<pre><code class="language-java">public static void main(String[] args) &#123;
+<pre><code class="java">public static void main(String[] args) &#123;
     try &#123;
         AsyncLoadingCache&lt;String, User&gt; asyncLoadingCache =
                 Caffeine.newBuilder().maximumSize(1000L).buildAsync(key -&gt; userDao.getUser(key));
@@ -2071,7 +2053,7 @@ userCache.put(&quot;123&quot;, new User(&quot;123&quot;, &quot;张三&quot;))；
 <blockquote>
 <p>在创建的时候给定一个用于回源处理的CacheLoader之外，Caffeine还有一个<code>buildAsync</code>的重载版本，允许传入一个同样是支持异步并行处理的<code>AsyncCacheLoader</code>对象。</p>
 </blockquote>
-<pre><code class="language-java">public static void main(String[] args) &#123;
+<pre><code class="java">public static void main(String[] args) &#123;
     try &#123;
         AsyncLoadingCache&lt;String, User&gt; asyncLoadingCache =
                 Caffeine.newBuilder().maximumSize(1000L).buildAsync(

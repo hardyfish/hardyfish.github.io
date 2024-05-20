@@ -1518,8 +1518,7 @@
       </div>
       <!--打赏-->
 	<div id="article-content">
-		<h1>缓存机制</h1>
-<p><strong>基本概念</strong></p>
+		<h1 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h1><p><strong>基本概念</strong></p>
 <blockquote>
 <p>SqlSession：代表和数据库的一次会话，向用户提供了操作数据库的方法。</p>
 <p>MappedStatement：代表要发往数据库执行的指令，可以理解为是 SQL 的抽象表示。</p>
@@ -1534,7 +1533,7 @@
 </blockquote>
 <p>一级缓存配置:</p>
 <p>在 <code>mybatis-config.xml</code> 文件配置，<code>name=localCacheScope</code>，value有两种值：<code>SESSION</code> 和 <code>STATEMENT</code></p>
-<pre><code class="language-xml">&lt;configuration&gt;
+<pre><code class="xml">&lt;configuration&gt;
     &lt;settings&gt;
         &lt;setting name=&quot;localCacheScope&quot; value=&quot;SESSION&quot;/&gt;
     &lt;/settings&gt;
@@ -1557,7 +1556,7 @@
 <p>同一个 <code>namespace</code>下的所有操作语句，都影响着同一个Cache。</p>
 </blockquote>
 <p>每个 Mapper 文件只能配置一个 namespace，用来做 Mapper 文件级别的缓存共享。</p>
-<pre><code class="language-xml">&lt;mapper namespace=&quot;mapper.StudentMapper&quot;&gt;&lt;/mapper&gt;
+<pre><code class="xml">&lt;mapper namespace=&quot;mapper.StudentMapper&quot;&gt;&lt;/mapper&gt;
 </code></pre>
 <p>二级缓存被同一个 <code>namespace</code> 下的多个 <code>SqlSession</code> 共享，是一个全局的变量。</p>
 <blockquote>
@@ -1565,7 +1564,7 @@
 <p>由于MyBatis的二级缓存是基于<code>namespace</code>的，多表查询语句所在的<code>namspace</code>无法感应到其他<code>namespace</code>中的语句对多表查询中涉及的表进行的修改，引发脏数据问题。</p>
 </blockquote>
 <p>开启二级缓存需要在 <code>mybatis-config.xml</code> 中配置：</p>
-<pre><code class="language-ini">&lt;settingname=&quot;cacheEnabled&quot;value=&quot;true&quot;/&gt;
+<pre><code class="ini">&lt;settingname=&quot;cacheEnabled&quot;value=&quot;true&quot;/&gt;
 </code></pre>
 <p><strong>缓存查询的顺序</strong></p>
 <blockquote>

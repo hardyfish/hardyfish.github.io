@@ -1521,7 +1521,7 @@
 		<p><strong>消息队列应用场景：</strong></p>
 <blockquote>
 <p>通过异步处理提高系统性能（减少响应所需时间）</p>
-<p>削峰/限流</p>
+<p>削峰&#x2F;限流</p>
 <p>降低系统耦合性</p>
 </blockquote>
 <p><strong>消息队列对比</strong></p>
@@ -1533,13 +1533,11 @@
 </ul>
 <p>RocketMQ：</p>
 <ul>
-<li>天生为金融互联网领域而生，对于可靠性要求很高的场景。
-<ul>
+<li>天生为金融互联网领域而生，对于可靠性要求很高的场景。<ul>
 <li>尤其是电商里面的订单扣款，以及业务削峰，在大量交易涌入时，后端可能无法及时处理的情况。</li>
 </ul>
 </li>
-<li>RoketMQ 在稳定性上可能更值得信赖。
-<ul>
+<li>RoketMQ 在稳定性上可能更值得信赖。<ul>
 <li>这些业务场景在阿里双 11 已经经历了多次考验，如果业务有上述并发场景，建议选择 RocketMQ。</li>
 </ul>
 </li>
@@ -1551,8 +1549,7 @@
 <li>如果数据量没有那么大，小公司优先选择功能比较完备的 RabbitMQ。</li>
 </ul>
 </blockquote>
-<h1>基础知识</h1>
-<p><strong>版本号</strong></p>
+<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><p><strong>版本号</strong></p>
 <p>版本命名：<code>Scala 2.11 - kafka_2.11-2.1.1</code></p>
 <blockquote>
 <p>前面的版本号是编译 Kafka 源代码的 Scala 编译器版本。Kafka 服务器端的代码完全由 Scala 语言编写，Scala 同时支持面向对象编程和函数式编程。</p>
@@ -1566,7 +1563,7 @@
 </blockquote>
 <p>Page Cache:</p>
 <blockquote>
-<p>通过操作系统的Page Cache，Kafka的读写操作基本上是基于内存的，读写速度得到了极大的提升。</p>
+<p>通过操作系统的Page Cache，Kafka的读写操作基本上是基于内存的，读写速度得到了极大的提升。 </p>
 </blockquote>
 <p>零拷贝，批量读写，批量压缩。</p>
 <p>分区分段+索引:</p>
@@ -1575,37 +1572,36 @@
 <p>每个partition对应了操作系统上的一个文件夹，partition实际上又是按照segment分段存储的。</p>
 <p>Kafka又默认为分段后的数据文件建立了索引文件，就是文件系统上的<code>.index</code>文件。</p>
 </blockquote>
-<h1>基本概念</h1>
-<blockquote>
-<p>主题:</p>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><blockquote>
+<p>主题: </p>
 <ul>
 <li>Topic主题是承载消息的逻辑容器，在实际使用中多用来区分具体的业务。</li>
 </ul>
-<p>分区:</p>
+<p>分区: </p>
 <ul>
 <li>Partition，一个有序不变的消息序列，每个主题下可以有多个分区。</li>
 </ul>
-<p>消息位移:</p>
+<p>消息位移: </p>
 <ul>
 <li>Offset，表示分区中每条消息的位置信息，是一个单调递增切不变的值。</li>
 </ul>
-<p>副本:</p>
+<p>副本: </p>
 <ul>
 <li>Replica，进行数据冗余。</li>
 </ul>
-<p>生产者:</p>
+<p>生产者: </p>
 <ul>
 <li>Producer，向主题发送新消息的应用程序。</li>
 </ul>
-<p>消费者:</p>
+<p>消费者: </p>
 <ul>
 <li>Consumer，从主题订阅新消息的应用程序。</li>
 </ul>
-<p>消费者位移:</p>
+<p>消费者位移: </p>
 <ul>
 <li>Consumer Offset，表征消费者消费进度。</li>
 </ul>
-<p>消费者组:</p>
+<p>消费者组: </p>
 <ul>
 <li>Consumer Group，多个消费者实例共同组成的一个组，同时消费多个分区以实现高吞吐量。</li>
 </ul>
@@ -1624,8 +1620,7 @@
 </blockquote>
 <p><strong>消息模型</strong></p>
 <p><img src="/images/449.png" alt="image-20240206152501454"></p>
-<h1>消费者</h1>
-<p><strong>消费者策略</strong></p>
+<h1 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h1><p><strong>消费者策略</strong></p>
 <p><code>RangeAssignor</code>：默认消费者策略。</p>
 <p>对一个消费者组来说，消费方式是以分区总数除以消费者总数来决定，如果不能整除，往往是从头开始将剩余的分区分配。</p>
 <p><img src="/images/111.png" alt="image-20231007115721622"></p>
@@ -1640,19 +1635,17 @@
 <blockquote>
 <p>Kafka消费端是通过主动拉取消息的方式来消费的。</p>
 </blockquote>
-<h2 id="消费者组">消费者组</h2>
-<p>Consumer Group是指组内有多个消费者或消费者实例，它们共享一个公共的 ID，这个 ID 被称为 Group ID。组内的所有消费者协调在一起来消费订阅主题的所有分区。</p>
+<h2 id="消费者组"><a href="#消费者组" class="headerlink" title="消费者组"></a>消费者组</h2><p>Consumer Group是指组内有多个消费者或消费者实例，它们共享一个公共的 ID，这个 ID 被称为 Group ID。组内的所有消费者协调在一起来消费订阅主题的所有分区。</p>
 <blockquote>
 <p>Consumer Group 下可以有一个或多个 Consumer 实例。</p>
 <p>Group ID 是一个字符串，在一个 Kafka 集群中，它标识唯一的一个 Consumer Group。</p>
 <p>Consumer Group 下所有实例订阅的主题的单个分区，只能分配给组内的某个 Consumer 实例消费，这个分区也可以被其他的 Group 消费。</p>
 </blockquote>
-<p><strong>点对点模型和发布/订阅模型</strong></p>
-<p>如果所有实例都属于同一个 Group，那么它实现的就是消息队列模型；如果所有实例分别属于不同的 Group，那么它实现的就是发布/订阅模型。</p>
+<p><strong>点对点模型和发布&#x2F;订阅模型</strong></p>
+<p>如果所有实例都属于同一个 Group，那么它实现的就是消息队列模型；如果所有实例分别属于不同的 Group，那么它实现的就是发布&#x2F;订阅模型。</p>
 <p><strong>Consumer实例个数</strong></p>
 <p>理想情况下，Consumer 实例的数量应该等于该 Group 订阅主题的分区总数。</p>
-<h2 id="位移主题">位移主题</h2>
-<p>Consumer 的位移管理机制就是将 Consumer 的位移数据作为一条条普通的 Kafka 消息，提交到 <code>__consumer_offsets</code> 中。</p>
+<h2 id="位移主题"><a href="#位移主题" class="headerlink" title="位移主题"></a>位移主题</h2><p>Consumer 的位移管理机制就是将 Consumer 的位移数据作为一条条普通的 Kafka 消息，提交到 <code>__consumer_offsets</code> 中。</p>
 <p><code>__consumer_offsets</code> 的主要作用是保存 Kafka 消费者的位移信息。它要求这个提交过程不仅要实现高持久性，还要支持高频的写操作。</p>
 <p><strong>位移主题怎么被创建的？</strong></p>
 <p>当 Kafka 集群中的第一个 Consumer 程序启动时，Kafka 会自动创建位移主题。</p>
@@ -1665,13 +1658,12 @@
 <p>Consumer 端有个参数叫 <code>enable.auto.commit</code>，如果值是 true，则 Consumer 在后台默默地定期提交位移，提交间隔由一个参数 <code>auto.commit.interval.ms</code> 来控制。</p>
 <p><strong>问题：只要 Consumer 一直启动着，它就会无限期地向位移主题写入消息。</strong></p>
 <p>假设 Consumer 当前消费到了某个主题的最新一条消息，位移是 100，之后该主题没有任何新消息产生，故 Consumer 无消息可消费了，所以位移永远保持在 100。</p>
-<p>由于是自动提交位移，位移主题中会不停地写入位移 =100 的消息。</p>
+<p>由于是自动提交位移，位移主题中会不停地写入位移 &#x3D;100 的消息。</p>
 <blockquote>
 <p>Kafka 使用 <strong>Compact 策略</strong>来删除位移主题中的过期消息，避免该主题无限期膨胀。</p>
 <p>Kafka 提供了专门的后台线程定期巡检待 Compact 的主题，看看是否存在满足条件的可删除数据。后台线程叫 <strong>Log Cleaner</strong>。</p>
 </blockquote>
-<h1>重平衡</h1>
-<p>Rebalance 本质上是一种协议，规定了一个 Consumer Group 下的所有 Consumer 如何达成一致，来分配订阅 Topic 的每个分区。</p>
+<h1 id="重平衡"><a href="#重平衡" class="headerlink" title="重平衡"></a>重平衡</h1><p>Rebalance 本质上是一种协议，规定了一个 Consumer Group 下的所有 Consumer 如何达成一致，来分配订阅 Topic 的每个分区。</p>
 <blockquote>
 <p>比如某个 Group 下有 20 个 Consumer 实例，它订阅了一个具有 100 个分区的 Topic。正常情况下，Kafka 平均会为每个 Consumer 分配 5 个分区。这个分配的过程就叫 Rebalance。</p>
 </blockquote>
@@ -1691,8 +1683,7 @@ heartbeat.interval.ms
 session.timeout.ms
 </code></pre>
 <p>2、Consumer消费时间过长导致的，默认10分钟。</p>
-<h1>分区机制</h1>
-<p><strong>分区策略</strong></p>
+<h1 id="分区机制"><a href="#分区机制" class="headerlink" title="分区机制"></a>分区机制</h1><p><strong>分区策略</strong></p>
 <p>分区策略是决定生产者将消息发送到哪个分区的算法。</p>
 <p><strong>轮询策略（默认）</strong></p>
 <p>顺序分配。比如一个主题下有 3 个分区，那么第一条消息被发送到分区 0，第二条被发送到分区 1，第三条被发送到分区 2，以此类推。当生产第 4 条消息时又会重新开始，即将其分配到分区 0。</p>
@@ -1700,10 +1691,9 @@ session.timeout.ms
 <p>随意地将消息放置到任意一个分区上。</p>
 <p><strong>消息键策略</strong></p>
 <p>每条消息定义消息Key，同一个 Key 的所有消息都进入到相同的分区里面。</p>
-<h1>压缩机制</h1>
-<p>在 Kafka 中，压缩发生在两个地方：<strong>生产者端</strong>和 <strong>Broker 端</strong>。</p>
+<h1 id="压缩机制"><a href="#压缩机制" class="headerlink" title="压缩机制"></a>压缩机制</h1><p>在 Kafka 中，压缩发生在两个地方：<strong>生产者端</strong>和 <strong>Broker 端</strong>。</p>
 <p>生产者程序中配置 <code>compression.type</code> 参数即表示启用指定类型的压缩算法。</p>
-<pre><code class="language-java"> Properties props = new Properties();
+<pre><code class="java"> Properties props = new Properties();
  props.put(&quot;bootstrap.servers&quot;, &quot;localhost:9092&quot;);
  props.put(&quot;acks&quot;, &quot;all&quot;);
  props.put(&quot;key.serializer&quot;, &quot;org.apache.kafka.common.serialization.StringSerializer&quot;);
@@ -1717,20 +1707,18 @@ session.timeout.ms
 <blockquote>
 <p>当消息到达 Consumer 端后，由 Consumer 自行解压缩还原成之前的消息。</p>
 </blockquote>
-<h1>拦截器</h1>
-<p>Kafka 拦截器分为生产者拦截器和消费者拦截器。</p>
+<h1 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h1><p>Kafka 拦截器分为生产者拦截器和消费者拦截器。</p>
 <p>生产者拦截器允许在发送消息前以及消息提交成功后植入拦截器逻辑；而消费者拦截器支持在消费消息前以及提交位移后编写特定逻辑。</p>
 <p>当前 Kafka 拦截器的设置方法是通过参数配置完成的。生产者和消费者两端有一个相同的参数，名字叫 <code>interceptor.classes</code>，它指定的是一组类的列表，每个类就是特定逻辑的拦截器实现类。</p>
 <p>假设第一个拦截器的完整类路径是 <code>com.yourcompany.kafkaproject.interceptors.AddTimeStampInterceptor</code>，第二个类是<code>com.yourcompany.kafkaproject.interceptors.UpdateCounterInterceptor</code>：</p>
-<pre><code class="language-java">Properties props = new Properties();
+<pre><code class="java">Properties props = new Properties();
 List&lt;String&gt; interceptors = new ArrayList&lt;&gt;();
 interceptors.add(&quot;com.yourcompany.kafkaproject.interceptors.AddTimestampInterceptor&quot;);  
 interceptors.add(&quot;com.yourcompany.kafkaproject.interceptors.UpdateCounterInterceptor&quot;);
 props.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, interceptors);
 ......
 </code></pre>
-<h1>副本机制</h1>
-<p>同一个分区下有多个副本，分散保存在不同的Broker 上，能够对抗部分 Broker 宕机带来的数据不可用。</p>
+<h1 id="副本机制"><a href="#副本机制" class="headerlink" title="副本机制"></a>副本机制</h1><p>同一个分区下有多个副本，分散保存在不同的Broker 上，能够对抗部分 Broker 宕机带来的数据不可用。</p>
 <p><img src="/images/113.png" alt="image-20231010105554410"></p>
 <p><strong>副本角色</strong></p>
 <p><img src="/images/114.png" alt="image-20231010105648670"></p>
@@ -1745,7 +1733,7 @@ props.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, interceptors);
 </blockquote>
 <p>Follower 是否与 Leader 同步的标准:</p>
 <blockquote>
-<p>Broker 端参数 <code>replica.lag.time.max.ms</code> 参数。</p>
+<p>Broker 端参数 <code>replica.lag.time.max.ms</code> 参数。 </p>
 <p>这个参数的含义是Follower 副本能够落后 Leader 副本的最长时间间隔，默认值是 10 秒。只要一个 Follower 副本落后 Leader 副本的时间不连续超过 10 秒，那么 Kafka 就认为该Follower 副本与 Leader 是同步的，即使此时 Follower 副本中保存的消息明显少于Leader 副本中的消息。</p>
 <p>倘若该副本后面慢慢地追上了 Leader 的进度，那么它是能够重新被加回ISR 的，ISR 是一个动态调整的集合，而非静态不变的。</p>
 </blockquote>
@@ -1754,8 +1742,7 @@ props.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, interceptors);
 <blockquote>
 <p>在 Kafka 中，选举这种副本的过程称为 Unclean 领导者选举。Broker 端参数 <code>unclean.leader.election.enable</code> 控制是否允许 Unclean 领导者选举。</p>
 </blockquote>
-<h1>选举机制</h1>
-<p><strong>控制器（Broker）选举</strong></p>
+<h1 id="选举机制"><a href="#选举机制" class="headerlink" title="选举机制"></a>选举机制</h1><p><strong>控制器（Broker）选举</strong></p>
 <blockquote>
 <p>控制器就是一个Borker。</p>
 <p>在Kafka集群中，有多个Broker节点，但是它们之间需要选举出一个Leader，其他的Broker充当Follower角色。</p>
@@ -1774,8 +1761,8 @@ props.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, interceptors);
 <p>对分区Leader副本进行选举的时候，尽可能让优先副本成为Leader副本。</p>
 </blockquote>
 <img src="/images/115.png" alt="image-20231026201049792" style="zoom:50%;" />
-<h1>控制器</h1>
-<p>控制器主要作用是在 ZooKeeper 的帮助下管理和协调整个 Kafka 集群。</p>
+
+<h1 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h1><p>控制器主要作用是在 ZooKeeper 的帮助下管理和协调整个 Kafka 集群。</p>
 <blockquote>
 <p>集群中任意一台 Broker 都能充当控制器的角色，但是在运行过程中只能有一个 Broker 成为控制器。</p>
 </blockquote>
@@ -1810,11 +1797,11 @@ props.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, interceptors);
 </ul>
 </blockquote>
 <img src="/images/450.png" alt="image-20240206153528604" style="zoom:80%;" />
-<h1>幂等性</h1>
-<p>在 <code>0.11.0.0</code> 版本支持增加了对幂等的支持。幂等是针对生产者角度的特性。幂等可以保证上生产者发送的消息，不会丢失，而且不会重复。</p>
+
+<h1 id="幂等性"><a href="#幂等性" class="headerlink" title="幂等性"></a>幂等性</h1><p>在 <code>0.11.0.0</code> 版本支持增加了对幂等的支持。幂等是针对生产者角度的特性。幂等可以保证上生产者发送的消息，不会丢失，而且不会重复。</p>
 <p><strong>开启幂等性配置</strong></p>
 <p>只需要把 Producer 的配置 <code>enable.idempotence</code> 设置为 true 即可</p>
-<pre><code class="language-java">props.put(“enable.idempotence”, ture)
+<pre><code class="java">props.put(“enable.idempotence”, ture)
 //或者
 props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG， true)
 </code></pre>
@@ -1823,13 +1810,12 @@ props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG， true)
 <blockquote>
 <p>他只能保证单分区上的幂等性，即一个幂等性Producer只能够保证某个topic的一个分区上不出现重复消息，无法实现多分区的幂等。此外，如果Producer重启，也会导致幂等重置。</p>
 </blockquote>
-<h1>事务</h1>
-<p>事务Producer保证消息写入分区的原子性，即这批消息要么全部写入成功，要么全失败。此外，Producer重启回来后，kafka依然保证它们发送消息的精确一次处理。</p>
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p>事务Producer保证消息写入分区的原子性，即这批消息要么全部写入成功，要么全失败。此外，Producer重启回来后，kafka依然保证它们发送消息的精确一次处理。</p>
 <p>开启<code>enable.idempotence = true</code></p>
 <p>设置Producer端参数<code>transctional.id</code></p>
 <p>数据的发送需要放在beginTransaction和commitTransaction之间。</p>
 <p>Consumer端的代码也需要加上<code>isolation.level</code>参数，用以处理事务提交的数据。</p>
-<pre><code class="language-java">producer.initTransactions();
+<pre><code class="java">producer.initTransactions();
 try &#123;
      producer.beginTransaction();
      producer.send(record1);
@@ -1840,8 +1826,7 @@ try &#123;
 &#125;
 </code></pre>
 <p>事务Producer虽然在多分区的数据处理上保证了幂等，但是处理性能上相应的是会有一些下降的。</p>
-<h1>数据存储</h1>
-<blockquote>
+<h1 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h1><blockquote>
 <p>Kafka 消息以 Partition 作为存储单元，每个 Topic 的消息被一个或者多个 Partition 进行管理。</p>
 <ul>
 <li>Partition 是一个有序的，不变的消息队列，消息总是被追加到尾部。</li>
@@ -1855,16 +1840,13 @@ try &#123;
 </ul>
 </blockquote>
 <p><img src="/images/524.png" alt="img"></p>
-<h1>请求模型</h1>
-<p><img src="/images/117.png" alt="image-20231010174533219"></p>
+<h1 id="请求模型"><a href="#请求模型" class="headerlink" title="请求模型"></a>请求模型</h1><p><img src="/images/117.png" alt="image-20231010174533219"></p>
 <p>请求到Broker后，也会通过类似于请求转发的组件Acceptor转发到对应的工作线程上，Kafka中被称为网络线程池，一般默认每个Broker上为3个工作线程，可以通过参数 <code>num.network.threads</code> 进行配置。</p>
 <p>并且采用轮询的策略，可以很均匀的将请求分发到不同的网络线程中进行处理。</p>
 <blockquote>
 <p>但是实际的处理请求并不是由网络线程池进行处理的，而是会交给后续的IO线程池，当网络线程接受到请求的时候，会将请求写入到共享的请求队列中，而IO线程池会进行异步的处理，默认情况下是8个，可以通过 <code>num.io.threads</code> 进行配置。</p>
 </blockquote>
-<h1>常见场景</h1>
-<h2 id="重复消费">重复消费</h2>
-<p>consumer 在消费过程中，应用进程被强制kill掉或发生异常退出。</p>
+<h1 id="常见场景"><a href="#常见场景" class="headerlink" title="常见场景"></a>常见场景</h1><h2 id="重复消费"><a href="#重复消费" class="headerlink" title="重复消费"></a>重复消费</h2><p>consumer 在消费过程中，应用进程被强制kill掉或发生异常退出。</p>
 <blockquote>
 <p>例如在一次poll500条消息后，消费到200条时，进程被强制kill消费到offset未提交，或出现异常退出导致消费到offset未提交。</p>
 <p>下次重启时，依然会重新拉取500消息，造成之前消费到200条消息重复消费了两次。</p>
@@ -1878,8 +1860,7 @@ try &#123;
 <p>提高消费能力，提高单条消息的处理速度；根据实际场景<code>max.poll.interval.ms</code>值设置大一点，避免不必要的rebalance；</p>
 <p>可适当减小<code>max.poll.records</code>的值，默认值是500，可根据实际消息速率适当调小。</p>
 </blockquote>
-<h2 id="消息丢失">消息丢失</h2>
-<p><strong>消费者程序丢失数据</strong></p>
+<h2 id="消息丢失"><a href="#消息丢失" class="headerlink" title="消息丢失"></a>消息丢失</h2><p><strong>消费者程序丢失数据</strong></p>
 <blockquote>
 <p>Consumer 程序从 Kafka 获取到消息后开启了多个线程异步处理消息，而 <strong>Consumer 程序自动地向前更新位移</strong>。</p>
 <p>假如某个线程运行失败了，它负责的消息没有被成功处理，但位移已经被更新了，因此这条消息对于 Consumer 而言实际上是丢失了。</p>
@@ -1887,7 +1868,7 @@ try &#123;
 <p><strong>最佳配置:</strong></p>
 <blockquote>
 <p>不要使用 <code>producer.send(msg)</code>，而要使用 <code>producer.send(msg, callback)</code>。</p>
-<p>设置 acks = all：</p>
+<p>设置 acks &#x3D; all：</p>
 <ul>
 <li>设置成 all，则表明所有副本 Broker 都要接收到消息，该消息才算是 已提交。</li>
 </ul>
@@ -1915,8 +1896,7 @@ try &#123;
 <li>Consumer 端有个参数 <code>enable.auto.commit</code>，最好把它设置成 false，并采用手动提交位移的方式。</li>
 </ul>
 </blockquote>
-<h2 id="消息顺序">消息顺序</h2>
-<p><strong>乱序场景一</strong></p>
+<h2 id="消息顺序"><a href="#消息顺序" class="headerlink" title="消息顺序"></a>消息顺序</h2><p><strong>乱序场景一</strong></p>
 <p>因为一个topic可以有多个partition，kafka只能保证partition内部有序。</p>
 <blockquote>
 <p>1、可以设置topic 有且只有一个partition。</p>

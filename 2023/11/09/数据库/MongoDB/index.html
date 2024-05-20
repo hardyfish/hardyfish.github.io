@@ -1529,8 +1529,7 @@
 <blockquote>
 <p>数据量大，读写操作频繁，数据价值较低，对事务要求不高。</p>
 </blockquote>
-<h1>数据结构</h1>
-<p><strong>存储结构</strong></p>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p><strong>存储结构</strong></p>
 <blockquote>
 <p><strong>文档（Document）</strong> ：</p>
 <ul>
@@ -1553,8 +1552,7 @@
 <th>MongoDB</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>表（Table）</td>
 <td>集合（Collection）</td>
 </tr>
@@ -1582,8 +1580,7 @@
 <td>数组（Array）</td>
 <td>数组（Array）</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p><strong>文档</strong></p>
 <blockquote>
 <p>MongoDB 中的记录就是一个 BSON 文档，它是由键值对组成的数据结构，类似于 JSON 对象，是 MongoDB 中的基本数据单元。</p>
@@ -1593,6 +1590,7 @@
 </ul>
 </blockquote>
 <img src="/images/130.png" alt="image-20231130183817232" style="zoom:50%;" />
+
 <blockquote>
 <p>文档的键是字符串，除了少数例外情况，键可以使用任意 UTF-8 字符：</p>
 <ul>
@@ -1613,14 +1611,14 @@
 </ul>
 </blockquote>
 <img src="/images/131.png" alt="image-20231130184339470" style="zoom:50%;" />
+
 <blockquote>
 <p>集合不需要事先创建，当第一个文档插入或者第一个索引创建时，如果该集合不存在，则会创建一个新的集合。</p>
 <p>集合名可以是满足下列条件的任意 UTF-8 字符串：</p>
 <ul>
 <li>集合名不能是空字符串<code>&quot;&quot;</code>。</li>
 <li>集合名不能含有 <code>\0</code> （空字符)，这个字符表示集合名的结尾。</li>
-<li>集合名不能以<code>system.</code>开头，这是为系统集合保留的前缀。
-<ul>
+<li>集合名不能以<code>system.</code>开头，这是为系统集合保留的前缀。<ul>
 <li><code>system.users</code> 集合保存着数据库的用户信息。</li>
 <li><code>system.namespaces</code> 集合保存着所有数据库集合的信息。</li>
 </ul>
@@ -1635,7 +1633,7 @@
 <p>数据库名可以是满足以下条件的任意 UTF-8 字符串：</p>
 <ul>
 <li>不能是空字符串<code>&quot;&quot;</code>。</li>
-<li>不得含有<code>' '</code>（空格)、<code>.</code>、<code>$</code>、<code>/</code>、<code>\</code>和 <code>\0</code> (空字符)。</li>
+<li>不得含有<code>&#39; &#39;</code>（空格)、<code>.</code>、<code>$</code>、<code>/</code>、<code>\</code>和 <code>\0</code> (空字符)。</li>
 <li>应全部小写。</li>
 <li>最多 64 字节。</li>
 </ul>
@@ -1649,14 +1647,13 @@
 <p><code>Date</code>：存储日期和时间</p>
 <p><code>Array</code>：可以存储由任意类型组成的数组</p>
 <p><code>Embedded-Document</code>：可以将其他结构的文档，嵌套到一个文档的字段中</p>
-<p><code>Binary</code>：存储由<code>0、1</code>组成的二进制数据，如图像、音/视频等</p>
+<p><code>Binary</code>：存储由<code>0、1</code>组成的二进制数据，如图像、音&#x2F;视频等</p>
 <p><code>Code</code>：<code>MongoDB</code>支持直接存储<code>JavaScript</code>代码</p>
 <p><code>Timestamp</code>：存储格林威治时间（<code>GMT</code>）的时间戳</p>
 <p><code>GeoJSON</code>：存储地理空间数据</p>
 <p><code>Text</code>：存储大文本数据</p>
 </blockquote>
-<h1>事务</h1>
-<blockquote>
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><blockquote>
 <p><code>3.0</code>版本中，引入<code>WiredTiger</code>存储引擎，开始支持单文档事务</p>
 <p><code>4.0</code>版本中，开始支持多文档事务，以及副本集（主从复制）架构下的事务</p>
 <p><code>4.2</code>版本中，开始支持分片集群、分片式多副本集架构下的事务</p>
@@ -1669,8 +1666,7 @@
 <p>事务会影响集群数据同步效率、节点数据迁移效率</p>
 <p>多文档事务的所有操作，必须在主节点上完成，包括读操作</p>
 </blockquote>
-<h1>索引</h1>
-<blockquote>
+<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><blockquote>
 <p>官方文档：<a target="_blank" rel="noopener" href="https://www.mongodb.com/docs/manual/indexes">https://www.mongodb.com/docs/manual/indexes</a></p>
 <p>早版本的<code>MongoDB</code>中，索引底层默认使用<code>B-Tree</code>结构</p>
 <p><code>4.x</code>版本后，<code>MongoDB</code>推出了<code>V2</code>版索引，默认使用变种<code>B+Tree</code>来作为索引的数据结构（和<code>MySQL</code>索引的数据结构相同）</p>
@@ -1718,8 +1714,7 @@
 <li><code>PROJECTION</code>：本次查询指定了返回的结果集字段（投影查询）</li>
 </ul>
 </blockquote>
-<h1>集群</h1>
-<blockquote>
+<h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1><blockquote>
 <p><code>MongoDB</code>副本集群源自于主从集群，但在主从的基础上做了很大拓展，其中总共有三种节点角色：</p>
 <ul>
 <li><code>Primary</code>主节点：拥有读写能力，为集群内的副本节点，提供数据拷贝的支持</li>
@@ -1744,6 +1739,7 @@
 <p>当一个写入请求出现时，<code>Mongos</code>会找到配置的分片键，再使用已配置的分片规则进行计算，从而得出本次数据要落入的分片，最后将该写入请求分发到对应的分片即可。</p>
 </blockquote>
 <img src="/images/132.png" alt="image-20231210223530025" style="zoom:30%;" />
+
 <blockquote>
 <p>在集群的分片动态伸缩（数量发生变化）时，会自动触发数据迁移机制，由<code>MongoDB</code>内部来自动维护数据的平衡，无需任何外力介入！</p>
 <p>这个功能，无论在<code>Redis</code>、还是分库分表中，都需要开发者手动完成数据迁移，维护成本特别高。</p>
@@ -1783,8 +1779,7 @@
 <p>如果此次下线的是主节点，集群内的所有从（副本）节点，会将自己转换为<strong>候选人</strong>角色，并通知其他节点自己想成为<strong>新主</strong>。</p>
 <p>如果集群内有仲裁节点，仲裁节点收到主节点下线的消息后，并不会将自己转变为<strong>候选人</strong>，因为仲裁节点只有投票权，没有竞选权！</p>
 </blockquote>
-<h2 id="选举机制">选举机制</h2>
-<blockquote>
+<h2 id="选举机制"><a href="#选举机制" class="headerlink" title="选举机制"></a>选举机制</h2><blockquote>
 <p>当主节点下线、并且集群内出现候选人时，整个集群会开启新的选举轮次（<code>term</code>），每个轮次都会拥有一个唯一的轮次号（标识）</p>
 <p>集群内第一个成为候选人的节点，会递增轮次号，同时率先向其他节点发出选举请求，并把自己的票投给自己</p>
 <p>新一轮的选举可能由好几种原因触发：</p>
@@ -1849,11 +1844,10 @@
 <li>如果触发了选举过程，集群将会陷入不可用状态，只有当选举、数据同步完成后，才会恢复对外部的数据读写服务。</li>
 </ul>
 </blockquote>
-<h1>常用操作</h1>
-<p><strong>常用命令</strong></p>
+<h1 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h1><p><strong>常用命令</strong></p>
 <blockquote>
 <p>查询所有数据库：<code>show dbs;</code>或<code>show databases;</code></p>
-<p>切换/创建数据库：<code>use 库名;</code></p>
+<p>切换&#x2F;创建数据库：<code>use 库名;</code></p>
 <p>查看目前所在的数据库：<code>db;</code></p>
 <p>查看<code>MongoDB</code>目前的连接信息：<code>db.currentOp();</code></p>
 <p>查看当前数据库的统计信息：<code>db.stats();</code></p>

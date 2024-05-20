@@ -1519,8 +1519,7 @@
       <!--打赏-->
 	<div id="article-content">
 		<p>书籍介绍：<a target="_blank" rel="noopener" href="https://book.douban.com/subject/4199741/">https://book.douban.com/subject/4199741/</a></p>
-<h1>整洁代码</h1>
-<p><strong>整洁不会拖慢你的进度</strong></p>
+<h1 id="整洁代码"><a href="#整洁代码" class="headerlink" title="整洁代码"></a>整洁代码</h1><p><strong>整洁不会拖慢你的进度</strong></p>
 <blockquote>
 <p>程序员遵从不了解混乱风险的经理的意愿，也是不专业的做法。</p>
 <p>混乱只会立刻拖慢你，叫你错过期限。</p>
@@ -1569,8 +1568,7 @@
 <li>下次你写代码的时候，记得自己是作者，要为评判你工作的读者写代码</li>
 </ul>
 </blockquote>
-<h1>有意义的命名</h1>
-<p><strong>名副其实</strong></p>
+<h1 id="有意义的命名"><a href="#有意义的命名" class="headerlink" title="有意义的命名"></a>有意义的命名</h1><p><strong>名副其实</strong></p>
 <blockquote>
 <p>一个好的变量、函数或类的名称应该已经几乎答复了所有的大问题。</p>
 <p>它应该告诉你，这个名称所代表的内容，为什么会存在，做了什么事情，应该如何用等。</p>
@@ -1581,7 +1579,7 @@
 <li>名称d什么都没说，它没引起我们对时间消逝的感觉，更别说单位是天了。</li>
 </ul>
 </blockquote>
-<pre><code class="language-java">int d; // elapsed time in days||经过了几天时间
+<pre><code class="java">int d; // elapsed time in days||经过了几天时间
 // 我们应该选择这样的指明了计量对象和计量单位的名称：
 
 int elapsedTimeInDays;
@@ -1595,11 +1593,9 @@ int fileAgeInDays;
 <p>例如，别用accountList来指一组账号，除非它真的是List类型，用accountGroup、bunchOfAccounts，或者直接用accounts，都是更好的选择。</p>
 <p>尽量提防长得太像的名称：</p>
 <ul>
-<li>
-<p>想区分XYZControllerForEfficientHandlingOfStrings和XYZControllerForEfficientStorageOfStrings，会花费我们太多的时间。</p>
+<li><p>想区分XYZControllerForEfficientHandlingOfStrings和XYZControllerForEfficientStorageOfStrings，会花费我们太多的时间。</p>
 </li>
-<li>
-<p>因为这两个词，实在太相似了。</p>
+<li><p>因为这两个词，实在太相似了。</p>
 </li>
 </ul>
 <p>以同样的方式拼写出同样的概念才是信息，拼写前后不一致就是误导。</p>
@@ -1638,9 +1634,9 @@ int fileAgeInDays;
 <p>名称长短应与其作用域大小相对应，若变量或常量可能在代码中多处使用，应赋予其以便于搜索的名称。</p>
 </blockquote>
 <p>举个栗子，比较如下两段代码：</p>
-<pre><code class="language-java">for (int j=0; j&lt;34; j++)
+<pre><code class="java">for (int j=0; j&lt;34; j++)
 &#123;
-	s += (t[j]*4)/5;
+    s += (t[j]*4)/5;
 &#125;
 和
 
@@ -1648,9 +1644,9 @@ const int WORK_DAYS_PER_WEEK = 5;
 int sum = 0;
 for (int j=0; j &lt; NUMBER_OF_TASKS; j++)
 &#123;
-	int realTaskDays = taskEstimate[j] * realDaysPerIdealDay;
-	int realTaskWeeks = (realdays / WORK_DAYS_PER_WEEK);
-	sum += realTaskWeeks;
+    int realTaskDays = taskEstimate[j] * realDaysPerIdealDay;
+    int realTaskWeeks = (realdays / WORK_DAYS_PER_WEEK);
+    sum += realTaskWeeks;
 &#125;
 </code></pre>
 <blockquote>
@@ -1683,19 +1679,19 @@ for (int j=0; j &lt; NUMBER_OF_TASKS; j++)
 <p>属性访问器、修改器和断言应该根据其value来命名，并根据标准加上get、set和is前缀。</p>
 <p>举个栗子，这里的getName、setName等命名都很OK。</p>
 </blockquote>
-<pre><code class="language-java">string name = employee.getName();
+<pre><code class="java">string name = employee.getName();
 customer.setName(&quot;mike&quot;);
 if (paycheck.isPosted())...
 </code></pre>
 <blockquote>
 <p>而重载构造器时，使用描述了参数的静态工厂方法名。</p>
 </blockquote>
-<pre><code class="language-java">Complex fulcrumPoint =Complex.FromRealNumber(666.0);
+<pre><code class="java">Complex fulcrumPoint =Complex.FromRealNumber(666.0);
 </code></pre>
 <blockquote>
 <p>通常好于：</p>
 </blockquote>
-<pre><code class="language-java">Complex fulcrumPoint = new Complex(666.0);
+<pre><code class="java">Complex fulcrumPoint = new Complex(666.0);
 </code></pre>
 <blockquote>
 <p>我们也可以考虑将相应的构造器设置为private，强制使用这种命名手段。</p>
@@ -1728,14 +1724,11 @@ if (paycheck.isPosted())...
 <p>若没能提供放置的地方，还可以给名称添加前缀。</p>
 <p>举个栗子，假如我们有名为firstName、lastName、street、houseNumber、city、state和zipcode的变量。</p>
 <ul>
-<li>
-<p>当他们搁一块儿的时候，的确是构成了一个地址。</p>
+<li><p>当他们搁一块儿的时候，的确是构成了一个地址。</p>
 </li>
-<li>
-<p>不过，假如只是在某个方法中看到一个孤零零的state呢？</p>
+<li><p>不过，假如只是在某个方法中看到一个孤零零的state呢？</p>
 </li>
-<li>
-<p>我们会推断这个变量是地址的一部分吗？</p>
+<li><p>我们会推断这个变量是地址的一部分吗？</p>
 </li>
 </ul>
 <p>我们可以添加前缀addrFirstName、addrLastName、addrState等，以此提供语境。</p>
@@ -1751,16 +1744,15 @@ if (paycheck.isPosted())...
 <blockquote>
 <p>使用编码 是一个不好的选择，把类型或者作用域添加的变量名中，无疑给变量名添加了额外的信息，增加了解码的负担。</p>
 </blockquote>
-<pre><code class="language-java">string m_name;
+<pre><code class="java">string m_name;
 </code></pre>
 <blockquote>
 <p><strong>应该避免</strong>这样的命名方式，下面python语言为例：</p>
 </blockquote>
-<pre><code class="language-java">m_list;
+<pre><code class="java">m_list;
 arr_list;
 </code></pre>
-<h1>函数书写准则</h1>
-<p><strong>短小</strong></p>
+<h1 id="函数书写准则"><a href="#函数书写准则" class="headerlink" title="函数书写准则"></a>函数书写准则</h1><p><strong>短小</strong></p>
 <blockquote>
 <p>短小函数的第一规则。</p>
 <p>第二条规则还是要更短小。</p>
@@ -1784,24 +1776,21 @@ arr_list;
 <ul>
 <li>我们想要让代码拥有自顶向下的阅读顺序。</li>
 <li>让代码读起来像是一系列自顶向下的 起头段落是保持抽象层级协调一致的有效技巧。</li>
-<li>把读代码想象成读报纸。</li>
+<li>把读代码想象成读报纸。 </li>
 <li>总分结构，或者总分总结构。</li>
 </ul>
 <p>switch语句：</p>
 <ul>
-<li>多态–将switch语句埋到抽象工厂底下，在系统的其他部分看不到，就还能容忍。
-<ul>
+<li>多态–将switch语句埋到抽象工厂底下，在系统的其他部分看不到，就还能容忍。<ul>
 <li>可以使用抽象工厂来进行改进</li>
 </ul>
 </li>
 </ul>
 <p>函数名称使用：描述性名称</p>
 <ul>
-<li>
-<p>testableHtml 改为<code>SetupTeardownIncluder.render</code>，好的名称价值怎么好评都不为过。</p>
+<li><p>testableHtml 改为<code>SetupTeardownIncluder.render</code>，好的名称价值怎么好评都不为过。</p>
 </li>
-<li>
-<p>如果每个例程都让你感动深合已意，那就是简洁代码。</p>
+<li><p>如果每个例程都让你感动深合已意，那就是简洁代码。</p>
 </li>
 </ul>
 <p>函数参数：</p>
@@ -1836,8 +1825,8 @@ arr_list;
 <ul>
 <li>一个数量可变的参数等同于一个参数。</li>
 </ul>
-<p>函数命名应与参数形成动词/名词对，如<code>writeField(name)</code>。</p>
-<p>无副作用：</p>
+<p>函数命名应与参数形成动词&#x2F;名词对，如<code>writeField(name)</code>。</p>
+<p>无副作用： </p>
 <ul>
 <li>函数承诺只做一件事，但还是会做其他被藏起来的事，例如时序性耦合。</li>
 </ul>
@@ -1851,101 +1840,97 @@ arr_list;
 <pre><code>appendFooter(s)
 </code></pre>
 <blockquote>
-<p>看到这个 首先就会 想把 s 添加什么东西，或者它把什么东西加到s 后面？</p>
+<p>看到这个 首先就会 想把 s 添加什么东西，或者它把什么东西加到s 后面？ </p>
 <ul>
 <li>s 是输入 还是输出参数呢？</li>
 </ul>
 </blockquote>
-<pre><code class="language-java">public void appendFooter(StringBuffer report);
+<pre><code class="java">public void appendFooter(StringBuffer report);
 </code></pre>
 <blockquote>
-<p>看了函数的签名，我们大概明白了。</p>
+<p>看了函数的签名，我们大概明白了。 </p>
 <p>所以 在面向对象语言中，最好的做法。</p>
 </blockquote>
-<pre><code class="language-java">report.appendFooter() // 这样来调用。
+<pre><code class="java">report.appendFooter() // 这样来调用。
 </code></pre>
 <p><strong>分隔指令与询问</strong></p>
 <blockquote>
 <p>函数要么做什么事(<code>do</code>)，要么回答什么事(<code>boolean</code>)，但二者不可兼得。</p>
 </blockquote>
-<pre><code class="language-java">public boolean set(String attributer, String value);
+<pre><code class="java">public boolean set(String attributer, String value);
 </code></pre>
 <blockquote>
 <p>用户调用:</p>
 </blockquote>
-<pre><code class="language-java">if (set(&quot;username&quot;,&quot;frank&quot;)) &#123;//...
+<pre><code class="java">if (set(&quot;username&quot;,&quot;frank&quot;)) &#123;//...
 &#125;
 </code></pre>
 <blockquote>
-<p>看到这个代码，首先想 是否能够成功设置username 为frank, 还是要问，username 是否已经之前被设置过为frank了呢？</p>
+<p>看到这个代码，首先想 是否能够成功设置username 为frank, 还是要问，username 是否已经之前被设置过为frank了呢？ </p>
 <p>对看代码的人会比较困惑。</p>
-<p>所以 解决方案 就是 把做什么和是否成功分开。</p>
+<p>所以 解决方案 就是 把做什么和是否成功分开。 </p>
 <p>防止发生混淆。</p>
 </blockquote>
-<pre><code class="language-java">if (exists(&quot;username&quot;))&#123;
-	setAttribute(&quot;username&quot;,&quot;frank&quot;)
+<pre><code class="java">if (exists(&quot;username&quot;))&#123;
+    setAttribute(&quot;username&quot;,&quot;frank&quot;)
 &#125;
 </code></pre>
 <p><strong>使用异常替代返回错误码</strong></p>
 <blockquote>
 <p>使用异常替代错误码返回错误码，错误处理代码就能从主路径代码中分离出来，得到简化。</p>
-<p>抽离try/catch代码块：</p>
+<p>抽离try&#x2F;catch代码块：</p>
 <ul>
-<li>
-<p>try/catch代码块丑陋不堪。</p>
+<li><p>try&#x2F;catch代码块丑陋不堪。</p>
 </li>
-<li>
-<p>最好把try和catch代码块的主体部分抽离出来，另外形成函数。</p>
+<li><p>最好把try和catch代码块的主体部分抽离出来，另外形成函数。</p>
 </li>
 </ul>
 <p>错误处理就是一件事：</p>
 <ul>
-<li>如果try在某个函数中存在，它就该是这个函数的第一个单词，而且在catch/finally代码块后面也不该有其他内容。</li>
+<li>如果try在某个函数中存在，它就该是这个函数的第一个单词，而且在catch&#x2F;finally代码块后面也不该有其他内容。</li>
 </ul>
 <p><code>Error.java</code>依赖磁铁：</p>
 <ul>
-<li>
-<p>返回错误码通常暗示某处有个类或是枚举定义了所有错误码。</p>
+<li><p>返回错误码通常暗示某处有个类或是枚举定义了所有错误码。</p>
 </li>
-<li>
-<p>使用异常替代错误码，新异常就可以从异常类派生出来，无需重新编译或重新部署。</p>
+<li><p>使用异常替代错误码，新异常就可以从异常类派生出来，无需重新编译或重新部署。</p>
 </li>
 </ul>
 <p>使用异常的好处，可以避免嵌套太深的层级。</p>
 <ul>
 <li>代码可以写起来更加简化。</li>
 </ul>
-<p>来看一个例子：</p>
+<p>来看一个例子： </p>
 <ul>
 <li>这里使用了很多的 嵌套的 if语句 这种很难让人理解，嵌套层级特别多，看起来很复杂，对于这种代码 最好直接抛出异常就可以，直接 使用 try 语句 然后捕获具体的异常就可以了。</li>
 </ul>
 <p>而不是一层，一层的进行判断，嵌套起来，之后就很难维护这样的代码。</p>
 </blockquote>
 <blockquote>
-<p>对于try 代码块 丑陋不堪， 它们会搞乱代码结构，把错误处理和正常流程混为一谈。</p>
-<p>最好把 try 和 except 的主体部分抽离出来 单独形成函数。</p>
+<p>对于try 代码块 丑陋不堪， 它们会搞乱代码结构，把错误处理和正常流程混为一谈。 </p>
+<p>最好把 try 和 except 的主体部分抽离出来 单独形成函数。 </p>
 <p>这样以后维护也会方便一点，看起来代码清晰，代码结构简单。</p>
 </blockquote>
-<pre><code class="language-java">public void delete(Page page)&#123;
-	try&#123;
+<pre><code class="java">public void delete(Page page)&#123;
+    try&#123;
 
-		deletePageAndAllReferences(page);
-	&#125;catch(Exception e)&#123;
-		logError(e);
-	&#125;
+        deletePageAndAllReferences(page);
+    &#125;catch(Exception e)&#123;
+        logError(e);
+    &#125;
 
 &#125;
 
 
 private void deletePageAndAllReferences(Page page) throws Exception &#123;
-	deltePage(page);
-	registry.deleteReference(page.name);
-	configKeys.deleteKeys(page.name.makeKey());
+    deltePage(page);
+    registry.deleteReference(page.name);
+    configKeys.deleteKeys(page.name.makeKey());
 &#125;
 
 
 public void logError(Exception e )&#123;
-	logger.log(e.getMessage)
+    logger.log(e.getMessage)
 &#125;
 </code></pre>
 <p><strong>别重复自己</strong></p>
@@ -1967,23 +1952,22 @@ public void logError(Exception e )&#123;
 <ul>
 <li>初稿也许粗陋无序，你就斟酌推敲，直到达到你心中的样子。</li>
 </ul>
-<p>最好的情况要配上一套单元测试，覆盖每一行丑陋的代码。</p>
-<p>然后开始打磨这些代码，分解函数，修改名称，消除重复。最后要保持测试可以顺利通过。</p>
+<p>最好的情况要配上一套单元测试，覆盖每一行丑陋的代码。 </p>
+<p>然后开始打磨这些代码，分解函数，修改名称，消除重复。最后要保持测试可以顺利通过。 </p>
 <p>我并不是一开始就按照规则写函数。 我想没有人做得到。</p>
 </blockquote>
-<h1>代码注释准则</h1>
-<p><strong>注释不能美化糟糕的代码</strong></p>
+<h1 id="代码注释准则"><a href="#代码注释准则" class="headerlink" title="代码注释准则"></a>代码注释准则</h1><p><strong>注释不能美化糟糕的代码</strong></p>
 <blockquote>
 <p>写注释的最常见的动机之一:</p>
 <ul>
 <li>就是 糟糕的代码存在。</li>
 </ul>
-<p>其实带有少量注释而有表达力的代码，要比大量注释的零碎而复杂的代码像样得多。</p>
+<p>其实带有少量注释而有表达力的代码，要比大量注释的零碎而复杂的代码像样得多。 </p>
 <p>与其花时间写注释，不如花时间清洁那堆糟糕的代码。</p>
 </blockquote>
 <p><strong>用代码来阐述</strong></p>
 <blockquote>
-<p>如果一段代码本身就具有表现力，完全没有必要写注释。</p>
+<p>如果一段代码本身就具有表现力，完全没有必要写注释。 </p>
 <p>从变量名或者函数名本身就具有自描述性，这样的代码就好一些。</p>
 </blockquote>
 <p><strong>好注释例子</strong></p>
@@ -2021,7 +2005,7 @@ public void logError(Exception e )&#123;
 <p>能用函数或变量时就别用注释</p>
 <p>位置标记：</p>
 <ul>
-<li>///(少用，只在有价值的地方用)</li>
+<li>&#x2F;&#x2F;&#x2F;(少用，只在有价值的地方用)</li>
 </ul>
 <p>括号后面的注释</p>
 <p>归属与命名</p>
@@ -2033,8 +2017,7 @@ public void logError(Exception e )&#123;
 <p>函数头</p>
 <p>非公共API中的javadoc</p>
 </blockquote>
-<h1>代码格式准则</h1>
-<p><strong>像报纸一样一目了然</strong></p>
+<h1 id="代码格式准则"><a href="#代码格式准则" class="headerlink" title="代码格式准则"></a>代码格式准则</h1><p><strong>像报纸一样一目了然</strong></p>
 <blockquote>
 <p>想想那些阅读量巨大的报纸文章。</p>
 <ul>
@@ -2093,7 +2076,7 @@ public void logError(Exception e )&#123;
 </blockquote>
 <p><strong>团队规则</strong></p>
 <blockquote>
-<p>每个程序员都有自己喜欢的格式规则，但如果在一个团队中工作，就是团队说了算。</p>
+<p>每个程序员都有自己喜欢的格式规则，但如果在一个团队中工作，就是团队说了算。 </p>
 <p>一组开发者应该认同一中代码风格，每个成员应该遵守这个规则。</p>
 <p>一个好的团队应当约定与遵从一套代码规范，并且每个成员都应当采用此风格。</p>
 <p>我们希望一个项目中的代码拥有相似甚至相同的风格，像默契无间的团队所完成的艺术品，而不是像一大票意见相左的个人所堆砌起来的残次品。</p>
@@ -2103,8 +2086,7 @@ public void logError(Exception e )&#123;
 <li>尽量不要用各种不同的风格来构成一个项目的各个部分，这样会增加项目本身的复杂度与混乱程度。</li>
 </ul>
 </blockquote>
-<h1>错误处理</h1>
-<blockquote>
+<h1 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h1><blockquote>
 <p>错误处理很重要，但如果它搞乱了代码逻辑，就是错误的做法。</p>
 <p>使用异常而非返回错误码：</p>
 <ul>
@@ -2117,7 +2099,7 @@ public void logError(Exception e )&#123;
 </ul>
 <p>使用不可控异常：</p>
 <ul>
-<li>可控异常的代价就是违反开放/闭合原则。</li>
+<li>可控异常的代价就是违反开放&#x2F;闭合原则。</li>
 </ul>
 <p>如果你在方法中抛出可控异常，而catch语句在三个层级之上，你就得在catch语句和抛出异常之间的每个方法签名中声明该异常。</p>
 <p>给出异常发生的环境说明：</p>

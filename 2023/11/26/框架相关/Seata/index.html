@@ -1529,6 +1529,7 @@
 <p>分布式事务是由多个分支事务组成的全局事务，其中每个分支事务都是本地事务的形式。</p>
 </blockquote>
 <img src="/images/306.png" alt="全局事务" style="zoom:80%;" />
+
 <p>Seata框架包含三部分内容：</p>
 <blockquote>
 <p>事务协调器（Transaction Coordinator，TC）：</p>
@@ -1554,13 +1555,14 @@
 <p>TC可以请求全局事务T1下的所有分支事务提交或回滚。</p>
 </blockquote>
 <img src="/images/308.png" alt="Seata流程" style="zoom:80%;" />
+
 <p>引入Seata：</p>
 <blockquote>
 <p>在分布式事务最外层的方法上添加分布式事务注解<code>@GlobalTransactional</code></p>
 <p>添加注解之后，在执行业务逻辑之前，Seata会先生成全局事务ID，并且在调用其它服务时，会在请求中携带全局事务ID。</p>
 <p>如果其它微服务也添加了Seata依赖，这些微服务会获取全局事务ID，并且参与到全局事务中。</p>
 </blockquote>
-<pre><code class="language-java">@GlobalTransactional
+<pre><code class="java">@GlobalTransactional
 public void purchase(String userId, String commodityCode, int orderCount) &#123;
     // ......
 &#125;

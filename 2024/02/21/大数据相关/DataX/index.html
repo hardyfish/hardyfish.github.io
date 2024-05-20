@@ -1520,7 +1520,7 @@
 	<div id="article-content">
 		<blockquote>
 <p>DataX 是阿里云 <a target="_blank" rel="noopener" href="https://www.aliyun.com/product/bigdata/ide">DataWorks数据集成</a> 的开源版本。</p>
-<p>在阿里巴巴集团内被广泛使用的离线数据同步工具/平台。</p>
+<p>在阿里巴巴集团内被广泛使用的离线数据同步工具&#x2F;平台。</p>
 <p>DataX 实现了包括 MySQL、Oracle、OceanBase、SQLServer、Postgre、HDFS、Hive、ADS、HBase、TableStore(OTS)、MaxCompute(ODPS)、Hologres、DRDS 等各种异构数据源之间高效的数据同步功能。</p>
 </blockquote>
 <blockquote>
@@ -1540,12 +1540,12 @@
 <p>异构数据库和文件系统之间的数据交换</p>
 <p><strong>采用Framework + Plugin架构构建</strong>，Framework处理了缓冲，流控，并发，上下文加载等高速数据交换的大部分技术问题，提供了简单的接口与插件交互，插件仅需实现对数据处理系统的访问</p>
 <p>数据传输过程在单进程内完成，<strong>全内存操作</strong>，不读写磁盘，也没有IPC</p>
-<p>开放式的框架，开发者可以在极短的时间开发一个新插件以快速支持新的数据库/文件系统</p>
+<p>开放式的框架，开发者可以在极短的时间开发一个新插件以快速支持新的数据库&#x2F;文件系统</p>
 </blockquote>
 <p><strong>DataX3.0框架设计</strong></p>
 <blockquote>
 <p>DataX本身作为离线数据同步框架，采用Framework + Plugin架构构建。</p>
-<p>将数据源读取和写入抽象成为Reader/Writer插件，纳入到整个同步框架中。</p>
+<p>将数据源读取和写入抽象成为Reader&#x2F;Writer插件，纳入到整个同步框架中。</p>
 <p><strong>Reader</strong>：</p>
 <ul>
 <li>Reader为数据采集模块，<strong>负责采集数据源的数据</strong>，将数据发送给Framework。</li>
@@ -1581,7 +1581,7 @@
 <p><strong>调度流程</strong></p>
 <blockquote>
 <p>举例来说，用户提交了一个DataX作业，并且配置了20个并发。</p>
-<p>目的是将一个100张分表的MySQL数据同步到<code>ODPS（Open Data Processing Service：开发数据处理服务）</code>里面。</p>
+<p>目的是将一个100张分表的MySQL数据同步到<code>ODPS（Open Data Processing Service：开发数据处理服务）</code>里面。 </p>
 <p>DataX的调度决策思路是：</p>
 <ul>
 <li>DataXJob根据分库分表切分成了100个Task。</li>

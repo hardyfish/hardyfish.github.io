@@ -1520,10 +1520,11 @@
 	<div id="article-content">
 		<blockquote>
 <p>PlantUML提供了一种用文本描述来绘制UML图的方式，可以绘制类图、时序图、用例图等等。</p>
-<p>官网：<a target="_blank" rel="noopener" href="http://plantuml.com">http://plantuml.com</a></p>
+<p>官网：<a target="_blank" rel="noopener" href="http://plantuml.com/">http://plantuml.com</a></p>
 </blockquote>
 <p><strong>请求、回调、渲染</strong></p>
 <img src="/images/52.png" style="zoom:70%;" />
+
 <pre><code>@startuml
 
 participant c as &quot;Client&quot;
@@ -1547,6 +1548,7 @@ deactivate c
 </code></pre>
 <p><strong>自我调用</strong></p>
 <img src="/images/53.png" alt="image-20240109104634860" style="zoom:70%;" />
+
 <pre><code>@startuml
 
 participant c as &quot;Client&quot;
@@ -1565,6 +1567,7 @@ deactivate c
 </code></pre>
 <p><strong>入口和出口</strong></p>
 <img src="/images/54.png" alt="image-20240109104736132" style="zoom:70%;" />
+
 <pre><code>@startuml
 
 participant c as &quot;Client&quot;
@@ -1577,6 +1580,7 @@ participant s as &quot;Server&quot;
 </code></pre>
 <p><strong>逻辑分支</strong></p>
 <img src="/images/55.png" alt="image-20240109104840404" style="zoom:70%;" />
+
 <pre><code>@startuml
 
 participant c as &quot;Client&quot;
@@ -1592,6 +1596,7 @@ end
 </code></pre>
 <p><strong>循环</strong></p>
 <img src="/images/56.png" alt="image-20240109104937319" style="zoom:70%;" />
+
 <pre><code>@startuml
 
 participant c as &quot;Client&quot;
@@ -1605,6 +1610,7 @@ end
 </code></pre>
 <p><strong>自定义组</strong></p>
 <img src="/images/57.png" alt="image-20240109105026126" style="zoom:70%;" />
+
 <pre><code>@startuml
 
 participant c as &quot;Client&quot;
@@ -1618,6 +1624,7 @@ end
 </code></pre>
 <p><strong>注解</strong></p>
 <img src="/images/58.png" alt="image-20240109105113404" style="zoom:70%;" />
+
 <pre><code>@startuml
 
 participant c as &quot;Client&quot;
@@ -1638,6 +1645,7 @@ note right: right note
 </code></pre>
 <p><strong>分隔线</strong></p>
 <img src="/images/59.png" alt="image-20240109105201572" style="zoom:70%;" />
+
 <pre><code>@startuml
 
 participant c as &quot;Client&quot;
@@ -1655,12 +1663,13 @@ s --&gt; c: callback
 </code></pre>
 <p><strong>外框</strong></p>
 <img src="/images/60.png" alt="image-20240109105240434" style="zoom:70%;" />
+
 <pre><code>@startuml
 
 participant s as &quot;Server&quot;
 
 box &quot;Box&quot; #LightBlue
-	participant c as &quot;Client&quot;
+    participant c as &quot;Client&quot;
 end box
 
 @enduml

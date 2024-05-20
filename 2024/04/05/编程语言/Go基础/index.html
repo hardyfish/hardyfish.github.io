@@ -1518,9 +1518,8 @@
       </div>
       <!--打赏-->
 	<div id="article-content">
-		<h1>基础知识</h1>
-<blockquote>
-<p>Golang官方网站：<a target="_blank" rel="noopener" href="https://golang.org">https://golang.org</a></p>
+		<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><blockquote>
+<p>Golang官方网站：<a target="_blank" rel="noopener" href="https://golang.org/">https://golang.org</a></p>
 <p>Golang中文网在线标准库文档: <a target="_blank" rel="noopener" href="https://studygolang.com/pkgdoc">https://studygolang.com/pkgdoc</a></p>
 </blockquote>
 <p><strong>Google创造Go语言的目的：</strong></p>
@@ -1530,27 +1529,25 @@
 <li>性能提高很快，目前主流的编程语言发展落后于硬件，不能合理利用多核CPU的优势提升软件系统性能。</li>
 </ul>
 <p>软件系统复杂度越来越高，维护成本越来越高，目前缺乏一个足够简洁高效的编程语言。</p>
-<p>企业运行维护很多C/C++的项目，C/C++程序运行速度很快，但是编译速度很慢，同时还存在内存泄漏的一系列的困扰需要解决。</p>
+<p>企业运行维护很多C&#x2F;C++的项目，C&#x2F;C++程序运行速度很快，但是编译速度很慢，同时还存在内存泄漏的一系列的困扰需要解决。</p>
 </blockquote>
 <p><strong>Go岗位</strong></p>
 <blockquote>
 <p>区块链研发工程师</p>
-<p>Go服务器/游戏软件工程师</p>
-<p>Go分布式/云计算软件工程师</p>
+<p>Go服务器&#x2F;游戏软件工程师</p>
+<p>Go分布式&#x2F;云计算软件工程师</p>
 </blockquote>
 <p><strong>Go语言特点</strong></p>
 <blockquote>
 <p>Go语言保证了既能够达到静态编译语言的安全和性能，又达到了动态语言开发类维护的高效率。</p>
 <ul>
-<li>GO = C + Python：说明Go语言既有C静态语言程序的运行速度，又能达到Python的动态语言的快速开发。</li>
+<li>GO &#x3D; C + Python：说明Go语言既有C静态语言程序的运行速度，又能达到Python的动态语言的快速开发。</li>
 </ul>
 <p>天然并发：</p>
 <ul>
-<li>
-<p>从语言层面支持并发，实现简单。</p>
+<li><p>从语言层面支持并发，实现简单。</p>
 </li>
-<li>
-<p>GoRoutine，轻量级线程，可实现大并发处理，高效利用多核。</p>
+<li><p>GoRoutine，轻量级线程，可实现大并发处理，高效利用多核。</p>
 </li>
 </ul>
 <p>管道通信机制：</p>
@@ -1588,7 +1585,7 @@ go env
 <blockquote>
 <p>一个简单的 Go 程序文件 <code>hello.go</code>。</p>
 </blockquote>
-<pre><code class="language-go">package main // package main 定义了包名。必须在源文件中非注释的第一行指明这个文件属于哪个包
+<pre><code class="go">package main // package main 定义了包名。必须在源文件中非注释的第一行指明这个文件属于哪个包
  
 import (
  
@@ -1617,8 +1614,7 @@ func main() &#123; // func main() 是程序开始执行的函数（函数的入�
 <blockquote>
 <p>使用 <code>go install</code></p>
 <ul>
-<li>不仅构建程序，还将结果文件安装到 GOPATH 指定的目录中，以供全局使用。
-<ul>
+<li>不仅构建程序，还将结果文件安装到 GOPATH 指定的目录中，以供全局使用。<ul>
 <li>通常是在 <code>$GOPATH/bin</code> 目录下。</li>
 </ul>
 </li>
@@ -1661,7 +1657,7 @@ func main() &#123; // func main() 是程序开始执行的函数（函数的入�
 <p>命名规则:</p>
 <ul>
 <li>由26个英文字母大小写，0-9，_ 组成</li>
-<li>数字不可以开头：<code>var num int</code> //这样写是OK的  <code>vat 3num int</code> //这样是错误的</li>
+<li>数字不可以开头：<code>var num int</code> &#x2F;&#x2F;这样写是OK的  <code>vat 3num int</code> &#x2F;&#x2F;这样是错误的</li>
 <li>Golang中严格区分大小写</li>
 <li>标识符不能包含空格</li>
 <li>下划线<code>_</code> 本身在Go中是一个特殊的标识符，称为<strong>空标识符</strong>，可以代表任何其他的标识符，但是它对应的值会被忽略（比如：忽略某个返回值）：所以仅能被作为占位符使用，不能作为标识符使用</li>
@@ -1681,11 +1677,11 @@ func main() &#123; // func main() 是程序开始执行的函数（函数的入�
 <li><code>\t</code> : 表示一个制表符，通常使用它可以排版</li>
 <li><code>\n</code> ：换行符</li>
 <li><code>\\</code> ：一个\</li>
-<li><code>\&quot;</code> ：一个&quot;</li>
+<li><code>\&quot;</code> ：一个”</li>
 <li><code>\r</code> ：一个回车</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">package main
+<pre><code class="go">package main
  
 import &quot;fmt&quot; //fmt 包中提供格式化，输出，输入的函数
 func main() &#123;
@@ -1697,7 +1693,7 @@ func main() &#123;
 <blockquote>
 <p>行注释：</p>
 <ul>
-<li>// 注释内容</li>
+<li>&#x2F;&#x2F; 注释内容</li>
 </ul>
 <p>块注释（多行注释）：</p>
 <ul>
@@ -1720,20 +1716,20 @@ func main() &#123;
 <li>var 变量名 变量类型</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">var a int
+<pre><code class="go">var a int
 var s string
 </code></pre>
 <blockquote>
 <p>变量赋值：</p>
 <ul>
-<li>var 变量名 变量类型 = 值</li>
+<li>var 变量名 变量类型 &#x3D; 值</li>
 <li>根据值自行判定变量类型</li>
-<li>在函数内第一次赋值时可以使用:=替代var来定义赋值变量（在函数外不可以），编译器也可以自动决定类型</li>
+<li>在函数内第一次赋值时可以使用:&#x3D;替代var来定义赋值变量（在函数外不可以），编译器也可以自动决定类型</li>
 <li>在函数外定义变量是包内变量（不是全局变量）</li>
-<li>如果变量已经使用 var 声明过了，再使用 := 声明变量，就产生编译错误</li>
+<li>如果变量已经使用 var 声明过了，再使用 :&#x3D; 声明变量，就产生编译错误</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">var a int = 5
+<pre><code class="go">var a int = 5
 var b string = &quot;abbc&quot;
 var c,d,e,f = 3,5,true,&quot;def&quot; //不需要显示声明类型，自动推断
 </code></pre>
@@ -1744,7 +1740,7 @@ var c,d,e,f = 3,5,true,&quot;def&quot; //不需要显示声明类型，自动推
 <li>在一个赋值语句中可以对多个变量进行同时赋值</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">func TestExchange(t *testing.T) &#123;
+<pre><code class="go">func TestExchange(t *testing.T) &#123;
         a := 1
         b := 2
   //定义中间变量进行变量值的互换
@@ -1759,11 +1755,9 @@ var c,d,e,f = 3,5,true,&quot;def&quot; //不需要显示声明类型，自动推
 <blockquote>
 <p><strong>程序中+号的使用</strong></p>
 <ul>
-<li>
-<p>当左右两边都是数值型时，则做加法运算</p>
+<li><p>当左右两边都是数值型时，则做加法运算</p>
 </li>
-<li>
-<p>当左右两边有一方为字符串，则做拼接运算</p>
+<li><p>当左右两边有一方为字符串，则做拼接运算</p>
 </li>
 </ul>
 </blockquote>
@@ -1773,7 +1767,7 @@ var c,d,e,f = 3,5,true,&quot;def&quot; //不需要显示声明类型，自动推
 <li>全局变量是定义在函数外部的变量，它在程序整个运行周期内都有效，在函数中可以访问到全局变量。</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">package main
+<pre><code class="go">package main
 
 import &quot;fmt&quot;
 
@@ -1781,10 +1775,10 @@ import &quot;fmt&quot;
 var num int64 = 10
 
 func testGlobalVar() &#123;
-	fmt.Printf(&quot;num=%d\n&quot;, num) //函数中可以访问全局变量num
+    fmt.Printf(&quot;num=%d\n&quot;, num) //函数中可以访问全局变量num
 &#125;
 func main() &#123;
-	testGlobalVar() //num=10
+    testGlobalVar() //num=10
 &#125;
 </code></pre>
 <p><strong>常量</strong></p>
@@ -1794,7 +1788,7 @@ func main() &#123;
 <li>const可以作为各种类型进行使用</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">const a,b = 3,4
+<pre><code class="go">const a,b = 3,4
 var c int = int(math.Sqrt(a*a + b*b))
 </code></pre>
 <blockquote>
@@ -1803,7 +1797,7 @@ var c int = int(math.Sqrt(a*a + b*b))
 <li>Go语言可以快速设置连续值</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">const (
+<pre><code class="go">const (
    Monday = iota + 1
    Tuesday
    Wednesday
@@ -1850,8 +1844,7 @@ func TestConstant(t *testing.T) &#123;
 <p><strong>零值(初始值)</strong></p>
 <ul>
 <li>当一个变量或者新值被创建时，如果没有为其明确指定初始值。</li>
-<li>Go语言会自动初始化其值为此类型对应的零值，各类型零值如下：
-<ul>
+<li>Go语言会自动初始化其值为此类型对应的零值，各类型零值如下：<ul>
 <li>bool：false</li>
 <li>integer：0</li>
 <li>float：0.0</li>
@@ -1869,12 +1862,11 @@ func TestConstant(t *testing.T) &#123;
 <li>不支持指针运算</li>
 </ul>
 </blockquote>
-<h1>数组</h1>
-<p><strong>数组定义</strong></p>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p><strong>数组定义</strong></p>
 <blockquote>
 <p>在Go语言中，数组从声明时就确定，使用时可以修改数组成员，但是数组大小不可变化。</p>
 </blockquote>
-<pre><code class="language-go">var 数组变量名 [元素数量]T
+<pre><code class="go">var 数组变量名 [元素数量]T
 
 // 定义一个长度为3元素类型为int的数组a
 var a [3]int
@@ -1883,7 +1875,7 @@ var a [3]int
 <p>比如：<code>var a [5]int</code>， 数组的长度必须是常量，并且长度是数组类型的一部分。</p>
 <p>一旦定义，长度不能变。<code>[5]int</code>和<code>[10]int</code>是不同的类型。</p>
 </blockquote>
-<pre><code class="language-go">var a [3]int
+<pre><code class="go">var a [3]int
 var b [4]int
 a = b //不可以这样做，因为此时a和b是不同的类型
 </code></pre>
@@ -1891,7 +1883,7 @@ a = b //不可以这样做，因为此时a和b是不同的类型
 <blockquote>
 <p>初始化数组时可以使用初始化列表来设置数组元素的值。</p>
 </blockquote>
-<pre><code class="language-go">func main() &#123;
+<pre><code class="go">func main() &#123;
     var testArray [3]int                        //数组会初始化为int类型的零值
     var numArray = [3]int&#123;1, 2&#125;                 //使用指定的初始值完成初始化
     var cityArray = [3]string&#123;&quot;北京&quot;, &quot;上海&quot;, &quot;深圳&quot;&#125; //使用指定的初始值完成初始化
@@ -1903,7 +1895,7 @@ a = b //不可以这样做，因为此时a和b是不同的类型
 <blockquote>
 <p>按照上面的方法每次都要确保提供的初始值和数组长度一致，一般情况下可以让编译器根据初始值的个数自行推断数组的长度。</p>
 </blockquote>
-<pre><code class="language-go">func main() &#123;
+<pre><code class="go">func main() &#123;
     var testArray [3]int
     var numArray = [...]int&#123;1, 2&#125;
     var cityArray = [...]string&#123;&quot;北京&quot;, &quot;上海&quot;, &quot;深圳&quot;&#125;
@@ -1917,14 +1909,14 @@ a = b //不可以这样做，因为此时a和b是不同的类型
 <blockquote>
 <p>还可以使用指定索引值的方式来初始化数组。</p>
 </blockquote>
-<pre><code class="language-go">func main() &#123;
+<pre><code class="go">func main() &#123;
     a := [...]int&#123;1: 1, 3: 5&#125;
     fmt.Println(a)                  // [0 1 0 5]
     fmt.Printf(&quot;type of a:%T\n&quot;, a) //type of a:[4]int
 &#125;
 </code></pre>
 <p><strong>数组的遍历</strong></p>
-<pre><code class="language-go">func main() &#123;
+<pre><code class="go">func main() &#123;
     var a = [...]string&#123;&quot;北京&quot;, &quot;上海&quot;, &quot;深圳&quot;&#125;
     // 方法1：for循环遍历
     for i := 0; i &lt; len(a); i++ &#123;
@@ -1941,7 +1933,7 @@ a = b //不可以这样做，因为此时a和b是不同的类型
 <blockquote>
 <p>二维数组的定义:</p>
 </blockquote>
-<pre><code class="language-go">func main() &#123;
+<pre><code class="go">func main() &#123;
     a := [3][2]string&#123;
             &#123;&quot;北京&quot;, &quot;上海&quot;&#125;,
             &#123;&quot;广州&quot;, &quot;深圳&quot;&#125;,
@@ -1954,7 +1946,7 @@ a = b //不可以这样做，因为此时a和b是不同的类型
 <blockquote>
 <p>二维数组的遍历:</p>
 </blockquote>
-<pre><code class="language-go">func main() &#123;
+<pre><code class="go">func main() &#123;
     a := [3][2]string&#123;
             &#123;&quot;北京&quot;, &quot;上海&quot;&#125;,
             &#123;&quot;广州&quot;, &quot;深圳&quot;&#125;,
@@ -1972,7 +1964,7 @@ a = b //不可以这样做，因为此时a和b是不同的类型
 <blockquote>
 <p>数组是值类型，赋值和传参会复制整个数组，因此改变副本的值，不会改变本身的值。</p>
 </blockquote>
-<pre><code class="language-go">func modifyArray1(x [3]int)&#123;
+<pre><code class="go">func modifyArray1(x [3]int)&#123;
     x[0] = 100
 &#125;
 
@@ -1993,8 +1985,7 @@ func main()&#123;
     fmt.Println(b)   // [[1 1] [1 1] [1 1]]
 &#125;
 </code></pre>
-<h2 id="切片">切片</h2>
-<blockquote>
+<h2 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h2><blockquote>
 <p>数组的局限：数组的长度是固定的，并且长度属于类型的一部分。</p>
 <p>切片可以理解为长度可以动态变化的数组，它是基于数组类型做的一层封装，非常灵活，支持自动扩容。</p>
 <p>切片（Slice）是一个拥有相同类型元素的可变长度的序列。</p>
@@ -2009,7 +2000,7 @@ func main()&#123;
 <p>扩容后的切片会得到一片新的连续内存地址，所有元素的地址都会随之发生改变。</p>
 </blockquote>
 <p><strong>切片的定义</strong></p>
-<pre><code class="language-go">var name []T
+<pre><code class="go">var name []T
 
 func main() &#123;
     // 声明切片类型
@@ -2037,7 +2028,7 @@ func main() &#123;
 <blockquote>
 <p>切片的底层就是一个数组，可以基于数组通过切片表达式得到切片，切片中的<code>start</code>和<code>end</code>表示一个索引范围（左包含，右不包含）</p>
 </blockquote>
-<pre><code class="language-go">func main()&#123;
+<pre><code class="go">func main()&#123;
     a := [5]int&#123;1,2,3,4,5&#125;   //长度为5,数据类型为int的数组
     s := a[1:3]  // s:= a[start:end]
     fmt.Printf(&quot;s:%v len(s):%v cap(s):%v\n&quot;,s,len(s),cap(s))
@@ -2061,7 +2052,7 @@ a[:]   // a[0:len(a)]
 <p>上面的代码会构造与简单切片表达式<code>a[start:end]</code>相同类型，相同长度和元素的切片，另外，它会将得到的结果切片的容量设置为<code>max-start</code>。</p>
 <p>在完整切片表达式中只有第一个索引值（start）可以省略，默认为0。</p>
 </blockquote>
-<pre><code class="language-go">func main()&#123;
+<pre><code class="go">func main()&#123;
     a := [5]int&#123;1,2,3,4,5&#125;
     t := a[1:3:5]
     fmt.Printf(&quot;t:%v len(t):%v cap(t):%v\n&quot;,t,len(t),cap(t))
@@ -2075,12 +2066,12 @@ a[:]   // a[0:len(a)]
 <blockquote>
 <p>上面都是基于数组来创建的切片，如果需要动态的创建哪一个切片，就需要使用内置函数<code>make()</code></p>
 </blockquote>
-<pre><code class="language-go">make([]T,size，cap)
+<pre><code class="go">make([]T,size，cap)
 // T:切片的元素类型
 // size:切片中元素的数量
 // cap:切片的容量
 </code></pre>
-<pre><code class="language-go">func main()&#123;
+<pre><code class="go">func main()&#123;
     a := make([]int,2,10)
     fmt.Println(a)  // [0,0]
     fmt.Println(len(a))  // 2
@@ -2095,16 +2086,16 @@ a[:]   // a[0:len(a)]
 <p>切片的本质就是对底层数组的封装，包含三个信息：底层数组的指针，切片的长度和切片的容量。</p>
 <p>现在有一个数组<code>a:=[8]int&#123;0,1,2,3,4,5,6,7&#125;</code>，切片<code>s1:=a[:5]</code>，相应的示意图如下：</p>
 </blockquote>
-<p><img src="./images/533.png" alt="img"></p>
+<p><img src="/./images/533.png" alt="img"></p>
 <blockquote>
 <p>切片<code>s2:=a[3:6]</code>,相应的示意图如下：</p>
 </blockquote>
-<p><img src="./images/534.png" alt="img"></p>
+<p><img src="/./images/534.png" alt="img"></p>
 <p><strong>切片的赋值拷贝</strong></p>
 <blockquote>
 <p>拷贝前后两个变量共享底层数组，对一个切片的修改会影响另一个切片的内容。</p>
 </blockquote>
-<pre><code class="language-go">func main()&#123;
+<pre><code class="go">func main()&#123;
     s1 := make([]int, 3) //[0 0 0]
     s2 := s1   //将s1直接赋值给s2,s1和s2共用一个底层数组
     s2[0] = 100
@@ -2116,7 +2107,7 @@ a[:]   // a[0:len(a)]
 <blockquote>
 <p>切片的遍历方式和数组是一致的，支持索引遍历和<code>for range</code>遍历。</p>
 </blockquote>
-<pre><code class="language-go">func main()&#123;
+<pre><code class="go">func main()&#123;
     s := []int&#123;2,3,1&#125;
     for i:=0;i&lt;len(s);i++&#123;
         fmt.Println(i, s[i])
@@ -2132,7 +2123,7 @@ a[:]   // a[0:len(a)]
 <blockquote>
 <p>Go语言的内建函数<code>append()</code>可以为切片动态添加元素，可以一次添加一个元素，可以添加多个元素，也可以添加另外一个切片中的元素</p>
 </blockquote>
-<pre><code class="language-go">func main()&#123;
+<pre><code class="go">func main()&#123;
     var s []int
     s = append(s, 1) //s[1]
     s = append(s,2,3,4) // [1 2 3 4]
@@ -2143,7 +2134,7 @@ a[:]   // a[0:len(a)]
 <p>通过var声明的零值切片可以在<code>append()</code>函数直接使用无需初始化。</p>
 <p>没有必要初始化一个切片再传入<code>append()</code>函数使用。</p>
 </blockquote>
-<pre><code class="language-go">s := []int&#123;&#125;  // 没有必要初始化
+<pre><code class="go">s := []int&#123;&#125;  // 没有必要初始化
 s = append(s, 1,2,3)
 
 var s = make([]int)  // 没有必要初始化
@@ -2153,7 +2144,7 @@ s = append(s,1,2,3)
 <blockquote>
 <p>Go语言中并没有删除切片元素的专用方法，可以通过使用切片本身的特性来删除元素。</p>
 </blockquote>
-<pre><code class="language-go">func main()&#123;
+<pre><code class="go">func main()&#123;
     // 从切片中删除元素
     a := []int&#123;30,32,34,36,38&#125;
     // 删除索引为2的元素
@@ -2163,8 +2154,7 @@ s = append(s,1,2,3)
 <blockquote>
 <p>从切片a中删除索引为<code>index</code>的元素，操作方法是<code>a = append(a[:index], a[index+1:]...)</code></p>
 </blockquote>
-<h1>函数</h1>
-<p><strong>函数的声明：</strong></p>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><p><strong>函数的声明：</strong></p>
 <blockquote>
 <p>函数的声明：</p>
 <ul>
@@ -2175,7 +2165,7 @@ s = append(s,1,2,3)
 <li>返回值列表描述了函数返回值的变量名以及类型，如果函数返回一个无名变量或者没有返回值，返回值列表的括号是可以省略的</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">func 函数名(形式参数列表)(返回值列表)&#123;
+<pre><code class="go">func 函数名(形式参数列表)(返回值列表)&#123;
     函数体
 &#125;
 </code></pre>
@@ -2190,7 +2180,7 @@ s = append(s,1,2,3)
 <blockquote>
 <p>举个例子，定义一个 sum 函数，接收两个 int 类型的参数，在运行中，将其值分别赋值给 a，b，并规定必须返回一个int类型的值</p>
 </blockquote>
-<pre><code class="language-go">func sum(a int, b int) (int)&#123;
+<pre><code class="go">func sum(a int, b int) (int)&#123;
     return a + b
 &#125;
 func main() &#123;
@@ -2201,7 +2191,7 @@ func main() &#123;
 <blockquote>
 <p>函数可以有参数也可以没有参数，可以有返回值也可以没有返回值</p>
 </blockquote>
-<pre><code class="language-go">func main() &#123;
+<pre><code class="go">func main() &#123;
     demo1()
 &#125;
 func demo1()&#123;
@@ -2219,7 +2209,7 @@ func demo1()&#123;
 <p>可变参数指调用参数时，参数的个数可以是任意个</p>
 <p>可变参数必须在参数列表最后的位置，在参数名和类型之间添加三个点表示可变参数函数</p>
 </blockquote>
-<pre><code class="language-go">func 函数(参数,参数,名称 ... 类型 )&#123;
+<pre><code class="go">func 函数(参数,参数,名称 ... 类型 )&#123;
     //函数体
 &#125;
 
@@ -2246,7 +2236,7 @@ func demo(hover ... string) &#123;
 <li>匿名函数都是声明在其他函数内部</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">func ()&#123;
+<pre><code class="go">func ()&#123;
   
 &#125;()//括号表示调用
 
@@ -2278,7 +2268,7 @@ func main() &#123;
 <p>变量可以作为函数的参数或返回值类型，而函数既然可以当做变量看待，函数变量也可以当做函数的参数或返回值</p>
 <p>函数作为参数时，类型写成对应的类型即可</p>
 </blockquote>
-<pre><code class="language-go">func main() &#123;
+<pre><code class="go">func main() &#123;
     a(func(s string) &#123;
         fmt.Println(s)
     &#125;)
@@ -2312,7 +2302,7 @@ func a() func() int &#123;
 <li>比如：资源清理、文件关闭、解锁及记录时间等。</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">func main() &#123;
+<pre><code class="go">func main() &#123;
     fmt.Println(&quot;start&quot;)
     defer fmt.Println(1)
     defer fmt.Println(2)
@@ -2335,12 +2325,13 @@ end
 </ul>
 </blockquote>
 <img src="/images/332.png" alt="image-20240129150037192" style="zoom:80%;" />
+
 <p><strong>全局变量</strong></p>
 <blockquote>
 <p>全局变量是定义在函数外部的变量，它在程序整个运行周期内都有效。</p>
 <p>在函数中可以访问到全局变量。</p>
 </blockquote>
-<pre><code class="language-go">package main
+<pre><code class="go">package main
 
 import &quot;fmt&quot;
 
@@ -2355,8 +2346,7 @@ func main()&#123;
     globalVar()   // num=10
 &#125;
 </code></pre>
-<h1>结构体</h1>
-<blockquote>
+<h1 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h1><blockquote>
 <p>Go语言中的基本数据类型可以表示一些事物的基本属性，但是当想表达一个事物的全部或者部分属性时，这时候再用单一的基本数据类型明显就无法满足需求。</p>
 <p>Go语言提供了一种自定义数据类型，可以封装多个基本数据类型，这种数据类型叫结构体，<code>struct</code>。</p>
 <p>Go语言中通过<code>struct</code>来实现面向对象。</p>
@@ -2365,7 +2355,7 @@ func main()&#123;
 <blockquote>
 <p>使用<code>type</code>和<code>struct</code>关键字来定义结构体。</p>
 </blockquote>
-<pre><code class="language-go">type 类型名 struct&#123;
+<pre><code class="go">type 类型名 struct&#123;
     字段名 字段类型
     字段名 字段类型
     ...
@@ -2374,7 +2364,7 @@ func main()&#123;
 // 字段名： 标识结构体字段名。结构体中的字段名必须唯一
 // 字段类型： 标识结构体字段的具体类型
 </code></pre>
-<pre><code class="language-go">type person struct&#123;   // 定义一个person的结构体
+<pre><code class="go">type person struct&#123;   // 定义一个person的结构体
     name string
     age int8
     city string   
@@ -2383,7 +2373,7 @@ func main()&#123;
 <blockquote>
 <p>同类型的字段也可以写在一行。</p>
 </blockquote>
-<pre><code class="language-go">type person struct&#123;
+<pre><code class="go">type person struct&#123;
     name,city string
     age int8
 &#125;
@@ -2394,7 +2384,7 @@ func main()&#123;
 <p>结构体本身也是一种类型，可以像声明内置类型一样使用<code>var</code>关键字来声明结构体类型。</p>
 <p>通过<code>.</code>来访问结构体字段（成员变量），例如<code>p.name</code>和<code>p.age</code>等。</p>
 </blockquote>
-<pre><code class="language-go">var 结构体实例 结构体类型
+<pre><code class="go">var 结构体实例 结构体类型
 
 type person struct &#123;
     name string
@@ -2415,7 +2405,7 @@ func main() &#123;
 <blockquote>
 <p>在定义一些临时数据结构等常见下可以使用匿名结构体。</p>
 </blockquote>
-<pre><code class="language-go">package main
+<pre><code class="go">package main
      
 import (
     &quot;fmt&quot;
@@ -2432,7 +2422,7 @@ func main() &#123;
 <blockquote>
 <p>通过使用<code>new</code>关键字对结构体进行实例化，得到的是结构体地址。</p>
 </blockquote>
-<pre><code class="language-go">var p = new(person)
+<pre><code class="go">var p = new(person)
 fmt.Printf(&quot;%T\n&quot;,p)  // *main.person
 fmt.Printf(&quot;p=%#v\n&quot;,p)  // p=&amp;main.person&#123;name:&quot;&quot;,age:0,city:&quot;&quot;&#125;
 </code></pre>
@@ -2440,7 +2430,7 @@ fmt.Printf(&quot;p=%#v\n&quot;,p)  // p=&amp;main.person&#123;name:&quot;&quot;,
 <p>从打印结果来看，此时<code>p</code>是一个结构体指针。</p>
 <p>在Go语言中支持对结构体指针直接使用<code>.</code>来访问结构体成员。</p>
 </blockquote>
-<pre><code class="language-go">var p = new(person)
+<pre><code class="go">var p = new(person)
 p.name = &quot;Negan&quot;
 p.age = 68
 p.city = &quot;亚历山大&quot;
@@ -2450,7 +2440,7 @@ fmt.Printf(&quot;p=%#v\n&quot;,p)  // p=&amp;main.person&#123;name:&quot;Negan&q
 <blockquote>
 <p>使用<code>&amp;</code>对结构体进行取地址操作相当于对该结构体类型进行了一次<code>new</code>实例化操作。</p>
 </blockquote>
-<pre><code class="language-go">p := &amp;person&#123;&#125;
+<pre><code class="go">p := &amp;person&#123;&#125;
 fmt.Printf(&quot;%T\n&quot;,p)  // *main.person
 fmt.Printf(&quot;p=%v\n&quot;,p)  // p=&amp;main.person&#123;name:&quot;&quot;,age:0,city:&quot;&quot;&#125;
 p.name = &quot;Negan&quot;
@@ -2465,7 +2455,7 @@ fmt.Printf(&quot;p=%#v\n&quot;,p)  // p=&amp;main.person&#123;name:&quot;Negan&q
 <blockquote>
 <p>没有初始化的结构体，其成员变量都是对应其类型的零值。</p>
 </blockquote>
-<pre><code class="language-go">type person struct&#123;
+<pre><code class="go">type person struct&#123;
     name string
     age int8
     city string
@@ -2480,7 +2470,7 @@ func main()&#123;
 <blockquote>
 <p>使用键值对对结构体进行初始化，键对应结构体的字段，值对应该字段的初始值。</p>
 </blockquote>
-<pre><code class="language-go">p := person&#123;
+<pre><code class="go">p := person&#123;
     name:&quot;Negan&quot;,
     age:68,
     city:&quot;亚历山大&quot;
@@ -2490,7 +2480,7 @@ fmt.Printf(&quot;p=%#v\n&quot;,p)  // p=main.person&#123;name:&quot;Negan&quot;,
 <blockquote>
 <p>也可以使用结构体指针进行键值对初始化。</p>
 </blockquote>
-<pre><code class="language-go">p := &amp;person&#123;
+<pre><code class="go">p := &amp;person&#123;
     name:&quot;Negan&quot;,
     age:68,
     city:&quot;亚历山大&quot;
@@ -2500,7 +2490,7 @@ fmt.Printf(&quot;p=%#v\n&quot;,p)  //p=&amp;main.person&#123;name:&quot;Negan&qu
 <blockquote>
 <p>当某些字段没有初始值的时候，该字段可以不写，此时没有指定初始值的字段的值就是该字段类型的零值。</p>
 </blockquote>
-<pre><code class="language-go">p := &amp;person&#123;
+<pre><code class="go">p := &amp;person&#123;
     city:&quot;救世堂&quot;
 &#125;
 fmt.Printf(&quot;p=%#v\n&quot;,p)  // p=&amp;main.person&#123;name:&quot;&quot;,age:0,city:&quot;救世堂&quot;&#125;
@@ -2515,7 +2505,7 @@ fmt.Printf(&quot;p=%#v\n&quot;,p)  // p=&amp;main.person&#123;name:&quot;&quot;,
 <li>该方式不能和键值初始化方式混用</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">p := &amp;person&#123;
+<pre><code class="go">p := &amp;person&#123;
     &quot;Negan&quot;,
     68,
     &quot;救世堂&quot;
@@ -2526,7 +2516,7 @@ fmt.Printf(&quot;p=%#v\n&quot;,p)  // p=&amp;main.person&#123;name:&quot;Negan&q
 <blockquote>
 <p>Go语言中使用结构体可以实现其他编程语言中的面向对象继承。</p>
 </blockquote>
-<pre><code class="language-go">// Animal 动物
+<pre><code class="go">// Animal 动物
 type Animal struct&#123;
     name string
 &#125;
@@ -2563,7 +2553,7 @@ func main() &#123;
 <blockquote>
 <p>一个结构体中可以嵌套包含另一个结构体或者结构体指针。</p>
 </blockquote>
-<pre><code class="language-go">// Address 地址结构体
+<pre><code class="go">// Address 地址结构体
 type Address struct&#123;
     Province string
     City string
@@ -2593,7 +2583,7 @@ func main() &#123;
 <blockquote>
 <p>当访问结构体成员时会现在结构体中查找该字段，找不到再去匿名结构体中查找。</p>
 </blockquote>
-<pre><code class="language-go">// Address 地址结构体
+<pre><code class="go">// Address 地址结构体
 type Address struct &#123;
     Province string
     City string
@@ -2620,7 +2610,7 @@ func main() &#123;
 <blockquote>
 <p>嵌套结构体内部可能存在相同的字段名，这个时候为了避免歧义需要制定具体的内嵌结构体的字段。</p>
 </blockquote>
-<pre><code class="language-go">// Address 地址结构体
+<pre><code class="go">// Address 地址结构体
 type Address struct&#123;
     Province string
     City string
@@ -2650,17 +2640,16 @@ func main() &#123;
     fmt.Printf(&quot;%#v\n&quot;, user)
 &#125;
 </code></pre>
-<h1>指针</h1>
-<blockquote>
+<h1 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h1><blockquote>
 <p>指针是一个地址，指针类型是依托于某一个类型而存在的。</p>
-<p><code>Go</code> 里面的基本数据类型 <code>int</code>、<code>float64</code>、<code>string</code> 等，它们所对应的指针类型为 <code>*int</code>、<code>*float64</code>、<code>*string</code>等。</p>
+<p> <code>Go</code> 里面的基本数据类型 <code>int</code>、<code>float64</code>、<code>string</code> 等，它们所对应的指针类型为 <code>*int</code>、<code>*float64</code>、<code>*string</code>等。</p>
 <p>指针的定义:</p>
 <ul>
 <li>语法格式：<code>var 指针变量名 *数据类型 = &amp;变量</code>。</li>
 <li><code>&amp;</code> 为取地址符号，通过 <code>&amp;</code> 符号获取某个变量的地址，然后赋值给指针变量。</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">import (
+<pre><code class="go">import (
     &quot;fmt&quot;
 )
 
@@ -2681,7 +2670,7 @@ func main() &#123;
 <li><code>new(T)</code> 函数为每个类型分配一片内存，内存单元保存的是对应类型的零值，函数返回一个指针类型。</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">import (
+<pre><code class="go">import (
     &quot;fmt&quot;
 )
 
@@ -2697,7 +2686,7 @@ func main() &#123;
 <li>当指针所依托的类型与变量的类型不一致时，Go 编译器会报错，类型不匹配。</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">func main() &#123;
+<pre><code class="go">func main() &#123;
     var num float64 = 666
     var numPtr *int = &amp;num // cannot use &amp;num (value of type *float64) as type *int in variable declaration
 &#125;
@@ -2709,7 +2698,7 @@ func main() &#123;
 <li>对指针使用 <code>*</code> 操作符可以获取所指向变量的值。</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">func main() &#123;
+<pre><code class="go">func main() &#123;
     var num int = 666
     var numPtr *int = &amp;num
 
@@ -2723,7 +2712,7 @@ func main() &#123;
 <li>同时也可以对指针使用 <code>*</code> 操作符修改所指向变量的值。</li>
 </ul>
 </blockquote>
-<pre><code class="language-go">import (
+<pre><code class="go">import (
     &quot;fmt&quot;
 )
 
@@ -2751,23 +2740,24 @@ func main() &#123;
 <p>值类型：变量直接存储值，内存通常在栈中分配</p>
 </blockquote>
 <img src="/images/329.png" alt="img" style="zoom:80%;" />
+
 <blockquote>
 <p>引用类型：变量存储的是一个地址，这个地址对于的空间才是真正的存储数据（值），内存通常在堆上分配，当没有任何变量引用这个地址时，改地址对应的数据空间就成为了一个垃圾，由GC来回收</p>
 </blockquote>
 <img src="/images/330.png" alt="img" style="zoom:80%;" />
+
 <blockquote>
 <p>内存的栈区和堆区：</p>
 </blockquote>
 <img src="/images/331.png" alt="img" style="zoom:50%;" />
-<h1>并发</h1>
-<blockquote>
+
+<h1 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h1><blockquote>
 <p>Go语言中的并发通过<code>goroutine</code>实现。</p>
 <p><code>goroutine</code>类似于线程，属于用户态线程，可以根据需要创建成千上万个<code>goroutine</code>并发工作。</p>
 <p><code>goroutine</code>是由Go语言的运行时(runtime)调度完成，而线程是由操作系统调度完成。</p>
 <p>Go语言还提供<code>channel</code>在多个<code>goroutine</code>间进行通信。</p>
 </blockquote>
-<h2 id="Goroutine">Goroutine</h2>
-<blockquote>
+<h2 id="Goroutine"><a href="#Goroutine" class="headerlink" title="Goroutine"></a>Goroutine</h2><blockquote>
 <p>Go程序会将<code>goroutine</code>中的任务合理地分配给每个CPU。</p>
 <p>当需要让某个任务并发执行的时候，只需要把这个任务包装成一个函数，开启一个<code>goroutine</code>去执行这个函数就行。</p>
 <p>一个<code>goroutine</code>必定对应一个函数，可以创建多个<code>goroutine</code>去执行相同的函数。</p>
@@ -2776,7 +2766,7 @@ func main() &#123;
 <blockquote>
 <p>使用<code>goroutine</code>只需要在调用函数的时候在前面加上<code>go</code>关键字，就可以为一个函数创建一个<code>goroutine</code>。</p>
 </blockquote>
-<pre><code class="language-go">func hello()&#123;
+<pre><code class="go">func hello()&#123;
     fmt.Println(&quot;hello Goroutine&quot;)
 &#125;
 
@@ -2793,7 +2783,7 @@ func main()&#123;
 <blockquote>
 <p>通过<code>runtime.Gosched()</code>出让资源，让其他<code>goroutine</code>优先执行。</p>
 </blockquote>
-<pre><code class="language-go">func main() &#123;
+<pre><code class="go">func main() &#123;
     go func()&#123;
         for i := 0; i &lt; 5; i++&#123;
             fmt.Println(&quot;go&quot;)
@@ -2810,7 +2800,7 @@ func main()&#123;
 <blockquote>
 <p>通过<code>runtime.Goexit()</code>实现自杀，自杀前会执行提前定义的defer语句，同时调用它的<code>goroutine</code>也会跟着自杀。</p>
 </blockquote>
-<pre><code class="language-go">func test()&#123;
+<pre><code class="go">func test()&#123;
     // 遗嘱：临终前说的话
     defer fmt.Println(&quot;这是test的遗嘱&quot;)
     // 自杀，触发提前执行遗嘱，暴毙，后面的日志不好过了，调用它的goroutine也暴毙
@@ -2849,7 +2839,7 @@ func main() &#123;
 <blockquote>
 <p>使用<code>sync.WaitGroup</code>来实现<code>goroutine</code>的同步。</p>
 </blockquote>
-<pre><code class="language-go">var wg sync.WaitGroup
+<pre><code class="go">var wg sync.WaitGroup
 
 func test()&#123;
     defer wg.Done()
@@ -2888,8 +2878,7 @@ func main() &#123;
     wg.Wait()  // 等待所有登记的goroutine都结束
 &#125;
 </code></pre>
-<h2 id="Channel">Channel</h2>
-<blockquote>
+<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><blockquote>
 <p><code>channe1</code>可以让一个<code>goroutine</code>发送特定值到另一个<code>goroutine</code>的通信机制。</p>
 <p>Go语言中的通道(<code>channel</code>)是一种特殊类型，通道像一个传送带或者队列，总是遵循先进先出的规则，保证数据的收发顺序，每一个通道都是一个具体类型的导管，也即是声明<code>channel</code>时候需要为其制定元素类型。</p>
 </blockquote>
@@ -2944,7 +2933,7 @@ chose(ch)
 <p>同理，向无缓冲区的<code>channel</code>中发送消息也会阻塞，直到有<code>goroutine</code>从<code>channel</code>中读取消息。</p>
 <p>使用无缓冲通道进行通道将导致发送和接收的<code>goroutine</code>同步化，因此无缓冲通道也被称为<code>同步通道</code>。</p>
 </blockquote>
-<pre><code class="language-go">func recv(c chan int)&#123;
+<pre><code class="go">func recv(c chan int)&#123;
     ret := &lt;-c
     fmt.Println(&quot;接收成功&quot;,ret)
 &#125;
@@ -2964,7 +2953,7 @@ func main() &#123;
 <p>相应的，当<code>channel</code>中消息不为空是，读取消息不会出现阻塞，当<code>channel</code>为空时，读取操作会发生阻塞，直到有<code>goroutine</code>向<code>channel</code>中写入消息。</p>
 <p>可以通过使用内置的<code>len()</code>函数获取通道内元素的数量，使用<code>cap()</code>函数获取通道的容量。</p>
 </blockquote>
-<pre><code class="language-go">func main() &#123;
+<pre><code class="go">func main() &#123;
     ch := make(chan int, 1) // 创建一个容量为1的有缓存区通道
 
     ch &lt;- 10
@@ -2975,13 +2964,12 @@ func main() &#123;
     fmt.Println(&quot;发送成功&quot;)
 &#125;
 </code></pre>
-<h2 id="互斥锁">互斥锁</h2>
-<blockquote>
+<h2 id="互斥锁"><a href="#互斥锁" class="headerlink" title="互斥锁"></a>互斥锁</h2><blockquote>
 <p>有时候在Go代码中可能存在多个<code>goroutine</code>同时操作一个资源（临界区），这种情况会发生<code>竟态问题</code>(数据竟态)。</p>
 <p>互斥锁是一种常用的控制共享资源访问的方法，它能够保证同时只有一个<code>goroutine</code>可以访问共享资源。</p>
 <p>Go语言中使用<code>sync</code>包的<code>Mutex</code>类型来实现互斥锁。</p>
 </blockquote>
-<pre><code class="language-go">func main() &#123;
+<pre><code class="go">func main() &#123;
     // 必须保证并发安全的数据
     type Account struct &#123;
         money float32
@@ -3029,7 +3017,7 @@ func main() &#123;
 <blockquote>
 <p>控制并发数属于常用的调度，规定并发的任务都必须现在某个监视管道中进行注册，而这个监视管道的缓存能力是固定的，比如说5，那么注册在该管道中的并发能力也是5。</p>
 </blockquote>
-<pre><code class="language-go">var sema chan int
+<pre><code class="go">var sema chan int
 
 // 该函数只允许5次并发执行
 func f1(i int) int &#123;
@@ -3055,13 +3043,12 @@ func main() &#123;
     wg.Wait()
 &#125;
 </code></pre>
-<h2 id="定时器">定时器</h2>
-<blockquote>
+<h2 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h2><blockquote>
 <p>Go提供了两种方式的计时器：</p>
 <p>定时执行任务的计时器和周期性执行任务的计时器</p>
 </blockquote>
 <p><strong>固定时间定时器</strong></p>
-<pre><code class="language-go">func main() &#123;
+<pre><code class="go">func main() &#123;
     // 创建两秒的定时器
     timer := time.NewTimer(2 * time.Second)
     fmt.Println(&quot;当前时间：&quot;, time.Now())
@@ -3078,7 +3065,7 @@ func main() &#123;
 <p>上面的示例演示了如何使用定时器延时两秒执行一项任务。</p>
 <p>上面的示例也可以写成下面的形式。</p>
 </blockquote>
-<pre><code class="language-go">func main() &#123;
+<pre><code class="go">func main() &#123;
     fmt.Println(&quot;开始计时&quot;)
     // 创建2秒的定时器，得到其单向输出时间管道，阻塞两秒后读出数据
     &lt;- time.After(2 * time.Second)
@@ -3089,7 +3076,7 @@ func main() &#123;
 <blockquote>
 <p>计时器被中途stop掉了，被延时的<code>goroutine</code>将永远得不到执行，</p>
 </blockquote>
-<pre><code class="language-go">func main() &#123;
+<pre><code class="go">func main() &#123;
     // 创建3秒的定时器
     timer := time.NewTimer(3*time.Second)
     // 3秒后从定时器时间管道中读取时间
@@ -3111,7 +3098,7 @@ func main() &#123;
 <p>下面的例子中，timer在配置为延时10秒执行后，又被重置为1秒，所以其时间延时为一秒。</p>
 <p>需要注意的是：如果在reset的一刹那，定时器已经到时或者已被stop掉，则reset是无效的。</p>
 </blockquote>
-<pre><code class="language-go">func main() &#123;
+<pre><code class="go">func main() &#123;
     // 创建10秒的定时器
     timer := time.NewTimer(10 * time.Second)
 

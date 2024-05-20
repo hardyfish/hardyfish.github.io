@@ -1524,15 +1524,13 @@
 <p>目标是为用户提供一站式 OLTP、OLAP、HTAP 解决方案。</p>
 <p>TiDB 适合高可用、强一致要求较高、数据规模较大等各种应用场景。</p>
 <ul>
-<li>OLTP：
-<ul>
+<li>OLTP：<ul>
 <li>强调支持短时间内大量并发的事务操作（增删改查）能力。</li>
 <li>每个操作涉及的数据量都很小（比如几十到几百字节）。</li>
 <li>强调事务的强一致性。</li>
 </ul>
 </li>
-<li>OLAP：
-<ul>
+<li>OLAP：<ul>
 <li>偏向于复杂的只读查询，读取海量数据进行分析计算，查询时间往往较长。</li>
 </ul>
 </li>
@@ -1572,8 +1570,8 @@
 </ul>
 <p>兼容 MySQL 5.7 协议和 MySQL ⽣态：</p>
 <ul>
-<li>大多数情况下，无需修改代码即可从 MySQL 轻松迁移至 TiDB，分库分表后的 MySQL 集群亦可通过 TiDB 工具进行实时迁移。</li>
-<li>对于用户使用的时候，可以透明地从MySQL切换到TiDB 中，只是&quot;新MySQL&quot;的后端是存储&quot;无限的&quot;，不再受制于Local的磁盘容量。</li>
+<li>大多数情况下，无需修改代码即可从 MySQL 轻松迁移至 TiDB，分库分表后的 MySQL 集群亦可通过 TiDB 工具进行实时迁移。 </li>
+<li>对于用户使用的时候，可以透明地从MySQL切换到TiDB 中，只是”新MySQL”的后端是存储”无限的”，不再受制于Local的磁盘容量。</li>
 <li>在运维使用时也可以将TiDB当做一个从库挂到MySQL主从架构中。</li>
 </ul>
 </blockquote>
@@ -1593,34 +1591,27 @@
 <li>客户端使用 mysql 协议发出 SQL 请求。</li>
 </ul>
 <p><strong>TiDB Server（TIDB cluster）：SQL 层，对外暴露 MySQL 协议</strong>的连接 endpoint，<strong>负责接受客户端的连接，执行 SQL 解析和优化，最终生成分布式执行计划</strong>。<strong>TiDB 层本身是无状态的</strong>，实践中可以启动多个 TiDB 实例，通过负载均衡组件（如 LVS、HAProxy 或 F5）对外提供统一的接入地址，客户端的连接可以均匀地分摊在多个 TiDB 实例上以达到负载均衡的效果。<strong>TiDB Server 本身并不存储数据，只是解析 SQL，将实际的数据读取请求转发给底层的存储节点 TiKV（或 TiFlash）</strong>。</p>
-<p><strong>PD (Placement Driver) Server：<strong>整个 TiDB 集群的元信息管理模块，<strong>负责存储每个 TiKV 节点实时的数据分布情况和集群的整体拓扑结构</strong>，提供 TiDB Dashboard 管控界面，并</strong>为分布式事务分配事务 ID</strong>。</p>
-<p>PD 不仅存储元信息，同时还会根据 TiKV 节点实时上报的数据分布状态，下发数据调度命令给具体的 TiKV 节点，可以说是整个集群的&quot;大脑&quot;。此外，PD 本身也是由至少 3 个节点构成，拥有高可用的能力。</p>
+<p><strong>PD (Placement Driver) Server：</strong>整个 TiDB 集群的元信息管理模块，<strong>负责存储每个 TiKV 节点实时的数据分布情况和集群的整体拓扑结构</strong>，提供 TiDB Dashboard 管控界面，并<strong>为分布式事务分配事务 ID</strong>。</p>
+<p>PD 不仅存储元信息，同时还会根据 TiKV 节点实时上报的数据分布状态，下发数据调度命令给具体的 TiKV 节点，可以说是整个集群的”大脑”。此外，PD 本身也是由至少 3 个节点构成，拥有高可用的能力。</p>
 <p>建议部署奇数个 PD 节点。<strong>（即每条SQL具体在哪个存储节点执行是由 PD 决定的）</strong></p>
 <p>存储节点:</p>
 <ul>
-<li>
-<p>**TiKV Server：**负责存储数据，从外部看 <strong>TiKV 是一个</strong>分布式的提供事务的 <strong>Key-Value 存储引擎</strong>。**存储数据的基本单位是 Region，**每个 Region 负责存储一个 Key Range（从 StartKey 到 EndKey 的左闭右开区间）的数据，<strong>每个 TiKV 节点会负责多个 Region。</strong></p>
+<li><p><strong>TiKV Server：</strong>负责存储数据，从外部看 <strong>TiKV 是一个</strong>分布式的提供事务的 <strong>Key-Value 存储引擎</strong>。<strong>存储数据的基本单位是 Region，</strong>每个 Region 负责存储一个 Key Range（从 StartKey 到 EndKey 的左闭右开区间）的数据，<strong>每个 TiKV 节点会负责多个 Region。</strong></p>
 </li>
-<li>
-<p>TiKV 的 API 在 KV 键值对层面提供对分布式事务的原生支持，默认提供了 SI (Snapshot Isolation) 的隔离级别，这也是 TiDB 在 SQL 层面支持分布式事务的核心。</p>
+<li><p>TiKV 的 API 在 KV 键值对层面提供对分布式事务的原生支持，默认提供了 SI (Snapshot Isolation) 的隔离级别，这也是 TiDB 在 SQL 层面支持分布式事务的核心。</p>
 </li>
-<li>
-<p><strong>TiDB 的 SQL 层做完 SQL 解析后，会将 SQL 的执行计划转换为对 TiKV API 的实际调用。</strong></p>
+<li><p><strong>TiDB 的 SQL 层做完 SQL 解析后，会将 SQL 的执行计划转换为对 TiKV API 的实际调用。</strong></p>
 </li>
-<li>
-<p>所以，数据都存储在 TiKV 中。另外，TiKV 每个节点中的数据都会自动维护多副本（即在不同的region里。默认为三副本，主副本加起来三份，即实际每份数据都会存三份），天然支持高可用和自动故障转移。</p>
+<li><p>所以，数据都存储在 TiKV 中。另外，TiKV 每个节点中的数据都会自动维护多副本（即在不同的region里。默认为三副本，主副本加起来三份，即实际每份数据都会存三份），天然支持高可用和自动故障转移。</p>
 </li>
-<li>
-<p>**TiFlash：**TiFlash 是一类特殊的存储节点。</p>
+<li><p><strong>TiFlash：</strong>TiFlash 是一类特殊的存储节点。</p>
 <ul>
 <li>和普通 TiKV 节点不一样的是，在 TiFlash 内部，数据是以列式的形式进行存储，主要的功能是为分析型的场景加速。</li>
 </ul>
 </li>
-<li>
-<p><strong>Region：是Tikv存储数据的基本单位（也是节点间同步数据的最小单位，Region实际上是一个逻辑上的单位）</strong>，每个Region承载一段特定的数据，并分布在TiKV集群的不同节点上。</p>
+<li><p><strong>Region：是Tikv存储数据的基本单位（也是节点间同步数据的最小单位，Region实际上是一个逻辑上的单位）</strong>，每个Region承载一段特定的数据，并分布在TiKV集群的不同节点上。</p>
 </li>
-<li>
-<p>Region的ID、范围、所在的节点信息等元信息会存储在PD中，TiKV Client通过查询PD获取Region的元信息，从而确定数据所在的节点。</p>
+<li><p>Region的ID、范围、所在的节点信息等元信息会存储在PD中，TiKV Client通过查询PD获取Region的元信息，从而确定数据所在的节点。</p>
 </li>
 </ul>
 </blockquote>
@@ -1641,13 +1632,11 @@ Value: [col1,col2,col3,col4]
 <p><strong>使用DM数据同步功能需要注意什么</strong></p>
 <blockquote>
 <ul>
-<li>数据同步过程中，如果源库的DML操作非常频繁、或者有大事务，可能会造成TiDB和源库间的数据延迟，当然，MySQL集群内部的节点也可能会出现数据延迟。
-<ul>
+<li>数据同步过程中，如果源库的DML操作非常频繁、或者有大事务，可能会造成TiDB和源库间的数据延迟，当然，MySQL集群内部的节点也可能会出现数据延迟。<ul>
 <li>所以，建议MySQL源库的写操作最好不要高于5K QPS。</li>
 </ul>
 </li>
-<li>TiDB的DDL操作都是Online DDL，且都是异步的，其中增减字段可以秒级完成，但增加索引时，由于要回填索引数据，这个过程会非常长。
-<ul>
+<li>TiDB的DDL操作都是Online DDL，且都是异步的，其中增减字段可以秒级完成，但增加索引时，由于要回填索引数据，这个过程会非常长。<ul>
 <li>所以在同步场景中，源库MySQL已经增加索引完成，但在TiDB中看不到这个索引，业务使用上有可能会造成一些困扰。</li>
 <li>解决方法是可以配置不同步索引修改，单独在TiDB中手动操作。</li>
 </ul>

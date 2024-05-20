@@ -1522,72 +1522,71 @@
 <blockquote>
 <p>官方仓库：<a target="_blank" rel="noopener" href="https://github.com/apache/dubbo">https://github.com/apache/dubbo</a></p>
 </blockquote>
-<h1>源码环境搭建</h1>
-<p><strong>Dubbo架构</strong></p>
+<h1 id="源码环境搭建"><a href="#源码环境搭建" class="headerlink" title="源码环境搭建"></a>源码环境搭建</h1><p><strong>Dubbo架构</strong></p>
 <img src="/images/634.png" alt="image-20240418182446616" style="zoom:80%;" />
+
 <blockquote>
-<p><strong>Registry：注册中心。</strong></p>
+<p><strong>Registry：注册中心。</strong> </p>
 <p>负责服务地址的注册与查找，服务的 Provider 和 Consumer 只在启动时与注册中心交互。</p>
 <p>注册中心通过长连接感知 Provider 的存在，在 Provider 出现宕机的时候，注册中心会立即推送相关事件通知 Consumer。</p>
-<p><strong>Provider：服务提供者。</strong></p>
+<p><strong>Provider：服务提供者。</strong> </p>
 <p>在它启动的时候，会向 Registry 进行注册操作，将自己服务的地址和相关配置信息封装成 URL 添加到 ZooKeeper 中。</p>
-<p><strong>Consumer：服务消费者。</strong></p>
-<p>在它启动的时候，会向 Registry 进行订阅操作。订阅操作会从 ZooKeeper 中获取 Provider 注册的 URL，并在 ZooKeeper 中添加相应的监听器。获取到 Provider URL 之后，Consumer 会根据负载均衡算法从多个 Provider 中选择一个 Provider 并与其建立连接，最后发起对 Provider 的 RPC 调用。</p>
+<p><strong>Consumer：服务消费者。</strong> </p>
+<p>在它启动的时候，会向 Registry 进行订阅操作。订阅操作会从 ZooKeeper 中获取 Provider 注册的 URL，并在 ZooKeeper 中添加相应的监听器。获取到 Provider URL 之后，Consumer 会根据负载均衡算法从多个 Provider 中选择一个 Provider 并与其建立连接，最后发起对 Provider 的 RPC 调用。 </p>
 <p>如果 Provider URL 发生变更，Consumer 将会通过之前订阅过程中在注册中心添加的监听器，获取到最新的 Provider URL 信息，进行相应的调整，比如断开与宕机 Provider 的连接，并与新的 Provider 建立连接。</p>
 <p>Consumer 与 Provider 建立的是长连接，且 Consumer 会缓存 Provider 信息，所以一旦连接建立，即使注册中心宕机，也不会影响已运行的 Provider 和 Consumer。</p>
-<p><strong>Monitor：监控中心。</strong></p>
+<p><strong>Monitor：监控中心。</strong> </p>
 <p>用于统计服务的调用次数和调用时间。</p>
 <p>Provider 和 Consumer 在运行过程中，会在内存中统计调用次数和调用时间，定时每分钟发送一次统计数据到监控中心。</p>
 <p>监控中心宕机不会影响 Provider、Consumer 以及 Registry 的功能，只会丢失监控数据而已。</p>
 </blockquote>
 <p><strong>源码核心模块</strong></p>
 <blockquote>
-<p><strong>dubbo-common 模块：</strong></p>
+<p><strong>dubbo-common 模块：</strong> </p>
 <p>Dubbo 的一个公共模块，其中有很多工具类以及公共逻辑，Dubbo SPI 实现、时间轮实现、动态编译器等。</p>
 </blockquote>
 <p><img src="/images/635.png" alt="image-20240418183207441"></p>
 <blockquote>
-<p><strong>dubbo-remoting 模块：</strong></p>
+<p><strong>dubbo-remoting 模块：</strong> </p>
 <p>Dubbo 的远程通信模块，其中的子模块依赖各种开源组件实现远程通信。</p>
 <p>在 dubbo-remoting-api 子模块中定义该模块的抽象概念，在其他子模块中依赖其他开源组件进行实现。</p>
 <p>例如，dubbo-remoting-netty4 子模块依赖 Netty 4 实现远程通信，dubbo-remoting-zookeeper 通过 Apache Curator 实现与 ZooKeeper 集群的交互。</p>
 </blockquote>
 <blockquote>
-<p><strong>dubbo-rpc 模块：</strong></p>
+<p><strong>dubbo-rpc 模块：</strong> </p>
 <p>Dubbo 中对远程调用协议进行抽象的模块，其中抽象了各种协议，依赖于 dubbo-remoting 模块的远程调用功能。</p>
 <p>dubbo-rpc-api 子模块是核心抽象，其他子模块是针对具体协议的实现。</p>
-<p>例如，dubbo-rpc-dubbo 子模块是对 Dubbo 协议的实现，依赖了 dubbo-remoting-netty4 等 dubbo-remoting 子模块。</p>
+<p>例如，dubbo-rpc-dubbo 子模块是对 Dubbo 协议的实现，依赖了 dubbo-remoting-netty4 等 dubbo-remoting 子模块。 </p>
 <p>dubbo-rpc 模块的实现中只包含一对一的调用，不关心集群的相关内容。</p>
 </blockquote>
 <blockquote>
-<p><strong>dubbo-cluster 模块：</strong></p>
+<p><strong>dubbo-cluster 模块：</strong> </p>
 <p>Dubbo 中负责管理集群的模块，提供了负载均衡、容错、路由等一系列集群相关的功能，最终的目的是将多个 Provider 伪装为一个 Provider，这样 Consumer 就可以像调用一个 Provider 那样调用 Provider 集群了。</p>
 </blockquote>
 <blockquote>
-<p><strong>dubbo-registry 模块：</strong></p>
+<p><strong>dubbo-registry 模块：</strong> </p>
 <p>Dubbo 中负责与多种开源注册中心进行交互的模块，提供注册中心的能力。</p>
 <p>其中， dubbo-registry-api 子模块是顶层抽象，其他子模块是针对具体开源注册中心组件的具体实现，例如，dubbo-registry-zookeeper 子模块是 Dubbo 接入 ZooKeeper 的具体实现。</p>
 </blockquote>
 <blockquote>
-<p><strong>dubbo-monitor 模块：</strong></p>
+<p><strong>dubbo-monitor 模块：</strong> </p>
 <p>Dubbo 的监控模块，主要用于统计服务调用次数、调用时间以及实现调用链跟踪的服务。</p>
 </blockquote>
 <blockquote>
-<p><strong>dubbo-config 模块：</strong></p>
+<p><strong>dubbo-config 模块：</strong> </p>
 <p>Dubbo 对外暴露的配置都是由该模块进行解析的。</p>
 <p>例如，dubbo-config-api 子模块负责处理 API 方式使用时的相关配置，dubbo-config-spring 子模块负责处理与 Spring 集成使用时的相关配置方式。</p>
 </blockquote>
 <blockquote>
-<p><strong>dubbo-metadata 模块：</strong></p>
+<p><strong>dubbo-metadata 模块：</strong> </p>
 <p>Dubbo 的元数据模块。</p>
 <p>dubbo-metadata 模块的实现套路也是有一个 api 子模块进行抽象，然后其他子模块进行具体实现。</p>
 </blockquote>
 <blockquote>
-<p><strong>dubbo-configcenter 模块：</strong></p>
+<p><strong>dubbo-configcenter 模块：</strong> </p>
 <p>Dubbo 的动态配置模块，主要负责外部化配置以及服务治理规则的存储与通知，提供了多个子模块用来接入多种开源的服务发现组件。</p>
 </blockquote>
-<h1>配置总线</h1>
-<blockquote>
+<h1 id="配置总线"><a href="#配置总线" class="headerlink" title="配置总线"></a>配置总线</h1><blockquote>
 <p>Dubbo 中任意的一个实现都可以抽象为一个 URL，Dubbo 使用 URL 来统一描述了所有对象和配置信息。</p>
 </blockquote>
 <pre><code>dubbo://172.17.32.91:20880/org.apache.dubbo.demo.DemoService?anyhost=true&amp;application=dubbo-demo-api-provider&amp;dubbo=2.0.2&amp;interface=org.apache.dubbo.demo.DemoService&amp;methods=sayHello,sayHelloAsync&amp;pid=32508&amp;release=&amp;side=provider&amp;timestamp=1593253404714dubbo://172.17.32.91:20880/org.apache.dubbo.demo.DemoService?anyhost=true&amp;application=dubbo-demo-api-provider&amp;dubbo=2.0.2&amp;interface=org.apache.dubbo.demo.DemoService&amp;methods=sayHello,sayHelloAsync&amp;pid=32508&amp;release=&amp;side=provider&amp;timestamp=1593253404714
@@ -1596,8 +1595,8 @@
 <p>Provider 注册到 ZooKeeper 上的 URL 信息：</p>
 <ul>
 <li><strong>protocol</strong>：dubbo 协议。</li>
-<li><strong>username/password</strong>：用户名和密码。</li>
-<li><strong>host/port</strong>：172.17.32.91:20880。</li>
+<li><strong>username&#x2F;password</strong>：用户名和密码。</li>
+<li><strong>host&#x2F;port</strong>：172.17.32.91:20880。</li>
 <li><strong>path</strong>：org.apache.dubbo.demo.DemoService。</li>
 <li><strong>parameters</strong>：参数键值对。</li>
 </ul>
@@ -1609,13 +1608,12 @@
 <li><strong>URLStrParser，</strong> 将字符串解析成 URL 对象。</li>
 </ul>
 </blockquote>
-<h1>SPI精析</h1>
-<blockquote>
+<h1 id="SPI精析"><a href="#SPI精析" class="headerlink" title="SPI精析"></a>SPI精析</h1><blockquote>
 <p>Dubbo 按照 SPI 配置文件的用途，将其分成了三类目录：</p>
 <ul>
-<li>META-INF/services/ 目录：该目录下的 SPI 配置文件用来兼容 JDK SPI。</li>
-<li>META-INF/dubbo/ 目录：该目录用于存放用户自定义 SPI 配置文件。</li>
-<li>META-INF/dubbo/internal/ 目录：该目录用于存放 Dubbo 内部使用的 SPI 配置文件。</li>
+<li>META-INF&#x2F;services&#x2F; 目录：该目录下的 SPI 配置文件用来兼容 JDK SPI。</li>
+<li>META-INF&#x2F;dubbo&#x2F; 目录：该目录用于存放用户自定义 SPI 配置文件。</li>
+<li>META-INF&#x2F;dubbo&#x2F;internal&#x2F; 目录：该目录用于存放 Dubbo 内部使用的 SPI 配置文件。</li>
 </ul>
 </blockquote>
 <blockquote>
@@ -1646,8 +1644,7 @@
 <p>功能类似于 JDK SPI 中的 <code>java.util.ServiceLoader</code>。</p>
 <p>Dubbo SPI 的核心逻辑几乎都封装在 ExtensionLoader 之中。</p>
 </blockquote>
-<h1>海量定时任务</h1>
-<blockquote>
+<h1 id="海量定时任务"><a href="#海量定时任务" class="headerlink" title="海量定时任务"></a>海量定时任务</h1><blockquote>
 <p>JDK 提供的 <code>java.util.Timer</code> 和 DelayedQueue 等工具类，可以实现简单的定时任务管理，其底层实现使用的是<strong>堆</strong>这种数据结构，存取操作的复杂度都是 <code>O(nlog(n))</code>，无法支持大量的定时任务。</p>
 <p>在定时任务量比较大、性能要求比较高的场景中，为了将定时任务的存取操作以及取消操作的时间复杂度降为 <code>O(1)</code>，一般会使用<strong>时间轮</strong>的方式。</p>
 <p><strong>时间轮是一种高效的、批量管理定时任务的调度模型</strong>。</p>
@@ -1681,15 +1678,14 @@
 <p><strong>Dubbo中如何使用定时任务</strong></p>
 <blockquote>
 <p>在 Dubbo 中，时间轮并不直接用于周期性操作，而是只向时间轮提交执行单次的定时任务，在上一次任务执行完成的时候，调用 newTimeout() 方法再次提交当前任务，这样就会在下个周期执行该任务。</p>
-<p>即使在任务执行过程中出现了 GC、I/O 阻塞等情况，导致任务延迟或卡住，也不会有同样的任务源源不断地提交进来，导致任务堆积。</p>
+<p>即使在任务执行过程中出现了 GC、I&#x2F;O 阻塞等情况，导致任务延迟或卡住，也不会有同样的任务源源不断地提交进来，导致任务堆积。</p>
 <p>Dubbo 中对时间轮的应用：</p>
 <ul>
 <li><strong>失败重试，</strong> 例如，Provider 向注册中心进行注册失败时的重试操作，或是 Consumer 向注册中心订阅时的失败重试等。</li>
 <li><strong>周期性定时任务，</strong> 例如，定期发送心跳请求，请求超时的处理，或是网络连接断开后的重连机制。</li>
 </ul>
 </blockquote>
-<h1>Serialize层</h1>
-<p><strong>常见序列化算法</strong></p>
+<h1 id="Serialize层"><a href="#Serialize层" class="headerlink" title="Serialize层"></a>Serialize层</h1><p><strong>常见序列化算法</strong></p>
 <blockquote>
 <p><strong>Apache Avro 是一种与编程语言无关的序列化格式</strong>。</p>
 <p>Avro 依赖于用户自定义的 Schema，在进行序列化数据的时候，无须多余的开销，就可以快速完成序列化，并且生成的序列化数据也较小。</p>
@@ -1700,7 +1696,7 @@
 <p>从官方的测试结果来看，FastJson 确实是最快的，比 Jackson 快 20% 左右，但是近几年 FastJson 的安全漏洞比较多，所以在选择版本的时候，还是需要谨慎一些。</p>
 <p><strong>Fst（全称是 fast-serialization）是一款高性能 Java 对象序列化工具包</strong>，100% 兼容 JDK 原生环境，序列化速度大概是JDK 原生序列化的 4~10 倍，序列化后的数据大小是 JDK 原生序列化大小的 1⁄3 左右。</p>
 <p>目前，Fst 已经更新到 3.x 版本，支持 JDK 14。</p>
-<p><strong>Kryo 是一个高效的 Java 序列化/反序列化库</strong>，目前 Twitter、Yahoo、Apache 等都在使用该序列化技术，特别是 Spark、Hive 等大数据领域用得较多。</p>
+<p><strong>Kryo 是一个高效的 Java 序列化&#x2F;反序列化库</strong>，目前 Twitter、Yahoo、Apache 等都在使用该序列化技术，特别是 Spark、Hive 等大数据领域用得较多。</p>
 <p>Kryo 提供了一套快速、高效和易用的序列化 API。</p>
 <p>无论是数据库存储，还是网络传输，都可以使用 Kryo 完成 Java 对象的序列化。</p>
 <p>Kryo 还可以执行自动深拷贝和浅拷贝，支持环形引用。</p>
@@ -1724,8 +1720,7 @@
 <p>dubbo-serialization-api 模块中定义了 Dubbo 序列化层的核心接口。</p>
 <p>其中最核心的是 Serialization 这个接口，它是一个扩展接口，被 @SPI 接口修饰，默认扩展实现是 Hessian2Serialization。</p>
 </blockquote>
-<h1>代理层</h1>
-<blockquote>
+<h1 id="代理层"><a href="#代理层" class="headerlink" title="代理层"></a>代理层</h1><blockquote>
 <p>在 Consumer 进行调用的时候，Dubbo 会通过<strong>动态代理</strong>将业务接口实现对象转化为相应的 Invoker 对象，然后在 Cluster 层、Protocol 层都会使用 Invoker。</p>
 <p>在 Provider 暴露服务的时候，也会有 Invoker 对象与业务接口实现对象之间的转换，这同样也是通过<strong>动态代理</strong>实现的。</p>
 </blockquote>
