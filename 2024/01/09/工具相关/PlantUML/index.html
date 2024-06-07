@@ -1479,6 +1479,26 @@
 								
 							</ul>
 			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										资料分享
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2024/06/07/%E8%B5%84%E6%96%99%E5%88%86%E4%BA%AB/%E5%85%8D%E8%B4%B9%E4%B9%A6%E7%B1%8D/">
+										免费书籍
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
 		</div>
 	</div>
 </div>
@@ -1521,6 +1541,8 @@
 		<blockquote>
 <p>PlantUML提供了一种用文本描述来绘制UML图的方式，可以绘制类图、时序图、用例图等等。</p>
 <p>官网：<a target="_blank" rel="noopener" href="http://plantuml.com/">http://plantuml.com</a></p>
+<p><a target="_blank" rel="noopener" href="https://plantuml.com/zh/">https://plantuml.com/zh/</a></p>
+<p>预览网站：<a target="_blank" rel="noopener" href="https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000">https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000</a></p>
 </blockquote>
 <p><strong>请求、回调、渲染</strong></p>
 <img src="/images/52.png" style="zoom:70%;" />
@@ -1674,6 +1696,16 @@ end box
 
 @enduml
 </code></pre>
+<p><strong>结合ChatGPT</strong></p>
+<blockquote>
+<p>将一个登录流程的描述告诉 GPT 让它画出时序图。</p>
+<p>Prompt 如下。</p>
+</blockquote>
+<blockquote>
+<p>以客户端、登录服务、数据库为3个主体，画出整个登录过程的Sequence Diagrams：</p>
+<p>客户端输入手机号，调用登录服务，查询数据库，查看手机号是否存在，如果不存在，直接通知客户端用户不存，如果存在，登录服务查询数据库验证手机号和密码是否匹配，如果匹配，返回用户信息，客户端跳转到首页。</p>
+<p>请帮我生成 PlantUML 格式的类图，请开始画图吧。</p>
+</blockquote>
 
 	</div>
 	<!--打赏-->
