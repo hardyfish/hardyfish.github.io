@@ -1537,6 +1537,39 @@
       <!--打赏-->
 	<div id="article-content">
 		<p>专栏链接：<a target="_blank" rel="noopener" href="https://time.geekbang.org/column/intro/100020201">https://time.geekbang.org/column/intro/100020201</a></p>
+<p><strong>HDFS</strong></p>
+<blockquote>
+<p>Hadoop分布式文件系统HDFS的设计目标是管理数以千计的服务器、数以万计的磁盘，将这么大规模的服务器计算资源当作一个单一的存储系统进行管理，对应用程序提供数以PB计的存储容量，让应用程序像使用普通文件系统一样存储大规模的文件数据。</p>
+</blockquote>
+<blockquote>
+<p>HDFS是在一个大规模分布式服务器集群上，对数据分片后进行并行读写及冗余存储。</p>
+<p>因为HDFS可以部署在一个比较大的服务器集群上，集群中所有服务器的磁盘都可供HDFS使用，所以整个HDFS的存储空间可以达到PB级容量。</p>
+</blockquote>
+<p><img src="/images/857.png" alt="image-20240626130518102"></p>
+<blockquote>
+<p><strong>DataNode负责文件数据的存储和读写操作，HDFS将文件数据分割成若干数据块（Block），每个DataNode存储一部分数据块，这样文件就分布存储在整个HDFS服务器集群中</strong>。</p>
+<p>应用程序客户端（Client）可以并行对这些数据块进行访问，从而使得HDFS可以在服务器集群规模上实现数据并行访问，极大地提高了访问速度。</p>
+<p>在实践中，HDFS集群的DataNode服务器会有很多台，一般在几百台到几千台这样的规模，每台服务器配有数块磁盘，整个集群的存储容量大概在几PB到数百PB。</p>
+<p><strong>NameNode负责整个分布式文件系统的元数据（MetaData）管理，也就是文件路径名、数据块的ID以及存储位置等信息，相当于操作系统中文件分配表（FAT）的角色</strong>。</p>
+<p>HDFS为了保证数据的高可用，会将一个数据块复制为多份（缺省情况为3份），并将多份相同的数据块存储在不同的服务器上，甚至不同的机架上。</p>
+<p>这样当有磁盘损坏，或者某个DataNode服务器宕机，甚至某个交换机宕机，导致其存储的数据块不能访问的时候，客户端会查找其备份的数据块进行访问。</p>
+</blockquote>
+<blockquote>
+<p>常用的保证系统可用性的策略有冗余备份、失效转移和降级限流。</p>
+</blockquote>
+<p><strong>MapReduce</strong></p>
+<blockquote>
+<p><strong>MapReduce既是一个编程模型，又是一个计算框架</strong>。</p>
+<p>也就是说，开发人员必须基于MapReduce编程模型进行编程开发，然后将程序通过MapReduce计算框架分发到Hadoop集群中运行。</p>
+</blockquote>
+<blockquote>
+<p>一个map函数可以针对一部分数据进行运算，这样就可以将一个大数据切分成很多块（这也正是HDFS所做的），MapReduce计算框架为每个数据块分配一个map函数去计算，从而实现大数据的分布式计算。</p>
+<p>假设有两个数据块的文本数据需要进行词频统计，MapReduce计算过程如下图所示。</p>
+</blockquote>
+<p><img src="/images/858.png" alt="image-20240626131437480"></p>
+<blockquote>
+<p>这样一个MapReduce程序要想在分布式环境中执行，并处理海量的大规模数据，还需要一个计算框架，能够调度执行这个MapReduce程序，使它在分布式的集群中并行运行，而这个计算框架也叫MapReduce。</p>
+</blockquote>
 
 	</div>
 	<!--打赏-->
